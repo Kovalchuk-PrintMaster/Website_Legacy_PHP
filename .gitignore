@@ -75,3 +75,12 @@ base/userfiles/
 base/vendor/
 base/composer.phar
 base/sitemap.xml
+# Local environment / database / import-export artifacts
+!.env.example
+*.sql.gz
+*.dump.gz
+database_dumps/
+db_dumps/
+dumps/
+imports/
+exports/
