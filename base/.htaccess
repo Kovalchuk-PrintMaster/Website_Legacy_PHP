@@ -1,3 +1,44 @@
+# BEGIN ForPrint minimal webroot hardening v0.5.1
+# Temporary legacy PHP website hardening.
+# This block blocks direct HTTP access to local config, runtime, source internals,
+# dependency directories and database/import artifacts.
+# It does not refactor the legacy PHP application.
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Local/private config files
+    RewriteRule ^(?:config(?:\.local)?|mail\.local)\.php$ - [F,L,NC]
+
+    # Internal/runtime/dependency directories
+    RewriteRule ^(?:core|vendor|log|temp)(?:/|$) - [F,L,NC]
+
+    # Local env and database/import artifacts
+    RewriteRule (^|/)\.env(?:\..*)?$ - [F,L,NC]
+    RewriteRule \.(?:sql|dump|sqlite|sqlite3|db|bak|backup)(?:\.gz)?$ - [F,L,NC]
+</IfModule>
+
+<FilesMatch "^(?:config(?:\.local)?|mail\.local)\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "^\.env(?:\..*)?$|\.(?:sql|dump|sqlite|sqlite3|db|bak|backup)(?:\.gz)?$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+# END ForPrint minimal webroot hardening v0.5.1
+
 #php_value display_errors 1
 #php_value display_startup_errors 1
 #php_value error_reporting E_ALL
@@ -15,9 +56,9 @@ AddDefaultCharset utf-8
 DirectoryIndex index.php
 
 RewriteEngine on
-RewriteCond %(REQUEST_FILENAME) !-f
-RewriteCond %(REQUEST_FILENAME) !favicon.ico
-#RewriteCond %(REQUEST_FILENAME) !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !favicon.ico
+#RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*) index.php
 
 #RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
