@@ -1,0 +1,61 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local env / secrets
+.env
+.env.*
+*.local
+*.secret
+*.secrets
+secrets/
+credentials/
+config.local.php
+local.config.php
+
+# PHP dependency workflow
+# Keep current vendor decision explicit later.
+# For now do not blindly ignore vendor because inherited project already contains vendor/.
+# vendor/
+
+# Logs / runtime files
+*.log
+log/*.log
+log/*_log.txt
+base/log/*.log
+base/log/*_log.txt
+temp/
+base/temp/
+tmp/
+base/tmp/
+
+# Backups / dumps / archives
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.sql
+*.dump
+*.sqlite
+*.sqlite3
+*.db
+
+# User uploads / media runtime content
+# Keep existing inherited media decision explicit later.
+# Do not track newly uploaded runtime files by default.
+base/userfiles/**/*.tmp
+base/userfiles/**/*.bak
+
+# Generated reports/check artifacts
+coverage/
+.phpunit.cache/
+.cache/
