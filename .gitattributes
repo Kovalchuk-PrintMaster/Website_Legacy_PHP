@@ -1,0 +1,30 @@
+# ForPrint Website legacy base line-ending policy
+* text=auto
+
+# Source/text files should be normalized in git
+*.php text eol=lf
+*.htaccess text eol=lf
+*.json text eol=lf
+*.lock text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.phar binary
