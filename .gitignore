@@ -59,3 +59,10 @@ base/userfiles/**/*.bak
 coverage/
 .phpunit.cache/
 .cache/
+# Local-only website mail config
+base/mail.local.php
+base/config.local.php
+
+# Local scratch helper files
+/tmp.py
+tmp.py
