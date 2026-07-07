@@ -1,36 +1,28 @@
-# ForPrint Website Current Status
 
-## Current phase
-
-`launch_readiness_inspection_v0_2`
-
-## Website base
-
-```text
-base/
+ForPrint Website — Current Status
 Status
 
-Repository control and deep read-only inspection are in progress.
+safe_tracking_policy_v0_4_2_complete
 
-Boundaries
+Repository
 
-Website is a channel only.
+/srv/software_development/forprint-project/forprint_website
 
-It must not own canonical:
+Website base
 
-products;
-prices;
-clients;
-orders;
-payments;
-stock;
-accounting;
-1C data.
-Current known blockers
-public launch not approved;
-config/secrets handling not verified;
-DB schema not confirmed;
-admin/session security not verified;
-upload safety not verified;
-dynamic SQL paths need review;
-public web-root exposure risks need review.
+base/
+
+Current state
+Repository scaffold is committed.
+Local scratch helper tmp.py is ignored.
+Legacy base inventory v0.4.1 is committed.
+Safe tracking policy v0.4.2 is prepared.
+Broad git add base/ remains forbidden.
+Public launch remains blocked.
+Last completed checkpoint
+
+ForPrint_Web_Site_Base — Safe Tracking Policy and Config Split v0.4.2
+
+Next recommended checkpoint
+
+ForPrint_Web_Site_Base — Config Example and Secret Scan v0.4.3

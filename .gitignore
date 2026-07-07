@@ -66,3 +66,12 @@ base/config.local.php
 # Local scratch helper files
 /tmp.py
 tmp.py
+
+
+# Inherited website base: local config / runtime / generated / dependency artifacts
+base/config.php
+base/log/
+base/userfiles/
+base/vendor/
+base/composer.phar
+base/sitemap.xml
