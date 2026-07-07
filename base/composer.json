@@ -1,0 +1,15 @@
+{
+  "name": "vendor_name/im.my",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Print",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "phpmailer/phpmailer": "^6.9"
+  }
+}

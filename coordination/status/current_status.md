@@ -2,7 +2,7 @@
 ForPrint Website — Current Status
 Status
 
-line_endings_admin_seed_v0_4_4a_prepared
+selected_base_source_checkpoint_v0_4_4b_prepared
 
 Repository
 
@@ -18,15 +18,17 @@ Local scratch helper tmp.py is ignored.
 Legacy base inventory v0.4.1 is committed.
 Safe tracking policy v0.4.2 is committed.
 Config example and secret scan v0.4.3 is committed.
-Selected source checkpoint v0.4.4 was blocked and recorded.
-Line-ending normalization v0.4.4a is prepared.
-Hardcoded default admin seed is neutralized in selected source.
+Selected source checkpoint blockers v0.4.4 are recorded.
+Line-ending normalization and default admin seed neutralization v0.4.4a are committed.
+Selected base source checkpoint v0.4.4b is prepared.
 Broad git add base/ remains forbidden.
 Public launch remains blocked.
 Current blockers
-Admin/auth/session/upload/SQL/web-root risks remain launch blockers.
+Web-root exposure hardening required.
 Public admin remains blocked.
-Selected source checkpoint still requires final staged scan.
+Admin/auth/session hardening required.
+Upload safety hardening required.
+SQL and user-input review required.
 Next recommended checkpoint
 
-ForPrint_Web_Site_Base — Selected Base Source Checkpoint v0.4.4b
+ForPrint_Web_Site_Base — Webroot Exposure Hardening v0.5
