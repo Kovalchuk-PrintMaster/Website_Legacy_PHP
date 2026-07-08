@@ -48,3 +48,9 @@ Upload/mail behavior must be controlled before public launch.
 Next recommended checkpoint
 
 ForPrint_Web_Site_Base — Local Website Runtime Smoke v0.5.6
+
+Naming policy
+Repository/module identity: Website_Legacy_PHP.
+Internal inherited PHP webroot remains: base/.
+This is intentional for legacy compatibility.
+Renaming base/ is deferred until after temporary launch readiness.
