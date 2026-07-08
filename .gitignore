@@ -84,3 +84,8 @@ db_dumps/
 dumps/
 imports/
 exports/
+base/database_dumps/
+base/db_dumps/
+base/dumps/
+base/imports/
+base/exports/
