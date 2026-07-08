@@ -89,3 +89,6 @@ base/db_dumps/
 base/dumps/
 base/imports/
 base/exports/
+__pycache__/
+*.py[cod]
+.pytest_cache/
