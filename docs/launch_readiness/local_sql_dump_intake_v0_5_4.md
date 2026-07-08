@@ -14,7 +14,7 @@ The dump is private runtime data and must not be committed to Git.
 
 ```text
 database_dumps/im_21.05.25.sql
-```                      
+```
 Safety rule
 
 Do not keep SQL dumps inside base/ webroot.
