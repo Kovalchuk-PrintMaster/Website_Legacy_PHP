@@ -48,3 +48,55 @@ inspect-security-grep:
 	@echo
 	@echo "== Upload handling usage =="
 	@grep -RInE '(\$$_FILES|move_uploaded_file|mime_content_type|pathinfo|upload)' base --include="*.php" 2>/dev/null | head -250 || true
+
+# =============================================================================
+# Website local runtime shortcuts START
+# =============================================================================
+
+WEBSITE_LOCAL_HOST ?= 127.0.0.1
+WEBSITE_LOCAL_PORT ?= 8098
+WEBSITE_LOCAL_URL ?= http://$(WEBSITE_LOCAL_HOST):$(WEBSITE_LOCAL_PORT)/
+WEBSITE_WEBROOT ?= base
+WEBSITE_HTTP_ROUTER ?= scripts/inspection/local_http_smoke_router.php
+WEBSITE_HTTP_SMOKE ?= scripts/inspection/run_website_local_http_smoke.py
+
+# Purpose: start the legacy PHP website locally for browser review.
+# Result: PHP built-in server starts on 127.0.0.1:8098.
+.PHONY: site-start
+site-start:
+	@echo "Starting ForPrint Website at $(WEBSITE_LOCAL_URL)"
+	php -S $(WEBSITE_LOCAL_HOST):$(WEBSITE_LOCAL_PORT) -t $(WEBSITE_WEBROOT) $(WEBSITE_HTTP_ROUTER)
+
+# Purpose: print the local website URL.
+# Result: local browser URL is shown.
+.PHONY: site-url
+site-url:
+	@echo "$(WEBSITE_LOCAL_URL)"
+
+# Purpose: run local HTTP smoke for the legacy PHP website.
+# Result: route smoke passes or returns non-zero.
+.PHONY: site-smoke
+site-smoke:
+	.venv_website/bin/python $(WEBSITE_HTTP_SMOKE)
+
+# Purpose: show the SSH tunnel command for Windows/local workstation access.
+# Result: operator can copy the tunnel command.
+.PHONY: site-tunnel-command
+site-tunnel-command:
+	@echo "ssh -N -L $(WEBSITE_LOCAL_PORT):127.0.0.1:$(WEBSITE_LOCAL_PORT) s01"
+
+# Purpose: compatibility alias for local runtime start.
+# Result: delegates to site-start.
+.PHONY: website-start
+website-start:
+	$(MAKE) site-start
+
+# Purpose: compatibility alias for local HTTP smoke.
+# Result: delegates to site-smoke.
+.PHONY: website-smoke
+website-smoke:
+	$(MAKE) site-smoke
+
+# =============================================================================
+# Website local runtime shortcuts FINISH
+# =============================================================================

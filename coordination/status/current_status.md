@@ -70,3 +70,11 @@ Local route /search returns HTTP 301.
 Legacy DB charset SQL compatibility fix applied.
 Website frontend starts locally through 127.0.0.1:8098.
 Cart issue remains for a separate checkpoint.
+
+Local operator startup
+Server-side local start command: make site-start.
+Local HTTP smoke command: make site-smoke.
+Windows tunnel helper: scripts/windows/start_website_tunnel.bat.
+Frontend refresh workflow documented.
+Aggressive frontend replacement is allowed where the old UI is obsolete.
+Backend changes remain targeted and safety-reviewed.
