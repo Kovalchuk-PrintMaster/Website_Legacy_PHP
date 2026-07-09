@@ -71,7 +71,7 @@
                         <?php endif;?>
 
                         <ul class="header__nav-list">
-                            <?php if (empty($this->menu['knoweleges'])):?>
+                            <?php if (!empty($this->menu['knoweleges'])):?>
                                 <li class="header__nav-parent">
 
                                     <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>

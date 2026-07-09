@@ -44,7 +44,7 @@
         ]);
 
         $this->menu['information'] = $this->model->get('information', [
-            'were' => ['visible'=>1, 'show_top_menu'=>1],
+            'where' => ['visible'=>1, 'show_top_menu'=>1],
             'order' => ['menu_position']
         ]);
 

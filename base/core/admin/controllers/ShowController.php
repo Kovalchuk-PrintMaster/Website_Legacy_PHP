@@ -26,8 +26,8 @@ class ShowController extends BaseAdmin
 
         if(!$this->columns['id_row'])return $this->data = [];
         $fields[] = $this->columns['id_row'] . ' as id';
-        if($this->columns['name']) $fields['name'] = 'name';
-        if($this->columns['img']) $fields['img'] = 'img';
+        if(!empty($this->columns['name'])) $fields['name'] = 'name';
+        if(!empty($this->columns['img'])) $fields['img'] = 'img';
 
         if(count($fields) <3){
             foreach ($this->columns as $key => $item){
@@ -39,32 +39,32 @@ class ShowController extends BaseAdmin
                 }
             }
         }
-        if($arr['fields']){
+        if(!empty($arr['fields'])){
             if(is_array($arr['fields'])){
                 $fields = Settings::instance()->arrayMergeRecursive($fields,$arr['fields']);
             }else{
                 $fields[]= $arr['fields'];
             }
         }
-        if($this->columns['parent_id']){
+        if(!empty($this->columns['parent_id'])){
             if(!in_array('parent_id', $fields)) $fields[] = 'parent_id';
             $order[] = 'parent_id';
         }
-        if($this->columns['menu_position']) $order[] = 'menu_position';
-        elseif ($this->columns['date']){
+        if(!empty($this->columns['menu_position'])) $order[] = 'menu_position';
+        elseif (!empty($this->columns['date'])){
             if($order) $order_direction = ['ASK', 'DESC'];
             else $order_direction[] = 'DESC';
 
             $order[] = 'date';
         }
-        if($arr['order']) {
+        if(!empty($arr['order'])) {
             if (is_array($arr['order'])) {
                 $order = Settings::instance()->arrayMergeRecursive($order, $arr['order']);
             }else{
                 $order[] = $arr['order'];
             }
         }
-        if($arr['order_direction']){
+        if(!empty($arr['order_direction'])){
             if(is_array($arr['order_direction'])){
                 $order_direction = Settings::instance()->arrayMergeRecursive($order_direction, $arr['order_direction']);
             }else{

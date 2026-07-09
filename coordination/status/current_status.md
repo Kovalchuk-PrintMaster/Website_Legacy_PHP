@@ -84,3 +84,11 @@ Navigation source discovery completed.
 Existing information.show_top_menu should be reused before adding a new navigation table.
 Public header currently mixes dynamic menu data and hardcoded links.
 Cart should remain a separate checkpoint.
+
+Admin rendering and header navigation
+Admin PHP 8.2 rendering compatibility fixed.
+Admin /admin/show renders locally after login.
+Public information top-menu filter typo fixed.
+Existing information.show_top_menu is the first admin-controlled top-menu mechanism.
+New navigation table remains deferred.
+Cart remains separate.
