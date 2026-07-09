@@ -56,3 +56,8 @@ Upload/mail behavior must be controlled before public launch.
 Next recommended checkpoint
 
 ForPrint_Web_Site_Base — Local HTTP Smoke v0.5.7
+
+Local Python environment
+Local venv: .venv_website/.
+Website Python tooling should run from .venv_website, not Blueprint venv.
+Local Python environment status: WEBSITE_LOCAL_PYTHON_ENV_OK.

@@ -92,3 +92,4 @@ base/exports/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.venv_website/
