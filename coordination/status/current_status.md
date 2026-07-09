@@ -61,3 +61,12 @@ Local Python environment
 Local venv: .venv_website/.
 Website Python tooling should run from .venv_website, not Blueprint venv.
 Local Python environment status: WEBSITE_LOCAL_PYTHON_ENV_OK.
+
+Local HTTP smoke
+Local HTTP smoke status: LOCAL_WEBSITE_HTTP_SMOKE_OK.
+Local PHP server route / returns HTTP 200.
+Local route /catalog returns HTTP 301.
+Local route /search returns HTTP 301.
+Legacy DB charset SQL compatibility fix applied.
+Website frontend starts locally through 127.0.0.1:8098.
+Cart issue remains for a separate checkpoint.

@@ -18,7 +18,7 @@ abstract class BaseModel extends BaseModelMethods
             throw new DbException('Error connect to DataBase: '
                 . $this->db->connect_errno . ' ' . $this->db->connect_error);
         }
-        $this->db->query("SET NAME UTF-8");
+        $this->db->query("SET NAMES utf8");
     }
 
     /**
