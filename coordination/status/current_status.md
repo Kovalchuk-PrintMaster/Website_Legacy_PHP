@@ -78,3 +78,9 @@ Windows tunnel helper: scripts/windows/start_website_tunnel.bat.
 Frontend refresh workflow documented.
 Aggressive frontend replacement is allowed where the old UI is obsolete.
 Backend changes remain targeted and safety-reviewed.
+
+Navigation control discovery
+Navigation source discovery completed.
+Existing information.show_top_menu should be reused before adding a new navigation table.
+Public header currently mixes dynamic menu data and hardcoded links.
+Cart should remain a separate checkpoint.
