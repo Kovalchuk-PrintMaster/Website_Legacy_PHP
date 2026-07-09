@@ -14,17 +14,22 @@ def main() -> int:
     print(f"python_prefix: {sys.prefix}")
     print(f"python_version: {sys.version.split()[0]}")
 
-    executable = Path(sys.executable).resolve()
+    executable_text = str(Path(sys.executable))
+    prefix_text = str(Path(sys.prefix))
     expected_part = ROOT / EXPECTED_VENV_NAME
+    expected_text = str(expected_part)
 
-    if expected_part not in executable.parents:
+    executable_in_venv = executable_text == expected_text or executable_text.startswith(expected_text + "/")
+    prefix_in_venv = prefix_text == expected_text or prefix_text.startswith(expected_text + "/")
+
+    if not executable_in_venv and not prefix_in_venv:
         print("[FAIL] Python is not running from .venv_website")
         print("status: WEBSITE_LOCAL_PYTHON_ENV_NOT_ACTIVE")
         return 1
 
     print("[OK] Python is running from .venv_website")
 
-    if "blueprint" in str(executable).lower() or "blueprint" in str(sys.prefix).lower():
+    if "blueprint" in executable_text.lower() or "blueprint" in prefix_text.lower():
         print("[FAIL] Python environment appears to come from Blueprint")
         print("status: WEBSITE_LOCAL_PYTHON_ENV_WRONG_SOURCE")
         return 2
