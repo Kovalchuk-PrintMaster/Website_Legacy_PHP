@@ -338,7 +338,20 @@ abstract class BaseAdmin extends BaseController
         $fileEdit = new  FileEdit();
         $this->fileArray  = $fileEdit->addFile($this->table);
 
-        if ($id){
+
+        if ($this->table === 'goods' && !empty($this->fileArray['img']) && is_string($this->fileArray['img'])) {
+            $goodsImageOptimizer = new \libraries\GoodsImageUploadOptimizer();
+            $optimizedGoodsImage = $goodsImageOptimizer->optimizeMainImage(
+                $this->fileArray['img'],
+                $_POST['name'] ?? '',
+                (int)($_POST['parent_id'] ?? 0)
+            );
+
+            if ($optimizedGoodsImage) {
+                $this->fileArray['img'] = $optimizedGoodsImage;
+            }
+        }
+if ($id){
             $this->checkFiles($id);
         }
 

@@ -134,3 +134,9 @@ No production DB migration or deployment.
 - Added one-product apply script for optimized goods images.
 - Legacy admin upload remains unchanged.
 - DB update requires explicit `--apply`.
+
+## Goods upload optimizer pipeline
+
+- Added admin post-upload optimization for `goods.img` only.
+- New goods images target `goods/<catalog-alias>/<product-slug>_NN.jpg`.
+- Legacy upload remains fallback if optimization fails.
