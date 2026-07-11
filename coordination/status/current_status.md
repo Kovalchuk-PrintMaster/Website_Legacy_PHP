@@ -122,3 +122,9 @@ No production DB migration or deployment.
 - `Новини` is now controlled through the `information` table.
 - Hardcoded header news link removed.
 - The page can be hidden from menu through admin.
+
+## Standalone image optimizer
+
+- Added standalone optimizer tool for manual testing.
+- Legacy admin upload remains unchanged.
+- No database writes are performed by the optimizer.
