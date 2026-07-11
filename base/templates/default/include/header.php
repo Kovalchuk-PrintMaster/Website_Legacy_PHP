@@ -30,80 +30,55 @@
 
                 <nav class="header__nav">
                     <ul class="header__nav-list">
-                            <?php if (!empty($this->menu['catalog'])):?>
-                        <li class="header__nav-parent">
 
-<!--                            <li class="">-->
-                            <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a>
-                            <ul class="header__nav-sublist">
+                        <?php if (!empty($this->menu['catalog'])):?>
+                            <li class="header__nav-parent">
+                                <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a>
 
-                                <?php foreach ($this->menu['catalog'] as $item):?>
-
-                                    <li>
-                                        <a href="<?=$this->alias(['catalog'=> $item['alias']])
-                                        ?>"><span><?=$item['name']?></span></a>
-                                    </li>
-
-                                <?php endforeach;?>
-
-                            </ul>
-
-                        </li>
-
-                            <?php endif;?>
+                                <ul class="header__nav-sublist">
+                                    <?php foreach ($this->menu['catalog'] as $item):?>
+                                        <li>
+                                            <a href="<?=$this->alias(['catalog' => $item['alias']])?>">
+                                                <span><?=$item['name']?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </li>
+                        <?php endif;?>
 
                         <?php if (!empty($this->menu['information'])):?>
                             <?php foreach ($this->menu['information'] as $item):?>
-
-<!--                                    <a href="--><?//=$this->alias(['information'=>$item['alias']])?><!--">-->
-<!--                                        <span>--><?//=$item['name']?><!--</span></a>-->
-<!--                                    <ul class="header__nav-sublist">-->
-
-                                    <a href="<?=$this->alias(['information'=>$item['alias']])?>"
-                                         <span><?=$item['name']?></span></a>
-                                        <ul class="header__nav-sublist">
-
-                                        </ul>
+                                <?php
+                                    $infoAlias = $item['alias'] ?? '';
+                                    $infoUrl = $infoAlias === 'contacts'
+                                        ? $this->alias('contacts')
+                                        : $this->alias(['information' => $infoAlias]);
+                                ?>
+                                <li>
+                                    <a href="<?=$infoUrl?>"><span><?=$item['name']?></span></a>
                                 </li>
-
                             <?php endforeach;?>
-
                         <?php endif;?>
 
-                        <ul class="header__nav-list">
-                            <?php if (!empty($this->menu['knoweleges'])):?>
-                                <li class="header__nav-parent">
+                        <?php if (!empty($this->menu['knoweleges'])):?>
+                            <li class="header__nav-parent">
+                                <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>
 
-                                    <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>
-                                    <ul class="header__nav-sublist">
+                                <ul class="header__nav-sublist">
+                                    <?php foreach ($this->menu['knoweleges'] as $item):?>
+                                        <li>
+                                            <a href="<?=$this->alias(['knoweleges' => $item['alias']])?>">
+                                                <span><?=$item['name']?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </li>
+                        <?php endif;?>
 
-                                        <?php foreach ($this->menu['knoweleges'] as $item):?>
-
-                                            <li>
-                                                <a href="<?=$this->alias(['knoweleges'=> $item['alias']])
-                                                ?>"><span><?=$item['name']?></span></a>
-                                            </li>
-
-                                        <?php endforeach;?>
-
-                                    </ul>
-                                </li>
-
-                            <?php endif;?>
-
-                        <li class="">
+                        <li>
                             <a href="<?=$this->alias('news')?>"><span>Новини</span></a>
-
-                            <ul class="header__nav-sublist">
-
-                            </ul>
-                        </li>
-
-                        <li class="">
-                            <a href="<?=$this->alias('contacts')?>"><span>Контакти</span></a>
-                            <ul class="header__nav-sublist">
-                            </ul>
-                            </ul>
                         </li>
 
                     </ul>
@@ -159,64 +134,57 @@
             </div>
             <div class="header__menu _hidden">
                 <div class="header__menu_close close_modal"></div>
+
                 <ul class="header__menu_burger">
 
                     <?php if (!empty($this->menu['catalog'])):?>
-
-                    <li>
-                        <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a>
-
-                        <ul class="header__menu_sublist">
-
-                            <?php foreach ($this->menu['catalog'] as $item):?>
-
-                            <li>
-                                <a href="<?=$this->alias(['catalog'=>$item['alias']])
-                                ?>"><span><?=$item['name']?></span></a>
-                            </li>
-
-                            <?php endforeach;?>
-
-                        </ul>
-
-                    </li>
-
-                    <?endif;?>
-
-                    <?php if (!empty($this->menu['information'])):?>
-
-                        <?php foreach ($this->menu['information'] as $item):?>
-
                         <li>
-                            <a href="<?=$this->alias(['information'=>$item['alias']])
-                            ?>"><span><?=$item['name']?></span></a>
+                            <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a>
 
                             <ul class="header__menu_sublist">
-
+                                <?php foreach ($this->menu['catalog'] as $item):?>
+                                    <li>
+                                        <a href="<?=$this->alias(['catalog' => $item['alias']])?>">
+                                            <span><?=$item['name']?></span>
+                                        </a>
+                                    </li>
+                                <?php endforeach;?>
                             </ul>
-
                         </li>
+                    <?php endif;?>
 
-                    <?php endforeach;?>
+                    <?php if (!empty($this->menu['information'])):?>
+                        <?php foreach ($this->menu['information'] as $item):?>
+                            <?php
+                                $infoAlias = $item['alias'] ?? '';
+                                $infoUrl = $infoAlias === 'contacts'
+                                    ? $this->alias('contacts')
+                                    : $this->alias(['information' => $infoAlias]);
+                            ?>
+                            <li>
+                                <a href="<?=$infoUrl?>"><span><?=$item['name']?></span></a>
+                            </li>
+                        <?php endforeach;?>
+                    <?php endif;?>
 
+                    <?php if (!empty($this->menu['knoweleges'])):?>
+                        <li>
+                            <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>
+
+                            <ul class="header__menu_sublist">
+                                <?php foreach ($this->menu['knoweleges'] as $item):?>
+                                    <li>
+                                        <a href="<?=$this->alias(['knoweleges' => $item['alias']])?>">
+                                            <span><?=$item['name']?></span>
+                                        </a>
+                                    </li>
+                                <?php endforeach;?>
+                            </ul>
+                        </li>
                     <?php endif;?>
 
                     <li>
                         <a href="<?=$this->alias('news')?>"><span>Новини</span></a>
-
-                        <ul class="header__menu_sublist">
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-                        <a href="<?=$this->alias('contacts')?>"><span>Контакти</span></a>
-
-                        <ul class="header__menu_sublist">
-
-                        </ul>
-
                     </li>
 
                 </ul>

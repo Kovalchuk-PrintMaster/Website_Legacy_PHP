@@ -93,3 +93,8 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv_website/
+# Local operator scratch files
+/tmp.php
+/tmp.py
+/tmp_*.php
+/tmp_*.py

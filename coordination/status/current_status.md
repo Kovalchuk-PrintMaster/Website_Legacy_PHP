@@ -92,3 +92,11 @@ Public information top-menu filter typo fixed.
 Existing information.show_top_menu is the first admin-controlled top-menu mechanism.
 New navigation table remains deferred.
 Cart remains separate.
+
+Managed contacts and information pages
+Managed Contacts page completed.
+Generic managed information page route added.
+Contacts are controlled through information admin table.
+/contacts/, /information/contacts/, and /information/oplata-i-dostavka/ are covered by local HTTP smoke.
+Admin product edit PHP 8.2 checkboxlist fatal fixed.
+Next checkpoint: managed special offers product listing.
