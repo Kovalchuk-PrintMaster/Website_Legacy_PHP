@@ -115,3 +115,10 @@ No production DB migration or deployment.
 - Admin product flag hints show dynamic section names from `information`.
 - `Оплата і Доставка` now has base managed information content.
 - No production DB migration or deployment.
+
+## Managed news reserve page
+
+- `/news/` reserve text page added.
+- `Новини` is now controlled through the `information` table.
+- Hardcoded header news link removed.
+- The page can be hidden from menu through admin.

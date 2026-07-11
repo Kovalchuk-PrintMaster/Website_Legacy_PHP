@@ -21,6 +21,7 @@ class InformationController extends BaseUser
             'special-offers' => 'special-offers',
             'politika-kodenfintsealnosti' => 'special-offers',
             'promotions' => 'promotions',
+            'news' => 'news',
         ];
 
         if (isset($directRedirectAliases[$alias])) {

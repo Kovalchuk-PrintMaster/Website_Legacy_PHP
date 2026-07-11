@@ -34,6 +34,7 @@ class Settings
                     'site' => 'index/hello',
                     'special-offers' => 'specialoffers/inputData/outputData',
                     'promotions' => 'promotions/inputData/outputData',
+                    'news' => 'news/inputData/outputData',
 //                'catalog' => 'site/input/output/'
             ]
         ],

@@ -59,6 +59,8 @@
                                         $infoUrl = $this->alias('special-offers');
                                     } elseif ($infoAlias === 'promotions' || $infoName === 'Акції і Пропозиції') {
                                         $infoUrl = $this->alias('promotions');
+                                    } elseif ($infoAlias === 'news' || $infoName === 'Новини') {
+                                        $infoUrl = $this->alias('news');
                                     } else {
                                         $infoUrl = $this->alias(['information' => $infoAlias]);
                                     }
@@ -85,9 +87,7 @@
                             </li>
                         <?php endif;?>
 
-                        <li>
-                            <a href="<?=$this->alias('news')?>"><span>Новини</span></a>
-                        </li>
+
 
                     </ul>
                 </nav>
