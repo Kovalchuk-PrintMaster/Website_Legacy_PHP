@@ -128,3 +128,9 @@ No production DB migration or deployment.
 - Added standalone optimizer tool for manual testing.
 - Legacy admin upload remains unchanged.
 - No database writes are performed by the optimizer.
+
+## Apply optimized goods image
+
+- Added one-product apply script for optimized goods images.
+- Legacy admin upload remains unchanged.
+- DB update requires explicit `--apply`.
