@@ -51,11 +51,14 @@
                             <?php foreach ($this->menu['information'] as $item):?>
                                 <?php
                                     $infoAlias = $item['alias'] ?? '';
+                                    $infoName = trim($item['name'] ?? '');
 
                                     if ($infoAlias === 'contacts') {
                                         $infoUrl = $this->alias('contacts');
-                                    } elseif ($infoAlias === 'special-offers' || $infoAlias === 'politika-kodenfintsealnosti') {
+                                    } elseif ($infoAlias === 'special-offers' || $infoAlias === 'politika-kodenfintsealnosti' || $infoName === 'Спеціальні пропозиції') {
                                         $infoUrl = $this->alias('special-offers');
+                                    } elseif ($infoAlias === 'promotions' || $infoName === 'Акції і Пропозиції') {
+                                        $infoUrl = $this->alias('promotions');
                                     } else {
                                         $infoUrl = $this->alias(['information' => $infoAlias]);
                                     }

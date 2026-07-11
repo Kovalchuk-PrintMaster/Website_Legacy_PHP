@@ -8046,3 +8046,130 @@ button[type="submit"]:hover {
     }
 }
 /* Managed special offers page FINISH */
+
+/* Managed product listing shared styles START */
+.managed-product-list-hero {
+    margin: 48px 0 28px;
+    padding: 34px;
+    border-radius: 24px;
+    background: #f6f8fb;
+    box-shadow: 0 18px 45px rgba(26, 38, 52, .06);
+}
+
+.managed-product-list-hero__eyebrow {
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #335451;
+    font-weight: 700;
+}
+
+.managed-product-list-hero p {
+    max-width: 760px;
+    margin: 18px 0 0;
+    color: #344452;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.managed-product-list-page {
+    padding-top: 20px;
+}
+
+.managed-product-list-section {
+    width: 100%;
+}
+
+.managed-product-list-empty {
+    width: 100%;
+    padding: 42px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 18px 45px rgba(26, 38, 52, .06);
+}
+
+.managed-product-list-empty h2 {
+    margin: 0 0 12px;
+}
+
+.managed-product-list-empty p {
+    margin: 0;
+    color: #344452;
+}
+
+@media (max-width: 900px) {
+    .managed-product-list-hero {
+        margin-top: 28px;
+        padding: 24px;
+    }
+}
+/* Managed product listing shared styles FINISH */
+
+/* Managed delivery information START */
+.delivery-info {
+    display: grid;
+    gap: 28px;
+}
+
+.delivery-info__lead {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.75;
+    color: #344452;
+}
+
+.delivery-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.delivery-info-card {
+    padding: 24px;
+    border-radius: 22px;
+    background: #f6f8fb;
+    border: 1px solid rgba(51, 84, 81, .12);
+}
+
+.delivery-info-visual {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 18px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #335451;
+    color: #fff;
+    font-size: 34px;
+}
+
+.delivery-info-card h2 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    line-height: 1.25;
+    color: #1d2a36;
+}
+
+.delivery-info-card p {
+    margin: 0;
+    color: #344452;
+    line-height: 1.65;
+}
+
+.delivery-info-note {
+    padding: 22px 24px;
+    border-radius: 20px;
+    background: #fff8df;
+    color: #3a3426;
+    line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+    .delivery-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Managed delivery information FINISH */

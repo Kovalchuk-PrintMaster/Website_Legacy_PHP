@@ -33,6 +33,7 @@ class Settings
             'routes' => [
                     'site' => 'index/hello',
                     'special-offers' => 'specialoffers/inputData/outputData',
+                    'promotions' => 'promotions/inputData/outputData',
 //                'catalog' => 'site/input/output/'
             ]
         ],

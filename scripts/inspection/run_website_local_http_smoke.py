@@ -27,6 +27,8 @@ ROUTES: dict[str, set[int]] = {
     "/information/contacts/": {301, 302},
     "/information/oplata-i-dostavka/": {200},
     "/special-offers/": {200},
+    "/promotions/": {200},
+    "/information/promotions/": {301, 302},
     "/information/special-offers/": {301, 302},
 }
 

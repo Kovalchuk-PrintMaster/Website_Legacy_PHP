@@ -107,3 +107,11 @@ Products are selected by existing product flags: sale=1 OR hot=1.
 The existing “Спеціальні пропозиції” information row is normalized to special-offers.
 Information route redirects to the product listing.
 No production DB migration or deployment.
+
+## Promotions, special offers, and delivery
+
+- `/promotions/` added for `sale=1 OR hit=1`.
+- `/special-offers/` adjusted for `hot=1 OR new=1`.
+- Admin product flag hints show dynamic section names from `information`.
+- `Оплата і Доставка` now has base managed information content.
+- No production DB migration or deployment.

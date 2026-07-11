@@ -16,14 +16,15 @@ class InformationController extends BaseUser
             throw new RouteException('Інформаційна сторінка не вказана');
         }
 
-        $redirectAliases = [
+        $directRedirectAliases = [
             'contacts' => 'contacts',
             'special-offers' => 'special-offers',
             'politika-kodenfintsealnosti' => 'special-offers',
+            'promotions' => 'promotions',
         ];
 
-        if (isset($redirectAliases[$alias])) {
-            $this->redirect($this->alias($redirectAliases[$alias]), 301);
+        if (isset($directRedirectAliases[$alias])) {
+            $this->redirect($this->alias($directRedirectAliases[$alias]), 301);
         }
 
         $data = $this->model->get('information', [
@@ -39,6 +40,16 @@ class InformationController extends BaseUser
         }
 
         $data = $data[0];
+
+        $name = trim((string)($data['name'] ?? ''));
+
+        if ($name === 'Акції і Пропозиції') {
+            $this->redirect($this->alias('promotions'), 301);
+        }
+
+        if ($name === 'Спеціальні пропозиції') {
+            $this->redirect($this->alias('special-offers'), 301);
+        }
 
         return compact('data');
     }
