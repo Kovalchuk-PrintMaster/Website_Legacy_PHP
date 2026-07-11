@@ -32,6 +32,7 @@ class Settings
             'hrUrl' => true,
             'routes' => [
                     'site' => 'index/hello',
+                    'special-offers' => 'specialoffers/inputData/outputData',
 //                'catalog' => 'site/input/output/'
             ]
         ],

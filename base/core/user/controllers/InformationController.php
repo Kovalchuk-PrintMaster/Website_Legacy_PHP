@@ -16,8 +16,14 @@ class InformationController extends BaseUser
             throw new RouteException('Інформаційна сторінка не вказана');
         }
 
-        if ($alias === 'contacts') {
-            $this->redirect($this->alias('contacts'), 301);
+        $redirectAliases = [
+            'contacts' => 'contacts',
+            'special-offers' => 'special-offers',
+            'politika-kodenfintsealnosti' => 'special-offers',
+        ];
+
+        if (isset($redirectAliases[$alias])) {
+            $this->redirect($this->alias($redirectAliases[$alias]), 301);
         }
 
         $data = $this->model->get('information', [

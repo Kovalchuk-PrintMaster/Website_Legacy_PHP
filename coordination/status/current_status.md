@@ -100,3 +100,10 @@ Contacts are controlled through information admin table.
 /contacts/, /information/contacts/, and /information/oplata-i-dostavka/ are covered by local HTTP smoke.
 Admin product edit PHP 8.2 checkboxlist fatal fixed.
 Next checkpoint: managed special offers product listing.
+
+Managed special offers product listing
+/special-offers/ public route added.
+Products are selected by existing product flags: sale=1 OR hot=1.
+The existing “Спеціальні пропозиції” information row is normalized to special-offers.
+Information route redirects to the product listing.
+No production DB migration or deployment.

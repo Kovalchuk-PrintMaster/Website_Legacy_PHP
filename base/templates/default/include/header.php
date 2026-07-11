@@ -51,9 +51,14 @@
                             <?php foreach ($this->menu['information'] as $item):?>
                                 <?php
                                     $infoAlias = $item['alias'] ?? '';
-                                    $infoUrl = $infoAlias === 'contacts'
-                                        ? $this->alias('contacts')
-                                        : $this->alias(['information' => $infoAlias]);
+
+                                    if ($infoAlias === 'contacts') {
+                                        $infoUrl = $this->alias('contacts');
+                                    } elseif ($infoAlias === 'special-offers' || $infoAlias === 'politika-kodenfintsealnosti') {
+                                        $infoUrl = $this->alias('special-offers');
+                                    } else {
+                                        $infoUrl = $this->alias(['information' => $infoAlias]);
+                                    }
                                 ?>
                                 <li>
                                     <a href="<?=$infoUrl?>"><span><?=$item['name']?></span></a>

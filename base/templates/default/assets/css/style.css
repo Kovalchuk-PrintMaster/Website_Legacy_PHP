@@ -7986,3 +7986,63 @@ button[type="submit"]:hover {
     }
 }
 /* Managed information page FINISH */
+
+/* Managed special offers page START */
+.special-offers-hero {
+    margin: 48px 0 28px;
+    padding: 34px;
+    border-radius: 24px;
+    background: #f6f8fb;
+    box-shadow: 0 18px 45px rgba(26, 38, 52, .06);
+}
+
+.special-offers-hero__eyebrow {
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #335451;
+    font-weight: 700;
+}
+
+.special-offers-hero p {
+    max-width: 760px;
+    margin: 18px 0 0;
+    color: #344452;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.special-offers-page {
+    padding-top: 20px;
+}
+
+.special-offers-section {
+    width: 100%;
+}
+
+.special-offers-empty {
+    width: 100%;
+    padding: 42px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 18px 45px rgba(26, 38, 52, .06);
+}
+
+.special-offers-empty h2 {
+    margin: 0 0 12px;
+}
+
+.special-offers-empty p {
+    margin: 0;
+    color: #344452;
+}
+
+@media (max-width: 900px) {
+    .special-offers-hero {
+        margin-top: 28px;
+        padding: 24px;
+    }
+}
+/* Managed special offers page FINISH */
