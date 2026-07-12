@@ -213,6 +213,35 @@
     </div>
 </section>
 
+<?php
+    $showDetails = (int)($data['tab_details_enabled'] ?? 1) === 1;
+
+    $detailsTitle = trim((string)($data['tab_details_title'] ?? ''));
+    $detailsTitle = $detailsTitle !== '' ? $detailsTitle : 'Детальніше';
+
+    $showSpecs = (int)($data['tab_specs_enabled'] ?? 0) === 1;
+    $specsTitle = trim((string)($data['tab_specs_title'] ?? ''));
+    $specsTitle = $specsTitle !== '' ? $specsTitle : 'Характеристики';
+    $specsContent = trim((string)($data['tab_specs_content'] ?? ''));
+
+    $showConditions = (int)($data['tab_conditions_enabled'] ?? 0) === 1;
+    $conditionsTitle = trim((string)($data['tab_conditions_title'] ?? ''));
+    $conditionsTitle = $conditionsTitle !== '' ? $conditionsTitle : 'Спеціальні умови';
+    $conditionsContent = trim((string)($data['tab_conditions_content'] ?? ''));
+
+    $hasProductTabs = $showDetails || $showSpecs || $showConditions;
+
+    $activeProductTab = '';
+    if ($showDetails) {
+        $activeProductTab = 'details';
+    } elseif ($showSpecs) {
+        $activeProductTab = 'specs';
+    } elseif ($showConditions) {
+        $activeProductTab = 'conditions';
+    }
+?>
+
+<?php if ($hasProductTabs):?>
 <section class="card-tabs">
     <div class="card-tabs__wrapper">
         <div class="card-tabs__top">
@@ -221,74 +250,100 @@
                 <div class="card-tabs__top-items">
                     <div class="card-tabs__top-wrapper">
 
-                        <div class="card-tabs__toggle tabs__toggle tabs__toggle_active">
-                            <span class="card-tabs__toggle-text">Детальніше</span>
-                        </div>
+                        <?php if ($showDetails):?>
+                            <div class="card-tabs__toggle tabs__toggle <?=$activeProductTab === 'details' ? 'tabs__toggle_active' : ''?>">
+                                <span class="card-tabs__toggle-text">
+                                    <?=htmlspecialchars($detailsTitle, ENT_QUOTES, 'UTF-8')?>
+                                </span>
+                            </div>
+                        <?php endif;?>
 
-                        <div class="card-tabs__toggle tabs__toggle ">
-                            <span class="card-tabs__toggle-text">Характеристики</span>
-                        </div>
+                        <?php if ($showSpecs):?>
+                            <div class="card-tabs__toggle tabs__toggle <?=$activeProductTab === 'specs' ? 'tabs__toggle_active' : ''?>">
+                                <span class="card-tabs__toggle-text">
+                                    <?=htmlspecialchars($specsTitle, ENT_QUOTES, 'UTF-8')?>
+                                </span>
+                            </div>
+                        <?php endif;?>
 
-                        <div class="card-tabs__toggle tabs__toggle ">
-                            <span class="card-tabs__toggle-text">Доставка і Оплата</span>
-                        </div>
+                        <?php if ($showConditions):?>
+                            <div class="card-tabs__toggle tabs__toggle <?=$activeProductTab === 'conditions' ? 'tabs__toggle_active' : ''?>">
+                                <span class="card-tabs__toggle-text">
+                                    <?=htmlspecialchars($conditionsTitle, ENT_QUOTES, 'UTF-8')?>
+                                </span>
+                            </div>
+                        <?php endif;?>
 
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="card-tabs__bottom">
             <div class="container">
                 <div class="card-tabs__bottom-wrapper">
 
-                    <div class="card-tabs-item-wrapper tabs__tab">
-                       <?=$data['content']?>
-                    </div>
+                    <?php if ($showDetails):?>
+                        <div class="card-tabs-item-wrapper tabs__tab">
+                            <?=$data['content'] ?? ''?>
+                        </div>
+                    <?php endif;?>
 
-                    <div class="card-tabs-item-wrapper tabs__tab">
-                        <div class="card-main-info__table main-info card-main-indfo_toggle">
+                    <?php if ($showSpecs):?>
+                        <div class="card-tabs-item-wrapper tabs__tab">
 
-                            <?php if ($data['filters']):?>
+                            <?php if ($specsContent !== ''):?>
 
+                                <?=$specsContent?>
 
-                                <?php if (!empty($data['filters'])):?>
+                            <?php elseif (!empty($data['filters']) && is_array($data['filters'])):?>
 
+                                <div class="card-main-info__table main-info card-main-indfo_toggle">
                                     <div class="card-main-info__table">
-
-                                    <?php $counter = 0;?>
-
-
-                                    <?php foreach ($data['filters'] as $item):?>
-
-                                    <div class="card-main-info__table-row">
-                                        <div class="card-main-info__table-item">
-                                            <?=$item['name']?>
-                                        </div>
-                                        <div class="card-main-info__table-item">
-                                            <?=implode(', ', array_column($item['values'], 'name'))?>
-                                        </div>
+                                        <?php foreach ($data['filters'] as $item):?>
+                                            <div class="card-main-info__table-row">
+                                                <div class="card-main-info__table-item">
+                                                    <?=$item['name']?>
+                                                </div>
+                                                <div class="card-main-info__table-item">
+                                                    <?=implode(', ', array_column($item['values'], 'name'))?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach;?>
                                     </div>
+                                </div>
 
-                                    <?php endforeach;?>
+                            <?php else:?>
 
-                                <?php endif;?>
+                                <p>Характеристики для цього продукту уточнюються.</p>
 
-                          </div>
+                            <?php endif;?>
 
                         </div>
+                    <?php endif;?>
 
-                    </div>
+                    <?php if ($showConditions):?>
+                        <div class="card-tabs-item-wrapper tabs__tab">
 
-                    <div class="card-tabs-item-wrapper tabs__tab">
+                            <?php if ($conditionsContent !== ''):?>
 
-                        <?= !empty($deliveryInfo['content']) ? $deliveryInfo['content'] : 'В.Покотила 7/2'?>
+                                <?=$conditionsContent?>
 
-                    </div>
+                            <?php else:?>
+
+                                <p>Тут може відображатися супровідна інформація, спеціальні умови або примітки для цього продукту.</p>
+
+                            <?php endif;?>
+
+                        </div>
+                    <?php endif;?>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php endif;?>
 <section class="card-slider">
     <div class="container">
         <div class="card-slider__wrapper">
@@ -425,6 +480,4 @@
         <button type="submit" class="form-submit feedback__submit">Відправити</button>
     </form>
 </section>
-
-        <?php endif;?>
 <?php endif;?>

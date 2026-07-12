@@ -902,3 +902,33 @@ video{
     border: 1px solid grey;
     color: #000;
 }
+
+/* ForPrint optional product tabs admin layout v0.6.14 */
+.forprint-optional-tabs-admin {
+    clear: both;
+    float: none;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.forprint-optional-tabs-admin > .vg-wrap,
+.forprint-optional-tabs-admin > .vg-full {
+    clear: both;
+    float: none;
+    width: 100%;
+}
+
+.forprint-optional-tabs-admin .vg-element {
+    box-sizing: border-box;
+}
+
+.forprint-optional-tabs-admin textarea {
+    min-height: 220px;
+}
+
+.forprint-optional-tabs-admin .tox-tinymce,
+.forprint-optional-tabs-admin .mce-tinymce {
+    clear: both;
+    width: 100% !important;
+    min-height: 260px;
+}

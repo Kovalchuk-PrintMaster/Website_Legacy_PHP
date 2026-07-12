@@ -181,3 +181,34 @@ No production DB migration or deployment.
 - Main product uploads now use proportional full-image storage, max side 1600px, quality 94.
 - Frontend preview crop remains CSS-only.
 - Existing old main images stay unchanged until re-uploaded or reprocessed.
+
+## Product optional tabs
+
+- `product_optional_tabs_v0_6_14_ready_for_manual_test`.
+- Added configurable product tab titles/content for details, specifications, and special conditions.
+- Details tab is always shown; specifications and special conditions are hidden by default.
+- Added reusable SQL migration under `database_dumps/migrations/`.
+
+## Optional tab admin ordering polished
+
+- Optional product tab fields were moved after main `content` so titles/radio controls stay close to their text blocks in the admin goods card.
+
+## Optional tab controls moved into content block
+
+- Product optional tab title/radio/content fields now render together inside the admin `vg-content` block.
+
+## Goods optional tabs admin render override
+
+- Added a dedicated admin render block for product optional tab fields so title/radio/content controls stay together near the main content editor.
+
+## Optional tabs admin layout fixed
+
+- Optional product tab controls now render in a dedicated full-width admin block outside `vg-content` to avoid TinyMCE overlay issues.
+
+## Details tab controls placed before main content
+
+- The existing goods `content` editor remains the Details tab body and now has its Details title/radio controls directly above it.
+
+## Details tab frontend visibility fixed
+
+- Product Details tab now respects the admin radio setting and can be hidden on the frontend.
