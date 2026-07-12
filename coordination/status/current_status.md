@@ -212,3 +212,8 @@ No production DB migration or deployment.
 ## Details tab frontend visibility fixed
 
 - Product Details tab now respects the admin radio setting and can be hidden on the frontend.
+
+## Admin flash message polish
+
+- `admin_flash_message_polish_v0_6_14_1_ready_for_manual_test`.
+- Admin success/error messages were translated to Ukrainian and now auto-hide after save/delete actions.
