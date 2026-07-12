@@ -140,3 +140,10 @@ No production DB migration or deployment.
 - Added admin post-upload optimization for `goods.img` only.
 - New goods images target `goods/<catalog-alias>/<product-slug>_NN.jpg`.
 - Legacy upload remains fallback if optimization fails.
+
+## Gallery upload base fix
+
+- gallery_upload_base_fix_v0_6_9_ready.
+- Multiple gallery uploads now work when PHP upload limits allow the request.
+- Failed gallery uploads no longer wipe existing gallery records.
+- Gallery image optimization remains a separate next step.

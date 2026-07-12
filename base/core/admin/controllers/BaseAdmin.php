@@ -337,7 +337,10 @@ abstract class BaseAdmin extends BaseController
     protected function createFiles($id){
         $fileEdit = new  FileEdit();
         $this->fileArray  = $fileEdit->addFile($this->table);
+        $fileUploadErrors = method_exists($fileEdit, 'getErrors') ? $fileEdit->getErrors() : [];
 
+
+        $this->preserveGalleryOnFailedUpload($id, $fileUploadErrors);
 
         if ($this->table === 'goods' && !empty($this->fileArray['img']) && is_string($this->fileArray['img'])) {
             $goodsImageOptimizer = new \libraries\GoodsImageUploadOptimizer();
@@ -351,9 +354,13 @@ abstract class BaseAdmin extends BaseController
                 $this->fileArray['img'] = $optimizedGoodsImage;
             }
         }
-if ($id){
-            $this->checkFiles($id);
-        }
+
+if($id){
+
+    $this->checkFiles($id);
+
+}
+
 
         if (!empty($_POST['js-sorting']) && $this->fileArray)
         {
@@ -971,6 +978,26 @@ if ($id){
                     'fields'=> ['alias' => $old_alias, 'table_name' => $this->table,  'table_id' => $id]
                 ]);
             }
+        }
+    }
+
+    protected function preserveGalleryOnFailedUpload($id, array $fileUploadErrors)
+    {
+        if ($this->table !== 'goods' || !$id) {
+            return;
+        }
+
+        if (empty($fileUploadErrors['gallery_img']) || !empty($this->fileArray['gallery_img'])) {
+            return;
+        }
+
+        $data = $this->model->get($this->table, [
+            'fields' => ['gallery_img'],
+            'where' => [$this->columns['id_row'] => $id],
+        ]);
+
+        if (!empty($data[0]['gallery_img'])) {
+            $this->fileArray['gallery_img'] = $data[0]['gallery_img'];
         }
     }
 
