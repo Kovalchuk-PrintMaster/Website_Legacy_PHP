@@ -154,3 +154,10 @@ No production DB migration or deployment.
 - Added make site-serve for PHP built-in server startup with upload limits.
 - Default local upload limits: 32M file, 128M POST, 50 files, 512M memory.
 - Production/staging PHP-FPM limits remain server-level configuration.
+
+## Goods gallery image optimizer
+
+- `goods_gallery_image_optimizer_v0_6_11_ready_for_manual_admin_test`.
+- New gallery uploads are optimized to JPG 700x525 quality 98.
+- New gallery paths target `goods/<catalog-alias>/<product-slug>-gallery_NN.jpg`.
+- Existing gallery records remain unchanged.

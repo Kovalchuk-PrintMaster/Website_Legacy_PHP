@@ -2,18 +2,13 @@
 
 namespace libraries;
 
-use Imagick;
-use Throwable;
-use mysqli;
-
 class GoodsImageUploadOptimizer
 {
-    protected string $projectRoot;
-    protected string $userfilesRoot;
-
     protected int $width = 700;
     protected int $height = 525;
     protected int $quality = 98;
+    protected string $projectRoot;
+    protected string $userfilesRoot;
 
     public function __construct()
     {
@@ -23,6 +18,31 @@ class GoodsImageUploadOptimizer
 
     public function optimizeMainImage(string $publicPath, string $goodsName, int $catalogId): ?string
     {
+        return $this->optimizeImagePath($publicPath, $goodsName, $catalogId);
+    }
+
+    public function optimizeGalleryImages(array $publicPaths, string $goodsName, int $catalogId): array
+    {
+        $result = [];
+
+        foreach ($publicPaths as $publicPath) {
+            if (!is_string($publicPath) || trim($publicPath) === '') {
+                continue;
+            }
+
+            $optimized = $this->optimizeImagePath($publicPath, $goodsName, $catalogId, 'gallery');
+            $result[] = $optimized ?: $publicPath;
+        }
+
+        return $result;
+    }
+
+    protected function optimizeImagePath(
+        string $publicPath,
+        string $goodsName,
+        int $catalogId,
+        string $suffix = ''
+    ): ?string {
         $sourcePublic = $this->normalizePublicPath($publicPath);
 
         if ($sourcePublic === null) {
@@ -51,14 +71,14 @@ class GoodsImageUploadOptimizer
         }
 
         $targetDir = $this->userfilesRoot . '/goods/' . $catalogAlias;
-        $target = $this->nextOutputPath($targetDir, $productSlug);
+        $target = $this->nextOutputPath($targetDir, $productSlug, $suffix);
 
         $ok = false;
 
         if (extension_loaded('imagick')) {
             try {
                 $ok = $this->optimizeWithImagick($source, $target);
-            } catch (Throwable $e) {
+            } catch (\Throwable $e) {
                 $ok = false;
             }
         }
@@ -74,9 +94,14 @@ class GoodsImageUploadOptimizer
         return substr($target, strlen($this->userfilesRoot . '/'));
     }
 
-    protected function normalizePublicPath(string $path): ?string
+    protected function normalizePublicPath(string $publicPath): ?string
     {
-        $path = trim($path);
+        $path = trim(str_replace('\\', '/', $publicPath));
+
+        if ($path === '') {
+            return null;
+        }
+
         $path = ltrim($path, '/');
 
         foreach (['base/userfiles/', 'userfiles/'] as $prefix) {
@@ -85,31 +110,28 @@ class GoodsImageUploadOptimizer
             }
         }
 
-        if ($path === '' || str_contains($path, '..')) {
+        if (preg_match('~(^|/)\.\.(/|$)~', $path)) {
             return null;
         }
 
-        if (!str_starts_with($path, 'goods/')) {
-            return null;
-        }
+        return trim($path, '/');
+    }
 
-        return $path;
+    protected function inspectImage(string $path): bool
+    {
+        return is_array(@getimagesize($path));
     }
 
     protected function fetchCatalogAlias(int $catalogId): string
     {
-        if ($catalogId <= 0) {
-            return 'catalog-unknown';
+        if ($catalogId <= 0 || !defined('HOST') || !defined('USER') || !defined('PASSWORD') || !defined('DB_NAME')) {
+            return 'uncategorized';
         }
 
-        if (!defined('HOST') || !defined('USER') || !defined('PASSWORD') || !defined('DB_NAME')) {
-            return 'catalog-' . $catalogId;
-        }
-
-        $db = @new mysqli(HOST, USER, PASSWORD, DB_NAME);
+        $db = @new \mysqli(HOST, USER, PASSWORD, DB_NAME);
 
         if ($db->connect_errno) {
-            return 'catalog-' . $catalogId;
+            return 'uncategorized';
         }
 
         $db->set_charset('utf8');
@@ -117,195 +139,22 @@ class GoodsImageUploadOptimizer
         $stmt = $db->prepare('SELECT alias, name FROM catalog WHERE id = ? LIMIT 1');
 
         if (!$stmt) {
-            return 'catalog-' . $catalogId;
+            return 'uncategorized';
         }
 
         $stmt->bind_param('i', $catalogId);
         $stmt->execute();
 
-        $res = $stmt->get_result();
+        $result = $stmt->get_result();
+        $row = $result ? $result->fetch_assoc() : null;
 
-        if ($res && $res->num_rows > 0) {
-            $row = $res->fetch_assoc();
+        $alias = trim((string)($row['alias'] ?? ''));
 
-            $alias = $this->slugify((string)($row['alias'] ?? ''));
-
-            if ($alias !== '') {
-                return $alias;
-            }
-
-            $name = $this->slugify((string)($row['name'] ?? ''));
-
-            if ($name !== '') {
-                return $name;
-            }
+        if ($alias === '') {
+            $alias = $this->slugify((string)($row['name'] ?? ''));
         }
 
-        return 'catalog-' . $catalogId;
-    }
-
-    protected function nextOutputPath(string $targetDir, string $productSlug): string
-    {
-        $this->ensureDir($targetDir);
-
-        for ($i = 1; $i <= 99; $i++) {
-            $path = sprintf('%s/%s_%02d.jpg', rtrim($targetDir, '/'), $productSlug, $i);
-
-            if (!file_exists($path)) {
-                return $path;
-            }
-        }
-
-        return sprintf('%s/%s_%s.jpg', rtrim($targetDir, '/'), $productSlug, uniqid('', false));
-    }
-
-    protected function inspectImage(string $path): ?array
-    {
-        $info = @getimagesize($path);
-
-        if (!$info) {
-            return null;
-        }
-
-        return [
-            'width' => (int)$info[0],
-            'height' => (int)$info[1],
-            'mime' => (string)($info['mime'] ?? ''),
-        ];
-    }
-
-    protected function optimizeWithImagick(string $source, string $target): bool
-    {
-        $image = new Imagick($source);
-
-        if ($image->getNumberImages() > 1) {
-            $image->setIteratorIndex(0);
-        }
-
-        if (method_exists($image, 'autoOrient')) {
-            $image->autoOrient();
-        } elseif (method_exists($image, 'autoOrientImage')) {
-            $image->autoOrientImage();
-        }
-
-        $image->setImageBackgroundColor('white');
-
-        if ($image->getImageAlphaChannel()) {
-            $image = $image->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
-        }
-
-        $srcWidth = max(1, $image->getImageWidth());
-        $srcHeight = max(1, $image->getImageHeight());
-
-        $scale = max($this->width / $srcWidth, $this->height / $srcHeight);
-        $newWidth = max($this->width, (int)ceil($srcWidth * $scale));
-        $newHeight = max($this->height, (int)ceil($srcHeight * $scale));
-
-        $image->resizeImage($newWidth, $newHeight, Imagick::FILTER_LANCZOS, 1, true);
-
-        $x = max(0, (int)floor(($newWidth - $this->width) / 2));
-        $y = max(0, (int)floor(($newHeight - $this->height) / 2));
-
-        $image->cropImage($this->width, $this->height, $x, $y);
-        $image->setImagePage(0, 0, 0, 0);
-        $image->setImageColorspace(Imagick::COLORSPACE_SRGB);
-        $image->setImageFormat('jpeg');
-        $image->setImageCompression(Imagick::COMPRESSION_JPEG);
-        $image->setImageCompressionQuality($this->quality);
-        $image->stripImage();
-
-        $this->ensureDir(dirname($target));
-
-        $ok = $image->writeImage($target);
-
-        $image->clear();
-        $image->destroy();
-
-        if ($ok) {
-            @chmod($target, 0664);
-        }
-
-        return $ok;
-    }
-
-    protected function optimizeWithGd(string $source, string $target): bool
-    {
-        $info = @getimagesize($source);
-
-        if (!$info) {
-            return false;
-        }
-
-        $mime = $info['mime'] ?? '';
-        $src = null;
-
-        if ($mime === 'image/jpeg') {
-            $src = @imagecreatefromjpeg($source);
-        } elseif ($mime === 'image/png') {
-            $src = @imagecreatefrompng($source);
-        } elseif ($mime === 'image/webp' && function_exists('imagecreatefromwebp')) {
-            $src = @imagecreatefromwebp($source);
-        } elseif ($mime === 'image/gif') {
-            $src = @imagecreatefromgif($source);
-        }
-
-        if (!$src) {
-            return false;
-        }
-
-        $srcWidth = max(1, imagesx($src));
-        $srcHeight = max(1, imagesy($src));
-
-        $scale = max($this->width / $srcWidth, $this->height / $srcHeight);
-        $newWidth = max($this->width, (int)ceil($srcWidth * $scale));
-        $newHeight = max($this->height, (int)ceil($srcHeight * $scale));
-
-        $resized = imagecreatetruecolor($newWidth, $newHeight);
-        $white = imagecolorallocate($resized, 255, 255, 255);
-        imagefilledrectangle($resized, 0, 0, $newWidth, $newHeight, $white);
-
-        imagecopyresampled(
-            $resized,
-            $src,
-            0,
-            0,
-            0,
-            0,
-            $newWidth,
-            $newHeight,
-            $srcWidth,
-            $srcHeight
-        );
-
-        $targetImg = imagecreatetruecolor($this->width, $this->height);
-        $targetWhite = imagecolorallocate($targetImg, 255, 255, 255);
-        imagefilledrectangle($targetImg, 0, 0, $this->width, $this->height, $targetWhite);
-
-        $x = max(0, (int)floor(($newWidth - $this->width) / 2));
-        $y = max(0, (int)floor(($newHeight - $this->height) / 2));
-
-        imagecopy($targetImg, $resized, 0, 0, $x, $y, $this->width, $this->height);
-
-        $this->ensureDir(dirname($target));
-
-        $ok = imagejpeg($targetImg, $target, $this->quality);
-
-        imagedestroy($src);
-        imagedestroy($resized);
-        imagedestroy($targetImg);
-
-        if ($ok) {
-            @chmod($target, 0664);
-        }
-
-        return $ok;
-    }
-
-    protected function ensureDir(string $dir): void
-    {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0775, true);
-        }
+        return $alias !== '' ? $alias : 'uncategorized';
     }
 
     protected function slugify(string $value): string
@@ -317,19 +166,135 @@ class GoodsImageUploadOptimizer
         }
 
         if (function_exists('transliterator_transliterate')) {
-            $value = transliterator_transliterate('Any-Latin; Latin-ASCII;', $value);
+            $value = transliterator_transliterate('Any-Latin; Latin-ASCII; Lower()', $value);
         } else {
             $converted = @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
+            $value = $converted !== false ? strtolower($converted) : strtolower($value);
+        }
 
-            if (is_string($converted)) {
-                $value = $converted;
+        $value = preg_replace('~[^a-z0-9]+~i', '-', (string)$value);
+        $value = trim((string)$value, '-');
+
+        return strtolower($value);
+    }
+
+    protected function nextOutputPath(string $targetDir, string $productSlug, string $suffix = ''): string
+    {
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $baseName = $suffix !== '' ? $productSlug . '-' . $suffix : $productSlug;
+
+        for ($i = 1; $i <= 99; $i++) {
+            $path = sprintf('%s/%s_%02d.jpg', rtrim($targetDir, '/'), $baseName, $i);
+
+            if (!file_exists($path)) {
+                return $path;
             }
         }
 
-        $value = strtolower($value);
-        $value = preg_replace('~[^a-z0-9]+~', '-', $value) ?: '';
-        $value = trim($value, '-');
+        return sprintf('%s/%s_%s.jpg', rtrim($targetDir, '/'), $baseName, uniqid('', false));
+    }
 
-        return substr($value, 0, 90);
+    protected function optimizeWithImagick(string $source, string $target): bool
+    {
+        $image = new \Imagick($source);
+
+        if (method_exists($image, 'autoOrient')) {
+            $image->autoOrient();
+        }
+
+        $image->cropThumbnailImage($this->width, $this->height);
+
+        $canvas = new \Imagick();
+        $canvas->newImage($this->width, $this->height, 'white', 'jpg');
+        $canvas->compositeImage($image, \Imagick::COMPOSITE_OVER, 0, 0);
+        $canvas->setImageFormat('jpeg');
+        $canvas->setImageCompressionQuality($this->quality);
+        $canvas->stripImage();
+
+        $ok = $canvas->writeImage($target);
+
+        $image->clear();
+        $image->destroy();
+        $canvas->clear();
+        $canvas->destroy();
+
+        return (bool)$ok;
+    }
+
+    protected function optimizeWithGd(string $source, string $target): bool
+    {
+        $info = @getimagesize($source);
+
+        if (!is_array($info)) {
+            return false;
+        }
+
+        $mime = (string)($info['mime'] ?? '');
+
+        switch ($mime) {
+            case 'image/jpeg':
+                $src = @imagecreatefromjpeg($source);
+                break;
+            case 'image/png':
+                $src = @imagecreatefrompng($source);
+                break;
+            case 'image/gif':
+                $src = @imagecreatefromgif($source);
+                break;
+            case 'image/webp':
+                $src = function_exists('imagecreatefromwebp') ? @imagecreatefromwebp($source) : false;
+                break;
+            case 'image/avif':
+                $src = function_exists('imagecreatefromavif') ? @imagecreatefromavif($source) : false;
+                break;
+            default:
+                $src = false;
+                break;
+        }
+
+        if (!$src) {
+            return false;
+        }
+
+        $srcWidth = imagesx($src);
+        $srcHeight = imagesy($src);
+
+        if ($srcWidth <= 0 || $srcHeight <= 0) {
+            imagedestroy($src);
+            return false;
+        }
+
+        $scale = max($this->width / $srcWidth, $this->height / $srcHeight);
+        $resizeWidth = (int)ceil($srcWidth * $scale);
+        $resizeHeight = (int)ceil($srcHeight * $scale);
+        $dstX = (int)floor(($this->width - $resizeWidth) / 2);
+        $dstY = (int)floor(($this->height - $resizeHeight) / 2);
+
+        $dst = imagecreatetruecolor($this->width, $this->height);
+        $white = imagecolorallocate($dst, 255, 255, 255);
+        imagefilledrectangle($dst, 0, 0, $this->width, $this->height, $white);
+
+        imagecopyresampled(
+            $dst,
+            $src,
+            $dstX,
+            $dstY,
+            0,
+            0,
+            $resizeWidth,
+            $resizeHeight,
+            $srcWidth,
+            $srcHeight
+        );
+
+        $ok = imagejpeg($dst, $target, $this->quality);
+
+        imagedestroy($src);
+        imagedestroy($dst);
+
+        return (bool)$ok;
     }
 }

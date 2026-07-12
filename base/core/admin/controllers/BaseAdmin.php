@@ -342,16 +342,29 @@ abstract class BaseAdmin extends BaseController
 
         $this->preserveGalleryOnFailedUpload($id, $fileUploadErrors);
 
-        if ($this->table === 'goods' && !empty($this->fileArray['img']) && is_string($this->fileArray['img'])) {
+        if ($this->table === 'goods' && !empty($this->fileArray)) {
             $goodsImageOptimizer = new \libraries\GoodsImageUploadOptimizer();
-            $optimizedGoodsImage = $goodsImageOptimizer->optimizeMainImage(
-                $this->fileArray['img'],
-                $_POST['name'] ?? '',
-                (int)($_POST['parent_id'] ?? 0)
-            );
+            $goodsName = $_POST['name'] ?? '';
+            $catalogId = (int)($_POST['parent_id'] ?? 0);
 
-            if ($optimizedGoodsImage) {
-                $this->fileArray['img'] = $optimizedGoodsImage;
+            if (!empty($this->fileArray['img']) && is_string($this->fileArray['img'])) {
+                $optimizedGoodsImage = $goodsImageOptimizer->optimizeMainImage(
+                    $this->fileArray['img'],
+                    $goodsName,
+                    $catalogId
+                );
+
+                if ($optimizedGoodsImage) {
+                    $this->fileArray['img'] = $optimizedGoodsImage;
+                }
+            }
+
+            if (!empty($this->fileArray['gallery_img']) && is_array($this->fileArray['gallery_img'])) {
+                $this->fileArray['gallery_img'] = $goodsImageOptimizer->optimizeGalleryImages(
+                    $this->fileArray['gallery_img'],
+                    $goodsName,
+                    $catalogId
+                );
             }
         }
 
