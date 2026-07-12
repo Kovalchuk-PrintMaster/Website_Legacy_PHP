@@ -100,3 +100,38 @@ website-smoke:
 # =============================================================================
 # Website local runtime shortcuts FINISH
 # =============================================================================
+
+# Local development PHP server with upload limits.
+#
+# Usage:
+#   make site-serve
+#   make site-serve FP_WEB_LOCAL_HTTP_PORT=8098
+#   make site-serve FP_WEB_LOCAL_HTTP_HOST=127.0.0.1
+#
+# Notes:
+# - These limits apply to PHP built-in server mode only.
+# - Production/staging PHP-FPM limits must be configured on the server.
+FP_WEB_LOCAL_HTTP_HOST ?= 0.0.0.0
+FP_WEB_LOCAL_HTTP_PORT ?= 8098
+FP_WEB_UPLOAD_MAX_FILESIZE ?= 32M
+FP_WEB_POST_MAX_SIZE ?= 128M
+FP_WEB_MAX_FILE_UPLOADS ?= 50
+FP_WEB_MEMORY_LIMIT ?= 512M
+
+.PHONY: site-serve
+site-serve:
+	php \
+		-d upload_max_filesize=$(FP_WEB_UPLOAD_MAX_FILESIZE) \
+		-d post_max_size=$(FP_WEB_POST_MAX_SIZE) \
+		-d max_file_uploads=$(FP_WEB_MAX_FILE_UPLOADS) \
+		-d memory_limit=$(FP_WEB_MEMORY_LIMIT) \
+		-S $(FP_WEB_LOCAL_HTTP_HOST):$(FP_WEB_LOCAL_HTTP_PORT) \
+		-t base
+
+.PHONY: site-serve-local
+site-serve-local:
+	$(MAKE) site-serve FP_WEB_LOCAL_HTTP_HOST=127.0.0.1
+
+.PHONY: site-serve-limits-cli
+site-serve-limits-cli:
+	php -i | grep -E "upload_max_filesize|post_max_size|max_file_uploads|memory_limit"

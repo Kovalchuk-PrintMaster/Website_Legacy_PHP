@@ -147,3 +147,10 @@ No production DB migration or deployment.
 - Multiple gallery uploads now work when PHP upload limits allow the request.
 - Failed gallery uploads no longer wipe existing gallery records.
 - Gallery image optimization remains a separate next step.
+
+## Local dev server upload limits
+
+- local_dev_server_upload_limits_v0_6_10_ready.
+- Added make site-serve for PHP built-in server startup with upload limits.
+- Default local upload limits: 32M file, 128M POST, 50 files, 512M memory.
+- Production/staging PHP-FPM limits remain server-level configuration.
