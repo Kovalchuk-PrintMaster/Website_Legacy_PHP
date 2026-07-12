@@ -8216,3 +8216,546 @@ button[type="submit"]:hover {
     box-shadow: 0 18px 45px rgba(26, 38, 52, .06);
 }
 /* News reserve page FINISH */
+
+/* ForPrint product gallery frontend polish v0.6.12 */
+.card-main-gallery-thumb {
+    position: relative;
+}
+
+.card-main-gallery-thumb__slide {
+    overflow: hidden;
+}
+
+.card-main-gallery-thumb__slide.swiper-slide-thumb-active {
+    border-color: #9d0054;
+}
+
+.card-main-gallery-thumb__img,
+.card-main-gallery-slider__img {
+    align-items: stretch;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-main-gallery-thumb__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+}
+
+.card-main-gallery-slider,
+.card-main-gallery-slider__container,
+.card-main-gallery-slider__container .swiper-wrapper,
+.card-main-gallery-slider__slide,
+.card-main-gallery-slider__img {
+    height: 100%;
+}
+
+.card-main-gallery-slider__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+}
+
+.card-main-gallery-thumb_has-more::before,
+.card-main-gallery-thumb_has-more::after {
+    position: absolute;
+    left: 50%;
+    z-index: 1001;
+    width: 34px;
+    height: 22px;
+    transform: translateX(-50%);
+    border-radius: 14px;
+    background: rgba(45, 48, 51, .78);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 22px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.card-main-gallery-thumb_has-more::before {
+    top: 6px;
+    content: '▲';
+}
+
+.card-main-gallery-thumb_has-more::after {
+    bottom: 6px;
+    content: '▼';
+}
+
+@media screen and (max-width: 640px) {
+    .card-main-gallery-thumb_has-more::before,
+    .card-main-gallery-thumb_has-more::after {
+        display: none;
+    }
+}
+
+/* ForPrint gallery arrows visual polish v0.6.13 */
+.card-main-gallery-thumb_has-more::before,
+.card-main-gallery-thumb_has-more::after {
+    width: 58px;
+    height: 36px;
+    border-radius: 999px;
+    background: rgba(0, 147, 210, .62);
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 32px;
+    box-shadow: 0 8px 18px rgba(0, 80, 120, .22);
+    backdrop-filter: blur(2px);
+}
+
+.card-main-gallery-thumb_has-more::before {
+    top: 8px;
+    content: '↑';
+}
+
+.card-main-gallery-thumb_has-more::after {
+    bottom: 8px;
+    content: '↓';
+}
+
+/* ForPrint gallery trim/arrows fix */
+.card-main-gallery-thumb_has-more::before,
+.card-main-gallery-thumb_has-more::after {
+    content: none !important;
+    display: none !important;
+}
+
+.card-main-gallery-thumb__hint {
+    position: absolute;
+    left: 50%;
+    z-index: 1002;
+    width: 34px;
+    height: 64px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: rgba(0, 147, 210, .24);
+    box-shadow: 0 6px 16px rgba(0, 80, 120, .12);
+    pointer-events: none;
+}
+
+.card-main-gallery-thumb__hint::before,
+.card-main-gallery-thumb__hint::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    display: block;
+    background: rgba(255, 255, 255, .92);
+    border-radius: 999px;
+    transform-origin: center;
+}
+
+.card-main-gallery-thumb__hint::before {
+    top: 16px;
+    width: 5px;
+    height: 30px;
+    transform: translateX(-50%);
+}
+
+.card-main-gallery-thumb__hint::after {
+    top: 14px;
+    width: 18px;
+    height: 18px;
+    border-top: 5px solid rgba(255, 255, 255, .92);
+    border-left: 5px solid rgba(255, 255, 255, .92);
+    background: transparent;
+}
+
+.card-main-gallery-thumb__hint_up {
+    top: 8px;
+}
+
+.card-main-gallery-thumb__hint_up::after {
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.card-main-gallery-thumb__hint_down {
+    bottom: 8px;
+}
+
+.card-main-gallery-thumb__hint_down::before {
+    top: 18px;
+}
+
+.card-main-gallery-thumb__hint_down::after {
+    top: 28px;
+    transform: translateX(-50%) rotate(225deg);
+}
+
+.card-main-gallery-thumb__img img,
+.card-main-gallery-slider__img img {
+    object-fit: cover !important;
+}
+
+@media screen and (max-width: 640px) {
+    .card-main-gallery-thumb__hint {
+        display: none;
+    }
+}
+
+/* ForPrint gallery arrows final visual polish v0.6.13b */
+.card-main-gallery-thumb_has-more::before,
+.card-main-gallery-thumb_has-more::after {
+    content: none !important;
+    display: none !important;
+}
+
+.card-main-gallery-thumb__hint {
+    width: 34px !important;
+    height: 58px !important;
+    border-radius: 999px !important;
+    background: rgba(0, 147, 210, .14) !important;
+    box-shadow: 0 4px 14px rgba(0, 80, 120, .10) !important;
+    backdrop-filter: blur(1px);
+}
+
+.card-main-gallery-thumb__hint::before {
+    content: '↑' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    color: rgba(255, 255, 255, .52) !important;
+    font-size: 31px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    transform: none !important;
+    border: none !important;
+}
+
+.card-main-gallery-thumb__hint::after {
+    content: none !important;
+    display: none !important;
+}
+
+.card-main-gallery-thumb__hint_down::before {
+    content: '↓' !important;
+}
+
+.card-main-gallery-thumb__hint_up {
+    top: 8px !important;
+}
+
+.card-main-gallery-thumb__hint_down {
+    bottom: 8px !important;
+}
+
+.card-main-gallery-thumb__img,
+.card-main-gallery-thumb__img img,
+.card-main-gallery-slider__img,
+.card-main-gallery-slider__img img {
+    background: transparent !important;
+}
+
+.card-main-gallery-thumb__img img,
+.card-main-gallery-slider__img img {
+    object-fit: cover !important;
+}
+
+/* ForPrint gallery/fancybox controls polish v0.6.13c */
+.card-main-gallery-thumb__hint {
+    width: 30px !important;
+    height: 58px !important;
+    background: rgba(0, 147, 210, .10) !important;
+    box-shadow: 0 4px 12px rgba(0, 80, 120, .08) !important;
+}
+
+.card-main-gallery-thumb__hint::before {
+    color: rgba(255, 255, 255, .50) !important;
+    font-size: 29px !important;
+}
+
+.fancybox-toolbar {
+    top: 18px !important;
+    right: 18px !important;
+    z-index: 99998 !important;
+}
+
+.fancybox-toolbar .fancybox-button,
+.fancybox-button--close {
+    z-index: 99999 !important;
+}
+
+.fancybox-navigation .fancybox-button {
+    top: 50% !important;
+    bottom: auto !important;
+    width: 72px !important;
+    height: 96px !important;
+    transform: translateY(-50%) !important;
+    z-index: 99990 !important;
+}
+
+.fancybox-navigation .fancybox-button--arrow_left {
+    left: 24px !important;
+}
+
+.fancybox-navigation .fancybox-button--arrow_right {
+    right: 24px !important;
+}
+
+.fancybox-navigation .fancybox-button div {
+    padding: 6px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .fancybox-toolbar {
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .fancybox-navigation .fancybox-button {
+        width: 56px !important;
+        height: 78px !important;
+    }
+
+    .fancybox-navigation .fancybox-button--arrow_left {
+        left: 8px !important;
+    }
+
+    .fancybox-navigation .fancybox-button--arrow_right {
+        right: 8px !important;
+    }
+}
+
+/* ForPrint fancybox side arrows final fix v0.6.13d */
+.fancybox-toolbar {
+    top: 18px !important;
+    right: 18px !important;
+    z-index: 99999 !important;
+}
+
+.fancybox-toolbar .fancybox-button {
+    width: 44px !important;
+    height: 44px !important;
+    pointer-events: auto !important;
+}
+
+.fancybox-navigation .fancybox-button {
+    position: fixed !important;
+    top: 50vh !important;
+    bottom: auto !important;
+    width: 54px !important;
+    height: 84px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateY(-50%) !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, .18) !important;
+    opacity: .86 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 99990 !important;
+}
+
+.fancybox-navigation .fancybox-button--arrow_left {
+    left: 18px !important;
+    right: auto !important;
+}
+
+.fancybox-navigation .fancybox-button--arrow_right {
+    right: 18px !important;
+    left: auto !important;
+}
+
+.fancybox-navigation .fancybox-button div {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 28px !important;
+    height: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.fancybox-navigation .fancybox-button svg {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fancybox-navigation .fancybox-button:hover {
+    background: rgba(0, 0, 0, .30) !important;
+    opacity: 1 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .fancybox-toolbar {
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .fancybox-navigation .fancybox-button {
+        width: 46px !important;
+        height: 72px !important;
+    }
+
+    .fancybox-navigation .fancybox-button--arrow_left {
+        left: 8px !important;
+    }
+
+    .fancybox-navigation .fancybox-button--arrow_right {
+        right: 8px !important;
+    }
+}
+
+/* ForPrint fancybox arrow click layer fix v0.6.13e */
+.fancybox-container .fancybox-navigation .fancybox-button {
+    z-index: 100000 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.fancybox-container .fancybox-stage,
+.fancybox-container .fancybox-slide,
+.fancybox-container .fancybox-content {
+    z-index: auto;
+}
+
+/* ForPrint fancybox centered arrows and counter v0.6.13f */
+.fancybox-container .fancybox-infobar {
+    font-size: 28px !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) !important;
+    padding: 6px 14px !important;
+    background: rgba(0, 0, 0, 0.14) !important;
+    border-radius: 999px !important;
+    pointer-events: none !important;
+    z-index: 100002 !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button--arrow_left,
+.fancybox-container .fancybox-navigation .fancybox-button--arrow_right {
+    z-index: 100003 !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button--arrow_left svg,
+.fancybox-container .fancybox-navigation .fancybox-button--arrow_right svg {
+    opacity: 0.55 !important;
+}
+
+/* ForPrint fixed fancybox side arrows no flicker v0.6.13h */
+.fancybox-container .fancybox-navigation .fancybox-button {
+    position: fixed !important;
+    top: 50% !important;
+    bottom: auto !important;
+    width: 54px !important;
+    height: 84px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateY(-50%) !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, .18) !important;
+    opacity: .86 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    z-index: 100003 !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button--arrow_left {
+    left: 250px !important;
+    right: auto !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button--arrow_right {
+    right: 250px !important;
+    left: auto !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button div {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 28px !important;
+    height: 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button svg {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fancybox-container .fancybox-navigation .fancybox-button:hover {
+    background: rgba(0, 0, 0, .30) !important;
+    opacity: 1 !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .fancybox-container .fancybox-navigation .fancybox-button--arrow_left {
+        left: 120px !important;
+    }
+
+    .fancybox-container .fancybox-navigation .fancybox-button--arrow_right {
+        right: 120px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fancybox-container .fancybox-navigation .fancybox-button {
+        width: 46px !important;
+        height: 72px !important;
+    }
+
+    .fancybox-container .fancybox-navigation .fancybox-button--arrow_left {
+        left: 16px !important;
+    }
+
+    .fancybox-container .fancybox-navigation .fancybox-button--arrow_right {
+        right: 16px !important;
+    }
+}
+
+/* ForPrint fancybox infobar right soft polish v0.6.13i */
+.fancybox-container .fancybox-infobar {
+    position: fixed !important;
+    top: 18px !important;
+    right: 250px !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+    color: rgba(255, 255, 255, .50) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .25) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 6px 0 !important;
+    opacity: .55 !important;
+    pointer-events: none !important;
+    z-index: 100002 !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .fancybox-container .fancybox-infobar {
+        right: 130px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fancybox-container .fancybox-infobar {
+        top: 12px !important;
+        right: 72px !important;
+        font-size: 22px !important;
+    }
+}

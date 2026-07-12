@@ -1,5 +1,20 @@
 <?php if(!empty($data)):?>
 
+<?php
+    $galleryImages = [];
+
+    if (!empty($data['gallery_img'])) {
+        $decodedGalleryImages = json_decode($data['gallery_img'], true);
+
+        if (is_array($decodedGalleryImages)) {
+            $galleryImages = array_values(array_filter($decodedGalleryImages, 'is_string'));
+        }
+    }
+
+    $galleryTotal = 1 + count($galleryImages);
+    $galleryHasMoreThumbs = $galleryTotal > 3;
+?>
+
 <div class="container">
     <nav class="breadcrumbs">
         <ul class="breadcrumbs__list" itemscope="" itemtype="http://schema.org/BreadcrumbList">
@@ -23,9 +38,14 @@
 <section class="card-main">
     <div class="container">
         <div class="card-main__wrapper">
-                <div class="card-main-gallery-thumb">
+                <div class="card-main-gallery-thumb<?=$galleryHasMoreThumbs ? ' card-main-gallery-thumb_has-more' : ''?>">
 
-                    <?php if (!empty($data['gallery_img'])):?>
+                    <?php if (!empty($galleryImages)):?>
+
+                        <?php if ($galleryHasMoreThumbs):?>
+                            <span class="card-main-gallery-thumb__hint card-main-gallery-thumb__hint_up" aria-hidden="true"></span>
+                            <span class="card-main-gallery-thumb__hint card-main-gallery-thumb__hint_down" aria-hidden="true"></span>
+                        <?php endif;?>
 
                         <div class="card-main-gallery-thumb__container swiper-container">
                             <div class="swiper-wrapper">
@@ -36,7 +56,7 @@
                                     </picture>
                                 </div>
 
-                                <?php foreach (json_decode($data['gallery_img'], true) as $item):?>
+                                <?php foreach ($galleryImages as $item):?>
 
                                     <div class="card-main-gallery-thumb__slide swiper-slide">
                                         <picture class="card-main-gallery-thumb__img">
@@ -59,17 +79,17 @@
 
 
                         <div class="card-main-gallery-slider__slide swiper-slide">
-                            <a href="<?=$this->img($data['img'])?>" class="card-main-gallery-slider__img" data-fancybox>
+                            <a href="<?=$this->img($data['img'])?>" class="card-main-gallery-slider__img" data-fancybox="gallery">
                                 <img src="<?=$this->img($data['img'])?>" alt="">
                             </a>
                         </div>
 
-                        <?php if (!empty($data['gallery_img'])):?>
+                        <?php if (!empty($galleryImages)):?>
 
-                            <?php foreach (json_decode($data['gallery_img'], true) as $item):?>
+                            <?php foreach ($galleryImages as $item):?>
 
                                 <div class="card-main-gallery-slider__slide swiper-slide">
-                                    <a href="<?=$this->img($item)?>" class="card-main-gallery-slider__img" data-fancybox>
+                                    <a href="<?=$this->img($item)?>" class="card-main-gallery-slider__img" data-fancybox="gallery">
                                         <img src="<?=$this->img($item)?>" alt="">
                                     </a>
                                 </div>

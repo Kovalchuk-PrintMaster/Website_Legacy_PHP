@@ -161,3 +161,23 @@ No production DB migration or deployment.
 - New gallery uploads are optimized to JPG 700x525 quality 98.
 - New gallery paths target `goods/<catalog-alias>/<product-slug>-gallery_NN.jpg`.
 - Existing gallery records remain unchanged.
+
+## Product gallery frontend polish
+
+- `product_gallery_frontend_polish_v0_6_12_ready_for_manual_test`.
+- Product gallery previews now use CSS cover-crop display.
+- Decorative thumbnail overflow arrows appear when more than three images exist.
+- Existing slider/click functionality remains unchanged.
+
+## Gallery full image storage
+
+- `gallery_full_image_storage_v0_6_13_ready_for_manual_test`.
+- New gallery uploads are stored as proportional JPG images, max side 1600px, quality 94.
+- Main product image remains 700x525 physical cover-crop.
+- Thumbnail overflow arrows are larger semi-transparent blue visual hints.
+
+## Main image full storage alignment
+
+- Main product uploads now use proportional full-image storage, max side 1600px, quality 94.
+- Frontend preview crop remains CSS-only.
+- Existing old main images stay unchanged until re-uploaded or reprocessed.

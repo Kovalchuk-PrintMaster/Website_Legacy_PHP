@@ -567,3 +567,57 @@ function phoneValidate(item){
 
     item.addEventListener('change', () => phoneValidate(item))
 }
+
+
+/* ForPrint fancybox navigation click fix v0.6.13e */
+(function () {
+    document.addEventListener('click', function (event) {
+        var target = event.target;
+
+        if (!target || !target.closest) {
+            return;
+        }
+
+        var button = target.closest(
+            '.fancybox-navigation .fancybox-button--arrow_left, ' +
+            '.fancybox-navigation .fancybox-button--arrow_right'
+        );
+
+        if (!button) {
+            return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (event.stopImmediatePropagation) {
+            event.stopImmediatePropagation();
+        }
+
+        var fancybox = null;
+
+        if (window.jQuery && window.jQuery.fancybox && window.jQuery.fancybox.getInstance) {
+            fancybox = window.jQuery.fancybox.getInstance();
+        } else if (window.$ && window.$.fancybox && window.$.fancybox.getInstance) {
+            fancybox = window.$.fancybox.getInstance();
+        }
+
+        if (!fancybox) {
+            return false;
+        }
+
+        if (button.classList.contains('fancybox-button--arrow_right')) {
+            if (typeof fancybox.next === 'function') {
+                fancybox.next();
+            }
+        } else if (button.classList.contains('fancybox-button--arrow_left')) {
+            if (typeof fancybox.previous === 'function') {
+                fancybox.previous();
+            } else if (typeof fancybox.prev === 'function') {
+                fancybox.prev();
+            }
+        }
+
+        return false;
+    }, true);
+})();
