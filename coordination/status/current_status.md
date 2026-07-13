@@ -217,3 +217,66 @@ No production DB migration or deployment.
 
 - `admin_flash_message_polish_v0_6_14_1_ready_for_manual_test`.
 - Admin success/error messages were translated to Ukrainian and now auto-hide after save/delete actions.
+
+## Admin editor modernization
+
+- `admin_editor_modernization_v0_6_15_ready_for_manual_test`.
+- Cleaned textarea template and modernized local TinyMCE init for all product tab content fields.
+
+## Product tabs content spacing normalization
+
+- `product_tabs_content_spacing_normalization_v0_6_16_ready_for_manual_test`.
+- Added scoped CSS normalization for product tab rich-text content and aligned TinyMCE spacing.
+
+## Editor media upload and product tab spacing
+
+- `editor_media_upload_and_spacing_v0_6_16_ready_for_manual_test`.
+- Added TinyMCE image/media file picker uploads and reduced frontend product tab spacing.
+
+## Editor upload endpoint path fixed
+
+- Fixed TinyMCE upload endpoint paths and JS globals.
+- Centered product tab navigation and narrowed product tab content area adaptively.
+
+## Product tab equal-width header polish
+
+- Fixed TinyMCE editor upload endpoint paths.
+- Product tab headers now divide the row equally between enabled tabs and the content area is slightly wider.
+
+## Product-aware editor upload storage
+
+- Goods TinyMCE uploads now store under catalog/product editor folders.
+- Product tabs use equal grid columns and a wider adaptive rich-text content area.
+
+## Visible graphite product tab polish
+
+- Product tabs received stronger full-width grid styling, wider rich-text content, and graphite color overrides.
+
+## Graphite tabs final visual correction
+
+- Product tabs now use final graphite visual correction with readable inactive labels and more stable adaptive content width.
+
+## Product page layout and graphite sidebar correction
+
+- Product hero layout, product tab labels, tab right-edge artifact, and graphite sidebar styling received another visual correction layer.
+
+## Rolled back broken v0.6.16h hero override
+
+- Removed the aggressive product hero CSS override and kept only safe tab color polish.
+
+## Exact sidebar and tab tail polish
+
+- Right vertical sidebar and product tab strip received exact, non-hero CSS correction.
+## v0.6.18 — Product related goods selector
+
+Status: implemented_pending_manual_ui_check
+
+- `goods.related_goods_ids` added for lightweight related goods storage.
+- Admin selector added for choosing related products.
+- Product page now renders real related goods instead of placeholder cards.
+- Related goods block is hidden when no related goods are selected.
+
+- v0.6.18b related goods admin/frontend polish applied: compact admin editors, related goods block ordering, related slider title/buttons, and background cleanup.
+
+- v0.6.18c admin tab panels and related slider arrow polish applied.
+- v0.6.18d admin tab layout, gallery arrows and footer-color alignment applied.

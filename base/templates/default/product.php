@@ -344,6 +344,7 @@
     </div>
 </section>
 <?php endif;?>
+<?php if (!empty($relatedGoods)):?>
 <section class="card-slider">
     <div class="container">
         <div class="card-slider__wrapper">
@@ -360,99 +361,65 @@
                 <div class="card-slider-slider__container swiper-container">
                     <div class="swiper-wrapper">
 
-                        <div class="card-item swiper-slide ">
-                            <div class="card-item__tabs_image">
-                                <img src="assets/img/additional_offer.png" alt="">
-                            </div>
-                            <div class="card-item__tabs_description">
-                                <div class="card-item__tabs_name">
-                                    <span>Супутній товар</span>
-                                   опція ще в стадії розробки
-                                </div>
-                                <div class="card-item__tabs_price">
-                                    Ціна: <span class="card-item_old-price">98 грн.</span> <span class="card-item_new-price">72 грн.</span>
-                                </div>
-                            </div>
-                            <button class="card-item__btn">
-                                <svg>
-                                    <use xlink:href="/assets/img/icons.svg#basket"></use>
-                                </svg>
-                                <span>Кину собі в скриньку</span>
+                        <?php foreach ($relatedGoods as $relatedItem):?>
+                            <?php
+                            $relatedUrl = $this->alias('product/' . $relatedItem['alias']);
+                            $relatedImg = !empty($relatedItem['img'])
+                                ? PATH . UPLOAD_DIR . $relatedItem['img']
+                                : PATH . TEMPLATE . 'assets/img/additional_offer.png';
+                            $relatedName = htmlspecialchars($relatedItem['name'] ?? '', ENT_QUOTES, 'UTF-8');
+                            $relatedShort = trim(strip_tags($relatedItem['short_content'] ?? ''));
 
-                            </button>
-                            <span class="card-main-info-size__body">
-                    <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
-                    <span class="card-main-info-size__count js-counterShow" data-quantity>1</span>
-                    <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
-                  </span>
-                            <div class="icon-offer">
-                                <svg>
-                                    <use xlink:href="/assets/img/icons.svg#hot"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-item swiper-slide ">
-                            <div class="card-item__tabs_image">
-                                <img src="assets/img/additional_offer.png" alt="">
-                            </div>
-                            <div class="card-item__tabs_description">
-                                <div class="card-item__tabs_name">
-                                    <span>Супутній товар</span>
-                                   опція ще в стадії розробки
-                                </div>
-                                <div class="card-item__tabs_price">
-                                    Ціна: <span class="card-item_old-price">98 грн.</span> <span class="card-item_new-price">72 грн.</span>
-                                </div>
-                            </div>
-                            <button class="card-item__btn">
-                                <svg>
-                                    <use xlink:href="/assets/img/icons.svg#basket"></use>
-                                </svg>
-                                <span>Кину собі в скриньку</span>
+                            if (function_exists('mb_strlen') && mb_strlen($relatedShort) > 120) {
+                                $relatedShort = mb_substr($relatedShort, 0, 117) . '...';
+                            } elseif (strlen($relatedShort) > 120) {
+                                $relatedShort = substr($relatedShort, 0, 117) . '...';
+                            }
 
-                            </button>
-                            <span class="card-main-info-size__body">
-                    <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
-                    <span class="card-main-info-size__count js-counterShow" data-quantity>1</span>
-                    <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
-                  </span>
-                            <div class="icon-offer">
-                                <svg>
-                                    <use xlink:href="/assets/img/icons.svg#hot"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-item swiper-slide ">
-                            <div class="card-item__tabs_image">
-                                <img src="assets/img/additional_offer.png" alt="">
-                            </div>
-                            <div class="card-item__tabs_description">
-                                <div class="card-item__tabs_name">
-                                    <span>Супутній товар</span>
-                                   опція ще в стадії розробки
+                            $relatedPrice = !empty($relatedItem['price']) ? round((float)$relatedItem['price']) : 0;
+                            ?>
+                            <div class="card-item swiper-slide">
+                                <div class="card-item__tabs_image">
+                                    <a href="<?=$relatedUrl?>">
+                                        <img src="<?=$relatedImg?>" alt="<?=$relatedName?>">
+                                    </a>
                                 </div>
-                                <div class="card-item__tabs_price">
-                                    Ціна: <span class="card-item_old-price">98 грн.</span> <span class="card-item_new-price">72 грн.</span>
+                                <div class="card-item__tabs_description">
+                                    <div class="card-item__tabs_name">
+                                        <a href="<?=$relatedUrl?>">
+                                            <span><?=$relatedName?></span>
+                                            <?php if ($relatedShort):?>
+                                                <?=$relatedShort?>
+                                            <?php endif;?>
+                                        </a>
+                                    </div>
+                                    <div class="card-item__tabs_price">
+                                        Ціна:
+                                        <?php if ($relatedPrice):?>
+                                            <span class="card-item_new-price"><?=$relatedPrice?> грн.</span>
+                                        <?php else:?>
+                                            <span class="card-item_new-price">за запитом</span>
+                                        <?php endif;?>
+                                    </div>
+                                </div>
+                                <button class="card-item__btn" type="button" data-addToCart="<?=$relatedItem['id']?>">
+                                    <svg>
+                                        <use xlink:href="/assets/img/icons.svg#basket"></use>
+                                    </svg>
+                                    <span>Кину собі в скриньку</span>
+                                </button>
+                                <span class="card-main-info-size__body">
+                                    <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
+                                    <span class="card-main-info-size__count js-counterShow" data-quantity>1</span>
+                                    <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
+                                </span>
+                                <div class="icon-offer">
+                                    <svg>
+                                        <use xlink:href="/assets/img/icons.svg#hot"></use>
+                                    </svg>
                                 </div>
                             </div>
-                            <button class="card-item__btn">
-                                <svg>
-                                    <use xlink:href="/assets/img/icons.svg#basket"></use>
-                                </svg>
-                                <span>Кину собі в скриньку</span>
-
-                            </button>
-                            <span class="card-main-info-size__body">
-                    <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
-                    <span class="card-main-info-size__count js-counterShow" data-quantity>1</span>
-                    <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
-                  </span>
-                            <div class="icon-offer">
-                                <svg>
-                                    <use xlink:href="/assets/img/icons.svg#hot"></use>
-                                </svg>
-                            </div>
-                        </div>
+                        <?php endforeach;?>
 
                     </div>
                 </div>
@@ -460,6 +427,7 @@
         </div>
     </div>
 </section>
+<?php endif;?>
 <section class="feedback feedback-internal">
     <div class="feedback__name subheader h2">Залишити заявку (данний функціонал зараз на єтапі розробки)</div>
     <form action="card.html" class="feedback__form">

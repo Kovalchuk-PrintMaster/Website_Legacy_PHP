@@ -73,7 +73,8 @@ class Settings
         'checkboxlist' => ['filters'],
         'select' => ['menu_position', 'parent_id'],
         'img' => ['img','main_img', 'img_years', 'number_of_years', 'promo_img'],
-        'gallery_img' => ['gallery_img', 'new_gallery_img']
+        'gallery_img' => ['gallery_img', 'new_gallery_img'],
+        'related_goods' => ['related_goods_ids']
     ];
 
     private $translate = [
@@ -111,6 +112,7 @@ class Settings
         'tab_conditions_enabled' => ['Показувати вкладку "Спеціальні умови"'],
         'tab_conditions_title' => ['Назва вкладки "Спеціальні умови"'],
         'tab_conditions_content' => ['Текст вкладки "Спеціальні умови"'],
+        'related_goods_ids' => ['З цим товаром використовується'],
     ];
 
     private $radio = [

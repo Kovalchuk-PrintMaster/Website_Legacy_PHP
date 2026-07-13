@@ -48,7 +48,39 @@ class ProductController extends BaseUser
 
         $deliveryInfo && $deliveryInfo = $deliveryInfo[0];
 
-        return compact('data', 'deliveryInfo');
+        $relatedGoods = [];
+
+        if (!empty($data['related_goods_ids'])) {
+            $relatedIds = preg_split('/[,\s;]+/', (string)$data['related_goods_ids'], -1, PREG_SPLIT_NO_EMPTY);
+            $relatedIds = array_values(array_unique(array_filter(array_map('intval', $relatedIds))));
+
+            if ($relatedIds) {
+                $relatedSqlIds = implode(',', $relatedIds);
+
+                $relatedGoods = $this->model->query(
+                    "SELECT id, name, alias, img, short_content, price, discount
+                     FROM goods
+                     WHERE visible = 1 AND id IN ({$relatedSqlIds})"
+                );
+
+                if ($relatedGoods) {
+                    foreach ($relatedGoods as &$relatedItem) {
+                        if (!empty($relatedItem['discount']) && method_exists($this->model, 'applyDiscount')) {
+                            $this->model->applyDiscount($relatedItem, $relatedItem['discount']);
+                        }
+                    }
+                    unset($relatedItem);
+
+                    $relatedOrder = array_flip($relatedIds);
+
+                    usort($relatedGoods, function ($left, $right) use ($relatedOrder) {
+                        return ($relatedOrder[(int)$left['id']] ?? 999999) <=> ($relatedOrder[(int)$right['id']] ?? 999999);
+                    });
+                }
+            }
+        }
+
+        return compact('data', 'deliveryInfo', 'relatedGoods');
 
     }
 

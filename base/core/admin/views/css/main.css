@@ -945,3 +945,239 @@ video{
     transform: translateY(-8px);
     pointer-events: none !important;
 }
+
+/* ForPrint TinyMCE admin editor modernization v0.6.15 */
+.tox-tinymce {
+    width: 100% !important;
+    min-height: 320px;
+}
+
+.vg-wrap .tox .tox-toolbar,
+.vg-wrap .tox .tox-toolbar__primary,
+.vg-wrap .tox .tox-menubar {
+    flex-wrap: wrap;
+}
+
+.forprint-rich-editor-target {
+    min-height: 260px;
+}
+
+.forprint-optional-tabs-admin textarea.forprint-rich-editor-target {
+    min-height: 260px;
+}
+/* v0.6.18 compact product editor layout */
+.vg-admin-editor-half {
+    width: calc(50% - 12px) !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    box-sizing: border-box !important;
+}
+
+.vg-admin-editor-half .tox-tinymce {
+    min-height: 320px !important;
+}
+
+.vg-admin-editor-half textarea {
+    min-height: 260px;
+}
+
+.vg-admin-related-goods-half {
+    width: calc(50% - 12px) !important;
+    max-width: calc(50% - 12px) !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    clear: both !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+}
+
+.vg-admin-related-goods-half .vg-related-goods-panel__title {
+    text-align: left !important;
+    font-size: 22px !important;
+}
+
+.vg-admin-related-goods-half .vg-related-goods-panel__search {
+    max-width: 100% !important;
+}
+
+@media (max-width: 1280px) {
+    .vg-admin-editor-half,
+    .vg-admin-related-goods-half {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+}
+/* v0.6.18b compact product form */
+.vg-admin-editor-half {
+    float: left !important;
+    width: calc(50% - 18px) !important;
+    max-width: calc(50% - 18px) !important;
+    min-width: 420px !important;
+    clear: none !important;
+    box-sizing: border-box !important;
+    margin-right: 18px !important;
+    margin-bottom: 18px !important;
+}
+
+.vg-admin-editor-half .tox-tinymce {
+    min-height: 320px !important;
+}
+
+.vg-admin-editor-half textarea {
+    min-height: 260px !important;
+}
+
+.vg-admin-related-goods-half {
+    width: calc(50% - 18px) !important;
+    max-width: calc(50% - 18px) !important;
+    min-width: 420px !important;
+    clear: both !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+}
+
+.vg-admin-related-goods-half .vg-related-goods-panel__title {
+    text-align: left !important;
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+}
+
+@media (max-width: 1200px) {
+    .vg-admin-editor-half,
+    .vg-admin-related-goods-half {
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+/* v0.6.18c product tab panels */
+.vg-admin-tab-panels-grid {
+    clear: both !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(420px, 1fr)) !important;
+    gap: 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 18px 0 24px !important;
+}
+
+.vg-admin-tab-panel {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 1px solid rgba(35, 49, 62, 0.08) !important;
+    padding: 16px !important;
+}
+
+.vg-admin-tab-panel .vg-wrap,
+.vg-admin-tab-panel > div {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    clear: none !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.vg-admin-tab-panel .tox-tinymce {
+    min-height: 300px !important;
+}
+
+.vg-admin-tab-panel textarea {
+    min-height: 250px !important;
+}
+
+.vg-admin-tab-panel h2,
+.vg-admin-tab-panel h3,
+.vg-admin-tab-panel .vg-title {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+}
+
+@media (max-width: 1200px) {
+    .vg-admin-tab-panels-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* v0.6.18d admin tab layout */
+.fp-admin-tab-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(420px, 1fr)) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    margin: 24px 0 !important;
+    align-items: start !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    background: #fff !important;
+    border: 1px solid rgba(35, 49, 62, 0.12) !important;
+    padding: 18px !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel__title {
+    margin: 0 0 18px !important;
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+    font-weight: 700 !important;
+    color: #23313e !important;
+}
+
+.fp-admin-tab-panel .vg-wrap,
+.fp-admin-tab-panel > div,
+.fp-admin-tab-panel p,
+.fp-admin-tab-panel label,
+.fp-admin-tab-panel .label {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    clear: both !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel input[type="text"],
+.fp-admin-tab-panel textarea,
+.fp-admin-tab-panel select {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel .tox,
+.fp-admin-tab-panel .tox-tinymce {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.fp-admin-tab-panel .tox-tinymce {
+    min-height: 320px !important;
+}
+
+.fp-admin-tab-panel textarea {
+    min-height: 240px !important;
+}
+
+.fp-admin-tab-helper-hidden {
+    display: none !important;
+}
+
+@media (max-width: 1200px) {
+    .fp-admin-tab-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
