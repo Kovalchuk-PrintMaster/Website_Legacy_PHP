@@ -1,4 +1,6 @@
-<?php if(!empty($data)):?>
+<?php
+require_once __DIR__ . '/include/productCardHelpers.php';
+if(!empty($data)):?>
 
 <?php
     $galleryImages = [];
@@ -35,185 +37,11 @@
     <h1 class="page-title h1"><?=$data['name']?></h1>
 </div>
 
-<section class="card-main">
-    <div class="container">
-        <div class="card-main__wrapper">
-                <div class="card-main-gallery-thumb<?=$galleryHasMoreThumbs ? ' card-main-gallery-thumb_has-more' : ''?>">
-
-                    <?php if (!empty($galleryImages)):?>
-
-                        <?php if ($galleryHasMoreThumbs):?>
-                            <span class="card-main-gallery-thumb__hint card-main-gallery-thumb__hint_up" aria-hidden="true"></span>
-                            <span class="card-main-gallery-thumb__hint card-main-gallery-thumb__hint_down" aria-hidden="true"></span>
-                        <?php endif;?>
-
-                        <div class="card-main-gallery-thumb__container swiper-container">
-                            <div class="swiper-wrapper">
-
-                                <div class="card-main-gallery-thumb__slide swiper-slide">
-                                    <picture class="card-main-gallery-thumb__img">
-                                        <img src="<?=$this->img($data['img'])?>" alt="">
-                                    </picture>
-                                </div>
-
-                                <?php foreach ($galleryImages as $item):?>
-
-                                    <div class="card-main-gallery-thumb__slide swiper-slide">
-                                        <picture class="card-main-gallery-thumb__img">
-                                            <img src="<?=$this->img($item)?>" alt="">
-                                        </picture>
-                                    </div>
-
-                                <?php endforeach;?>
-
-                            </div>
-                    </div>
-
-                    <?php endif;?>
-
-                </div>
-            <div class="card-main-gallery-slider">
-                <div class="card-main-gallery-slider__container swiper-container">
-                    <div class="swiper-wrapper">
-
-
-
-                        <div class="card-main-gallery-slider__slide swiper-slide">
-                            <a href="<?=$this->img($data['img'])?>" class="card-main-gallery-slider__img" data-fancybox="gallery">
-                                <img src="<?=$this->img($data['img'])?>" alt="">
-                            </a>
-                        </div>
-
-                        <?php if (!empty($galleryImages)):?>
-
-                            <?php foreach ($galleryImages as $item):?>
-
-                                <div class="card-main-gallery-slider__slide swiper-slide">
-                                    <a href="<?=$this->img($item)?>" class="card-main-gallery-slider__img" data-fancybox="gallery">
-                                        <img src="<?=$this->img($item)?>" alt="">
-                                    </a>
-                                </div>
-
-                            <?php endforeach;?>
-
-                        <?php endif;?>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card-main-info" data-productContainer>
-                <div class="card-main-info__description">
-                    <div class="card-main-info-price">
-                        <div class="card-main-info-price__text">
-                            Ціна:
-
-                        </div>
-                        <div class="card-main-info-price__num">
-                            <span><?=$data['price']?></span> грн.
-                        </div>
-
-
-
-                        <?php if (!empty($data['old_price'])):?>
-
-                            <div class="card-main-info-price__old">
-                                <span><?=$data['old_price']?></span>> грн.
-                            </div>
-
-                        <?php endif;?>
-
-                    </div>
-
-                    <div class="link-description">
-                       <div class="price-description-link-style">
-                           <a href="https://t.me/druk_smile"><?=$data['price_description']?></a>
-                       </div>
-                    </div>
-
-                    <?php if (!empty($data['article'])):?>
-
-                    <div class="card-main-info__number">
-                        Артикул <?=$data['article']?>
-                    </div>
-
-                    <?php endif;?>
-
-                    <?php if (!empty($data['filters'])):?>
-
-                        <div class="card-main-info__table">
-
-                        <?php $counter = 0;?>
-
-
-                        <?php foreach ($data['filters'] as $item):?>
-
-                            <?php
-
-                                if (++$counter > 5) break;
-
-                            ?>
-
-                        <div class="card-main-info__table-row">
-                            <div class="card-main-info__table-item">
-                                <?=$item['name']?>
-                            </div>
-                            <div class="card-main-info__table-item">
-                                <?=implode(', ', array_column($item['values'], 'name'))?>
-                            </div>
-                        </div>
-
-
-
-                        <?php endforeach;?>
-
-
-                        </div>
-
-                        <?php if (count($data['filters']) > 5):?>
-
-                            <a href="card.html#" class="card-main-info__more more-button">
-                                Показать все
-                            </a>
-
-                        <?php endif;?>
-
-                    <?php endif;?>
-
-
-                </div>
-                <div class="card-main-info__sale">
-                    <div class="card-main-info-size">
-                        <label class="card-main-info-size__item js-sizeCounter" data-max="10">
-                            <input type="radio" name="size[]" class="visually-hidden">
-                            <input type="number" class="visually-hidden js-counterValue" name="size" value="1">
-                            <span class="card-main-info-size__head">
-                    Кількість:
-                  </span>
-                            <span class="card-main-info-size__body">
-                     <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
-                    <span class="card-main-info-size__count js-counterShow" data-quantity> <?=$this->cart['goods'][$data['id']]['qty'] ?? 1 ?></span>
-                    <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
-                  </span>
-                        </label>
-                    </div>
-                    <div class="card-main-info__buttons">
-                        <a data-addToCart="<?=$data['id']?>" <?=!empty($this->cart['goods'][$data['id']]) ? 'data-toCartAdded' : '' ?> href="#" class="card-main-info__button button-basket button-blue button-big button">
-                            <svg>
-                                <use xlink:href="<?=PATH.TEMPLATE?>assets/img/icons.svg#basket"></use>
-                            </svg>
-                            <span>Забрати</span>
-                        </a>
-                        <a data-addToCart="<?=$data['id']?>" data-onClick href="#" class="card-main-info__button button-darkcyan button-big button">
-                            Забрати вже
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <?php
+    /*
+     * FP v0.6.56b controlled product tabs builder.
+     * Restores admin-managed product sections after product template isolation.
+     */
     if (!function_exists('fp_product_tab_enabled')) {
         function fp_product_tab_enabled($value, bool $default = false): bool
         {
@@ -225,14 +53,13 @@
                 return $value;
             }
 
-            if (is_numeric($value)) {
+            if (is_int($value) || is_float($value)) {
                 return (int)$value === 1;
             }
 
-            $value = trim((string)$value);
-            $lower = function_exists('mb_strtolower') ? mb_strtolower($value) : strtolower($value);
+            $valueText = trim((string)$value);
 
-            return in_array($lower, ['1', 'так', 'yes', 'true', 'on'], true);
+            return in_array($valueText, ['1', 'Так', 'так', 'yes', 'Yes', 'true', 'TRUE', 'on', 'ON'], true);
         }
     }
 
@@ -250,7 +77,7 @@
         $productTabs[] = [
             'key' => 'details',
             'title' => fp_product_tab_title($data['tab_details_title'] ?? '', 'Детальніше'),
-            'content' => (string)($data['content'] ?? ''),
+            'content' => trim((string)($data['content'] ?? '')),
         ];
     }
 
@@ -278,59 +105,257 @@
         ];
     }
 ?>
+<?php if (!empty($data)): ?>
+<section class="card-main fp-product-detail-page">
+    <div class="container fp-product-detail__container">
+        <?php
+            $featureGroups = [];
 
-<?php if (!empty($productTabs)): ?>
-<section class="card-tabs">
-    <div class="card-tabs__wrapper">
-        <div class="card-tabs__top">
-            <div class="container">
-                <span class="card-tabs__background"></span>
-                <div class="card-tabs__top-items">
-                    <div class="card-tabs__top-wrapper">
-                        <?php foreach ($productTabs as $tabIndex => $tab): ?>
-                            <div class="card-tabs__toggle tabs__toggle <?=$tabIndex === 0 ? 'tabs__toggle_active' : ''?>">
-                                <span class="card-tabs__toggle-text">
-                                    <?=htmlspecialchars($tab['title'], ENT_QUOTES, 'UTF-8')?>
-                                </span>
+            if (!empty($data['filters']) && is_array($data['filters'])) {
+                foreach ($data['filters'] as $featureGroupSource) {
+                    $featureGroupName = trim((string)($featureGroupSource['name'] ?? $featureGroupSource['title'] ?? ''));
+                    $featureRawValues = $featureGroupSource['values'] ?? $featureGroupSource['items'] ?? [];
+
+                    if (!is_array($featureRawValues)) {
+                        $featureRawValues = [];
+                    }
+
+                    $featureValues = [];
+
+                    foreach ($featureRawValues as $featureRawValue) {
+                        if (is_array($featureRawValue)) {
+                            $featureValueName = trim((string)($featureRawValue['name'] ?? $featureRawValue['title'] ?? $featureRawValue['value'] ?? ''));
+                        } else {
+                            $featureValueName = trim((string)$featureRawValue);
+                        }
+
+                        if ($featureValueName !== '' && !in_array($featureValueName, $featureValues, true)) {
+                            $featureValues[] = $featureValueName;
+                        }
+                    }
+
+                    if ($featureGroupName !== '' && !empty($featureValues)) {
+                        $featureGroups[] = [
+                            'name' => $featureGroupName,
+                            'values' => $featureValues,
+                        ];
+                    }
+                }
+            }
+
+            $currentQty = $this->cart['goods'][$data['id']]['qty'] ?? 1;
+        ?>
+
+        <div class="fp-product-detail" data-productContainer>
+            <div class="fp-product-detail__gallery<?=empty($galleryImages) ? ' fp-product-detail__gallery_no-thumbs' : ''?>">
+                <?php if (!empty($galleryImages)): ?>
+                    <div class="fp-product-detail__thumbs card-main-gallery-thumb<?=$galleryHasMoreThumbs ? ' card-main-gallery-thumb_has-more' : ''?>">
+                        <?php if ($galleryHasMoreThumbs): ?>
+                            <span class="card-main-gallery-thumb__hint card-main-gallery-thumb__hint_up" aria-hidden="true"></span>
+                            <span class="card-main-gallery-thumb__hint card-main-gallery-thumb__hint_down" aria-hidden="true"></span>
+                        <?php endif; ?>
+
+                        <div class="card-main-gallery-thumb__container swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="card-main-gallery-thumb__slide swiper-slide">
+                                    <picture class="card-main-gallery-thumb__img">
+                                        <img src="<?=$this->img($data['img'])?>" alt="">
+                                    </picture>
+                                </div>
+
+                                <?php foreach ($galleryImages as $item): ?>
+                                    <div class="card-main-gallery-thumb__slide swiper-slide">
+                                        <picture class="card-main-gallery-thumb__img">
+                                            <img src="<?=$this->img($item)?>" alt="">
+                                        </picture>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
-                        <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <div class="fp-product-detail__main-image card-main-gallery-slider">
+                    <div class="card-main-gallery-slider__container swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="card-main-gallery-slider__slide swiper-slide">
+                                <a href="<?=$this->img($data['img'])?>" class="card-main-gallery-slider__img" data-fancybox="gallery">
+                                    <img src="<?=$this->img($data['img'])?>" alt="">
+                                </a>
+                            </div>
+
+                            <?php if (!empty($galleryImages)): ?>
+                                <?php foreach ($galleryImages as $item): ?>
+                                    <div class="card-main-gallery-slider__slide swiper-slide">
+                                        <a href="<?=$this->img($item)?>" class="card-main-gallery-slider__img" data-fancybox="gallery">
+                                            <img src="<?=$this->img($item)?>" alt="">
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card-tabs__bottom">
-            <div class="container">
-                <div class="card-tabs__bottom-wrapper">
-                    <?php foreach ($productTabs as $tabIndex => $tab): ?>
-                        <div class="card-tabs-item-wrapper tabs__tab" style="display: <?=$tabIndex === 0 ? 'flex' : 'none'?>;">
-                            <?php if ($tab['key'] === 'specs' && $tab['content'] === '' && !empty($data['filters'])): ?>
-                                <div class="card-main-info__table main-info card-main-indfo_toggle">
-                                    <div class="card-main-info__table">
-                                        <?php foreach ($data['filters'] as $item): ?>
-                                            <div class="card-main-info__table-row">
-                                                <div class="card-main-info__table-item">
-                                                    <?=$item['name']?>
-                                                </div>
-                                                <div class="card-main-info__table-item">
-                                                    <?=implode(', ', array_column($item['values'], 'name'))?>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php else: ?>
-                                <?=$tab['content']?>
-                            <?php endif; ?>
+            <div class="fp-product-detail__info">
+                <div class="fp-product-detail-price card-main-info-price">
+                    <div class="fp-product-detail-price__label card-main-info-price__text">Ціна:</div>
+                    <div class="fp-product-detail-price__value card-main-info-price__num">
+                        <span><?=htmlspecialchars((string)$data['price'], ENT_QUOTES, 'UTF-8')?></span> грн.
+                    </div>
+
+                    <?php if (!empty($data['old_price'])): ?>
+                        <div class="fp-product-detail-price__old card-main-info-price__old">
+                            <span><?=htmlspecialchars((string)$data['old_price'], ENT_QUOTES, 'UTF-8')?></span> грн.
                         </div>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+                <?php if (!empty($data['price_description'])): ?>
+                    <div class="fp-product-detail__price-note link-description">
+                        <div class="price-description-link-style">
+                            <a href="https://t.me/druk_smile"><?=htmlspecialchars((string)$data['price_description'], ENT_QUOTES, 'UTF-8')?></a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($featureGroups)): ?>
+                    <div class="fp-product-detail-features" aria-label="Характеристики товару">
+                        <?php foreach ($featureGroups as $featureGroup): ?>
+                            <div class="fp-product-detail-features__row">
+                                <div class="fp-product-detail-features__group">
+                                    <?=htmlspecialchars($featureGroup['name'], ENT_QUOTES, 'UTF-8')?>
+                                </div>
+
+                                <div class="fp-product-detail-features__values">
+                                    <?php foreach ($featureGroup['values'] as $featureValue): ?>
+                                        <div class="fp-product-detail-features__value">
+                                            <?=htmlspecialchars($featureValue, ENT_QUOTES, 'UTF-8')?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <div class="fp-product-detail__actions card-main-info__sale">
+                <div class="card-main-info-size">
+                    <label class="card-main-info-size__item js-sizeCounter" data-max="10">
+                        <input type="radio" name="size[]" class="visually-hidden">
+                        <input type="number" class="visually-hidden js-counterValue" name="size" value="<?=$currentQty?>">
+
+                        <span class="card-main-info-size__head">Кількість:</span>
+
+                        <span class="card-main-info-size__body">
+                            <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
+                            <span class="card-main-info-size__count js-counterShow" data-quantity><?=$currentQty?></span>
+                            <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="card-main-info__buttons">
+                    <a data-addToCart="<?=$data['id']?>" <?=!empty($this->cart['goods'][$data['id']]) ? 'data-toCartAdded' : '' ?> href="#" class="card-main-info__button button-basket button-blue button-big button">
+                        <svg>
+                            <use xlink:href="<?=PATH.TEMPLATE?>assets/img/icons.svg#basket"></use>
+                        </svg>
+                        <span>Забрати</span>
+                    </a>
+
+                    <a data-addToCart="<?=$data['id']?>" data-onClick href="#" class="card-main-info__button button-darkcyan button-big button">
+                        Забрати вже
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php if (!empty($productTabs) && is_array($productTabs)): ?>
+<section class="fp-product-details-tabs" data-fp-product-tabs>
+    <div class="fp-product-details-tabs__nav" role="tablist" aria-label="Інформація про товар">
+        <?php foreach ($productTabs as $tabIndex => $tab): ?>
+            <?php
+                $rawTabKey = (string)($tab['key'] ?? $tabIndex);
+                $tabIdSeed = preg_replace('/[^a-zA-Z0-9_-]+/', '-', $rawTabKey);
+                $tabIdSeed = trim((string)$tabIdSeed, '-');
+
+                if ($tabIdSeed === '') {
+                    $tabIdSeed = (string)$tabIndex;
+                }
+
+                $tabId = 'fp-product-tab-' . $tabIdSeed . '-' . $tabIndex;
+                $isActiveTab = $tabIndex === 0;
+            ?>
+
+            <button
+                type="button"
+                class="fp-product-details-tabs__tab<?= $isActiveTab ? ' is-active' : '' ?>"
+                data-fp-product-tab-button
+                data-fp-product-tab-target="<?=$tabId?>"
+                role="tab"
+                aria-selected="<?= $isActiveTab ? 'true' : 'false' ?>"
+                aria-controls="<?=$tabId?>"
+            >
+                <?=htmlspecialchars((string)($tab['title'] ?? ''), ENT_QUOTES, 'UTF-8')?>
+            </button>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="fp-product-details-tabs__panels">
+        <?php foreach ($productTabs as $tabIndex => $tab): ?>
+            <?php
+                $rawTabKey = (string)($tab['key'] ?? $tabIndex);
+                $tabIdSeed = preg_replace('/[^a-zA-Z0-9_-]+/', '-', $rawTabKey);
+                $tabIdSeed = trim((string)$tabIdSeed, '-');
+
+                if ($tabIdSeed === '') {
+                    $tabIdSeed = (string)$tabIndex;
+                }
+
+                $tabId = 'fp-product-tab-' . $tabIdSeed . '-' . $tabIndex;
+                $tabContent = trim((string)($tab['content'] ?? ''));
+                $isActiveTab = $tabIndex === 0;
+            ?>
+
+            <div
+                id="<?=$tabId?>"
+                class="fp-product-details-tabs__panel<?= $isActiveTab ? ' is-active' : '' ?>"
+                data-fp-product-tab-panel
+                role="tabpanel"
+                aria-hidden="<?= $isActiveTab ? 'false' : 'true' ?>"
+                <?= $isActiveTab ? '' : 'hidden' ?>
+            >
+                <div class="fp-product-details-tabs__content-body">
+                    <?php if ($rawTabKey === 'specs' && $tabContent === '' && !empty($featureGroups)): ?>
+                        <div class="fp-product-detail-features fp-product-details-tabs__features" aria-label="Характеристики товару">
+                            <?php foreach ($featureGroups as $featureGroup): ?>
+                                <div class="fp-product-detail-features__row">
+                                    <div class="fp-product-detail-features__group">
+                                        <?=htmlspecialchars((string)($featureGroup['name'] ?? ''), ENT_QUOTES, 'UTF-8')?>
+                                    </div>
+
+                                    <div class="fp-product-detail-features__values">
+                                        <?php foreach (($featureGroup['values'] ?? []) as $featureValue): ?>
+                                            <div class="fp-product-detail-features__value">
+                                                <?=htmlspecialchars((string)$featureValue, ENT_QUOTES, 'UTF-8')?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <?=$tabContent?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
 <?php endif; ?>
-<?php if (!empty($relatedGoods)): ?>
 <section class="fp-related-section" data-fp-related-section>
     <div class="container fp-related-section__container">
         <div class="fp-related-section__header">

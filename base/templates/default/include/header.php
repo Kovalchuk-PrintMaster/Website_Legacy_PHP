@@ -8,7 +8,9 @@
     <title>Index</title>
 
     <?php $this->getStyles()?>
-    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=0642">
+    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=20260715-0646">
+    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-detail.css?v=20260715-0666">
+    <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
 </head>
 
 <body>
