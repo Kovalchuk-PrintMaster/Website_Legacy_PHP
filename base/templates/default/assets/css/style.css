@@ -131,7 +131,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     border-color: #2D3033;
-    background: #335252;
+    background: rgb(15, 15, 15);;
     color: #fff;
 }
 
@@ -292,7 +292,7 @@ button[type="submit"]:hover {
     position: absolute;
     top: 0;
     left: 0;
-    fill: #335252
+    fill: rgb(15, 15, 15);
 }
 
 .controls._prev svg {
@@ -365,7 +365,7 @@ button[type="submit"]:hover {
 }
 
 .readmore:hover {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     border-color: #292C31;
     color: #fff;
 }
@@ -420,7 +420,7 @@ button[type="submit"]:hover {
     content: '';
     width: 30px;
     height: 2px;
-    background: #335252;
+    background: rgb(15, 15, 15);;
     display: block;
     transform: rotate(45deg);
     position: absolute;
@@ -432,7 +432,7 @@ button[type="submit"]:hover {
     content: '';
     width: 30px;
     height: 2px;
-    background: #335252;
+    background: rgb(15, 15, 15);;
     display: block;
     transform: rotate(-45deg);
     position: absolute;
@@ -627,13 +627,13 @@ button[type="submit"]:hover {
 
     display: flex;
     width: 100%;
-    max-width: 304px;
+    max-width: 250px;
     height: max-content;
     align-items: center;
 }
 .header__logo span {
     color: #222f3e;
-    font-family:"Monotype Corsiva";
+    font-family:"Roboto Mono", sans-serif;
     font-weight: bold;
     text-align: center;
 }
@@ -941,7 +941,7 @@ button[type="submit"]:hover {
         right: 0;
         width: 60px;
         height: 100vh;
-        border-left: 1px solid #335252
+        border-left: 1px solid rgb(15, 15, 15);
     }
 }
 
@@ -978,7 +978,7 @@ button[type="submit"]:hover {
 }
 
 .header__sidebar_btn {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     border-bottom: 1px solid #fff;
     height: 79px;
     transition: .3s
@@ -1033,7 +1033,7 @@ button[type="submit"]:hover {
 
 @media screen and (max-width: 1024px) {
     .header__sidebar_btn svg {
-        fill: #335252
+        fill: rgb(15, 15, 15);
     }
 }
 
@@ -1138,7 +1138,7 @@ button[type="submit"]:hover {
 
 @media screen and (max-width: 1024px) {
     .header__sidebar_btn.burger-menu .burger {
-        background: #335252
+        background: rgb(15, 15, 15);
     }
 }
 
@@ -1161,7 +1161,7 @@ button[type="submit"]:hover {
 
 @media screen and (max-width: 1024px) {
     .header__sidebar_btn.burger-menu .burger::before {
-        background: #335252
+        background: rgb(15, 15, 15);
     }
 }
 
@@ -1184,7 +1184,7 @@ button[type="submit"]:hover {
 
 @media screen and (max-width: 1024px) {
     .header__sidebar_btn.burger-menu .burger::after {
-        background: #335252
+        background: rgb(15, 15, 15);
     }
 }
 
@@ -1836,7 +1836,7 @@ button[type="submit"]:hover {
 }
 
 .button-blue:hover {
-    background-color: #335252;
+    background-color: rgb(15, 15, 15);;
     color: #fff;
 }
 
@@ -1845,13 +1845,13 @@ button[type="submit"]:hover {
 }
 
 .button-darkcyan {
-    background-color: #335252;
+    background-color: rgb(15, 15, 15);;
     color: #fff;
 }
 
 .button-darkcyan:hover {
     background-color: #D4DDE1;
-    color: #335252;
+    color: rgb(15, 15, 15);;
 }
 
 .button-basket svg {
@@ -1886,7 +1886,7 @@ button[type="submit"]:hover {
 }
 
 .slider__button:hover {
-    color: #335252
+    color: rgb(15, 15, 15);
 }
 
 @media screen and (max-width: 480px) {
@@ -1902,13 +1902,13 @@ button[type="submit"]:hover {
 }
 
 .slider__prev:hover::before {
-    border-left: 1px solid #335252;
-    border-bottom: 1px solid #335252;
+    border-left: 1px solid rgb(15, 15, 15);;
+    border-bottom: 1px solid rgb(15, 15, 15);;
     transform: rotate(45deg) translateY(-50%)
 }
 
 .slider__prev:hover::after {
-    background-color: #335252
+    background-color: rgb(15, 15, 15);
 }
 
 .slider__prev::before {
@@ -1942,12 +1942,12 @@ button[type="submit"]:hover {
 }
 
 .slider__next:hover::before {
-    border-right: 1px solid #335252;
-    border-bottom: 1px solid #335252
+    border-right: 1px solid rgb(15, 15, 15);;
+    border-bottom: 1px solid rgb(15, 15, 15);
 }
 
 .slider__next:hover::after {
-    background-color: #335252
+    background-color: rgb(15, 15, 15);
 }
 
 .slider__next::before {
@@ -2336,7 +2336,7 @@ button[type="submit"]:hover {
 }
 
 .card-item__btn:hover {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     color: #fff;
 }
 
@@ -2952,7 +2952,7 @@ button[type="submit"]:hover {
 
 @media screen and (max-width: 1024px) {
     .slider__item-header {
-        color: #335252
+        color: rgb(15, 15, 15);
     }
 }
 
@@ -2964,7 +2964,7 @@ button[type="submit"]:hover {
 }
 
 .slider__item-header span {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     padding: 5px 16px 0;
     margin-bottom: 9px;
     display: inline-block
@@ -3078,7 +3078,7 @@ button[type="submit"]:hover {
 }
 
 .slider__item-15yrs p {
-    color: #335252;
+    color: rgb(15, 15, 15);;
     font-family: "Monotype Corsiva";
     line-height: 18px;
     margin-left: -3px;
@@ -3556,7 +3556,7 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background: #335252;
+    background: rgb(15, 15, 15);;
     background-position-x: 80px;
     list-style: none;
     margin: 0;
@@ -3965,7 +3965,7 @@ button[type="submit"]:hover {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 900;
-    color: #335252
+    color: rgb(15, 15, 15);
 }
 
 .offers__tabs_price span {
@@ -4018,7 +4018,7 @@ button[type="submit"]:hover {
 }
 
 .offers__btn:hover {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     color: #fff;
 }
 
@@ -4691,7 +4691,7 @@ button[type="submit"]:hover {
         position: relative;
         width: auto;
         height: auto;
-        color: #335252;
+        color: rgb(15, 15, 15);;
         padding: 0
     }
 }
@@ -5320,7 +5320,7 @@ button[type="submit"]:hover {
 .card-main-info__share-link svg {
 	width: 100%;
 	height: 100%;
-	fill: #335252
+	fill: rgb(15, 15, 15);
 }
 
 .card-main-info__sale {
@@ -5515,7 +5515,7 @@ button[type="submit"]:hover {
 }
 
 .card-tabs__background {
-    background: linear-gradient(-90deg, #335252 0%, rgba(51, 51, 51, 0) 100%);
+    background: linear-gradient(-90deg, rgb(15, 15, 15); 0%, rgba(51, 51, 51, 0) 100%);
     width: 100px;
     top: 0;
     bottom: 0;
@@ -5540,7 +5540,7 @@ button[type="submit"]:hover {
 }
 
 .card-tabs__top {
-    background-color: #335252
+    background-color: rgb(15, 15, 15);
 }
 
 .card-tabs__top-items {
@@ -6665,7 +6665,7 @@ button[type="submit"]:hover {
 }
 
 .catalog-section-pagination__item:hover {
-    color: #335252
+    color: rgb(15, 15, 15);
 }
 
 .catalog-section-pagination__prev {
@@ -6699,12 +6699,12 @@ button[type="submit"]:hover {
 }
 
 .catalog-section-pagination__prev:hover::before {
-    border-left: 2px solid #335252;
-    border-bottom: 2px solid #335252
+    border-left: 2px solid rgb(15, 15, 15);;
+    border-bottom: 2px solid rgb(15, 15, 15);
 }
 
 .catalog-section-pagination__prev:hover::after {
-    background-color: #335252
+    background-color: rgb(15, 15, 15);
 }
 
 .catalog-section-pagination__next {
@@ -6737,12 +6737,12 @@ button[type="submit"]:hover {
 }
 
 .catalog-section-pagination__next:hover::before {
-    border-right: 2px solid #335252;
-    border-bottom: 2px solid #335252
+    border-right: 2px solid rgb(15, 15, 15);;
+    border-bottom: 2px solid rgb(15, 15, 15);
 }
 
 .catalog-section-pagination__next:hover::after {
-    background-color: #335252
+    background-color: rgb(15, 15, 15);
 }
 
 .catalog-section__line {
@@ -7067,7 +7067,7 @@ button[type="submit"]:hover {
 .division-internal-item__arrow-stat svg {
     max-width: 100%;
     max-height: 100%;
-    fill: #335252
+    fill: rgb(15, 15, 15);
 }
 
 .services {
@@ -7420,7 +7420,7 @@ button[type="submit"]:hover {
 }
 
 .basket-btn:hover {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     color: #fff;
 }
 
@@ -7682,7 +7682,7 @@ button[type="submit"]:hover {
 }
 
 .execute-order_btn:hover {
-    background: #335252;
+    background: rgb(15, 15, 15);;
     color: #fff;
 }
 
@@ -8272,7 +8272,7 @@ button[type="submit"]:hover {
     height: 22px;
     transform: translateX(-50%);
     border-radius: 14px;
-    background: rgba(45, 48, 51, .78);
+    background: rgba(15, 15, 15, .78);
     color: #fff;
     font-size: 13px;
     font-weight: 700;
@@ -9288,7 +9288,7 @@ section.card-tabs .card-tabs-item-wrapper {
 
 /* ForPrint graphite tabs final visual correction v0.6.16g */
 :root {
-    --forprint-graphite: #282d31;
+    --forprint-graphite: rgb(15, 15, 15);
     --forprint-graphite-active: #22272b;
     --forprint-graphite-line: rgba(255, 255, 255, .34);
     --forprint-tab-active-text: #ffffff;
@@ -9483,7 +9483,7 @@ html body [class*="side-menu"]:hover {
 
 /* ForPrint safe tab graphite polish after v0.6.16h rollback v0.6.16i */
 :root {
-    --forprint-graphite-safe: #282d31;
+    --forprint-graphite-safe: rgb(15, 15, 15);
     --forprint-graphite-safe-active: #22272b;
     --forprint-tab-muted-safe: #9ea8ae;
     --forprint-tab-active-safe: #ffffff;
@@ -9526,7 +9526,7 @@ html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active .ca
 
 /* ForPrint exact sidebar and tab tail polish v0.6.16j */
 :root {
-    --forprint-graphite-final: #282d31;
+    --forprint-graphite-final: rgb(15, 15, 15);
     --forprint-graphite-final-active: #22272b;
     --forprint-graphite-border-final: rgba(255, 255, 255, .34);
     --forprint-tab-muted-final: #b8c0c5;
@@ -10298,3 +10298,744 @@ body .right-panel {
 .card-slider::after {
     background-image: none !important;
 }
+
+/* ForPrint product visual cleanup layer v0.6.19 */
+:root {
+    --forprint-footer-graphite-v619: rgb(15, 15, 15);
+    --forprint-footer-graphite-soft-v619: rgb(15, 15, 15);
+    --forprint-heading-muted-v619: #6f7a82;
+}
+
+/* tabs + right fixed strip should match footer graphite */
+html body main.main section.card-tabs .card-tabs__top,
+html body main.main section.card-tabs .card-tabs__top .container,
+html body main.main section.card-tabs .card-tabs__top-items,
+html body main.main section.card-tabs .card-tabs__top-wrapper,
+html body .header__sidebar,
+html body .header__sidebar_btn,
+html body .header__sidebar_btn a,
+html body .header__sidebar_btn.burger-menu {
+    background-color: var(--forprint-footer-graphite-v619) !important;
+    border-color: rgba(255, 255, 255, .22) !important;
+}
+
+/* product title and related goods title: one visual language */
+html body main.main .page-title.h1,
+html body main.main .card-slider__title,
+html body main.main .card-slider__title.h2,
+html body main.main .card-slider .h2 {
+    color: var(--forprint-heading-muted-v619) !important;
+    font-size: 24px !important;
+    line-height: 1.22 !important;
+    font-weight: 700 !important;
+    letter-spacing: .24em !important;
+    text-transform: uppercase !important;
+}
+
+/* gallery thumb hints: same calmer graphite style as related slider arrows */
+html body main.main .card-main-gallery-thumb__hint {
+    width: 34px !important;
+    height: 58px !important;
+    border-radius: 999px !important;
+    background: var(--forprint-footer-graphite-soft-v619) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .10) !important;
+    backdrop-filter: blur(1px);
+}
+
+html body main.main .card-main-gallery-thumb__hint::before {
+    color: rgba(255, 255, 255, .72) !important;
+    font-size: 30px !important;
+    font-weight: 900 !important;
+}
+
+html body main.main .card-slider__button {
+    background: var(--forprint-footer-graphite-soft-v619) !important;
+}
+
+/* remove related slider background image leftovers */
+html body main.main .card-slider,
+html body main.main .card-slider__wrapper,
+html body main.main .card-slider .container {
+    background-image: none !important;
+}
+
+html body main.main .card-slider::before,
+html body main.main .card-slider::after,
+html body main.main .card-slider__wrapper::before,
+html body main.main .card-slider__wrapper::after {
+    content: none !important;
+    display: none !important;
+    background-image: none !important;
+}
+
+/* ForPrint exact footer graphite and gallery arrows v0.6.19b */
+:root {
+    --forprint-footer-exact-v619b: #2D3033;
+    --forprint-footer-exact-border-v619b: rgba(255, 255, 255, .24);
+}
+
+/* Права фіксована смуга меню — точно в колір футера */
+html body .header__sidebar,
+html body [class^="header__sidebar"],
+html body [class*=" header__sidebar"] {
+    background-color: var(--forprint-footer-exact-v619b) !important;
+    border-color: var(--forprint-footer-exact-border-v619b) !important;
+}
+
+html body .header__sidebar_btn,
+html body .header__sidebar_btn.burger-menu,
+html body .header__sidebar_btn a,
+html body .header__sidebar [class*="btn"],
+html body .header__sidebar [class*="item"] {
+    background-color: var(--forprint-footer-exact-v619b) !important;
+    border-color: var(--forprint-footer-exact-border-v619b) !important;
+}
+
+/* Полоса вкладок товару — точно в колір футера */
+html body main.main section.card-tabs .card-tabs__top,
+html body main.main section.card-tabs .card-tabs__top .container,
+html body main.main section.card-tabs .card-tabs__top-items,
+html body main.main section.card-tabs .card-tabs__top-wrapper,
+html body main.main section.card-tabs .card-tabs__toggle,
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active {
+    background-color: var(--forprint-footer-exact-v619b) !important;
+    border-color: var(--forprint-footer-exact-border-v619b) !important;
+}
+
+/* Неактивні вкладки — читабельний сірий */
+html body main.main section.card-tabs .card-tabs__toggle:not(.tabs__toggle_active),
+html body main.main section.card-tabs .card-tabs__toggle:not(.tabs__toggle_active) .card-tabs__toggle-text {
+    color: #b8c0c5 !important;
+    opacity: 1 !important;
+}
+
+/* Активна вкладка — біла */
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active,
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active .card-tabs__toggle-text {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Лівий слайдер фото: заміна старих ↑/↓ на такий самий м'який знак-стрілку */
+html body main.main .card-main-gallery-thumb__hint {
+    width: 34px !important;
+    height: 58px !important;
+    border-radius: 999px !important;
+    background: rgba(15, 15, 15, .24) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .10) !important;
+    border: 0 !important;
+    display: block !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint::before {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    color: rgba(255, 255, 255, .78) !important;
+    font-size: 38px !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    font-family: Arial, sans-serif !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint::after {
+    content: none !important;
+    display: none !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint_up::before {
+    content: '‹' !important;
+    transform: rotate(90deg) !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint_down::before {
+    content: '‹' !important;
+    transform: rotate(-90deg) !important;
+}
+
+/* ForPrint exact graphite and centered arrows v0.6.19c */
+:root {
+    --forprint-graphite-v619c: #2b3033;
+    --forprint-graphite-border-v619c: rgba(255, 255, 255, .22);
+    --forprint-tab-muted-v619c: #c3cbd0;
+}
+
+/* Футер, права панель і вкладки товару тримаємо в одному графітовому кольорі */
+html body footer,
+html body .footer,
+html body .footer__wrapper,
+html body .fixed-menu,
+html body .fixed-menu__item,
+html body .fixed-panel,
+html body .fixed-panel__item,
+html body .right-sidebar,
+html body .side-panel,
+html body .side-menu,
+html body .header__sidebar,
+html body .header__sidebar_btn,
+html body .header__sidebar-item,
+html body .header__sidebar a,
+html body .socials-fixed,
+html body .fixed-socials,
+html body .mobile-panel,
+html body .menu-side,
+html body .right-menu {
+    background-color: var(--forprint-graphite-v619c) !important;
+    border-color: var(--forprint-graphite-border-v619c) !important;
+}
+
+/* Вкладки товару */
+html body main.main section.card-tabs .card-tabs__top,
+html body main.main section.card-tabs .card-tabs__top .container,
+html body main.main section.card-tabs .card-tabs__background,
+html body main.main section.card-tabs .card-tabs__top-items,
+html body main.main section.card-tabs .card-tabs__top-wrapper,
+html body main.main section.card-tabs .card-tabs__toggle {
+    background-color: var(--forprint-graphite-v619c) !important;
+    border-color: var(--forprint-graphite-border-v619c) !important;
+}
+
+html body main.main section.card-tabs .card-tabs__toggle,
+html body main.main section.card-tabs .card-tabs__toggle .card-tabs__toggle-text {
+    color: var(--forprint-tab-muted-v619c) !important;
+    opacity: 1 !important;
+}
+
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active,
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active .card-tabs__toggle-text {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Галерея товару: еліпс */
+html body main.main .card-main-gallery-thumb__hint {
+    position: absolute !important;
+    width: 34px !important;
+    height: 58px !important;
+    border-radius: 999px !important;
+    background: rgba(43, 48, 51, .26) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .10) !important;
+    border: 0 !important;
+    display: block !important;
+}
+
+/* Галерея товару: прибираємо старі символи */
+html body main.main .card-main-gallery-thumb__hint::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Галерея товару: малюємо рівну стрілку CSS-бордером */
+html body main.main .card-main-gallery-thumb__hint::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 13px !important;
+    height: 13px !important;
+    border: 0 !important;
+    border-left: 3px solid rgba(255, 255, 255, .82) !important;
+    border-top: 3px solid rgba(255, 255, 255, .82) !important;
+    background: transparent !important;
+    transform-origin: center center !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint_up::before {
+    transform: translate(-50%, -38%) rotate(45deg) !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint_down::before {
+    transform: translate(-50%, -62%) rotate(225deg) !important;
+}
+
+/* ForPrint footer color and exact arrows v0.6.19d */
+:root {
+    --forprint-footer-graphite-v619d: #252b2f;
+    --forprint-footer-graphite-active-v619d: #202529;
+    --forprint-footer-line-v619d: rgba(255, 255, 255, .20);
+    --forprint-muted-text-v619d: #c7d0d6;
+}
+
+/* Повертаємо футер в один рівний темний фон */
+html body footer,
+html body .footer,
+html body .footer__wrapper,
+html body .footer__bottom,
+html body .footer__copyright {
+    background-color: var(--forprint-footer-graphite-v619d) !important;
+    border-color: var(--forprint-footer-line-v619d) !important;
+}
+
+/* Праву вертикальну панель фарбуємо в той самий колір, що футер */
+html body .fixed-menu,
+html body .fixed-menu__item,
+html body .fixed-panel,
+html body .fixed-panel__item,
+html body .right-sidebar,
+html body .side-panel,
+html body .side-menu,
+html body .header__sidebar,
+html body .header__sidebar_btn,
+html body .header__sidebar-item,
+html body .header__sidebar a,
+html body .socials-fixed,
+html body .fixed-socials,
+html body .mobile-panel,
+html body .menu-side,
+html body .right-menu {
+    background-color: var(--forprint-footer-graphite-v619d) !important;
+    border-color: var(--forprint-footer-line-v619d) !important;
+}
+
+/* Полоса вкладок товару — той самий фон, що футер */
+html body main.main section.card-tabs .card-tabs__top,
+html body main.main section.card-tabs .card-tabs__top .container,
+html body main.main section.card-tabs .card-tabs__background,
+html body main.main section.card-tabs .card-tabs__top-items,
+html body main.main section.card-tabs .card-tabs__top-wrapper {
+    background-color: var(--forprint-footer-graphite-v619d) !important;
+    border-color: var(--forprint-footer-line-v619d) !important;
+}
+
+/* Кожна вкладка займає всю свою колонку, без внутрішніх хвостиків */
+html body main.main section.card-tabs .card-tabs__top-wrapper {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+html body main.main section.card-tabs .card-tabs__toggle {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-radius: 0 !important;
+    background-color: var(--forprint-footer-graphite-v619d) !important;
+    border-color: var(--forprint-footer-line-v619d) !important;
+    color: var(--forprint-muted-text-v619d) !important;
+    opacity: 1 !important;
+}
+
+html body main.main section.card-tabs .card-tabs__toggle .card-tabs__toggle-text {
+    color: var(--forprint-muted-text-v619d) !important;
+    opacity: 1 !important;
+}
+
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active {
+    background-color: var(--forprint-footer-graphite-active-v619d) !important;
+    color: #ffffff !important;
+}
+
+html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active .card-tabs__toggle-text {
+    color: #ffffff !important;
+}
+
+/* Галерея товару: повертаємо нормальний еліпс */
+html body main.main .card-main-gallery-thumb__hint {
+    position: absolute !important;
+    width: 34px !important;
+    height: 58px !important;
+    border-radius: 999px !important;
+    background: rgba(37, 43, 47, .30) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .10) !important;
+    border: 0 !important;
+    display: block !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Прибираємо старі символи/місяці */
+html body main.main .card-main-gallery-thumb__hint::before,
+html body main.main .card-main-gallery-thumb__hint::after {
+    content: '' !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 12px !important;
+    height: 3px !important;
+    display: block !important;
+    background: rgba(255, 255, 255, .86) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    transform-origin: center center !important;
+}
+
+/* Верхня стрілка */
+html body main.main .card-main-gallery-thumb__hint_up::before {
+    transform: translate(-8px, -50%) rotate(-45deg) !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint_up::after {
+    transform: translate(-1px, -50%) rotate(45deg) !important;
+}
+
+/* Нижня стрілка */
+html body main.main .card-main-gallery-thumb__hint_down::before {
+    transform: translate(-8px, -50%) rotate(45deg) !important;
+}
+
+html body main.main .card-main-gallery-thumb__hint_down::after {
+    transform: translate(-1px, -50%) rotate(-45deg) !important;
+}
+
+/* ForPrint footer inner color unification v0.6.19e */
+html body footer *,
+html body .footer *,
+html body footer .container,
+html body .footer .container,
+html body footer .footer__top,
+html body footer .footer__main,
+html body footer .footer__content,
+html body footer .footer__items,
+html body footer .footer__item,
+html body footer .footer__column,
+html body footer .footer__row,
+html body footer .footer__contacts,
+html body footer .footer__menu,
+html body footer .footer__logo,
+html body footer .footer__wrapper,
+html body .footer .footer__top,
+html body .footer .footer__main,
+html body .footer .footer__content,
+html body .footer .footer__items,
+html body .footer .footer__item,
+html body .footer .footer__column,
+html body .footer .footer__row,
+html body .footer .footer__contacts,
+html body .footer .footer__menu,
+html body .footer .footer__logo,
+html body .footer .footer__wrapper {
+    background-color: transparent !important;
+}
+
+html body footer,
+html body .footer,
+html body footer .container,
+html body .footer .container {
+    background-color: #252b2f !important;
+}
+
+html body footer::before,
+html body footer::after,
+html body .footer::before,
+html body .footer::after {
+    background-color: #252b2f !important;
+}
+
+/* v0.6.18f compact optional tabs admin helper is in admin css */
+
+
+/* ForPrint front header v0.6.19a START
+   Controlled header layout.
+   Старі .header__* класи лишаються для JS і меню, але геометрію головного хедера ведемо тут.
+*/
+.fp-site-header {
+    background: #fff;
+}
+
+.fp-site-header > .container {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.fp-site-header__wrapper {
+    height: auto;
+    min-height: 150px;
+    padding: 15px 125px 15px 25px;
+    display: flex;
+    align-items: center;
+    gap: 46px;
+    box-sizing: border-box;
+}
+
+.fp-site-header__logo {
+    width: auto;
+    max-width: none;
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 0 0 auto;
+    padding-top: 0;
+}
+
+.fp-site-header__logo a {
+    width: 96px;
+    max-width: none;
+    height: auto;
+    margin-right: 0;
+    display: block;
+    flex: 0 0 96px;
+}
+
+.fp-site-header__logo img {
+    width: 96px;
+    height: 124px;
+    max-width: none;
+    object-fit: contain;
+    display: block;
+    padding-right: 0;
+    margin-top: 0;
+}
+
+.fp-site-header__logo span {
+    width: auto;
+    max-width: none;
+    margin-top: 0;
+    margin-left: 25px;
+    white-space: nowrap;
+    display: inline-block;
+    color: #222f3e;
+    font-family: "Roboto Mono", "Lato", sans-serif;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .34em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.fp-site-header__topbar {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.fp-site-header__contacts {
+    width: auto;
+    min-width: 560px;
+    max-width: 760px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 58px;
+    margin-top: 0;
+}
+
+.fp-site-header__contacts a {
+    white-space: nowrap;
+}
+
+.fp-site-header__nav {
+    width: 100%;
+    margin: 34px 0 0 0;
+}
+
+.fp-site-header__nav-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 44px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+}
+
+.fp-site-header__nav-list a {
+    margin-left: 0;
+    padding: 0;
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.fp-site-header__nav-sublist {
+    margin-top: 10px;
+}
+
+.fp-site-header + .search,
+.fp-site-header + .search-internal {
+    clear: both;
+}
+
+@media screen and (max-width: 1600px) {
+    .fp-site-header__wrapper {
+        min-height: 136px;
+        padding: 12px 66px 12px 18px;
+        gap: 36px;
+    }
+
+    .fp-site-header__logo a {
+        width: 88px;
+        flex-basis: 88px;
+    }
+
+    .fp-site-header__logo img {
+        width: 88px;
+        height: 112px;
+    }
+
+    .fp-site-header__logo span {
+        font-size: 17px;
+        letter-spacing: .3em;
+    }
+
+    .fp-site-header__contacts {
+        min-width: 500px;
+        gap: 42px;
+    }
+
+    .fp-site-header__nav {
+        margin-top: 26px;
+    }
+
+    .fp-site-header__nav-list {
+        gap: 30px;
+    }
+
+    .fp-site-header__nav-list a {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .fp-site-header__wrapper {
+        min-height: 126px;
+        padding: 10px 60px 10px 16px;
+        gap: 28px;
+    }
+
+    .fp-site-header__logo a {
+        width: 78px;
+        flex-basis: 78px;
+    }
+
+    .fp-site-header__logo img {
+        width: 78px;
+        height: 102px;
+    }
+
+    .fp-site-header__logo span {
+        font-size: 16px;
+        letter-spacing: .24em;
+    }
+
+    .fp-site-header__contacts {
+        min-width: 460px;
+        gap: 30px;
+    }
+
+    .fp-site-header__nav-list {
+        gap: 24px;
+    }
+
+    .fp-site-header__nav-list a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1260px) {
+    .fp-site-header__wrapper {
+        min-height: 86px;
+    }
+
+    .fp-site-header__logo a {
+        width: 58px;
+        flex-basis: 58px;
+    }
+
+    .fp-site-header__logo img {
+        width: 58px;
+        height: 74px;
+    }
+
+    .fp-site-header__logo span {
+        font-size: 15px;
+        letter-spacing: .2em;
+    }
+}
+/* ForPrint front header v0.6.19a END */
+
+
+/* ForPrint catalog dropdown v0.6.19b START
+   Керуємо тільки підменю "Каталог" у фронтальному хедері.
+   Не переписуємо весь header і не чіпаємо мобільне burger-меню.
+*/
+.fp-site-header__nav-list > li,
+.fp-site-header__nav .header__nav-parent {
+    position: relative;
+}
+
+.fp-site-header__nav .header__nav-parent > .header__nav-sublist {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 12px);
+    min-width: 300px;
+    width: max-content;
+    max-width: 420px;
+    margin: 0;
+    padding: 12px 0;
+    list-style: none;
+    background: #ffffff;
+    border: 1px solid rgba(45, 48, 51, .12);
+    box-shadow: 0 16px 34px rgba(34, 47, 62, .14);
+    z-index: 10050;
+}
+
+.fp-site-header__nav .header__nav-parent:hover > .header__nav-sublist,
+.fp-site-header__nav .header__nav-parent:focus-within > .header__nav-sublist {
+    display: block;
+}
+
+.fp-site-header__nav .header__nav-parent > .header__nav-sublist::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -14px;
+    height: 14px;
+}
+
+.fp-site-header__nav .header__nav-sublist li {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-site-header__nav .header__nav-sublist a {
+    display: block;
+    margin: 0;
+    padding: 9px 18px;
+    color: #2D3033;
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    background: transparent;
+}
+
+.fp-site-header__nav .header__nav-sublist a::before,
+.fp-site-header__nav .header__nav-sublist a::after {
+    display: none;
+}
+
+.fp-site-header__nav .header__nav-sublist a:hover {
+    background: #f1f5f7;
+    color: #222f3e;
+}
+
+@media screen and (max-width: 1260px) {
+    .fp-site-header__nav .header__nav-parent > .header__nav-sublist {
+        display: none;
+    }
+}
+/* ForPrint catalog dropdown v0.6.19b END */

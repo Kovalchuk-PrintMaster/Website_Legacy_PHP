@@ -49,36 +49,40 @@ class ProductController extends BaseUser
         $deliveryInfo && $deliveryInfo = $deliveryInfo[0];
 
         $relatedGoods = [];
+        $relatedGoods = [];
 
         if (!empty($data['related_goods_ids'])) {
             $relatedIds = preg_split('/[,\s;]+/', (string)$data['related_goods_ids'], -1, PREG_SPLIT_NO_EMPTY);
             $relatedIds = array_values(array_unique(array_filter(array_map('intval', $relatedIds))));
 
             if ($relatedIds) {
-                $relatedSqlIds = implode(',', $relatedIds);
+                $relatedPool = $this->model->get('goods', [
+                    'where' => ['visible' => 1],
+                    'limit' => 500,
+                ]);
 
-                $relatedGoods = $this->model->query(
-                    "SELECT id, name, alias, img, short_content, price, discount
-                     FROM goods
-                     WHERE visible = 1 AND id IN ({$relatedSqlIds})"
-                );
+                $relatedById = [];
 
-                if ($relatedGoods) {
-                    foreach ($relatedGoods as &$relatedItem) {
-                        if (!empty($relatedItem['discount']) && method_exists($this->model, 'applyDiscount')) {
-                            $this->model->applyDiscount($relatedItem, $relatedItem['discount']);
+                if (!empty($relatedPool) && is_array($relatedPool)) {
+                    foreach ($relatedPool as $relatedItem) {
+                        if (!empty($relatedItem['id'])) {
+                            $relatedById[(int)$relatedItem['id']] = $relatedItem;
                         }
                     }
-                    unset($relatedItem);
+                }
 
-                    $relatedOrder = array_flip($relatedIds);
+                foreach ($relatedIds as $relatedId) {
+                    if ($relatedId === (int)($data['id'] ?? 0)) {
+                        continue;
+                    }
 
-                    usort($relatedGoods, function ($left, $right) use ($relatedOrder) {
-                        return ($relatedOrder[(int)$left['id']] ?? 999999) <=> ($relatedOrder[(int)$right['id']] ?? 999999);
-                    });
+                    if (isset($relatedById[$relatedId])) {
+                        $relatedGoods[] = $relatedById[$relatedId];
+                    }
                 }
             }
         }
+
 
         return compact('data', 'deliveryInfo', 'relatedGoods');
 

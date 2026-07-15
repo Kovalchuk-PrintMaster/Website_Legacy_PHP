@@ -70,8 +70,12 @@ $(function () {
             }
         }
     };
-    indexOffersSlider =  new Swiper('.offers__tabs_container', indexOffersSliderOptions);
-    new Swiper('.active .offers__tabs_container', indexOffersSliderOptions);
+    if ($('.offers__tabs_container').length) {
+        indexOffersSlider = new Swiper('.offers__tabs_container', indexOffersSliderOptions);
+        new Swiper('.active .offers__tabs_container', indexOffersSliderOptions);
+    } else {
+        indexOffersSlider = [];
+    }
 
 
     //------------------- Tabs Mainpage -------------------//
@@ -80,7 +84,11 @@ $(function () {
             .addClass('active').siblings().removeClass('active')
             .closest('div.offers__tabs').find('div.offers__tabs_content').removeClass('active').eq($(this).index()).addClass('active');
         var index = $(this).index();
-        indexOffersSlider[index].slideTo(0);
+        if (indexOffersSlider[index] && typeof indexOffersSlider[index].slideTo === 'function') {
+            indexOffersSlider[index].slideTo(0);
+        } else if (indexOffersSlider && typeof indexOffersSlider.slideTo === 'function') {
+            indexOffersSlider.slideTo(0);
+        }
         indexOffersSlider[index].update();
 
     });

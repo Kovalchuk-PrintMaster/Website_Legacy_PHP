@@ -1,12 +1,12 @@
 <?php
-$textareaAdminExtraClass = in_array($row, ['content', 'tab_specs_content', 'tab_conditions_content'], true) ? ' vg-admin-editor-half' : '';
+$textareaAdminExtraClass = '';
 $forprintTextareaTitle = $this->translate[$row][0] ? $this->translate[$row][0] : $row;
 
 if (($this->table ?? '') === 'goods' && $row === 'content') {
     $forprintTextareaTitle = 'Текст вкладки "Детальніше"';
 }
 
-$forprintRichEditorRows = ['content', 'tab_specs_content', 'tab_conditions_content'];
+$forprintRichEditorRows = ['content', 'tab_specs_content', 'tab_conditions_content', 'tab_extra_content'];
 $forprintEditorChecked = $class === 'vg-content'
     || (($this->table ?? '') === 'goods' && in_array($row, $forprintRichEditorRows, true));
 ?>

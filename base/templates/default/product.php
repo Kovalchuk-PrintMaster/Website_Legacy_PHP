@@ -201,7 +201,7 @@
                             <svg>
                                 <use xlink:href="<?=PATH.TEMPLATE?>assets/img/icons.svg#basket"></use>
                             </svg>
-                            <span>Поки візьму в кошик</span>
+                            <span>Забрати</span>
                         </a>
                         <a data-addToCart="<?=$data['id']?>" data-onClick href="#" class="card-main-info__button button-darkcyan button-big button">
                             Забрати вже
@@ -214,34 +214,72 @@
 </section>
 
 <?php
-    $showDetails = (int)($data['tab_details_enabled'] ?? 1) === 1;
+    if (!function_exists('fp_product_tab_enabled')) {
+        function fp_product_tab_enabled($value, bool $default = false): bool
+        {
+            if ($value === null || $value === '') {
+                return $default;
+            }
 
-    $detailsTitle = trim((string)($data['tab_details_title'] ?? ''));
-    $detailsTitle = $detailsTitle !== '' ? $detailsTitle : 'Детальніше';
+            if (is_bool($value)) {
+                return $value;
+            }
 
-    $showSpecs = (int)($data['tab_specs_enabled'] ?? 0) === 1;
-    $specsTitle = trim((string)($data['tab_specs_title'] ?? ''));
-    $specsTitle = $specsTitle !== '' ? $specsTitle : 'Характеристики';
-    $specsContent = trim((string)($data['tab_specs_content'] ?? ''));
+            if (is_numeric($value)) {
+                return (int)$value === 1;
+            }
 
-    $showConditions = (int)($data['tab_conditions_enabled'] ?? 0) === 1;
-    $conditionsTitle = trim((string)($data['tab_conditions_title'] ?? ''));
-    $conditionsTitle = $conditionsTitle !== '' ? $conditionsTitle : 'Спеціальні умови';
-    $conditionsContent = trim((string)($data['tab_conditions_content'] ?? ''));
+            $value = trim((string)$value);
+            $lower = function_exists('mb_strtolower') ? mb_strtolower($value) : strtolower($value);
 
-    $hasProductTabs = $showDetails || $showSpecs || $showConditions;
+            return in_array($lower, ['1', 'так', 'yes', 'true', 'on'], true);
+        }
+    }
 
-    $activeProductTab = '';
-    if ($showDetails) {
-        $activeProductTab = 'details';
-    } elseif ($showSpecs) {
-        $activeProductTab = 'specs';
-    } elseif ($showConditions) {
-        $activeProductTab = 'conditions';
+    if (!function_exists('fp_product_tab_title')) {
+        function fp_product_tab_title($value, string $fallback): string
+        {
+            $value = trim((string)$value);
+            return $value !== '' ? $value : $fallback;
+        }
+    }
+
+    $productTabs = [];
+
+    if (fp_product_tab_enabled($data['tab_details_enabled'] ?? 1, true)) {
+        $productTabs[] = [
+            'key' => 'details',
+            'title' => fp_product_tab_title($data['tab_details_title'] ?? '', 'Детальніше'),
+            'content' => (string)($data['content'] ?? ''),
+        ];
+    }
+
+    if (fp_product_tab_enabled($data['tab_specs_enabled'] ?? 0, false)) {
+        $productTabs[] = [
+            'key' => 'specs',
+            'title' => fp_product_tab_title($data['tab_specs_title'] ?? '', 'Характеристики'),
+            'content' => trim((string)($data['tab_specs_content'] ?? '')),
+        ];
+    }
+
+    if (fp_product_tab_enabled($data['tab_conditions_enabled'] ?? 0, false)) {
+        $productTabs[] = [
+            'key' => 'conditions',
+            'title' => fp_product_tab_title($data['tab_conditions_title'] ?? '', 'Спеціальні умови'),
+            'content' => trim((string)($data['tab_conditions_content'] ?? '')),
+        ];
+    }
+
+    if (fp_product_tab_enabled($data['tab_extra_enabled'] ?? 0, false)) {
+        $productTabs[] = [
+            'key' => 'extra',
+            'title' => fp_product_tab_title($data['tab_extra_title'] ?? '', 'Додаткова інформація'),
+            'content' => trim((string)($data['tab_extra_content'] ?? '')),
+        ];
     }
 ?>
 
-<?php if ($hasProductTabs):?>
+<?php if (!empty($productTabs)): ?>
 <section class="card-tabs">
     <div class="card-tabs__wrapper">
         <div class="card-tabs__top">
@@ -249,31 +287,13 @@
                 <span class="card-tabs__background"></span>
                 <div class="card-tabs__top-items">
                     <div class="card-tabs__top-wrapper">
-
-                        <?php if ($showDetails):?>
-                            <div class="card-tabs__toggle tabs__toggle <?=$activeProductTab === 'details' ? 'tabs__toggle_active' : ''?>">
+                        <?php foreach ($productTabs as $tabIndex => $tab): ?>
+                            <div class="card-tabs__toggle tabs__toggle <?=$tabIndex === 0 ? 'tabs__toggle_active' : ''?>">
                                 <span class="card-tabs__toggle-text">
-                                    <?=htmlspecialchars($detailsTitle, ENT_QUOTES, 'UTF-8')?>
+                                    <?=htmlspecialchars($tab['title'], ENT_QUOTES, 'UTF-8')?>
                                 </span>
                             </div>
-                        <?php endif;?>
-
-                        <?php if ($showSpecs):?>
-                            <div class="card-tabs__toggle tabs__toggle <?=$activeProductTab === 'specs' ? 'tabs__toggle_active' : ''?>">
-                                <span class="card-tabs__toggle-text">
-                                    <?=htmlspecialchars($specsTitle, ENT_QUOTES, 'UTF-8')?>
-                                </span>
-                            </div>
-                        <?php endif;?>
-
-                        <?php if ($showConditions):?>
-                            <div class="card-tabs__toggle tabs__toggle <?=$activeProductTab === 'conditions' ? 'tabs__toggle_active' : ''?>">
-                                <span class="card-tabs__toggle-text">
-                                    <?=htmlspecialchars($conditionsTitle, ENT_QUOTES, 'UTF-8')?>
-                                </span>
-                            </div>
-                        <?php endif;?>
-
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -282,25 +302,12 @@
         <div class="card-tabs__bottom">
             <div class="container">
                 <div class="card-tabs__bottom-wrapper">
-
-                    <?php if ($showDetails):?>
-                        <div class="card-tabs-item-wrapper tabs__tab">
-                            <?=$data['content'] ?? ''?>
-                        </div>
-                    <?php endif;?>
-
-                    <?php if ($showSpecs):?>
-                        <div class="card-tabs-item-wrapper tabs__tab">
-
-                            <?php if ($specsContent !== ''):?>
-
-                                <?=$specsContent?>
-
-                            <?php elseif (!empty($data['filters']) && is_array($data['filters'])):?>
-
+                    <?php foreach ($productTabs as $tabIndex => $tab): ?>
+                        <div class="card-tabs-item-wrapper tabs__tab" style="display: <?=$tabIndex === 0 ? 'flex' : 'none'?>;">
+                            <?php if ($tab['key'] === 'specs' && $tab['content'] === '' && !empty($data['filters'])): ?>
                                 <div class="card-main-info__table main-info card-main-indfo_toggle">
                                     <div class="card-main-info__table">
-                                        <?php foreach ($data['filters'] as $item):?>
+                                        <?php foreach ($data['filters'] as $item): ?>
                                             <div class="card-main-info__table-row">
                                                 <div class="card-main-info__table-item">
                                                     <?=$item['name']?>
@@ -309,124 +316,44 @@
                                                     <?=implode(', ', array_column($item['values'], 'name'))?>
                                                 </div>
                                             </div>
-                                        <?php endforeach;?>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-
-                            <?php else:?>
-
-                                <p>Характеристики для цього продукту уточнюються.</p>
-
-                            <?php endif;?>
-
+                            <?php else: ?>
+                                <?=$tab['content']?>
+                            <?php endif; ?>
                         </div>
-                    <?php endif;?>
-
-                    <?php if ($showConditions):?>
-                        <div class="card-tabs-item-wrapper tabs__tab">
-
-                            <?php if ($conditionsContent !== ''):?>
-
-                                <?=$conditionsContent?>
-
-                            <?php else:?>
-
-                                <p>Тут може відображатися супровідна інформація, спеціальні умови або примітки для цього продукту.</p>
-
-                            <?php endif;?>
-
-                        </div>
-                    <?php endif;?>
-
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<?php endif;?>
-<?php if (!empty($relatedGoods)):?>
-<section class="card-slider">
-    <div class="container">
-        <div class="card-slider__wrapper">
-            <div class="card-slider__title h2">
+<?php endif; ?>
+<?php if (!empty($relatedGoods)): ?>
+<section class="fp-related-section" data-fp-related-section>
+    <div class="container fp-related-section__container">
+        <div class="fp-related-section__header">
+            <div class="fp-related-section__title h2">
                 Доречі, разом з цим ще беруть і це:
             </div>
-            <div class="card-slider__buttons slider__buttons">
-                <div class="card-slider__prev slider__prev slider__button button">
-                </div>
-                <div class="card-slider__next slider__next slider__button button">
-                </div>
+
+            <div class="fp-related-section__controls" aria-label="Навігація супутніх товарів">
+                <button class="fp-related-section__button fp-related-section__prev" type="button" aria-label="Попередні товари"></button>
+                <button class="fp-related-section__button fp-related-section__next" type="button" aria-label="Наступні товари"></button>
             </div>
-            <div class="card-slider-slider">
-                <div class="card-slider-slider__container swiper-container">
-                    <div class="swiper-wrapper">
+        </div>
 
-                        <?php foreach ($relatedGoods as $relatedItem):?>
-                            <?php
-                            $relatedUrl = $this->alias('product/' . $relatedItem['alias']);
-                            $relatedImg = !empty($relatedItem['img'])
-                                ? PATH . UPLOAD_DIR . $relatedItem['img']
-                                : PATH . TEMPLATE . 'assets/img/additional_offer.png';
-                            $relatedName = htmlspecialchars($relatedItem['name'] ?? '', ENT_QUOTES, 'UTF-8');
-                            $relatedShort = trim(strip_tags($relatedItem['short_content'] ?? ''));
-
-                            if (function_exists('mb_strlen') && mb_strlen($relatedShort) > 120) {
-                                $relatedShort = mb_substr($relatedShort, 0, 117) . '...';
-                            } elseif (strlen($relatedShort) > 120) {
-                                $relatedShort = substr($relatedShort, 0, 117) . '...';
-                            }
-
-                            $relatedPrice = !empty($relatedItem['price']) ? round((float)$relatedItem['price']) : 0;
-                            ?>
-                            <div class="card-item swiper-slide">
-                                <div class="card-item__tabs_image">
-                                    <a href="<?=$relatedUrl?>">
-                                        <img src="<?=$relatedImg?>" alt="<?=$relatedName?>">
-                                    </a>
-                                </div>
-                                <div class="card-item__tabs_description">
-                                    <div class="card-item__tabs_name">
-                                        <a href="<?=$relatedUrl?>">
-                                            <span><?=$relatedName?></span>
-                                            <?php if ($relatedShort):?>
-                                                <?=$relatedShort?>
-                                            <?php endif;?>
-                                        </a>
-                                    </div>
-                                    <div class="card-item__tabs_price">
-                                        Ціна:
-                                        <?php if ($relatedPrice):?>
-                                            <span class="card-item_new-price"><?=$relatedPrice?> грн.</span>
-                                        <?php else:?>
-                                            <span class="card-item_new-price">за запитом</span>
-                                        <?php endif;?>
-                                    </div>
-                                </div>
-                                <button class="card-item__btn" type="button" data-addToCart="<?=$relatedItem['id']?>">
-                                    <svg>
-                                        <use xlink:href="/assets/img/icons.svg#basket"></use>
-                                    </svg>
-                                    <span>Кину собі в скриньку</span>
-                                </button>
-                                <span class="card-main-info-size__body">
-                                    <span class="card-main-info-size__control card-main-info-size__control_minus js-counterDecrement" data-quantityMinus></span>
-                                    <span class="card-main-info-size__count js-counterShow" data-quantity>1</span>
-                                    <span class="card-main-info-size__control card-main-info-size__control_plus js-counterIncrement" data-quantityPlus></span>
-                                </span>
-                                <div class="icon-offer">
-                                    <svg>
-                                        <use xlink:href="/assets/img/icons.svg#hot"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                        <?php endforeach;?>
-
-                    </div>
-                </div>
+        <div class="fp-related-section__slider swiper-container" data-fp-related-slider>
+            <div class="fp-related-section__wrapper swiper-wrapper">
+                <?php foreach ($relatedGoods as $relatedItem): ?>
+                    <?php $this->showGoods($relatedItem, [], 'goodsRelatedItem'); ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 </section>
+<script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-cards.js"></script>
 <?php endif;?>
 <section class="feedback feedback-internal">
     <div class="feedback__name subheader h2">Залишити заявку (данний функціонал зараз на єтапі розробки)</div>

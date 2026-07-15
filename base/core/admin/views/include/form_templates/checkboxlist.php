@@ -21,7 +21,7 @@
                     ?>
                     <div class="vg-element vg-full vg-input vg-relative vg-space-between select_wrap">
                         <span class="vg-text vg-left"><?=$value['name'] ?? $name?></span>
-                        <span class="vg-text vg-right select_all">Выделить все</span>
+                        <span class="vg-text vg-right select_all">Вибрати все</span>
                     </div>
                     <div class="option_wrap">
                         <?php foreach ($value['sub'] as $item):?>

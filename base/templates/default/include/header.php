@@ -8,34 +8,34 @@
     <title>Index</title>
 
     <?php $this->getStyles()?>
-
+    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=0642">
 </head>
 
 <body>
-<header class="header">
+<header class="header fp-site-header">
     <div class="container">
-        <div class="header__wrapper">
+        <div class="header__wrapper fp-site-header__wrapper">
 
-            <div class="header__logo">
+            <div class="header__logo fp-site-header__logo">
                 <a href="<?= $this->alias() ?>"><img src="<?=$this->img($this->set['img'])?>" alt="<?=$this->set['name']?>"></a>
                 <span><?=$this->set['name']?></span>
             </div>
-            <div class="header__topbar">
-                <div class="header__contacts">
+            <div class="header__topbar fp-site-header__topbar">
+                <div class="header__contacts fp-site-header__contacts">
                     <div><a href="mailto:<?=$this->set['email']?>"><?=$this->set['email']?></a></div>
                     <div><a href="tel:<?=preg_replace('/[^+\d]/', '', $this->set['phone'])
                         ?>"><?=$this->set['phone']?></a></div>
                     <div><a class="js-callback">Зв'язатися з нами</a></div>
                 </div>
 
-                <nav class="header__nav">
-                    <ul class="header__nav-list">
+                <nav class="header__nav fp-site-header__nav">
+                    <ul class="header__nav-list fp-site-header__nav-list">
 
                         <?php if (!empty($this->menu['catalog'])):?>
                             <li class="header__nav-parent">
                                 <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a>
 
-                                <ul class="header__nav-sublist">
+                                <ul class="header__nav-sublist fp-site-header__nav-sublist">
                                     <?php foreach ($this->menu['catalog'] as $item):?>
                                         <li>
                                             <a href="<?=$this->alias(['catalog' => $item['alias']])?>">
@@ -75,7 +75,7 @@
                             <li class="header__nav-parent">
                                 <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>
 
-                                <ul class="header__nav-sublist">
+                                <ul class="header__nav-sublist fp-site-header__nav-sublist">
                                     <?php foreach ($this->menu['knoweleges'] as $item):?>
                                         <li>
                                             <a href="<?=$this->alias(['knoweleges' => $item['alias']])?>">

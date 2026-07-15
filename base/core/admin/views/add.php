@@ -28,6 +28,7 @@
         $forprintDetailsTabRows = $this->table === 'goods' ? [
             'tab_details_enabled',
             'tab_details_title',
+            'content',
         ] : [];
 
         $forprintOptionalTabRows = $this->table === 'goods' ? [
@@ -37,9 +38,34 @@
             'tab_conditions_enabled',
             'tab_conditions_title',
             'tab_conditions_content',
+            'tab_extra_enabled',
+            'tab_extra_title',
+            'tab_extra_content',
         ] : [];
 
-        $forprintAdminHiddenTabRows = array_merge($forprintDetailsTabRows, $forprintOptionalTabRows);
+        $forprintAdminTabGroups = $this->table === 'goods' ? [
+            [
+                'title' => 'Детальніше',
+                'fields' => ['tab_details_enabled', 'tab_details_title', 'content'],
+            ],
+            [
+                'title' => 'Характеристики',
+                'fields' => ['tab_specs_enabled', 'tab_specs_title', 'tab_specs_content'],
+            ],
+            [
+                'title' => 'Спеціальні умови',
+                'fields' => ['tab_conditions_enabled', 'tab_conditions_title', 'tab_conditions_content'],
+            ],
+            [
+                'title' => 'Додаткова інформація',
+                'fields' => ['tab_extra_enabled', 'tab_extra_title', 'tab_extra_content'],
+            ],
+        ] : [];
+
+        $forprintAdminHiddenTabRows = array_values(array_unique(array_merge(
+            $forprintDetailsTabRows,
+            $forprintOptionalTabRows
+        )));
 
         foreach($this->blocks as $class => $block){
 
@@ -87,30 +113,79 @@
             if($class !== 'vg-content') echo '</div>';
             echo '</div>';
         }
-
-        if (!empty($forprintOptionalTabRows)) {
+        if (!empty($forprintAdminTabGroups)) {
             $class = 'vg-optional-tabs';
 
-            echo '<div class="vg-wrap vg-element vg-full forprint-optional-tabs-admin">';
-            echo '<div class="vg-wrap vg-element vg-full vg-firm-background-color4 vg-box-shadow">';
-            echo '<div class="vg-element vg-full vg-left" style="padding: 18px 18px 8px;">';
+            echo '<div class="vg-wrap vg-element vg-full forprint-optional-tabs-admin fp-admin-tab-section">';
+            echo '<div class="vg-wrap vg-element vg-full vg-firm-background-color4 vg-box-shadow fp-admin-tab-section-inner">';
+            echo '<div class="vg-element vg-full vg-left fp-admin-tab-section-heading">';
             echo '<span class="vg-header">Службові вкладки товару</span>';
-            echo '<span class="vg_subheader" style="display:block; margin-top:6px;">Назви, перемикачі та тексти додаткових вкладок товару.</span>';
+            echo '<span class="vg_subheader">Назви, перемикачі та тексти додаткових вкладок товару.</span>';
             echo '</div>';
 
-            foreach ($forprintOptionalTabRows as $row) {
-                foreach ($this->templateArr as $template => $items) {
-                    if (in_array($row, $items, true)) {
-                        if (!@include $_SERVER['DOCUMENT_ROOT'] . $this->formTemplates . $template . '.php') {
-                            throw new \core\base\exceptions\RouteException('Не знайдений шаблон ' .
-                                $_SERVER['DOCUMENT_ROOT'] . $this->formTemplates . $template . '.php');
+            echo '<div class="vg-admin-tab-panels-grid fp-admin-tab-grid">';
+
+            foreach ($forprintAdminTabGroups as $forprintAdminTabGroup) {
+                echo '<div class="fp-admin-tab-panel">';
+                echo '<div class="fp-admin-tab-panel__title">' .
+                    htmlspecialchars($forprintAdminTabGroup['title'], ENT_QUOTES, 'UTF-8') .
+                    '</div>';
+
+                foreach ($forprintAdminTabGroup['fields'] as $row) {
+                                        if (in_array($row, [
+                        'tab_details_enabled',
+                        'tab_specs_enabled',
+                        'tab_conditions_enabled',
+                        'tab_extra_enabled',
+                    ], true)) {
+                        $forprintTabRadioLabel = $this->translate[$row][0] ?? $row;
+                        $forprintTabRadioValue = $this->data[$row] ?? ($row === 'tab_details_enabled' ? 1 : 0);
+                        $forprintTabRadioValue = (string)$forprintTabRadioValue;
+
+                        $forprintTabNoChecked = in_array($forprintTabRadioValue, ['0', 'Ні', 'ні', 'no', 'false'], true);
+                        $forprintTabYesChecked = in_array($forprintTabRadioValue, ['1', 'Так', 'так', 'yes', 'true'], true);
+
+                        if (!$forprintTabNoChecked && !$forprintTabYesChecked) {
+                            $forprintTabYesChecked = $row === 'tab_details_enabled';
+                            $forprintTabNoChecked = !$forprintTabYesChecked;
                         }
 
-                        break;
+                        echo '<div class="fp-tab-radio-line">';
+                        echo '<span class="fp-tab-radio-caption">' .
+                            htmlspecialchars($forprintTabRadioLabel, ENT_QUOTES, 'UTF-8') .
+                            '</span>';
+
+                        echo '<label class="fp-tab-radio-option">';
+                        echo '<span>Ні</span>';
+                        echo '<input type="radio" name="' . htmlspecialchars($row, ENT_QUOTES, 'UTF-8') . '" value="0"' .
+                            ($forprintTabNoChecked ? ' checked' : '') .
+                            '>';
+                        echo '</label>';
+
+                        echo '<label class="fp-tab-radio-option">';
+                        echo '<span>Так</span>';
+                        echo '<input type="radio" name="' . htmlspecialchars($row, ENT_QUOTES, 'UTF-8') . '" value="1"' .
+                            ($forprintTabYesChecked ? ' checked' : '') .
+                            '>';
+                        echo '</label>';
+
+                        echo '</div>';
+                        continue;
+                    }
+                    foreach ($this->templateArr as $template => $items) {
+                        if (in_array($row, $items, true)) {
+                            if (!@include $_SERVER['DOCUMENT_ROOT'] . $this->formTemplates . $template . '.php') {
+                                throw new \core\base\exceptions\RouteException('Не знайдений шаблон ' .
+                                    $_SERVER['DOCUMENT_ROOT'] . $this->formTemplates . $template . '.php');
+                            }
+                        }
                     }
                 }
+
+                echo '</div>';
             }
 
+            echo '</div>';
             echo '</div>';
             echo '</div>';
         }

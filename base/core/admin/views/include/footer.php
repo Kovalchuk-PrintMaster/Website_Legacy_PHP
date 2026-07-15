@@ -20,7 +20,7 @@
                                 if (($this->table ?? '') === 'goods') {
                     $tinyMceBlocks = array_values(array_unique(array_merge(
                         $tinyMceBlocks,
-                        ['content', 'tab_specs_content', 'tab_conditions_content']
+                        ['content', 'tab_specs_content', 'tab_conditions_content', 'tab_extra_content']
                     )));
                 }
 
@@ -47,7 +47,105 @@
                 </script>
 
             <?php $this->getScripts()?>
-    </body>
+<!-- FP v0.6.18u promo flags stable grid START -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('main-form');
+    if (!form) {
+        return;
+    }
+
+    var flags = Array.prototype.slice.call(
+        form.querySelectorAll(
+            '.fp-radio-template-field--hit.fp-radio-template-field--promo-flag,' +
+            '.fp-radio-template-field--sale.fp-radio-template-field--promo-flag,' +
+            '.fp-radio-template-field--new.fp-radio-template-field--promo-flag,' +
+            '.fp-radio-template-field--hot.fp-radio-template-field--promo-flag'
+        )
+    );
+
+    if (!flags.length) {
+        return;
+    }
+
+    var first = flags[0];
+    var parent = first.parentNode;
+    if (!parent) {
+        return;
+    }
+
+    var grid = form.querySelector('.fp-promo-flags-grid');
+    if (!grid) {
+        grid = document.createElement('div');
+        grid.className = 'fp-promo-flags-grid vg-element vg-full vg-box-shadow';
+        parent.insertBefore(grid, first);
+    }
+
+    flags.forEach(function (flag) {
+        grid.appendChild(flag);
+    });
+});
+</script>
+<!-- FP v0.6.18u promo flags stable grid END -->
+<!-- FP v0.6.18w related goods inside filters START -->
+<script>
+(function () {
+    function textOf(node) {
+        return (node && node.textContent ? node.textContent : '').replace(/\s+/g, ' ').trim();
+    }
+
+    function findFiltersBlock(form) {
+        var headers = Array.prototype.slice.call(
+            form.querySelectorAll('.vg-header, .vg_subheader, span, h1, h2, h3')
+        );
+
+        for (var i = 0; i < headers.length; i += 1) {
+            if (textOf(headers[i]) === 'Фільтри') {
+                return headers[i].closest('.vg-element.vg-full.vg-box-shadow') ||
+                    headers[i].closest('.vg-wrap.vg-element.vg-full') ||
+                    headers[i].parentNode;
+            }
+        }
+
+        return null;
+    }
+
+    function moveRelatedGoodsPanel() {
+        var form = document.getElementById('main-form');
+        if (!form) {
+            return;
+        }
+
+        var panel = form.querySelector('[data-related-goods-widget], .v-related-goods-panel');
+        if (!panel) {
+            return;
+        }
+
+        var filtersBlock = findFiltersBlock(form);
+        if (!filtersBlock) {
+            return;
+        }
+
+        panel.classList.remove('fp-related-goods-after-filters');
+        panel.classList.add('fp-related-goods-inside-filters');
+
+        if (panel.parentNode !== filtersBlock) {
+            filtersBlock.appendChild(panel);
+        }
+
+        panel.setAttribute('data-related-goods-moved', 'inside-filters');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        moveRelatedGoodsPanel();
+        setTimeout(moveRelatedGoodsPanel, 80);
+        setTimeout(moveRelatedGoodsPanel, 250);
+        setTimeout(moveRelatedGoodsPanel, 700);
+    });
+}());
+</script>
+<!-- FP v0.6.18w related goods inside filters END -->
+</body>
 </html>
 
 <script>

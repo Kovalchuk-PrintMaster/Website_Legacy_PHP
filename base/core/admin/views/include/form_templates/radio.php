@@ -1,91 +1,98 @@
 <?php
 
-if (!function_exists('forprint_admin_managed_section_name')) {
-    function forprint_admin_managed_section_name(string $alias, string $fallback): string
-    {
-        static $cache = [];
+$radioSettings = $this->radio[$row] ?? [];
 
-        if (array_key_exists($alias, $cache)) {
-            return $cache[$alias];
-        }
+if (empty($radioSettings) || !is_array($radioSettings)) {
+    $radioSettings = [
+        0 => 'Ні',
+        1 => 'Так',
+    ];
+}
 
-        if (!defined('HOST') || !defined('USER') || !defined('PASSWORD') || !defined('DB_NAME')) {
-            return $cache[$alias] = $fallback;
-        }
+$title = $this->translate[$row][0] ?? $row;
+$subtitle = $this->translate[$row][1] ?? '';
 
-        mysqli_report(MYSQLI_REPORT_OFF);
+$options = [];
+foreach ($radioSettings as $optionValue => $optionLabel) {
+    if ($optionValue === 'default') {
+        continue;
+    }
 
-        $db = @new mysqli(HOST, USER, PASSWORD, DB_NAME);
+    $options[] = [
+        'value' => (string)$optionValue,
+        'label' => (string)$optionLabel,
+    ];
+}
 
-        if ($db->connect_errno) {
-            return $cache[$alias] = $fallback;
-        }
+if (empty($options)) {
+    return;
+}
 
-        $db->set_charset('utf8mb4');
+$currentValue = $_SESSION['res'][$row] ?? ($this->data[$row] ?? null);
 
-        $safeAlias = $db->real_escape_string($alias);
-        $res = $db->query("SELECT name FROM information WHERE alias = '{$safeAlias}' AND visible = 1 LIMIT 1");
+if ($currentValue === null || $currentValue === '') {
+    $currentValue = (string)$options[0]['value'];
 
-        if ($res && $res->num_rows > 0) {
-            $name = trim((string)($res->fetch_assoc()['name'] ?? ''));
-
-            if ($name !== '') {
-                return $cache[$alias] = $name;
+    $defaultLabel = $radioSettings['default'] ?? null;
+    if ($defaultLabel !== null) {
+        foreach ($options as $option) {
+            if ($option['label'] === (string)$defaultLabel) {
+                $currentValue = $option['value'];
+                break;
             }
         }
-
-        return $cache[$alias] = $fallback;
     }
 }
 
-$managedSectionHint = '';
+$currentValue = (string)$currentValue;
+$safeRow = preg_replace('/[^a-zA-Z0-9_-]+/', '-', (string)$row);
 
-if (in_array($row, ['sale', 'hit'], true)) {
-    $managedSectionHint = 'Дані товари будуть відображені на сторінці «' .
-        forprint_admin_managed_section_name('promotions', 'Акції і Пропозиції') .
-        '».';
-}
+$fieldClasses = [
+    'vg-wrap',
+    'vg-element',
+    'vg-full',
+    'vg-left',
+    'fp-radio-template-field',
+    'fp-radio-template-field--' . $safeRow,
+];
 
-if (in_array($row, ['hot', 'new'], true)) {
-    $managedSectionHint = 'Дані товари будуть відображені на сторінці «' .
-        forprint_admin_managed_section_name('special-offers', 'Спеціальні пропозиції') .
-        '».';
+if (in_array((string)$row, ['hit', 'sale', 'new', 'hot'], true)) {
+    $fieldClasses[] = 'fp-radio-template-field--promo-flag';
 }
 
 ?>
+<div class="<?=htmlspecialchars(implode(' ', $fieldClasses), ENT_QUOTES, 'UTF-8')?>">
+    <div class="fp-radio-template-head">
+        <span class="fp-radio-template-title">
+            <?=htmlspecialchars((string)$title, ENT_QUOTES, 'UTF-8')?>
+        </span>
 
-<div class="vg-element vg-full vg-box-shadow">
-    <div class="vg-element vg-full vg-box-shadow">
-        <div class="vg-wrap vg-element vg-half vg-left vg-no-space-top">
-            <div class="vg-element vg-full vg-left">
-                <span class="vg-header"><?=$this->translate[$row][0] ? $this->translate[$row][0] : $row?></span>
-            </div>
-            <div class="vg-element vg-full vg-left">
-                <span class="vg-text vg-firm-color5"></span><span class="vg_subheader"><?=$this->translate[$row][1]?></span>
+        <?php if ($subtitle !== ''):?>
+            <span class="fp-radio-template-subtitle">
+                <?=htmlspecialchars((string)$subtitle, ENT_QUOTES, 'UTF-8')?>
+            </span>
+        <?php endif;?>
+    </div>
 
-                <?php if ($managedSectionHint):?>
-                    <span class="vg_subheader" style="display:block; margin-top:6px; color:#335451; font-weight:600;">
-                        <?=$managedSectionHint?>
-                    </span>
-                <?php endif;?>
-            </div>
-            <div class="vg-wrap vg-element vg-fourth">
-                <?php foreach ($this->foreignData[$row] as $key=>$item):?>
-                    <?php if(is_int($key)):?>
-                        <label class="vg-element vg-full vg-center vg-left vg-space-between">
-                            <span class="vg-text vg-half"><?=$item?></span>
-                            <input type="radio" name="<?=$row?>" class="vg-input vg-half"
-                                  <?php $name_tmp = $row;?>
-                                   <?php $isset = isset($this->data[$row]);?>
-                                   <?php if(isset($this->data[$row]) && $this->data[$row] == $key) {
-                                       echo 'checked';
-                                   }elseif (!isset($this->data[$row]) && $this->foreignData[$row]['default'] == $item){
-                                       echo 'checked';
-                                   }?> value="<?=$key?>">
-                        </label>
-                    <?php endif;?>
-                <?php endforeach;?>
-            </div>
-        </div>
+    <div class="fp-radio-template-options">
+        <?php foreach ($options as $option):?>
+            <?php
+                $inputId = $row . '_' . preg_replace('/[^a-zA-Z0-9_-]+/', '_', $option['value']);
+                $checked = $currentValue === $option['value'] ? ' checked' : '';
+            ?>
+            <label class="fp-radio-template-option" for="<?=htmlspecialchars($inputId, ENT_QUOTES, 'UTF-8')?>">
+                <span class="fp-radio-template-option-text">
+                    <?=htmlspecialchars($option['label'], ENT_QUOTES, 'UTF-8')?>
+                </span>
+                <input
+                    id="<?=htmlspecialchars($inputId, ENT_QUOTES, 'UTF-8')?>"
+                    type="radio"
+                    name="<?=htmlspecialchars($row, ENT_QUOTES, 'UTF-8')?>"
+                    value="<?=htmlspecialchars($option['value'], ENT_QUOTES, 'UTF-8')?>"
+                    class="fp-radio-template-input"
+                    <?=$checked?>
+                >
+            </label>
+        <?php endforeach;?>
     </div>
 </div>

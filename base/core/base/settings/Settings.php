@@ -67,9 +67,9 @@ class Settings
     private $formTemplates = PATH . 'core/admin/views/include/form_templates/';
 
     private $templateArr = [
-        'text' => ['name', 'phone', 'email', 'alias', 'external_alias', 'sub_title', 'number_of_years', 'price','discount', 'tab_details_title', 'tab_specs_title', 'tab_conditions_title',],
-        'textarea' => ['keywords', 'short_content', 'content', 'tab_specs_content', 'tab_conditions_content', 'address', 'description','price_description'],
-        'radio' => ['visible', 'show_top_menu', 'hit', 'sale','hot','new', 'tab_details_enabled', 'tab_specs_enabled', 'tab_conditions_enabled',],
+        'text' => ['name', 'phone', 'email', 'alias', 'external_alias', 'sub_title', 'number_of_years', 'price','discount', 'tab_details_title', 'tab_specs_title', 'tab_conditions_title', 'tab_extra_title',],
+        'textarea' => ['keywords', 'short_content', 'content', 'tab_specs_content', 'tab_conditions_content', 'tab_extra_content', 'address', 'description','price_description'],
+        'radio' => ['visible', 'show_top_menu', 'hit', 'sale','hot','new', 'tab_details_enabled', 'tab_specs_enabled', 'tab_conditions_enabled', 'tab_extra_enabled',],
         'checkboxlist' => ['filters'],
         'select' => ['menu_position', 'parent_id'],
         'img' => ['img','main_img', 'img_years', 'number_of_years', 'promo_img'],
@@ -112,6 +112,9 @@ class Settings
         'tab_conditions_enabled' => ['Показувати вкладку "Спеціальні умови"'],
         'tab_conditions_title' => ['Назва вкладки "Спеціальні умови"'],
         'tab_conditions_content' => ['Текст вкладки "Спеціальні умови"'],
+        'tab_extra_enabled' => ['Показувати вкладку "Додаткова інформація"'],
+        'tab_extra_title' => ['Назва вкладки "Додаткова інформація"'],
+        'tab_extra_content' => ['Текст вкладки "Додаткова інформація"'],
         'related_goods_ids' => ['З цим товаром використовується'],
     ];
 
@@ -125,6 +128,7 @@ class Settings
         'tab_details_enabled' =>['Ні', 'Так', 'default' => 'Так'],
         'tab_specs_enabled' =>['Ні', 'Так', 'default' => 'Ні'],
         'tab_conditions_enabled' =>['Ні', 'Так', 'default' => 'Ні'],
+        'tab_extra_enabled' =>['Ні', 'Так', 'default' => 'Ні'],
     ];
 
     private $rootItems = [

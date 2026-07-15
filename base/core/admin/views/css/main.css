@@ -35,7 +35,7 @@ a {
     flex-basis: 100%;
     box-sizing: border-box;
     padding: 0.7%;
-    font-size: 1.5vw;
+    font-size: 14px !important;
     cursor: pointer;
     outline: none;
 }
@@ -87,7 +87,7 @@ label.vg-element {
 
 .vg-element {
     display: flex;
-    padding: 0.35%;
+    padding: 5px;
 }
 .vg-full {
     flex-basis: 100%;
@@ -248,7 +248,7 @@ label.vg-element {
 }
 
 .vg-text {
-    font-size: 1vw;
+    font-size: 14px !important;
     text-decoration: none;
 }
 
@@ -1181,3 +1181,1789 @@ video{
         grid-template-columns: 1fr !important;
     }
 }
+
+/* ForPrint admin product tab compact two-column correction v0.6.19 */
+.vg-admin-editor-half:has(.fp-admin-tab-grid),
+.vg-admin-editor-half:has(.vg-admin-tab-panels-grid),
+.vg-admin-related-goods-half:has(.fp-admin-tab-grid),
+.vg-admin-related-goods-half:has(.vg-admin-tab-panels-grid) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    float: none !important;
+    clear: both !important;
+}
+
+.fp-admin-tab-grid,
+.vg-admin-tab-panels-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(460px, 1fr)) !important;
+    gap: 22px !important;
+    align-items: start !important;
+    clear: both !important;
+}
+
+.fp-admin-tab-panel,
+.vg-admin-tab-panel {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 18px !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel .vg-wrap,
+.vg-admin-tab-panel .vg-wrap,
+.fp-admin-tab-panel .vg-element,
+.vg-admin-tab-panel .vg-element {
+    width: 100% !important;
+    max-width: none !important;
+    float: none !important;
+    clear: none !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel input[type="text"],
+.vg-admin-tab-panel input[type="text"],
+.fp-admin-tab-panel textarea,
+.vg-admin-tab-panel textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-tab-panel .tox-tinymce,
+.vg-admin-tab-panel .tox-tinymce {
+    width: 100% !important;
+    min-height: 300px !important;
+}
+
+@media (max-width: 1180px) {
+    .fp-admin-tab-grid,
+    .vg-admin-tab-panels-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* v0.6.18e admin product tab cards final */
+.forprint-optional-tabs-admin.fp-admin-tab-section {
+    clear: both !important;
+    width: 100% !important;
+    flex-basis: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 24px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-inner {
+    padding: 18px !important;
+    box-sizing: border-box !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-heading {
+    padding: 0 0 16px !important;
+    display: block !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-heading .vg_subheader {
+    display: block !important;
+    margin-top: 6px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(420px, 1fr)) !important;
+    gap: 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 16px !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(47, 59, 76, 0.14) !important;
+    box-shadow: 0 2px 1px rgba(176, 190, 197, 0.28) !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel__title {
+    margin: 0 0 14px !important;
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+    font-weight: 700 !important;
+    color: #2f3b4c !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-wrap,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-element,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-full,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-admin-editor-half {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+    box-sizing: border-box !important;
+    clear: none !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-box-shadow {
+    box-shadow: none !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-input,
+.forprint-optional-tabs-admin .fp-admin-tab-panel input[type="text"],
+.forprint-optional-tabs-admin .fp-admin-tab-panel textarea,
+.forprint-optional-tabs-admin .fp-admin-tab-panel select {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel textarea {
+    min-height: 250px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox-tinymce {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox-tinymce {
+    min-height: 300px !important;
+}
+
+@media (max-width: 1200px) {
+    .forprint-optional-tabs-admin .fp-admin-tab-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* v0.6.18f compact product optional tab cards */
+.forprint-optional-tabs-admin.fp-admin-tab-section {
+    margin-top: 18px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-inner {
+    padding: 14px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-heading {
+    padding: 0 0 12px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-grid {
+    grid-template-columns: repeat(2, minmax(430px, 1fr)) !important;
+    gap: 14px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel {
+    padding: 12px 14px !important;
+    min-height: 0 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel__title {
+    margin: 0 0 8px !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-wrap,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-element,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-full {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-header {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+    margin: 0 0 4px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel input[type="text"],
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-input {
+    min-height: 30px !important;
+    height: 30px !important;
+    padding: 4px 7px !important;
+    font-size: 14px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel input[type="radio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel label {
+    line-height: 1.25 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox-tinymce {
+    min-height: 230px !important;
+    height: 250px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel textarea {
+    min-height: 210px !important;
+    height: 230px !important;
+}
+
+@media (max-width: 1200px) {
+    .forprint-optional-tabs-admin .fp-admin-tab-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* v0.6.18g compact product optional tab cards */
+.forprint-optional-tabs-admin .fp-admin-tab-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(420px, 1fr)) !important;
+    gap: 12px !important;
+    align-items: start !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel {
+    padding: 10px 12px !important;
+    min-height: 0 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel__title {
+    display: none !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-wrap,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-element,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-full {
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-header {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+    margin: 0 0 4px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel input[type="text"],
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-input {
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 4px 7px !important;
+    font-size: 14px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel input[type="radio"] {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    transform: none !important;
+    margin: 0 4px 0 0 !important;
+    vertical-align: middle !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-wrap:has(input[type="radio"]),
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-element:has(input[type="radio"]) {
+    display: inline-flex !important;
+    align-items: center !important;
+    width: auto !important;
+    max-width: none !important;
+    margin-right: 18px !important;
+    gap: 4px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox-tinymce {
+    height: 245px !important;
+    min-height: 245px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel textarea {
+    height: 225px !important;
+    min-height: 225px !important;
+}
+
+@media (max-width: 1200px) {
+    .forprint-optional-tabs-admin .fp-admin-tab-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* v0.6.18h compact product tab cards left aligned */
+.vg-admin-tab-panels-grid,
+.fp-admin-tab-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(420px, 1fr)) !important;
+    gap: 12px !important;
+    align-items: start !important;
+    width: 100% !important;
+}
+
+.vg-admin-tab-panel,
+.fp-admin-tab-panel {
+    text-align: left !important;
+    padding: 12px 14px !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.vg-admin-tab-panel *,
+.fp-admin-tab-panel * {
+    text-align: left !important;
+}
+
+.vg-admin-tab-panel .vg-center,
+.fp-admin-tab-panel .vg-center,
+.vg-admin-tab-panel [class*="center"],
+.fp-admin-tab-panel [class*="center"] {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+.vg-admin-tab-panel h2,
+.vg-admin-tab-panel h3,
+.vg-admin-tab-panel .vg-title,
+.fp-admin-tab-panel h2,
+.fp-admin-tab-panel h3,
+.fp-admin-tab-panel .vg-title,
+.vg-admin-tab-panel__title,
+.fp-admin-tab-panel__title {
+    display: none !important;
+}
+
+.vg-admin-tab-panel .vg-header,
+.fp-admin-tab-panel .vg-header {
+    display: block !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    margin: 0 0 5px !important;
+    font-weight: 400 !important;
+}
+
+.vg-admin-tab-panel .vg-wrap,
+.fp-admin-tab-panel .vg-wrap,
+.vg-admin-tab-panel .vg-element,
+.fp-admin-tab-panel .vg-element {
+    box-sizing: border-box !important;
+}
+
+.vg-admin-tab-panel input[type="text"],
+.fp-admin-tab-panel input[type="text"] {
+    width: 100% !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 4px 7px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+}
+
+.vg-admin-tab-panel input[type="radio"],
+.fp-admin-tab-panel input[type="radio"] {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    transform: none !important;
+    margin: 0 5px 0 0 !important;
+    vertical-align: middle !important;
+}
+
+/* Radio groups */
+.vg-admin-tab-panel .vg-wrap:has(input[type="radio"]),
+.fp-admin-tab-panel .vg-wrap:has(input[type="radio"]),
+.vg-admin-tab-panel .vg-element:has(input[type="radio"]),
+.fp-admin-tab-panel .vg-element:has(input[type="radio"]) {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: none !important;
+    clear: none !important;
+    float: none !important;
+    margin: 0 18px 8px 0 !important;
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 5px !important;
+}
+
+/* parent row around radio options */
+.vg-admin-tab-panel:has(input[type="radio"]),
+.fp-admin-tab-panel:has(input[type="radio"]) {
+    text-align: left !important;
+}
+
+.vg-admin-tab-panel .tox-tinymce,
+.fp-admin-tab-panel .tox-tinymce {
+    width: 100% !important;
+    min-height: 245px !important;
+}
+
+.vg-admin-tab-panel textarea,
+.fp-admin-tab-panel textarea {
+    width: 100% !important;
+    min-height: 225px !important;
+}
+
+@media (max-width: 1200px) {
+    .vg-admin-tab-panels-grid,
+    .fp-admin-tab-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* v0.6.18h end */
+
+/* v0.6.18j compact product tab radios */
+.fp-tab-radio-title-hidden,
+.fp-tab-radio-source-hidden {
+    display: none !important;
+}
+
+.fp-tab-radio-line {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    text-align: left !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+}
+
+.fp-tab-radio-caption {
+    display: inline-block !important;
+    margin: 0 8px 0 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+}
+
+.fp-tab-radio-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+}
+
+.fp-tab-radio-option input[type="radio"] {
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+}
+
+.vg-admin-tab-panel,
+.fp-admin-tab-panel {
+    padding-top: 10px !important;
+}
+
+/* Легка нормалізація старих блоків адмінки під новий компактний вигляд */
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    font-size: 14px !important;
+}
+
+form input[type="radio"] {
+    width: 13px;
+    height: 13px;
+}
+
+form h1,
+form h2,
+form h3,
+form h4 {
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+}
+
+form label,
+form p,
+form div {
+    line-height: 1.25;
+}
+/* /v0.6.18j compact product tab radios */
+
+/* v0.6.18o admin cleanup and compact alignment */
+
+/* ===== General compact form rhythm ===== */
+form .vg-header,
+form .vg-header h1,
+form .vg-header h2,
+form .vg-header h3 {
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    margin: 0 0 4px !important;
+}
+
+form .vg_subheader,
+form .small-text,
+form .helper-text {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    margin: 2px 0 6px !important;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form select {
+    min-height: 30px !important;
+    height: 30px !important;
+    padding: 4px 7px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+}
+
+form textarea {
+    font-size: 14px !important;
+}
+
+form input[type="radio"] {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    margin: 0 !important;
+    vertical-align: middle !important;
+}
+
+/* ===== Optional tabs main block ===== */
+.forprint-optional-tabs-admin.fp-admin-tab-section {
+    width: 100% !important;
+    clear: both !important;
+    margin-top: 18px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-inner {
+    padding: 10px !important;
+    box-sizing: border-box !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-heading {
+    padding: 0 0 10px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-heading .vg-header {
+    font-size: 17px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-section-heading .vg_subheader {
+    display: block !important;
+    margin-top: 3px !important;
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(420px, 1fr)) !important;
+    gap: 12px !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding: 10px 12px !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(47, 59, 76, 0.14) !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel__title,
+.forprint-optional-tabs-admin .fp-tab-radio-title-hidden,
+.forprint-optional-tabs-admin .fp-tab-radio-source-hidden {
+    display: none !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel * {
+    text-align: left !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel br {
+    display: none !important;
+}
+
+.forprint-optional-tabs-admin .fp-tab-radio-line {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+}
+
+.forprint-optional-tabs-admin .fp-tab-radio-caption {
+    display: inline-block !important;
+    margin: 0 8px 0 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+}
+
+.forprint-optional-tabs-admin .fp-tab-radio-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-wrap,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-element,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-full {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box !important;
+    clear: none !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-header {
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    margin: 0 0 4px !important;
+    font-weight: 400 !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel input[type="text"],
+.forprint-optional-tabs-admin .fp-admin-tab-panel .vg-input {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 4px 7px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox,
+.forprint-optional-tabs-admin .fp-admin-tab-panel .tox-tinymce {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 245px !important;
+    height: 245px !important;
+}
+
+.forprint-optional-tabs-admin .fp-admin-tab-panel textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 225px !important;
+    height: 225px !important;
+}
+
+/* ===== Legacy radio/text blocks compact style ===== */
+form .vg-element,
+form .vg-wrap,
+form .vg-full {
+    box-sizing: border-box !important;
+}
+
+form .vg-wrap label,
+form .vg-element label,
+form .vg-full label {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+}
+
+form .vg-wrap b,
+form .vg-element b,
+form .vg-full b,
+form .vg-wrap strong,
+form .vg-element strong,
+form .vg-full strong {
+    font-weight: 500 !important;
+}
+
+form .vg-wrap br,
+form .vg-element br,
+form .vg-full br {
+    line-height: 0.9 !important;
+}
+
+form .vg-wrap .radio,
+form .vg-element .radio,
+form .vg-full .radio,
+form .vg-wrap .radio-box,
+form .vg-element .radio-box,
+form .vg-full .radio-box {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+form .vg-wrap .radio label,
+form .vg-element .radio label,
+form .vg-full .radio label,
+form .vg-wrap .radio-box label,
+form .vg-element .radio-box label,
+form .vg-full .radio-box label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    margin-right: 10px !important;
+    margin-bottom: 0 !important;
+}
+
+/* fallback for older simple label-based radio layouts */
+form .vg-wrap input[type="radio"],
+form .vg-element input[type="radio"],
+form .vg-full input[type="radio"] {
+    margin-left: 4px !important;
+    margin-right: 2px !important;
+}
+
+form .vg-wrap .vg-header,
+form .vg-element .vg-header,
+form .vg-full .vg-header {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+}
+
+form .vg-wrap .vg_subheader,
+form .vg-element .vg_subheader,
+form .vg-full .vg_subheader {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+}
+
+/* Filters section compact */
+form select[multiple],
+form .chosen-container,
+form .select-wrapper {
+    font-size: 14px !important;
+}
+
+@media (max-width: 1200px) {
+    .forprint-optional-tabs-admin .fp-admin-tab-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .forprint-optional-tabs-admin .fp-tab-radio-line {
+        flex-wrap: wrap !important;
+    }
+}
+
+
+
+
+/* v0.6.18q admin compact final cleanup start */
+
+body {
+    --fp-admin-border: #233244;
+    --fp-admin-text: #102233;
+    --fp-admin-muted: #566978;
+    --fp-admin-soft: #eef3f5;
+}
+
+form,
+form * {
+    box-sizing: border-box;
+}
+
+/* Старі великі заголовки в адмінці */
+form h1,
+form h2,
+form h3,
+form h4,
+form .h1,
+form .h2,
+form .h3,
+form .h4 {
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    margin: 5px 0 4px !important;
+    color: var(--fp-admin-text) !important;
+}
+
+form p,
+form small,
+form .small,
+form .description,
+form .desc {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    color: var(--fp-admin-text) !important;
+}
+
+form label {
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="password"],
+form select,
+form textarea {
+    font-size: 14px !important;
+    line-height: 1.3 !important;
+}
+
+form input[type="radio"] {
+    width: 13px !important;
+    height: 13px !important;
+    margin: 0 4px !important;
+    vertical-align: middle !important;
+}
+
+/* Кнопки: Зберегти / Видалити / Завантажити */
+.fp-admin-action-button,
+form input[type="submit"],
+form input[type="button"],
+form input[type="reset"],
+form button:not(.tox-tbtn):not(.tox-mbtn):not(.tox-button):not(.tox-split-button__chevron),
+form a.button,
+form .button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 28px !important;
+    padding: 5px 5px !important;
+    border: 1px solid var(--fp-admin-border) !important;
+    background: #ffffff !important;
+    color: var(--fp-admin-text) !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    text-decoration: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+}
+
+input[type="file"]::file-selector-button {
+    min-height: 32px !important;
+    padding: 6px 13px !important;
+    border: 1px solid var(--fp-admin-border) !important;
+    background: #ffffff !important;
+    color: var(--fp-admin-text) !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+}
+
+.fp-admin-action-button:hover,
+form input[type="submit"]:hover,
+form input[type="button"]:hover,
+form input[type="reset"]:hover,
+form button:not(.tox-tbtn):not(.tox-mbtn):not(.tox-button):not(.tox-split-button__chevron):hover,
+form a.button:hover,
+form .button:hover,
+input[type="file"]::file-selector-button:hover {
+    background: var(--fp-admin-soft) !important;
+}
+
+/* Старі radio-блоки: Хіт продажів / Акція / Новинка / Гарячі пропозиції */
+.fp-legacy-radio-host {
+    min-height: 0 !important;
+    padding-top: 6px !important;
+    padding-bottom: 7px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+}
+
+.fp-legacy-radio-host > * {
+    margin-top: 2px !important;
+    margin-bottom: 3px !important;
+}
+
+.fp-legacy-radio-host strong,
+.fp-legacy-radio-host b {
+    font-weight: 400 !important;
+}
+
+.fp-legacy-radio-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 5px 0 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+}
+
+.fp-switch-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    white-space: nowrap !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+}
+
+/* Службові вкладки товару */
+.fp-admin-tab-card {
+    padding: 12px 14px !important;
+    min-height: 0 !important;
+}
+
+.fp-admin-tab-card > * {
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+}
+
+.fp-tab-switch-row {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    margin: 0 0 9px !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+}
+
+.fp-tab-switch-title {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-right: 4px !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+}
+
+.fp-admin-tab-card .fp-field-label {
+    display: block !important;
+    margin: 7px 0 4px !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+}
+
+.fp-admin-tab-card input[type="text"] {
+    height: 30px !important;
+    padding: 4px 8px !important;
+}
+
+/* Фільтри */
+form .filters,
+form .filter,
+form [class*="filter"] {
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+}
+
+form .filters input,
+form .filters select,
+form .filter input,
+form .filter select,
+form [class*="filter"] input,
+form [class*="filter"] select {
+    min-height: 28px !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+/* TinyMCE не чіпаємо агресивно */
+.tox,
+.tox * {
+    box-sizing: border-box;
+}
+
+/* v0.6.18q admin compact final cleanup end */
+
+
+
+/* v0.6.18r admin legacy compact spacing start */
+.vg-content .vg-element,
+.vg-content .vg-wrap.vg-element {
+    padding-top: 4px !important;
+    padding-bottom: 5px !important;
+}
+
+.vg-content .vg-header,
+.vg-content .vg-title,
+.vg-content h2,
+.vg-content h3 {
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+    font-size: 14px !important;
+    line-height: 1.22 !important;
+    font-weight: 400 !important;
+}
+
+.vg-content .vg_subheader,
+.vg-content .vg-subheader {
+    display: block !important;
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+}
+
+.vg-content input[type="text"],
+.vg-content input[type="number"],
+.vg-content select {
+    margin-top: 2px !important;
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 3px 7px !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+}
+
+.vg-content .fp-legacy-radio-compact {
+    padding-top: 4px !important;
+    padding-bottom: 5px !important;
+}
+
+.vg-content .fp-legacy-radio-compact .vg-header,
+.vg-content .fp-legacy-radio-compact .vg-title,
+.vg-content .fp-legacy-radio-compact h2,
+.vg-content .fp-legacy-radio-compact h3 {
+    margin-bottom: 3px !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+}
+
+.vg-content .fp-legacy-radio-compact br {
+    display: none !important;
+}
+
+.vg-content .fp-legacy-radio-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+    max-width: none !important;
+    float: none !important;
+    clear: none !important;
+    margin: 0 14px 0 0 !important;
+    padding: 0 !important;
+    gap: 4px !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    vertical-align: middle !important;
+}
+
+.vg-content .fp-legacy-radio-option input[type="radio"] {
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+}
+
+/* Не чіпаємо вже зібрані службові вкладки */
+.forprint-optional-tabs-admin .vg-header,
+.forprint-optional-tabs-admin .vg-title,
+.forprint-optional-tabs-admin h2,
+.forprint-optional-tabs-admin h3 {
+    font-size: 14px !important;
+}
+
+.forprint-optional-tabs-admin input[type="text"] {
+    height: 30px !important;
+    min-height: 30px !important;
+}
+/* v0.6.18r admin legacy compact spacing end */
+
+/* v0.6.18s focused admin spacing override start */
+
+/*
+ * Дуже вузький шар:
+ * - тільки стара ліва частина редактора товару (.vg-content)
+ * - не чіпає службові вкладки товару
+ * - не чіпає TinyMCE-блоки
+ * - не чіпає основну галерею/картинки
+ */
+
+/* Компактніший вертикальний ритм для старих звичайних полів */
+form#main-form .vg-content > .vg-element.vg-full.vg-box-shadow {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    margin-top: 0 !important;
+    margin-bottom: 3px !important;
+    min-height: 0 !important;
+}
+
+form#main-form .vg-content > .vg-element.vg-full.vg-box-shadow > .vg-wrap,
+form#main-form .vg-content > .vg-element.vg-full.vg-box-shadow > .vg-element {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Назви старих полів: Назва, Посилання ЧПУ, Ціна, Знижка, Фільтри */
+form#main-form .vg-content .vg-header {
+    display: block !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    margin: 0 0 4px !important;
+    padding: 0 !important;
+    color: #2f3b4c !important;
+}
+
+/* Підписи-пояснення під назвами */
+form#main-form .vg-content .vg_subheader {
+    display: block !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    margin: 0 0 5px !important;
+    padding: 0 !important;
+}
+
+/* Input/select у старих полях */
+form#main-form .vg-content input[type="text"].vg-input,
+form#main-form .vg-content input[type="number"].vg-input,
+form#main-form .vg-content select.vg-input {
+    height: 26px !important;
+    min-height: 26px !important;
+    padding: 2px 6px !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+}
+
+/* Старі radio-блоки після JS-хелпера: Хіт продажів / Акція / Новинка / Гарячі пропозиції */
+form#main-form .vg-content .fp-legacy-radio-compact {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 2px 0 0 !important;
+    padding: 0 !important;
+    clear: both !important;
+}
+
+form#main-form .vg-content .fp-legacy-radio-compact .fp-legacy-radio-option {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    float: none !important;
+    clear: none !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    line-height: 1.2 !important;
+}
+
+form#main-form .vg-content .fp-legacy-radio-compact .fp-legacy-radio-option .vg-text,
+form#main-form .vg-content .fp-legacy-radio-compact .fp-legacy-radio-option span {
+    display: inline-block !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+}
+
+form#main-form .vg-content .fp-legacy-radio-compact input[type="radio"] {
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    vertical-align: middle !important;
+}
+
+/* На випадок, якщо radio-блок ще не отримав JS-клас */
+form#main-form .vg-content input[type="radio"] {
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* v0.6.18s focused admin spacing override end */
+
+/* v0.6.18t source-level radio template style start */
+
+/* Компактніший ритм старої частини форми */
+form#main-form .vg-content > .vg-element.vg-full.vg-box-shadow {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-top: 0 !important;
+    margin-bottom: 3px !important;
+    min-height: 0 !important;
+}
+
+/* Назви старих полів */
+form#main-form .vg-content .vg-header {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    margin: 0 0 4px !important;
+    padding: 0 !important;
+    color: #2f3b4c !important;
+}
+
+/* Підписи під назвами */
+form#main-form .vg-content .vg_subheader {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    margin: 0 0 5px !important;
+    padding: 0 !important;
+}
+
+/* Input/select ближче до назви */
+form#main-form .vg-content input[type="text"].vg-input,
+form#main-form .vg-content input[type="number"].vg-input,
+form#main-form .vg-content select.vg-input {
+    height: 26px !important;
+    min-height: 26px !important;
+    padding: 2px 6px !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+}
+
+/* Новий source-level radio шаблон */
+form#main-form .fp-radio-template-field {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    clear: both !important;
+}
+
+form#main-form .fp-radio-template-head {
+    display: block !important;
+    margin: 0 0 5px !important;
+    padding: 0 !important;
+}
+
+form#main-form .fp-radio-template-title {
+    display: block !important;
+}
+
+form#main-form .fp-radio-template-subtitle {
+    display: block !important;
+}
+
+form#main-form .fp-radio-template-options {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form .fp-radio-template-option {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 5px !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    clear: none !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+}
+
+form#main-form .fp-radio-template-option-text {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+}
+
+form#main-form .fp-radio-template-input {
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    vertical-align: middle !important;
+}
+
+/* v0.6.18t source-level radio template style end */
+
+/* FP v0.6.18s admin radio compact repair START */
+form#main-form .fp-radio-template-field {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 6px 14px !important;
+    min-height: 0 !important;
+    margin: 0 0 6px 0 !important;
+    padding: 8px 12px !important;
+    border: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form .fp-radio-template-head {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+}
+
+form#main-form .fp-radio-template-title,
+form#main-form .fp-radio-template-subtitle {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #2f3b4c !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form .fp-radio-template-options {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+}
+
+form#main-form .fp-radio-template-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #2f3b4c !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+    cursor: pointer !important;
+}
+
+form#main-form .fp-radio-template-option-text {
+    order: 1 !important;
+}
+
+form#main-form .fp-radio-template-input {
+    order: 2 !important;
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* compact promo flags: hit / sale / new / hot */
+form#main-form .fp-radio-template-field--promo-flag {
+    display: inline-flex !important;
+    width: calc(25% - 10px) !important;
+    min-width: 185px !important;
+    max-width: 260px !important;
+    margin: 0 10px 8px 0 !important;
+    padding: 7px 10px !important;
+    vertical-align: top !important;
+}
+
+/* a little air for normal standalone radios like "Показувати на сторінці" */
+form#main-form .fp-radio-template-field:not(.fp-radio-template-field--promo-flag) {
+    margin-top: 12px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+
+/* reduce vertical gap between field title and input in old admin blocks */
+form#main-form .vg-header {
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form .vg-subheader {
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form .vg-input,
+form#main-form input.vg-input,
+form#main-form select.vg-input,
+form#main-form textarea.vg-input {
+    margin-top: 2px !important;
+}
+
+@media (max-width: 1400px) {
+    form#main-form .fp-radio-template-field--promo-flag {
+        width: calc(50% - 10px) !important;
+        max-width: none !important;
+    }
+}
+/* FP v0.6.18s admin radio compact repair END */
+
+/* FP v0.6.18t admin compact spacing final override START */
+
+/* прибрати порожні службові рядки між label і input/select */
+form#main-form .vg-box-shadow > .vg-wrap.vg-element.vg-full.vg-left:empty,
+form#main-form .vg-box-shadow > .vg-wrap.vg-element.vg-full.vg-left:has(> span:empty),
+form#main-form .vg-box-shadow > .vg-wrap.vg-element.vg-full.vg-left:has(> .vg_subheader:empty),
+form#main-form .vg-box-shadow > .vg-wrap.vg-element.vg-full.vg-left:has(> .vg-subheader:empty) {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ущільнення стандартних полів: назва -> input/select ближче */
+form#main-form .vg-box-shadow {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+form#main-form .vg-box-shadow > .vg-wrap.vg-element,
+form#main-form .vg-box-shadow > .vg-element {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+form#main-form .vg-header,
+form#main-form .vg_subheader,
+form#main-form .vg-subheader {
+    margin-top: 0 !important;
+    margin-bottom: 3px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* старі radio-поля: акуратно в один ряд */
+form#main-form .fp-radio-template-field {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 6px 10px !important;
+    padding: 6px 10px !important;
+    margin: 0 0 4px 0 !important;
+    min-height: 0 !important;
+}
+
+form#main-form .fp-radio-template-head,
+form#main-form .fp-radio-template-options,
+form#main-form .fp-radio-template-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+}
+
+form#main-form .fp-radio-template-options {
+    gap: 10px !important;
+}
+
+form#main-form .fp-radio-template-option {
+    gap: 4px !important;
+}
+
+form#main-form .fp-radio-template-input {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    margin: 0 !important;
+}
+
+/* промо-перемикачі: хіт/акція/новинка/гарячі — в одну компактну лінію */
+form#main-form .vg-rows > .fp-radio-template-field--promo-flag,
+form#main-form .fp-radio-template-field--promo-flag {
+    flex: 0 0 calc(25% - 8px) !important;
+    width: calc(25% - 8px) !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 8px 4px 0 !important;
+    padding: 6px 8px !important;
+    border: 0 !important;
+    vertical-align: top !important;
+}
+
+form#main-form .fp-radio-template-field--promo-flag .fp-radio-template-head {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+form#main-form .fp-radio-template-field--promo-flag .fp-radio-template-title {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+}
+
+form#main-form .fp-radio-template-field--promo-flag .fp-radio-template-subtitle {
+    display: block !important;
+    flex-basis: 100% !important;
+    width: 100% !important;
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+    font-weight: 400 !important;
+    opacity: 0.9 !important;
+    margin-top: 2px !important;
+}
+
+form#main-form .fp-radio-template-field--promo-flag .fp-radio-template-options {
+    gap: 8px !important;
+}
+
+form#main-form .fp-radio-template-field--promo-flag .fp-radio-template-option {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+}
+
+/* якщо вікно менше — по 2 в ряд, але без розвалу */
+@media (max-width: 1450px) {
+    form#main-form .vg-rows > .fp-radio-template-field--promo-flag,
+    form#main-form .fp-radio-template-field--promo-flag {
+        flex: 0 0 calc(50% - 8px) !important;
+        width: calc(50% - 8px) !important;
+    }
+}
+
+/* FP v0.6.18t admin compact spacing final override END */
+
+/* FP v0.6.18u promo flags stable grid START */
+
+/* окрема стабільна сітка для: Хіт / Акція / Новинка / Гарячі */
+form#main-form .fp-promo-flags-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    align-items: start !important;
+    justify-items: start !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-field--promo-flag {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 1px 1px !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-head {
+    display: inline-flex !important;
+    align-items: center !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 4px 0 0 !important;
+    padding: 0 !important;
+    line-height: 1.15 !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-title {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-options {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-option {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-input {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    margin: 0 !important;
+}
+
+form#main-form .fp-promo-flags-grid .fp-radio-template-subtitle {
+    flex-basis: 100% !important;
+    width: 100% !important;
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+    font-weight: 400 !important;
+    opacity: 0.9 !important;
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 1450px) {
+    form#main-form .fp-promo-flags-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* FP v0.6.18u promo flags stable grid END */
+
+/* FP v0.6.18w related goods inside filters START */
+
+form#main-form .fp-related-goods-inside-filters {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+    box-sizing: border-box !important;
+    margin: 14px 0 0 0 !important;
+    padding: 14px 16px !important;
+    border-top: 1px solid rgba(47, 59, 76, 0.18) !important;
+    background: #ffffff !important;
+}
+
+form#main-form .fp-related-goods-inside-filters.vg-admin-related-goods-half {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+}
+
+form#main-form .fp-related-goods-inside-filters .vg-header,
+form#main-form .fp-related-goods-inside-filters h2,
+form#main-form .fp-related-goods-inside-filters h3 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    margin: 0 0 6px 0 !important;
+}
+
+form#main-form .fp-related-goods-inside-filters input[type="text"],
+form#main-form .fp-related-goods-inside-filters input[type="search"] {
+    min-height: 30px !important;
+    height: 30px !important;
+    font-size: 13px !important;
+}
+
+/* FP v0.6.18w related goods inside filters END */

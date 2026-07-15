@@ -134,19 +134,13 @@
                         <div class="offers__tabs_subheader subheader">
                             <?=$value['name']?>
                         </div>
-                        <div class="offers__tabs_container swiper-container">
-<!--                        <div class="offers__tabs_container">-->
-                            <div class="offers__tabs_wrapper swiper-wrapper">
-<!--                            <div class="offers__tabs_wrapper">-->
-                            <div class="offers__tabs_card">
+                        <div class="fp-home-grid-container">
+<div class="fp-home-grid">
+<?php foreach ($goods[$key] as $item) {
 
-                                <?php foreach ($goods[$key] as $item) {
-
-                                    $this->showGoods($item, ['icon' => $value['icon']]);
+                                    $this->showGoods($item, ['icon' => $value['icon']], 'goodsGridItem');
 
                                 }?>
-
-                              </div>
                             </div>
                         </div>
                         <a href="<?=$this->alias('catalog')?>" class="offers__readmore readmore">Переглянути каталог товарів</a>
@@ -157,16 +151,6 @@
             <?php endforeach; ?>
 <!--            Goods for Hits Sale-->
 
-                <div class="offers__controls controls _prev">
-                <svg>
-                    <use xlink:href="<?=PATH . TEMPLATE?>assets/img/icons.svg#arrow"></use>
-                </svg>
-            </div>
-            <div class="offers__controls controls _next">
-                <svg>
-                    <use xlink:href="<?=PATH . TEMPLATE?>assets/img/icons.svg#arrow"></use>
-                </svg>
-            </div>
         </div>
     </section>
 

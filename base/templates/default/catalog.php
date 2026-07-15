@@ -17,9 +17,7 @@
             <h2>Упс, по заданому запиту результат не знайдений</h2>
 
             <?php else : ?>
-
-                <?php if(empty($dontShowAside))?>
-
+            <?php if (empty($dontShowAside)): ?>
             <aside class="catalog-aside">
 
         <?php if (!empty($catalogFilters) || !empty($catalogPrices)):?>
@@ -109,8 +107,8 @@
             </div>
         </div>
         </aside>
-
-                <?php endif?>
+            <?php endif; ?>
+<?php endif?>
 
                 <section class="catalog-section catalog-section__four">
                     <div class="catalog-section-top">
@@ -156,13 +154,13 @@
 
                         </div>
                     </div>
-                    <div class="catalog-section__wrapper">
-                        <div class="catalog-section-items">
-                            <div class="catalog-section-items__wrapper">
+                    <div class="catalog-section__wrapper<?=!empty($dontShowAside) ? ' catalog-section__wrapper_no-aside' : ''?>">
+                        <div class="catalog-section-items<?=!empty($dontShowAside) ? ' catalog-section-items_no-aside' : ''?>">
+                            <div class="catalog-section-items__wrapper<?=!empty($dontShowAside) ? ' catalog-section-items__wrapper_no-aside' : ''?>">
 
                                 <?php foreach ($goods as $item){
 
-                                    $this->showGoods($item, ['mainClass' => 'card-item card-item__internal', 'prefix' =>'card-item']);
+                                    $this->showGoods($item, [], 'goodsGridItem');
 
                                 }?>
 
