@@ -255,3 +255,104 @@
     }
 }
 /* == v0.6.72 communication buttons controlled visual end == */
+
+/* == v0.6.75 communication buttons visual polish start == */
+.fp-product-communication {
+    width: 100%;
+}
+
+.fp-product-communication__buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: min(460px, 100%);
+}
+
+.fp-product-communication__button,
+.fp-product-communication__button--direct-chat {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 16px;
+    min-height: 64px;
+    width: 100%;
+    border: 0;
+    padding: 14px 26px;
+    background: rgb(15, 15, 15);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.fp-product-communication__button span,
+.fp-product-communication__button--direct-chat span {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fp-product-communication__button:hover,
+.fp-product-communication__button:focus,
+.fp-product-communication__button--direct-chat:hover,
+.fp-product-communication__button--direct-chat:focus {
+    background: rgb(225, 225, 225);
+    color: rgb(15, 15, 15);
+    text-decoration: none;
+}
+
+.fp-product-communication__icon,
+.fp-product-communication__icon-placeholder {
+    justify-self: center;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.fp-product-communication__icon-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.fp-product-communication-modal__intro {
+    color: #68747b;
+}
+
+@media (max-width: 1180px) {
+    .fp-product-communication__buttons {
+        width: min(410px, 100%);
+    }
+
+    .fp-product-communication__button,
+    .fp-product-communication__button--direct-chat {
+        grid-template-columns: 38px minmax(0, 1fr);
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+    .fp-product-communication__buttons {
+        width: 100%;
+    }
+
+    .fp-product-communication__button,
+    .fp-product-communication__button--direct-chat {
+        white-space: normal;
+    }
+}
+/* == v0.6.75 communication buttons visual polish end == */
