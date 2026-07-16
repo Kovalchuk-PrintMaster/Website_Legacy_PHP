@@ -1,6 +1,15 @@
 (function () {
     'use strict';
 
+    var fpCommunicationCloseTimer = null;
+
+    function clearSuccessCloseTimer() {
+        if (fpCommunicationCloseTimer) {
+            window.clearTimeout(fpCommunicationCloseTimer);
+            fpCommunicationCloseTimer = null;
+        }
+    }
+
     function findModal(alias) {
         return document.querySelector('[data-fp-comm-modal="' + alias + '"]');
     }
@@ -24,10 +33,21 @@
     }
 
     function closeAllModals() {
+        clearSuccessCloseTimer();
+
         document.querySelectorAll('[data-fp-comm-modal]').forEach(function (modal) {
             modal.hidden = true;
             resetFormStatus(modal);
         });
+    }
+
+    function scheduleSuccessClose() {
+        clearSuccessCloseTimer();
+
+        fpCommunicationCloseTimer = window.setTimeout(function () {
+            fpCommunicationCloseTimer = null;
+            closeAllModals();
+        }, 2000);
     }
 
     function focusFirstField(modal) {
@@ -92,6 +112,7 @@
         }
 
         event.preventDefault();
+        clearSuccessCloseTimer();
 
         var status = form.querySelector('[data-fp-comm-status]');
         var submit = form.querySelector('button[type="submit"]');
@@ -127,6 +148,7 @@
                 );
 
                 form.reset();
+                scheduleSuccessClose();
             })
             .catch(function (error) {
                 console.error('ForPrint communication form error:', error);

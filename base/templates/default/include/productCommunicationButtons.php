@@ -274,7 +274,7 @@ if (!function_exists('fp_render_product_communication_buttons')) {
                             <input type="hidden" name="product_id" value="<?= $productId ?>">
                             <input type="hidden" name="product_name" value="<?= fp_product_comm_html($productName) ?>">
                             <input type="hidden" name="product_url" value="<?= fp_product_comm_html($productUrl) ?>">
-                            <input type="text" name="website" value="" class="fp-product-communication-form__trap" tabindex="-1" autocomplete="off">
+                            <input type="text" name="fp_request_company_url_confirm" value="" class="fp-product-communication-form__trap" tabindex="-1" autocomplete="new-password" aria-hidden="true" inputmode="none">
 
                             <label class="fp-product-communication-form__field">
                                 <span><?= fp_product_comm_html($primaryLabel) ?></span>

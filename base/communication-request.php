@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+
 define('VG_ACCESS', true);
 
 header('Content-Type: application/json; charset=utf-8');
@@ -211,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     fp_comm_response(false, 'Метод не підтримується.');
 }
 
-if (fp_comm_post('website', 255) !== '') {
+if (fp_comm_post('fp_request_company_url_confirm', 255) !== '') {
     fp_comm_response(true, 'Заявку прийнято.');
 }
 
@@ -442,5 +443,5 @@ if ($statusDb->connect_errno) {
 
 fp_comm_response(true, 'Заявку прийнято. Ми звʼяжемося з вами найближчим часом.', [
     'request_id' => $requestId,
-    'delivery_status' => $deliveryStatus,
+'delivery_status' => $deliveryStatus,
 ]);
