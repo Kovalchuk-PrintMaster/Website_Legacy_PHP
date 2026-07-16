@@ -46,6 +46,166 @@ function fp_comm_plain_message(array $data): string
     return implode("\n", $lines);
 }
 
+
+function fp_comm_smtp_read($socket): array
+{
+    $response = '';
+
+    while (($line = fgets($socket, 515)) !== false) {
+        $response .= $line;
+
+        if (strlen($line) >= 4 && $line[3] === ' ') {
+            break;
+        }
+    }
+
+    $code = (int)substr($response, 0, 3);
+
+    return [$code, $response];
+}
+
+function fp_comm_smtp_expect($socket, array $expected, string $context): string
+{
+    [$code, $response] = fp_comm_smtp_read($socket);
+
+    if (!in_array($code, $expected, true)) {
+        throw new RuntimeException($context . ' failed with SMTP code ' . $code . ': ' . trim($response));
+    }
+
+    return $response;
+}
+
+function fp_comm_smtp_command($socket, string $command, array $expected, string $context): string
+{
+    fwrite($socket, $command . "\r\n");
+
+    return fp_comm_smtp_expect($socket, $expected, $context);
+}
+
+function fp_comm_smtp_addr(string $email): string
+{
+    $email = trim($email);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        throw new RuntimeException('Invalid email address: ' . $email);
+    }
+
+    return $email;
+}
+
+function fp_comm_smtp_header_text(string $text): string
+{
+    $text = trim($text);
+
+    if ($text === '') {
+        return '';
+    }
+
+    return '=?UTF-8?B?' . base64_encode($text) . '?=';
+}
+
+function fp_comm_smtp_send_message(string $to, string $subject, string $body): bool
+{
+    $host = trim((string)getenv('FP_WEB_SMTP_HOST'));
+    $port = (int)(getenv('FP_WEB_SMTP_PORT') ?: 25);
+    $encryption = strtolower(trim((string)(getenv('FP_WEB_SMTP_ENCRYPTION') ?: 'starttls')));
+    $user = trim((string)getenv('FP_WEB_SMTP_USER'));
+    $pass = (string)getenv('FP_WEB_SMTP_PASS');
+    $from = trim((string)(getenv('FP_WEB_SMTP_FROM') ?: $user));
+    $fromName = trim((string)(getenv('FP_WEB_SMTP_FROM_NAME') ?: 'ForPrint Website'));
+
+    if ($host === '' || $user === '' || $pass === '' || $from === '') {
+        throw new RuntimeException('SMTP env is incomplete');
+    }
+
+    $to = fp_comm_smtp_addr($to);
+    $from = fp_comm_smtp_addr($from);
+
+    $transport = $encryption === 'ssl'
+        ? 'ssl://' . $host . ':' . $port
+        : 'tcp://' . $host . ':' . $port;
+
+    $timeout = max(3, min(20, (int)(getenv('FP_WEB_SMTP_TIMEOUT') ?: 7)));
+
+    $socket = @stream_socket_client(
+        $transport,
+        $errno,
+        $errstr,
+        $timeout,
+        STREAM_CLIENT_CONNECT
+    );
+
+    if (!$socket) {
+        throw new RuntimeException('SMTP connect failed: ' . $errstr . ' (' . $errno . ')');
+    }
+
+    stream_set_timeout($socket, $timeout);
+
+    try {
+        fp_comm_smtp_expect($socket, [220], 'SMTP greeting');
+
+        $ehloName = gethostname() ?: 'localhost';
+        fp_comm_smtp_command($socket, 'EHLO ' . $ehloName, [250], 'SMTP EHLO');
+
+        if ($encryption === 'starttls') {
+            fp_comm_smtp_command($socket, 'STARTTLS', [220], 'SMTP STARTTLS');
+
+            $cryptoOk = @stream_socket_enable_crypto(
+                $socket,
+                true,
+                STREAM_CRYPTO_METHOD_TLS_CLIENT
+            );
+
+            if ($cryptoOk !== true) {
+                throw new RuntimeException('SMTP STARTTLS crypto negotiation failed');
+            }
+
+            fp_comm_smtp_command($socket, 'EHLO ' . $ehloName, [250], 'SMTP EHLO after STARTTLS');
+        }
+
+        fp_comm_smtp_command($socket, 'AUTH LOGIN', [334], 'SMTP AUTH LOGIN');
+        fp_comm_smtp_command($socket, base64_encode($user), [334], 'SMTP AUTH username');
+        fp_comm_smtp_command($socket, base64_encode($pass), [235], 'SMTP AUTH password');
+
+        fp_comm_smtp_command($socket, 'MAIL FROM:<' . $from . '>', [250], 'SMTP MAIL FROM');
+        fp_comm_smtp_command($socket, 'RCPT TO:<' . $to . '>', [250, 251], 'SMTP RCPT TO');
+        fp_comm_smtp_command($socket, 'DATA', [354], 'SMTP DATA');
+
+        $encodedSubject = fp_comm_smtp_header_text($subject);
+        $encodedFromName = fp_comm_smtp_header_text($fromName);
+
+        $headers = [
+            'Date: ' . date(DATE_RFC2822),
+            'From: ' . ($encodedFromName !== '' ? $encodedFromName . ' ' : '') . '<' . $from . '>',
+            'To: <' . $to . '>',
+            'Subject: ' . $encodedSubject,
+            'MIME-Version: 1.0',
+            'Content-Type: text/plain; charset=UTF-8',
+            'Content-Transfer-Encoding: quoted-printable',
+        ];
+
+        $message = implode("\r\n", $headers)
+            . "\r\n\r\n"
+            . quoted_printable_encode($body);
+
+        $message = str_replace(["\r\n", "\r"], "\n", $message);
+        $message = str_replace("\n.", "\n..", $message);
+        $message = str_replace("\n", "\r\n", $message);
+
+        fwrite($socket, $message . "\r\n.\r\n");
+        fp_comm_smtp_expect($socket, [250], 'SMTP message body');
+
+        @fwrite($socket, "QUIT\r\n");
+        fclose($socket);
+
+        return true;
+    } catch (Throwable $e) {
+        @fwrite($socket, "QUIT\r\n");
+        fclose($socket);
+        throw $e;
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     fp_comm_response(false, 'Метод не підтримується.');
@@ -173,6 +333,9 @@ if ($insert->errno) {
 $requestId = $insert->insert_id;
 $plainMessage = fp_comm_plain_message($data);
 
+// Close DB before slow external delivery; reconnect later only to update delivery status.
+$db->close();
+
 if ($mode === 'telegram') {
     $token = getenv('FP_WEB_TELEGRAM_BOT_TOKEN') ?: '';
     $chatId = getenv('FP_WEB_TELEGRAM_CHAT_ID') ?: '';
@@ -204,26 +367,78 @@ if ($mode === 'telegram') {
 }
 
 if ($mode === 'email') {
-    $mailEnabled = getenv('FP_WEB_ENABLE_PHP_MAIL') === '1';
+    $smtpEnabled = getenv('FP_WEB_ENABLE_SMTP') === '1';
+    $smtpFallbackTarget = trim((string)getenv('FP_WEB_SMTP_TO'));
+    $emailTarget = filter_var($target, FILTER_VALIDATE_EMAIL)
+        ? $target
+        : $smtpFallbackTarget;
 
-    if ($mailEnabled && filter_var($target, FILTER_VALIDATE_EMAIL)) {
-        $subject = 'Запит з сайту ForPrint';
-        $headers = [
-            'MIME-Version: 1.0',
-            'Content-Type: text/plain; charset=UTF-8',
-        ];
+    $emailDelivered = false;
 
-        $sent = @mail($target, $subject, $plainMessage, implode("\r\n", $headers));
+    if ($smtpEnabled && filter_var($emailTarget, FILTER_VALIDATE_EMAIL)) {
+        try {
+            fp_comm_smtp_send_message(
+                $emailTarget,
+                'Запит з сайту ForPrint',
+                $plainMessage
+            );
 
-        $deliveryStatus = $sent ? 'sent_email' : 'stored_email_failed';
+            $deliveryStatus = 'sent_smtp_email';
+            $emailDelivered = true;
+        } catch (Throwable $e) {
+            error_log('ForPrint SMTP delivery failed: ' . $e->getMessage());
+            $deliveryStatus = 'stored_smtp_failed';
+        }
+    }
+
+    if (!$emailDelivered) {
+        $mailEnabled = getenv('FP_WEB_ENABLE_PHP_MAIL') === '1';
+
+        if ($mailEnabled && filter_var($emailTarget, FILTER_VALIDATE_EMAIL)) {
+            $subject = 'Запит з сайту ForPrint';
+            $fromEmail = trim((string)(getenv('FP_WEB_SMTP_FROM') ?: 'office@forprint.net.ua'));
+            $fromName = trim((string)(getenv('FP_WEB_SMTP_FROM_NAME') ?: 'ForPrint Website'));
+            $replyTo = filter_var($data['primary_contact'], FILTER_VALIDATE_EMAIL)
+                ? $data['primary_contact']
+                : $fromEmail;
+
+            $headers = [
+                'MIME-Version: 1.0',
+                'Content-Type: text/plain; charset=UTF-8',
+                'From: ' . fp_comm_smtp_header_text($fromName) . ' <' . $fromEmail . '>',
+                'Reply-To: ' . $replyTo,
+            ];
+
+            $sent = @mail($emailTarget, $subject, $plainMessage, implode("\r\n", $headers));
+
+            if ($sent) {
+                $deliveryStatus = $smtpEnabled ? 'sent_email_after_smtp_failed' : 'sent_email';
+                $emailDelivered = true;
+            } elseif ($deliveryStatus === 'stored') {
+                $deliveryStatus = 'stored_email_failed';
+            }
+        }
     }
 }
 
-$update = $db->prepare("UPDATE `communication_requests` SET `delivery_status` = ? WHERE `id` = ?");
-$update->bind_param('si', $deliveryStatus, $requestId);
-$update->execute();
+$statusDb = @new mysqli(HOST, USER, PASSWORD, DB_NAME);
 
-$db->close();
+if ($statusDb->connect_errno) {
+    error_log('ForPrint delivery status update DB reconnect failed: ' . $statusDb->connect_error);
+} else {
+    $statusDb->set_charset('utf8mb4');
+
+    $update = $statusDb->prepare("UPDATE `communication_requests` SET `delivery_status` = ? WHERE `id` = ?");
+
+    if ($update) {
+        $update->bind_param('si', $deliveryStatus, $requestId);
+        $update->execute();
+    } else {
+        error_log('ForPrint delivery status update prepare failed: ' . $statusDb->error);
+    }
+
+    $statusDb->close();
+}
 
 fp_comm_response(true, 'Заявку прийнято. Ми звʼяжемося з вами найближчим часом.', [
     'request_id' => $requestId,
