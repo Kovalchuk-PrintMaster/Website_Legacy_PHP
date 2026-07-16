@@ -1283,3 +1283,7 @@ section.fp-related-section {
     }
 }
 /* FP v0.6.66 product detail tabs full width bar end */
+/* v0.6.71: old quantity widget disabled; request quantity now lives inside communication forms. */
+.fp-product-detail__legacy-quantity-hidden {
+    display: none;
+}

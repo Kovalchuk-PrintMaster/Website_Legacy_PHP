@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/include/productCommunicationButtons.php';
 require_once __DIR__ . '/include/productCardHelpers.php';
 if(!empty($data)):?>
 
@@ -242,7 +243,7 @@ if(!empty($data)):?>
             </div>
 
             <div class="fp-product-detail__actions card-main-info__sale">
-                <div class="card-main-info-size">
+                <div class="card-main-info-size fp-product-detail__legacy-quantity-hidden" data-fp-legacy-quantity-hidden="1">
                     <label class="card-main-info-size__item js-sizeCounter" data-max="10">
                         <input type="radio" name="size[]" class="visually-hidden">
                         <input type="number" class="visually-hidden js-counterValue" name="size" value="<?=$currentQty?>">
@@ -257,18 +258,7 @@ if(!empty($data)):?>
                     </label>
                 </div>
 
-                <div class="card-main-info__buttons">
-                    <a data-addToCart="<?=$data['id']?>" <?=!empty($this->cart['goods'][$data['id']]) ? 'data-toCartAdded' : '' ?> href="#" class="card-main-info__button button-basket button-blue button-big button">
-                        <svg>
-                            <use xlink:href="<?=PATH.TEMPLATE?>assets/img/icons.svg#basket"></use>
-                        </svg>
-                        <span>Забрати</span>
-                    </a>
-
-                    <a data-addToCart="<?=$data['id']?>" data-onClick href="#" class="card-main-info__button button-darkcyan button-big button">
-                        Забрати вже
-                    </a>
-                </div>
+                <?= fp_render_product_communication_buttons($data ?? []) ?>
             </div>
         </div>
     </div>

@@ -1,0 +1,257 @@
+.fp-product-communication {
+    width: 100%;
+}
+
+.fp-product-communication__buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: min(330px, 100%);
+}
+
+.fp-product-communication__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 64px;
+    width: 100%;
+    border: 0;
+    padding: 15px 22px;
+    background: #e9e9e9;
+    color: #111;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fp-product-communication__button:hover {
+    background: #d9e3e7;
+    color: #111;
+    text-decoration: none;
+}
+
+.fp-product-communication__button--direct-chat {
+    background: #dceef4;
+}
+
+.fp-product-communication__icon {
+    display: block;
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.fp-product-communication__icon-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.fp-product-communication-modal[hidden] {
+    display: none;
+}
+
+.fp-product-communication-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.fp-product-communication-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 24, 28, 0.62);
+}
+
+.fp-product-communication-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(620px, 100%);
+    max-height: min(760px, calc(100vh - 48px));
+    overflow: auto;
+    background: #fff;
+    padding: 34px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.26);
+}
+
+.fp-product-communication-modal__close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    border: 0;
+    background: transparent;
+    color: #111;
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.fp-product-communication-modal__title {
+    margin: 0 40px 18px 0;
+    color: #20292e;
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.fp-product-communication-modal__intro {
+    margin: 0 0 22px;
+    color: #68747b;
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.fp-product-communication-form {
+    display: grid;
+    gap: 16px;
+}
+
+.fp-product-communication-form__field {
+    display: grid;
+    gap: 7px;
+    color: #172129;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.fp-product-communication-form__field input,
+.fp-product-communication-form__field textarea {
+    width: 100%;
+    border: 1px solid #9baab2;
+    padding: 12px 14px;
+    color: #111;
+    font-size: 16px;
+    font-weight: 500;
+    resize: vertical;
+}
+
+.fp-product-communication-form__trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.fp-product-communication-form__submit {
+    min-height: 58px;
+    border: 0;
+    padding: 16px 22px;
+    background: #101010;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.fp-product-communication-form__submit:hover {
+    background: #20292e;
+}
+
+.fp-product-communication-form__status {
+    min-height: 22px;
+    color: #285f9f;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.fp-product-communication-form__status--error {
+    color: #a00038;
+}
+
+@media (max-width: 900px) {
+    .fp-product-communication__buttons {
+        width: 100%;
+    }
+
+    .fp-product-communication-modal__dialog {
+        padding: 28px 22px;
+    }
+}
+
+/* == v0.6.72 communication buttons controlled visual start == */
+.fp-product-communication__buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: min(430px, 100%);
+}
+
+.fp-product-communication__button,
+.fp-product-communication__button--direct-chat {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 14px;
+    min-height: 64px;
+    width: 100%;
+    border: 0;
+    padding: 14px 24px;
+    background: rgb(15, 15, 15);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fp-product-communication__button span,
+.fp-product-communication__button--direct-chat span {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.fp-product-communication__button:hover,
+.fp-product-communication__button:focus,
+.fp-product-communication__button--direct-chat:hover,
+.fp-product-communication__button--direct-chat:focus {
+    background: rgb(225, 225, 225);
+    color: rgb(15, 15, 15);
+    text-decoration: none;
+}
+
+.fp-product-communication__icon,
+.fp-product-communication__icon-placeholder {
+    justify-self: center;
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.fp-product-communication-modal__intro {
+    color: #68747b;
+}
+
+@media (max-width: 1100px) {
+    .fp-product-communication__buttons {
+        width: min(390px, 100%);
+    }
+
+    .fp-product-communication__button,
+    .fp-product-communication__button--direct-chat {
+        font-size: 16px;
+        padding: 14px 18px;
+    }
+}
+/* == v0.6.72 communication buttons controlled visual end == */
