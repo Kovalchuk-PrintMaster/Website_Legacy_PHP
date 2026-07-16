@@ -5,10 +5,56 @@
         return document.querySelector('[data-fp-comm-modal="' + alias + '"]');
     }
 
+    function resetFormStatus(modal) {
+        if (!modal) {
+            return;
+        }
+
+        modal.querySelectorAll('[data-fp-comm-status]').forEach(function (status) {
+            status.textContent = '';
+            status.classList.remove(
+                'fp-product-communication-form__status--success',
+                'fp-product-communication-form__status--error'
+            );
+        });
+
+        modal.querySelectorAll('button[type="submit"]').forEach(function (button) {
+            button.disabled = false;
+        });
+    }
+
     function closeAllModals() {
         document.querySelectorAll('[data-fp-comm-modal]').forEach(function (modal) {
             modal.hidden = true;
+            resetFormStatus(modal);
         });
+    }
+
+    function focusFirstField(modal) {
+        var field = modal.querySelector('input[name="primary_contact"], input[name="phone"], textarea');
+
+        if (field) {
+            window.setTimeout(function () {
+                field.focus();
+            }, 40);
+        }
+    }
+
+    function showStatus(status, type, message) {
+        if (!status) {
+            return;
+        }
+
+        status.classList.remove(
+            'fp-product-communication-form__status--success',
+            'fp-product-communication-form__status--error'
+        );
+
+        if (type) {
+            status.classList.add('fp-product-communication-form__status--' + type);
+        }
+
+        status.textContent = message || '';
     }
 
     document.addEventListener('click', function (event) {
@@ -19,7 +65,9 @@
             var modal = findModal(openButton.getAttribute('data-fp-comm-open'));
             if (modal) {
                 closeAllModals();
+                resetFormStatus(modal);
                 modal.hidden = false;
+                focusFirstField(modal);
             }
 
             return;
@@ -48,10 +96,7 @@
         var status = form.querySelector('[data-fp-comm-status]');
         var submit = form.querySelector('button[type="submit"]');
 
-        if (status) {
-            status.classList.remove('fp-product-communication-form__status--error');
-            status.textContent = 'Відправляємо запит...';
-        }
+        showStatus(status, '', 'Відправляємо запит...');
 
         if (submit) {
             submit.disabled = true;
@@ -62,7 +107,8 @@
             body: new FormData(form),
             headers: {
                 'Accept': 'application/json'
-            }
+            },
+            credentials: 'same-origin'
         })
             .then(function (response) {
                 return response.json().catch(function () {
@@ -74,17 +120,22 @@
                     throw new Error(payload && payload.message ? payload.message : 'Не вдалося відправити запит');
                 }
 
-                if (status) {
-                    status.textContent = payload.message || 'Заявку прийнято.';
-                }
+                showStatus(
+                    status,
+                    'success',
+                    payload.message || 'Заявку прийнято. Ми звʼяжемося з вами найближчим часом.'
+                );
 
                 form.reset();
             })
             .catch(function (error) {
-                if (status) {
-                    status.classList.add('fp-product-communication-form__status--error');
-                    status.textContent = error.message || 'Помилка відправки.';
-                }
+                console.error('ForPrint communication form error:', error);
+
+                showStatus(
+                    status,
+                    'error',
+                    error.message || 'Помилка відправки. Спробуйте ще раз або напишіть нам напряму.'
+                );
             })
             .finally(function () {
                 if (submit) {

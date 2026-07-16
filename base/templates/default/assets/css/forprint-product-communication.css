@@ -356,3 +356,211 @@
     }
 }
 /* == v0.6.75 communication buttons visual polish end == */
+
+/* == v0.6.76 communication modal polish start == */
+.fp-product-communication-modal {
+    backdrop-filter: blur(2px);
+}
+
+.fp-product-communication-modal__dialog {
+    border-radius: 0;
+    border-top: 6px solid rgb(15, 15, 15);
+    padding: 38px 38px 34px;
+}
+
+.fp-product-communication-modal__title {
+    margin-bottom: 14px;
+    padding-right: 34px;
+    color: rgb(15, 15, 15);
+    font-size: 28px;
+    line-height: 1.15;
+}
+
+.fp-product-communication-modal__intro {
+    margin-bottom: 24px;
+    padding: 16px 18px;
+    background: rgb(245, 245, 245);
+    color: #5f686e;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.fp-product-communication-form {
+    gap: 14px;
+}
+
+.fp-product-communication-form__field {
+    gap: 8px;
+    color: rgb(15, 15, 15);
+    font-size: 14px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.fp-product-communication-form__field input,
+.fp-product-communication-form__field textarea {
+    min-height: 50px;
+    border: 1px solid #c8cfd3;
+    background: #fff;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.fp-product-communication-form__field textarea {
+    min-height: 112px;
+}
+
+.fp-product-communication-form__field input:focus,
+.fp-product-communication-form__field textarea:focus {
+    outline: none;
+    border-color: rgb(15, 15, 15);
+    box-shadow: 0 0 0 2px rgba(15, 15, 15, 0.08);
+}
+
+.fp-product-communication-form__submit {
+    margin-top: 6px;
+    background: rgb(15, 15, 15);
+    color: #fff;
+    transition: background 0.16s ease, color 0.16s ease, opacity 0.16s ease;
+}
+
+.fp-product-communication-form__submit:hover,
+.fp-product-communication-form__submit:focus {
+    background: rgb(225, 225, 225);
+    color: rgb(15, 15, 15);
+}
+
+.fp-product-communication-form__submit:disabled {
+    opacity: 0.62;
+    cursor: wait;
+}
+
+.fp-product-communication-form__status {
+    display: none;
+    margin-top: 2px;
+    padding: 12px 14px;
+    background: #f1f1f1;
+    color: rgb(15, 15, 15);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.fp-product-communication-form__status:not(:empty) {
+    display: block;
+}
+
+.fp-product-communication-form__status--success {
+    background: #edf7ed;
+    color: #1f5f28;
+}
+
+.fp-product-communication-form__status--error {
+    background: #fff0f3;
+    color: #a00038;
+}
+
+.fp-product-communication-modal__close {
+    top: 14px;
+    right: 18px;
+    width: 34px;
+    height: 34px;
+    color: rgb(15, 15, 15);
+}
+
+.fp-product-communication-modal__close:hover {
+    background: rgb(225, 225, 225);
+}
+
+@media (max-width: 640px) {
+    .fp-product-communication-modal {
+        padding: 14px;
+    }
+
+    .fp-product-communication-modal__dialog {
+        padding: 30px 18px 24px;
+    }
+
+    .fp-product-communication-modal__title {
+        font-size: 23px;
+    }
+
+    .fp-product-communication-modal__intro {
+        padding: 14px;
+    }
+}
+/* == v0.6.76 communication modal polish end == */
+
+/* == v0.6.76b communication modal repair start == */
+.fp-product-communication-modal {
+    padding: 9px;
+    backdrop-filter: blur(2px);
+}
+
+.fp-product-communication-modal__dialog {
+    width: min(650px, 100%);
+    max-height: calc(100vh - 18px);
+    border-top: 0;
+    padding: 38px 34px 26px;
+}
+
+.fp-product-communication-modal__title {
+    margin-bottom: 14px;
+}
+
+.fp-product-communication-modal__intro {
+    margin-bottom: 20px;
+    padding: 16px 18px;
+}
+
+.fp-product-communication-form {
+    gap: 12px;
+}
+
+.fp-product-communication-form__field input {
+    min-height: 46px;
+}
+
+.fp-product-communication-form__field textarea {
+    min-height: 94px;
+}
+
+.fp-product-communication-form__submit {
+    min-height: 56px;
+    margin-top: 4px;
+}
+
+.fp-product-communication-form__status {
+    margin-top: 0;
+    padding: 10px 14px;
+}
+
+@media (max-height: 760px) {
+    .fp-product-communication-modal__dialog {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    .fp-product-communication-modal__intro {
+        margin-bottom: 14px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .fp-product-communication-form {
+        gap: 10px;
+    }
+
+    .fp-product-communication-form__field textarea {
+        min-height: 82px;
+    }
+}
+
+@media (max-width: 640px) {
+    .fp-product-communication-modal {
+        padding: 8px;
+    }
+
+    .fp-product-communication-modal__dialog {
+        padding: 30px 18px 22px;
+    }
+}
+/* == v0.6.76b communication modal repair end == */

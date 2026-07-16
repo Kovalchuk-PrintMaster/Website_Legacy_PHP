@@ -135,3 +135,121 @@ site-serve-local:
 .PHONY: site-serve-limits-cli
 site-serve-limits-cli:
 	php -i | grep -E "upload_max_filesize|post_max_size|max_file_uploads|memory_limit"
+
+# == ForPrint website preview env server start ==
+SITE_PREVIEW_HOST ?= 127.0.0.1
+SITE_PREVIEW_PORT ?= 8098
+SITE_PREVIEW_DOCROOT ?= base
+SITE_PREVIEW_ENV ?= .env.website.local
+SITE_PREVIEW_PID ?= /tmp/forprint_website_php8098.pid
+SITE_PREVIEW_LOG ?= /tmp/forprint_website_php8098.log
+
+.PHONY: site-preview-env-init site-preview-env-check site-preview-stop site-preview-start site-preview-restart site-preview-status site-preview-smoke
+
+site-preview-env-init:
+	@if [ ! -f "$(SITE_PREVIEW_ENV)" ]; then \
+		cp .env.website.local.example "$(SITE_PREVIEW_ENV)"; \
+		chmod 600 "$(SITE_PREVIEW_ENV)"; \
+		echo "[OK] created $(SITE_PREVIEW_ENV) from example"; \
+		echo "[NEXT] edit $(SITE_PREVIEW_ENV) and paste Telegram token/chat id there"; \
+	else \
+		echo "[OK] $(SITE_PREVIEW_ENV) already exists"; \
+	fi
+
+site-preview-env-check:
+	@set -e; \
+	ENV_PATH="$(SITE_PREVIEW_ENV)"; \
+	case "$$ENV_PATH" in /*|./*|../*) ;; *) ENV_PATH="./$$ENV_PATH";; esac; \
+	if [ -f "$$ENV_PATH" ]; then \
+		set -a; . "$$ENV_PATH"; set +a; \
+		echo "env_file=$$ENV_PATH"; \
+	else \
+		echo "env_file=missing: $$ENV_PATH"; \
+	fi; \
+	echo "FP_WEB_ENABLE_PHP_MAIL=$${FP_WEB_ENABLE_PHP_MAIL:-0}"; \
+	echo "FP_WEB_ENABLE_SMTP=$${FP_WEB_ENABLE_SMTP:-0}"; \
+	echo "FP_WEB_TELEGRAM_BOT_TOKEN=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set}"; \
+	echo "FP_WEB_TELEGRAM_CHAT_ID=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"
+
+site-preview-stop:
+	@set -e; \
+	if [ -f "$(SITE_PREVIEW_PID)" ]; then \
+		PID="$$(cat "$(SITE_PREVIEW_PID)" 2>/dev/null || true)"; \
+		if [ -n "$$PID" ] && kill -0 "$$PID" 2>/dev/null; then \
+			kill "$$PID" 2>/dev/null || true; \
+			sleep 1; \
+			kill -0 "$$PID" 2>/dev/null && kill -9 "$$PID" 2>/dev/null || true; \
+			echo "[OK] stopped pid $$PID from $(SITE_PREVIEW_PID)"; \
+		fi; \
+		rm -f "$(SITE_PREVIEW_PID)"; \
+	fi; \
+	PIDS="$$(ss -ltnp 2>/dev/null | grep ':$(SITE_PREVIEW_PORT) ' | sed -n 's/.*pid=\([0-9][0-9]*\).*//p' | sort -u)"; \
+	if [ -n "$$PIDS" ]; then \
+		for PID in $$PIDS; do \
+			if kill -0 "$$PID" 2>/dev/null; then \
+				kill "$$PID" 2>/dev/null || true; \
+				sleep 1; \
+				kill -0 "$$PID" 2>/dev/null && kill -9 "$$PID" 2>/dev/null || true; \
+				echo "[OK] stopped listener pid $$PID on port $(SITE_PREVIEW_PORT)"; \
+			fi; \
+		done; \
+	fi; \
+	echo "[OK] preview server stopped on $(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)"
+
+site-preview-start:
+	@set -e; \
+	ENV_PATH="$(SITE_PREVIEW_ENV)"; \
+	case "$$ENV_PATH" in /*|./*|../*) ;; *) ENV_PATH="./$$ENV_PATH";; esac; \
+	if [ -f "$$ENV_PATH" ]; then \
+		set -a; . "$$ENV_PATH"; set +a; \
+	else \
+		echo "[WARN] $$ENV_PATH not found; starting without local env"; \
+	fi; \
+	if ss -ltnp 2>/dev/null | grep -q ':$(SITE_PREVIEW_PORT) '; then \
+		echo "[ERROR] port $(SITE_PREVIEW_PORT) is already in use"; \
+		ss -ltnp | grep ':$(SITE_PREVIEW_PORT) ' || true; \
+		exit 1; \
+	fi; \
+	echo "[INFO] mail=$${FP_WEB_ENABLE_PHP_MAIL:-0} smtp=$${FP_WEB_ENABLE_SMTP:-0} telegram_token=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set} telegram_chat=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"; \
+	php -S "$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)" -t "$(SITE_PREVIEW_DOCROOT)" >"$(SITE_PREVIEW_LOG)" 2>&1 & \
+	echo $$! >"$(SITE_PREVIEW_PID)"; \
+	sleep 1; \
+	tail -10 "$(SITE_PREVIEW_LOG)"
+
+site-preview-restart: site-preview-stop site-preview-start site-preview-status
+
+site-preview-status:
+	@echo "== preview status =="
+	@echo "pid_file=$(SITE_PREVIEW_PID)"
+	@if [ -f "$(SITE_PREVIEW_PID)" ]; then \
+		echo "pid=$$(cat "$(SITE_PREVIEW_PID)")"; \
+	else \
+		echo "pid=missing"; \
+	fi
+	@ss -ltnp | grep ":$(SITE_PREVIEW_PORT) " || true
+	@curl -s -I --max-time 10 "http://$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)/" | sed -n '1,10p' || true
+
+site-preview-smoke:
+	@echo "== email smoke =="
+	@curl -s --max-time 20 -X POST "http://$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)/communication-request.php" \
+		-d 'mode=email' \
+		-d 'product_id=0' \
+		-d 'product_name=Make Smoke Email' \
+		-d 'primary_contact=test@example.com' \
+		-d 'phone=0990000000' \
+		-d 'quantity_requested=100 шт' \
+		-d 'message=Make smoke email request'
+	@echo
+	@echo "== telegram smoke =="
+	@curl -s --max-time 20 -X POST "http://$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)/communication-request.php" \
+		-d 'mode=telegram' \
+		-d 'product_id=0' \
+		-d 'product_name=Make Smoke Telegram' \
+		-d 'primary_contact=test_user' \
+		-d 'phone=0990000000' \
+		-d 'quantity_requested=100 шт' \
+		-d 'message=Make smoke telegram request'
+	@echo
+	@echo "== log tail =="
+	@tail -60 "$(SITE_PREVIEW_LOG)" 2>/dev/null || true
+# == ForPrint website preview env server end ==

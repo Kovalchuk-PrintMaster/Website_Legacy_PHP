@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=20260715-0646">
     <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-detail.css?v=20260715-0666">
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
-<link rel="stylesheet" href="<?=PATH?>templates/default/assets/css/forprint-product-communication.css?v=20260716-0675">
-<script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260716-0675"></script>
+<link rel="stylesheet" href="<?=PATH?>templates/default/assets/css/forprint-product-communication.css?v=20260716-0676b">
+<script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260716-0676b"></script>
 </head>
 
 <body>

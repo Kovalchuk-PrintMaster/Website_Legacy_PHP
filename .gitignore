@@ -98,3 +98,6 @@ __pycache__/
 /tmp.py
 /tmp_*.php
 /tmp_*.py
+.env.website.local
+.env.website.local.*
+!.env.website.local.example
