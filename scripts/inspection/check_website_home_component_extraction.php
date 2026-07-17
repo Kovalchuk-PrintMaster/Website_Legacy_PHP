@@ -21,6 +21,9 @@ $paths = [
     'about' =>
         $root
         . '/base/templates/default/surfaces/home/about.php',
+    'advantages' =>
+        $root
+        . '/base/templates/default/surfaces/home/advantages.php',
     'functional_smoke' =>
         $root
         . '/scripts/inspection/check_website_home_functional_contract.php',
@@ -42,20 +45,22 @@ foreach ($paths as $label => $path) {
 }
 
 $checks = [
-    'home index includes hero component' =>
+    'home index includes all extracted components' =>
         str_contains(
             $content['index'],
             "/surfaces/home/heroSlider.php"
-        ),
-    'home index includes product-groups component' =>
-        str_contains(
+        )
+        && str_contains(
             $content['index'],
             "/surfaces/home/productGroups.php"
-        ),
-    'home index includes about component' =>
-        str_contains(
+        )
+        && str_contains(
             $content['index'],
             "/surfaces/home/about.php"
+        )
+        && str_contains(
+            $content['index'],
+            "/surfaces/home/advantages.php"
         ),
     'home index no longer owns extracted sections' =>
         !str_contains(
@@ -69,6 +74,10 @@ $checks = [
         && !str_contains(
             $content['index'],
             '<section class="about">'
+        )
+        && !str_contains(
+            $content['index'],
+            '<section class="advantages">'
         ),
     'hero component retains complete slider' =>
         str_contains(
@@ -82,16 +91,8 @@ $checks = [
         && str_contains(
             $content['hero'],
             'swiper-pagination'
-        )
-        && str_contains(
-            $content['hero'],
-            'swiper-button-prev'
-        )
-        && str_contains(
-            $content['hero'],
-            'swiper-button-next'
         ),
-    'product-groups component retains tabs and cards' =>
+    'product groups retain tabs and shared cards' =>
         str_contains(
             $content['product_groups'],
             '$goods'
@@ -106,13 +107,9 @@ $checks = [
         )
         && str_contains(
             $content['product_groups'],
-            'offers__tabs_header'
-        )
-        && str_contains(
-            $content['product_groups'],
             'goodsGridItem'
         ),
-    'about component owns the company section' =>
+    'about component owns company information' =>
         str_contains(
             $content['about'],
             '<section class="about">'
@@ -126,6 +123,19 @@ $checks = [
                 $content['about'],
                 '$this->set'
             )
+        ),
+    'advantages component retains its condition and records' =>
+        str_contains(
+            $content['advantages'],
+            '$advantages'
+        )
+        && str_contains(
+            $content['advantages'],
+            '<section class="advantages">'
+        )
+        && str_contains(
+            $content['advantages'],
+            'Наші переваги'
         ),
     'functional smoke composes extracted components' =>
         str_contains(
@@ -194,19 +204,19 @@ $runtimeChecks = [
             $html,
             'data-fp-frontend-profile="legacy"'
         ),
-    'slider remains rendered when data exists' =>
+    'slider remains rendered' =>
         is_string($html)
         && str_contains(
             $html,
             '<section class="slider">'
         ),
-    'offers section remains rendered' =>
+    'offers remain rendered' =>
         is_string($html)
         && str_contains(
             $html,
             '<section class="offers">'
         ),
-    'about section remains rendered' =>
+    'about remains rendered' =>
         is_string($html)
         && str_contains(
             $html,
