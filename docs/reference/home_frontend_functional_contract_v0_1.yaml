@@ -1,0 +1,236 @@
+schema_version: "0.1"
+document_id: FP-WEB-HOME-CONTRACT-001
+status: current_behavior_baseline
+surface: home
+route: "/"
+
+render_chain:
+  controller: base/core/user/controllers/IndexController.php
+  shared_controller: base/core/user/controllers/BaseUser.php
+  template: base/templates/default/index.php
+  header: base/templates/default/include/header.php
+  footer: base/templates/default/include/footer.php
+  layout: base/templates/default/layout/default.php
+
+shared_shell:
+  required:
+    - public_header
+    - primary_navigation
+    - catalog_navigation
+    - information_navigation
+    - social_links
+    - site_search
+    - main_landmark
+    - public_footer
+  not_supported_currently:
+    - cart_entry
+    - checkout_claim
+
+data_contract:
+  sales:
+    table: sales
+    where:
+      visible: 1
+    order:
+      - menu_position
+    limit: null
+    empty_behavior: omit_slider
+
+  advantages:
+    table: advantages
+    where:
+      visible: 1
+    order:
+      - menu_position
+    limit: 6
+    empty_behavior: omit_advantages
+
+  news:
+    table: news
+    where:
+      visible: 1
+    order:
+      - menu_position
+      - date
+    direction:
+      - ASC
+    limit: 3
+    empty_behavior: omit_news
+
+  product_groups:
+    metadata_owner: IndexController
+    groups:
+      hit:
+        label_uk: Хіти продажів
+        icon: icons.svg#hit
+      hot:
+        label_uk: Гарячі пропозиції
+        icon: icons.svg#hot
+      new:
+        label_uk: Щось Цікаве
+        icon: icons.svg#search
+      sale:
+        label_uk: Акція
+        icon: icons.svg#rocket
+    goods_query:
+      visible: 1
+      active_flag: 1
+      order:
+        - menu_position
+        - id
+      direction:
+        - ASC
+        - ASC
+      limit_per_group: 6
+      item_template: base/templates/default/include/goodsGridItem.php
+      empty_group_behavior: omit_group
+
+  shared_settings:
+    variable: set
+    observed_fields:
+      - name
+      - short_content
+      - img
+      - promo_img
+
+blocks:
+  - id: promotional_slider
+    current_root: section.slider
+    source: sales
+    conditional: true
+    required_behavior:
+      - external_alias_navigation
+      - pagination
+      - previous_next_controls
+
+  - id: product_offer_groups
+    current_root: section.offers
+    source: product_groups
+    conditional: true
+    required_behavior:
+      - only_non_empty_groups
+      - first_available_group_active
+      - shared_product_cards
+      - catalog_navigation
+
+  - id: company_about
+    current_root:
+      - div.horizontal
+      - section.about
+    source: shared_settings
+    conditional: false
+    required_behavior:
+      - site_name
+      - short_company_content
+
+  - id: advantages
+    current_root: section.advantages
+    source: advantages
+    conditional: true
+    required_behavior:
+      - ordered_records
+      - maximum_six
+      - name_and_image
+
+  - id: feedback_form
+    current_root: section.feedback
+    source: legacy_template
+    conditional: false
+    support_status: discovered_not_assessed
+    visible_fields:
+      - name
+      - email
+      - phone
+      - question
+      - privacy_checkbox
+      - submit
+    missing_contracts:
+      - supported_endpoint
+      - server_validation
+      - delivery_owner
+      - success_state
+      - error_state
+      - privacy_processing
+
+  - id: news
+    current_root: section.news
+    source: news
+    conditional: true
+    required_behavior:
+      - maximum_three
+      - news_item_template
+      - full_news_navigation
+
+  - id: home_search
+    current_root: form.search
+    source: controlled_search
+    conditional: false
+    required_behavior:
+      - keyboard_submit
+      - controlled_suggestions
+      - product_navigation
+      - full_results_navigation
+
+hidden_deferred:
+  governed_elsewhere:
+    - product_online_order_controls
+    - cart_header_entry
+    - cart_and_checkout_flow
+    - legacy_order_popup
+
+observational_snapshot:
+  http_status: 200
+  html_bytes_approx: 72562
+  elements_approx: 645
+  sections: 7
+  images: 47
+  links: 73
+  buttons: 22
+  css_links: 11
+  scripts: 20
+  inline_styles: 10
+  contractual: false
+
+accessibility:
+  existing:
+    - viewport_meta
+    - lang_attribute
+    - header_landmark
+    - nav_landmark
+    - main_landmark
+    - footer_landmark
+    - some_aria
+    - lazy_product_images
+  gaps:
+    - skip_link
+    - responsive_picture_source
+    - srcset
+    - meaningful_alt_for_all_images
+    - fully_defined_feedback_form
+
+controlled_rewrite_invariants:
+  - home_http_200
+  - shared_shell
+  - controlled_search
+  - conditional_slider
+  - conditional_product_groups
+  - stable_product_order
+  - product_card_information
+  - company_about_information
+  - conditional_advantages
+  - conditional_news
+  - explicit_feedback_disposition
+  - no_supported_cart_claim
+  - unchanged_data_ownership
+
+non_contractual_legacy:
+  - exact_class_names
+  - div_count
+  - fixed_dimensions
+  - legacy_color_literals
+  - legacy_fonts
+  - inline_styles
+  - swiper_markup
+  - current_tab_implementation
+  - global_style_ownership
+  - global_javascript_selectors

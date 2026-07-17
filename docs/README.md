@@ -70,3 +70,9 @@
 - [Frontend Visual System v0.1](architecture/frontend_visual_system_v0_1.md)
 - [Frontend Visual System v0.1 — machine-readable](architecture/frontend_visual_system_v0_1.yaml)
 - [Media Storage and Image Processing Policy v0.1](architecture/media_storage_and_image_processing_policy_v0_1.md)
+
+## Home frontend contract
+
+- [Home Frontend Functional Contract v0.1](reference/home_frontend_functional_contract_v0_1.md)
+- [Home Frontend Functional Contract v0.1 — machine-readable](reference/home_frontend_functional_contract_v0_1.yaml)
+- [Home Frontend Block Map v0.1](architecture/home_frontend_block_map_v0_1.md)

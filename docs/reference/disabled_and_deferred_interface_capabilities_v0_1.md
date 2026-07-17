@@ -64,6 +64,18 @@ Hidden functionality is not considered deleted. Its code, database structures an
 - **Decision:** inventory only; do not revive automatically
 - **Required next action before restoration:** source-path audit and runtime behavior audit
 
+### `home_feedback_form`
+
+- **Human name:** Home-page feedback form
+- **Status:** `discovered_not_assessed`
+- **Surface:** home
+- **Visible fields:** name, email, phone, question, privacy checkbox and submit button
+- **Known evidence:** `section.feedback` in `base/templates/default/index.php`
+- **Current decision:** do not claim this form as a supported communication channel until its endpoint and delivery behavior are verified
+- **Current supported alternatives:** managed Email and Telegram request flows on product pages
+- **Required next action:** verify endpoint, validation, privacy handling, success/error states and message delivery owner
+- **Possible outcomes:** implement as a controlled form or hide through an explicit capability decision
+
 ## Rules for future entries
 
 Every hidden or deferred capability must record:

@@ -88,6 +88,38 @@ capabilities:
       - source_path_audit
       - runtime_behavior_audit
 
+  - id: home_feedback_form
+    name_uk: Форма зворотного зв’язку на головній сторінці
+    status: discovered_not_assessed
+    surfaces:
+      - home
+    known_evidence:
+      selectors:
+        - feedback
+        - feedback__form
+      source:
+        - base/templates/default/index.php
+    visible_fields:
+      - name
+      - email
+      - phone
+      - question
+      - privacy_checkbox
+      - submit
+    current_supported_alternatives:
+      - product_email_request
+      - product_telegram_request
+    missing_contracts:
+      - supported_endpoint
+      - server_validation
+      - privacy_processing
+      - delivery_owner
+      - success_state
+      - error_state
+    possible_outcomes:
+      - controlled_implementation
+      - explicit_hiding
+
 governance:
   hidden_is_deleted: false
   presentation_work_may_drop_database_structures: false
