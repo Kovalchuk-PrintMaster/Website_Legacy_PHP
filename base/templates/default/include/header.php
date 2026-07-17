@@ -238,4 +238,9 @@
 
 <?php endif;?>
 
-<main class="main">
+<main class="main"
+    <?php if ($this->frontendSurface !== ''): ?>
+        data-fp-surface="<?=htmlspecialchars((string)$this->frontendSurface, ENT_QUOTES, 'UTF-8')?>"
+        data-fp-frontend-profile="<?=htmlspecialchars((string)$this->frontendProfile, ENT_QUOTES, 'UTF-8')?>"
+    <?php endif; ?>
+>

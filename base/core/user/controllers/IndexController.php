@@ -15,6 +15,23 @@ class IndexController extends BaseUser
 
         parent::inputData();
 
+        /*
+         * Controlled home surface boundary.
+         *
+         * Keep profile=legacy during the structural pass. The dedicated
+         * entrypoints are intentionally neutral until each home block is
+         * migrated under explicit surface ownership.
+         */
+        $this->frontendSurface = 'home';
+        $this->frontendProfile = 'legacy';
+        $this->styles[] = PATH
+            . TEMPLATE
+            . 'assets/css/surfaces/home.css?v=20260717-0001';
+        $this->scripts[] = PATH
+            . TEMPLATE
+            . 'assets/js/surfaces/home.js?v=20260717-0001';
+
+
         $sales = $this->model->get('sales', [
             'where' => ['visible' => 1],
             'order' => ['menu_position']

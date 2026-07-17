@@ -7,7 +7,16 @@
 
     abstract class BaseUser extends BaseController
     {
-        protected $model;
+
+        /**
+         * Presentation-only surface metadata.
+         *
+         * Empty surface keeps legacy pages unchanged. Individual public
+         * controllers may opt into a named surface and profile.
+         */
+        protected $frontendSurface = '';
+        protected $frontendProfile = 'legacy';
+protected $model;
         protected $table;
         protected $set;
         protected $menu;

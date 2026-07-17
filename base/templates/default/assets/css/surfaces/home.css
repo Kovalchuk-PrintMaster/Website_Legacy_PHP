@@ -1,0 +1,13 @@
+/**
+ * ForPrint controlled home surface entrypoint.
+ *
+ * Phase: structural boundary.
+ *
+ * This file is intentionally visually neutral. New home presentation rules
+ * must be scoped below [data-fp-surface="home"] and must not be added to the
+ * legacy global style.css.
+ */
+
+[data-fp-surface="home"] {
+    --fp-home-surface-contract-version: 1;
+}
