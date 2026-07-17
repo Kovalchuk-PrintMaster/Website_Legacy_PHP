@@ -1,0 +1,145 @@
+schema_version: "0.1"
+document_id: FP-WEB-VISUAL-001
+status: active_baseline_partially_provisional
+scope:
+  surfaces:
+    - home
+    - catalog
+    - search
+    - product
+
+frontend_profiles:
+  active_fallback: legacy
+  allowed:
+    legacy:
+      label_uk: Поточний legacy-інтерфейс
+      status: fallback
+    controlled_v1:
+      label_uk: Керований модернізований інтерфейс
+      status: planned_primary
+    future_redesign:
+      label_uk: Майбутній редизайн
+      status: reserved
+  rollback_method: configuration_switch
+
+palette:
+  max_core_colors: 5
+  canonical:
+    dark_graphite:
+      rgb: [15, 15, 15]
+      hex: "#0F0F0F"
+    medium_graphite:
+      rgb: [35, 35, 35]
+      hex: "#232323"
+    light_gray:
+      rgb: [225, 225, 225]
+      hex: "#E1E1E1"
+    gray:
+      rgb: [200, 200, 200]
+      hex: "#C8C8C8"
+    dark_gray:
+      rgb: [150, 150, 150]
+      hex: "#969696"
+  utility_not_counted_as_core:
+    - white
+    - transparent
+    - currentColor
+  new_css_literal_policy: token_only_when_role_exists
+  named_color_policy: prohibited_in_controlled_components
+
+semantic_color_roles:
+  dark_navigation:
+    default: dark_graphite
+    hover: medium_graphite
+  light_control:
+    default: light_gray
+    hover: gray
+  stronger_neutral_state:
+    value: dark_gray
+  product_card:
+    status: pending_surface_review
+  search_surface:
+    status: pending_surface_review
+  tabs:
+    status: pending_product_tab_review
+    allowed_palette:
+      - light_gray
+      - gray
+      - dark_gray
+
+typography:
+  status: pending_inventory
+  max_font_families: 5
+  target_font_families: 3
+  preferred_roles:
+    - body_and_forms
+    - headings_and_section_titles
+    - optional_accent
+  hardcoded_component_font_stacks: prohibited
+  same_semantic_role_across_surfaces: required
+
+interaction:
+  standard_transition_duration_ms: 160
+  standard_easing: ease
+  image_hover_scale_max: 1.04
+  layout_shift_on_hover: prohibited
+  visible_keyboard_focus: required
+  prefers_reduced_motion: required
+
+buttons:
+  required_variants:
+    - primary
+    - secondary
+    - neutral
+    - text
+    - destructive
+  identical_meaning_identical_behavior: required
+  opposite_hover_direction_for_same_variant: prohibited
+
+surface_roots:
+  home: '[data-fp-surface="home"]'
+  catalog: '[data-fp-surface="catalog"]'
+  search: '[data-fp-surface="search"]'
+  product: '[data-fp-surface="product"]'
+
+css_architecture:
+  target_entrypoints:
+    - assets/css/shared/tokens.css
+    - assets/css/shared/base.css
+    - assets/css/shared/components/
+    - assets/css/surfaces/home.css
+    - assets/css/surfaces/catalog.css
+    - assets/css/surfaces/search.css
+    - assets/css/surfaces/product.css
+  new_surface_rules_in_legacy_style_css: prohibited
+  id_selectors_for_new_styling: discouraged
+  important_requires_reason: true
+  new_inline_styles: prohibited
+  new_generic_geometry_classes: prohibited
+
+javascript_architecture:
+  target_entrypoints:
+    - assets/js/shared/bootstrap.js
+    - assets/js/surfaces/home.js
+    - assets/js/surfaces/catalog.js
+    - assets/js/surfaces/search.js
+    - assets/js/surfaces/product.js
+  behavior_hooks: data_attributes
+  duplicate_initialization_between_profiles: prohibited
+  optional_component_absence_must_be_safe: true
+
+responsive:
+  strategy: mobile_first
+  breakpoints: content_driven
+  horizontal_page_overflow: prohibited
+  fixed_width_main_layout_dependency: prohibited
+  touch_targets_required: true
+  responsive_images_required: true
+
+accessibility:
+  semantic_landmarks: required_where_applicable
+  meaningful_alt: required
+  visible_focus: required
+  form_labels: required
+  reduced_motion: required
+  hover_only_access: prohibited

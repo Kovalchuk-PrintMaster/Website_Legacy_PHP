@@ -62,3 +62,11 @@
 - [Frontend Surface Isolation Strategy v0.1](architecture/frontend_surface_isolation_strategy_v0_1.md)
 - [Decision: Freeze First-Release Scope and Start Progressive Frontend Refactor](decisions/2026-07-17__first_release_scope_freeze_and_frontend_refactor.md)
 <!-- FRONTEND_CHECKPOINT_INDEX_END -->
+
+## Frontend control governance
+
+- [Disabled and Deferred Interface Capabilities v0.1](reference/disabled_and_deferred_interface_capabilities_v0_1.md)
+- [Interface Capability Registry v0.1 — machine-readable](reference/interface_capability_registry_v0_1.yaml)
+- [Frontend Visual System v0.1](architecture/frontend_visual_system_v0_1.md)
+- [Frontend Visual System v0.1 — machine-readable](architecture/frontend_visual_system_v0_1.yaml)
+- [Media Storage and Image Processing Policy v0.1](architecture/media_storage_and_image_processing_policy_v0_1.md)

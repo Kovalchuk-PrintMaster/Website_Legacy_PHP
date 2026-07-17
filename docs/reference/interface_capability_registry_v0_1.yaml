@@ -1,0 +1,95 @@
+schema_version: "0.1"
+document_id: FP-WEB-UI-CAP-001
+status: active_baseline
+scope: public_frontend
+surfaces:
+  - home
+  - catalog
+  - search
+  - product
+
+status_vocabulary:
+  active: visible_and_supported
+  hidden: intentionally_not_visible_but_retained
+  approved_to_hide: visible_or_discoverable_and_approved_for_hiding
+  deferred: outside_current_scope
+  discovered_not_assessed: found_but_not_fully_analyzed
+  retired: permanently_removed_by_separate_approved_cleanup
+
+capabilities:
+  - id: product_online_order_controls
+    name_uk: Інструменти онлайн-замовлення та додавання до корзини
+    status: hidden
+    surfaces:
+      - product
+    current_replacement:
+      - email_request
+      - telegram_request
+    reason: cart_and_checkout_outside_current_scope
+    preservation:
+      delete_runtime_code: false
+      delete_database_structures: false
+    restoration_requires:
+      - separate_scope_decision
+      - architecture_review
+      - focused_tests
+      - end_to_end_tests
+      - owner_acceptance
+
+  - id: cart_header_entry
+    name_uk: Значок та точка входу в корзину
+    status: approved_to_hide
+    surfaces:
+      - shared_header
+    known_evidence:
+      selectors:
+        - cart-btn-wrap
+        - svg-basket
+    reason: unsupported_workflow_must_not_be_advertised
+    preservation:
+      delete_runtime_code: false
+      delete_database_structures: false
+    restoration_requires:
+      - cart_workflow_returned_to_scope
+
+  - id: cart_and_checkout_flow
+    name_uk: Корзина, оформлення та створення замовлення
+    status: deferred
+    surfaces:
+      - shared
+      - product
+      - account
+    current_replacement:
+      - email_request
+      - telegram_request
+    known_evidence:
+      runtime:
+        - cart_cookie
+        - orders_controller
+    reason: not_required_for_current_publication_scope
+    restoration_requires:
+      - business_flow_design
+      - canonical_data_ownership
+      - implementation_plan
+      - end_to_end_tests
+
+  - id: legacy_order_popup
+    name_uk: Старе спливаюче вікно замовлення
+    status: discovered_not_assessed
+    surfaces:
+      - shared
+      - product
+    known_evidence:
+      selectors:
+        - order-popup__inner
+        - send-order
+        - execute-order_btn
+    next_required_action:
+      - source_path_audit
+      - runtime_behavior_audit
+
+governance:
+  hidden_is_deleted: false
+  presentation_work_may_drop_database_structures: false
+  presentation_work_may_delete_domain_logic: false
+  restoration_requires_registry_update: true
