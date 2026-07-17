@@ -25,6 +25,7 @@ abstract class BaseAdmin extends BaseController
 
     protected $alias;
     protected $fileArray;
+    protected $fileUploadErrors = [];
 
     protected $messages;
     protected $settings;
@@ -181,7 +182,9 @@ abstract class BaseAdmin extends BaseController
     protected function checkPost($settings = false){
 
         if($this->isPost()){
-            $this->clearPostFields($settings);
+
+            $this->guardPostUploadEnvelope();
+$this->clearPostFields($settings);
             $this->table = $this->clearStr($_POST['table']);
             unset($_POST['table']);
 
@@ -338,6 +341,8 @@ abstract class BaseAdmin extends BaseController
         $fileEdit = new  FileEdit();
         $this->fileArray  = $fileEdit->addFile($this->table);
         $fileUploadErrors = method_exists($fileEdit, 'getErrors') ? $fileEdit->getErrors() : [];
+        $this->fileUploadErrors = $fileUploadErrors;
+        $this->abortOnFileUploadErrors($fileUploadErrors);
 
 
         $this->preserveGalleryOnFailedUpload($id, $fileUploadErrors);
@@ -994,6 +999,173 @@ if($id){
         }
     }
 
+    /**
+     * PHP clears both POST and FILES when post_max_size is exceeded.
+     */
+    protected function guardPostUploadEnvelope()
+    {
+        $contentLength = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+
+        if (
+            $contentLength <= 0
+            || !empty($_POST)
+            || !empty($_FILES)
+        ) {
+            return;
+        }
+
+        $limit = (string)ini_get('post_max_size');
+
+        $_SESSION['res']['answer'] =
+            '<div class="error forprint-admin-persistent-error">'
+            . 'Форма не збережена: загальний розмір завантаження '
+            . 'перевищив серверний ліміт '
+            . htmlspecialchars($limit, ENT_QUOTES, 'UTF-8')
+            . '.'
+            . '</div>';
+
+        $this->redirect();
+        exit;
+    }
+
+    /**
+     * Do not silently save a product when PHP rejected an image.
+     */
+    protected function abortOnFileUploadErrors(array $errors)
+    {
+        if (empty($errors)) {
+            return;
+        }
+
+        $this->removePartiallyUploadedFiles(
+            $this->fileArray
+        );
+
+        $messages = [];
+        $this->collectFileUploadErrorMessages(
+            $errors,
+            $messages
+        );
+
+        if (empty($messages)) {
+            $messages[] =
+                'Сервер не прийняв один або декілька файлів.';
+        }
+
+        $fileLimit =
+            (string)ini_get('upload_max_filesize');
+
+        $_SESSION['res']['answer'] =
+            '<div class="error forprint-admin-persistent-error">'
+            . 'Товар не збережено. '
+            . implode(' ', array_unique($messages))
+            . ' Максимальний розмір одного файла: '
+            . htmlspecialchars(
+                $fileLimit,
+                ENT_QUOTES,
+                'UTF-8'
+            )
+            . '.'
+            . '</div>';
+
+        $this->addSessionData($_POST);
+        $this->redirect();
+        exit;
+    }
+
+    protected function collectFileUploadErrorMessages(
+        array $errors,
+        array &$messages
+    ) {
+        foreach ($errors as $value) {
+            if (
+                is_array($value)
+                && array_key_exists('error', $value)
+            ) {
+                $code = (int)$value['error'];
+                $name = trim(
+                    (string)($value['name'] ?? '')
+                );
+                $label = $name !== ''
+                    ? 'Файл «'
+                        . htmlspecialchars(
+                            $name,
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                        . '»'
+                    : 'Файл';
+
+                $messages[] =
+                    $label . ': '
+                    . $this->fileUploadErrorText($code);
+
+                continue;
+            }
+
+            if (is_array($value)) {
+                $this->collectFileUploadErrorMessages(
+                    $value,
+                    $messages
+                );
+            }
+        }
+    }
+
+    protected function fileUploadErrorText($code)
+    {
+        switch ((int)$code) {
+            case UPLOAD_ERR_INI_SIZE:
+            case UPLOAD_ERR_FORM_SIZE:
+                return 'перевищено дозволений розмір.';
+            case UPLOAD_ERR_PARTIAL:
+                return 'файл завантажився лише частково.';
+            case UPLOAD_ERR_NO_TMP_DIR:
+                return 'відсутня серверна тимчасова директорія.';
+            case UPLOAD_ERR_CANT_WRITE:
+                return 'сервер не зміг записати файл.';
+            case UPLOAD_ERR_EXTENSION:
+                return 'завантаження зупинене PHP-розширенням.';
+            default:
+                return 'помилка завантаження, код '
+                    . (int)$code
+                    . '.';
+        }
+    }
+
+    protected function removePartiallyUploadedFiles($files)
+    {
+        if (empty($files)) {
+            return;
+        }
+
+        if (is_array($files)) {
+            foreach ($files as $file) {
+                $this->removePartiallyUploadedFiles(
+                    $file
+                );
+            }
+
+            return;
+        }
+
+        if (
+            !is_string($files)
+            || trim($files) === ''
+        ) {
+            return;
+        }
+
+        $fullPath =
+            $_SERVER['DOCUMENT_ROOT']
+            . PATH
+            . UPLOAD_DIR
+            . ltrim($files, ' /');
+
+        if (is_file($fullPath)) {
+            @unlink($fullPath);
+        }
+    }
     protected function preserveGalleryOnFailedUpload($id, array $fileUploadErrors)
     {
         if ($this->table !== 'goods' || !$id) {

@@ -138,7 +138,14 @@
 <div class="fp-home-grid">
 <?php foreach ($goods[$key] as $item) {
 
-                                    $this->showGoods($item, ['icon' => $value['icon']], 'goodsGridItem');
+                                    $this->showGoods(
+                                        $item,
+                                        [
+                                            'icon' => $value['icon'],
+                                            'context' => 'home',
+                                        ],
+                                        'goodsGridItem'
+                                    );
 
                                 }?>
                             </div>
@@ -283,37 +290,11 @@
 
 
 
-    <form class="search " action="<?=$this->alias('search')?>">
+    <form class="search " action="<?=$this->alias('search')?>" data-fp-search-suggestions="<?=PATH?>search-suggestions.php">
         <button>
             <svg class="inline-svg-icon svg-search">
                 <use xlink:href="<?=PATH . TEMPLATE?>assets/img/icons.svg#search"></use>
             </svg>
         </button>
-        <input type="search" name="search" placeholder="Пошук по сайту">
+        <input type="search" name="search" placeholder="Пошук по сайту" autocomplete="off" spellcheck="false">
     </form>
-
-   <script>
-//lesson 156
-       document.querySelector('[name="search"]').addEventListener('input', function () {
-
-           let value = this.value.trim()
-
-           $.ajax({
-
-               data: {
-
-                   ajax: 'search',
-                   search: value
-
-               },
-
-               success: res => {
-
-                   console.log(res)
-
-               }
-           })
-
-       })
-
-   </script>

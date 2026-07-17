@@ -211,7 +211,7 @@ site-preview-start:
 		exit 1; \
 	fi; \
 	echo "[INFO] mail=$${FP_WEB_ENABLE_PHP_MAIL:-0} smtp=$${FP_WEB_ENABLE_SMTP:-0} telegram_token=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set} telegram_chat=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"; \
-	php -S "$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)" -t "$(SITE_PREVIEW_DOCROOT)" >"$(SITE_PREVIEW_LOG)" 2>&1 & \
+	php -d upload_max_filesize=$(FP_WEB_UPLOAD_MAX_FILESIZE) -d post_max_size=$(FP_WEB_POST_MAX_SIZE) -d max_file_uploads=$(FP_WEB_MAX_FILE_UPLOADS) -d memory_limit=$(FP_WEB_MEMORY_LIMIT) -S "$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)" -t "$(SITE_PREVIEW_DOCROOT)" >"$(SITE_PREVIEW_LOG)" 2>&1 & \
 	echo $$! >"$(SITE_PREVIEW_PID)"; \
 	sleep 1; \
 	tail -10 "$(SITE_PREVIEW_LOG)"

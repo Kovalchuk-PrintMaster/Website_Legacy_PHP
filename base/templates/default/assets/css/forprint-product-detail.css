@@ -3,8 +3,8 @@
  */
 
 .fp-product-detail-page {
-    padding-top: 8px;
-    padding-bottom: 44px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .fp-product-detail-page .fp-product-detail__container {
@@ -36,7 +36,7 @@
 }
 
 .fp-product-detail-page .card-main-gallery-thumb__container {
-    height: 520px;
+    height: 500px;
     overflow: hidden;
 }
 
@@ -769,7 +769,7 @@ section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body
  */
 
 .fp-product-detail {
-    margin-bottom: 40px !important;
+    margin-bottom: 5px !important;
 }
 
 section.card-tabs.fp-product-details-tabs {

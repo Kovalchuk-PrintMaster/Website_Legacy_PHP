@@ -241,6 +241,63 @@ if (!function_exists('fp_product_card_feature_labels')) {
     }
 }
 
+if (!function_exists('fp_product_card_price_state')) {
+    /**
+     * Resolve one canonical price state for product cards.
+     *
+     * The legacy Model::getGoods() may already apply the discount by moving
+     * the database price to old_price and replacing price with the discounted
+     * value. Other flows can still provide the raw database price. This helper
+     * supports both shapes and prevents a second discount calculation.
+     *
+     * @return array{
+     *     base_price:float,
+     *     current_price:float,
+     *     discount:float,
+     *     has_discount:bool,
+     *     source:string
+     * }
+     */
+    function fp_product_card_price_state(array $data): array
+    {
+        $storedPrice = max(0.0, (float)($data['price'] ?? 0));
+        $storedOldPrice = max(0.0, (float)($data['old_price'] ?? 0));
+        $discount = max(
+            0.0,
+            min(100.0, (float)($data['discount'] ?? 0))
+        );
+
+        $preparedByModel = $storedOldPrice > 0
+            && $storedPrice < ($storedOldPrice - 0.001);
+
+        if ($preparedByModel) {
+            $basePrice = $storedOldPrice;
+            $currentPrice = $storedPrice;
+            $source = 'prepared';
+        } elseif ($storedPrice > 0 && $discount > 0) {
+            $basePrice = $storedPrice;
+            $currentPrice = $basePrice
+                - ($basePrice * $discount / 100);
+            $source = 'calculated';
+        } else {
+            $basePrice = $storedPrice;
+            $currentPrice = $storedPrice;
+            $source = 'regular';
+        }
+
+        $hasDiscount = $basePrice > 0
+            && $currentPrice < ($basePrice - 0.001);
+
+        return [
+            'base_price' => $basePrice,
+            'current_price' => max(0.0, $currentPrice),
+            'discount' => $discount,
+            'has_discount' => $hasDiscount,
+            'source' => $source,
+        ];
+    }
+}
+
 if (!function_exists('fp_product_card_format_price')) {
     function fp_product_card_format_price($value): string
     {

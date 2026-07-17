@@ -252,7 +252,10 @@ class CatalogController extends BaseUser
             'Назві' => 'name_asc'
         ];
 
-        $orderDb = ['order' => null, 'order_direction' => null];
+        $orderDb = [
+            'order' => ['menu_position', 'id'],
+            'order_direction' => ['ASC', 'ASC'],
+        ];
 
         if (!empty($_GET['order'])){
 
@@ -260,17 +263,34 @@ class CatalogController extends BaseUser
 
             if (!empty($this->model->showColumns('goods')[$orderArr[0]])){
 
-                $orderDb['order'] = $orderArr[0];
+                $selectedDirection = strtolower(
+                    (string)($orderArr[1] ?? 'asc')
+                );
 
-                $orderDb['order_direction'] = $orderArr[1] ?? null;
+                if (!in_array($selectedDirection, ['asc', 'desc'], true)) {
+                    $selectedDirection = 'asc';
+                }
 
-                foreach ($order as $key=>$item){
+                $orderDb['order'] = [$orderArr[0], 'id'];
 
-                    if(strpos($item, $orderDb['order'])===0) {
+                $orderDb['order_direction'] = [
+                    strtoupper($selectedDirection),
+                    'ASC',
+                ];
 
-                        $direction = $orderDb['order_direction'] === 'asc' ? 'desc' : 'asc';
+                $selectedField = (string)$orderArr[0];
 
-                        $order[$key] = $orderDb['order'] . '_' . $direction;
+                foreach ($order as $key => $item) {
+
+                    if (strpos($item, $selectedField . '_') === 0) {
+
+                        $nextDirection = $selectedDirection === 'asc'
+                            ? 'desc'
+                            : 'asc';
+
+                        $order[$key] = $selectedField
+                            . '_'
+                            . $nextDirection;
 
                         break;
 

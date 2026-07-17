@@ -4879,8 +4879,8 @@ button[type="submit"]:hover {
 }
 
 .card-main {
-    margin-bottom: 54px;
-    margin-top: 54px
+    margin-bottom: 5px;
+    margin-top: 5px
 }
 
 @media screen and (max-width: 480px) {
@@ -9648,7 +9648,7 @@ html body main.main .page-title.h1 {
 
 html body main.main section.card-main {
     margin-top: 18px !important;
-    margin-bottom: 54px !important;
+    /* margin-bottom: 54px !important; */
 }
 
 html body main.main section.card-main > .container {

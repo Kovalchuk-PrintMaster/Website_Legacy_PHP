@@ -4,6 +4,8 @@
 
     use core\base\controllers\Singleton;
     use core\base\models\BaseModel;
+
+    require_once dirname(__DIR__, 3) . '/libraries/ProductSearch.php';
 //    use core\admin\models\Model;
 
     class Model extends BaseModel
@@ -31,15 +33,15 @@
                 $set['order'] = [];
 
 
-                if (!empty($this->showColumns('goods')['parent_id'])) {
+                if (!empty($this->showColumns('goods')['menu_position'])) {
 
-                    $set['order'][] = 'parent_id';
+                    $set['order'][] = 'menu_position';
 
                 }
 
-                if (!empty($this->showColumns('goods')['price'])) {
+                if (!empty($this->showColumns('goods')['id'])) {
 
-                    $set['order'][] = 'price';
+                    $set['order'][] = 'id';
 
                 }
             }
@@ -329,15 +331,11 @@
 
         }
 
-        public function searchGoodsIds($search) : array {
-
-            $sql = "SELECT DISTINCT goods.id, goods.name FROM goods WHERE name LIKE '%$search%' OR short_content LIKE '%$search%'
-                                       OR content LIKE '%$search%' OR goods.id IN (select goods_id FROM goods_filters
-                                           INNER JOIN filters ON goods_filters.filters_id = filters.id AND filters.name LIKE '%$search%')";
-
-            $data = $this->query($sql);
-
-            return $data ? array_column($data, 'id') : [];
+        public function searchGoodsIds($search) : array
+        {
+            return \ForPrintProductSearch::searchIds(
+                (string)$search
+            );
         }
 
 }

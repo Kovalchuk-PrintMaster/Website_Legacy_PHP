@@ -138,7 +138,7 @@ class Settings
         'sale' => ['Акція'],
         'new' => ['Новинка'],
         'hot' => ['Горячі пропозиції'],
-        'discount' => ['Знижка'],
+        'discount' => ['Знижка (%)'],
         'price' => ['Ціна'],
         'price_description' => ['Коментар до ціни'],
         'direct_url' => ['Пряме посилання кнопки', 'Наприклад: https://t.me/forprint_printshop'],

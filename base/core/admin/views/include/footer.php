@@ -179,6 +179,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 hideFlashMessage(message);
             });
 
+            if (
+                message.classList.contains(
+                    'forprint-admin-persistent-error'
+                )
+            ) {
+                return;
+            }
+
             window.setTimeout(function () {
                 hideFlashMessage(message);
             }, 1600);

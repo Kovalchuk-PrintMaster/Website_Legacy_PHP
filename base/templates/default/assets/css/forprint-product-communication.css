@@ -564,3 +564,32 @@
     }
 }
 /* == v0.6.76b communication modal repair end == */
+
+/* ForPrint international phone warning v0.6.19 */
+.fp-product-communication-form__phone-warning {
+    display: block;
+    margin-top: 6px;
+    color: #7a3441;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.fp-product-communication-form__phone-warning[hidden] {
+    display: none;
+}
+
+.fp-product-communication-form__phone-input--warning {
+    border-color: #a85c68 !important;
+    background: #fff7f8 !important;
+    box-shadow: 0 0 0 3px rgba(122, 52, 65, 0.08);
+}
+
+.fp-product-communication-form__status--warning {
+    color: #7a3441;
+}
+
+/* ForPrint communication modal top layer v0.6.20 */
+[data-fp-comm-modal] {
+    z-index: 2147483000 !important;
+    isolation: isolate;
+}

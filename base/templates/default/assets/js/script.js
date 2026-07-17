@@ -484,7 +484,7 @@ function changeQty(){
 
 }
 
-document.querySelectorAll('input[type="tel"]').forEach(item => phoneValidate(item))
+document.querySelectorAll('input[type="tel"]:not([data-fp-phone-international])').forEach(item => phoneValidate(item))
 
 function phoneValidate(item){
 

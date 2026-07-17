@@ -7,6 +7,8 @@ define('VG_ACCESS', true);
 
 header('Content-Type: application/json; charset=utf-8');
 
+require_once __DIR__ . '/libraries/InternationalPhoneValidator.php';
+
 function fp_comm_response(bool $ok, string $message, array $extra = []): void
 {
     echo json_encode(
@@ -26,6 +28,7 @@ function fp_comm_post(string $key, int $limit = 1000): string
 
     return $value;
 }
+
 
 function fp_comm_plain_message(array $data): string
 {
@@ -245,6 +248,37 @@ $data = [
     'quantity_requested' => fp_comm_post('quantity_requested', 255),
     'message' => fp_comm_post('message', 2000),
 ];
+
+$phoneRaw = $data['phone'];
+$phoneConfirmed = fp_comm_post('phone_confirmed', 8) === '1';
+$phoneResult = ForPrintInternationalPhoneValidator::classify($phoneRaw);
+
+if ($phoneResult['status'] === ForPrintInternationalPhoneValidator::STATUS_INVALID) {
+    http_response_code(422);
+    fp_comm_response(
+        false,
+        $phoneResult['message'] !== ''
+            ? $phoneResult['message']
+            : 'Перевірте номер телефону.'
+    );
+}
+
+if (
+    $phoneResult['status'] === ForPrintInternationalPhoneValidator::STATUS_UNUSUAL
+    && !$phoneConfirmed
+) {
+    http_response_code(409);
+    fp_comm_response(
+        false,
+        $phoneResult['message'],
+        [
+            'phone_confirmation_required' => true,
+            'phone_normalized' => $phoneResult['normalized'],
+        ]
+    );
+}
+
+$data['phone'] = $phoneResult['normalized'];
 
 if ($data['primary_contact'] === '' && $data['phone'] === '') {
     http_response_code(422);

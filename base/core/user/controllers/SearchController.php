@@ -46,6 +46,10 @@ class SearchController extends BaseUser
                    'where' => ['id' => $goodsIds, 'visible'=>1],
 
                    'operand' => ['IN', '='],
+
+                   'order' => ['menu_position', 'id'],
+
+                   'order_direction' => ['ASC', 'ASC'],
                     'pagination' => [
 
                         'qty' => $_SESSION['quantities'] ?? QTY,

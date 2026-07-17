@@ -160,7 +160,15 @@
 
                                 <?php foreach ($goods as $item){
 
-                                    $this->showGoods($item, [], 'goodsGridItem');
+                                    $this->showGoods(
+                                        $item,
+                                        [
+                                            'context' => !empty($dontShowAside)
+                                                ? 'search'
+                                                : 'catalog',
+                                        ],
+                                        'goodsGridItem'
+                                    );
 
                                 }?>
 

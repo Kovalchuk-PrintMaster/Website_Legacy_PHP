@@ -8,11 +8,13 @@
     <title>Index</title>
 
     <?php $this->getStyles()?>
-    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=20260715-0646">
+    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=20260717-0693">
+    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-search-suggestions.css?v=20260717-0694">
+    <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-search-submit.js?v=20260717-0695"></script>
     <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-detail.css?v=20260715-0666">
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
-<link rel="stylesheet" href="<?=PATH?>templates/default/assets/css/forprint-product-communication.css?v=20260716-0676b">
-<script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260716-0677c"></script>
+<link rel="stylesheet" href="<?=PATH?>templates/default/assets/css/forprint-product-communication.css?v=20260716-0681">
+<script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260716-0682"></script>
 </head>
 
 <body>
@@ -225,13 +227,13 @@
 
 <?php if ($this->getController() !== 'index'): ?>
 
-    <form class="search search-internal" action="<?=$this->alias('search')?>">
+    <form class="search search-internal" action="<?=$this->alias('search')?>" data-fp-search-suggestions="<?=PATH?>search-suggestions.php">
         <button>
             <svg class="inline-svg-icon svg-search">
                 <use xlink:href="<?=PATH . TEMPLATE?>/assets/img/icons.svg#search"></use>
             </svg>
         </button>
-        <input type="search" name="search" placeholder="Пошук по сайту">
+        <input type="search" name="search" placeholder="Пошук по сайту" autocomplete="off" spellcheck="false">
     </form>
 
 <?php endif;?>

@@ -283,7 +283,8 @@ if (!function_exists('fp_render_product_communication_buttons')) {
 
                             <label class="fp-product-communication-form__field">
                                 <span><?= fp_product_comm_html($phoneLabel) ?></span>
-                                <input type="text" name="phone" autocomplete="tel">
+                                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+380 67 123 45 67" data-fp-phone-international>
+                                <small class="fp-product-communication-form__phone-warning" data-fp-phone-warning hidden></small>
                             </label>
 
                             <label class="fp-product-communication-form__field">

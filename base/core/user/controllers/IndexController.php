@@ -75,6 +75,8 @@ class IndexController extends BaseUser
 
             $goods[$type] = $this->model->getGoods([
                 'where' => [$type => 1, 'visible'=> 1],
+                'order' => ['menu_position', 'id'],
+                'order_direction' => ['ASC', 'ASC'],
                 'limit' => 6,
             ]);
         }

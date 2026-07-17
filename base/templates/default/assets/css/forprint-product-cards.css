@@ -80,13 +80,8 @@
 
 .fp-product-card__title {
     min-width: 0 !important;
-    min-height: 48px !important;
+    min-height: 24px !important;
     max-height: 48px !important;
-    overflow: hidden !important;
-}
-
-.fp-product-card__title span,
-.fp-product-card__title a {
     display: -webkit-box !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -97,16 +92,26 @@
     font-weight: 800 !important;
     line-height: 1.2 !important;
     text-decoration: none !important;
+    text-overflow: ellipsis !important;
     -webkit-line-clamp: 2 !important;
     line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
 }
 
+.fp-product-card__title span,
+.fp-product-card__title a {
+    color: inherit !important;
+    font: inherit !important;
+    text-decoration: none !important;
+}
+
 .fp-product-card__excerpt {
     min-width: 0 !important;
-    min-height: 0 !important;
+    flex: 0 0 66px !important;
+    height: 66px !important;
+    min-height: 66px !important;
     max-height: 66px !important;
-    margin-top: 16px !important;
+    margin-top: 8px !important;
     overflow: hidden !important;
     display: -webkit-box !important;
     color: var(--fp-card-text) !important;
@@ -116,6 +121,7 @@
     -webkit-line-clamp: 3 !important;
     line-clamp: 3 !important;
     -webkit-box-orient: vertical !important;
+    text-overflow: ellipsis !important;
 }
 
 /*
@@ -132,7 +138,7 @@
     flex: 0 0 auto !important;
     min-height: 34px !important;
     max-height: 34px !important;
-    margin-top: auto !important;
+    margin-top: 10px !important;
     padding-top: 8px !important;
     padding-bottom: 8px !important;
     overflow: hidden !important;
@@ -155,7 +161,8 @@
     text-decoration: line-through !important;
 }
 
-.fp-product-card__new-price {
+.fp-product-card__new-price,
+.fp-product-card__current-price {
     color: var(--fp-card-price) !important;
     font-size: 17px !important;
     font-weight: 900 !important;
@@ -372,8 +379,10 @@ main.main > section.offers .fp-home-grid .fp-product-card,
 }
 
 .fp-related-section__card .fp-product-card__excerpt {
+    height: 66px !important;
+    min-height: 66px !important;
     max-height: 66px !important;
-    margin-top: 16px !important;
+    margin-top: 8px !important;
     line-height: 22px !important;
     -webkit-line-clamp: 3 !important;
     line-clamp: 3 !important;
@@ -651,3 +660,162 @@ main.main > section.offers .fp-home-grid .fp-product-card,
     }
 }
 /* FP v0.6.46 product detail three-zone layout end */
+
+/* FP product grid/related compact rhythm v0.6.24
+ *
+ * Runtime inspection confirmed that home, catalog and search cards always
+ * expose the stable class .fp-grid-card. Context modifier classes are useful
+ * metadata but are not a safe styling dependency in this legacy render flow.
+ *
+ * Both card families therefore receive the compact flow through their stable
+ * permanent classes:
+ *   - .fp-grid-card
+ *   - .fp-related-card
+ */
+
+.fp-grid-card,
+.fp-related-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    align-self: start !important;
+}
+
+/* Legacy grid rows must not stretch compact cards back to 520px. */
+.fp-home-grid,
+.catalog-section-items__wrapper {
+    align-items: start !important;
+    align-content: start !important;
+    grid-auto-rows: auto !important;
+}
+
+.fp-related-section__wrapper {
+    align-items: flex-start !important;
+}
+
+.fp-grid-card .fp-product-card__body,
+.fp-related-card .fp-product-card__body {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 10px 16px !important;
+}
+
+.fp-related-card .fp-product-card__body {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+}
+
+/*
+ * The disabled legacy features placeholder existed as an empty flex item in
+ * grid cards and could still reserve vertical space. Remove it completely.
+ */
+.fp-grid-card .fp-product-card__features,
+.fp-grid-card .fp-product-card__features_empty {
+    display: none !important;
+    flex: 0 0 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Natural one-line title; two lines are allowed without a hidden spare line. */
+.fp-grid-card .fp-product-card__title,
+.fp-related-card .fp-product-card__title {
+    display: -webkit-box !important;
+    flex: 0 0 auto !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 24px !important;
+    max-height: 48px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Exactly three visual lines preserve alignment between neighboring cards. */
+.fp-grid-card .fp-product-card__excerpt,
+.fp-related-card .fp-product-card__excerpt {
+    display: -webkit-box !important;
+    flex: 0 0 66px !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 3 !important;
+    width: 100% !important;
+    height: 66px !important;
+    min-height: 66px !important;
+    max-height: 66px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Price is a normal compact row, not an absolutely positioned footer. */
+.fp-grid-card .fp-product-card__price,
+.fp-related-card .fp-product-card__price {
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    flex: 0 0 24px !important;
+    align-items: center !important;
+    align-self: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.fp-grid-card .fp-product-card__old-price,
+.fp-grid-card .fp-product-card__current-price,
+.fp-related-card .fp-product-card__old-price,
+.fp-related-card .fp-product-card__new-price {
+    white-space: nowrap !important;
+}
+
+/* The button follows the body immediately; no elastic blank block remains. */
+.fp-grid-card .fp-product-card__button,
+.fp-related-card .fp-product-card__button {
+    display: flex !important;
+    flex: 0 0 50px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    margin: 0 !important;
+}
+
+/* FP one-line product-card titles v0.6.26 */
+.fp-grid-card .fp-product-card__title,
+.fp-related-card .fp-product-card__title {
+    display: block !important;
+    flex: 0 0 24px !important;
+    width: 100% !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    -webkit-line-clamp: unset !important;
+    -webkit-box-orient: initial !important;
+}

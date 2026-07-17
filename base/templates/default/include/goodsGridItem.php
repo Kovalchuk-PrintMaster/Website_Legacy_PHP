@@ -17,15 +17,26 @@ $productExcerpt = fp_product_card_clean_text($shortSource, 260);
 
 $featureLabels = fp_product_card_feature_labels($data, 2);
 
-$basePrice = (float)($data['price'] ?? 0);
-$discount = (float)($data['discount'] ?? 0);
-$hasDiscount = $basePrice > 0 && $discount > 0;
-$finalPrice = $hasDiscount ? $basePrice - ($basePrice * $discount / 100) : $basePrice;
+$priceState = fp_product_card_price_state($data);
+$basePrice = $priceState['base_price'];
+$finalPrice = $priceState['current_price'];
+$discount = $priceState['discount'];
+$hasDiscount = $priceState['has_discount'];
 
 $iconClass = trim((string)($parameters['icon'] ?? ''));
+
+$allowedCardContexts = ['home', 'catalog', 'search'];
+$cardContext = trim((string)($parameters['context'] ?? ''));
+$cardContextClass = in_array(
+    $cardContext,
+    $allowedCardContexts,
+    true
+)
+    ? ' fp-product-card--' . $cardContext
+    : '';
 ?>
 <a href="<?=$productUrl?>"
-   class="fp-product-card fp-grid-card"
+   class="fp-product-card fp-grid-card<?=$cardContextClass?>"
    data-productcontainer
    data-product-id="<?=$productId?>">
     <div class="fp-product-card__image">
@@ -88,6 +99,6 @@ $fpShowGridFeatures = false;
     <button class="fp-product-card__button"
             type="button"
             data-addtocart="<?=$productId?>">
-        Забрати
+        Детальніше
     </button>
 </a>
