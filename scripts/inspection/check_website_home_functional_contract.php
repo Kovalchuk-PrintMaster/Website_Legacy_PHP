@@ -78,6 +78,33 @@ function fp_home_source_has_class(
         $source
     ) === 1;
 }
+$componentPaths = glob(
+    $root
+    . '/base/templates/default/surfaces/home/*.php'
+) ?: [];
+
+sort($componentPaths);
+
+foreach ($componentPaths as $componentPath) {
+    $componentSource =
+        file_get_contents($componentPath);
+
+    if (!is_string($componentSource)) {
+        fwrite(
+            STDERR,
+            "[FAIL] Could not read home component: {$componentPath}\n"
+        );
+        exit(1);
+    }
+
+    /*
+     * Existing contract assertions continue to inspect one composed
+     * home-template source even as sections move into owned files.
+     */
+    $content['template'] .=
+        "\n"
+        . $componentSource;
+}
 $checks = [
     'sales query remains visible and ordered' =>
         str_contains(
