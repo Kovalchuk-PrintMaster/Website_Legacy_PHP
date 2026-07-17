@@ -29,73 +29,7 @@
 
    <?php endif;?>
 
-<?php if (!empty($goods) && !empty($arrHits)) : ?>
-
-       <section class="offers">
-        <div class="offers__tabs">
-            <ul class="offers__tabs_header">
-
-<!--                Slide bar "Hits Goods"-->
-                <?php $activeItem = -1?>
-
-                <?php foreach ($arrHits as $key => $item) : ?>
-
-                    <?php if (!empty($goods[$key])) : ?>
-
-                <li class="<?=  ++$activeItem ? 'active' : '' ?>">
-                    <div class="icon-offer"><?=$item['icon']?></div><?=$item['name']?>
-                </li>
-
-
-                    <?php endif; ?>
-
-                <?php endforeach; ?>
-
-            </ul>
-
-            <!--                Slide bar "Hits Goods"-->
-
-      <!--            Goods for Hits Sale-->
-            <?php $activeItem = -1?>
-
-            <?php foreach ($arrHits as $key => $value) : ?>
-
-            <?php if (!empty($goods[$key])) : ?>
-
-
-                    <div class="offers__tabs_content <?= ! ++$activeItem ? 'active' : '' ?>">
-                        <div class="offers__tabs_subheader subheader">
-                            <?=$value['name']?>
-                        </div>
-                        <div class="fp-home-grid-container">
-<div class="fp-home-grid">
-<?php foreach ($goods[$key] as $item) {
-
-                                    $this->showGoods(
-                                        $item,
-                                        [
-                                            'icon' => $value['icon'],
-                                            'context' => 'home',
-                                        ],
-                                        'goodsGridItem'
-                                    );
-
-                                }?>
-                            </div>
-                        </div>
-                        <a href="<?=$this->alias('catalog')?>" class="offers__readmore readmore">Переглянути каталог товарів</a>
-                    </div>
-
-            <?php endif; ?>
-
-            <?php endforeach; ?>
-<!--            Goods for Hits Sale-->
-
-        </div>
-    </section>
-
-   <?php endif; ?>
-
+<?php include __DIR__ . '/surfaces/home/productGroups.php'; echo "\n"; ?>
 <!--        About Company directory-->
     <div class="horizontal">
         <div class="horizontal__wrapper">

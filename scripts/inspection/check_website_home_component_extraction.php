@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * ForPrint home component-extraction smoke.
+ * ForPrint cumulative home component-extraction smoke.
  * READ ONLY.
  */
 
@@ -15,6 +15,9 @@ $paths = [
     'hero' =>
         $root
         . '/base/templates/default/surfaces/home/heroSlider.php',
+    'product_groups' =>
+        $root
+        . '/base/templates/default/surfaces/home/productGroups.php',
     'functional_smoke' =>
         $root
         . '/scripts/inspection/check_website_home_functional_contract.php',
@@ -41,10 +44,20 @@ $checks = [
             $content['index'],
             "/surfaces/home/heroSlider.php"
         ),
+    'home index includes product-groups component' =>
+        str_contains(
+            $content['index'],
+            "/surfaces/home/productGroups.php"
+        ),
     'home index no longer owns slider section' =>
         !str_contains(
             $content['index'],
             '<section class="slider">'
+        ),
+    'home index no longer owns offers section' =>
+        !str_contains(
+            $content['index'],
+            '<section class="offers">'
         ),
     'hero component retains sales condition' =>
         str_contains(
@@ -72,7 +85,46 @@ $checks = [
             $content['hero'],
             'swiper-button-next'
         ),
-    'functional smoke composes home components' =>
+    'product-groups component retains outer condition' =>
+        str_contains(
+            $content['product_groups'],
+            '$goods'
+        )
+        && str_contains(
+            $content['product_groups'],
+            '$arrHits'
+        )
+        && str_contains(
+            $content['product_groups'],
+            '<section class="offers">'
+        ),
+    'product-groups component retains tabs and cards' =>
+        str_contains(
+            $content['product_groups'],
+            'offers__tabs_header'
+        )
+        && str_contains(
+            $content['product_groups'],
+            'offers__tabs_content'
+        )
+        && str_contains(
+            $content['product_groups'],
+            'fp-home-grid'
+        )
+        && str_contains(
+            $content['product_groups'],
+            'goodsGridItem'
+        ),
+    'product-groups component retains catalogue navigation' =>
+        str_contains(
+            $content['product_groups'],
+            'Переглянути каталог товарів'
+        )
+        && str_contains(
+            $content['product_groups'],
+            "\$this->alias('catalog')"
+        ),
+    'functional smoke composes extracted components' =>
         str_contains(
             $content['functional_smoke'],
             "surfaces/home/*.php"
@@ -83,7 +135,7 @@ $checks = [
         ),
 ];
 
-echo "== ForPrint home component-extraction smoke ==\n";
+echo "== ForPrint cumulative home component-extraction smoke ==\n";
 
 foreach ($checks as $label => $passed) {
     printf(
@@ -139,6 +191,22 @@ $runtimeChecks = [
             $html,
             'data-fp-frontend-profile="legacy"'
         ),
+    'offers section remains rendered' =>
+        is_string($html)
+        && str_contains(
+            $html,
+            '<section class="offers">'
+        ),
+    'offer tabs remain rendered' =>
+        is_string($html)
+        && str_contains(
+            $html,
+            'offers__tabs_header'
+        )
+        && str_contains(
+            $html,
+            'offers__tabs_content'
+        ),
     'shared product cards remain rendered' =>
         is_string($html)
         && str_contains(
@@ -165,4 +233,4 @@ foreach ($runtimeChecks as $label => $passed) {
     }
 }
 
-echo "All home component-extraction checks passed.\n";
+echo "All cumulative home component-extraction checks passed.\n";
