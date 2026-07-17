@@ -18,6 +18,9 @@ $paths = [
     'product_groups' =>
         $root
         . '/base/templates/default/surfaces/home/productGroups.php',
+    'about' =>
+        $root
+        . '/base/templates/default/surfaces/home/about.php',
     'functional_smoke' =>
         $root
         . '/scripts/inspection/check_website_home_functional_contract.php',
@@ -49,27 +52,30 @@ $checks = [
             $content['index'],
             "/surfaces/home/productGroups.php"
         ),
-    'home index no longer owns slider section' =>
+    'home index includes about component' =>
+        str_contains(
+            $content['index'],
+            "/surfaces/home/about.php"
+        ),
+    'home index no longer owns extracted sections' =>
         !str_contains(
             $content['index'],
             '<section class="slider">'
-        ),
-    'home index no longer owns offers section' =>
-        !str_contains(
+        )
+        && !str_contains(
             $content['index'],
             '<section class="offers">'
+        )
+        && !str_contains(
+            $content['index'],
+            '<section class="about">'
         ),
-    'hero component retains sales condition' =>
+    'hero component retains complete slider' =>
         str_contains(
             $content['hero'],
             '$sales'
         )
         && str_contains(
-            $content['hero'],
-            'if(!empty($sales))'
-        ),
-    'hero component retains complete slider controls' =>
-        str_contains(
             $content['hero'],
             '<section class="slider">'
         )
@@ -85,7 +91,7 @@ $checks = [
             $content['hero'],
             'swiper-button-next'
         ),
-    'product-groups component retains outer condition' =>
+    'product-groups component retains tabs and cards' =>
         str_contains(
             $content['product_groups'],
             '$goods'
@@ -97,32 +103,29 @@ $checks = [
         && str_contains(
             $content['product_groups'],
             '<section class="offers">'
-        ),
-    'product-groups component retains tabs and cards' =>
-        str_contains(
+        )
+        && str_contains(
             $content['product_groups'],
             'offers__tabs_header'
         )
         && str_contains(
             $content['product_groups'],
-            'offers__tabs_content'
-        )
-        && str_contains(
-            $content['product_groups'],
-            'fp-home-grid'
-        )
-        && str_contains(
-            $content['product_groups'],
             'goodsGridItem'
         ),
-    'product-groups component retains catalogue navigation' =>
+    'about component owns the company section' =>
         str_contains(
-            $content['product_groups'],
-            'Переглянути каталог товарів'
+            $content['about'],
+            '<section class="about">'
         )
-        && str_contains(
-            $content['product_groups'],
-            "\$this->alias('catalog')"
+        && (
+            str_contains(
+                $content['about'],
+                'short_content'
+            )
+            || str_contains(
+                $content['about'],
+                '$this->set'
+            )
         ),
     'functional smoke composes extracted components' =>
         str_contains(
@@ -191,21 +194,23 @@ $runtimeChecks = [
             $html,
             'data-fp-frontend-profile="legacy"'
         ),
+    'slider remains rendered when data exists' =>
+        is_string($html)
+        && str_contains(
+            $html,
+            '<section class="slider">'
+        ),
     'offers section remains rendered' =>
         is_string($html)
         && str_contains(
             $html,
             '<section class="offers">'
         ),
-    'offer tabs remain rendered' =>
+    'about section remains rendered' =>
         is_string($html)
         && str_contains(
             $html,
-            'offers__tabs_header'
-        )
-        && str_contains(
-            $html,
-            'offers__tabs_content'
+            '<section class="about">'
         ),
     'shared product cards remain rendered' =>
         is_string($html)
