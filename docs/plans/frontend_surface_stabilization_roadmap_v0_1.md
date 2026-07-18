@@ -121,3 +121,20 @@ A surface is complete when:
 - redesign of every secondary page;
 - full deletion of `style.css`;
 - visual perfection at every browser zoom level.
+
+<!-- FP_ROADMAP_DUAL_TRACK_REDIRECT_V0_1 -->
+## Roadmap redirect — 2026-07-18
+
+The controlled legacy home surface has reached a sufficient stabilization checkpoint for publication work.
+
+Deep byte-identical extraction is no longer the default next step.
+
+Active continuation:
+
+1. document current legacy ownership;
+2. establish an isolated modern preview;
+3. audit and resolve actual legacy publication blockers;
+4. design the modern homepage through owner-reviewed browser iterations;
+5. switch `/` only after explicit acceptance.
+
+Detailed plan: `docs/plans/legacy_publication_and_modern_frontend_plan_v0_1.md`.

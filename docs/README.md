@@ -76,3 +76,15 @@
 - [Home Frontend Functional Contract v0.1](reference/home_frontend_functional_contract_v0_1.md)
 - [Home Frontend Functional Contract v0.1 — machine-readable](reference/home_frontend_functional_contract_v0_1.yaml)
 - [Home Frontend Block Map v0.1](architecture/home_frontend_block_map_v0_1.md)
+
+<!-- FP_DUAL_TRACK_DOC_INDEX_V0_1 -->
+## Актуальна frontend-стратегія від 2026-07-18
+
+Канонічний набір для поточного етапу:
+
+- [`reference/legacy_frontend_current_state_v0_1.md`](reference/legacy_frontend_current_state_v0_1.md) — фактичний стан legacy frontend;
+- [`reference/inspection_and_maintenance_tools_v0_1.md`](reference/inspection_and_maintenance_tools_v0_1.md) — реєстр постійних inspection і maintenance інструментів;
+- [`decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md`](decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md) — рішення про два паралельні frontend-треки;
+- [`plans/legacy_publication_and_modern_frontend_plan_v0_1.md`](plans/legacy_publication_and_modern_frontend_plan_v0_1.md) — план публікації legacy та ізольованої розробки modern frontend.
+
+`coordination/reports/` зберігає історичні докази виконання і не є заміною актуальним reference, decision та plan документам.

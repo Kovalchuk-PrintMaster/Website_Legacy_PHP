@@ -74,3 +74,17 @@ Soft phone warning показується біля поля, не окремим
 ## 6. Visual acceptance
 
 Перевіряються desktop/mobile product page, cards, modal, header/footer, focus/hover/disabled/error/success і відсутність horizontal scroll.
+
+<!-- FP_DUAL_TRACK_ASSET_ALIGNMENT_V0_1 -->
+## Dual-track alignment — 2026-07-18
+
+Legacy publication continues to use the inherited asset graph with only high-value stabilization.
+
+The modern preview must use separately addressable assets, provisionally:
+
+```text
+base/templates/default/assets/css/surfaces/home-v2.css
+base/templates/default/assets/js/surfaces/home-v2.js
+```
+
+Modern CSS must not be implemented as an uncontrolled extension of `assets/css/style.css`. Cross-track shared assets require an explicit contract.

@@ -48,3 +48,25 @@
 - `run_website_local_http_smoke.py` — route smoke;
 - `check_website_staging_runtime.py` — prerequisites;
 - `tmp.php`, `tmp.py` — temporary execution only.
+
+<!-- FP_FRONTEND_CRITICAL_REFERENCE_V0_1 -->
+## Frontend critical reference — 2026-07-18
+
+Legacy runtime:
+
+- `base/core/user/controllers/BaseUser.php` — shared user presentation helpers and frontend profile resolver;
+- `base/core/user/controllers/IndexController.php` — current home data preparation;
+- `base/core/user/controllers/SearchController.php` — full-result search ownership;
+- `base/templates/default/index.php` — current legacy home composition;
+- `base/templates/default/include/header.php` — shared header and internal search instance;
+- `base/templates/default/surfaces/home/` — seven extracted legacy home components;
+- `base/templates/default/assets/css/style.css` — inherited global visual owner;
+- `base/templates/default/assets/css/surfaces/home.css` — controlled legacy home scope;
+- `base/templates/default/assets/js/surfaces/home.js` — controlled legacy home JavaScript scope.
+
+Canonical strategy references:
+
+- `docs/reference/legacy_frontend_current_state_v0_1.md`;
+- `docs/reference/inspection_and_maintenance_tools_v0_1.md`;
+- `docs/decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md`;
+- `docs/plans/legacy_publication_and_modern_frontend_plan_v0_1.md`.

@@ -29,3 +29,11 @@
 3. malformed — block.
 
 Точна поведінка закріплюється targeted tests.
+
+<!-- FP_DUAL_TRACK_DECISION_REGISTER_V0_1 -->
+## Frontend dual-track strategy
+
+- Date: 2026-07-18
+- Status: accepted
+- Decision: prepare the inherited frontend for practical publication while developing a separate modern preview with project-owned HTML, CSS and JavaScript.
+- Record: `docs/decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md`

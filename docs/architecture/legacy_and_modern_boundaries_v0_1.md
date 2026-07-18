@@ -72,3 +72,34 @@ Frontend забезпечує UX, але server є джерелом істини
 4. виконані checks і visual review;
 5. є feature document/completion report;
 6. блок закомічений окремо.
+
+<!-- FP_DUAL_TRACK_BOUNDARY_V0_1 -->
+## Dual-track boundary — 2026-07-18
+
+### Legacy publication zone
+
+May change:
+
+- critical layout defects;
+- broken navigation and links;
+- incomplete capability visibility;
+- metadata and publication readiness;
+- narrowly scoped CSS/JavaScript fixes.
+
+Must avoid:
+
+- broad redesign;
+- unnecessary DOM migration;
+- modern-preview dependencies.
+
+### Modern preview zone
+
+Must use:
+
+- newly written semantic HTML;
+- isolated project-owned CSS and JavaScript;
+- real stable data and routes;
+- preview-only indexing policy;
+- owner-led visual acceptance.
+
+The modern zone may use legacy appearance as a temporary reference but does not inherit the legacy DOM contract.

@@ -131,3 +131,20 @@ Suggested home behavior modules:
 - replacing the image optimizer;
 - deleting legacy templates;
 - moving all media in one operation.
+
+<!-- FP_HOME_BLOCK_MAP_CURRENT_STATE_V0_1 -->
+## Current legacy composition checkpoint — `9a64a12`
+
+Extracted components:
+
+1. `heroSlider.php`
+2. `productGroups.php`
+3. `about.php`
+4. `advantages.php`
+5. conditional `feedback.php`
+6. `news.php`
+7. `search.php`
+
+`base/templates/default/index.php` still owns the catalog-navigation section, its trailing horizontal divider and the feedback include boundary.
+
+This remaining ownership is accepted legacy composition. Further mechanical extraction is paused in favor of the isolated modern preview strategy.

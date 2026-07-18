@@ -58,3 +58,20 @@
 ## High-risk areas
 
 `config.php`, `log/`, `temp/`, `vendor/`, `userfiles/`, SQL dumps і admin upload endpoints.
+
+<!-- FP_REPOSITORY_MAP_FRONTEND_ALIGNMENT_V0_1 -->
+## Frontend and tooling additions — 2026-07-18
+
+```text
+base/templates/default/surfaces/home/   legacy home presentation components
+base/templates/default/assets/css/surfaces/ controlled surface CSS
+base/templates/default/assets/js/surfaces/  controlled surface JavaScript
+scripts/inspection/                     inspections and runtime validation
+scripts/maintenance/                    data-changing maintenance commands
+docs/reference/                         current factual references
+docs/decisions/                         accepted architectural decisions
+docs/plans/                             future execution plans
+coordination/reports/                    historical implementation evidence
+```
+
+Persistent tool behavior is indexed in `docs/reference/inspection_and_maintenance_tools_v0_1.md`.

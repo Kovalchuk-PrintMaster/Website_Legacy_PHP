@@ -108,3 +108,20 @@ Surface files own:
 - preserve business behaviour;
 - prefer explicit page files over anonymous override tails;
 - retain rollback-capable commits.
+
+<!-- FP_MODERN_PREVIEW_ISOLATION_V0_1 -->
+## Modern preview isolation — 2026-07-18
+
+The next surface is an isolated modern homepage preview, provisionally `/test-home/`.
+
+Required boundary:
+
+- separate route/controller selection;
+- separate template;
+- separate CSS and JavaScript entries;
+- `noindex, nofollow`;
+- no modern asset loading on legacy routes;
+- real shared data and links;
+- visual acceptance before any switch of `/`.
+
+The current home surface boundary remains the safety net for legacy publication.
