@@ -285,28 +285,44 @@ Current root:
 section.feedback
 ```
 
-Observed visible fields:
-
-- name;
-- email;
-- phone;
-- question;
-- privacy checkbox;
-- submit button.
-
-Current support status:
+Current component:
 
 ```text
-discovered_not_assessed
+base/templates/default/surfaces/home/feedback.php
 ```
 
-The legacy markup is visible, but this contract does not claim a supported server submission path, validation contract or delivery destination.
+Governed capability:
+
+```text
+home_feedback_form
+```
+
+Current status:
+
+```text
+approved_to_hide
+```
+
+Technical assessment:
+
+```text
+legacy_presentation_only
+```
+
+The committed legacy component remains visible in the `legacy` profile, but it is not a supported communication channel. Its form uses the placeholder action `index.html`, implicit GET, five controls, zero named controls and no demonstrated JavaScript or PHP delivery handler.
+
+Profile rule:
+
+- `legacy`: keep the existing presentation visible and recoverable until configuration-driven profile gating is introduced;
+- `controlled_v1`: hide the form from the public interface;
+- `future_redesign`: no visibility decision is made by this contract.
 
 Modernization rule:
 
-- do not silently present it as functional;
-- before retaining it in `controlled_v1`, define its endpoint, validation, privacy behavior, success/error states and delivery owner;
-- otherwise hide it through an explicit capability decision.
+- do not silently present the form as functional;
+- do not delete the legacy component as a side effect of hiding;
+- retain managed Email and Telegram request flows as the supported customer alternatives;
+- restoration requires a supported endpoint, named payload, validation, privacy processing, delivery ownership and explicit success/error states.
 
 ### 6. News block
 
@@ -410,7 +426,8 @@ Not part of the supported home contract:
 - cart icon and cart entry;
 - add-to-cart controls;
 - checkout and order placement;
-- legacy order popup.
+- legacy order popup;
+- home feedback form in `controlled_v1`.
 
 These remain discoverable in the capability registry and must not be deleted as a side effect of presentation work.
 

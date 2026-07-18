@@ -134,9 +134,16 @@ blocks:
 
   - id: feedback_form
     current_root: section.feedback
+    component: base/templates/default/surfaces/home/feedback.php
     source: legacy_template
     conditional: false
-    support_status: discovered_not_assessed
+    support_status: approved_to_hide
+    assessment: legacy_presentation_only
+    capability_id: home_feedback_form
+    profile_visibility:
+      legacy: visible
+      controlled_v1: hidden
+      future_redesign: not_decided
     visible_fields:
       - name
       - email
@@ -144,13 +151,25 @@ blocks:
       - question
       - privacy_checkbox
       - submit
-    missing_contracts:
+    verified_form_contract:
+      action: index.html
+      method: implicit_get
+      controls_total: 5
+      named_controls: 0
+      required_controls: 0
+      javascript_handler: not_detected
+      supported_endpoint: not_detected
+    supported_alternatives:
+      - product_email_request
+      - product_telegram_request
+    restoration_requirements:
       - supported_endpoint
+      - named_payload_contract
       - server_validation
+      - privacy_processing
       - delivery_owner
       - success_state
       - error_state
-      - privacy_processing
 
   - id: news
     current_root: section.news
@@ -177,6 +196,7 @@ hidden_deferred:
     - cart_header_entry
     - cart_and_checkout_flow
     - legacy_order_popup
+    - home_feedback_form
 
 observational_snapshot:
   http_status: 200

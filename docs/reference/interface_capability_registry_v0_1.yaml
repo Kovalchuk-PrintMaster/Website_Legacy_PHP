@@ -90,7 +90,8 @@ capabilities:
 
   - id: home_feedback_form
     name_uk: Форма зворотного зв’язку на головній сторінці
-    status: discovered_not_assessed
+    status: approved_to_hide
+    assessment: legacy_presentation_only
     surfaces:
       - home
     known_evidence:
@@ -98,14 +99,19 @@ capabilities:
         - feedback
         - feedback__form
       source:
-        - base/templates/default/index.php
-    visible_fields:
-      - name
-      - email
-      - phone
-      - question
-      - privacy_checkbox
-      - submit
+        - base/templates/default/surfaces/home/feedback.php
+      form_contract:
+        action: index.html
+        method: implicit_get
+        controls_total: 5
+        named_controls: 0
+        required_controls: 0
+        javascript_handler: not_detected
+        supported_endpoint: not_detected
+    profile_visibility:
+      legacy: visible
+      controlled_v1: hidden
+      future_redesign: not_decided
     current_supported_alternatives:
       - product_email_request
       - product_telegram_request
@@ -116,9 +122,18 @@ capabilities:
       - delivery_owner
       - success_state
       - error_state
-    possible_outcomes:
-      - controlled_implementation
-      - explicit_hiding
+    decision:
+      - keep_legacy_source_recoverable
+      - hide_from_controlled_v1
+      - do_not_claim_supported_delivery
+    restoration_requirements:
+      - supported_endpoint
+      - named_payload_contract
+      - server_validation
+      - privacy_processing
+      - delivery_owner
+      - success_state
+      - error_state
 
 governance:
   hidden_is_deleted: false

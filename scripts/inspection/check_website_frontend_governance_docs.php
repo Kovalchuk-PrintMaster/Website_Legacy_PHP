@@ -184,4 +184,86 @@ foreach ($checks as $label => $passed) {
     }
 }
 
+/* FP_HOME_FEEDBACK_GOVERNANCE_CHECKS */
+$fpFeedbackCapabilityYaml = (string)file_get_contents(
+    $root
+    . '/docs/reference/interface_capability_registry_v0_1.yaml'
+);
+
+$fpFeedbackDeferredMd = (string)file_get_contents(
+    $root
+    . '/docs/reference/disabled_and_deferred_interface_capabilities_v0_1.md'
+);
+
+$fpFeedbackContractMd = (string)file_get_contents(
+    $root
+    . '/docs/reference/home_frontend_functional_contract_v0_1.md'
+);
+
+$fpFeedbackContractYaml = (string)file_get_contents(
+    $root
+    . '/docs/reference/home_frontend_functional_contract_v0_1.yaml'
+);
+
+$fpFeedbackGovernanceChecks = [
+    'feedback capability is approved to hide' =>
+        str_contains(
+            $fpFeedbackCapabilityYaml,
+            'id: home_feedback_form'
+        )
+        && str_contains(
+            $fpFeedbackCapabilityYaml,
+            'status: approved_to_hide'
+        ),
+    'feedback assessment is recorded' =>
+        str_contains(
+            $fpFeedbackCapabilityYaml,
+            'assessment: legacy_presentation_only'
+        ),
+    'feedback source points to owned component' =>
+        str_contains(
+            $fpFeedbackCapabilityYaml,
+            'base/templates/default/surfaces/home/feedback.php'
+        ),
+    'feedback profile visibility is governed' =>
+        str_contains(
+            $fpFeedbackCapabilityYaml,
+            'legacy: visible'
+        )
+        && str_contains(
+            $fpFeedbackCapabilityYaml,
+            'controlled_v1: hidden'
+        ),
+    'deferred document records legacy presentation only' =>
+        str_contains(
+            $fpFeedbackDeferredMd,
+            '**Assessment:** `legacy_presentation_only`'
+        )
+        && str_contains(
+            $fpFeedbackDeferredMd,
+            '**Status:** `approved_to_hide`'
+        ),
+    'home contracts record approved hiding' =>
+        str_contains(
+            $fpFeedbackContractMd,
+            'approved_to_hide'
+        )
+        && str_contains(
+            $fpFeedbackContractYaml,
+            'support_status: approved_to_hide'
+        ),
+];
+
+foreach ($fpFeedbackGovernanceChecks as $label => $passed) {
+    printf(
+        "[%s] %s\n",
+        $passed ? 'OK' : 'FAIL',
+        $label
+    );
+
+    if (!$passed) {
+        exit(2);
+    }
+}
+
 echo "All frontend governance documentation checks passed.\n";

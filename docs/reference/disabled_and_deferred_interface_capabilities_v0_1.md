@@ -67,14 +67,18 @@ Hidden functionality is not considered deleted. Its code, database structures an
 ### `home_feedback_form`
 
 - **Human name:** Home-page feedback form
-- **Status:** `discovered_not_assessed`
+- **Status:** `approved_to_hide`
+- **Assessment:** `legacy_presentation_only`
 - **Surface:** home
-- **Visible fields:** name, email, phone, question, privacy checkbox and submit button
-- **Known evidence:** `section.feedback` in `base/templates/default/index.php`
-- **Current decision:** do not claim this form as a supported communication channel until its endpoint and delivery behavior are verified
+- **Current source:** `base/templates/default/surfaces/home/feedback.php`
+- **Verified legacy contract:** placeholder `action="index.html"`, implicit GET, five controls, zero named controls and no required controls
+- **Handler evidence:** no non-minified JavaScript handler or supported PHP endpoint was detected
+- **Legacy profile:** remains visible and recoverable until profile gating is implemented
+- **Controlled v1 decision:** hide from the public interface
+- **Reason:** the visible form has no demonstrated payload, validation, privacy-processing, success/error or delivery-owner contract
 - **Current supported alternatives:** managed Email and Telegram request flows on product pages
-- **Required next action:** verify endpoint, validation, privacy handling, success/error states and message delivery owner
-- **Possible outcomes:** implement as a controlled form or hide through an explicit capability decision
+- **Restoration condition:** implement and approve a supported endpoint, named payload contract, server validation, privacy processing, delivery ownership and success/error states
+- **Deletion rule:** hiding does not authorize deletion of the component or its historical records
 
 ## Rules for future entries
 

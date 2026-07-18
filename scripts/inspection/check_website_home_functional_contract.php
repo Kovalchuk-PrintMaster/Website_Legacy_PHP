@@ -225,14 +225,18 @@ $checks = [
             $content['card'],
             'fp-product-card'
         ),
-    'human contract records feedback uncertainty' =>
+    'human contract records approved feedback hiding' =>
         str_contains(
             $content['contract_md'],
-            'discovered_not_assessed'
+            'approved_to_hide'
         )
         && str_contains(
             $content['contract_md'],
-            'does not claim a supported server submission path'
+            'legacy_presentation_only'
+        )
+        && str_contains(
+            $content['contract_md'],
+            '`controlled_v1`: hide the form from the public interface'
         ),
     'machine contract records all seven blocks' =>
         substr_count(
@@ -243,14 +247,22 @@ $checks = [
             $content['contract_yaml'],
             'id: home_search'
         ),
-    'capability registry records feedback form' =>
+    'capability registry approves feedback hiding' =>
         str_contains(
             $content['capability_yaml'],
             'id: home_feedback_form'
         )
         && str_contains(
             $content['capability_yaml'],
-            'status: discovered_not_assessed'
+            'status: approved_to_hide'
+        )
+        && str_contains(
+            $content['capability_yaml'],
+            'assessment: legacy_presentation_only'
+        )
+        && str_contains(
+            $content['capability_yaml'],
+            'controlled_v1: hidden'
         ),
     'block map defines controlled components' =>
         str_contains(
@@ -340,7 +352,7 @@ $runtimeChecks = [
             $html,
             'data-fp-search-suggestions'
         ),
-    'feedback form remains discoverable' =>
+    'legacy feedback form remains discoverable' =>
         str_contains($html, 'feedback__form'),
 ];
 
