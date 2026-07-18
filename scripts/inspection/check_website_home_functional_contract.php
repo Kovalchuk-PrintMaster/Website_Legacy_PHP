@@ -19,6 +19,9 @@ $paths = [
     'template' =>
         $root
         . '/base/templates/default/index.php',
+    'news' =>
+        $root
+        . '/base/templates/default/surfaces/home/news.php',
     'card' =>
         $root
         . '/base/templates/default/include/goodsGridItem.php',
@@ -206,8 +209,12 @@ $checks = [
             'section',
             'feedback'
         )
-        && fp_home_source_has_class(
+        && str_contains(
             $content['template'],
+            "/surfaces/home/news.php"
+        )
+        && fp_home_source_has_class(
+            $content['news'],
             'section',
             'news'
         )

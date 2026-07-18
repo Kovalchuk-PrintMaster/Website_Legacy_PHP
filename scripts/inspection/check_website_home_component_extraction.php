@@ -27,6 +27,9 @@ $paths = [
     'feedback' =>
         $root
         . '/base/templates/default/surfaces/home/feedback.php',
+    'news' =>
+        $root
+        . '/base/templates/default/surfaces/home/news.php',
     'functional_smoke' =>
         $root
         . '/scripts/inspection/check_website_home_functional_contract.php',
@@ -73,6 +76,12 @@ $checks = [
             $content['index'],
             "\$this->frontendProfile !== 'controlled_v1'"
         ),
+    /* FP_HOME_NEWS_COMPONENT_COMPOSITION */
+    'news component is composed from home index' =>
+        str_contains(
+            $content['index'],
+            "/surfaces/home/news.php"
+        ),
     'home index no longer owns extracted sections' =>
         !str_contains(
             $content['index'],
@@ -93,6 +102,12 @@ $checks = [
         && !str_contains(
             $content['index'],
             '<section class="feedback'
+        ),
+    /* FP_HOME_NEWS_COMPONENT_OWNERSHIP */
+    'home index no longer owns news section markup' =>
+        !str_contains(
+            $content['index'],
+            '<section class="news"'
         ),
     'hero component retains complete slider' =>
         str_contains(
@@ -152,6 +167,32 @@ $checks = [
             $content['advantages'],
             'Наші переваги'
         ),
+    /* FP_HOME_NEWS_COMPONENT_CONTRACT */
+    'news component retains conditional rendering and navigation' =>
+        str_contains(
+            $content['news'],
+            'if (!empty($news))'
+        )
+        && str_contains(
+            $content['news'],
+            '<section class="news">'
+        )
+        && str_contains(
+            $content['news'],
+            'foreach ($news as $item)'
+        )
+        && str_contains(
+            $content['news'],
+            "'newsItem'"
+        )
+        && str_contains(
+            $content['news'],
+            "\$this->alias('news')"
+        )
+        && str_contains(
+            $content['news'],
+            'Переглянути все'
+        ),
     'feedback component retains legacy presentation contract' =>
         str_contains(
             $content['feedback'],
@@ -182,6 +223,16 @@ $checks = [
             '/<(input|textarea|select)\b[^>]*\bname\s*=/i',
             $content['feedback']
         ) !== 1,
+    /* FP_HOME_NEWS_FUNCTIONAL_SMOKE_COMPOSITION */
+    'functional smoke composes news component' =>
+        str_contains(
+            $content['functional_smoke'],
+            "\$content['news']"
+        )
+        && str_contains(
+            $content['functional_smoke'],
+            "/surfaces/home/news.php"
+        ),
     'functional smoke composes extracted components' =>
         str_contains(
             $content['functional_smoke'],
@@ -288,6 +339,20 @@ $runtimeChecks = [
         && str_contains(
             $html,
             'data-fp-search-suggestions'
+        ),
+    /* FP_HOME_NEWS_RUNTIME */
+    'runtime news remains rendered' =>
+        str_contains(
+            $html,
+            '<section class="news">'
+        )
+        && str_contains(
+            $html,
+            '>Новини<'
+        )
+        && str_contains(
+            $html,
+            '/news/'
         ),
 ];
 
