@@ -121,7 +121,7 @@
     margin: 0 0 24px;
     font-size: 16px;
     line-height: 1.22;
-    color: #0062b0;
+    color: #720613;
 }
 
 .fp-product-detail__price-note a {
@@ -157,6 +157,26 @@
     gap: 4px;
     min-width: 0;
 }
+
+/* FP product detail feature wrapping fix start */
+/*
+ * Keep the shared two-column characteristics layout, but allow long catalog
+ * group names and values to wrap inside their own grid cells.
+ *
+ * The extra context classes make this rule stronger than inherited
+ * .card-main-info feature rules without changing other catalog/card surfaces.
+ */
+.fp-product-detail-page .fp-product-detail__info .fp-product-detail-features__group,
+.fp-product-detail-page .fp-product-detail__info .fp-product-detail-features__value,
+.fp-product-details-tabs .fp-product-detail-features__row .fp-product-detail-features__group,
+.fp-product-details-tabs .fp-product-detail-features__row .fp-product-detail-features__value {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+/* FP product detail feature wrapping fix end */
 
 .fp-product-detail-features__value {
     color: #111;

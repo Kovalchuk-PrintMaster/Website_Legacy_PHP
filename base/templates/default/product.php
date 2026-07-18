@@ -214,9 +214,9 @@ if(!empty($data)):?>
                 </div>
 
                 <?php if (!empty($data['price_description'])): ?>
-                    <div class="fp-product-detail__price-note link-description">
+                    <div class="fp-product-detail__price-note">
                         <div class="price-description-link-style">
-                            <a href="https://t.me/druk_smile"><?=htmlspecialchars((string)$data['price_description'], ENT_QUOTES, 'UTF-8')?></a>
+                            <?=htmlspecialchars((string)$data['price_description'], ENT_QUOTES, 'UTF-8')?>
                         </div>
                     </div>
                 <?php endif; ?>
