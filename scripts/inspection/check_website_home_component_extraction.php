@@ -33,6 +33,19 @@ $paths = [
     'functional_smoke' =>
         $root
         . '/scripts/inspection/check_website_home_functional_contract.php',
+    /* FP_HOME_SEARCH_COMPONENT_PATHS */
+    'search' =>
+        $root
+        . '/base/templates/default/surfaces/home/search.php',
+    'header' =>
+        $root
+        . '/base/templates/default/include/header.php',
+    'search_js' =>
+        $root
+        . '/base/templates/default/assets/js/forprint-search-submit.js',
+    'search_controller' =>
+        $root
+        . '/base/core/user/controllers/SearchController.php',
 ];
 
 $content = [];
@@ -242,6 +255,128 @@ $checks = [
             $content['functional_smoke'],
             "\$content['template'] .="
         ),
+    /* FP_HOME_SEARCH_COMPONENT_COMPOSITION */
+    'home search component is composed from home index' =>
+        str_contains(
+            $content['index'],
+            "/surfaces/home/search.php"
+        ),
+
+    /* FP_HOME_SEARCH_COMPONENT_OWNERSHIP */
+    'home index no longer owns home search form markup' =>
+        !str_contains(
+            $content['index'],
+            '<form class="search "'
+        ),
+
+    /* FP_HOME_SEARCH_COMPONENT_CONTRACT */
+    'home search component retains shared search contract' =>
+        str_contains(
+            $content['search'],
+            '<form class="search "'
+        )
+        && str_contains(
+            $content['search'],
+            "\$this->alias('search')"
+        )
+        && str_contains(
+            $content['search'],
+            'data-fp-search-suggestions'
+        )
+        && str_contains(
+            $content['search'],
+            'name="search"'
+        )
+        && str_contains(
+            $content['search'],
+            'type="search"'
+        )
+        && str_contains(
+            $content['search'],
+            '<button>'
+        ),
+
+    /* FP_HEADER_SEARCH_SHARED_INSTANCE */
+    'header search remains a separate shared instance' =>
+        str_contains(
+            $content['header'],
+            'class="search search-internal"'
+        )
+        && str_contains(
+            $content['header'],
+            "\$this->alias('search')"
+        )
+        && str_contains(
+            $content['header'],
+            'data-fp-search-suggestions'
+        )
+        && str_contains(
+            $content['header'],
+            'name="search"'
+        ),
+
+    /* FP_SHARED_SEARCH_RUNTIME_CONTRACT */
+    'shared search JavaScript remains form-scoped' =>
+        str_contains(
+            $content['search_js'],
+            'form.search[data-fp-search-suggestions]'
+        )
+        && str_contains(
+            $content['search_js'],
+            'querySelectorAll(formSelector)'
+        )
+        && str_contains(
+            $content['search_js'],
+            'form.querySelector'
+        )
+        && (
+            str_contains(
+                $content['search_js'],
+                'fpSearchSuggestions'
+            )
+            || str_contains(
+                $content['search_js'],
+                'data-fp-search-suggestions'
+            )
+        )
+        && str_contains(
+            $content['search_js'],
+            'form.requestSubmit()'
+        )
+        && str_contains(
+            $content['search_js'],
+            'window.location.assign(url)'
+        ),
+
+    /* FP_SEARCH_CONTROLLER_OWNER */
+    'SearchController remains full-results owner' =>
+        str_contains(
+            $content['search_controller'],
+            'class SearchController'
+        )
+        && str_contains(
+            $content['search_controller'],
+            "\$_GET['search']"
+        )
+        && str_contains(
+            $content['search_controller'],
+            'searchGoodsIds'
+        )
+        && str_contains(
+            $content['search_controller'],
+            "get('goods'"
+        ),
+
+    /* FP_HOME_SEARCH_FUNCTIONAL_SMOKE_COMPOSITION */
+    'functional smoke composes home search component' =>
+        str_contains(
+            $content['functional_smoke'],
+            "\$content['search']"
+        )
+        && str_contains(
+            $content['functional_smoke'],
+            "/surfaces/home/search.php"
+        ),
 ];
 
 echo "== ForPrint cumulative home component-extraction smoke ==\n";
@@ -353,6 +488,21 @@ $runtimeChecks = [
         && str_contains(
             $html,
             '/news/'
+        ),
+    /* FP_HOME_SEARCH_RUNTIME */
+    'home search component remains rendered' =>
+        is_string($html)
+        && str_contains(
+            $html,
+            '<form class="search "'
+        )
+        && str_contains(
+            $html,
+            'data-fp-search-suggestions'
+        )
+        && str_contains(
+            $html,
+            'name="search"'
         ),
 ];
 

@@ -39,6 +39,10 @@ $paths = [
         . '/docs/reference/interface_capability_registry_v0_1.yaml',
     'docs_readme' =>
         $root . '/docs/README.md',
+    /* FP_HOME_SEARCH_COMPONENT_PATH */
+    'search' =>
+        $root
+        . '/base/templates/default/surfaces/home/search.php',
 ];
 
 $content = [];
@@ -218,8 +222,12 @@ $checks = [
             'section',
             'news'
         )
-        && fp_home_source_has_class(
+        && str_contains(
             $content['template'],
+            "/surfaces/home/search.php"
+        )
+        && fp_home_source_has_class(
+            $content['search'],
             'form',
             'search'
         ),
