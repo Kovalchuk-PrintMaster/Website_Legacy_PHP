@@ -24,6 +24,9 @@ $paths = [
     'advantages' =>
         $root
         . '/base/templates/default/surfaces/home/advantages.php',
+    'feedback' =>
+        $root
+        . '/base/templates/default/surfaces/home/feedback.php',
     'functional_smoke' =>
         $root
         . '/scripts/inspection/check_website_home_functional_contract.php',
@@ -61,6 +64,10 @@ $checks = [
         && str_contains(
             $content['index'],
             "/surfaces/home/advantages.php"
+        )
+        && str_contains(
+            $content['index'],
+            "/surfaces/home/feedback.php"
         ),
     'home index no longer owns extracted sections' =>
         !str_contains(
@@ -78,6 +85,10 @@ $checks = [
         && !str_contains(
             $content['index'],
             '<section class="advantages">'
+        )
+        && !str_contains(
+            $content['index'],
+            '<section class="feedback'
         ),
     'hero component retains complete slider' =>
         str_contains(
@@ -124,7 +135,7 @@ $checks = [
                 '$this->set'
             )
         ),
-    'advantages component retains its condition and records' =>
+    'advantages component retains condition and records' =>
         str_contains(
             $content['advantages'],
             '$advantages'
@@ -137,6 +148,36 @@ $checks = [
             $content['advantages'],
             'Наші переваги'
         ),
+    'feedback component retains legacy presentation contract' =>
+        str_contains(
+            $content['feedback'],
+            '<section class="feedback'
+        )
+        && str_contains(
+            $content['feedback'],
+            '<form action="index.html" class="feedback__form">'
+        )
+        && str_contains(
+            $content['feedback'],
+            'feedback__input'
+        )
+        && str_contains(
+            $content['feedback'],
+            'feedback__textarea'
+        )
+        && str_contains(
+            $content['feedback'],
+            'feedback__privacy'
+        )
+        && str_contains(
+            $content['feedback'],
+            'feedback__submit'
+        ),
+    'feedback component does not claim a native payload contract' =>
+        preg_match(
+            '/<(input|textarea|select)\b[^>]*\bname\s*=/i',
+            $content['feedback']
+        ) !== 1,
     'functional smoke composes extracted components' =>
         str_contains(
             $content['functional_smoke'],
@@ -221,6 +262,16 @@ $runtimeChecks = [
         && str_contains(
             $html,
             '<section class="about">'
+        ),
+    'legacy feedback remains rendered' =>
+        is_string($html)
+        && str_contains(
+            $html,
+            '<section class="feedback '
+        )
+        && str_contains(
+            $html,
+            '<form action="index.html" class="feedback__form">'
         ),
     'shared product cards remain rendered' =>
         is_string($html)
