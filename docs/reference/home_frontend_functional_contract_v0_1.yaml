@@ -136,10 +136,16 @@ blocks:
     current_root: section.feedback
     component: base/templates/default/surfaces/home/feedback.php
     source: legacy_template
-    conditional: false
+    conditional: true
     support_status: approved_to_hide
     assessment: legacy_presentation_only
     capability_id: home_feedback_form
+    profile_resolver:
+      state: implemented
+      configuration_key: FP_WEB_FRONTEND_PROFILE
+      owner: base/core/user/controllers/BaseUser.php
+      fallback: legacy
+      gate_boundary: base/templates/default/index.php
     profile_visibility:
       legacy: visible
       controlled_v1: hidden

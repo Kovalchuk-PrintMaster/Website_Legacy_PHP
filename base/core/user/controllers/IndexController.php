@@ -18,12 +18,12 @@ class IndexController extends BaseUser
         /*
          * Controlled home surface boundary.
          *
-         * Keep profile=legacy during the structural pass. The dedicated
+         * Resolve the active profile through the controlled environment key. The dedicated
          * entrypoints are intentionally neutral until each home block is
          * migrated under explicit surface ownership.
          */
         $this->frontendSurface = 'home';
-        $this->frontendProfile = 'legacy';
+        $this->frontendProfile = $this->resolveFrontendProfile();
         $this->styles[] = PATH
             . TEMPLATE
             . 'assets/css/surfaces/home.css?v=20260717-0001';

@@ -21,6 +21,14 @@ The future presentation switch uses named profiles:
 | `future_redesign` | Reserved profile for later visual redesign | reserved |
 
 Rollback must be performed through the profile configuration, not by manually undoing unrelated code.
+Profile selection is environment-backed:
+
+- configuration key: `FP_WEB_FRONTEND_PROFILE`;
+- allowed values: `legacy`, `controlled_v1`, `future_redesign`;
+- resolver owner: `base/core/user/controllers/BaseUser.php`;
+- missing, blank or unsupported values fall back to `legacy`;
+- `.env.website.local` is loaded by the existing preview Make workflow;
+- profile rollback is performed by changing the environment value and restarting the application process.
 
 ## Canonical core palette
 

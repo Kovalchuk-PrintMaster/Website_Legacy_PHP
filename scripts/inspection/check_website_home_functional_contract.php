@@ -236,7 +236,7 @@ $checks = [
         )
         && str_contains(
             $content['contract_md'],
-            '`controlled_v1`: hide the form from the public interface'
+            '`controlled_v1`: hide the form at the home template include boundary'
         ),
     'machine contract records all seven blocks' =>
         substr_count(

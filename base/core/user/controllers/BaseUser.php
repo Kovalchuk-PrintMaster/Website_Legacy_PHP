@@ -15,6 +15,12 @@
          * controllers may opt into a named surface and profile.
          */
         protected $frontendSurface = '';
+        protected const FRONTEND_PROFILES = [
+            'legacy',
+            'controlled_v1',
+            'future_redesign',
+        ];
+
         protected $frontendProfile = 'legacy';
 protected $model;
         protected $table;
@@ -26,6 +32,36 @@ protected $model;
         protected $breadcrumbs;
         protected $userData = [];
 
+        /**
+         * Resolve one validated presentation-only frontend profile.
+         *
+         * Missing, blank and unsupported environment values fall back
+         * to legacy so deployment cannot accidentally expose an
+         * incomplete controlled or reserved interface.
+         */
+        protected function resolveFrontendProfile(): string
+        {
+            $candidate = $_SERVER['FP_WEB_FRONTEND_PROFILE']
+                ?? getenv('FP_WEB_FRONTEND_PROFILE');
+
+            if (!is_string($candidate)) {
+                return 'legacy';
+            }
+
+            $candidate = strtolower(trim($candidate));
+
+            if (
+                !in_array(
+                    $candidate,
+                    self::FRONTEND_PROFILES,
+                    true
+                )
+            ) {
+                return 'legacy';
+            }
+
+            return $candidate;
+        }
         protected function inputData(){
 
         $this->init();

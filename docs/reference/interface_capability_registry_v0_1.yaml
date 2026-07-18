@@ -112,6 +112,12 @@ capabilities:
       legacy: visible
       controlled_v1: hidden
       future_redesign: not_decided
+    profile_gate:
+      state: implemented
+      resolver_owner: base/core/user/controllers/BaseUser.php
+      configuration_key: FP_WEB_FRONTEND_PROFILE
+      fallback: legacy
+      boundary: base/templates/default/index.php
     current_supported_alternatives:
       - product_email_request
       - product_telegram_request

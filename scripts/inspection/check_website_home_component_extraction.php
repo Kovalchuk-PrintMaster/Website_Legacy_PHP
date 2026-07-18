@@ -68,6 +68,10 @@ $checks = [
         && str_contains(
             $content['index'],
             "/surfaces/home/feedback.php"
+        )
+        && str_contains(
+            $content['index'],
+            "\$this->frontendProfile !== 'controlled_v1'"
         ),
     'home index no longer owns extracted sections' =>
         !str_contains(

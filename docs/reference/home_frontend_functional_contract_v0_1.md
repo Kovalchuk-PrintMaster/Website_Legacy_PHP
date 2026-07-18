@@ -313,9 +313,17 @@ The committed legacy component remains visible in the `legacy` profile, but it i
 
 Profile rule:
 
-- `legacy`: keep the existing presentation visible and recoverable until configuration-driven profile gating is introduced;
-- `controlled_v1`: hide the form from the public interface;
+- `legacy`: the environment-backed profile resolver fallback; keep the existing presentation visible and recoverable;
+- `controlled_v1`: hide the form at the home template include boundary;
 - `future_redesign`: no visibility decision is made by this contract.
+
+Implementation state:
+
+- resolver: `base/core/user/controllers/BaseUser.php`;
+- configuration key: `FP_WEB_FRONTEND_PROFILE`;
+- allowed values: `legacy`, `controlled_v1`, `future_redesign`;
+- invalid or missing values fall back to `legacy`;
+- gate boundary: `base/templates/default/index.php`.
 
 Modernization rule:
 

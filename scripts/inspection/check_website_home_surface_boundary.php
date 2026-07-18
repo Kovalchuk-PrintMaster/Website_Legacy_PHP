@@ -54,14 +54,23 @@ $checks = [
             $content['base_user'],
             'protected $frontendProfile'
         ),
-    'home controller selects legacy profile' =>
+    'home controller resolves validated profile' =>
         str_contains(
             $content['index_controller'],
             "\$this->frontendSurface = 'home';"
         )
         && str_contains(
             $content['index_controller'],
-            "\$this->frontendProfile = 'legacy';"
+            '$this->frontendProfile = '
+            . '$this->resolveFrontendProfile();'
+        )
+        && str_contains(
+            $content['base_user'],
+            'resolveFrontendProfile'
+        )
+        && str_contains(
+            $content['base_user'],
+            'FP_WEB_FRONTEND_PROFILE'
         ),
     'home controller owns CSS entrypoint' =>
         str_contains(

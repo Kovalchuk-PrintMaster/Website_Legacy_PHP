@@ -46,7 +46,7 @@
 
 <!--            Our Advantages directory-->
 
-    <?php include __DIR__ . '/surfaces/home/feedback.php'; ?>
+    <?php if ($this->frontendProfile !== 'controlled_v1') include __DIR__ . '/surfaces/home/feedback.php'; ?>
 
    <?php if (!empty($news)):?>
 

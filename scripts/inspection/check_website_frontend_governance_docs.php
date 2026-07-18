@@ -266,4 +266,57 @@ foreach ($fpFeedbackGovernanceChecks as $label => $passed) {
     }
 }
 
+/* FP_FRONTEND_PROFILE_RESOLVER_GOVERNANCE_CHECKS */
+$fpProfileVisualMd = (string)file_get_contents(
+    $root
+    . '/docs/architecture/frontend_visual_system_v0_1.md'
+);
+
+$fpProfileVisualYaml = (string)file_get_contents(
+    $root
+    . '/docs/architecture/frontend_visual_system_v0_1.yaml'
+);
+
+$fpProfileGovernanceChecks = [
+    'frontend profile environment key is documented' =>
+        str_contains(
+            $fpProfileVisualMd,
+            '`FP_WEB_FRONTEND_PROFILE`'
+        )
+        && str_contains(
+            $fpProfileVisualYaml,
+            'configuration_key: FP_WEB_FRONTEND_PROFILE'
+        ),
+    'frontend profile fallback remains legacy' =>
+        str_contains(
+            $fpProfileVisualYaml,
+            'invalid_value_fallback: legacy'
+        ),
+    'feedback profile gate implementation is recorded' =>
+        str_contains(
+            $fpFeedbackCapabilityYaml,
+            'profile_gate:'
+        )
+        && str_contains(
+            $fpFeedbackCapabilityYaml,
+            'state: implemented'
+        )
+        && str_contains(
+            $fpFeedbackCapabilityYaml,
+            'boundary: base/templates/default/index.php'
+        ),
+];
+
+foreach ($fpProfileGovernanceChecks as $label => $passed) {
+    printf(
+        "[%s] %s\n",
+        $passed ? 'OK' : 'FAIL',
+        $label
+    );
+
+    if (!$passed) {
+        exit(3);
+    }
+}
+
 echo "All frontend governance documentation checks passed.\n";

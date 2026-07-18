@@ -169,7 +169,8 @@ site-preview-env-check:
 	echo "FP_WEB_ENABLE_PHP_MAIL=$${FP_WEB_ENABLE_PHP_MAIL:-0}"; \
 	echo "FP_WEB_ENABLE_SMTP=$${FP_WEB_ENABLE_SMTP:-0}"; \
 	echo "FP_WEB_TELEGRAM_BOT_TOKEN=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set}"; \
-	echo "FP_WEB_TELEGRAM_CHAT_ID=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"
+	echo "FP_WEB_TELEGRAM_CHAT_ID=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"; \
+	echo "FP_WEB_FRONTEND_PROFILE=$${FP_WEB_FRONTEND_PROFILE:-legacy}"
 
 site-preview-stop:
 	@set -e; \
@@ -210,7 +211,7 @@ site-preview-start:
 		ss -ltnp | grep ':$(SITE_PREVIEW_PORT) ' || true; \
 		exit 1; \
 	fi; \
-	echo "[INFO] mail=$${FP_WEB_ENABLE_PHP_MAIL:-0} smtp=$${FP_WEB_ENABLE_SMTP:-0} telegram_token=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set} telegram_chat=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"; \
+	echo "[INFO] mail=$${FP_WEB_ENABLE_PHP_MAIL:-0} smtp=$${FP_WEB_ENABLE_SMTP:-0} telegram_token=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set} telegram_chat=$${FP_WEB_TELEGRAM_CHAT_ID:+set} frontend_profile=$${FP_WEB_FRONTEND_PROFILE:-legacy}"; \
 	php -d upload_max_filesize=$(FP_WEB_UPLOAD_MAX_FILESIZE) -d post_max_size=$(FP_WEB_POST_MAX_SIZE) -d max_file_uploads=$(FP_WEB_MAX_FILE_UPLOADS) -d memory_limit=$(FP_WEB_MEMORY_LIMIT) -S "$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)" -t "$(SITE_PREVIEW_DOCROOT)" >"$(SITE_PREVIEW_LOG)" 2>&1 & \
 	echo $$! >"$(SITE_PREVIEW_PID)"; \
 	sleep 1; \

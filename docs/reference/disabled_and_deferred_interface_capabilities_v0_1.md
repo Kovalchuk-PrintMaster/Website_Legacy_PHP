@@ -73,8 +73,8 @@ Hidden functionality is not considered deleted. Its code, database structures an
 - **Current source:** `base/templates/default/surfaces/home/feedback.php`
 - **Verified legacy contract:** placeholder `action="index.html"`, implicit GET, five controls, zero named controls and no required controls
 - **Handler evidence:** no non-minified JavaScript handler or supported PHP endpoint was detected
-- **Legacy profile:** remains visible and recoverable until profile gating is implemented
-- **Controlled v1 decision:** hide from the public interface
+- **Legacy profile:** selected by the environment-backed resolver and remains visible and recoverable
+- **Controlled v1 decision:** hidden at the home template include boundary
 - **Reason:** the visible form has no demonstrated payload, validation, privacy-processing, success/error or delivery-owner contract
 - **Current supported alternatives:** managed Email and Telegram request flows on product pages
 - **Restoration condition:** implement and approve a supported endpoint, named payload contract, server validation, privacy processing, delivery ownership and success/error states
