@@ -268,14 +268,26 @@ $this->clearPostFields($settings);
 
         if(!empty($_POST['return_id'])) $returnId = true;
 
-        if($_POST[$this->columns['id_row']]){
-            $id = is_numeric($_POST[$this->columns['id_row']]) ?
-                $this->clearNum($_POST[$this->columns['id_row']]) :
-                $this->clearStr($_POST[$this->columns['id_row']]);
-            if($id){
-                $where = [$this->columns['id_row'] => $id];
+        $idRow = $this->columns['id_row'] ?? null;
+        $postedId = $idRow !== null && array_key_exists($idRow, $_POST)
+            ? $_POST[$idRow]
+            : null;
+
+        if (!empty($postedId)) {
+            $id = is_numeric($postedId)
+                ? $this->clearNum($postedId)
+                : $this->clearStr($postedId);
+
+            if ($id) {
+                $where = [$idRow => $id];
                 $method = 'edit';
             }
+        } elseif ($idRow !== null) {
+            /*
+             * A create form must never send an empty auto-increment ID into
+             * BaseModel::add(). MariaDB STRICT_TRANS_TABLES rejects id = ''.
+             */
+            unset($_POST[$idRow]);
         }
         foreach ($this->columns as $key => $item){
             if($key==='id_row') continue;

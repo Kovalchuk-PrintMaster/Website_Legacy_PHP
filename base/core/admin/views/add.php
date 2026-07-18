@@ -18,8 +18,22 @@
         </div>
     </div>
 
-    <?php if($this->data):?>
-         <input id="tableId" type="hidden" name="<?=$this->columns['id_row']?>" value="<?=$this->data[$this->columns['id_row']]?>">
+    <?php
+        $forprintIdRow = $this->columns['id_row'] ?? null;
+        $forprintRecordId =
+            $forprintIdRow !== null
+            && isset($this->data[$forprintIdRow])
+            && $this->data[$forprintIdRow] !== ''
+                ? $this->data[$forprintIdRow]
+                : null;
+    ?>
+    <?php if($forprintRecordId !== null):?>
+         <input
+             id="tableId"
+             type="hidden"
+             name="<?=htmlspecialchars((string)$forprintIdRow, ENT_QUOTES, 'UTF-8')?>"
+             value="<?=htmlspecialchars((string)$forprintRecordId, ENT_QUOTES, 'UTF-8')?>"
+         >
     <?php endif;?>
     <input type="hidden" name="table" value="<?=$this->table?>">
 
