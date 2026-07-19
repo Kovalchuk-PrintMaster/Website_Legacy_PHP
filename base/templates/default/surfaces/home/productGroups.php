@@ -1,8 +1,8 @@
 <?php if (!empty($goods) && !empty($arrHits)) : ?>
 
-       <section class="offers">
-        <div class="offers__tabs">
-            <ul class="offers__tabs_header">
+       <section class="offers fp-home-product-groups">
+        <div class="offers__tabs fp-home-product-groups__tabs">
+            <ul class="offers__tabs_header fp-home-product-groups__tablist">
 
 <!--                Slide bar "Hits Goods"-->
                 <?php $activeItem = -1?>
@@ -32,12 +32,12 @@
             <?php if (!empty($goods[$key])) : ?>
 
 
-                    <div class="offers__tabs_content fp-layout-container <?= ! ++$activeItem ? 'active' : '' ?>">
-                        <div class="offers__tabs_subheader subheader">
+                    <div class="offers__tabs_content fp-home-product-groups__panel fp-layout-container <?= ! ++$activeItem ? 'active' : '' ?>">
+                        <div class="offers__tabs_subheader fp-home-product-groups__heading subheader">
                             <?=$value['name']?>
                         </div>
-                        <div class="fp-home-grid-container">
-<div class="fp-home-grid">
+                        <div class="fp-home-grid-container fp-home-product-groups__grid-container">
+<div class="fp-home-grid fp-home-product-groups__grid">
 <?php foreach ($goods[$key] as $item) {
 
                                     $this->showGoods(
@@ -52,7 +52,7 @@
                                 }?>
                             </div>
                         </div>
-                        <a href="<?=$this->alias('catalog')?>" class="offers__readmore readmore">Переглянути каталог товарів</a>
+                        <a href="<?=$this->alias('catalog')?>" class="offers__readmore fp-home-product-groups__more readmore">Переглянути каталог товарів</a>
                     </div>
 
             <?php endif; ?>
