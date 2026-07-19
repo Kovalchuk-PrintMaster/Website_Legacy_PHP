@@ -73,3 +73,24 @@
 .fp-layout-section {
     padding-block: var(--fp-layout-section-space);
 }
+
+/* Shared header and footer inner geometry */
+
+.fp-site-header .fp-site-header__container,
+.fp-site-footer .fp-site-footer__container {
+    box-sizing: border-box;
+
+    width: min(
+        calc(
+            100%
+            - var(--fp-layout-side-space)
+            - var(--fp-layout-side-space)
+        ),
+        var(--fp-layout-content-ceiling)
+    );
+
+    min-width: 0;
+    max-width: none;
+    margin-inline: auto;
+    padding-inline: 0;
+}

@@ -15,7 +15,7 @@
 
 <body>
 <header class="header fp-site-header">
-    <div class="container">
+    <div class="container fp-site-header__container fp-layout-container">
         <div class="header__wrapper fp-site-header__wrapper">
 
             <div class="header__logo fp-site-header__logo">

@@ -1,6 +1,6 @@
 </main>
-<footer class="footer" xmlns="http://www.w3.org/1999/html">
-    <div class="container">
+<footer class="footer fp-site-footer" xmlns="http://www.w3.org/1999/html">
+    <div class="container fp-site-footer__container fp-layout-container">
         <div class="footer__wrapper">
             <div class="footer__top">
                 <div class="footer__top_logo">
