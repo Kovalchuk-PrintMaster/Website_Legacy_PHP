@@ -1,17 +1,17 @@
 <?php if(!empty($sales)):?>
 
-    <section class="slider">
-        <div class="slider__container swiper-container">
+    <section class="slider fp-home-hero fp-layout-container">
+        <div class="slider__container fp-home-hero__swiper swiper-container">
 
-            <div class="slider__wrapper swiper-wrapper">
+            <div class="slider__wrapper fp-home-hero__wrapper swiper-wrapper">
 
 
                 <?php foreach ($sales as $item):?>
 
-                    <a href="<?=$this->alias($item['external_alias'])?>" class="slider__item swiper-slide" style="text-decoration:none;">
-                        <div class="slider__item-description">
-                            <div class="slider__item-prev-text"><?=$item['sub_title']?></div>
-                            <div class="slider__item-header">
+                    <a href="<?=$this->alias($item['external_alias'])?>" class="slider__item fp-home-hero__slide swiper-slide">
+                        <div class="slider__item-description fp-home-hero__content">
+                            <div class="slider__item-prev-text fp-home-hero__eyebrow"><?=$item['sub_title']?></div>
+                            <div class="slider__item-header fp-home-hero__title">
 
                                 <?php foreach (preg_split('/\s+/', $item['name'], 0, PREG_SPLIT_NO_EMPTY) as $value):?>
 
@@ -20,12 +20,12 @@
                                <?php endforeach;?>
 
                             </div>
-                            <div class="slider__item-text">
+                            <div class="slider__item-text fp-home-hero__text">
 
                                 <?= $this->clearStr($item['short_content'])?>
 
                             </div>
-                            <div class="slider__item-logos">
+                            <div class="slider__item-logos fp-home-hero__logos">
 
                                 <?php if(!empty($this->set['img_years']) && !empty($this->set['number_of_years'])):?>
 
@@ -41,8 +41,8 @@
                         </div>
 
 <!--                        Slider_image                        -->
-                        <div class="slider__item-image">
-                            <img src=<?=$this->img($item['img'])?> alt="">
+                        <div class="slider__item-image fp-home-hero__image">
+                            <img src="<?=$this->img($item['img'])?>" alt="">
                         </div>
                     </a>
 
@@ -61,6 +61,7 @@
                     <use xlink:href="<?=PATH . TEMPLATE?>assets/img/icons.svg#arrow"></use>
                 </svg>
             </div>
+        </div>
     </section>
 
     <?php endif;?>
