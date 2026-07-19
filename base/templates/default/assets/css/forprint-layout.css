@@ -1,4 +1,3 @@
-cat > base/templates/default/assets/css/forprint-layout.css <<'CSS'
 /**
  * ForPrint global frontend layout contract.
  *
@@ -58,4 +57,3 @@ cat > base/templates/default/assets/css/forprint-layout.css <<'CSS'
 .fp-layout-section {
     padding-block: var(--fp-layout-section-space);
 }
-CSS
