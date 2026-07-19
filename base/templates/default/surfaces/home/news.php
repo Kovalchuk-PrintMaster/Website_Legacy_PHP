@@ -1,6 +1,6 @@
 <?php if (!empty($news)):?>
 
-       <section class="news">
+       <section class="news fp-layout-container">
            <div class="news__name subheader">Новини</div>
            <div class="news__wrapper">
 

@@ -2,7 +2,7 @@
 
    <?php if (!empty($this->menu['catalog'])):?>
 
-       <section class="catalog">
+       <section class="catalog fp-layout-container">
            <div class="division-internal__items">
 
                <?php foreach ($this->menu['catalog'] as $item):?>
@@ -32,7 +32,7 @@
 <?php include __DIR__ . '/surfaces/home/productGroups.php'; echo "\n"; ?>
 <!--        About Company directory-->
     <div class="horizontal">
-        <div class="horizontal__wrapper">
+        <div class="horizontal__wrapper fp-layout-container">
             <?php include __DIR__ . '/surfaces/home/about.php'; ?>
             <!--        About Company directory-->
 

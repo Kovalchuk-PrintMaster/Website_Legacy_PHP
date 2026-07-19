@@ -37,7 +37,7 @@ const USER_CSS_JS = [
         'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css',
         'assets/css/animate.css',
         'assets/css/style.css',
-        'assets/css/forprint-layout.css?v=20260719-0001',
+        'assets/css/forprint-layout.css?v=20260719-0002',
         'assets/css/forprint-product-cards.css?v=20260717-0693',
         'assets/css/forprint-search-suggestions.css?v=20260717-0694',
         'assets/css/forprint-product-detail.css?v=20260715-0666',

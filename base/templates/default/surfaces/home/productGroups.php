@@ -32,7 +32,7 @@
             <?php if (!empty($goods[$key])) : ?>
 
 
-                    <div class="offers__tabs_content <?= ! ++$activeItem ? 'active' : '' ?>">
+                    <div class="offers__tabs_content fp-layout-container <?= ! ++$activeItem ? 'active' : '' ?>">
                         <div class="offers__tabs_subheader subheader">
                             <?=$value['name']?>
                         </div>
