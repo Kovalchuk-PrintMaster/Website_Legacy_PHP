@@ -8,12 +8,8 @@
     <title>Index</title>
 
     <?php $this->getStyles()?>
-    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-cards.css?v=20260717-0693">
-    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-search-suggestions.css?v=20260717-0694">
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-search-submit.js?v=20260717-0695"></script>
-    <link rel="stylesheet" href="<?=PATH . TEMPLATE?>assets/css/forprint-product-detail.css?v=20260715-0666">
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
-<link rel="stylesheet" href="<?=PATH?>templates/default/assets/css/forprint-product-communication.css?v=20260716-0681">
 <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260716-0682"></script>
 </head>
 
