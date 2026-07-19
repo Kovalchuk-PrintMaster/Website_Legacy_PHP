@@ -1,46 +1,29 @@
 <?php if (!empty($advantages)) : ?>
-                            <!--problem with position on site, lesson 128 / 15min -->
+<section
+    class="fp-home-advantages"
+    aria-labelledby="fp-home-advantages-title"
+>
+    <h2
+        id="fp-home-advantages-title"
+        class="fp-home-advantages__title subheader"
+    >
+        Наші переваги
+    </h2>
 
-                            <section class="advantages">
+    <div class="fp-home-advantages__grid">
+        <?php foreach ($advantages as $item) : ?>
+            <article class="fp-home-advantages__card">
+                <div class="fp-home-advantages__card-title">
+                    <?=$item['name']?>
+                </div>
 
-                            <div class="advantages__name subheader">Наші переваги</div>
-
-                            <div class="advantages__wrapper">
-
-                                <?php $counter = 0?>
-
-                                <?php foreach ($advantages as $item) : ?>
-
-                                <?php if (!($counter % 3)) : ?>
-
-                                <div class="advantages__row" <?=!$counter ? 'advantages__row_left' : 'advantages__row_right'?> </div>
-
-                        <?php endif; ?>
-
-                            <?php $counter++?>
-
-                            <div class="advantages__item">
-                                <div class="advantages__item_header"><?=$item['name']?></div>
-                                <img src="<?=$this->img($item['img'])?>" class="advantages__item_image" alt="">
-                            </div>
-
-                            <?php if (!($counter % 3)) : ?>
-
-                        </div>
-
-                        <?php endif; ?>
-
-
-
-                                <?php endforeach; ?>
-
-                             <?php if ($counter % 3) : ?>
-
-                       </div>
-
-                    <?php endif; ?>
-
-                    </div>
-                </section>
-
-            <?php endif;?>
+                <img
+                    src="<?=$this->img($item['img'])?>"
+                    class="fp-home-advantages__image"
+                    alt=""
+                >
+            </article>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
