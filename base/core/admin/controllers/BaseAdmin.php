@@ -53,6 +53,7 @@ abstract class BaseAdmin extends BaseController
 
         if(!$this->model) $this->model = Model::instance();
         if(!$this->menu) $this->menu = Settings::get('projectTables');
+        $this->applyAdminMenuOrder();
         if(!$this->adminPath) $this->adminPath = PATH . Settings::get('routes')['admin']['alias'] . '/';
 
         if(!$this->templateArr) $this->templateArr = Settings::get('templateArr');
@@ -62,6 +63,64 @@ abstract class BaseAdmin extends BaseController
 
         $this->sendNoCacheHeaders();
     }
+    protected function applyAdminMenuOrder(): void
+    {
+        if (!$this->menu || !$this->model) {
+            return;
+        }
+
+        try {
+            $tables = $this->model->showTables();
+
+            if (!in_array('settings', $tables, true)) {
+                return;
+            }
+
+            $settingsColumns = $this->model->showColumns('settings');
+
+            if (empty($settingsColumns['admin_menu_order'])) {
+                return;
+            }
+
+            $rows = $this->model->get('settings', [
+                'fields' => ['admin_menu_order'],
+                'limit' => 1,
+            ]);
+
+            $storedOrder = json_decode(
+                (string)($rows[0]['admin_menu_order'] ?? ''),
+                true
+            );
+
+            if (!is_array($storedOrder) || !$storedOrder) {
+                return;
+            }
+
+            $orderedMenu = [];
+
+            foreach ($storedOrder as $table) {
+                $table = (string)$table;
+
+                if (isset($this->menu[$table])) {
+                    $orderedMenu[$table] = $this->menu[$table];
+                }
+            }
+
+            foreach ($this->menu as $table => $item) {
+                if (!isset($orderedMenu[$table])) {
+                    $orderedMenu[$table] = $item;
+                }
+            }
+
+            $this->menu = $orderedMenu;
+        } catch (\Throwable $error) {
+            error_log(
+                'ForPrint admin menu order fallback: '
+                . $error->getMessage()
+            );
+        }
+    }
+
     protected function outputData(){
         if(!$this->content){
             $args = func_get_arg(0);
@@ -179,12 +238,137 @@ abstract class BaseAdmin extends BaseController
         }
     }
 
+    /**
+     * Normalize the goods price presentation fields before generic validation.
+     *
+     * Inactive price fields are disabled by the admin UI and therefore are not
+     * submitted. Existing dormant values remain available when the mode is
+     * switched back later.
+     */
+    protected function normalizeGoodsPricePost(): void
+    {
+        $table = isset($_POST['table'])
+            ? $this->clearStr((string)$_POST['table'])
+            : '';
+
+        if ($table !== 'goods') {
+            return;
+        }
+
+        $allowedModes = ['exact', 'range', 'request'];
+        $mode = strtolower(trim((string)($_POST['price_mode'] ?? 'request')));
+
+        if (!in_array($mode, $allowedModes, true)) {
+            $mode = 'request';
+        }
+
+        foreach (['price', 'price_from', 'price_to', 'discount'] as $field) {
+            if (!array_key_exists($field, $_POST)) {
+                continue;
+            }
+
+            $rawValue = str_replace(
+                [' ', ','],
+                ['', '.'],
+                trim((string)$_POST[$field])
+            );
+
+            $_POST[$field] = is_numeric($rawValue)
+                ? max(0, (int)round((float)$rawValue))
+                : 0;
+        }
+
+        if (isset($_POST['discount'])) {
+            $_POST['discount'] = min(100, (int)$_POST['discount']);
+        }
+
+        if ($mode === 'exact') {
+            if ((int)($_POST['price'] ?? 0) <= 0) {
+                $mode = 'request';
+            }
+        } elseif ($mode === 'range') {
+            $priceFrom = (int)($_POST['price_from'] ?? 0);
+            $priceTo = (int)($_POST['price_to'] ?? 0);
+
+            if ($priceFrom > 0 && $priceTo > 0 && $priceFrom > $priceTo) {
+                $_POST['price_from'] = $priceTo;
+                $_POST['price_to'] = $priceFrom;
+
+                $priceFrom = (int)$_POST['price_from'];
+                $priceTo = (int)$_POST['price_to'];
+            }
+
+            if ($priceFrom <= 0 && $priceTo <= 0) {
+                $mode = 'request';
+            }
+        }
+
+        $_POST['price_mode'] = $mode;
+    }
+
+
+    /**
+     * Normalize the manually selected publication date for news records.
+     */
+    protected function normalizeNewsPublicationDatePost(): void
+    {
+        $table = isset($_POST['table'])
+            ? $this->clearStr((string)$_POST['table'])
+            : '';
+
+        if (
+            $table !== 'news'
+            || !array_key_exists('date', $_POST)
+        ) {
+            return;
+        }
+
+        $rawDate = trim((string)$_POST['date']);
+
+        if ($rawDate === '') {
+            $_POST['date'] = 'NOW()';
+            return;
+        }
+
+        $normalizedDate = str_replace('T', ' ', $rawDate);
+
+        if (preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', $normalizedDate)) {
+            $normalizedDate .= ':00';
+        }
+
+        $date = \DateTimeImmutable::createFromFormat(
+            '!Y-m-d H:i:s',
+            $normalizedDate
+        );
+        $errors = \DateTimeImmutable::getLastErrors();
+
+        if (
+            !$date
+            || (
+                is_array($errors)
+                && (
+                    (int)$errors['warning_count'] > 0
+                    || (int)$errors['error_count'] > 0
+                )
+            )
+        ) {
+            throw new RouteException(
+                'Некоректна дата публікації новини',
+                2
+            );
+        }
+
+        $_POST['date'] = $date->format('Y-m-d H:i:s');
+    }
+
     protected function checkPost($settings = false){
 
         if($this->isPost()){
 
             $this->guardPostUploadEnvelope();
-$this->clearPostFields($settings);
+            $this->normalizeGoodsPricePost();
+            $this->normalizeNewsPublicationDatePost();
+            $this->clearPostFields($settings);
             $this->table = $this->clearStr($_POST['table']);
             unset($_POST['table']);
 
@@ -238,13 +422,18 @@ $this->clearPostFields($settings);
                             $answer = $key;
                         }
                         if($validate[$key]['crypt']){
-                            if($id){
-                                if(empty($item)){
+                            if(empty($item)){
+                                if($id){
                                     unset($arr[$key]);
                                     continue;
                                 }
-
-                                $arr[$key] = md5($item);
+                            }else{
+                                /*
+                                 * ForPrint credential hashing v0.6.47.
+                                 * PASSWORD_DEFAULT keeps the implementation aligned with
+                                 * the active PHP runtime and allows future rehash upgrades.
+                                 */
+                                $arr[$key] = password_hash((string)$item, PASSWORD_DEFAULT);
                             }
                         }
                         if($validate[$key]['empty']) $this->emptyFields($item, $answer, $arr);
@@ -343,69 +532,225 @@ $this->clearPostFields($settings);
 
         if($arr){
             foreach ($arr as $key =>$item){
-                if(!$this->columns[$key]) $except[] = $key;
+                if (!array_key_exists($key, $this->columns)) $except[] = $key;
             }
         }
         return $except;
     }
 
     protected function createFiles($id){
-        $fileEdit = new  FileEdit();
-        $this->fileArray  = $fileEdit->addFile($this->table);
-        $fileUploadErrors = method_exists($fileEdit, 'getErrors') ? $fileEdit->getErrors() : [];
-        $this->fileUploadErrors = $fileUploadErrors;
-        $this->abortOnFileUploadErrors($fileUploadErrors);
+        // FP_MEDIA_PROCESSING_SETTINGS_STANDALONE_05D1_5B
+        if (
+            $this->table === 'settings'
+            && isset($_POST['fp_media_processing'])
+            && is_array($_POST['fp_media_processing'])
+        ) {
+            $mediaProcessingSettings =
+                new \libraries\MediaProcessingSettings();
 
-
-        $this->preserveGalleryOnFailedUpload($id, $fileUploadErrors);
-
-        if ($this->table === 'goods' && !empty($this->fileArray)) {
-            $goodsImageOptimizer = new \libraries\GoodsImageUploadOptimizer();
-            $goodsName = $_POST['name'] ?? '';
-            $catalogId = (int)($_POST['parent_id'] ?? 0);
-
-            if (!empty($this->fileArray['img']) && is_string($this->fileArray['img'])) {
-                $optimizedGoodsImage = $goodsImageOptimizer->optimizeMainImage(
-                    $this->fileArray['img'],
-                    $goodsName,
-                    $catalogId
+            $mediaProcessingResult =
+                $mediaProcessingSettings->saveFromAdmin(
+                    $_POST['fp_media_processing'],
+                    (string)(
+                        $_POST['fp_media_processing_csrf']
+                        ?? ''
+                    )
                 );
 
-                if ($optimizedGoodsImage) {
-                    $this->fileArray['img'] = $optimizedGoodsImage;
+            $this->abortOnManagedImageOptimizationErrors(
+                is_array($mediaProcessingResult['errors'] ?? null)
+                    ? $mediaProcessingResult['errors']
+                    : []
+            );
+
+            unset(
+                $_POST['fp_media_processing'],
+                $_POST['fp_media_processing_csrf']
+            );
+
+            if (
+                property_exists($this, 'data')
+                && is_array($this->data)
+            ) {
+                unset(
+                    $this->data['fp_media_processing'],
+                    $this->data['fp_media_processing_csrf']
+                );
+            }
+
+            $_SESSION['res']['answer'] =
+                '<div class="success">'
+                . 'Налаштування обробки зображень збережено.'
+                . '</div>';
+
+            /*
+             * This request must not continue into the generic settings-table
+             * edit flow. That legacy flow expects entity columns and may
+             * delete or overwrite the singleton row when only JSON controls
+             * were submitted.
+             */
+            $this->redirect();
+            exit;
+        }
+
+        $fileEdit = new FileEdit();
+        $this->fileArray = $fileEdit->addFile($this->table);
+        $fileUploadErrors = method_exists($fileEdit, 'getErrors')
+            ? $fileEdit->getErrors()
+            : [];
+
+        $this->fileUploadErrors = $fileUploadErrors;
+        $this->abortOnFileUploadErrors($fileUploadErrors);
+        $this->preserveGalleryOnFailedUpload(
+            $id,
+            $fileUploadErrors
+        );
+
+        if (
+            $this->table === 'goods'
+            && !empty($this->fileArray)
+        ) {
+            $goodsImageOptimizer =
+                new \libraries\GoodsImageUploadOptimizer();
+            $goodsName = (string)($_POST['name'] ?? '');
+            $catalogId = (int)($_POST['parent_id'] ?? 0);
+            $optimizationErrors = [];
+
+            if (
+                !empty($this->fileArray['img'])
+                && is_string($this->fileArray['img'])
+            ) {
+                $optimizedGoodsImage =
+                    $goodsImageOptimizer->optimizeMainImage(
+                        $this->fileArray['img'],
+                        $goodsName,
+                        $catalogId
+                    );
+
+                if ($optimizedGoodsImage === null) {
+                    $optimizationErrors[] =
+                        'Не вдалося оптимізувати основне '
+                        . 'зображення товару.';
+                } else {
+                    $this->fileArray['img'] =
+                        $optimizedGoodsImage;
                 }
             }
 
-            if (!empty($this->fileArray['gallery_img']) && is_array($this->fileArray['gallery_img'])) {
-                $this->fileArray['gallery_img'] = $goodsImageOptimizer->optimizeGalleryImages(
-                    $this->fileArray['gallery_img'],
-                    $goodsName,
-                    $catalogId
-                );
+            if (
+                !empty($this->fileArray['gallery_img'])
+                && is_array($this->fileArray['gallery_img'])
+            ) {
+                $optimizedGallery =
+                    $goodsImageOptimizer->optimizeGalleryImages(
+                        $this->fileArray['gallery_img'],
+                        $goodsName,
+                        $catalogId
+                    );
+
+                if ($optimizedGallery === null) {
+                    $optimizationErrors[] =
+                        'Не вдалося оптимізувати одне або '
+                        . 'декілька зображень галереї.';
+                } else {
+                    $this->fileArray['gallery_img'] =
+                        $optimizedGallery;
+                }
             }
+
+            $this->abortOnGoodsImageOptimizationErrors(
+                $optimizationErrors
+            );
         }
 
-if($id){
+        // FP_MANAGED_IMAGE_UPLOAD_05D1: non-Goods single-image profiles.
+        if (
+            $this->table !== 'goods'
+            && !empty($this->fileArray)
+        ) {
+            $managedImageOptimizer =
+                new \libraries\ManagedImageUploadOptimizer();
 
-    $this->checkFiles($id);
+            $managedImageResult =
+                $managedImageOptimizer->optimizeFiles(
+                    $this->fileArray,
+                    (string)$this->table,
+                    $_POST,
+                    (int)$id
+                );
 
-}
+            $this->fileArray = is_array(
+                $managedImageResult['files'] ?? null
+            )
+                ? $managedImageResult['files']
+                : $this->fileArray;
 
+            $this->abortOnManagedImageOptimizationErrors(
+                is_array($managedImageResult['errors'] ?? null)
+                    ? $managedImageResult['errors']
+                    : []
+            );
+        }
 
-        if (!empty($_POST['js-sorting']) && $this->fileArray)
-        {
-            foreach ($_POST['js-sorting'] as $key => $item){
+        if ($id) {
+            $this->checkFiles($id);
+        }
 
-                if (!empty($item) && !empty($this->fileArray[$key])){
-
+        if (
+            !empty($_POST['js-sorting'])
+            && $this->fileArray
+        ) {
+            foreach (
+                $_POST['js-sorting']
+                as $key => $item
+            ) {
+                if (
+                    !empty($item)
+                    && !empty($this->fileArray[$key])
+                ) {
                     $fileArr = json_decode($item);
 
-                    if ($fileArr){
-                        $this->fileArray[$key] = $this->sortingFiles($fileArr,$this->fileArray[$key]);
+                    if ($fileArr) {
+                        $this->fileArray[$key] =
+                            $this->sortingFiles(
+                                $fileArr,
+                                $this->fileArray[$key]
+                            );
                     }
                 }
             }
         }
+    }
+
+    /**
+     * A goods record must never fall back to an unoptimized upload.
+     */
+    protected function abortOnGoodsImageOptimizationErrors(
+        array $errors
+    ) {
+        if (empty($errors)) {
+            return;
+        }
+
+        /*
+         * fileArray contains only files created by the current request at
+         * this stage. Existing database images are merged later by
+         * checkFiles(), therefore they are not removed here.
+         */
+        $this->removePartiallyUploadedFiles(
+            $this->fileArray
+        );
+
+        $_SESSION['res']['answer'] =
+            '<div class="error forprint-admin-persistent-error">'
+            . 'Запис не збережено. '
+            . implode(' ', array_unique($errors))
+            . ' Завантажений оригінал не залишено на сайті.'
+            . '</div>';
+
+        $this->addSessionData($_POST);
+        $this->redirect();
+        exit;
     }
     protected function sortingFiles($fileArr, $arr){
 
@@ -1041,7 +1386,7 @@ if($id){
     }
 
     /**
-     * Do not silently save a product when PHP rejected an image.
+     * Do not silently save a record when PHP rejected an image.
      */
     protected function abortOnFileUploadErrors(array $errors)
     {
@@ -1069,7 +1414,7 @@ if($id){
 
         $_SESSION['res']['answer'] =
             '<div class="error forprint-admin-persistent-error">'
-            . 'Товар не збережено. '
+            . 'Запис не збережено. '
             . implode(' ', array_unique($messages))
             . ' Максимальний розмір одного файла: '
             . htmlspecialchars(
@@ -1178,6 +1523,16 @@ if($id){
             @unlink($fullPath);
         }
     }
+    /**
+     * FP_MANAGED_IMAGE_UPLOAD_05D1: reuse the accepted persistent
+     * optimization-error transaction guard with a generic owner name.
+     */
+    protected function abortOnManagedImageOptimizationErrors(
+        array $errors
+    ) {
+        $this->abortOnGoodsImageOptimizationErrors($errors);
+    }
+
     protected function preserveGalleryOnFailedUpload($id, array $fileUploadErrors)
     {
         if ($this->table !== 'goods' || !$id) {

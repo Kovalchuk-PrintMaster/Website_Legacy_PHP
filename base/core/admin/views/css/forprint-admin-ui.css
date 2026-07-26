@@ -1,0 +1,348 @@
+/*
+ * ForPrint admin shared UI refinements.
+ *
+ * Owner:
+ *   base/core/admin/views/css/forprint-admin-ui.css
+ *
+ * Scope:
+ * - independent sidebar scrolling;
+ * - calm edit-control focus states.
+ */
+
+/* Left navigation must remain independently scrollable. */
+.fp-admin-sidebar,
+.fp-admin-shell .fp-admin-sidebar {
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
+}
+
+/*
+ * Some inherited layouts place the links in a nested menu element. Let the
+ * outer sidebar own scrolling and avoid an inner clipping layer.
+ */
+.fp-admin-sidebar .vg-menu,
+.fp-admin-sidebar__menu {
+    overflow: visible !important;
+}
+
+/* Light neutral focus instead of the heavy blue-grey inherited fill. */
+.fp-admin-shell input.vg-input:focus,
+.fp-admin-shell textarea.vg-input:focus,
+.fp-admin-shell select.vg-input:focus,
+.fp-admin-shell input:focus-visible,
+.fp-admin-shell textarea:focus-visible,
+.fp-admin-shell select:focus-visible {
+    background-color: #f1f4f6 !important;
+    border-color: #aab8c2 !important;
+    box-shadow: 0 0 0 0.15rem rgba(170, 184, 194, 0.18) !important;
+    outline: none !important;
+}
+
+/* Do not darken readonly or disabled controls. */
+.fp-admin-shell input[readonly]:focus,
+.fp-admin-shell textarea[readonly]:focus,
+.fp-admin-shell input:disabled:focus,
+.fp-admin-shell textarea:disabled:focus,
+.fp-admin-shell select:disabled:focus {
+    background-color: #f5f7f8 !important;
+    box-shadow: none !important;
+}
+
+/* FP_ADMIN_LIGHT_CONTROL_HOVER_START */
+/*
+ * Keep hover and focus equally calm. Legacy admin CSS used a much darker
+ * hover fill on text controls.
+ */
+.fp-admin-shell input:not([type="radio"]):not([type="checkbox"]):hover,
+.fp-admin-shell textarea:hover,
+.fp-admin-shell select:hover,
+.fp-admin-shell .vg-input:hover,
+.fp-admin-shell input:not([type="radio"]):not([type="checkbox"]):focus,
+.fp-admin-shell textarea:focus,
+.fp-admin-shell select:focus,
+.fp-admin-shell .vg-input:focus {
+    background-color: #f1f4f6 !important;
+    border-color: #aab8c2 !important;
+    box-shadow:
+        0 0 0 0.15rem rgba(170, 184, 194, 0.18) !important;
+    outline: none !important;
+}
+
+.fp-admin-shell input[readonly]:hover,
+.fp-admin-shell textarea[readonly]:hover,
+.fp-admin-shell input:disabled:hover,
+.fp-admin-shell textarea:disabled:hover,
+.fp-admin-shell select:disabled:hover {
+    background-color: #f5f7f8 !important;
+    box-shadow: none !important;
+}
+/* FP_ADMIN_LIGHT_CONTROL_HOVER_END */
+
+/* FP_MEDIA_PROCESSING_SETTINGS_CARD_05D1_2 START */
+.fp-media-settings-card {
+    width: 100%;
+    margin: 26px 0;
+    padding: 24px;
+    border: 1px solid #d8dee3;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 12px 34px rgba(31, 45, 55, 0.08);
+    color: #202b32;
+}
+
+.fp-media-settings-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6eaed;
+}
+
+.fp-media-settings-card__eyebrow {
+    margin: 0 0 5px;
+    color: #6b7a84;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.fp-media-settings-card__title {
+    margin: 0;
+    color: #202b32;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.fp-media-settings-card__description {
+    max-width: 850px;
+    margin: 10px 0 0;
+    color: #5c6b74;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.fp-media-settings-card__status {
+    flex: 0 0 280px;
+    padding: 14px 16px;
+    border: 1px solid #dce5df;
+    border-radius: 12px;
+    background: #f5faf7;
+}
+
+.fp-media-settings-card__status strong,
+.fp-media-settings-card__status span {
+    display: block;
+}
+
+.fp-media-settings-card__status strong {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.fp-media-settings-card__status span {
+    color: #5d6d65;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.fp-media-settings-card__section {
+    padding-top: 22px;
+}
+
+.fp-media-settings-card__section-head {
+    margin-bottom: 14px;
+}
+
+.fp-media-settings-card__section-head h3 {
+    margin: 0 0 5px;
+    color: #26343c;
+    font-size: 17px;
+}
+
+.fp-media-settings-card__section-head p,
+.fp-media-settings-card__profile > p {
+    margin: 0;
+    color: #687780;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.fp-media-settings-card__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.fp-media-settings-card__grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fp-media-settings-card__profiles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.fp-media-settings-card__profile {
+    min-width: 0;
+    margin: 0;
+    padding: 17px;
+    border: 1px solid #dde3e7;
+    border-radius: 14px;
+    background: #fafbfc;
+}
+
+.fp-media-settings-card__profile legend {
+    padding: 0 7px;
+    color: #28363e;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.fp-media-settings-card__profile > p {
+    min-height: 39px;
+    margin-bottom: 13px;
+}
+
+.fp-media-settings-card__field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fp-media-settings-card__label {
+    color: #2a3840;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.fp-media-settings-card__hint {
+    min-height: 36px;
+    color: #77848c;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.fp-media-settings-card__control {
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+}
+
+.fp-media-settings-card__input {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 9px 11px;
+    border: 1px solid #cfd7dc;
+    border-radius: 9px;
+    background: #fff;
+    color: #202b32;
+    font: inherit;
+    text-align: left;
+}
+
+.fp-media-settings-card__input:focus {
+    border-color: #788d99;
+    outline: 3px solid rgba(120, 141, 153, .16);
+}
+
+.fp-media-settings-card__unit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    margin-left: -1px;
+    padding: 0 10px;
+    border: 1px solid #cfd7dc;
+    border-radius: 0 9px 9px 0;
+    background: #eef2f4;
+    color: #5e6c74;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.fp-media-settings-card__control .fp-media-settings-card__unit
+    + * {
+    border-radius: 0;
+}
+
+.fp-media-settings-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #e6eaed;
+}
+
+.fp-media-settings-card__footer p {
+    max-width: 760px;
+    margin: 0;
+    color: #687780;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.fp-media-settings-card__submit {
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: #26343c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.fp-media-settings-card__submit:hover {
+    background: #111a1f;
+}
+
+@media (max-width: 1100px) {
+    .fp-media-settings-card__header {
+        flex-direction: column;
+    }
+
+    .fp-media-settings-card__status {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .fp-media-settings-card__grid--three,
+    .fp-media-settings-card__profiles {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .fp-media-settings-card {
+        padding: 17px;
+        border-radius: 13px;
+    }
+
+    .fp-media-settings-card__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fp-media-settings-card__footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .fp-media-settings-card__submit {
+        width: 100%;
+    }
+}
+/* FP_MEDIA_PROCESSING_SETTINGS_CARD_05D1_2 END */

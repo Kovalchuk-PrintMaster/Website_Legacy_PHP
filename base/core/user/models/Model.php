@@ -10,6 +10,7 @@
 
     class Model extends BaseModel
     {
+        /* ForPrint catalog filter-parent visibility normalization v0.6.46 */
         use Singleton;
 
 
@@ -99,11 +100,11 @@
                             }
                         }
 
-                        if (!empty($this->showColumns('filters_categories')['visible'])) {
-
-                            $parentFiltersWhere['visible'] = 1;
-
-                        }
+                        /*
+                         * A filter category is an administrative grouping.
+                         * Public availability is determined by linked visible
+                         * child filters, not by the historical category flag.
+                         */
 
                         if (!empty($this->showColumns('filters_categories')['menu_position'])) {
 
@@ -184,7 +185,6 @@
                                 'filters_categories' => [
                                     'type' => 'INNER',
                                     'fields' => $parentFiltersFields,
-                                    'where' => $filtersWhere,
                                     'on' => ['parent_id','id'] // make parent filters SELECT
                                 ],
 

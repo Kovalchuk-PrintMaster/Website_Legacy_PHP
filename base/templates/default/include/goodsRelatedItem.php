@@ -24,10 +24,12 @@ $shortText = fp_product_card_clean_text(
     260
 );
 
-$priceState = fp_product_card_price_state($data);
+$priceState = fp_product_price_state($data);
 $basePrice = $priceState['base_price'];
 $currentPrice = $priceState['current_price'];
 $hasDiscount = $priceState['has_discount'];
+$showExactPrice = $priceState['mode'] === 'exact'
+    && $currentPrice > 0;
 
 $productUrl = $this->alias(
     'product/' . $goodsAlias
@@ -56,26 +58,39 @@ $productUrl = $this->alias(
             <?=htmlspecialchars($shortText, ENT_QUOTES, 'UTF-8')?>
         </div>
 
-        <div class="fp-product-card__price">
+        <div
+            class="fp-product-card__price"
+            data-price-mode="<?=htmlspecialchars(
+                $priceState['mode'],
+                ENT_QUOTES,
+                'UTF-8'
+            )?>"
+        >
             <span class="fp-product-card__price-label">ціна:</span>
 
-            <?php if ($hasDiscount): ?>
-                <span class="fp-product-card__old-price">
-                    <?=fp_product_card_format_price($basePrice)?> грн.
+            <?php if ($showExactPrice): ?>
+                <?php if ($hasDiscount): ?>
+                    <span class="fp-product-card__old-price">
+                        <?=fp_product_card_format_price($basePrice)?> грн.
+                    </span>
+                <?php endif; ?>
+
+                <span class="fp-product-card__current-price">
+                    <?=fp_product_card_format_price($currentPrice)?> грн.
+                </span>
+            <?php else: ?>
+                <span class="fp-product-card__current-price">
+                    <?=htmlspecialchars(
+                        $priceState['display'],
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )?>
                 </span>
             <?php endif; ?>
-
-            <span class="fp-product-card__current-price">
-                <?=fp_product_card_format_price($currentPrice)?> грн.
-            </span>
         </div>
     </div>
 
-    <button
-        class="fp-product-card__button"
-        type="button"
-        data-addtocart="<?=$goodsId?>"
-    >
+    <span class="fp-product-card__button">
         Детальніше
-    </button>
+    </span>
 </a>

@@ -22,8 +22,8 @@ const QTY_LINKS = 3;
 const CART = 'cookie';
 
 const ADMIN_CSS_JS = [
-    'styles' =>['css/main.css'],
-    'scripts' =>['js/frameworkfunctions.js', 'js/scripts.js',
+    'styles' =>['css/main.css?v=20260724-0649'],
+    'scripts' =>['js/frameworkfunctions.js', 'js/scripts.js?v=20260724-0649',
     'js/tinymce/tinymce.min.js', 'js/tinymce/tinymce.init.js'
 
     ]
@@ -37,11 +37,15 @@ const USER_CSS_JS = [
         'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css',
         'assets/css/animate.css',
         'assets/css/style.css',
-        'assets/css/forprint-layout.css?v=20260719-0004',
+        'assets/css/forprint-layout.css?v=20260724-0820',
+        'assets/css/forprint-shell.css?v=20260726-05g4a',
         'assets/css/forprint-product-cards.css?v=20260719-0001',
-        'assets/css/forprint-search-suggestions.css?v=20260717-0694',
-        'assets/css/forprint-product-detail.css?v=20260715-0666',
-        'assets/css/forprint-product-communication.css?v=20260716-0681',
+        'assets/css/forprint-search-suggestions.css?v=20260724-0910',
+        'assets/css/forprint-catalog.css?v=20260724-0650',
+        'assets/css/forprint-managed-products.css?v=20260726-05g10b-v2',
+        'assets/css/forprint-contacts.css?v=20260723-0645',
+        'assets/css/forprint-product-detail.css?v=20260723-0644',
+        'assets/css/forprint-product-communication.css?v=20260726-05g10b-v2',
 
     ],
     'scripts' =>[
@@ -60,7 +64,9 @@ const USER_CSS_JS = [
         'assets/js/animation.gsap.min.js',
         'assets/js/bodyscrolllock/bodyScrollLock.min.js',
         'assets/js/app.js',
-        'assets/js/script.js',
+        'assets/js/script.js?v=20260721-0007',
+        'assets/js/forprint-catalog.js?v=20260724-0650',
+        'assets/js/forprint-search-result-groups.js?v=20260726-05g10b-v2',
         'assets/js/showMessage.js'
     ],
 ];

@@ -13,6 +13,24 @@ class DeleteController extends BaseAdmin
 
         $this->createTableData();
 
+        // FP_SETTINGS_SINGLETON_DELETE_GUARD_05D1_6B
+        // FP_SETTINGS_FIELD_MEDIA_DELETE_05G4A
+        if (
+            $this->table === 'settings'
+            && count($this->parameters) <= 1
+        ) {
+            $_SESSION['res']['answer'] =
+                '<div class="error">'
+                . 'Системні налаштування є єдиним службовим записом '
+                . 'і не можуть бути видалені.'
+                . '</div>';
+
+            $this->redirect(
+                $this->adminPath . 'show/settings'
+            );
+            exit;
+        }
+
         if(!empty($this->parameters[$this->table])){
             $id = is_numeric($this->parameters[$this->table]) ?
                 $this->clearNum($this->parameters[$this->table]) :
@@ -25,6 +43,29 @@ class DeleteController extends BaseAdmin
 
                 if($this->data){
                     $this->data = $this->data[0];
+
+                    if ($this->table === 'user') {
+                        $currentUserId = (int)($this->userId['id'] ?? 0);
+                        $targetUserId = (int)$id;
+
+                        $userCountRow = $this->model->get('user', [
+                            'fields' => ['COUNT(*) as count'],
+                            'no_concat' => true,
+                        ]);
+                        $userCount = (int)($userCountRow[0]['count'] ?? 0);
+
+                        if (
+                            $targetUserId === $currentUserId
+                            || $userCount <= 1
+                        ) {
+                            $_SESSION['res']['answer'] =
+                                '<div class="error">'
+                                . 'Не можна видалити поточного або останнього адміністратора.'
+                                . '</div>';
+
+                            $this->redirect($this->adminPath . 'show/user');
+                        }
+                    }
 
                     if(count($this->parameters)>1){
                         $this->checkDeleteFile();

@@ -56,7 +56,7 @@
                         id int auto_increment primary key,
                         name varchar (255) null,
                         login varchar (255) null,
-                        password varchar (32) null,
+                        password varchar (255) null,
                         credentials text null
                     )
                     charset = utf8
@@ -129,9 +129,14 @@
             $cookieString = $this->package();
 
             if ($cookieString) {
-                setcookie($this->cookieName, $cookieString, time() + 60 * 60 * 24 * 365 * 10, PATH);
-                return true;
+                $isAdminCookie = $this->cookieName === $this->cookieAdminName;
+                $expires = $isAdminCookie
+                    ? time() + max(60, (int)COOKIE_TIME) * 60
+                    : time() + 60 * 60 * 24 * 365;
 
+                if ($this->writeCookie($cookieString, $expires)) {
+                    return true;
+                }
             }
             throw new AuthExeption('Error create cookie', 1);
         }
@@ -201,8 +206,23 @@
                 }
             }
         }
+        private function writeCookie(string $value, int $expires): bool
+        {
+            $secure = !empty($_SERVER['HTTPS'])
+                && strtolower((string)$_SERVER['HTTPS']) !== 'off';
+
+            return setcookie($this->cookieName, $value, [
+                'expires' => $expires,
+                'path' => PATH ?: '/',
+                'secure' => $secure,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
+        }
+
         public function logout(){
 
-            setcookie($this->cookieName, '', 1, PATH);
+            $this->writeCookie('', 1);
+            unset($_COOKIE[$this->cookieName]);
         }
     }

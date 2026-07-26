@@ -1,17 +1,134 @@
 $(function () {
+    // ForPrint small slider timing v0.6.40
     //------------------- Swipers -------------------//
     // consol.log (ADMIN_MODE);
 
-    var mainSlider = new Swiper('.slider__container', {
-        pagination: {
-            el: '.slider__pagination',
-            type: 'fraction',
-        },
-        navigation: {
-            nextEl: '.slider__controls._next',
-            prevEl: '.slider__controls._prev',
-        },
-    });
+    var mainSliderElement =
+        document.querySelector('.fp-home-hero .slider__container');
+
+    var mainSlider = null;
+
+    if (mainSliderElement) {
+        var mainSliderSlides =
+            mainSliderElement.querySelectorAll('.swiper-slide').length;
+
+        var mainSliderReducedMotion =
+            window.matchMedia
+            && window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+            ).matches;
+
+        mainSlider = new Swiper(
+            '.fp-home-hero .slider__container',
+            {
+                speed: 650,
+                loop: mainSliderSlides > 1,
+                watchOverflow: true,
+                observer: true,
+                observeParents: true,
+
+                autoplay:
+                    mainSliderSlides > 1
+                    && !mainSliderReducedMotion
+                        ? {
+                            delay: 6000,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }
+                        : false,
+
+                pagination: {
+                    el: '.fp-home-hero .slider__pagination',
+                    type: 'fraction',
+                },
+
+                navigation: {
+                    nextEl:
+                        '.fp-home-hero .slider__controls._next',
+                    prevEl:
+                        '.fp-home-hero .slider__controls._prev',
+                },
+            }
+        );
+    }
+
+    var categorySliderElement =
+        document.querySelector(
+            '.fp-home-categories__viewport'
+        );
+
+    var categorySlider = null;
+    var smallSliderReducedMotion = Boolean(
+        window.matchMedia
+        && window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        ).matches
+    );
+
+    if (categorySliderElement) {
+        var categorySlides =
+            categorySliderElement.querySelectorAll(
+                '.fp-home-categories__card'
+            ).length;
+
+        categorySlider = new Swiper(
+            categorySliderElement,
+            {
+                speed: 650,
+                loop: false,
+                rewind: categorySlides > 1,
+                watchOverflow: true,
+                observer: true,
+                observeParents: true,
+                slidesPerView: 1.15,
+                spaceBetween: 12,
+                autoplay:
+                    categorySlides > 1
+                    && !smallSliderReducedMotion
+                        ? {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }
+                        : false,
+                navigation: {
+                    nextEl:
+                        '.fp-home-categories__control--next',
+                    prevEl:
+                        '.fp-home-categories__control--prev',
+                },
+                breakpoints: {
+                    1600: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                    },
+                    1251: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                    },
+                    1025: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                    769: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    561: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                },
+            }
+        );
+
+    }
+
+    window.forprintHomeSliders =
+        window.forprintHomeSliders || {};
+
+    window.forprintHomeSliders.hero = mainSlider;
+    window.forprintHomeSliders.categories = categorySlider;
 
     var partnersSlider = new Swiper('.partners__container', {
         navigation: {
@@ -76,22 +193,90 @@ $(function () {
     } else {
         indexOffersSlider = [];
     }
-
-
     //------------------- Tabs Mainpage -------------------//
-    $('ul.offers__tabs_header').on('click', 'li:not(.active)', function() {
-        $(this)
-            .addClass('active').siblings().removeClass('active')
-            .closest('div.offers__tabs').find('div.offers__tabs_content').removeClass('active').eq($(this).index()).addClass('active');
-        var index = $(this).index();
-        if (indexOffersSlider[index] && typeof indexOffersSlider[index].slideTo === 'function') {
-            indexOffersSlider[index].slideTo(0);
-        } else if (indexOffersSlider && typeof indexOffersSlider.slideTo === 'function') {
-            indexOffersSlider.slideTo(0);
-        }
-        indexOffersSlider[index].update();
 
+    $('ul.offers__tabs_header').each(function () {
+        var $tablist = $(this);
+        var $tabs = $tablist.children('li');
+        var $panels = $tablist
+            .closest('div.offers__tabs')
+            .find('div.offers__tabs_content');
+
+        var activeIndex =
+            $tabs.filter('.active').first().index();
+
+        if (activeIndex < 0) {
+            activeIndex = 0;
+        }
+
+        $tabs
+            .removeClass('active')
+            .eq(activeIndex)
+            .addClass('active');
+
+        $panels
+            .removeClass('active')
+            .eq(activeIndex)
+            .addClass('active');
     });
+
+    $('ul.offers__tabs_header').on(
+        'click',
+        'li',
+        function () {
+            var $tab = $(this);
+
+            if ($tab.hasClass('active')) {
+                return;
+            }
+
+            var $tablist =
+                $tab.closest('ul.offers__tabs_header');
+
+            var $tabs =
+                $tablist.children('li');
+
+            var $panels =
+                $tablist
+                    .closest('div.offers__tabs')
+                    .find('div.offers__tabs_content');
+
+            var index =
+                $tabs.index(this);
+
+            $tabs
+                .removeClass('active');
+
+            $tab
+                .addClass('active');
+
+            $panels
+                .removeClass('active')
+                .eq(index)
+                .addClass('active');
+
+            var slider =
+                indexOffersSlider
+                && indexOffersSlider[index]
+                    ? indexOffersSlider[index]
+                    : null;
+
+            if (
+                slider
+                && typeof slider.slideTo === 'function'
+            ) {
+                slider.slideTo(0);
+            }
+
+            if (
+                slider
+                && typeof slider.update === 'function'
+            ) {
+                slider.update();
+            }
+        }
+    );
+
     //------------------- Burger Sidebar  -------------------//
     $('.burger-menu').on('click', function () {
         var burgerHidden = $('.header__menu').hasClass('_hidden');
@@ -167,21 +352,30 @@ $(function () {
 
     //------------------- Horizontal Scroll -------------------//
     var controller = new ScrollMagic.Controller();
+    var legacyHorizontal = $('.horizontal');
+    var legacyHorizontalWrapper = $('.horizontal__wrapper');
 
-    // if($(window).width() > 1024) { // change that solve error - .setPin(".horizontal__wrapper") not found
-    if($(window).width() < 1024) {
+    if (
+        $(window).width() < 1024
+        && legacyHorizontal.length
+        && legacyHorizontalWrapper.length
+    ) {
         var timeline = new TimelineMax();
         timeline
-            .to($('.horizontal__wrapper'), 1, {xPercent: '-50'});
+            .to(
+                legacyHorizontalWrapper,
+                1,
+                {xPercent: '-50'}
+            );
 
         var horizontalScroll = new ScrollMagic.Scene({
-            triggerElement: '.horizontal',
+            triggerElement: legacyHorizontal.get(0),
             triggerHook: 'onEnter',
-            offset: $('.horizontal__wrapper').height(),
+            offset: legacyHorizontalWrapper.height(),
             duration: '100%'
         })
             .setTween(timeline)
-            .setPin(".horizontal__wrapper")
+            .setPin(legacyHorizontalWrapper.get(0))
             .addTo(controller);
     }
 

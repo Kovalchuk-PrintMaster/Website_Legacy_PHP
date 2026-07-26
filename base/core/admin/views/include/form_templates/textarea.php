@@ -7,8 +7,8 @@ if (($this->table ?? '') === 'goods' && $row === 'content') {
 }
 
 $forprintRichEditorRows = ['content', 'tab_specs_content', 'tab_conditions_content', 'tab_extra_content'];
-$forprintEditorChecked = $class === 'vg-content'
-    || (($this->table ?? '') === 'goods' && in_array($row, $forprintRichEditorRows, true));
+/* Rich text is the project-wide admin default. The checkbox still allows a manual opt-out. */
+$forprintEditorChecked = true;
 ?>
 
 <div class="vg-wrap vg-element vg-full vg-box-shadow">

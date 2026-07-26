@@ -29,10 +29,14 @@
 
         if ($this->isPost()){
 
-            if (empty($_POST['token']) || $_POST['token'] !== $_SESSION['token']){
-
-                exit('Error Cookie');
-                }
+            if (
+                empty($_POST['token'])
+                || empty($_SESSION['token'])
+                || !hash_equals((string)$_SESSION['token'], (string)$_POST['token'])
+            ) {
+                http_response_code(400);
+                exit('Invalid request token');
+            }
 
             $timeClean = (new \DateTime())->modify('-' . BLOCK_TIME . ' hour')->format('Y-m-d H:i:s');
 
@@ -56,19 +60,35 @@
 
             if (!empty($_POST['login']) && !empty($_POST['password']) && $trying<10){
 
-                $login = $this->clearStr($_POST['login']);
-
-                $password = md5($this->clearStr($_POST['password']));
-
+                $login = trim($this->clearStr((string)$_POST['login']));
+                $password = (string)$_POST['password'];
                 $userData = $this->model->get($this->model->getAdminTable(), [
-                    'fields' => ['id', 'name'],
+                    'fields' => ['id', 'name', 'password'],
                     'where' => [
                         'login' => $login,
-                        'password' => $password,
-                    ]
+                    ],
+                    'limit' => 1,
                 ]);
 
-                if (!$userData){
+                $passwordAccepted = false;
+                $legacyPassword = false;
+
+                if (!empty($userData[0]['password'])) {
+                    $storedPassword = (string)$userData[0]['password'];
+                    $passwordInfo = password_get_info($storedPassword);
+
+                    if (!empty($passwordInfo['algo'])) {
+                        $passwordAccepted = password_verify($password, $storedPassword);
+                    } elseif (preg_match('/^[a-f0-9]{32}$/i', $storedPassword)) {
+                        $legacyPassword = hash_equals(
+                            strtolower($storedPassword),
+                            md5($password)
+                        );
+                        $passwordAccepted = $legacyPassword;
+                    }
+                }
+
+                if (!$userData || !$passwordAccepted){
 
                     $method = 'add';
 
@@ -93,11 +113,30 @@
                     $error = 'No correct login or password - ' . $ipUser . ', login - ' . $login;
 
                 }else{
+                    $currentHash = (string)($userData[0]['password'] ?? '');
+
+                    if (
+                        $legacyPassword
+                        || password_needs_rehash($currentHash, PASSWORD_DEFAULT)
+                    ) {
+                        $this->model->edit($this->model->getAdminTable(), [
+                            'fields' => [
+                                'password' => password_hash($password, PASSWORD_DEFAULT),
+                            ],
+                            'where' => [
+                                'id' => (int)$userData[0]['id'],
+                            ],
+                        ]);
+                    }
 
                     if (!$this->model->checkUser($userData[0]['id'])){
 
                         $error = $this->model->getLastError();
                     }else{
+                        if (session_status() === PHP_SESSION_ACTIVE) {
+                            session_regenerate_id(true);
+                        }
+
                         $error = 'User login - ' . $login;
                         $success = 1;
                     }
@@ -114,9 +153,13 @@
                 $error = 'Fill request fields';
             }
 
-            $_SESSION['res']['answer'] = $success ? '<div class="success"> Добро пожаловать  - ' . $userData[0]['name'] .
-                '</div>' :
-                preg_split('/\s*\-/', $error, 2, PREG_SPLIT_NO_EMPTY)[0];
+            $displayName = trim((string)($userData[0]['name'] ?? $login ?? 'admin'));
+
+            $_SESSION['res']['answer'] = $success
+                ? '<div class="success">Вітаємо — '
+                    . htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8')
+                    . '</div>'
+                : (preg_split('/\s*\-/', $error, 2, PREG_SPLIT_NO_EMPTY)[0] ?? 'Access denied');
 
             $this->writeLog($error, 'user_log.txt', 'Access user');
 

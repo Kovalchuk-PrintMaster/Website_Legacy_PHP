@@ -98,6 +98,65 @@ class Model extends BaseModel
         return $this->query($query, 'u');
     }
 
+
+    /**
+     * Return filter-category IDs already used by products in one catalog
+     * category. The query is read-only and all identifiers are fixed by the
+     * application schema.
+     */
+    public function goodsFilterCategoryUsage(
+        int $parentId
+    ): array {
+        if ($parentId < 1) {
+            return [];
+        }
+
+        $goodsColumns = $this->showColumns('goods');
+        $filterColumns = $this->showColumns('filters');
+
+        if (
+            !$goodsColumns
+            || !$filterColumns
+            || empty($goodsColumns['id_row'])
+            || empty($goodsColumns['parent_id'])
+            || empty($filterColumns['id_row'])
+            || empty($filterColumns['parent_id'])
+        ) {
+            return [];
+        }
+
+        $goodsIdRow = (string)$goodsColumns['id_row'];
+        $filterIdRow = (string)$filterColumns['id_row'];
+
+        foreach ([$goodsIdRow, $filterIdRow] as $identifier) {
+            if (!preg_match('/^[A-Za-z0-9_]+$/', $identifier)) {
+                return [];
+            }
+        }
+
+        $parentId = (int)$parentId;
+
+        $query = "
+            SELECT
+                f.`parent_id` AS category_id,
+                COUNT(DISTINCT gf.`filters_id`) AS usage_count
+            FROM `goods_filters` AS gf
+            INNER JOIN `goods` AS g
+                ON g.`{$goodsIdRow}` = gf.`goods_id`
+            INNER JOIN `filters` AS f
+                ON f.`{$filterIdRow}` = gf.`filters_id`
+            WHERE g.`parent_id` = {$parentId}
+            GROUP BY f.`parent_id`
+            ORDER BY f.`parent_id` ASC
+        ";
+
+        $rows = $this->query($query);
+
+        return is_array($rows)
+            ? $rows
+            : [];
+    }
+
     public function search($data, $currentTable = false, $qty = false)
     {
 

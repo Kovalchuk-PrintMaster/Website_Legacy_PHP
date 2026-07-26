@@ -18,6 +18,7 @@ class InformationController extends BaseUser
 
         $directRedirectAliases = [
             'contacts' => 'contacts',
+            'about' => 'about',
             'special-offers' => 'special-offers',
             'politika-kodenfintsealnosti' => 'special-offers',
             'promotions' => 'promotions',

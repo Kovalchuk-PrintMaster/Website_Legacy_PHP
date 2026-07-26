@@ -49,3 +49,17 @@ Section `README.md` може оновлюватися як index, але не п
 - report підтверджує виконання.
 
 Новий великий documentation pack потрібен перед release, після major architecture change або після stabilization, але не після кожного CSS fix.
+
+<!-- FP-FRONTEND-DOCS-V02-START -->
+## Frontend package v0.2 application note
+
+The 2026-07-20 frontend architecture checkpoint adds new versioned canonical documents rather than rewriting the historical v0.1/v0.2 records.
+
+Supersession is explicit:
+
+- `frontend_css_ownership_and_layout_strategy_v0_3.md` supersedes the v0.2 strategy;
+- the earlier document remains historical evidence;
+- status snapshots are date-bound and are not edited into later states;
+- package manifests are versioned independently;
+- bounded index-marker blocks may be updated idempotently without deleting unrelated index content.
+<!-- FP-FRONTEND-DOCS-V02-END -->

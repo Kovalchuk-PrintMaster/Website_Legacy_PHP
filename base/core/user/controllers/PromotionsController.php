@@ -2,7 +2,7 @@
 
 namespace core\user\controllers;
 
-class PromotionsController extends BaseUser
+class PromotionsController extends ManagedProductsController
 {
     protected function inputData()
     {
@@ -16,39 +16,36 @@ class PromotionsController extends BaseUser
         );
 
         $data = $page ? $page[0] : [
-            'name' => 'Акції і Пропозиції',
+            'name' => 'Акції і пропозиції',
             'alias' => 'promotions',
             'keywords' => '',
             'description' => '',
             'content' => '',
         ];
 
-        $goods = $this->model->query(
-            "SELECT
-                id,
-                name,
-                alias,
-                visible,
-                parent_id,
-                menu_position,
-                price,
-                discount,
-                img,
-                short_content,
-                price_description,
-                hit,
-                sale,
-                hot,
-                `new`
+        $data['name'] = trim((string)($this->set['promotions_page_name'] ?? ''))
+            ?: (trim((string)($data['name'] ?? '')) ?: 'Акції і пропозиції');
+
+        $rows = $this->model->query(
+            "SELECT id
              FROM goods
-             WHERE visible = 1 AND (sale = 1 OR hit = 1)
-             ORDER BY menu_position, id"
+             WHERE visible = 1 AND (sale = 1 OR hit = 1)"
+        ) ?: [];
+
+        $listing = $this->buildManagedProductListing(
+            $this->extractManagedProductIds($rows),
+            'promotions',
+            'catalog'
         );
 
-        if (!$goods || !is_array($goods)) {
-            $goods = [];
-        }
+        $this->template = TEMPLATE . 'managedproducts';
 
-        return compact('data', 'goods');
+        return array_merge(
+            [
+                'data' => $data,
+                'listingKind' => 'promotions',
+            ],
+            $listing
+        );
     }
 }

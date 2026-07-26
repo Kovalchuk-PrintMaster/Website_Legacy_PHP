@@ -371,6 +371,8 @@ $plainMessage = fp_comm_plain_message($data);
 // Close DB before slow external delivery; reconnect later only to update delivery status.
 $db->close();
 
+/* ForPrint delivery diagnostics v0.6.32 */
+
 if ($mode === 'telegram') {
     $token = getenv('FP_WEB_TELEGRAM_BOT_TOKEN') ?: '';
     $chatId = getenv('FP_WEB_TELEGRAM_CHAT_ID') ?: '';
@@ -398,6 +400,8 @@ if ($mode === 'telegram') {
         $deliveryStatus = is_string($response) && str_contains($response, '"ok":true')
             ? 'sent_telegram'
             : 'stored_telegram_failed';
+    } else {
+        $deliveryStatus = 'stored_telegram_not_configured';
     }
 }
 
@@ -409,8 +413,11 @@ if ($mode === 'email') {
         : $smtpFallbackTarget;
 
     $emailDelivered = false;
+    $emailConfigured = false;
 
     if ($smtpEnabled && filter_var($emailTarget, FILTER_VALIDATE_EMAIL)) {
+        $emailConfigured = true;
+
         try {
             fp_comm_smtp_send_message(
                 $emailTarget,
@@ -430,29 +437,56 @@ if ($mode === 'email') {
         $mailEnabled = getenv('FP_WEB_ENABLE_PHP_MAIL') === '1';
 
         if ($mailEnabled && filter_var($emailTarget, FILTER_VALIDATE_EMAIL)) {
+            $emailConfigured = true;
             $subject = 'Запит з сайту ForPrint';
-            $fromEmail = trim((string)(getenv('FP_WEB_SMTP_FROM') ?: 'office@forprint.net.ua'));
-            $fromName = trim((string)(getenv('FP_WEB_SMTP_FROM_NAME') ?: 'ForPrint Website'));
-            $replyTo = filter_var($data['primary_contact'], FILTER_VALIDATE_EMAIL)
+            $fromEmail = trim((string)(
+                getenv('FP_WEB_SMTP_FROM')
+                ?: 'office@forprint.net.ua'
+            ));
+            $fromName = trim((string)(
+                getenv('FP_WEB_SMTP_FROM_NAME')
+                ?: 'ForPrint Website'
+            ));
+            $replyTo = filter_var(
+                $data['primary_contact'],
+                FILTER_VALIDATE_EMAIL
+            )
                 ? $data['primary_contact']
                 : $fromEmail;
 
             $headers = [
                 'MIME-Version: 1.0',
                 'Content-Type: text/plain; charset=UTF-8',
-                'From: ' . fp_comm_smtp_header_text($fromName) . ' <' . $fromEmail . '>',
+                'From: '
+                    . fp_comm_smtp_header_text($fromName)
+                    . ' <' . $fromEmail . '>',
                 'Reply-To: ' . $replyTo,
             ];
 
-            $sent = @mail($emailTarget, $subject, $plainMessage, implode("\r\n", $headers));
+            $sent = @mail(
+                $emailTarget,
+                $subject,
+                $plainMessage,
+                implode("\r\n", $headers)
+            );
 
             if ($sent) {
-                $deliveryStatus = $smtpEnabled ? 'sent_email_after_smtp_failed' : 'sent_email';
+                $deliveryStatus = $smtpEnabled
+                    ? 'sent_email_after_smtp_failed'
+                    : 'sent_email';
                 $emailDelivered = true;
             } elseif ($deliveryStatus === 'stored') {
                 $deliveryStatus = 'stored_email_failed';
             }
         }
+    }
+
+    if (
+        !$emailDelivered
+        && !$emailConfigured
+        && $deliveryStatus === 'stored'
+    ) {
+        $deliveryStatus = 'stored_email_not_configured';
     }
 }
 
@@ -475,7 +509,18 @@ if ($statusDb->connect_errno) {
     $statusDb->close();
 }
 
-fp_comm_response(true, 'Заявку прийнято. Ми звʼяжемося з вами найближчим часом.', [
+$deliveryCompleted = str_starts_with(
+    $deliveryStatus,
+    'sent_'
+);
+
+$responseMessage = $deliveryCompleted
+    ? 'Заявку прийнято. Ми звʼяжемося з вами найближчим часом.'
+    : 'Заявку збережено. Зовнішня доставка тимчасово '
+        . 'недоступна, але звернення не втрачено.';
+
+fp_comm_response(true, $responseMessage, [
     'request_id' => $requestId,
-'delivery_status' => $deliveryStatus,
+    'delivery_status' => $deliveryStatus,
+    'delivery_completed' => $deliveryCompleted,
 ]);

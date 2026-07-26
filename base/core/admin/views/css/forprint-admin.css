@@ -1,0 +1,729 @@
+/*
+ * ForPrint Admin UI
+ * Version: v0.6.47.2
+ *
+ * Project-owned admin overrides loaded after the inherited main.css.
+ * New admin work belongs here so legacy selectors can be retired gradually
+ * without changing unrelated public frontend surfaces.
+ */
+
+.fp-admin-shell,
+.fp-admin-shell *,
+.fp-admin-shell *::before,
+.fp-admin-shell *::after {
+    box-sizing: border-box;
+}
+
+/* Unified edit-card actions. */
+.fp-admin-action-bar {
+    flex-basis: 100%;
+    width: 100%;
+    margin: 0 0 0.75rem;
+    padding: 0;
+}
+
+.fp-admin-action-bar--bottom {
+    margin: 0.75rem 0 0;
+}
+
+.fp-admin-action-bar__inner {
+    width: 100%;
+    min-height: 3.75rem;
+    padding: 0.65rem 0.85rem;
+}
+
+.fp-admin-action-bar__actions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-basis: auto;
+    width: auto;
+    max-width: 100%;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0;
+}
+
+.fp-admin-action-button,
+.fp-admin-action-button.vg-input,
+.fp-admin-action-button.vg-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 7.5rem;
+    min-height: 2.5rem;
+    margin: 0;
+    padding: 0.65rem 1rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2f4054;
+    border-radius: 0.2rem;
+    color: #1f3042;
+    background: #ffffff;
+    font: inherit;
+    line-height: 1.15;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.fp-admin-action-button:hover,
+.fp-admin-action-button:focus-visible {
+    color: #ffffff;
+    background: #2f4054;
+    outline: none;
+}
+
+.fp-admin-action-button--delete:hover,
+.fp-admin-action-button--delete:focus-visible {
+    border-color: #8f3f3f;
+    background: #8f3f3f;
+}
+
+/* All position fields use a compact numeric control. */
+.fp-admin-number-field {
+    max-width: 100%;
+}
+
+.fp-admin-number-field input[type="number"] {
+    width: 100%;
+    min-height: 2.5rem;
+}
+
+/* Home product groups and marketing links. */
+.fp-admin-home-groups-card__top-grid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(21rem, 0.75fr);
+}
+
+.fp-admin-home-groups-card__meta {
+    display: grid;
+    gap: 1rem;
+}
+
+.fp-admin-home-groups-card__global,
+.fp-admin-home-groups-card__section {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid #d8e0e5;
+    background: #f8fafb;
+}
+
+.fp-admin-home-groups-card__section-heading {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+}
+
+.fp-admin-home-groups-card__section-heading .fp-admin-content-card__panel-title {
+    margin: 0;
+}
+
+.fp-admin-home-groups-card__section-heading > span:last-child {
+    color: #718491;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.fp-admin-home-groups-card__tab-grid,
+.fp-admin-home-groups-card__menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.fp-admin-home-tab-card,
+.fp-admin-home-menu-card {
+    min-width: 0;
+    margin: 0;
+    padding: 0.9rem;
+    border: 1px solid #d6e0e5;
+    background: #ffffff;
+}
+
+.fp-admin-home-tab-card legend,
+.fp-admin-home-menu-card legend {
+    max-width: 100%;
+    padding: 0 0.35rem;
+    color: #1f3042;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.fp-admin-home-groups-card .fp-admin-text-field {
+    display: grid;
+    gap: 0.4rem;
+    margin: 0 0 0.85rem;
+}
+
+.fp-admin-home-groups-card .fp-admin-text-field__label {
+    color: #1f3042;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.fp-admin-home-groups-card .fp-admin-text-field__hint {
+    color: #718491;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.fp-admin-home-groups-card .vg-input {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.5rem;
+}
+
+.fp-admin-binary-field {
+    display: grid;
+    gap: 0.55rem;
+    min-width: 0;
+    margin-top: 0.7rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e0e6ea;
+}
+
+.fp-admin-binary-field__copy {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.fp-admin-binary-field__label {
+    color: #1f3042;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.fp-admin-binary-field__hint {
+    color: #718491;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.fp-admin-binary-field__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.fp-admin-binary-field__options label {
+    display: inline-flex;
+    min-width: 4.6rem;
+    min-height: 2.2rem;
+    padding: 0.35rem 0.65rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border: 1px solid #cbd6dc;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.fp-admin-binary-field__options label:has(input:checked) {
+    border-color: #2f4054;
+    color: #ffffff;
+    background: #2f4054;
+}
+
+.fp-admin-binary-field__options input[type="radio"] {
+    flex: 0 0 auto;
+    margin: 0;
+}
+
+.fp-admin-field-migration-note {
+    margin: 0.65rem 0 0;
+    padding: 0.65rem;
+    color: #77572d;
+    background: #fff4dd;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.fp-admin-home-groups-card__media {
+    align-self: start;
+}
+
+/* Compact, consistent settings cards. */
+.fp-admin-content-card {
+    margin-top: 0.85rem;
+}
+
+.fp-admin-content-card__inner {
+    padding: 1rem;
+}
+
+.fp-admin-settings-index {
+    align-content: start;
+}
+
+@media (max-width: 78rem) {
+    .fp-admin-home-groups-card__top-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-admin-home-groups-card__tab-grid,
+    .fp-admin-home-groups-card__menu-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 42rem) {
+    .fp-admin-action-bar__actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .fp-admin-action-button,
+    .fp-admin-action-button.vg-input,
+    .fp-admin-action-button.vg-button {
+        flex: 1 1 9rem;
+    }
+}
+
+/*
+ * Unified admin indexes and interaction layers
+ * Version: v0.6.48
+ */
+.fp-admin-workspace {
+    min-width: 0;
+    min-height: calc(100vh - 5rem);
+    align-items: stretch;
+    overflow-x: hidden;
+}
+
+.fp-admin-sidebar {
+    position: relative;
+    align-self: stretch;
+    min-height: calc(100vh - 5rem);
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.fp-admin-index {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-content: start;
+    align-items: start;
+    gap: 0.75rem;
+    width: auto !important;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0.75rem;
+    flex: 1 1 0 !important;
+}
+
+.fp-admin-index > .vg-element,
+.fp-admin-index .fp-admin-entity-card,
+.fp-admin-index .fp-admin-settings-section-card {
+    width: auto !important;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    margin: 0 !important;
+    flex-basis: auto !important;
+}
+
+.fp-admin-add-card {
+    grid-column: 1 / -1;
+    width: min(100%, 24rem) !important;
+}
+
+.fp-admin-add-card > a {
+    min-height: 7.5rem;
+}
+
+.fp-admin-index-card__link,
+.fp-admin-entity-card__link,
+.fp-admin-settings-section-card__link {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(7.5rem, 42%);
+    width: 100% !important;
+    min-width: 0;
+    min-height: 9.5rem;
+    margin: 0 !important;
+    overflow: hidden;
+}
+
+.fp-admin-index-card__caption,
+.fp-admin-index-card__media,
+.fp-admin-entity-card__caption,
+.fp-admin-entity-card__media {
+    width: auto !important;
+    min-width: 0;
+    max-width: none;
+    padding: 0.75rem;
+    flex-basis: auto !important;
+}
+
+.fp-admin-index-card__media img,
+.fp-admin-entity-card__media img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 8rem;
+    object-fit: contain;
+}
+
+.fp-admin-goods-accordion,
+.fp-admin-filter-accordion {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 0.65rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.fp-admin-goods-group {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.fp-admin-goods-group__summary {
+    display: flex;
+    min-height: 3.7rem;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 0.95rem;
+    list-style: none;
+    cursor: pointer;
+}
+
+.fp-admin-goods-group__summary::-webkit-details-marker {
+    display: none;
+}
+
+.fp-admin-goods-group__items {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.65rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0.65rem 0 0;
+}
+
+.fp-admin-goods-group__items .fp-admin-entity-card {
+    width: auto !important;
+}
+
+.fp-admin-filter-card {
+    position: relative;
+}
+
+.fp-admin-filter-card__drag {
+    position: absolute;
+    top: 0.45rem;
+    left: 0.45rem;
+    z-index: 3;
+    display: inline-flex;
+    width: 1.8rem;
+    height: 1.8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    color: #607482;
+    background: rgba(255, 255, 255, 0.92);
+    cursor: grab;
+}
+
+.fp-admin-filter-card.is-dragging,
+.fp-admin-sidebar__link.is-dragging {
+    opacity: 0.45;
+}
+
+.fp-admin-sidebar__link {
+    position: relative;
+}
+
+.fp-admin-sidebar__drag-handle {
+    position: absolute;
+    top: 50%;
+    right: 0.35rem;
+    z-index: 2;
+    display: inline-flex;
+    width: 1.35rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    color: #91a3af;
+    font-size: 0.9rem;
+    letter-spacing: -0.18rem;
+    transform: translateY(-50%);
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 160ms ease, color 160ms ease;
+}
+
+.fp-admin-sidebar__link:hover .fp-admin-sidebar__drag-handle,
+.fp-admin-sidebar__link:focus-within .fp-admin-sidebar__drag-handle {
+    opacity: 1;
+}
+
+.fp-admin-sidebar__drag-handle:active {
+    cursor: grabbing;
+}
+
+.fp-admin-sidebar.is-saving {
+    cursor: progress;
+}
+
+.fp-admin-sidebar.is-saved::after,
+.fp-admin-sidebar.has-save-error::after {
+    position: sticky;
+    bottom: 0.5rem;
+    display: block;
+    margin: 0.5rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+.fp-admin-sidebar.is-saved::after {
+    content: "Порядок збережено";
+    background: #2f7d5c;
+}
+
+.fp-admin-sidebar.has-save-error::after {
+    content: "Не вдалося зберегти порядок";
+    background: #8f3f3f;
+}
+
+.fp-admin-topbar {
+    position: relative;
+    z-index: 1200;
+}
+
+.fp-admin-topbar__content,
+#searchButton,
+#searchButton form {
+    position: relative;
+    z-index: 1210;
+}
+
+#searchButton .search_res {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    z-index: 1400 !important;
+    width: min(34rem, calc(100vw - 2rem));
+    max-height: min(32rem, 70vh);
+    overflow-y: auto;
+    background: #ffffff;
+}
+
+.fp-admin-workspace {
+    z-index: 1;
+}
+
+@media (max-width: 82rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 62rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 42rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-admin-index-card__link,
+    .fp-admin-entity-card__link,
+    .fp-admin-settings-section-card__link {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/*
+ * ForPrint compact unified admin cards
+ * Version: v0.6.49
+ */
+.fp-admin-topbar__brand {
+    background: #d8e0e5 !important;
+}
+
+.fp-admin-topbar__brand .vg-text2 {
+    color: #2f3b4c !important;
+}
+
+.fp-admin-topbar,
+.fp-admin-topbar__content,
+.fp-admin-topbar__content > div,
+#searchButton,
+#searchButton form {
+    overflow: visible !important;
+}
+
+.fp-admin-topbar {
+    z-index: 2147481000;
+}
+
+#searchButton {
+    z-index: 2147482000;
+}
+
+#searchButton .search_res,
+#searchButton .search_links.search_res {
+    z-index: 2147483000 !important;
+}
+
+.fp-admin-index {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.42rem;
+    padding: 0.5rem;
+}
+
+.fp-admin-add-card {
+    width: min(100%, 20rem) !important;
+}
+
+.fp-admin-add-card > a {
+    min-height: 5.8rem;
+    max-height: 5.8rem;
+}
+
+.fp-admin-index-card__link,
+.fp-admin-entity-card__link,
+.fp-admin-settings-section-card__link {
+    grid-template-columns: minmax(0, 1fr) minmax(5.5rem, 38%);
+    height: 7rem;
+    min-height: 7rem;
+    max-height: 7rem;
+}
+
+.fp-admin-index-card__caption,
+.fp-admin-index-card__media,
+.fp-admin-entity-card__caption,
+.fp-admin-entity-card__media {
+    min-height: 0;
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+.fp-admin-index-card__media,
+.fp-admin-entity-card__media {
+    height: 7rem;
+    box-sizing: border-box;
+}
+
+.fp-admin-index-card__media img,
+.fp-admin-entity-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 6rem;
+    object-fit: contain;
+    object-position: center;
+}
+
+.fp-admin-index-card__title,
+.fp-admin-settings-section-card__title {
+    font-size: 0.88rem;
+    line-height: 1.25;
+}
+
+.fp-admin-index-card__subtitle,
+.fp-admin-settings-section-card__subtitle {
+    font-size: 0.72rem;
+    line-height: 1.25;
+}
+
+.fp-admin-goods-accordion,
+.fp-admin-filter-accordion {
+    gap: 0.34rem;
+}
+
+.fp-admin-goods-group__summary {
+    min-height: 2.8rem;
+    gap: 0.52rem;
+    padding: 0.48rem 0.7rem;
+}
+
+.fp-admin-goods-group__items,
+.fp-admin-filter-group__items {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 0.42rem !important;
+    align-items: start;
+    padding-top: 0.42rem;
+}
+
+.fp-admin-goods-group__items .fp-admin-entity-card,
+.fp-admin-filter-group__items .fp-admin-filter-card {
+    width: auto !important;
+    height: 7rem !important;
+    min-height: 7rem !important;
+    max-height: 7rem !important;
+    overflow: hidden;
+}
+
+.fp-admin-filter-card__drag {
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 1.45rem;
+    height: 1.45rem;
+}
+
+.fp-admin-catalog-card__grid {
+    grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 0.9fr);
+}
+
+.fp-admin-catalog-card__media {
+    min-width: 0;
+}
+
+.fp-admin-catalog-card__media .img_wrapper {
+    width: 100% !important;
+    margin: 0 0 0.75rem;
+}
+
+.fp-admin-index--user .fp-admin-entity-card__media img {
+    border-radius: 0.35rem;
+}
+
+@media (max-width: 92rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items,
+    .fp-admin-filter-group__items {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 72rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items,
+    .fp-admin-filter-group__items {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    .fp-admin-catalog-card__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 52rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items,
+    .fp-admin-filter-group__items {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 34rem) {
+    .fp-admin-index,
+    .fp-admin-goods-group__items,
+    .fp-admin-filter-group__items {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}

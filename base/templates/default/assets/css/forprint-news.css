@@ -1,0 +1,309 @@
+/*
+ * ForPrint news public surface v0.6.34
+ *
+ * Owns the public news list, news detail and news media gallery.
+ */
+
+.fp-news-page,
+.fp-news-page *,
+.fp-news-page *::before,
+.fp-news-page *::after {
+    box-sizing: border-box;
+}
+
+.fp-news-page {
+    min-height: 60vh;
+    padding-block: clamp(1.25rem, 2.2vw, 2.25rem);
+    color: #26333e;
+    background: #f4f6f8;
+}
+
+.fp-news-page__inner {
+    display: grid;
+    width: min(
+        calc(100% - var(--fp-layout-side-space) - var(--fp-layout-side-space)),
+        var(--fp-layout-content-ceiling)
+    );
+    max-width: calc(100% - 2rem);
+    min-width: 0;
+    gap: clamp(0.8rem, 1.25vw, 1.25rem);
+    overflow: hidden;
+}
+
+.fp-news-page .breadcrumbs {
+    margin: 0;
+}
+
+.fp-news-page__header {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.fp-news-page__eyebrow {
+    color: #667888;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.fp-news-page h1 {
+    margin: 0;
+    color: #26333e;
+    font-size: clamp(1.75rem, 2.4vw, 2.5rem);
+    line-height: 1.12;
+}
+
+.fp-news-page--detail h1 {
+    font-size: clamp(1.25rem, 1.55vw, 1.5rem);
+    line-height: 1.2;
+}
+
+.fp-news-page__intro {
+    max-width: 62rem;
+    color: #40515e;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.fp-news-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.fp-news-list-card {
+    display: grid;
+    grid-template-columns: 5.25rem minmax(0, 1fr);
+    min-width: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #dce4e8;
+    box-shadow: 0 0.8rem 1.8rem rgba(38, 51, 62, 0.08);
+}
+
+.fp-news-list-card__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 100%;
+    padding: 1rem 0.6rem;
+    color: #ffffff;
+    text-align: center;
+    background: #26333e;
+}
+
+.fp-news-list-card__date strong {
+    font-size: 2.4rem;
+    line-height: 1;
+}
+
+.fp-news-list-card__date span {
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+.fp-news-list-card__body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.25rem;
+}
+
+.fp-news-list-card h2 {
+    margin: 0 0 0.9rem;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.fp-news-list-card h2 a {
+    color: #26333e;
+    text-decoration: none;
+}
+
+.fp-news-list-card__summary {
+    display: -webkit-box;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    color: #40515e;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+}
+
+.fp-news-list-card__more {
+    margin-top: auto;
+    color: #0f0f0f;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.fp-news-list-card__more:hover,
+.fp-news-list-card__more:focus-visible {
+    text-decoration: underline;
+}
+
+.fp-news-detail__lead {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    overflow: hidden;
+}
+
+.fp-news-detail__lead--text-only {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.fp-news-detail__content,
+.fp-news-detail__media {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 1rem 2rem rgba(38, 51, 62, 0.08);
+}
+
+.fp-news-detail__content {
+    padding: clamp(1.25rem, 2.3vw, 2.25rem);
+    font-size: 1rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.fp-news-detail__media {
+    aspect-ratio: 4 / 3;
+}
+
+.fp-news-detail__media a,
+.fp-news-detail__media img,
+.fp-news-gallery__card a,
+.fp-news-gallery__card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
+.fp-news-detail__media img,
+.fp-news-gallery__card img {
+    object-fit: contain;
+    object-position: center;
+    background: #ffffff;
+}
+
+.fp-news-gallery {
+    display: grid;
+    gap: 1rem;
+}
+
+.fp-news-gallery__title {
+    margin: 0;
+}
+
+.fp-news-gallery__shell {
+    position: relative;
+    min-width: 0;
+}
+
+.fp-news-gallery__viewport {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.fp-news-gallery__track {
+    align-items: stretch;
+}
+
+.fp-news-gallery__card {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #ffffff;
+    border: 1px solid #dce4e8;
+}
+
+.fp-news-gallery__control {
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    width: 3.5rem;
+    height: 2.2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    color: #26333e;
+    background: rgba(212, 221, 225, 0.9);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.fp-news-gallery__control::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+}
+
+.fp-news-gallery__control--prev {
+    left: 1rem;
+}
+
+.fp-news-gallery__control--prev::before {
+    transform: translate(-38%, -50%) rotate(-135deg);
+}
+
+.fp-news-gallery__control--next {
+    right: 1rem;
+}
+
+.fp-news-gallery__control--next::before {
+    transform: translate(-62%, -50%) rotate(45deg);
+}
+
+.fp-news-gallery__control.swiper-button-disabled {
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+.fp-news-page__empty {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 1rem;
+}
+
+@media (max-width: 64em) {
+    .fp-news-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .fp-news-detail__lead {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 42em) {
+    .fp-news-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-news-list-card {
+        grid-template-columns: 4.5rem minmax(0, 1fr);
+    }
+}

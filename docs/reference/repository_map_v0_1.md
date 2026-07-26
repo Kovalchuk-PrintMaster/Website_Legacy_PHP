@@ -75,3 +75,33 @@ coordination/reports/                    historical implementation evidence
 ```
 
 Persistent tool behavior is indexed in `docs/reference/inspection_and_maintenance_tools_v0_1.md`.
+
+<!-- FP-FRONTEND-DOCS-V02-START -->
+## Frontend architecture additions — 2026-07-20
+
+```text
+base/templates/default/assets/css/
+├── forprint-layout.css
+├── forprint-shell.css
+├── forprint-home.css
+├── forprint-product-cards.css
+├── forprint-product-detail.css
+├── forprint-product-communication.css
+└── forprint-search-suggestions.css
+
+base/templates/default/surfaces/home/
+├── heroSlider.php
+├── productGroups.php
+├── about.php
+├── advantages.php
+├── feedback.php
+├── news.php
+└── search.php
+```
+
+Target homepage slider media namespace:
+
+```text
+base/userfiles/frontend/home/slider/
+```
+<!-- FP-FRONTEND-DOCS-V02-END -->

@@ -37,3 +37,11 @@
 - Status: accepted
 - Decision: prepare the inherited frontend for practical publication while developing a separate modern preview with project-owned HTML, CSS and JavaScript.
 - Record: `docs/decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md`
+
+<!-- FP-FRONTEND-DOCS-V02-START -->
+## FP-WEB-ADR-2026-07-20-001
+
+**Decision:** canonical frontend CSS ownership and homepage layout
+**Status:** accepted working architecture decision
+**Record:** `docs/decisions/2026-07-20__canonical_frontend_css_ownership_and_homepage_layout.md`
+<!-- FP-FRONTEND-DOCS-V02-END -->

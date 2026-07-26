@@ -2,7 +2,7 @@
     'use strict';
 
     var formSelector =
-        'form.search[data-fp-search-suggestions]';
+        'form.fp-search-form[data-fp-search-suggestions]';
     var historyKey = 'forprint_search_history_v1';
     var historyLimit = 8;
 
@@ -66,7 +66,7 @@
     function createList(input) {
         var list = document.createElement('div');
 
-        list.className = 'fp-search-suggestions';
+        list.className = 'fp-search-suggestions fp-suggestion-surface';
         list.hidden = true;
         list.setAttribute('role', 'listbox');
         list.setAttribute(
@@ -134,8 +134,8 @@
 
             var rect = input.getBoundingClientRect();
             var width = Math.min(
-                Math.max(rect.width, 320),
-                680
+                Math.max(rect.width * 0.75, 300),
+                510
             );
             var left = rect.left;
             var viewportPadding = 12;
@@ -231,7 +231,7 @@
 
             button.type = 'button';
             button.className =
-                'fp-search-suggestions__action '
+                'fp-search-suggestions__action fp-suggestion-row '
                 + className;
             button.setAttribute('role', 'option');
             button.setAttribute(
@@ -249,7 +249,7 @@
                         document.createElement('img');
 
                     image.className =
-                        'fp-search-suggestions__product-image';
+                        'fp-search-suggestions__product-image fp-suggestion-row__image';
                     image.src = imageUrl;
                     image.alt = '';
                     image.loading = 'lazy';
@@ -271,7 +271,7 @@
                     document.createElement('span');
 
                 productName.className =
-                    'fp-search-suggestions__product-name';
+                    'fp-search-suggestions__product-name fp-suggestion-row__name';
                 productName.textContent = label;
                 button.appendChild(productName);
             } else {
@@ -714,4 +714,80 @@
     } else {
         bindAll();
     }
+}());
+
+/**
+ * ForPrint homepage search/footer hard docking.
+ *
+ * The fixed homepage search strip sits at the viewport bottom until the
+ * managed footer enters the viewport. Its bottom offset is then updated
+ * synchronously to the exact visible footer intersection, with no delayed
+ * transition or trailing animation.
+ */
+(function () {
+    "use strict";
+
+    var strip = document.querySelector(
+        ".fp-search-strip--home"
+    );
+    var footer = document.querySelector(
+        ".fp-site-footer"
+    );
+
+    if (!strip || !footer) {
+        return;
+    }
+
+    var resizeObserver = null;
+
+    function getVisibleFooterHeight() {
+        var footerRect = footer.getBoundingClientRect();
+        var visibleTop = Math.max(
+            0,
+            footerRect.top
+        );
+        var visibleBottom = Math.min(
+            window.innerHeight,
+            footerRect.bottom
+        );
+
+        return Math.max(
+            0,
+            visibleBottom - visibleTop
+        );
+    }
+
+    function updateFooterOffset() {
+        strip.style.setProperty(
+            "--fp-search-strip-footer-offset",
+            Math.round(
+                getVisibleFooterHeight()
+            ) + "px"
+        );
+    }
+
+    window.addEventListener(
+        "scroll",
+        updateFooterOffset,
+        { passive: true }
+    );
+    window.addEventListener(
+        "resize",
+        updateFooterOffset,
+        { passive: true }
+    );
+    window.addEventListener(
+        "orientationchange",
+        updateFooterOffset,
+        { passive: true }
+    );
+
+    if (typeof ResizeObserver === "function") {
+        resizeObserver = new ResizeObserver(
+            updateFooterOffset
+        );
+        resizeObserver.observe(footer);
+    }
+
+    updateFooterOffset();
 }());

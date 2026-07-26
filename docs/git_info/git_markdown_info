@@ -1,0 +1,88 @@
+# Header
+## Header
+### Header
+#### Header
+##### Header
+###### Header
+
+---
+* List
+* List
+    * List
+    * List
+        * List
+        * List
+        * List
++ List
+    + List
+    + List
+        + List
+        + List
+- List
+    - List
+    - List
+        - List
+        - List
+___
+
+1. Text
+2. Text
+    1. Text
+    2. Text
+        2. Text
+        3. Text
+***
+_Italic_
+__Bold__
+___Bold Italic___
+
+    ___Bold Italic___
+
+---
+```
+git login - igor_kovalchuk@forprint.net.ua
+password - kardan0303
+```
+---
+> Quotes
+Text
+>> Insert Quotes
+>>> Insert Quotes
+___
+
+[Link](https://github.com/Print-Master)
+
+***
+Text First Footnote[^1] Text Second Footnote[^2]
+
+> Quotes
+Text
+>> Insert Quotes
+>>> Insert Quotes
+>
+[^1]: Footnote first
+[^2]: Footnote second
+
+---
+
+![Image](mast_logn_square.png)
+[![Image](mast_logn_square.png)](https://github.com/Print-Master)
+___
+
+id | name | description
+:--|:----:|-----------:
+1 | one | first
+2 | two | second
+
+***
+
+\# No Header
+
+---
+
+Item
+: Description
+
+Item
+: Description
+___

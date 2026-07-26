@@ -1,0 +1,1222 @@
+/**
+ * ForPrint shared site header contract.
+ *
+ * Horizontal width is owned by forprint-layout.css. This file owns only
+ * the inner header grid, typography and responsive header behavior.
+ */
+
+.fp-site-header {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 12000;
+    overflow: visible;
+}
+
+.fp-site-header .fp-site-header__wrapper {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 12000;
+    display: grid;
+    grid-template-columns:
+        clamp(3rem, 3.35vw, 3.75rem)
+        minmax(0, 1fr)
+        max-content;
+    align-items: center;
+    column-gap: clamp(0.8rem, 1.1vw, 1.35rem);
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    min-height: 7rem;
+    margin: 0;
+    padding: 0.2rem 0;
+    overflow: visible;
+}
+
+.fp-site-header .fp-site-header__logo {
+    display: contents;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-site-header .fp-site-header__logo-link {
+    grid-column: 1;
+    align-self: center;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 3.75rem;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-site-header .fp-site-header__logo-link img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.fp-site-header .fp-site-header__tagline {
+    grid-column: 2;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding-inline: clamp(0.85rem, 1.2vw, 1.4rem);
+    overflow: visible;
+    color: #24313f;
+    font-family: "Roboto Mono", "Courier New", monospace;
+    font-size: clamp(1.05rem, 1.48vw, 1.75rem);
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: clamp(0.07em, 0.11vw, 0.13em);
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/*
+ * Legacy .header__logo span previously injected margin, font size and
+ * excessive tracking into this project-owned link. Reset the bounded
+ * descendant explicitly so the modern header owns the whole slogan.
+ */
+.fp-site-header .fp-site-header__tagline > span {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    color: inherit;
+    font: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    text-transform: inherit;
+    white-space: inherit;
+}
+
+.fp-site-header .fp-site-header__tagline:hover,
+.fp-site-header .fp-site-header__tagline:focus-visible {
+    color: #24313f;
+    text-decoration: none;
+}
+
+.fp-site-header .fp-site-header__tagline:focus-visible {
+    outline: 2px solid #24313f;
+    outline-offset: 0.25rem;
+}
+
+.fp-site-header .fp-site-header__topbar {
+    grid-column: 3;
+    align-self: center;
+    justify-self: end;
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-content: end;
+    justify-items: stretch;
+    row-gap: 0.15rem;
+    width: max-content;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.fp-site-header .fp-site-header__contacts {
+    display: grid;
+    grid-template-columns:
+        minmax(11rem, auto)
+        max-content
+        max-content
+        max-content;
+    align-items: center;
+    justify-content: end;
+    justify-items: start;
+    justify-self: end;
+    column-gap: clamp(0.55rem, 0.8vw, 1rem);
+    width: max-content;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    color: #24313f;
+    font-family: Lato, Arial, sans-serif;
+    font-size: clamp(0.66rem, 0.66vw, 0.78rem);
+    line-height: 1.2;
+}
+
+.fp-site-header .fp-site-header__contacts > div {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-site-header .fp-site-header__contacts > div:not(.fp-site-header__years),
+.fp-site-header .fp-site-header__contacts a {
+    white-space: nowrap;
+}
+
+.fp-site-header .fp-site-header__contacts a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.35rem;
+}
+
+.fp-site-header .fp-site-header__years {
+    display: grid;
+    grid-template-columns: 2.05rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    overflow: visible;
+}
+
+.fp-site-header .fp-site-header__years img {
+    display: block;
+    width: 2.05rem;
+    min-width: 2.05rem;
+    max-width: 2.05rem;
+    height: auto;
+    margin: 0;
+    object-fit: contain;
+}
+
+.fp-site-header .fp-site-header__years p,
+.fp-site-header .fp-site-header__years p span {
+    font-family: "Roboto Mono", "Courier New", monospace;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.fp-site-header .fp-site-header__years p {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    white-space: normal;
+    text-wrap: balance;
+}
+
+.fp-site-header .fp-site-header__years p span {
+    margin-right: 0.25rem;
+}
+
+.fp-site-header .fp-site-header__nav {
+    display: block;
+    justify-self: end;
+    width: max-content;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.fp-site-header .fp-site-header__nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: clamp(0.45rem, 0.65vw, 0.8rem);
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fp-site-header .fp-site-header__nav-list > li {
+    flex: 0 0 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-site-header .fp-site-header__nav-list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.55rem;
+    margin: 0;
+    padding: 0;
+    font-family: Lato, Arial, sans-serif;
+    font-size: clamp(0.66rem, 0.65vw, 0.78rem);
+    line-height: 1.15;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Header navigation interaction start */
+
+.fp-site-header
+.fp-site-header__nav-list > li {
+    position: relative;
+    overflow: visible;
+}
+
+.fp-site-header
+.fp-site-header__nav-list > li > a {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    overflow: visible;
+}
+
+.fp-site-header
+.fp-site-header__nav-list > li > a > span {
+    position: relative;
+    z-index: 1;
+}
+
+.fp-site-header
+.fp-site-header__nav-list > li > a::before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+
+    display: block;
+
+    width: 0;
+    height: 0.42rem;
+
+    background: #d4dde1;
+
+    pointer-events: none;
+
+    transform: translateY(-50%);
+    transition:
+        width 180ms ease,
+        left 180ms ease;
+}
+
+.fp-site-header
+.fp-site-header__nav-list > li > a:hover::before,
+.fp-site-header
+.fp-site-header__nav-list > li > a:focus-visible::before {
+    left: 0;
+    width: 100%;
+}
+
+.fp-site-header
+.fp-site-header__nav-sublist {
+    top: calc(100% + 0.45rem);
+    z-index: 13000;
+
+    overflow: visible;
+}
+
+/* Header navigation interaction end */
+
+
+@media (max-width: 100em) {
+    .fp-site-header .fp-site-header__wrapper {
+        grid-template-columns:
+            3.1rem
+            minmax(0, 1fr)
+            max-content;
+        min-height: 6.75rem;
+        column-gap: clamp(0.65rem, 0.85vw, 1rem);
+    }
+
+    .fp-site-header .fp-site-header__logo-link {
+        max-width: 3.1rem;
+    }
+
+    .fp-site-header .fp-site-header__tagline {
+        padding-inline: clamp(0.7rem, 0.9vw, 1rem);
+    }
+
+    .fp-site-header .fp-site-header__contacts {
+        grid-template-columns:
+            minmax(9rem, auto)
+            max-content
+            max-content
+            max-content;
+        column-gap: clamp(0.35rem, 0.5vw, 0.6rem);
+        font-size: 0.64rem;
+        justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+
+    .fp-site-header .fp-site-header__nav-list {
+        gap: clamp(0.3rem, 0.42vw, 0.52rem);
+    }
+
+    .fp-site-header .fp-site-header__nav-list a {
+        font-size: 0.64rem;
+    }
+}
+
+@media (max-width: 88em) {
+    .fp-site-header .fp-site-header__wrapper {
+        grid-template-columns: 3rem minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        row-gap: 0.3rem;
+        min-height: 0;
+        padding-block: 0.35rem;
+    }
+
+    .fp-site-header .fp-site-header__logo-link {
+        grid-column: 1;
+        grid-row: 1 / 3;
+        align-self: start;
+    }
+
+    .fp-site-header .fp-site-header__tagline {
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: flex-start;
+        padding-inline: 0.5rem;
+        text-align: left;
+    }
+
+    .fp-site-header .fp-site-header__topbar {
+        grid-column: 2;
+        grid-row: 2;
+        grid-template-columns: minmax(0, 1fr);
+    justify-content: stretch;
+    justify-items: stretch;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+
+    .fp-site-header .fp-site-header__contacts {
+        grid-template-columns:
+            minmax(9rem, 1fr)
+            max-content
+            max-content
+            max-content;
+        justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+}
+
+@media (max-width: 64em) {
+    .fp-site-header .fp-site-header__contacts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.35rem 0.8rem;
+        justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+
+    .fp-site-header .fp-site-header__years {
+        flex: 1 1 100%;
+    }
+
+    .fp-site-header .fp-site-header__nav-list {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 40em) {
+    .fp-site-header .fp-site-header__wrapper {
+        grid-template-columns: 2.75rem minmax(0, 1fr);
+    }
+
+    .fp-site-header .fp-site-header__tagline {
+        font-size: 0.78rem;
+        white-space: normal;
+    }
+
+    .fp-site-header .fp-site-header__contacts,
+    .fp-site-header .fp-site-header__nav-list {
+        font-size: 0.62rem;
+    }
+}
+
+/* ForPrint canonical breadcrumbs v0.6.36 */
+
+main.main .fp-page-heading {
+    display: grid;
+    gap: clamp(0.45rem, 0.8vw, 0.75rem);
+    margin-inline: auto;
+    padding-block: clamp(0.8rem, 1.5vw, 1.35rem);
+}
+
+main.main .fp-breadcrumbs {
+    position: relative;
+    z-index: 10;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+main.main .fp-breadcrumbs__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.8rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+main.main .fp-breadcrumbs__item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    color: #26333e;
+    font-size: clamp(0.72rem, 0.78vw, 0.88rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+main.main .fp-breadcrumbs__item::before {
+    content: "";
+    position: static;
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin-right: 0.8rem;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+main.main .fp-breadcrumbs__item:first-child::before {
+    display: none;
+}
+
+main.main .fp-breadcrumbs__link,
+main.main .fp-breadcrumbs__current {
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    text-decoration: none;
+}
+
+main.main .fp-breadcrumbs__link {
+    transition: opacity 180ms ease;
+}
+
+main.main .fp-breadcrumbs__link:hover,
+main.main .fp-breadcrumbs__link:focus-visible {
+    opacity: 0.62;
+}
+
+main.main .fp-page-heading .page-title {
+    margin: 0;
+}
+
+@media (max-width: 40em) {
+    main.main .fp-page-heading {
+        padding-block: 0.75rem;
+    }
+
+    main.main .fp-breadcrumbs__list {
+        gap: 0.35rem 0.55rem;
+    }
+
+    main.main .fp-breadcrumbs__item::before {
+        margin-right: 0.55rem;
+    }
+}
+
+/* ForPrint managed footer v0.6.37 */
+
+.fp-site-footer__link-icon {
+    display: inline-block;
+    width: 1.15rem;
+    max-width: 1.15rem;
+    height: 1.15rem;
+    margin-right: 0.4rem;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+}
+
+.fp-site-footer .footer__top_menu a {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* ForPrint compact managed footer v0.6.40 */
+
+footer.fp-site-footer .footer__wrapper {
+    padding: clamp(0.85rem, 1.25vw, 1.2rem) 0;
+}
+
+footer.fp-site-footer .footer__top {
+    display: grid;
+    grid-template-columns:
+        minmax(5.25rem, 0.65fr)
+        repeat(2, minmax(8.25rem, 1fr))
+        minmax(11rem, 1.2fr)
+        minmax(9rem, 1fr)
+        minmax(10rem, 1.15fr);
+    align-items: start;
+    gap: clamp(1rem, 2vw, 2.4rem);
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+footer.fp-site-footer .footer__top_logo {
+    display: block;
+    grid-column: 1;
+    min-width: 0;
+}
+
+footer.fp-site-footer .footer__top_logo img {
+    display: block;
+    width: min(100%, 5.4rem);
+    height: auto;
+    max-height: 6rem;
+    object-fit: contain;
+    object-position: left top;
+}
+
+footer.fp-site-footer .footer__top_menu {
+    grid-column: 2 / span 2;
+    min-width: 0;
+    font-size: inherit;
+}
+
+footer.fp-site-footer .footer__top_menu ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem clamp(0.9rem, 1.8vw, 2rem);
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+footer.fp-site-footer .footer__top_menu li {
+    display: block;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    padding: 0;
+    line-height: 1.3;
+}
+
+footer.fp-site-footer .footer__top_contacts {
+    grid-column: 4 / span 3;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(0, 1fr)
+        minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(0.9rem, 1.6vw, 1.8rem);
+    width: auto;
+    max-width: none;
+    height: auto;
+    min-width: 0;
+    margin: 0;
+    line-height: 1.3;
+}
+
+footer.fp-site-footer .footer__top_contacts > .footer__contact,
+footer.fp-site-footer .footer__top_contacts > div:nth-child(n+2) {
+    width: auto;
+    min-width: 0;
+    margin-left: 0;
+}
+
+footer.fp-site-footer .footer__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+}
+
+footer.fp-site-footer .footer__top_contacts a {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+footer.fp-site-footer .footer__top_contacts .footer__contact a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -0.35rem;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 1px;
+    margin: 0;
+    background: #d4dde1;
+    transition: width 180ms ease;
+}
+
+footer.fp-site-footer .footer__top_contacts .footer__contact a:hover::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a:focus-visible::after {
+    width: 100%;
+}
+
+footer.fp-site-footer .footer__bottom_copy {
+    margin-top: clamp(0.7rem, 1vw, 1rem);
+    font-size: 0.8rem;
+    line-height: 1.25;
+    white-space: nowrap;
+    text-align: left;
+}
+
+@media (max-width: 78em) {
+    footer.fp-site-footer .footer__top {
+        grid-template-columns:
+            minmax(5rem, 0.6fr)
+            repeat(2, minmax(7.5rem, 1fr))
+            minmax(10rem, 1.25fr);
+        gap: 1rem 1.25rem;
+    }
+
+    footer.fp-site-footer .footer__top_contacts {
+        grid-column: 4;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.65rem;
+    }
+
+    footer.fp-site-footer .footer__bottom_copy {
+        margin-top: 0.4rem;
+    }
+}
+
+@media (max-width: 64em) {
+    footer.fp-site-footer .footer__top {
+        grid-template-columns: minmax(4.5rem, 0.3fr) minmax(0, 1fr);
+    }
+
+    footer.fp-site-footer .footer__top_logo {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    footer.fp-site-footer .footer__top_menu,
+    footer.fp-site-footer .footer__top_contacts {
+        grid-column: 2;
+    }
+
+    footer.fp-site-footer .footer__top_contacts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 40em) {
+    footer.fp-site-footer .footer__wrapper {
+        padding-block: 1rem;
+    }
+
+    footer.fp-site-footer .footer__top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+    }
+
+    footer.fp-site-footer .footer__top_logo,
+    footer.fp-site-footer .footer__top_menu,
+    footer.fp-site-footer .footer__top_contacts {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    footer.fp-site-footer .footer__top_logo img {
+        margin-inline: auto;
+        object-position: center;
+    }
+
+    footer.fp-site-footer .footer__top_menu ul,
+    footer.fp-site-footer .footer__top_contacts {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: center;
+    }
+
+    footer.fp-site-footer .footer__contact {
+        align-items: center;
+    }
+
+    footer.fp-site-footer .footer__bottom_copy {
+        text-align: center;
+    }
+}
+
+/* ForPrint footer interaction rhythm v0.6.43 */
+
+footer.fp-site-footer .footer__top_menu a,
+footer.fp-site-footer .footer__top_contacts .footer__contact a {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    text-decoration: none;
+}
+
+footer.fp-site-footer .footer__top_menu a::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a::after {
+    content: "";
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: -0.42rem;
+    left: 0;
+    width: 0;
+    height: 1px;
+    margin: 0;
+    background: #d4dde1;
+    transform: none;
+    transition: width 180ms ease;
+}
+
+footer.fp-site-footer .footer__top_menu a:hover::after,
+footer.fp-site-footer .footer__top_menu a:focus-visible::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a:hover::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a:focus-visible::after {
+    width: 100%;
+}
+
+
+/* ForPrint right-rail anchoring and footer underline v0.6.44 */
+.header__sidebar {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.header__sidebar > .burger-menu {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 7rem;
+}
+
+.fp-site-sidebar__utility {
+    display: grid;
+    margin-top: auto;
+}
+
+.fp-site-sidebar__utility .header__sidebar_btn {
+    flex: 0 0 auto;
+}
+
+footer.fp-site-footer .footer__top_menu a::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a::after {
+    right: 0;
+    bottom: -0.18rem;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 180ms ease;
+}
+
+footer.fp-site-footer .footer__top_menu a:hover::after,
+footer.fp-site-footer .footer__top_menu a:focus-visible::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a:hover::after,
+footer.fp-site-footer .footer__top_contacts .footer__contact a:focus-visible::after {
+    width: 100%;
+    transform: scaleX(1);
+}
+
+@media (max-width: 64em) {
+    .header__sidebar {
+        min-height: 100dvh;
+    }
+}
+
+/*
+ * ForPrint centred utility panels
+ * Version: v0.6.48
+ *
+ * The menu and callback remain legacy DOM nodes, while project-owned shell
+ * CSS now owns their current geometry.
+ */
+.fp-site-header .header__menu,
+.fp-site-header .header__callback {
+    right: var(--fp-layout-rail-width, 5rem);
+    width: min(44rem, calc(100vw - var(--fp-layout-rail-width, 5rem)));
+    max-width: calc(100vw - var(--fp-layout-rail-width, 5rem));
+    height: 100dvh;
+    min-height: 100vh;
+    padding: clamp(2rem, 5vh, 4rem) clamp(2rem, 7vw, 7rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #ffffff;
+    box-shadow: -1rem 0 2.5rem rgba(25, 37, 45, 0.12);
+}
+
+/*
+ * Side panels remain scrollable but do not expose browser scrollbar chrome.
+ * Wheel, touch, keyboard and programmatic scrolling remain available.
+ */
+.fp-site-header .header__menu,
+.fp-site-header .header__callback {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior: contain;
+}
+
+.fp-site-header .header__menu::-webkit-scrollbar,
+.fp-site-header .header__callback::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.fp-site-header .header__menu {
+    position: fixed;
+    top: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: start;
+    gap: clamp(1.25rem, 2.5vh, 2rem);
+    padding:
+        clamp(1.5rem, 4vh, 3rem)
+        clamp(2rem, 7vw, 7rem)
+        clamp(2rem, 5vh, 4rem);
+}
+
+/*
+ * Project-owned close control. The legacy .close_modal class is no
+ * longer present in the header markup, so inherited pseudo-elements
+ * and off-centre transforms cannot affect these buttons.
+ */
+.fp-site-header .fp-site-panel-close {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    box-sizing: border-box;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    color: #0f0f0f;
+    background: transparent;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transform-origin: center;
+    transition:
+        color 220ms ease,
+        transform 280ms ease;
+}
+
+.fp-site-header .fp-site-panel-close::before,
+.fp-site-header .fp-site-panel-close::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 1.85rem;
+    height: 0.125rem;
+    border-radius: 999px;
+    background: currentColor;
+    transform-origin: center;
+}
+
+.fp-site-header .fp-site-panel-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.fp-site-header .fp-site-panel-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@media (hover: hover) {
+    .fp-site-header .fp-site-panel-close:hover {
+        color: #8c9aa2;
+        transform: rotate(180deg);
+    }
+}
+
+.fp-site-header .fp-site-panel-close:focus-visible {
+    outline: 2px solid #24313f;
+    outline-offset: 0.2rem;
+}
+
+.fp-site-header .header__menu_close {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 5;
+    display: inline-grid;
+    margin: 0;
+    justify-self: start;
+    align-self: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fp-site-header .fp-site-panel-close {
+        transition: none;
+    }
+
+    .fp-site-header .fp-site-panel-close:hover {
+        transform: none;
+    }
+}
+
+.fp-site-header .header__menu_burger {
+    width: min(100%, 30rem);
+    margin: 0;
+    padding: 0;
+    justify-self: start;
+}
+
+.fp-site-header .header__menu_burger > li {
+    margin: 0 0 1.2rem;
+}
+
+.fp-site-header .header__menu_sublist {
+    margin-top: 0.9rem;
+}
+
+.fp-site-header .header__callback {
+    display: flex;
+    align-items: center;
+    padding: clamp(3.5rem, 7vh, 6rem) clamp(1.4rem, 5vw, 4rem);
+}
+
+.fp-site-header .header__callback_close {
+    position: absolute;
+    top: clamp(1.5rem, 4vh, 3rem);
+    left: clamp(1.4rem, 5vw, 4rem);
+    z-index: 3;
+    display: inline-grid;
+    margin: 0;
+}
+
+@media (max-width: 52rem) {
+    .fp-site-header .header__menu,
+    .fp-site-header .header__callback {
+        right: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
+}
+
+/*
+ * ForPrint release UI refinements
+ * Version: v0.6.49
+ */
+footer.fp-site-footer .fp-site-footer__logo-link {
+    display: inline-block;
+    width: min(100%, 5.4rem);
+    line-height: 0;
+}
+
+footer.fp-site-footer .fp-site-footer__logo-link:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 0.25rem;
+}
+
+/*
+ * Project-owned search strip.
+ *
+ * Up to and including the 1920 CSS-pixel baseline, controls start at the
+ * left edge of the usable viewport, preserving the accepted compact-screen
+ * behavior. Above that baseline they align with the capped shared content
+ * geometry used by the header and footer.
+ */
+.fp-search-strip {
+    box-sizing: border-box;
+    width: calc(100% - var(--fp-layout-rail-width));
+    min-width: 0;
+    background: #d4dde1;
+}
+
+.fp-search-strip--home {
+    position: fixed;
+    right: var(--fp-layout-rail-width);
+    bottom: var(--fp-search-strip-footer-offset, 0px);
+    left: 0;
+    width: auto;
+    z-index: 700;
+}
+
+.fp-search-strip .fp-search-strip__form {
+    --fp-search-strip-height: clamp(3.75rem, 4.2vw, 5rem);
+
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    margin-inline: 0;
+    z-index: 700;
+}
+
+.fp-search-strip .fp-search-strip__form button {
+    flex: 0 0 var(--fp-search-strip-height);
+    width: var(--fp-search-strip-height);
+    height: var(--fp-search-strip-height);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    border-radius: 0;
+    background: #d4dde1;
+}
+
+.fp-search-strip .fp-search-strip__form button svg {
+    width: clamp(1.35rem, 1.7vw, 1.8rem);
+    height: clamp(1.35rem, 1.7vw, 1.8rem);
+    fill: #ffffff;
+}
+
+.fp-search-strip .fp-search-strip__form input[type="search"] {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    height: var(--fp-search-strip-height);
+    margin: 0;
+    padding: 0.75rem 1.35rem;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    color: #ffffff;
+    background: #d4dde1;
+    font-size: clamp(0.9rem, 1vw, 1.125rem);
+    font-weight: 700;
+    appearance: none;
+}
+
+.fp-search-strip
+.fp-search-strip__form
+input[type="search"]::placeholder {
+    color: #ffffff;
+    opacity: 1;
+    text-transform: uppercase;
+}
+
+.fp-search-strip
+.fp-search-strip__form
+input[type="search"]:focus-visible {
+    outline: 0;
+    box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.82);
+}
+
+.fp-search-strip
+.fp-search-strip__form
+button:focus-visible {
+    outline: 0;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.82);
+}
+
+/*
+ * The shared content ceiling is 120rem (1920 CSS px). The additional pixel
+ * keeps the 1920 baseline in the compact/full-width branch.
+ */
+@media (min-width: 120.0625rem) {
+    .fp-search-strip .fp-search-strip__form {
+        width: min(
+            calc(
+                100%
+                - var(--fp-layout-side-space)
+                - var(--fp-layout-side-space)
+            ),
+            var(--fp-layout-content-ceiling)
+        );
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 40em) {
+    .fp-search-strip .fp-search-strip__form {
+        --fp-search-strip-height: 3.5rem;
+    }
+}
+
+*(FP_HEADER_FONT_CALLBACK_VISIBILITY_05G4A)
+ * Canonical header typography and closed callback-panel state.
+ *
+ * Roboto Mono is loaded in include/header.php. `!important` is restricted to
+ * this bounded component because legacy style.css contains competing header
+ * typography. The callback panel keeps its current JavaScript contract:
+ * `_hidden` means fully absent from rendering and pointer interaction.
+ */
+.fp-site-header .fp-site-header__tagline,
+.fp-site-header .fp-site-header__tagline > span {
+    font-family:
+        "Roboto Mono",
+        ui-monospace,
+        "SFMono-Regular",
+        Menlo,
+        Monaco,
+        Consolas,
+        "Liberation Mono",
+        "Courier New",
+        monospace !important;
+    font-weight: 500 !important;
+    font-synthesis: none;
+    font-variant-ligatures: none;
+}
+
+.fp-site-header .header__callback {
+    visibility: visible;
+    opacity: 1;
+    transition-property: transform, opacity;
+}
+
+.fp-site-header .header__callback._hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateX(calc(100% + 5rem)) !important;
+}

@@ -1,0 +1,162 @@
+/* ForPrint admin ordering controls. */
+
+.fp-admin-position-composite {
+    display: grid !important;
+    grid-template-columns: minmax(7rem, 1fr) minmax(10rem, .75fr);
+    gap: .55rem;
+    width: 100%;
+    margin-top: .35rem;
+    box-sizing: border-box;
+}
+
+.fp-admin-position-composite > input[name="menu_position"],
+.fp-admin-position-composite__select {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 2.75rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.fp-admin-position-composite__select {
+    padding: .55rem 2.1rem .55rem .7rem;
+    border: 1px solid #aab8c2;
+    color: #17232e;
+    background: #fff;
+    font: inherit;
+}
+
+.fp-admin-position-composite__select:focus-visible {
+    border-color: #09b9db;
+    outline: .15rem solid rgba(9, 185, 219, .18);
+}
+
+[data-fp-order-item] {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+[data-fp-order-item].fp-admin-ordering--dragging {
+    z-index: 20;
+    opacity: .7;
+    cursor: grabbing !important;
+    box-shadow: 0 .6rem 1.4rem rgba(23, 35, 46, .22) !important;
+}
+
+[data-fp-order-group].is-saving {
+    opacity: .82;
+    pointer-events: none;
+}
+
+[data-fp-order-group] {
+    position: relative;
+}
+
+[data-fp-order-group][data-save-state]:not([data-save-state=""])::after {
+    content: attr(data-save-state);
+    position: absolute;
+    right: .5rem;
+    bottom: .35rem;
+    z-index: 30;
+    max-width: min(24rem, calc(100% - 1rem));
+    padding: .35rem .55rem;
+    border-radius: .3rem;
+    color: #fff;
+    background: rgba(38, 55, 71, .94);
+    font-size: .78rem;
+    line-height: 1.25;
+    pointer-events: none;
+}
+
+[data-fp-order-group].has-save-error::after {
+    background: rgba(145, 40, 40, .96) !important;
+}
+
+[data-fp-admin-sortable-entity-group] > [data-fp-admin-entity-id],
+[data-fp-admin-sortable-filter-group] > [data-fp-admin-filter-id],
+[data-fp-admin-menu-sortable] > [data-fp-admin-menu-table] {
+    cursor: grab !important;
+}
+
+@media (max-width: 42rem) {
+    .fp-admin-position-composite {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* FP_ADMIN_CARD_DRAG_INPUT_FIX_START */
+/*
+ * Nested links/images must not start native browser drag. Normal clicks and
+ * project-owned pointer ordering remain available.
+ */
+[data-fp-admin-sortable-entity-group]
+> [data-fp-admin-entity-id],
+[data-fp-admin-sortable-filter-group]
+> [data-fp-admin-filter-id],
+[data-fp-admin-sortable-entity-group]
+> [data-fp-admin-entity-id] a,
+[data-fp-admin-sortable-entity-group]
+> [data-fp-admin-entity-id] img,
+[data-fp-admin-sortable-filter-group]
+> [data-fp-admin-filter-id] a,
+[data-fp-admin-sortable-filter-group]
+> [data-fp-admin-filter-id] img {
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+}
+
+[data-fp-order-group].fp-admin-ordering--active
+[data-fp-order-item],
+[data-fp-order-item].fp-admin-ordering--dragging,
+[data-fp-order-item].fp-admin-ordering--dragging * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+/* FP_ADMIN_CARD_DRAG_INPUT_FIX_END */
+
+/* FP_ADMIN_MANAGED_COLLECTION_ORDERING_START */
+/*
+ * Generic managed card collections.
+ *
+ * Goods and Filters keep their accepted specialized selectors. This contract
+ * is added only after a server manifest confirms the table, scope and full
+ * record set.
+ */
+[data-fp-admin-managed-sort-group] {
+    position: relative;
+}
+
+[data-fp-admin-managed-sort-item] {
+    cursor: grab !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+}
+
+[data-fp-admin-managed-sort-item] a,
+[data-fp-admin-managed-sort-item] img {
+    -webkit-user-drag: none !important;
+}
+
+[data-fp-admin-managed-sort-item]:active {
+    cursor: grabbing !important;
+}
+
+[data-fp-admin-managed-sort-item].fp-admin-ordering--dragging {
+    z-index: 25;
+    opacity: 0.68;
+    cursor: grabbing !important;
+    pointer-events: none !important;
+    box-shadow:
+        0 0.65rem 1.45rem rgba(23, 35, 46, 0.24) !important;
+}
+
+[data-fp-admin-managed-sort-group].fp-admin-ordering--active {
+    cursor: grabbing !important;
+}
+
+[data-fp-admin-managed-sort-group].is-saving {
+    opacity: 0.82;
+    pointer-events: none;
+}
+/* FP_ADMIN_MANAGED_COLLECTION_ORDERING_END */

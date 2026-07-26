@@ -1,0 +1,402 @@
+/*
+ * ForPrint Admin — canonical Goods form surface (04E).
+ *
+ * The legacy form templates remain the data/field source. This stylesheet is
+ * the single project-owned visual owner for the Goods create/edit surface.
+ */
+
+#main-form.fp-goods-form-canonical {
+    --fp-goods-bg: #ffffff;
+    --fp-goods-page: #eceef2;
+    --fp-goods-border: #d6dde2;
+    --fp-goods-border-strong: #9aa9b3;
+    --fp-goods-text: #1f2d37;
+    --fp-goods-muted: #6e818d;
+    --fp-goods-soft: #f2f4f5;
+    color: var(--fp-goods-text);
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical,
+#main-form.fp-goods-form-canonical * {
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical :where(
+    .vg-header,
+    .fp-radio-template-title,
+    .fp-admin-number-field__label
+) {
+    color: var(--fp-goods-text) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical :where(
+    .vg_subheader,
+    .fp-admin-number-field__hint
+) {
+    color: var(--fp-goods-muted) !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 1.45 !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-field-card {
+    width: 100%;
+    margin: 0 0 10px !important;
+    padding: 14px !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: 8px !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-field-card--visibility {
+    min-height: 0;
+    align-items: center;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-parent-field {
+    width: 100% !important;
+    min-width: 0;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+:where(
+    input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+    select,
+    textarea
+):not(.tox-textarea) {
+    min-width: 0;
+    border: 1px solid var(--fp-goods-border-strong) !important;
+    border-radius: 6px !important;
+    background: #ffffff;
+    color: var(--fp-goods-text);
+    box-shadow: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+:where(
+    input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+    select
+) {
+    min-height: 40px;
+    padding: 7px 10px;
+}
+
+#main-form.fp-goods-form-canonical
+textarea:not(.tox-textarea) {
+    padding: 9px 10px;
+    line-height: 1.45;
+}
+
+#main-form.fp-goods-form-canonical
+:where(
+    input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+    select,
+    textarea
+):not(.tox-textarea):hover,
+#main-form.fp-goods-form-canonical
+:where(
+    input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+    select,
+    textarea
+):not(.tox-textarea):focus {
+    border-color: #8798a3 !important;
+    background: #f1f4f6 !important;
+    box-shadow:
+        0 0 0 0.15rem rgba(135, 152, 163, 0.14) !important;
+    outline: none !important;
+}
+
+/* Position: select first, numeric arrows second. */
+#main-form.fp-goods-form-canonical
+.fp-goods-position-field {
+    width: 100%;
+    margin: 0 0 10px !important;
+    padding: 14px !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: 8px !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-position-field
+.fp-admin-number-field__label {
+    display: block;
+    margin: 0 0 3px;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-position-field
+.fp-admin-number-field__hint {
+    display: block;
+    margin: 0 0 9px;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-position-composite {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-position-control {
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-position-control--select {
+    order: 1;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-position-control--number {
+    order: 2;
+}
+
+/* Promotion flags: complete field cards, never detached option rows. */
+#main-form.fp-goods-form-canonical
+.fp-promo-flags-grid.fp-goods-promotions-canonical {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    width: 100% !important;
+    margin: 10px 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-promotion-card {
+    float: none !important;
+    display: grid !important;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 7px;
+    width: auto !important;
+    min-width: 0;
+    min-height: 74px;
+    margin: 0 !important;
+    padding: 11px 12px !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: 8px !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-promotion-card
+.fp-radio-template-head {
+    width: 100%;
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-promotion-card
+.fp-radio-template-options {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 7px;
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-promotion-card
+.fp-radio-template-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Filters: each header/options pair is one explicit sortable unit. */
+#main-form.fp-goods-form-canonical
+.fp-goods-filters-section {
+    width: 100%;
+    margin: 0 0 10px !important;
+    padding: 14px !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: 8px !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filters-root {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group {
+    position: relative;
+    width: 100%;
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group[hidden] {
+    display: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group__header {
+    width: 100% !important;
+    min-height: 38px;
+    padding: 7px 10px !important;
+    border: 1px solid var(--fp-goods-border-strong) !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    color: var(--fp-goods-text) !important;
+    cursor: pointer;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group__header:hover {
+    background: var(--fp-goods-soft) !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group__options {
+    width: 100%;
+    margin: 4px 0 7px !important;
+    padding: 7px 10px !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: 6px !important;
+    background: #fafbfb !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group__options
+.fp-admin-checkboxlist__option,
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group__options
+.custom_label {
+    min-height: 28px;
+    padding: 4px 2px;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-group--primary::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 6px;
+    bottom: 6px;
+    left: -7px;
+    width: 3px;
+    border-radius: 2px;
+    background: #56636b;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    min-height: 40px;
+    margin: 8px 0 0;
+    padding: 8px 11px;
+    border: 1px solid #7f8e98;
+    border-radius: 6px;
+    background: #edf0f2;
+    color: var(--fp-goods-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    text-align: left;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle:hover {
+    background: #e3e7e9;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle::after {
+    content: "•••";
+    flex: 0 0 auto;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle[aria-expanded="true"]::after {
+    content: "▲";
+    font-size: 10px;
+    letter-spacing: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle__count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 23px;
+    height: 23px;
+    margin-left: auto;
+    padding: 0 5px;
+    border-radius: 5px;
+    background: #3f474d;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+@media (max-width: 1120px) {
+    #main-form.fp-goods-form-canonical
+    .fp-promo-flags-grid.fp-goods-promotions-canonical {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    #main-form.fp-goods-form-canonical
+    .fp-goods-position-composite,
+    #main-form.fp-goods-form-canonical
+    .fp-promo-flags-grid.fp-goods-promotions-canonical {
+        grid-template-columns: 1fr;
+    }
+
+    #main-form.fp-goods-form-canonical
+    .fp-goods-field-card,
+    #main-form.fp-goods-form-canonical
+    .fp-goods-position-field,
+    #main-form.fp-goods-form-canonical
+    .fp-goods-filters-section {
+        padding: 11px !important;
+    }
+}

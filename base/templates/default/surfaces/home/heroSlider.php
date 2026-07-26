@@ -25,19 +25,7 @@
                                 <?= $this->clearStr($item['short_content'])?>
 
                             </div>
-                            <div class="slider__item-logos fp-home-hero__logos">
 
-                                <?php if(!empty($this->set['img_years']) && !empty($this->set['number_of_years'])):?>
-
-                                    <div class="slider__item-15yrs">
-                                        <img src="<?= $this->img($this->set['img_years'])?>" alt="">
-                                        <p><span><?=$this->wordsForCounter($this->set['number_of_years'])?>
-                                            </span>працюємо для вашого задоволення</p>
-                                    </div>
-
-                                <?php endif;?>
-
-                            </div>
                         </div>
 
 <!--                        Slider_image                        -->

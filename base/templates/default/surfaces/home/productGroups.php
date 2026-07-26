@@ -11,7 +11,7 @@
 
                     <?php if (!empty($goods[$key])) : ?>
 
-                <li class="<?=  ++$activeItem ? 'active' : '' ?>">
+                <li class="<?= ! ++$activeItem ? 'active' : '' ?>">
                     <div class="icon-offer"><?=$item['icon']?></div><?=$item['name']?>
                 </li>
 

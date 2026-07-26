@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>ForPrint Admin</title>
 
     <style>
         html, body{
@@ -43,7 +43,8 @@
             border: 1px solid lemonchiffon;
         }
     </style>
-
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-login.css?v=20260725-1615">
 </head>
 <body>
 
@@ -54,15 +55,15 @@
         unset($_SESSION['res']);
     }?>
 
-    <h1>Авторизация Пользователя</h1>
+    <h1>ForPrint Admin</h1>
 
     <form
         action="<?=PATH . $adminPath?>/login" method="post">
-        <label for="login">Логин</label>
+        <label for="login">Username</label>
         <input type="text" name="login" id="login">
-        <label for="password">Пароль</label>
+        <label for="password">Password</label>
         <input type="password" name="password" id="password">
-        <input type="submit" value="Войти">
+        <input type="submit" value="Sign in">
     </form>
 </div>
 

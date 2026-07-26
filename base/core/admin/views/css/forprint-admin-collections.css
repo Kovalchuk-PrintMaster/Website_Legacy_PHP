@@ -1,0 +1,222 @@
+/*
+ * ForPrint admin grouped collections.
+ *
+ * Canonical owner:
+ *   base/core/admin/views/css/forprint-admin-collections.css
+ *
+ * Current Filters DOM, confirmed in browser:
+ *
+ * details[data-fp-admin-collection="filters"]
+ *   > .fp-admin-filter-group__items
+ *     > div.fp-admin-filter-card[draggable="true"]
+ *       > span.fp-admin-filter-card__drag
+ *       > a.fp-admin-filter-card-cell
+ *         > caption cell
+ *         > media cell
+ *
+ * Filters intentionally use the same compact horizontal rhythm as Goods:
+ * fixed practical card width, left alignment, text left and image right.
+ */
+
+[data-fp-admin-collection-group] > summary {
+    cursor: pointer;
+}
+
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    align-items: stretch !important;
+    align-content: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 0.4rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0.4rem !important;
+    box-sizing: border-box !important;
+}
+
+/*
+ * Actual outer card. Direct-child selector prevents the same class on the
+ * nested link from being treated as a second outer card.
+ */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card {
+    position: relative !important;
+    display: block !important;
+    flex: 0 0 18rem !important;
+    width: 18rem !important;
+    min-width: 18rem !important;
+    max-width: 18rem !important;
+    min-height: 6.75rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    cursor: grab !important;
+}
+
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card:active {
+    cursor: grabbing !important;
+}
+
+/* The whole card remains draggable; the floating three-dot glyph is removed. */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+> .fp-admin-filter-card__drag {
+    display: none !important;
+}
+
+/* Actual clickable card body. */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+> a.fp-admin-filter-card-cell {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 6.3rem !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 6.75rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    text-decoration: none !important;
+}
+
+/* Neutralize inherited half-width and float geometry inside the link. */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+> a.fp-admin-filter-card-cell
+> .vg-element {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    box-sizing: border-box !important;
+}
+
+/* Caption cell. */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+> a.fp-admin-filter-card-cell
+> .fp-admin-index-card__caption {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    order: 1 !important;
+    padding: 0.75rem !important;
+    overflow: hidden !important;
+}
+
+/* Media cell. */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+> a.fp-admin-filter-card-cell
+> .fp-admin-index-card__media {
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    order: 2 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+.fp-admin-index-card__caption .vg-text {
+    display: block !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+}
+
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-group__items
+> .fp-admin-filter-card
+.fp-admin-index-card__media img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 6.75rem !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Preserve useful sortable feedback without a permanent overlay handle. */
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-card.fp-admin-sortable--dragging,
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-card.ui-sortable-helper {
+    opacity: 0.72 !important;
+}
+
+[data-fp-admin-collection="filters"]
+.fp-admin-filter-card.fp-admin-sortable--placeholder,
+[data-fp-admin-collection="filters"]
+.ui-sortable-placeholder {
+    display: block !important;
+    flex: 0 0 18rem !important;
+    width: 18rem !important;
+    min-width: 18rem !important;
+    min-height: 6.75rem !important;
+    visibility: visible !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 78rem) {
+    [data-fp-admin-collection="filters"]
+    .fp-admin-filter-group__items
+    > .fp-admin-filter-card,
+    [data-fp-admin-collection="filters"]
+    .fp-admin-filter-card.fp-admin-sortable--placeholder,
+    [data-fp-admin-collection="filters"]
+    .ui-sortable-placeholder {
+        flex-basis: 16rem !important;
+        width: 16rem !important;
+        min-width: 16rem !important;
+        max-width: 16rem !important;
+    }
+
+    [data-fp-admin-collection="filters"]
+    .fp-admin-filter-group__items
+    > .fp-admin-filter-card
+    > a.fp-admin-filter-card-cell {
+        grid-template-columns: minmax(0, 1fr) 5.5rem !important;
+    }
+}
+
+@media (max-width: 42rem) {
+    [data-fp-admin-collection="filters"]
+    .fp-admin-filter-group__items
+    > .fp-admin-filter-card,
+    [data-fp-admin-collection="filters"]
+    .fp-admin-filter-card.fp-admin-sortable--placeholder,
+    [data-fp-admin-collection="filters"]
+    .ui-sortable-placeholder {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+    }
+}

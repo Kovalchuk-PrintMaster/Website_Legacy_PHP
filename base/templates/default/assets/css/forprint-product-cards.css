@@ -1,8 +1,5 @@
-/*
- * ForPrint controlled product cards v0.6.42
- *
- * Clean isolated stylesheet for new product-card templates.
- * Do not add legacy offers__tabs_card/card-item/card-slider selectors here.
+/**
+ * ForPrint shared product cards and related-product slider.
  */
 
 :root {
@@ -10,7 +7,6 @@
     --fp-card-height: 520px;
     --fp-related-card-height: 520px;
     --fp-card-image-ratio: 16 / 10;
-
     --fp-card-bg: rgba(255, 255, 255, 0.96);
     --fp-card-border: #dfe8ed;
     --fp-card-text: #111111;
@@ -42,12 +38,23 @@
     color: var(--fp-card-text) !important;
     text-decoration: none !important;
     box-shadow: none !important;
+    transition:
+        transform 240ms ease,
+        border-color 240ms ease,
+        box-shadow 240ms ease !important;
 }
 
 .fp-product-card:hover,
 .fp-product-card:focus {
     color: var(--fp-card-text) !important;
     text-decoration: none !important;
+    border-color: #c8d5db !important;
+    box-shadow:
+        0 0.7rem 1.5rem
+        rgba(30, 45, 55, 0.12) !important;
+    transform:
+        translateY(-4px)
+        scale(1.012) !important;
 }
 
 .fp-product-card__image {
@@ -124,11 +131,10 @@
     text-overflow: ellipsis !important;
 }
 
-/*
- * Product-card features block is intentionally disabled for compact listing cards.
+/* * Product-card features block is intentionally disabled for compact listing cards.
  * The data remains available in product detail pages and can be restored here later
- * if compact cards need characteristics again.
- */
+ * if compact cards need characteristics again. */
+
 .fp-product-card__features,
 .fp-product-card__features_empty {
     display: none !important;
@@ -309,7 +315,7 @@
 }
 
 .fp-related-section__button::before {
-    content: '' !important;
+    content: "" !important;
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
@@ -347,10 +353,6 @@
 .fp-related-section__slider {
     width: 100% !important;
     overflow: hidden !important;
-}
-
-.fp-related-section__wrapper {
-    align-items: stretch !important;
 }
 
 .fp-related-section__card {
@@ -461,218 +463,6 @@
     }
 }
 
-/* FP v0.6.45 product detail characteristics table cleanup start */
-.card-main-info .fp-product-detail-features {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px;
-    width: min(100%, 720px);
-    max-width: 720px;
-    margin: 22px 0 18px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-}
-
-.card-main-info .fp-product-detail-features__row {
-    display: grid;
-    grid-template-columns: 130px minmax(260px, 1fr);
-    column-gap: 16px;
-    align-items: start;
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: 0;
-}
-
-.card-main-info .fp-product-detail-features__group,
-.card-main-info .fp-product-detail-features__value {
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    color: #111;
-    font-size: 16px;
-    line-height: 1.35;
-    font-weight: 700;
-    box-sizing: border-box;
-}
-
-.card-main-info .fp-product-detail-features__group {
-    white-space: nowrap;
-}
-
-.card-main-info .fp-product-detail-features__value {
-    display: block;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: visible;
-}
-
-@media (max-width: 900px) {
-    .card-main-info .fp-product-detail-features__row {
-        grid-template-columns: 110px minmax(0, 1fr);
-    }
-
-    .card-main-info .fp-product-detail-features__value {
-        white-space: normal;
-    }
-}
-/* FP v0.6.45 product detail characteristics table cleanup end */
-
-/* FP v0.6.46 product detail three-zone layout start */
-
-/*
-  Product detail layout policy:
-  - image/gallery stays as the visual product zone;
-  - price + note + characteristics stay in the information zone;
-  - quantity + action buttons stay in a separate purchase zone.
-*/
-
-.card-main {
-    display: grid;
-    grid-template-columns: minmax(620px, 1fr) minmax(760px, 860px);
-    column-gap: 44px;
-    align-items: start;
-}
-
-.card-main-info {
-    display: grid;
-    grid-template-columns: minmax(300px, 430px) minmax(260px, 320px);
-    column-gap: 42px;
-    align-items: start;
-    width: 100%;
-    max-width: 860px;
-}
-
-.card-main-info > * {
-    grid-column: 1;
-    min-width: 0;
-}
-
-.card-main-info > .card-main-info__sale {
-    grid-column: 2;
-    grid-row: 1 / span 20;
-    align-self: start;
-    width: 100%;
-    max-width: 320px;
-    margin: 0;
-    padding: 0;
-}
-
-.card-main-info > .fp-product-detail-features {
-    grid-column: 1;
-    width: 100%;
-    max-width: 430px;
-    margin-top: 24px;
-}
-
-/* Keep the product action controls compact and vertical in the right zone. */
-.card-main-info__sale {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 26px;
-}
-
-.card-main-info__sale .card-main-info__count,
-.card-main-info__sale .card-main-info__button,
-.card-main-info__sale .card-main-info__buy,
-.card-main-info__sale .card-main-info__order,
-.card-main-info__sale button,
-.card-main-info__sale a {
-    box-sizing: border-box;
-}
-
-.card-main-info .fp-product-detail-features {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
-    background: transparent;
-    border: 0;
-    padding: 0;
-}
-
-.card-main-info .fp-product-detail-features__row {
-    display: grid;
-    grid-template-columns: 120px minmax(220px, 1fr);
-    column-gap: 18px;
-    align-items: start;
-    background: transparent;
-    border: 0;
-    padding: 0;
-}
-
-.card-main-info .fp-product-detail-features__group,
-.card-main-info .fp-product-detail-features__value {
-    background: transparent;
-    border: 0;
-    padding: 0;
-    font-size: 16px;
-    line-height: 1.35;
-    font-weight: 700;
-}
-
-.card-main-info .fp-product-detail-features__value {
-    white-space: normal;
-}
-
-/* Medium screens: keep two zones, but reduce gaps. */
-@media (max-width: 1500px) {
-    .card-main {
-        grid-template-columns: minmax(560px, 1fr) minmax(680px, 760px);
-        column-gap: 34px;
-    }
-
-    .card-main-info {
-        grid-template-columns: minmax(280px, 390px) minmax(240px, 300px);
-        column-gap: 30px;
-    }
-
-    .card-main-info > .fp-product-detail-features {
-        max-width: 390px;
-    }
-}
-
-/* Smaller screens: stack product information safely. */
-@media (max-width: 1180px) {
-    .card-main {
-        display: block;
-    }
-
-    .card-main-info {
-        display: grid;
-        grid-template-columns: 1fr;
-        max-width: 100%;
-        margin-top: 28px;
-    }
-
-    .card-main-info > *,
-    .card-main-info > .card-main-info__sale,
-    .card-main-info > .fp-product-detail-features {
-        grid-column: 1;
-        grid-row: auto;
-        max-width: 100%;
-    }
-
-    .card-main-info > .card-main-info__sale {
-        margin-top: 24px;
-    }
-}
-/* FP v0.6.46 product detail three-zone layout end */
-
-/* FP product grid/related compact rhythm v0.6.24
- *
- * Runtime inspection confirmed that home, catalog and search cards always
- * expose the stable class .fp-grid-card. Context modifier classes are useful
- * metadata but are not a safe styling dependency in this legacy render flow.
- *
- * Both card families therefore receive the compact flow through their stable
- * permanent classes:
- *   - .fp-grid-card
- *   - .fp-related-card
- */
-
 .fp-grid-card,
 .fp-related-card {
     display: flex !important;
@@ -684,6 +474,7 @@
 }
 
 /* Legacy grid rows must not stretch compact cards back to 520px. */
+
 .fp-home-grid,
 .catalog-section-items__wrapper {
     align-items: start !important;
@@ -715,10 +506,9 @@
     padding-right: 18px !important;
 }
 
-/*
- * The disabled legacy features placeholder existed as an empty flex item in
- * grid cards and could still reserve vertical space. Remove it completely.
- */
+/* * The disabled legacy features placeholder existed as an empty flex item in
+ * grid cards and could still reserve vertical space. Remove it completely. */
+
 .fp-grid-card .fp-product-card__features,
 .fp-grid-card .fp-product-card__features_empty {
     display: none !important;
@@ -734,21 +524,9 @@
 }
 
 /* Natural one-line title; two lines are allowed without a hidden spare line. */
-.fp-grid-card .fp-product-card__title,
-.fp-related-card .fp-product-card__title {
-    display: -webkit-box !important;
-    flex: 0 0 auto !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-line-clamp: 2 !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 24px !important;
-    max-height: 48px !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-}
 
 /* Exactly three visual lines preserve alignment between neighboring cards. */
+
 .fp-grid-card .fp-product-card__excerpt,
 .fp-related-card .fp-product-card__excerpt {
     display: -webkit-box !important;
@@ -764,6 +542,7 @@
 }
 
 /* Price is a normal compact row, not an absolutely positioned footer. */
+
 .fp-grid-card .fp-product-card__price,
 .fp-related-card .fp-product-card__price {
     position: static !important;
@@ -790,6 +569,7 @@
 }
 
 /* The button follows the body immediately; no elastic blank block remains. */
+
 .fp-grid-card .fp-product-card__button,
 .fp-related-card .fp-product-card__button {
     display: flex !important;
@@ -803,7 +583,6 @@
     margin: 0 !important;
 }
 
-/* FP one-line product-card titles v0.6.26 */
 .fp-grid-card .fp-product-card__title,
 .fp-related-card .fp-product-card__title {
     display: block !important;

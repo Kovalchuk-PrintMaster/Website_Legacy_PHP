@@ -48,6 +48,22 @@ class ProductController extends BaseUser
 
         $deliveryInfo && $deliveryInfo = $deliveryInfo[0];
 
+        $category = [];
+
+        if (!empty($data['parent_id'])) {
+            $categoryRows = $this->model->get('catalog', [
+                'where' => [
+                    'id' => (int)$data['parent_id'],
+                    'visible' => 1,
+                ],
+                'limit' => 1,
+            ]);
+
+            if (!empty($categoryRows[0]) && is_array($categoryRows[0])) {
+                $category = $categoryRows[0];
+            }
+        }
+
         $relatedGoods = [];
         $relatedGoods = [];
 
@@ -84,7 +100,7 @@ class ProductController extends BaseUser
         }
 
 
-        return compact('data', 'deliveryInfo', 'relatedGoods');
+        return compact('data', 'deliveryInfo', 'relatedGoods', 'category');
 
     }
 

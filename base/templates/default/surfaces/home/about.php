@@ -1,25 +1,115 @@
-<section class="about">
-                <div class="about__description">
-                    <div class="about__description_name subheader"><?=$this->set['name']?></div>
-                    <div class="about__description_text">
+<?php
+$aboutData = isset($about) && is_array($about)
+    ? $about
+    : (is_array($this->set ?? null) ? $this->set : []);
 
-                        <?=$this->set['short_content']?>
+$aboutVisibleValue = strtolower(trim((string)($aboutData['about_visible'] ?? '1')));
 
-                    </div>
+if (in_array($aboutVisibleValue, ['0', 'false', 'no', 'ні'], true)) {
+    return;
+}
 
-<!--                    Description don't have realization yet-->
+$aboutTitle = trim(strip_tags((string)(
+    $aboutData['about_name']
+    ?? $aboutData['name']
+    ?? ''
+)));
 
-                    <div class="about__description_text">
+if ($aboutTitle === '') {
+    $aboutTitle = 'Про нас';
+}
 
-                         <?=$this->set['content']?>
+$aboutGallery = [];
+$aboutGallerySource = $aboutData['gallery_img'] ?? '';
 
-                    </div>
+if (is_string($aboutGallerySource) && trim($aboutGallerySource) !== '') {
+    $decodedAboutGallery = json_decode($aboutGallerySource, true);
 
+    if (is_array($decodedAboutGallery)) {
+        foreach ($decodedAboutGallery as $aboutGalleryItem) {
+            if (!is_string($aboutGalleryItem)) {
+                continue;
+            }
 
-<!--                    About don't have realization yet-->
-                    <a href="<?=$this->alias('about')?>"class="about__description_readmore readmore">Детальніше</a>
+            $aboutGalleryItem = trim($aboutGalleryItem);
+
+            if ($aboutGalleryItem !== '') {
+                $aboutGallery[] = $aboutGalleryItem;
+            }
+        }
+    }
+}
+
+$aboutGallery = array_values(array_unique($aboutGallery));
+
+if (
+    empty($aboutGallery)
+    && !empty($aboutData['promo_img'])
+) {
+    $aboutGallery[] = trim((string)$aboutData['promo_img']);
+}
+
+$aboutHasMedia = !empty($aboutGallery);
+?>
+<section
+    class="fp-home-about<?=$aboutHasMedia ? '' : ' fp-home-about--text-only'?>"
+    aria-labelledby="fp-home-about-title"
+>
+    <div class="fp-home-about__content">
+        <!-- FP_HOME_ABOUT_INTRO_GROUP_05G6A -->
+        <div class="fp-home-about__intro">
+            <h2
+                id="fp-home-about-title"
+                class="fp-home-about__title subheader"
+            >
+                <?=htmlspecialchars($aboutTitle, ENT_QUOTES, 'UTF-8')?>
+            </h2>
+
+            <?php if (!empty($aboutData['short_content'])): ?>
+                <div class="fp-home-about__text">
+                    <?=$aboutData['short_content']?>
                 </div>
-                <div class="about__image">
-                    <img src="<?=$this->img($this->set['promo_img'])?>" alt="">
+            <?php endif; ?>
+        </div>
+
+        <a
+            href="<?=$this->alias('about')?>"
+            class="fp-home-about__more readmore"
+        >
+            Детальніше
+        </a>
+    </div>
+
+    <?php if ($aboutHasMedia): ?>
+        <div class="fp-home-about__media">
+            <div
+                class="fp-home-about__gallery swiper-container"
+                data-fp-about-gallery
+                aria-label="Галерея розділу «Про нас»"
+            >
+                <div class="fp-home-about__gallery-track swiper-wrapper">
+                    <?php foreach ($aboutGallery as $aboutImageIndex => $aboutImage): ?>
+                        <figure class="fp-home-about__slide swiper-slide">
+                            <img
+                                src="<?=htmlspecialchars(
+                                    $this->img($aboutImage),
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                )?>"
+                                alt="<?=$aboutImageIndex === 0
+                                    ? htmlspecialchars(
+                                        $aboutTitle,
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    )
+                                    : ''?>"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </figure>
+                    <?php endforeach; ?>
                 </div>
-            </section>
+            </div>
+        </div>
+    <?php endif; ?>
+</section>

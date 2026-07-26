@@ -18,24 +18,8 @@ if(!empty($data)):?>
     $galleryHasMoreThumbs = $galleryTotal > 3;
 ?>
 
-<div class="container">
-    <nav class="breadcrumbs">
-        <ul class="breadcrumbs__list" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a class="breadcrumbs__link" itemprop="item" href="index.html">
-                    <span itemprop="name">Главная</span>
-                </a>
-                <meta itemprop="position" content="1" />
-            </li>
-            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a class="breadcrumbs__link" itemprop="item" href="card.html#">
-                    <span itemprop="name">товари</span>
-                </a>
-                <meta itemprop="position" content="2" />
-            </li>
-        </ul>
-    </nav>
-    <h1 class="page-title h1"><?=$data['name']?></h1>
+<div class="container fp-layout-container fp-page-heading">
+    <?=$this->breadcrumbs?>
 </div>
 
 <?php
@@ -148,6 +132,9 @@ if(!empty($data)):?>
         ?>
 
         <div class="fp-product-detail" data-productContainer>
+            <h1 class="fp-product-detail__title page-title h1">
+                <?=htmlspecialchars((string)$data['name'], ENT_QUOTES, 'UTF-8')?>
+            </h1>
             <div class="fp-product-detail__gallery<?=empty($galleryImages) ? ' fp-product-detail__gallery_no-thumbs' : ''?>">
                 <?php if (!empty($galleryImages)): ?>
                     <div class="fp-product-detail__thumbs card-main-gallery-thumb<?=$galleryHasMoreThumbs ? ' card-main-gallery-thumb_has-more' : ''?>">
@@ -200,15 +187,51 @@ if(!empty($data)):?>
             </div>
 
             <div class="fp-product-detail__info">
-                <div class="fp-product-detail-price card-main-info-price">
-                    <div class="fp-product-detail-price__label card-main-info-price__text">Ціна:</div>
-                    <div class="fp-product-detail-price__value card-main-info-price__num">
-                        <span><?=htmlspecialchars((string)$data['price'], ENT_QUOTES, 'UTF-8')?></span> грн.
+                <?php
+                    require_once __DIR__ . '/include/productCardHelpers.php';
+
+                    $priceState = fp_product_price_state(
+                        is_array($data ?? null) ? $data : []
+                    );
+                ?>
+
+                <div
+                    class="fp-product-detail-price card-main-info-price"
+                    data-price-mode="<?=htmlspecialchars($priceState['mode'], ENT_QUOTES, 'UTF-8')?>"
+                >
+                    <div class="fp-product-detail-price__label card-main-info-price__text">
+                        <?=htmlspecialchars($priceState['label'], ENT_QUOTES, 'UTF-8')?>
                     </div>
 
-                    <?php if (!empty($data['old_price'])): ?>
-                        <div class="fp-product-detail-price__old card-main-info-price__old">
-                            <span><?=htmlspecialchars((string)$data['old_price'], ENT_QUOTES, 'UTF-8')?></span> грн.
+                    <?php if ($priceState['mode'] === 'exact'): ?>
+                        <div class="fp-product-detail-price__value card-main-info-price__num">
+                            <span><?=htmlspecialchars(
+                                fp_product_card_format_price(
+                                    $priceState['current_price']
+                                ),
+                                ENT_QUOTES,
+                                'UTF-8'
+                            )?></span> грн.
+                        </div>
+
+                        <?php if ($priceState['has_discount']): ?>
+                            <div class="fp-product-detail-price__old card-main-info-price__old">
+                                <span><?=htmlspecialchars(
+                                    fp_product_card_format_price(
+                                        $priceState['base_price']
+                                    ),
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                )?></span> грн.
+                            </div>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <div class="fp-product-detail-price__value card-main-info-price__num">
+                            <span><?=htmlspecialchars(
+                                $priceState['display'],
+                                ENT_QUOTES,
+                                'UTF-8'
+                            )?></span>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -347,7 +370,8 @@ if(!empty($data)):?>
 </section>
 <?php endif; ?>
 <section class="fp-related-section" data-fp-related-section>
-    <div class="container fp-related-section__container">
+    <!-- FP_RELATED_CANONICAL_CONTAINER_05G10B_V2 -->
+    <div class="container fp-layout-container fp-related-section__container">
         <div class="fp-related-section__header">
             <div class="fp-related-section__title h2">
                 Доречі, разом з цим ще беруть і це:
@@ -370,24 +394,17 @@ if(!empty($data)):?>
 </section>
 <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-cards.js"></script>
 <?php endif;?>
-<section class="feedback feedback-internal">
-    <div class="feedback__name subheader h2">Залишити заявку (данний функціонал зараз на єтапі розробки)</div>
-    <form action="card.html" class="feedback__form">
-        <div class="feedback__form_left">
-            <input type="text" class="input-text feedback__input" placeholder="Ваше им'я">
-            <input type="email" class="input-text feedback__input" placeholder="E-mail">
-            <input type="text" class="input-text feedback__input js-mask-phone" placeholder="Телефон">
-        </div>
-        <div class="feedback__form_right">
-            <textarea class="input-textarea feedback__textarea" placeholder="Ваше питання"></textarea>
-        </div>
-        <div class="feedback__privacy">
-            <label class="checkbox">
-                <input type="checkbox" />
-                <div class="checkbox__text">Погоджуюсь з правилми обробки персональних данних</div>
-            </label>
-        </div>
-        <button type="submit" class="form-submit feedback__submit">Відправити</button>
-    </form>
-</section>
+<?php
+$fpCommunicationConfig = [
+    'id' => 'fp-product-request',
+    'title' => 'Залишити заявку щодо цього товару',
+    'product_id' => (int)($data['id'] ?? 0),
+    'product_name' => (string)($data['name'] ?? ''),
+    'product_url' => (string)($_SERVER['REQUEST_URI'] ?? '/'),
+];
+
+include __DIR__ . '/include/communicationRequestForm.php';
+
+unset($fpCommunicationConfig);
+?>
 <?php endif;?>

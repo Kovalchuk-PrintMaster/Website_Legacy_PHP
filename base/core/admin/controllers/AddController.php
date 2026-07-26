@@ -21,18 +21,28 @@ class AddController extends BaseAdmin
         $this->createTableData();
 
         /*
-         * ForPrint goods create defaults.
+         * ForPrint global create visibility default.
          *
-         * Keep this goods-only: other admin tables may need different
-         * visibility semantics. Existing/session-restored values always win.
+         * Every newly created record is public by default when its table
+         * actually owns a `visible` column. Existing/session-restored values
+         * and an explicit administrator choice always win.
+         */
+        $this->data = is_array($this->data)
+            ? $this->data
+            : [];
+
+        if (
+            !empty($this->columns['visible'])
+            && !array_key_exists('visible', $this->data)
+        ) {
+            $this->data['visible'] = 1;
+        }
+
+        /*
+         * Goods-only defaults unrelated to general publication state.
          */
         if ($this->table === 'goods') {
-            $this->data = is_array($this->data)
-                ? $this->data
-                : [];
-
             $goodsCreateDefaults = [
-                'visible' => 1,
                 'hit' => 0,
                 'sale' => 0,
                 'new' => 0,

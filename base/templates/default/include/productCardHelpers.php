@@ -310,3 +310,133 @@ if (!function_exists('fp_product_card_format_price')) {
         return rtrim(rtrim(number_format($number, 2, '.', ''), '0'), '.');
     }
 }
+
+if (!function_exists('fp_product_price_state')) {
+    /**
+     * Resolve the public product price presentation.
+     *
+     * Supported modes:
+     * - exact: exact numeric price, optionally with a discount;
+     * - range: lower and/or upper price boundary;
+     * - request: individual price calculation.
+     *
+     * The old fp_product_card_price_state() remains the numeric resolver for
+     * exact-price products and supports both raw and model-prepared discounts.
+     *
+     * @return array{
+     *     mode:string,
+     *     label:string,
+     *     display:string,
+     *     base_price:float,
+     *     current_price:float,
+     *     discount:float,
+     *     has_discount:bool,
+     *     purchasable:bool,
+     *     source:string
+     * }
+     */
+    function fp_product_price_state(array $data): array
+    {
+        $requestText = trim(
+            (string)($data['price_request_text'] ?? '')
+        );
+
+        if ($requestText === '') {
+            $requestText = 'Ціна за запитом';
+        }
+
+        $allowedModes = ['exact', 'range', 'request'];
+
+        $mode = strtolower(trim((string)($data['price_mode'] ?? '')));
+
+        if (!in_array($mode, $allowedModes, true)) {
+            $mode = (float)($data['price'] ?? 0) > 0
+                ? 'exact'
+                : 'request';
+        }
+
+        if ($mode === 'range') {
+            $priceFrom = max(0.0, (float)($data['price_from'] ?? 0));
+            $priceTo = max(0.0, (float)($data['price_to'] ?? 0));
+
+            if ($priceFrom > 0 && $priceTo > 0 && $priceFrom > $priceTo) {
+                [$priceFrom, $priceTo] = [$priceTo, $priceFrom];
+            }
+
+            if ($priceFrom > 0 && $priceTo > 0) {
+                $display = fp_product_card_format_price($priceFrom)
+                    . '–'
+                    . fp_product_card_format_price($priceTo)
+                    . ' грн.';
+            } elseif ($priceFrom > 0) {
+                $display = 'від '
+                    . fp_product_card_format_price($priceFrom)
+                    . ' грн.';
+            } elseif ($priceTo > 0) {
+                $display = 'до '
+                    . fp_product_card_format_price($priceTo)
+                    . ' грн.';
+            } else {
+                $mode = 'request';
+            }
+
+            if ($mode === 'range') {
+                return [
+                    'mode' => 'range',
+                    'label' => 'Вартість:',
+                    'display' => $display,
+                    'base_price' => 0.0,
+                    'current_price' => 0.0,
+                    'discount' => 0.0,
+                    'has_discount' => false,
+                    'purchasable' => false,
+                    'source' => 'range',
+                ];
+            }
+        }
+
+        if ($mode === 'request') {
+            return [
+                'mode' => 'request',
+                'label' => 'Ціна:',
+                'display' => $requestText,
+                'base_price' => 0.0,
+                'current_price' => 0.0,
+                'discount' => 0.0,
+                'has_discount' => false,
+                'purchasable' => false,
+                'source' => 'request',
+            ];
+        }
+
+        $exactState = fp_product_card_price_state($data);
+
+        if ($exactState['current_price'] <= 0) {
+            return [
+                'mode' => 'request',
+                'label' => 'Ціна:',
+                'display' => $requestText,
+                'base_price' => 0.0,
+                'current_price' => 0.0,
+                'discount' => 0.0,
+                'has_discount' => false,
+                'purchasable' => false,
+                'source' => 'exact_without_price',
+            ];
+        }
+
+        return [
+            'mode' => 'exact',
+            'label' => 'Ціна:',
+            'display' => fp_product_card_format_price(
+                $exactState['current_price']
+            ) . ' грн.',
+            'base_price' => $exactState['base_price'],
+            'current_price' => $exactState['current_price'],
+            'discount' => $exactState['discount'],
+            'has_discount' => $exactState['has_discount'],
+            'purchasable' => true,
+            'source' => $exactState['source'],
+        ];
+    }
+}

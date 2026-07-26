@@ -124,14 +124,28 @@ abstract class BaseController
     }
 
     protected function checkAuth($type = false){
-        if (!($this->userId = UserModel::instance()->checkUser(false, $type))){
+        $this->userId = UserModel::instance()->checkUser(false, $type);
 
-//            $type && $this->redirect(PATH);
+        if (!$this->userId && $type) {
+            /*
+             * ForPrint admin access boundary v0.6.47.
+             *
+             * Every admin controller reaches this method through BaseAdmin::inputData().
+             * The legacy redirect was commented out, which left the complete admin
+             * surface publicly reachable. Keep the login controller outside BaseAdmin
+             * and redirect every unauthenticated admin request to that dedicated route.
+             */
+            $adminAlias = trim((string)(Settings::get('routes')['admin']['alias'] ?? 'admin'), '/');
+            $loginPath = rtrim((string)PATH, '/') . '/' . $adminAlias . '/login';
+
+            header('Location: ' . $loginPath, true, 302);
+            exit();
         }
 
         $this->userData = $this->userId;
 
-        if (property_exists($this, 'userModel'))
+        if (property_exists($this, 'userModel')) {
             $this->userModel = UserModel::instance();
+        }
     }
 }

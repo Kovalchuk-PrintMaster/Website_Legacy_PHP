@@ -22,3 +22,9 @@ YYYY-MM-DD_development_state_v0_1.md
 - product-page зміни, які не входять до frontend strategy checkpoint, залишаються окремою незавершеною роботою.
 
 Канонічний стан: `docs/reference/legacy_frontend_current_state_v0_1.md`.
+
+<!-- FP-FRONTEND-DOCS-V02-START -->
+## Frontend working snapshot — 2026-07-20
+
+- [Global layout, header, homepage hero, price presentation, CSS ownership, and local preview state](snapshots/2026-07-20_frontend_working_state_v0_1.md)
+<!-- FP-FRONTEND-DOCS-V02-END -->

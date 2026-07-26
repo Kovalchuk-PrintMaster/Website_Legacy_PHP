@@ -26,10 +26,10 @@ class IndexController extends BaseUser
         $this->frontendProfile = $this->resolveFrontendProfile();
         $this->styles[] = PATH
             . TEMPLATE
-            . 'assets/css/forprint-home.css?v=20260719-0003';
+            . 'assets/css/forprint-home.css?v=20260722-0016';
         $this->scripts[] = PATH
             . TEMPLATE
-            . 'assets/js/surfaces/home.js?v=20260717-0001';
+            . 'assets/js/surfaces/home.js?v=20260722-0005';
 
 
         $sales = $this->model->get('sales', [
@@ -40,7 +40,6 @@ class IndexController extends BaseUser
         $advantages = $this->model->get('advantages',[
             'where' => ['visible' => 1],
             'order' => ['menu_position'],
-            'limit' => 6,
         ]);
 
         $news = $this->model->get('news', [
@@ -50,22 +49,29 @@ class IndexController extends BaseUser
             'limit' => 3,
         ]);
 
+        $homeGroupNames = [
+            'hit' => trim((string)($this->set['home_hit_name'] ?? '')) ?: 'Хіти продажів',
+            'hot' => trim((string)($this->set['home_hot_name'] ?? '')) ?: 'Гарячі пропозиції',
+            'new' => trim((string)($this->set['home_new_name'] ?? '')) ?: 'Щось цікаве',
+            'sale' => trim((string)($this->set['home_sale_name'] ?? '')) ?: 'Акція',
+        ];
+
         $arrHits = [
             'hit' => [
-                'name'=> 'Хіти продажів',
+                'name'=> $homeGroupNames['hit'],
                 'icon' => '<svg>
                             <use xlink:href="' . PATH . TEMPLATE. 'assets/img/icons.svg#hit"></use>
                         </svg>'
             ],
             'hot'=> [
-                'name' =>  'Гарячі пропозиції',
+                'name' => $homeGroupNames['hot'],
                 'icon' => '<svg>
                             <use xlink:href="' . PATH . TEMPLATE. 'assets/img/icons.svg#hot"></use>
                            </svg>'
         ],
 
             'new' => [
-                'name'=> 'Щось Цікаве',
+                'name'=> $homeGroupNames['new'],
                 'icon' => '<svg>
                             <use xlink:href="' . PATH . TEMPLATE. 'assets/img/icons.svg#search"></use>
                            </svg>'
@@ -73,7 +79,7 @@ class IndexController extends BaseUser
             ],
 
             'sale'=> [
-                'name' => 'Акція',
+                'name' => $homeGroupNames['sale'],
 //                'icon' => '%'
                 'icon' => ' <svg>
                             <use xlink:href="' . PATH . TEMPLATE. 'assets/img/icons.svg#rocket"></use>
@@ -86,7 +92,50 @@ class IndexController extends BaseUser
         ],
         ];
 
+        $homeGroupsVisible =
+            (int)($this->set['home_groups_visible'] ?? 1) === 1;
+        $homeGroupVisibilityFields = [
+            'hit' => 'home_hit_visible',
+            'hot' => 'home_hot_visible',
+            'new' => 'home_new_visible',
+            'sale' => 'home_sale_visible',
+        ];
+
+        if (!$homeGroupsVisible) {
+            $arrHits = [];
+        } else {
+            foreach ($homeGroupVisibilityFields as $type => $field) {
+                if ((int)($this->set[$field] ?? 1) !== 1) {
+                    unset($arrHits[$type]);
+                }
+            }
+        }
+
         $goods = [];
+
+        /* ForPrint configurable home product group limits v0.6.39 */
+        $homeGroupLimitFields = [
+            'hit' => 'home_hit_limit',
+            'hot' => 'home_hot_limit',
+            'new' => 'home_new_limit',
+            'sale' => 'home_sale_limit',
+        ];
+
+        $homeGroupLimits = [];
+
+        foreach ($homeGroupLimitFields as $type => $field) {
+            $configuredLimit = (int)($this->set[$field] ?? 6);
+
+            if ($configuredLimit < 1) {
+                $configuredLimit = 1;
+            }
+
+            if ($configuredLimit > 24) {
+                $configuredLimit = 24;
+            }
+
+            $homeGroupLimits[$type] = $configuredLimit;
+        }
 
         foreach ($arrHits as $type => $item){
 
@@ -94,7 +143,7 @@ class IndexController extends BaseUser
                 'where' => [$type => 1, 'visible'=> 1],
                 'order' => ['menu_position', 'id'],
                 'order_direction' => ['ASC', 'ASC'],
-                'limit' => 6,
+                'limit' => $homeGroupLimits[$type] ?? 6,
             ]);
         }
 

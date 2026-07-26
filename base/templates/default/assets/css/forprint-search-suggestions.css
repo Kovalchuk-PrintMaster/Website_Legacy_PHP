@@ -1,4 +1,6 @@
-/* ForPrint product search suggestions v0.6.26 */
+/**
+ * ForPrint product-search suggestions.
+ */
 
 .fp-search-suggestions {
     position: fixed;
@@ -10,10 +12,19 @@
     padding: 6px;
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     background: #ffffff;
     border: 1px solid #cfd9df;
     border-radius: 3px;
     box-shadow: 0 12px 34px rgba(24, 36, 44, 0.22);
+}
+
+/* Project-owned hidden suggestion scrollbar. */
+.fp-search-suggestions::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 .fp-search-suggestions[hidden] {
@@ -73,7 +84,7 @@
 }
 
 .fp-search-suggestions__action--all::before {
-    content: '⌕';
+    content: "⌕";
     flex: 0 0 auto;
     color: #7f8b92;
     font-size: 19px;
@@ -81,8 +92,9 @@
 }
 
 /* Straight, light right arrow for recent-query actions. */
+
 .fp-search-suggestions__action--recent::after {
-    content: '→';
+    content: "→";
     flex: 0 0 auto;
     margin-left: auto;
     color: #9aa5ab;
@@ -92,6 +104,7 @@
 }
 
 /* Product photo, or a neutral grey fallback dot. */
+
 .fp-search-suggestions__product-image {
     flex: 0 0 38px;
     width: 38px;
@@ -130,4 +143,265 @@
         left: 12px !important;
         width: calc(100vw - 24px) !important;
     }
+}
+
+/* ForPrint shared search/catalog suggestion surface v0.6.41 */
+
+.fp-suggestion-surface {
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #cfd9df;
+    border-radius: 3px;
+    box-shadow: 0 12px 34px rgba(24, 36, 44, 0.22);
+}
+
+.fp-suggestion-row {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    color: #20272c;
+    background: #ffffff;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: left;
+    text-decoration: none;
+}
+
+.fp-suggestion-row:hover,
+.fp-suggestion-row:focus-visible,
+.fp-search-suggestions__action--active {
+    outline: 0;
+    color: #173042;
+    background: #edf3f6;
+}
+
+.fp-suggestion-row__media,
+.fp-suggestion-row__image {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border: 1px solid #d8e0e4;
+    border-radius: 2px;
+    background: #f1f4f6;
+}
+
+.fp-suggestion-row__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fp-suggestion-row__image {
+    display: block;
+    object-fit: cover;
+}
+
+.fp-suggestion-row__name {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fp-suggestion-row--all {
+    min-height: 46px;
+    background: #f5f8fa;
+    color: #173042;
+    font-weight: 700;
+}
+
+.fp-site-header__nav
+.header__nav-parent > .fp-catalog-popover {
+    width: min(510px, calc(100vw - 24px));
+    min-width: 320px;
+    max-width: 510px;
+    max-height: 420px;
+    padding: 6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.fp-site-header__nav
+.fp-catalog-popover__heading {
+    display: block;
+    margin: 0;
+    padding: 7px 10px 6px;
+    color: #71808a;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.fp-site-header__nav
+.header__nav-sublist
+.fp-catalog-popover__action {
+    display: flex;
+    margin: 0;
+    padding: 7px 10px;
+    color: #20272c;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 500;
+    white-space: normal;
+}
+
+.fp-site-header__nav
+.header__nav-sublist
+.fp-catalog-popover__action:hover,
+.fp-site-header__nav
+.header__nav-sublist
+.fp-catalog-popover__action:focus-visible {
+    color: #173042;
+    background: #edf3f6;
+}
+
+.fp-catalog-popover__footer {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid #e2e8ec;
+}
+
+.fp-site-header__nav
+.header__nav-sublist
+.fp-suggestion-row--all {
+    display: flex;
+    margin: 0;
+    padding: 8px 10px;
+    color: #173042;
+    background: #f5f8fa;
+    white-space: normal;
+}
+
+@media (max-width: 700px) {
+    .fp-suggestion-surface {
+        max-width: calc(100vw - 24px);
+    }
+}
+
+/* ForPrint catalog/search interaction alignment v0.6.43 */
+
+.fp-site-header__nav .header__nav-parent {
+    position: relative;
+    isolation: isolate;
+}
+
+.fp-site-header__nav .header__nav-parent::after {
+    content: "";
+    position: absolute;
+    z-index: 10049;
+    top: 100%;
+    left: 0;
+    width: min(32rem, calc(100vw - 1.5rem));
+    height: clamp(1.15rem, 1.5vw, 1.45rem);
+}
+
+.fp-site-header__nav
+.header__nav-parent > .fp-catalog-popover {
+    top: calc(100% + clamp(1.1rem, 1.45vw, 1.4rem));
+    width: min(32rem, calc(100vw - 1.5rem));
+    min-width: min(20rem, calc(100vw - 1.5rem));
+    max-width: 32rem;
+    max-height: min(23.75rem, calc(100vh - 1.5rem));
+    border-radius: 0.875rem;
+    box-shadow:
+        0.75rem 1rem 2.25rem rgba(24, 36, 44, 0.18),
+        0 0.125rem 0.45rem rgba(24, 36, 44, 0.08);
+}
+
+.fp-search-suggestions {
+    width: min(32rem, calc(100vw - 1.5rem)) !important;
+    max-width: min(32rem, calc(100vw - 1.5rem));
+    max-height: min(23.75rem, calc(100vh - 1.5rem));
+    border-radius: 0.875rem;
+    box-shadow:
+        0.75rem 1rem 2.25rem rgba(24, 36, 44, 0.18),
+        0 0.125rem 0.45rem rgba(24, 36, 44, 0.08);
+    scrollbar-gutter: auto;
+}
+
+.fp-site-header__nav
+.header__nav-parent > .fp-catalog-popover,
+.fp-search-suggestions {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.fp-site-header__nav
+.header__nav-parent > .fp-catalog-popover .fp-suggestion-row,
+.fp-search-suggestions .fp-suggestion-row {
+    border-radius: 0.625rem;
+}
+
+.fp-search-suggestions__action--recent::after {
+    display: none;
+    content: none;
+}
+
+@media (max-width: 48em) {
+    .fp-site-header__nav
+    .header__nav-parent > .fp-catalog-popover,
+    .fp-search-suggestions {
+        width: calc(100vw - 1.5rem) !important;
+        min-width: 0;
+        max-width: calc(100vw - 1.5rem);
+        border-radius: 0.75rem;
+    }
+}
+
+
+/* ForPrint hero-aligned catalog popover v0.6.44 */
+@media (min-width: 64.0625em) {
+    .fp-site-header__nav .header__nav-parent::after {
+        height: var(
+            --fp-catalog-popover-bridge,
+            clamp(1.15rem, 1.5vw, 1.45rem)
+        );
+    }
+
+    .fp-site-header__nav
+    .header__nav-parent > .fp-catalog-popover {
+        top: var(
+            --fp-catalog-popover-top,
+            calc(100% + clamp(1.1rem, 1.45vw, 1.4rem))
+        );
+        height: var(--fp-catalog-popover-height, auto);
+        max-height: var(
+            --fp-catalog-popover-height,
+            min(23.75rem, calc(100vh - 1.5rem))
+        );
+        border-radius: 0;
+        box-shadow:
+            0.85rem 1.15rem 2.4rem rgba(24, 36, 44, 0.2),
+            0 0.125rem 0.45rem rgba(24, 36, 44, 0.08);
+    }
+}
+
+/*
+ * Project-owned hidden catalog-popover scrollbar.
+ *
+ * The catalog popover remains scrollable by wheel, touch and keyboard.
+ * Only the browser's visual scrollbar track is suppressed.
+ */
+.fp-site-header__nav
+.header__nav-parent > .fp-catalog-popover {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.fp-site-header__nav
+.header__nav-parent > .fp-catalog-popover::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }

@@ -70,3 +70,20 @@ Canonical strategy references:
 - `docs/reference/inspection_and_maintenance_tools_v0_1.md`;
 - `docs/decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md`;
 - `docs/plans/legacy_publication_and_modern_frontend_plan_v0_1.md`.
+
+<!-- FP-FRONTEND-DOCS-V02-START -->
+## Frontend ownership addendum — 2026-07-20
+
+| Path | Responsibility |
+|---|---|
+| `base/templates/default/assets/css/forprint-layout.css` | global usable width, side space, content ceiling, fixed rail reservation, shared containers |
+| `base/templates/default/assets/css/forprint-shell.css` | shared public header and responsive shell |
+| `base/templates/default/assets/css/forprint-home.css` | homepage-only presentation and hero slider geometry |
+| `base/templates/default/assets/css/forprint-product-cards.css` | reusable product cards and grids |
+| `base/templates/default/assets/css/forprint-product-detail.css` | single-product presentation |
+| `base/templates/default/assets/css/forprint-product-communication.css` | product enquiry UI |
+| `base/templates/default/assets/css/forprint-search-suggestions.css` | search suggestion presentation |
+| `base/templates/default/surfaces/home/heroSlider.php` | hero slider markup and data rendering |
+| `base/templates/default/assets/js/script.js` | inherited/global Swiper initialization including homepage hero runtime |
+| `/etc/systemd/system/forprint-website-preview.service` | external local preview process; not repository-owned deployment configuration |
+<!-- FP-FRONTEND-DOCS-V02-END -->

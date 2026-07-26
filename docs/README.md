@@ -88,3 +88,14 @@
 - [`plans/legacy_publication_and_modern_frontend_plan_v0_1.md`](plans/legacy_publication_and_modern_frontend_plan_v0_1.md) — план публікації legacy та ізольованої розробки modern frontend.
 
 `coordination/reports/` зберігає історичні докази виконання і не є заміною актуальним reference, decision та plan документам.
+
+<!-- FP-FRONTEND-DOCS-V02-START -->
+## Frontend architecture working checkpoint — 2026-07-20
+
+- [Frontend CSS Ownership and Layout Strategy v0.3](architecture/frontend_css_ownership_and_layout_strategy_v0_3.md)
+- [Homepage Structure and Slider Architecture v0.1](architecture/home_frontend_structure_and_slider_architecture_v0_1.md)
+- [Canonical Frontend CSS Ownership and Homepage Layout Decision](decisions/2026-07-20__canonical_frontend_css_ownership_and_homepage_layout.md)
+- [Frontend Working State — 2026-07-20](status/snapshots/2026-07-20_frontend_working_state_v0_1.md)
+- [Frontend Next-Stage Plan v0.2](plans/frontend_next_stage_plan_v0_2.md)
+- [Documentation Package Manifest v0.2](documentation/package_manifest_v0_2.md)
+<!-- FP-FRONTEND-DOCS-V02-END -->

@@ -2,7 +2,7 @@
 
 namespace core\user\controllers;
 
-class SpecialoffersController extends BaseUser
+class SpecialoffersController extends ManagedProductsController
 {
     protected function inputData()
     {
@@ -23,32 +23,29 @@ class SpecialoffersController extends BaseUser
             'content' => '',
         ];
 
-        $goods = $this->model->query(
-            "SELECT
-                id,
-                name,
-                alias,
-                visible,
-                parent_id,
-                menu_position,
-                price,
-                discount,
-                img,
-                short_content,
-                price_description,
-                hit,
-                sale,
-                hot,
-                `new`
+        $data['name'] = trim((string)($this->set['special_offers_page_name'] ?? ''))
+            ?: (trim((string)($data['name'] ?? '')) ?: 'Спеціальні пропозиції');
+
+        $rows = $this->model->query(
+            "SELECT id
              FROM goods
-             WHERE visible = 1 AND (hot = 1 OR `new` = 1)
-             ORDER BY menu_position, id"
+             WHERE visible = 1 AND (hot = 1 OR `new` = 1)"
+        ) ?: [];
+
+        $listing = $this->buildManagedProductListing(
+            $this->extractManagedProductIds($rows),
+            'special-offers',
+            'catalog'
         );
 
-        if (!$goods || !is_array($goods)) {
-            $goods = [];
-        }
+        $this->template = TEMPLATE . 'managedproducts';
 
-        return compact('data', 'goods');
+        return array_merge(
+            [
+                'data' => $data,
+                'listingKind' => 'special-offers',
+            ],
+            $listing
+        );
     }
 }

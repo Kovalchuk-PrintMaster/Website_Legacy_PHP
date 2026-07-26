@@ -1,52 +1,171 @@
 </main>
+<?php
+/* ForPrint managed footer v0.6.37 */
+
+$fpFooterSettings = is_array($this->footerSettings ?? null)
+    ? $this->footerSettings
+    : [];
+$fpFooterVisible = !array_key_exists('visible', $fpFooterSettings)
+    || (int)$fpFooterSettings['visible'] === 1;
+
+$fpFooterLinks = !empty($this->footerLinks) && is_array($this->footerLinks)
+    ? $this->footerLinks
+    : [
+        ['name' => 'Каталог', 'url' => 'catalog', 'target_blank' => 0],
+        ['name' => 'Про нас', 'url' => 'about', 'target_blank' => 0],
+        ['name' => 'Доставка і оплата', 'url' => 'information/oplata-i-dostavka', 'target_blank' => 0],
+        ['name' => 'Контакти', 'url' => 'contacts', 'target_blank' => 0],
+        ['name' => 'Як нас знайти', 'url' => 'https://maps.app.goo.gl/9qVWMQqJbTaJEoLh8', 'target_blank' => 1],
+        ['name' => 'Карта сайту', 'url' => '#', 'target_blank' => 0],
+    ];
+
+$fpFooterPhones = !empty($this->footerPhones) && is_array($this->footerPhones)
+    ? $this->footerPhones
+    : [
+        ['name' => '', 'phone' => '+380 96 053 00 51'],
+    ];
+
+$fpFooterResolveUrl = function (string $url): string {
+    $url = trim($url);
+
+    if ($url === '') {
+        return '#';
+    }
+
+    if (
+        $url[0] === '#'
+        || preg_match('/^(?:https?:|mailto:|tel:)/i', $url)
+    ) {
+        return $url;
+    }
+
+    return $this->alias(trim($url, '/'));
+};
+
+$fpFooterLogo = trim((string)($fpFooterSettings['logo_img'] ?? ''));
+if ($fpFooterLogo === '') {
+    $fpFooterLogo = 'logo/Mast_LogN_square.png';
+}
+
+$fpFooterEmail = trim((string)($fpFooterSettings['email'] ?? 'druk.smile@gmail.com'));
+$fpFooterEmailLabel = trim((string)($fpFooterSettings['email_label'] ?? 'work.printmaster@gmail.com'));
+if ($fpFooterEmailLabel === '') {
+    $fpFooterEmailLabel = $fpFooterEmail;
+}
+
+$fpFooterCallbackLabel = trim((string)($fpFooterSettings['callback_label'] ?? "Зв'язатися з нами"));
+$fpFooterCallbackUrl = trim((string)($fpFooterSettings['callback_url'] ?? ''));
+$fpFooterCopyright = trim((string)($fpFooterSettings['copyright_text'] ?? 'Copyright - Print Master 2025'));
+?>
+
+<?php if ($fpFooterVisible): ?>
 <footer class="footer fp-site-footer" xmlns="http://www.w3.org/1999/html">
     <div class="container fp-site-footer__container fp-layout-container">
         <div class="footer__wrapper">
             <div class="footer__top">
                 <div class="footer__top_logo">
-                    <img src="<?=PATH . 'userfiles/logo/Mast_LogN_square.png' ?>" alt="">
+                    <a
+                        href="<?=$this->alias()?>"
+                        class="fp-site-footer__logo-link"
+                        aria-label="На головну сторінку"
+                    >
+                        <img
+                            src="<?=htmlspecialchars($this->img($fpFooterLogo), ENT_QUOTES, 'UTF-8')?>"
+                            alt=""
+                            loading="lazy"
+                        >
+                    </a>
                 </div>
-                <div class="footer__top_menu">
+
+                <nav class="footer__top_menu" aria-label="Навігація футера">
                     <ul>
-
-                        <li>
-                            <a href="#"><span>Каталог</span></a>
-                        </li>
-
-                        <li>
-                            <a href="#"><span>Про нас</span></a>
-                        </li>
-
-                        <li>
-                            <a href="#"><span>Доставка и оплата</span></a>
-                        </li>
-
-                        <li>
-                            <a href="#"><span>Контакти</span></a>
-                        </li>
-
-                        <li>
-                            <a href="https://maps.app.goo.gl/9qVWMQqJbTaJEoLh8"><span>Як нас знайти</span></a>
-                        </li>
-
-                        <li>
-                            <a href="#"><span>Карта сайта</span></a>
-                        </li>
-
+                        <?php foreach ($fpFooterLinks as $fpFooterLink): ?>
+                            <?php
+                            $fpFooterLinkName = trim((string)($fpFooterLink['name'] ?? ''));
+                            $fpFooterLinkUrl = $fpFooterResolveUrl((string)($fpFooterLink['url'] ?? ''));
+                            $fpFooterLinkImage = trim((string)($fpFooterLink['img'] ?? ''));
+                            $fpFooterBlank = (int)($fpFooterLink['target_blank'] ?? 0) === 1;
+                            ?>
+                            <?php if ($fpFooterLinkName !== ''): ?>
+                                <li>
+                                    <a
+                                        href="<?=htmlspecialchars($fpFooterLinkUrl, ENT_QUOTES, 'UTF-8')?>"
+                                        <?=$fpFooterBlank ? 'target="_blank" rel="noopener noreferrer"' : ''?>
+                                    >
+                                        <?php if ($fpFooterLinkImage !== ''): ?>
+                                            <img
+                                                class="fp-site-footer__link-icon"
+                                                src="<?=htmlspecialchars($this->img($fpFooterLinkImage), ENT_QUOTES, 'UTF-8')?>"
+                                                alt=""
+                                                loading="lazy"
+                                            >
+                                        <?php endif; ?>
+                                        <span><?=htmlspecialchars($fpFooterLinkName, ENT_QUOTES, 'UTF-8')?></span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </ul>
-                </div>
+                </nav>
+
+                <?php /* ForPrint compact footer composition v0.6.40 */ ?>
                 <div class="footer__top_contacts">
-                    <div><a href="mailto:druk.smile@gmail.com">work.printmaster@gmail.com</a></div>
-                    <div><a href="tel:+380 96 053 00 51">+380 96 053 00 51</a></div>
-                    <div><a class="js-callback">Зв'язатися з нами</a></div>
+                    <?php if ($fpFooterEmail !== ''): ?>
+                        <div class="footer__contact footer__contact--email">
+                            <a href="mailto:<?=htmlspecialchars($fpFooterEmail, ENT_QUOTES, 'UTF-8')?>">
+                                <?=htmlspecialchars($fpFooterEmailLabel, ENT_QUOTES, 'UTF-8')?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($fpFooterPhones)): ?>
+                        <div class="footer__contact footer__contact--phones">
+                            <?php foreach ($fpFooterPhones as $fpFooterPhone): ?>
+                                <?php
+                                $fpFooterPhoneValue = trim((string)($fpFooterPhone['phone'] ?? ''));
+                                $fpFooterPhoneLabel = trim((string)($fpFooterPhone['name'] ?? ''));
+                                if ($fpFooterPhoneLabel === '') {
+                                    $fpFooterPhoneLabel = $fpFooterPhoneValue;
+                                }
+                                $fpFooterPhoneHref = preg_replace('/[^+\d]/', '', $fpFooterPhoneValue);
+                                ?>
+                                <?php if ($fpFooterPhoneValue !== ''): ?>
+                                    <a href="tel:<?=htmlspecialchars($fpFooterPhoneHref, ENT_QUOTES, 'UTF-8')?>">
+                                        <?=htmlspecialchars($fpFooterPhoneLabel, ENT_QUOTES, 'UTF-8')?>
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($fpFooterCallbackLabel !== '' || $fpFooterCopyright !== ''): ?>
+                        <div class="footer__contact footer__contact--action">
+                            <?php if ($fpFooterCallbackLabel !== ''): ?>
+                                <a
+                                    <?=$fpFooterCallbackUrl === ''
+                                        ? 'href="#" class="footer__callback-link js-callback"'
+                                        : 'href="' . htmlspecialchars(
+                                            $fpFooterResolveUrl($fpFooterCallbackUrl),
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        ) . '" class="footer__callback-link"'?>
+                                ><?=htmlspecialchars($fpFooterCallbackLabel, ENT_QUOTES, 'UTF-8')?></a>
+                            <?php endif; ?>
+
+                            <?php if ($fpFooterCopyright !== ''): ?>
+                                <div class="footer__bottom_copy">
+                                    <?=htmlspecialchars($fpFooterCopyright, ENT_QUOTES, 'UTF-8')?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
-            <div class="footer__bottom">
-                <div class="footer__bottom_copy">Copyright - Print Master 2025</div>
-            </div>
+
         </div>
     </div>
 </footer>
+<?php endif; ?>
 
 <div class="hide-elems">
     <svg>

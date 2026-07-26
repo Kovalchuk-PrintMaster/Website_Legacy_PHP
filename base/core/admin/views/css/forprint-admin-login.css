@@ -1,0 +1,208 @@
+/*
+ * ForPrint standalone admin login.
+ *
+ * Loaded only by the login template. Therefore static element selectors are
+ * safe here and PHP-bearing HTML tags do not need to be rewritten.
+ */
+
+:root {
+    --fp-login-bg: #eef2f5;
+    --fp-login-card: #ffffff;
+    --fp-login-text: #17232e;
+    --fp-login-muted: #677684;
+    --fp-login-border: #d5dfe6;
+    --fp-login-action: #263747;
+    --fp-login-action-hover: #17232e;
+    --fp-login-focus: #09b9db;
+    --fp-login-shadow:
+        0 1.5rem 4rem rgba(23, 35, 46, 0.14);
+}
+
+html {
+    min-height: 100%;
+    background: var(--fp-login-bg);
+}
+
+body {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    margin: 0 !important;
+    padding: 1.5rem !important;
+    box-sizing: border-box !important;
+    color: var(--fp-login-text);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(238, 242, 245, 0.9)
+        ),
+        var(--fp-login-bg);
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+}
+
+body::before {
+    content: "FP";
+    position: fixed;
+    top: clamp(1.25rem, 4vw, 3rem);
+    left: clamp(1.25rem, 4vw, 3rem);
+    color: var(--fp-login-action);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+/* Neutralize a possible legacy wrapper around the form. */
+body > div,
+body > main,
+body > section {
+    width: min(100%, 26rem) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+body form {
+    display: block !important;
+    width: min(100%, 26rem) !important;
+    margin: 0 auto !important;
+    padding: clamp(1.6rem, 4vw, 2.45rem) !important;
+    border: 1px solid var(--fp-login-border) !important;
+    border-radius: 1rem !important;
+    box-sizing: border-box !important;
+    background: var(--fp-login-card) !important;
+    box-shadow: var(--fp-login-shadow) !important;
+    text-align: left !important;
+}
+
+body form h1,
+body form h2,
+body h1,
+body h2 {
+    margin: 0 0 1.5rem !important;
+    color: var(--fp-login-text) !important;
+    font-family: inherit !important;
+    font-size: clamp(1.65rem, 4vw, 2rem) !important;
+    font-weight: 760 !important;
+    line-height: 1.15 !important;
+    text-align: left !important;
+}
+
+body form label {
+    display: block !important;
+    margin: 0 0 0.4rem !important;
+    color: var(--fp-login-text) !important;
+    font-family: inherit !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.035em !important;
+    text-align: left !important;
+}
+
+body form input[name="login"],
+body form input[name="username"],
+body form input[type="password"] {
+    display: block !important;
+    width: 100% !important;
+    min-height: 3rem !important;
+    margin: 0 0 1.05rem !important;
+    padding: 0.7rem 0.85rem !important;
+    border: 1px solid var(--fp-login-border) !important;
+    border-radius: 0.45rem !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    color: var(--fp-login-text) !important;
+    background: #ffffff !important;
+    font: inherit !important;
+}
+
+body form input[name="login"]:focus,
+body form input[name="username"]:focus,
+body form input[type="password"]:focus {
+    border-color: var(--fp-login-focus) !important;
+    box-shadow:
+        0 0 0 0.2rem rgba(9, 185, 219, 0.16) !important;
+}
+
+body form input[type="submit"],
+body form button[type="submit"],
+body form button:not([type]) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 3rem !important;
+    margin: 0.25rem 0 0 !important;
+    padding: 0.75rem 1rem !important;
+    border: 0 !important;
+    border-radius: 0.45rem !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    color: #ffffff !important;
+    background: var(--fp-login-action) !important;
+    font: inherit !important;
+    font-weight: 750 !important;
+}
+
+body form input[type="submit"]:hover,
+body form button[type="submit"]:hover,
+body form button:not([type]):hover {
+    background: var(--fp-login-action-hover) !important;
+}
+
+body form input[type="submit"]:focus-visible,
+body form button[type="submit"]:focus-visible,
+body form button:not([type]):focus-visible {
+    outline: 0.2rem solid var(--fp-login-focus) !important;
+    outline-offset: 0.18rem !important;
+}
+
+body form p {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-family: inherit !important;
+    line-height: 1.4 !important;
+}
+
+@media (max-width: 32rem) {
+    body {
+        align-items: flex-start !important;
+        padding-top: 5rem !important;
+    }
+
+    body form {
+        padding: 1.35rem !important;
+        border-radius: 0.75rem !important;
+    }
+}
+
+/* FP_ADMIN_LOGIN_WEIGHT_REFINEMENT_START */
+/*
+ * Accepted refinement: keep the new login layout while reducing the visual
+ * weight of labels and the submit caption.
+ */
+body form h1,
+body form h2,
+body h1,
+body h2 {
+    font-weight: 650 !important;
+}
+
+body form label {
+    font-weight: 500 !important;
+}
+
+body form input[type="submit"],
+body form button[type="submit"],
+body form button:not([type]) {
+    font-weight: 600 !important;
+}
+/* FP_ADMIN_LOGIN_WEIGHT_REFINEMENT_END */

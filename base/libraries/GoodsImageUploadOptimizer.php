@@ -18,22 +18,84 @@ class GoodsImageUploadOptimizer
         $this->userfilesRoot = $this->projectRoot . '/base/userfiles';
     }
 
-    public function optimizeMainImage(string $publicPath, string $goodsName, int $catalogId): ?string
-    {
-        return $this->optimizeImagePath($publicPath, $goodsName, $catalogId, '', 'fit');
+    public function optimizeMainImage(
+        string $publicPath,
+        string $goodsName,
+        int $catalogId
+    ): ?string {
+        $optimized = $this->optimizeImagePath(
+            $publicPath,
+            $goodsName,
+            $catalogId,
+            '',
+            'fit'
+        );
+
+        if ($optimized === null) {
+            /*
+             * The original upload is temporary. A failed optimization must
+             * not leave it in base/userfiles/goods/.
+             */
+            $this->removePublicFile($publicPath);
+        }
+
+        return $optimized;
     }
 
-    public function optimizeGalleryImages(array $publicPaths, string $goodsName, int $catalogId): array
-    {
+    public function optimizeGalleryImages(
+        array $publicPaths,
+        string $goodsName,
+        int $catalogId
+    ): ?array {
         $result = [];
+        $sources = [];
 
         foreach ($publicPaths as $publicPath) {
-            if (!is_string($publicPath) || trim($publicPath) === '') {
+            if (
+                !is_string($publicPath)
+                || trim($publicPath) === ''
+            ) {
                 continue;
             }
 
-            $optimized = $this->optimizeImagePath($publicPath, $goodsName, $catalogId, 'gallery', 'fit');
-            $result[] = $optimized ?: $publicPath;
+            $sources[] = $publicPath;
+            $optimized = $this->optimizeImagePath(
+                $publicPath,
+                $goodsName,
+                $catalogId,
+                'gallery',
+                'fit'
+            );
+
+            if ($optimized === null) {
+                /*
+                 * Keep the request atomic: if one gallery image fails,
+                 * remove all files created by this gallery request.
+                 */
+                foreach ($result as $createdPublicPath) {
+                    $this->removePublicFile(
+                        $createdPublicPath
+                    );
+                }
+
+                foreach ($sources as $sourcePublicPath) {
+                    $this->removePublicFile(
+                        $sourcePublicPath
+                    );
+                }
+
+                foreach ($publicPaths as $pendingPublicPath) {
+                    if (is_string($pendingPublicPath)) {
+                        $this->removePublicFile(
+                            $pendingPublicPath
+                        );
+                    }
+                }
+
+                return null;
+            }
+
+            $result[] = $optimized;
         }
 
         return $result;
@@ -98,7 +160,63 @@ class GoodsImageUploadOptimizer
             return null;
         }
 
-        return substr($target, strlen($this->userfilesRoot . '/'));
+        $targetPublic = substr(
+            $target,
+            strlen($this->userfilesRoot . '/')
+        );
+
+        /*
+         * The converted file is accepted only when the temporary source can
+         * also be removed. This guarantees that successful uploads do not
+         * create a second root-level copy.
+         */
+        if (!$this->removePublicFile($sourcePublic)) {
+            @unlink($target);
+            return null;
+        }
+
+        return $targetPublic;
+    }
+
+    protected function removePublicFile(
+        string $publicPath
+    ): bool {
+        $normalized = $this->normalizePublicPath(
+            $publicPath
+        );
+
+        if ($normalized === null) {
+            return false;
+        }
+
+        $candidate =
+            $this->userfilesRoot
+            . '/'
+            . $normalized;
+        $realCandidate = realpath($candidate);
+        $realRoot = realpath($this->userfilesRoot);
+
+        if (
+            $realCandidate === false
+            || $realRoot === false
+            || !is_file($realCandidate)
+        ) {
+            /*
+             * A previous cleanup step may already have removed the file.
+             * Missing files are considered clean.
+             */
+            return !file_exists($candidate);
+        }
+
+        $rootPrefix =
+            rtrim($realRoot, DIRECTORY_SEPARATOR)
+            . DIRECTORY_SEPARATOR;
+
+        if (!str_starts_with($realCandidate, $rootPrefix)) {
+            return false;
+        }
+
+        return @unlink($realCandidate);
     }
 
     protected function normalizePublicPath(string $publicPath): ?string

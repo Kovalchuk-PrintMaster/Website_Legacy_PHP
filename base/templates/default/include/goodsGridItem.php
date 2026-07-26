@@ -17,11 +17,13 @@ $productExcerpt = fp_product_card_clean_text($shortSource, 260);
 
 $featureLabels = fp_product_card_feature_labels($data, 2);
 
-$priceState = fp_product_card_price_state($data);
+$priceState = fp_product_price_state($data);
 $basePrice = $priceState['base_price'];
 $finalPrice = $priceState['current_price'];
 $discount = $priceState['discount'];
 $hasDiscount = $priceState['has_discount'];
+$showExactPrice = $priceState['mode'] === 'exact'
+    && $finalPrice > 0;
 
 $iconClass = trim((string)($parameters['icon'] ?? ''));
 
@@ -84,21 +86,36 @@ $fpShowGridFeatures = false;
             <div class="fp-product-card__features fp-product-card__features_empty" aria-hidden="true"></div>
         <?php endif; ?>
 
-        <div class="fp-product-card__price">
+        <div
+            class="fp-product-card__price"
+            data-price-mode="<?=htmlspecialchars(
+                $priceState['mode'],
+                ENT_QUOTES,
+                'UTF-8'
+            )?>"
+        >
             <span class="fp-product-card__price-label">ціна:</span>
 
-            <?php if ($hasDiscount): ?>
-                <span class="fp-product-card__old-price"><?=fp_product_card_format_price($basePrice)?> грн.</span>
-                <span class="fp-product-card__current-price"><?=fp_product_card_format_price($finalPrice)?> грн.</span>
+            <?php if ($showExactPrice): ?>
+                <?php if ($hasDiscount): ?>
+                    <span class="fp-product-card__old-price"><?=fp_product_card_format_price($basePrice)?> грн.</span>
+                    <span class="fp-product-card__current-price"><?=fp_product_card_format_price($finalPrice)?> грн.</span>
+                <?php else: ?>
+                    <span class="fp-product-card__current-price"><?=fp_product_card_format_price($finalPrice)?> грн.</span>
+                <?php endif; ?>
             <?php else: ?>
-                <span class="fp-product-card__current-price"><?=fp_product_card_format_price($finalPrice)?> грн.</span>
+                <span class="fp-product-card__current-price">
+                    <?=htmlspecialchars(
+                        $priceState['display'],
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )?>
+                </span>
             <?php endif; ?>
         </div>
     </div>
 
-    <button class="fp-product-card__button"
-            type="button"
-            data-addtocart="<?=$productId?>">
+    <span class="fp-product-card__button">
         Детальніше
-    </button>
+    </span>
 </a>

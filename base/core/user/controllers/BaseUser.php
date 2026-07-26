@@ -29,7 +29,12 @@ protected $model;
         protected $cart = [];
 //        Project settings
         protected $socials;
+        /* ForPrint managed footer v0.6.37 */
+        protected $footerSettings = [];
+        protected $footerLinks = [];
+        protected $footerPhones = [];
         protected $breadcrumbs;
+        protected $breadcrumbItems = [];
         protected $userData = [];
 
         /**
@@ -93,10 +98,97 @@ protected $model;
             'order' => ['menu_position']
         ]);
 
+        /*
+         * ForPrint managed marketing links v0.6.47.2.
+         *
+         * The information table still owns route order and the generic
+         * show_top_menu switch. Settings own the editable public labels and
+         * the two dedicated visibility switches so seasonal naming does not
+         * require editing legacy information rows.
+         */
+        $fpPromotionsMenuVisible =
+            (int)($this->set['promotions_menu_visible'] ?? 1) === 1;
+        $fpSpecialOffersMenuVisible =
+            (int)($this->set['special_offers_menu_visible'] ?? 1) === 1;
+        $fpPromotionsMenuName =
+            trim((string)($this->set['promotions_page_name'] ?? ''))
+            ?: 'Акції і пропозиції';
+        $fpSpecialOffersMenuName =
+            trim((string)($this->set['special_offers_page_name'] ?? ''))
+            ?: 'Спеціальні пропозиції';
+        $fpInformationMenu = [];
+
+        foreach (($this->menu['information'] ?: []) as $fpInformationItem) {
+            $fpInformationAlias = strtolower(
+                trim((string)($fpInformationItem['alias'] ?? ''))
+            );
+            $fpInformationName = trim(
+                (string)($fpInformationItem['name'] ?? '')
+            );
+
+            $fpIsPromotions = (
+                $fpInformationAlias === 'promotions'
+                || $fpInformationName === 'Акції і Пропозиції'
+                || $fpInformationName === 'Акції і пропозиції'
+            );
+            $fpIsSpecialOffers = (
+                $fpInformationAlias === 'special-offers'
+                || $fpInformationAlias === 'politika-kodenfintsealnosti'
+                || $fpInformationName === 'Спеціальні пропозиції'
+            );
+
+            if ($fpIsPromotions) {
+                if (!$fpPromotionsMenuVisible) {
+                    continue;
+                }
+
+                $fpInformationItem['name'] = $fpPromotionsMenuName;
+                $fpInformationItem['_fp_route'] = 'promotions';
+            } elseif ($fpIsSpecialOffers) {
+                if (!$fpSpecialOffersMenuVisible) {
+                    continue;
+                }
+
+                $fpInformationItem['name'] = $fpSpecialOffersMenuName;
+                $fpInformationItem['_fp_route'] = 'specialoffers';
+            }
+
+            $fpInformationMenu[] = $fpInformationItem;
+        }
+
+        $this->menu['information'] = $fpInformationMenu;
+
         $this->socials = $this->model->get('socials', [
-            'were' => ['visible'=>1],
+            'where' => ['visible'=>1],
             'order' => ['menu_position']
             ]);
+
+        $availableTables = $this->model->showTables();
+
+        if (in_array('footer_settings', $availableTables, true)) {
+            $footerSettingsRows = $this->model->get('footer_settings', [
+                'order' => ['menu_position', 'id'],
+                'limit' => 1,
+            ]);
+
+            if (!empty($footerSettingsRows[0]) && is_array($footerSettingsRows[0])) {
+                $this->footerSettings = $footerSettingsRows[0];
+            }
+        }
+
+        if (in_array('footer_links', $availableTables, true)) {
+            $this->footerLinks = $this->model->get('footer_links', [
+                'where' => ['visible' => 1],
+                'order' => ['menu_position', 'id'],
+            ]) ?: [];
+        }
+
+        if (in_array('footer_phones', $availableTables, true)) {
+            $this->footerPhones = $this->model->get('footer_phones', [
+                'where' => ['visible' => 1],
+                'order' => ['menu_position', 'id'],
+            ]) ?: [];
+        }
 
         }
         protected function outputData(){
@@ -104,7 +196,11 @@ protected $model;
             $args = func_get_arg(0);
             $vars = $args ? $args : [];
 
-            $this->breadcrumbs = $this->render(TEMPLATE . 'include/breadcrumbs');
+            $this->breadcrumbItems = $this->buildBreadcrumbItems($vars);
+            $this->breadcrumbs = $this->render(
+                TEMPLATE . 'include/breadcrumbs',
+                ['breadcrumbItems' => $this->breadcrumbItems]
+            );
 
             if(!$this->content){
 
@@ -116,6 +212,149 @@ protected $model;
 
             return $this->render(TEMPLATE . 'layout/default');
 
+        }
+
+
+        /**
+         * ForPrint canonical breadcrumbs v0.6.36
+         *
+         * Build route-aware breadcrumb data in the controller layer. Public
+         * templates receive one normalized list and never hard-code URLs.
+         */
+        protected function buildBreadcrumbItems(array $vars = []): array
+        {
+            $items = [
+                [
+                    'label' => 'Головна',
+                    'url' => $this->alias('/'),
+                ],
+            ];
+
+            $controller = $this->getController();
+            $data = isset($vars['data']) && is_array($vars['data'])
+                ? $vars['data']
+                : [];
+            $category = isset($vars['category']) && is_array($vars['category'])
+                ? $vars['category']
+                : [];
+            $mode = (string)($vars['mode'] ?? '');
+
+            $append = static function (
+                array &$target,
+                string $label,
+                ?string $url = null
+            ): void {
+                $label = trim($label);
+
+                if ($label === '') {
+                    return;
+                }
+
+                $target[] = [
+                    'label' => $label,
+                    'url' => $url,
+                ];
+            };
+
+            switch ($controller) {
+                case 'catalog':
+                    $catalogName = trim((string)($data['name'] ?? ''));
+
+                    if (!empty($this->parameters['alias']) && $catalogName !== '') {
+                        $append($items, 'Каталог товарів', $this->alias('catalog'));
+                        $append($items, $catalogName);
+                    } else {
+                        $append($items, 'Каталог товарів');
+                    }
+                    break;
+
+                case 'product':
+                    $append($items, 'Каталог товарів', $this->alias('catalog'));
+
+                    if (!empty($category['name'])) {
+                        $categoryUrl = !empty($category['alias'])
+                            ? $this->alias(['catalog' => $category['alias']])
+                            : null;
+                        $append(
+                            $items,
+                            (string)$category['name'],
+                            $categoryUrl
+                        );
+                    }
+
+                    $append(
+                        $items,
+                        (string)($data['name'] ?? 'Товар')
+                    );
+                    break;
+
+                case 'news':
+                    if ($mode === 'detail') {
+                        $append($items, 'Новини', $this->alias('news'));
+                        $append(
+                            $items,
+                            (string)($data['name'] ?? 'Новина')
+                        );
+                    } else {
+                        $append($items, 'Новини');
+                    }
+                    break;
+
+                case 'about':
+                    $append(
+                        $items,
+                        (string)($data['about_name'] ?? $data['name'] ?? 'Про нас')
+                    );
+                    break;
+
+                case 'information':
+                    $append(
+                        $items,
+                        (string)($data['name'] ?? 'Інформація')
+                    );
+                    break;
+
+                case 'contacts':
+                    $append($items, 'Контакти');
+                    break;
+
+                case 'promotions':
+                    $append(
+                        $items,
+                        trim((string)($this->set['promotions_page_name'] ?? ''))
+                            ?: 'Акції і пропозиції'
+                    );
+                    break;
+
+                case 'specialoffers':
+                    $append(
+                        $items,
+                        trim((string)($this->set['special_offers_page_name'] ?? ''))
+                            ?: 'Спеціальні пропозиції'
+                    );
+                    break;
+
+                case 'search':
+                    $append($items, 'Результати пошуку');
+                    break;
+
+                case 'cart':
+                case 'сart':
+                    $append($items, 'Кошик');
+                    break;
+            }
+
+            if (count($items) === 1) {
+                return [];
+            }
+
+            $lastIndex = array_key_last($items);
+
+            if ($lastIndex !== null) {
+                $items[$lastIndex]['url'] = null;
+            }
+
+            return $items;
         }
 
         protected function img($img ='', $tag = false){

@@ -17,14 +17,21 @@
                     return is_string($item) && $item !== '';
                 }));
 
-                                if (($this->table ?? '') === 'goods') {
+                if (($this->table ?? '') === 'goods') {
                     $tinyMceBlocks = array_values(array_unique(array_merge(
                         $tinyMceBlocks,
                         ['content', 'tab_specs_content', 'tab_conditions_content', 'tab_extra_content']
                     )));
                 }
 
-                                $tinyMceDefaultAreas = implode(',', $tinyMceBlocks);
+                if (($this->table ?? '') === 'settings') {
+                    $tinyMceBlocks = array_values(array_unique(array_merge(
+                        $tinyMceBlocks,
+                        ['short_content', 'content']
+                    )));
+                }
+
+                $tinyMceDefaultAreas = implode(',', $tinyMceBlocks);
 
                 if (session_status() !== PHP_SESSION_ACTIVE) {
                     @session_start();
@@ -47,46 +54,6 @@
                 </script>
 
             <?php $this->getScripts()?>
-<!-- FP v0.6.18u promo flags stable grid START -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('main-form');
-    if (!form) {
-        return;
-    }
-
-    var flags = Array.prototype.slice.call(
-        form.querySelectorAll(
-            '.fp-radio-template-field--hit.fp-radio-template-field--promo-flag,' +
-            '.fp-radio-template-field--sale.fp-radio-template-field--promo-flag,' +
-            '.fp-radio-template-field--new.fp-radio-template-field--promo-flag,' +
-            '.fp-radio-template-field--hot.fp-radio-template-field--promo-flag'
-        )
-    );
-
-    if (!flags.length) {
-        return;
-    }
-
-    var first = flags[0];
-    var parent = first.parentNode;
-    if (!parent) {
-        return;
-    }
-
-    var grid = form.querySelector('.fp-promo-flags-grid');
-    if (!grid) {
-        grid = document.createElement('div');
-        grid.className = 'fp-promo-flags-grid vg-element vg-full vg-box-shadow';
-        parent.insertBefore(grid, first);
-    }
-
-    flags.forEach(function (flag) {
-        grid.appendChild(flag);
-    });
-});
-</script>
-<!-- FP v0.6.18u promo flags stable grid END -->
 <!-- FP v0.6.18w related goods inside filters START -->
 <script>
 (function () {
@@ -145,7 +112,12 @@ document.addEventListener('DOMContentLoaded', function () {
 }());
 </script>
 <!-- FP v0.6.18w related goods inside filters END -->
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-collections.js?v=20260724-1020"></script>
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-ui.js?v=20260725-1830"></script>
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-ordering.js?v=20260725-2710"></script>
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-gallery.js?v=20260725-2605"></script>
 </body>
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-goods-form.js?v=20260725-3500"></script>
 </html>
 
 <script>
@@ -203,75 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 <script>
-/* v0.6.18b product form layout helper */
-(function () {
-    function runProductFormLayoutHelper() {
-        var editorNames = [
-            'content',
-            'tab_specs_content',
-            'tab_conditions_content'
-        ];
-
-        editorNames.forEach(function (name) {
-            var field = document.querySelector('[name="' + name + '"]');
-
-            if (!field) {
-                return;
-            }
-
-            var wrapper = field.closest('.vg-wrap') || field.closest('div');
-
-            if (wrapper) {
-                wrapper.classList.add('vg-admin-editor-half');
-            }
-        });
-
-        var related = document.querySelector('[data-related-goods-widget]');
-
-        if (related) {
-            related.classList.add('vg-admin-related-goods-half');
-
-            var form = related.closest('form');
-
-            if (form) {
-                var actionButtons = Array.prototype.slice.call(
-                    form.querySelectorAll('button, input[type="submit"], input[type="button"], a')
-                ).filter(function (el) {
-                    var text = (el.value || el.textContent || '').trim();
-                    return /Зберегти|Сохранить|Видалити|Удалить/i.test(text);
-                });
-
-                var lastAction = actionButtons[actionButtons.length - 1];
-
-                if (lastAction) {
-                    var directChild = lastAction;
-
-                    while (directChild.parentNode && directChild.parentNode !== form) {
-                        directChild = directChild.parentNode;
-                    }
-
-                    if (directChild && directChild.parentNode === form && directChild !== related) {
-                        form.insertBefore(related, directChild);
-                    } else {
-                        form.appendChild(related);
-                    }
-                } else {
-                    form.appendChild(related);
-                }
-            }
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            window.setTimeout(runProductFormLayoutHelper, 80);
-        });
-    } else {
-        window.setTimeout(runProductFormLayoutHelper, 80);
-    }
-}());
-</script>
-<script>
 /* v0.6.18c product tab panel grouper */
 (function () {
     function findFieldWrapper(name) {
@@ -285,6 +188,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function buildTabPanelGrid() {
+        var tableInput = document.querySelector(
+            '#main-form input[name="table"]'
+        );
+
+        if (!tableInput || tableInput.value !== 'goods') {
+            return;
+        }
+
         if (document.querySelector('.vg-admin-tab-panels-grid')) {
             return;
         }

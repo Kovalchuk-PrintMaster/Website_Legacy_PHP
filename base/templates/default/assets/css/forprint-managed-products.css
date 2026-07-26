@@ -1,0 +1,295 @@
+/*
+ * ForPrint managed product collections
+ * Version: v0.6.48
+ *
+ * Owns promotions, special-offers and public-search listing geometry.
+ */
+
+[data-fp-surface="managed-products"] .fp-managed-products-page {
+    width: 100%;
+    min-width: 0;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-page__breadcrumbs {
+    min-width: 0;
+    padding-top: clamp(0.9rem, 1.6vw, 1.35rem);
+}
+
+[data-fp-surface="managed-products"] .breadcrumbs {
+    margin: 0 0 clamp(1rem, 1.7vw, 1.5rem);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-page__content {
+    width: 100%;
+    padding: 0 0 clamp(2.25rem, 4vw, 4.5rem);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-page__content > .fp-layout-container {
+    min-width: 0;
+}
+
+.fp-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.9rem;
+    min-height: 2.2rem;
+    margin: 0 0 clamp(0.4rem, 0.75vw, 0.75rem);
+    color: #27323a;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__label,
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action {
+    display: inline-flex;
+    min-height: 2.1rem;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0.25rem 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action {
+    position: relative;
+    cursor: pointer;
+    transition: color 180ms ease;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0.18rem;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 180ms ease;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action:hover,
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action:focus-visible,
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action.is-active {
+    color: #60717c;
+    outline: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action:hover::after,
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action:focus-visible::after,
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__action.is-active::after {
+    transform: scaleX(1);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-toolbar__arrow {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-18%) rotate(45deg);
+    transition: transform 180ms ease;
+}
+
+[data-fp-surface="managed-products"] .is-descending .fp-managed-products-toolbar__arrow {
+    transform: translateY(18%) rotate(225deg);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity {
+    position: relative;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity > summary {
+    list-style: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity > summary::-webkit-details-marker {
+    display: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity[open]
+.fp-managed-products-toolbar__arrow {
+    transform: translateY(18%) rotate(225deg);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity__menu {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 20;
+    display: grid;
+    min-width: 7rem;
+    padding: 0.4rem;
+    border: 1px solid #d4dde1;
+    border-radius: 0.55rem;
+    background: #ffffff;
+    box-shadow: 0 0.8rem 2rem rgba(25, 37, 45, 0.14);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity__menu a {
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.35rem;
+    color: #27323a;
+    text-decoration: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-quantity__menu a:hover,
+[data-fp-surface="managed-products"] .fp-managed-products-quantity__menu a:focus-visible,
+[data-fp-surface="managed-products"] .fp-managed-products-quantity__menu a.is-active {
+    color: #ffffff;
+    background: #252c31;
+    outline: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--fp-card-gap, 1rem);
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-grid > * {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    float: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-pagination a,
+[data-fp-surface="managed-products"] .fp-managed-products-pagination span {
+    display: inline-flex;
+    min-width: 2.35rem;
+    min-height: 2.35rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid #d3dde2;
+    border-radius: 999px;
+    color: #33434d;
+    background: #eef3f5;
+    text-decoration: none;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-pagination a:hover,
+[data-fp-surface="managed-products"] .fp-managed-products-pagination a:focus-visible,
+[data-fp-surface="managed-products"] .fp-managed-products-pagination .pagination-current {
+    color: #ffffff;
+    border-color: #252c31;
+    background: #252c31;
+    outline: none;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-empty {
+    display: grid;
+    min-height: 12rem;
+    place-items: center;
+    padding: clamp(2rem, 4vw, 4rem);
+    border: 1px solid #e0e6e9;
+    border-radius: 1rem;
+    background: #f5f7f8;
+    text-align: center;
+}
+
+[data-fp-surface="managed-products"] .fp-managed-products-empty p {
+    margin: 0;
+    color: #33434d;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+@media (max-width: 78rem) {
+    [data-fp-surface="managed-products"] .fp-managed-products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 58rem) {
+    [data-fp-surface="managed-products"] .fp-managed-products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 38rem) {
+    [data-fp-surface="managed-products"] .fp-managed-products-toolbar {
+        align-items: flex-start;
+    }
+
+    [data-fp-surface="managed-products"] .fp-managed-products-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    [data-fp-surface="managed-products"] .fp-managed-products-quantity__menu {
+        right: auto;
+        left: 0;
+    }
+}
+
+/* FP_SEARCH_RESULT_GROUPS_05G7A */
+.fp-search-related-heading {
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    margin:
+        clamp(1.75rem, 3.5vw, 3rem)
+        0
+        clamp(0.75rem, 1.5vw, 1.25rem);
+    color: #657681;
+    font-size: clamp(1.05rem, 1.5vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.fp-search-related-heading:first-child {
+    margin-top: 0;
+}
+
+*(FP_SEARCH_RESULT_GROUPS_DELIVERY_05G10B_V2, */)
+.fp-managed-products-grid > .fp-search-related-heading {
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    margin:
+        clamp(1.75rem, 3vw, 2.75rem)
+        0
+        clamp(0.85rem, 1.5vw, 1.25rem);
+    color: #657681;
+    font-size: clamp(1.05rem, 1.45vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}

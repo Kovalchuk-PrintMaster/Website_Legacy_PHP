@@ -118,6 +118,28 @@
         }, 1000);
     }
 
+    function clearStatusHideTimer(status) {
+        if (!status || !status.fpCommunicationHideTimer) {
+            return;
+        }
+
+        window.clearTimeout(status.fpCommunicationHideTimer);
+        status.fpCommunicationHideTimer = null;
+    }
+
+    function scheduleStatusHide(status, delay) {
+        if (!status) {
+            return;
+        }
+
+        clearStatusHideTimer(status);
+
+        status.fpCommunicationHideTimer = window.setTimeout(function () {
+            status.fpCommunicationHideTimer = null;
+            showStatus(status, '', '');
+        }, delay || 1200);
+    }
+
     function focusFirstField(modal) {
         var field = modal.querySelector(
             'input[name="primary_contact"], '
@@ -135,6 +157,8 @@
         if (!status) {
             return;
         }
+
+        clearStatusHideTimer(status);
 
         status.classList.remove(
             'fp-product-communication-form__status--success',
@@ -213,7 +237,10 @@
         clearSuccessCloseTimer();
 
         var status = form.querySelector('[data-fp-comm-status]');
-        var submit = form.querySelector('button[type="submit"]');
+        var submitter = event.submitter || null;
+        var submitButtons = form.querySelectorAll(
+            'button[type="submit"]'
+        );
         var primaryContact = form.querySelector(
             '[name="primary_contact"]'
         );
@@ -240,6 +267,13 @@
         }
 
         var formData = new FormData(form);
+        var submitMode = submitter
+            ? submitter.getAttribute('data-fp-comm-submit-mode')
+            : '';
+
+        if (submitMode) {
+            formData.set('mode', submitMode);
+        }
 
         if (
             phoneValue
@@ -250,9 +284,9 @@
 
         showStatus(status, '', 'Відправляємо запит...');
 
-        if (submit) {
-            submit.disabled = true;
-        }
+        submitButtons.forEach(function (button) {
+            button.disabled = true;
+        });
 
         fetch(form.action, {
             method: 'POST',
@@ -314,7 +348,12 @@
                 );
 
                 form.reset();
-                scheduleSuccessClose();
+
+                if (form.closest('[data-fp-home-feedback]')) {
+                    scheduleStatusHide(status, 1200);
+                } else {
+                    scheduleSuccessClose();
+                }
             })
             .catch(function (error) {
                 console.error(
@@ -331,9 +370,9 @@
                 );
             })
             .finally(function () {
-                if (submit) {
-                    submit.disabled = false;
-                }
+                submitButtons.forEach(function (button) {
+                    button.disabled = false;
+                });
             });
     });
 })();

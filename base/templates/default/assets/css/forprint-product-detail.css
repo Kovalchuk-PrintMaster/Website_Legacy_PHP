@@ -1,6 +1,5 @@
-/*
- * FP v0.6.49b controlled product detail layout.
- */
+/* *
+ * ForPrint controlled product-detail presentation. */
 
 .fp-product-detail-page {
     padding-top: 5px;
@@ -9,13 +8,6 @@
 
 .fp-product-detail-page .fp-product-detail__container {
     max-width: 1600px;
-}
-
-.fp-product-detail {
-    display: grid;
-    grid-template-columns: minmax(620px, 1.45fr) minmax(320px, 0.78fr) minmax(270px, 0.62fr);
-    gap: 36px;
-    align-items: start;
 }
 
 .fp-product-detail__gallery {
@@ -95,13 +87,13 @@
 }
 
 .fp-product-detail-price__label {
-    font-size: 28px;
+    font-size: 15px;
     line-height: 1.1;
     font-weight: 700;
 }
 
 .fp-product-detail-price__value {
-    font-size: 34px;
+    font-size: 15px;
     line-height: 1.1;
     font-weight: 800;
     color: #9a0040;
@@ -109,7 +101,7 @@
 }
 
 .fp-product-detail-price__old {
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.2;
     color: #111;
     text-decoration: line-through;
@@ -158,14 +150,12 @@
     min-width: 0;
 }
 
-/* FP product detail feature wrapping fix start */
-/*
- * Keep the shared two-column characteristics layout, but allow long catalog
+/* * Keep the shared two-column characteristics layout, but allow long catalog
  * group names and values to wrap inside their own grid cells.
  *
  * The extra context classes make this rule stronger than inherited
- * .card-main-info feature rules without changing other catalog/card surfaces.
- */
+ * .card-main-info feature rules without changing other catalog/card surfaces. */
+
 .fp-product-detail-page .fp-product-detail__info .fp-product-detail-features__group,
 .fp-product-detail-page .fp-product-detail__info .fp-product-detail-features__value,
 .fp-product-details-tabs .fp-product-detail-features__row .fp-product-detail-features__group,
@@ -176,7 +166,6 @@
     overflow-wrap: anywhere;
     word-break: normal;
 }
-/* FP product detail feature wrapping fix end */
 
 .fp-product-detail-features__value {
     color: #111;
@@ -305,13 +294,16 @@
         height: 480px;
     }
 
-    .fp-product-detail-price__label,
+    .fp-product-detail-price__label {
+        font-size: 15px;
+    }
+
     .fp-product-detail-page .card-main-info-size__head {
         font-size: 24px;
     }
 
     .fp-product-detail-price__value {
-        font-size: 30px;
+        font-size: 15px;
     }
 }
 
@@ -346,7 +338,6 @@
     }
 }
 
-/* === v0.6.50 controlled product detail centering START === */
 .card-main.fp-product-detail-page,
 .fp-product-detail-page {
     width: 100%;
@@ -366,12 +357,6 @@
     box-sizing: border-box;
 }
 
-.fp-product-detail {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 @media (max-width: 1200px) {
     .card-main.fp-product-detail-page,
     .fp-product-detail-page {
@@ -387,16 +372,6 @@
         padding-left: 14px;
         padding-right: 14px;
     }
-}
-/* === v0.6.50 controlled product detail centering END === */
-
-
-/* FP v0.6.52 restored controlled details tabs start */
-.fp-product-details-tabs {
-    width: 100%;
-    margin: 64px 0 0;
-    padding: 0 0 56px;
-    background: #ffffff;
 }
 
 .fp-product-details-tabs__container {
@@ -465,21 +440,9 @@
         font-size: 15px;
     }
 }
-/* FP v0.6.52 restored controlled details tabs end */
-
-/* FP v0.6.53 product details text visibility repair start */
-section.card-tabs.fp-product-details-tabs {
-    background: #ffffff !important;
-    color: #111111 !important;
-}
 
 section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__container {
     background: #ffffff !important;
-}
-
-section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__heading {
-    background: #20282c !important;
-    color: #ffffff !important;
 }
 
 section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content,
@@ -500,9 +463,7 @@ section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content {
 section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content a {
     color: #0062b0 !important;
 }
-/* FP v0.6.53 product details text visibility repair end */
 
-/* FP v0.6.54 product detail white details surface start */
 main.main > section.card-tabs.fp-product-details-tabs,
 main.main > section.card-tabs.fp-product-details-tabs::before,
 main.main > section.card-tabs.fp-product-details-tabs::after,
@@ -511,14 +472,6 @@ section.card-tabs.fp-product-details-tabs::before,
 section.card-tabs.fp-product-details-tabs::after {
     background: #ffffff !important;
     color: #111111 !important;
-}
-
-section.card-tabs.fp-product-details-tabs {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 0 44px !important;
-    border: 0 !important;
 }
 
 section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__heading {
@@ -557,9 +510,7 @@ section.card-tabs.fp-product-details-tabs .card-tabs__item * {
 section.card-tabs.fp-product-details-tabs a {
     color: #0062b0 !important;
 }
-/* FP v0.6.54 product detail white details surface end */
 
-/* FP v0.6.56b controlled product detail tabs start */
 .card-tabs.fp-product-details-tabs,
 .card-tabs.fp-product-details-tabs .card-tabs__wrapper,
 .card-tabs.fp-product-details-tabs .card-tabs__top,
@@ -621,19 +572,6 @@ section.card-tabs.fp-product-details-tabs a {
     background: #0f1112;
 }
 
-.card-tabs.fp-product-details-tabs .fp-product-details-tabs__bottom {
-    padding: 42px 0 0;
-}
-
-.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body {
-    width: 100%;
-    max-width: 980px;
-    margin: 0 auto;
-    color: #111;
-    font-size: 16px;
-    line-height: 1.65;
-}
-
 .card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body p {
     margin: 0 0 18px;
 }
@@ -665,10 +603,9 @@ section.card-tabs.fp-product-details-tabs a {
         min-width: 100%;
     }
 }
-/* FP v0.6.56b controlled product detail tabs end */
 
-/* FP v0.6.57 product details text centering repair start */
 .card-tabs.fp-product-details-tabs .fp-product-details-tabs__bottom {
+    padding: 42px 0 0;
     background: #fff;
 }
 
@@ -682,6 +619,10 @@ section.card-tabs.fp-product-details-tabs a {
 }
 
 .card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body {
+    margin: 0 auto;
+    color: #111;
+    font-size: 16px;
+    line-height: 1.65;
     width: 100%;
     max-width: 1600px;
     margin-left: auto;
@@ -697,21 +638,11 @@ section.card-tabs.fp-product-details-tabs a {
         padding-right: 18px;
     }
 }
-/* FP v0.6.57 product details text centering repair end */
 
-/* FP v0.6.59 isolated product details text layout start */
-/*
- * Controlled isolation for product detail tabs.
+/* * Controlled isolation for product detail tabs.
  * Reason: old style.css has many .card-tabs / .card-tabs-item-wrapper rules.
  * This block keeps legacy tab switching classes alive, but forces the visible
- * product details content to behave as our own centered layout.
- */
-section.card-tabs.fp-product-details-tabs {
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    background: #ffffff !important;
-}
+ * product details content to behave as our own centered layout. */
 
 section.card-tabs.fp-product-details-tabs .card-tabs__wrapper,
 section.card-tabs.fp-product-details-tabs .card-tabs__bottom,
@@ -752,47 +683,42 @@ section.card-tabs.fp-product-details-tabs .card-tabs-item-wrapper.fp-product-det
     display: none !important;
 }
 
-section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body {
-    display: block !important;
-    width: min(1200px) !important;
-    max-width: 1600px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 44px 32px 56px !important;
-    box-sizing: border-box !important;
-    color: #111111 !important;
-    background: #ffffff !important;
-    text-align: left !important;
-}
-
 section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body > * {
     max-width: 100% !important;
 }
 
 @media (max-width: 900px) {
-    section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body {
-        width: 100% !important;
-        padding-left: 18px !important;
-        padding-right: 18px !important;
-    }
-}
-/* FP v0.6.59 isolated product details text layout end */
 
-/* FP v0.6.60 product detail spacing control start */
-/*
- * Controlled spacing adjustments for product detail page.
+}
+
+/* * Controlled spacing adjustments for product detail page.
  * Goal:
  * - reduce oversized gap before "ДЕТАЛЬНІШЕ"
  * - reduce gap between tab title row and text content
  * - reduce gap between text content and related products section
- * - keep simple spacing values (30 / 40 px)
- */
+ * - keep simple spacing values (30 / 40 px) */
 
 .fp-product-detail {
+    display: grid;
+    grid-template-columns: minmax(620px, 1.45fr) minmax(320px, 0.78fr) minmax(270px, 0.62fr);
+    gap: 36px;
+    align-items: start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 5px !important;
 }
 
 section.card-tabs.fp-product-details-tabs {
+    color: #111111 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 0 44px !important;
+    border: 0 !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    background: #ffffff !important;
     margin-top: 40px !important;
     margin-bottom: 40px !important;
 }
@@ -810,6 +736,16 @@ section.card-tabs.fp-product-details-tabs .card-tabs__bottom-wrapper {
 }
 
 section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body {
+    display: block !important;
+    width: min(1200px) !important;
+    max-width: 1600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 44px 32px 56px !important;
+    box-sizing: border-box !important;
+    color: #111111 !important;
+    background: #ffffff !important;
+    text-align: left !important;
     padding-top: 30px !important;
     padding-bottom: 30px !important;
 }
@@ -841,6 +777,9 @@ section.fp-related-section {
     }
 
     section.card-tabs.fp-product-details-tabs .fp-product-details-tabs__content-body {
+        width: 100% !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
         padding-top: 20px !important;
         padding-bottom: 20px !important;
     }
@@ -853,58 +792,12 @@ section.fp-related-section {
         margin-top: 30px !important;
     }
 }
-/* FP v0.6.60 product detail spacing control end */
 
-/* FP v0.6.61 controlled product detail tabs start */
-/*
- * Product detail tabs are now controlled by fp-product-details-tabs.
- * Do not depend on legacy .card-tabs rules from the old global style.css.
- */
-
-.fp-product-details-tabs {
-    width: 100%;
-    margin: 35px 0 35px;
-    background: #ffffff;
-}
-
-.fp-product-details-tabs__nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    width: 100%;
-    background: #1f292d;
-}
-
-.fp-product-details-tabs__tab {
-    min-height: 70px;
-    border: 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.18);
-    background: #1f292d;
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-}
+/* * Product detail tabs are now controlled by fp-product-details-tabs.
+ * Do not depend on legacy .card-tabs rules from the old global style.css. */
 
 .fp-product-details-tabs__tab:last-child {
     border-right: 0;
-}
-
-.fp-product-details-tabs__tab.is-active,
-.fp-product-details-tabs__tab.active {
-    background: #202b2f;
-    color: #ffffff;
-}
-
-.fp-product-details-tabs__panels {
-    width: 100%;
-    background: #ffffff;
-}
-
-.fp-product-details-tabs__panel {
-    display: none;
-    background: #ffffff;
 }
 
 .fp-product-details-tabs__panel.is-active,
@@ -912,63 +805,13 @@ section.fp-related-section {
     display: block;
 }
 
-.fp-product-details-tabs__content-body {
-    width: min(1050px, calc(100% - 40px));
-    margin: 0 auto;
-    padding: 30px 0 35px;
-    color: #111111;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.fp-product-details-tabs__content-body > *:first-child {
-    margin-top: 0;
-}
-
-.fp-product-details-tabs__content-body > *:last-child {
-    margin-bottom: 0;
-}
-
 @media (max-width: 900px) {
-    .fp-product-details-tabs {
-        margin: 25px 0 25px;
-    }
 
-    .fp-product-details-tabs__nav {
-        grid-template-columns: 1fr;
-    }
-
-    .fp-product-details-tabs__tab {
-        min-height: 56px;
-        font-size: 18px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .fp-product-details-tabs__content-body {
-        width: min(100% - 30px, 760px);
-        padding: 25px 0 30px;
-        font-size: 15px;
-    }
 }
-/* FP v0.6.61 controlled product detail tabs end */
 
-/* FP v0.6.62 product details visible fallback start */
-/*
- * Safety rule:
+/* * Safety rule:
  * Product detail content must stay visible even if JS does not match tabs/panels.
- * JS may hide inactive panels only after it marks the root as .is-js-ready.
- */
-
-.fp-product-details-tabs__panels {
-    width: 100%;
-    background: #ffffff;
-}
-
-.fp-product-details-tabs__panel {
-    display: block;
-    background: #ffffff;
-}
+ * JS may hide inactive panels only after it marks the root as .is-js-ready. */
 
 .fp-product-details-tabs.is-js-ready .fp-product-details-tabs__panel {
     display: none;
@@ -979,63 +822,7 @@ section.fp-related-section {
     display: block;
 }
 
-.fp-product-details-tabs__content-body {
-    width: min(1050px, calc(100% - 40px));
-    margin: 0 auto;
-    padding: 25px 0 30px;
-    background: #ffffff;
-    color: #111111;
-    font-size: 16px;
-    line-height: 1.6;
-}
-/* FP v0.6.62 product details visible fallback end */
-
-/* FP v0.6.63 tabs bar normalize + wider description start */
 /* Tabs bar: clean controlled look without legacy card-tabs influence */
-.fp-product-details-tabs {
-    width: 100%;
-    margin: 30px 0 30px;
-    background: #ffffff;
-}
-
-.fp-product-details-tabs__nav {
-    width: min(1480px, calc(100% - 40px));
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: stretch;
-    justify-content: stretch;
-    background: linear-gradient(90deg, #1b242d 0%, #1f2a34 100%);
-    border: none;
-    box-shadow: none;
-    overflow: hidden;
-}
-
-.fp-product-details-tabs__tab {
-    flex: 1 1 0;
-    min-height: 72px;
-    padding: 20px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    color: #9db1c4;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border: 0;
-    border-left: 1px solid rgba(255, 255, 255, 0.18);
-    cursor: pointer;
-}
-
-.fp-product-details-tabs__tab:first-child {
-    border-left: 0;
-}
-
-.fp-product-details-tabs__tab:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: #d8e4ef;
-}
 
 .fp-product-details-tabs__tab.is-active,
 .fp-product-details-tabs__tab.active {
@@ -1050,14 +837,6 @@ section.fp-related-section {
 }
 
 /* Description block wider by ~30% compared to the previous narrow version */
-.fp-product-details-tabs__content-body {
-    width: min(1360px, calc(100% - 80px));
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 10px 0 20px;
-    background: #ffffff;
-    color: #111111;
-}
 
 .fp-product-details-tabs__content-body p,
 .fp-product-details-tabs__content-body ul,
@@ -1068,65 +847,10 @@ section.fp-related-section {
     margin-right: auto;
 }
 
-.fp-product-details-tabs__content-body ul,
-.fp-product-details-tabs__content-body ol {
-    padding-left: 30px;
-}
-
-.fp-product-details-tabs__content-body li {
-    margin-bottom: 10px;
-}
-
 /* Smaller vertical gaps around the details section */
-.fp-product-details-tabs__panels {
-    padding-top: 0;
-}
 
-.fp-product-details-tabs__panel {
-    margin-top: 0;
-}
-/* FP v0.6.63 tabs bar normalize + wider description end */
-
-/* FP v0.6.65 final isolated product details tabs start */
-/*
- * Controlled product details tabs.
- * This block is intentionally independent from legacy .card-tabs markup.
- */
-
-.fp-product-details-tabs {
-    width: min(1500px, calc(100% - 40px));
-    margin: 25px auto 30px;
-    background: #ffffff;
-    color: #111111;
-}
-
-.fp-product-details-tabs__nav {
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-start;
-    width: 100%;
-    min-height: 70px;
-    background: #1f292d;
-    overflow: hidden;
-}
-
-.fp-product-details-tabs__tab {
-    flex: 1 1 0;
-    min-height: 70px;
-    padding: 18px 28px;
-    border: 0;
-    border-left: 1px solid rgba(255, 255, 255, 0.18);
-    background: transparent;
-    color: #c7d3dc;
-    font-family: Lato, Arial, sans-serif;
-    font-size: 22px;
-    line-height: 1.2;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-}
+/* * Controlled product details tabs.
+ * This block is intentionally independent from legacy .card-tabs markup. */
 
 .fp-product-details-tabs__tab:first-child {
     border-left: 0;
@@ -1142,12 +866,8 @@ section.fp-related-section {
     color: #ffffff;
 }
 
-.fp-product-details-tabs__panels {
-    width: 100%;
-    background: #ffffff;
-}
-
 .fp-product-details-tabs__panel {
+    margin-top: 0;
     display: none;
     width: 100%;
     background: #ffffff;
@@ -1159,20 +879,6 @@ section.fp-related-section {
 
 .fp-product-details-tabs__panel[hidden] {
     display: none;
-}
-
-.fp-product-details-tabs__content-body {
-    width: min(1360px, calc(100% - 70px));
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 25px 0 30px;
-    box-sizing: border-box;
-    background: #ffffff;
-    color: #111111;
-    font-family: Lato, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: left;
 }
 
 .fp-product-details-tabs__content-body p,
@@ -1217,17 +923,14 @@ section.fp-related-section {
 }
 
 @media (max-width: 900px) {
-    .fp-product-details-tabs {
-        width: min(100%, calc(100% - 24px));
-        margin-top: 20px;
-        margin-bottom: 25px;
-    }
-
     .fp-product-details-tabs__nav {
+        grid-template-columns: 1fr;
         flex-direction: column;
     }
 
     .fp-product-details-tabs__tab {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
         min-height: 56px;
         border-left: 0;
         border-top: 1px solid rgba(255, 255, 255, 0.18);
@@ -1237,25 +940,15 @@ section.fp-related-section {
     .fp-product-details-tabs__tab:first-child {
         border-top: 0;
     }
-
-    .fp-product-details-tabs__content-body {
-        width: min(100%, calc(100% - 28px));
-        padding-top: 22px;
-        padding-bottom: 25px;
-        font-size: 15px;
-    }
 }
-/* FP v0.6.65 final isolated product details tabs end */
 
-/* FP v0.6.66 product detail tabs full width bar start */
-/*
- * Final correction for product details tabs:
+/* * Final correction for product details tabs:
  * - dark tabs bar must span the full available page width
  * - text content remains centered and readable
- * - no dependency on legacy card-tabs layout width
- */
+ * - no dependency on legacy card-tabs layout width */
 
 .fp-product-details-tabs {
+    color: #111111;
     width: 100%;
     max-width: none;
     margin: 25px 0 30px;
@@ -1264,6 +957,10 @@ section.fp-related-section {
 }
 
 .fp-product-details-tabs__nav {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    border: none;
+    box-shadow: none;
+    min-height: 70px;
     width: 100%;
     max-width: none;
     margin: 0;
@@ -1275,16 +972,44 @@ section.fp-related-section {
 }
 
 .fp-product-details-tabs__tab {
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    padding: 18px 28px;
+    border: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: #c7d3dc;
+    font-family: Lato, Arial, sans-serif;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
     flex: 1 1 0;
     min-width: 0;
 }
 
 .fp-product-details-tabs__panels {
+    padding-top: 0;
     width: 100%;
     background: #ffffff;
 }
 
 .fp-product-details-tabs__content-body {
+    margin: 0 auto;
+    padding: 25px 0 30px;
+    box-sizing: border-box;
+    background: #ffffff;
+    color: #111111;
+    font-family: Lato, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
     width: min(1360px, calc(100% - 70px));
     max-width: 1360px;
     margin-left: auto;
@@ -1293,17 +1018,104 @@ section.fp-related-section {
 
 @media (max-width: 900px) {
     .fp-product-details-tabs {
+        margin: 25px 0 25px;
         width: 100%;
         margin-top: 20px;
         margin-bottom: 25px;
     }
 
     .fp-product-details-tabs__content-body {
+        padding: 25px 0 30px;
+        padding-top: 22px;
+        padding-bottom: 25px;
+        font-size: 15px;
         width: min(100%, calc(100% - 28px));
     }
 }
-/* FP v0.6.66 product detail tabs full width bar end */
-/* v0.6.71: old quantity widget disabled; request quantity now lives inside communication forms. */
+
 .fp-product-detail__legacy-quantity-hidden {
     display: none;
+}
+
+
+/*
+ * Canonical product primary layout.
+ *
+ * The title belongs to the gallery column and sits directly above the complete
+ * thumbnail + main-image area. Commercial information and communication
+ * actions start at the same vertical line as the gallery.
+ */
+.fp-product-detail-page .fp-product-detail {
+    grid-template-areas:
+        "title . ."
+        "gallery info actions";
+    grid-template-rows: auto auto;
+    column-gap: clamp(28px, 2.2vw, 36px);
+    row-gap: 10px;
+}
+
+.fp-product-detail-page
+.fp-product-detail
+> .fp-product-detail__title.page-title.h1 {
+    grid-area: title;
+    width: 100%;
+    max-width: none !important;
+    justify-self: start;
+    align-self: start;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #1d2a36;
+    font-size: clamp(1.75rem, 2.4vw, 2.4rem);
+    line-height: 1.12;
+    text-align: left !important;
+    text-transform: uppercase;
+}
+
+.fp-product-detail-page .fp-product-detail__gallery {
+    grid-area: gallery;
+    align-self: start;
+}
+
+.fp-product-detail-page .fp-product-detail__info {
+    grid-area: info;
+    align-self: start;
+    margin-top: 0;
+}
+
+.fp-product-detail-page .fp-product-detail__actions {
+    grid-area: actions;
+    align-self: start;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/*
+ * Bounded legacy isolation:
+ * inherited style.css declares 34 × 58 px with !important. The controlled
+ * product stylesheet reduces the ellipse height by 13.8% and keeps the
+ * existing arrow drawing until that old gallery layer is removed entirely.
+ */
+.fp-product-detail-page
+.fp-product-detail__thumbs
+.card-main-gallery-thumb__hint {
+    width: 32px !important;
+    height: 50px !important;
+}
+
+@media (max-width: 1180px) {
+    .fp-product-detail-page .fp-product-detail {
+        grid-template-areas:
+            "title"
+            "gallery"
+            "info"
+            "actions";
+        grid-template-rows: auto;
+        column-gap: 0;
+        row-gap: 18px;
+    }
+
+    .fp-product-detail-page .fp-product-detail__info,
+    .fp-product-detail-page .fp-product-detail__actions {
+        align-self: start;
+    }
 }

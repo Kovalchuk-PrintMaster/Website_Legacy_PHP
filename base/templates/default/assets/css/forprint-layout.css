@@ -1,25 +1,82 @@
 /**
  * ForPrint global frontend layout contract.
  *
- * Owns only:
- * - usable page width;
- * - fixed right rail reservation;
- * - shared content maximum;
- * - horizontal gutters;
- * - shared section spacing.
+ * Owns only usable page width, fixed right-rail reservation,
+ * shared content ceiling, horizontal gutters and shared section spacing.
  */
 
 :root {
-    /*
-     * Fluid content geometry:
-     * - side space follows the available width;
-     * - the content ceiling prevents uncontrolled stretching;
-     * - rem keeps the upper boundary tied to the root scale.
-     */
-    --fp-layout-content-ceiling: 144rem;
-    --fp-layout-side-space: clamp(1rem, 5vw, 8rem);
+    --fp-layout-content-ceiling: 120rem;
+    --fp-layout-side-space: 10vw;
     --fp-layout-rail-width: 5rem;
     --fp-layout-section-space: clamp(3rem, 6vw, 6rem);
+}
+
+.fp-layout-page,
+main.main {
+    box-sizing: border-box;
+    width: calc(100% - var(--fp-layout-rail-width));
+    max-width: none;
+    margin: 0;
+    padding-right: 0;
+}
+
+.fp-layout-full {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.fp-layout-container {
+    box-sizing: border-box;
+    width: min(
+        calc(100% - var(--fp-layout-side-space) - var(--fp-layout-side-space)),
+        var(--fp-layout-content-ceiling)
+    );
+    min-width: 0;
+    max-width: none;
+    margin-inline: auto;
+    padding-inline: 0;
+}
+
+.fp-layout-section {
+    padding-block: var(--fp-layout-section-space);
+}
+
+/*
+ * Header and footer live outside main.main.
+ *
+ * Their inner containers are centered inside the usable viewport area
+ * (viewport minus the fixed right rail). The max() margin formula keeps the
+ * regular side space on ordinary screens and absorbs surplus space evenly
+ * once the shared content ceiling is reached.
+ */
+.fp-site-header .fp-site-header__container,
+.fp-site-footer .fp-site-footer__container {
+    box-sizing: border-box;
+    width: min(
+        calc(
+            100%
+            - var(--fp-layout-side-space)
+            - var(--fp-layout-side-space)
+            - var(--fp-layout-rail-width)
+        ),
+        var(--fp-layout-content-ceiling)
+    );
+    min-width: 0;
+    max-width: none;
+    margin-left: max(
+        var(--fp-layout-side-space),
+        calc(
+            (
+                100%
+                - var(--fp-layout-rail-width)
+                - var(--fp-layout-content-ceiling)
+            )
+            / 2
+        )
+    );
+    margin-right: 0;
+    padding-inline: 0;
 }
 
 @media (max-width: 100em) {
@@ -40,57 +97,29 @@
     }
 }
 
-.fp-layout-page {
-    box-sizing: border-box;
-    width: calc(100% - var(--fp-layout-rail-width));
-    max-width: none;
-    margin: 0;
+/*
+ * Public document flex shell.
+ *
+ * Short pages keep the managed footer at the viewport bottom. Long pages
+ * remain normal documents and extend naturally below the fold.
+ */
+html {
+    min-height: 100%;
 }
 
-.fp-layout-full {
-    box-sizing: border-box;
+body.fp-public-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.fp-public-page > main.main {
+    flex: 1 0 auto;
     width: 100%;
+    min-height: 0;
 }
 
-.fp-layout-container {
-    box-sizing: border-box;
-
-    width: min(
-        calc(
-            100%
-            - var(--fp-layout-side-space)
-            - var(--fp-layout-side-space)
-        ),
-        var(--fp-layout-content-ceiling)
-    );
-
-    min-width: 0;
-    max-width: none;
-    margin-inline: auto;
-    padding-inline: 0;
-}
-
-.fp-layout-section {
-    padding-block: var(--fp-layout-section-space);
-}
-
-/* Shared header and footer inner geometry */
-
-.fp-site-header .fp-site-header__container,
-.fp-site-footer .fp-site-footer__container {
-    box-sizing: border-box;
-
-    width: min(
-        calc(
-            100%
-            - var(--fp-layout-side-space)
-            - var(--fp-layout-side-space)
-        ),
-        var(--fp-layout-content-ceiling)
-    );
-
-    min-width: 0;
-    max-width: none;
-    margin-inline: auto;
-    padding-inline: 0;
+body.fp-public-page > .fp-site-footer {
+    flex: 0 0 auto;
+    margin-top: auto;
 }
