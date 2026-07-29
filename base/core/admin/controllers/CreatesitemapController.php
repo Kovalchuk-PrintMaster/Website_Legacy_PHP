@@ -293,44 +293,161 @@ class CreatesitemapController extends BaseAdmin
         }
     }
 
-    protected function createSitemap(){
-        $dom = new \domDocument('1.0', 'utf-8');
-        $dom->formatOutput = true;
 
-        $root = $dom->createElement('urlset');
-        $root->setAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
-        $root->setAttribute('xmlns:xls', 'http://w3.org/2001/XMLSchema-instance');
-        $root->setAttribute('xsi:schemaLocation', 'http://sitemaps.org/schemas/sitemap/0.9 http://sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
+    /**
+     * Public canonical origin for sitemap output.
+     *
+     * The crawler may run against a local SITE_URL, while emitted locations
+     * always use the accepted public HTTPS origin.
+     */
+    protected function sitemapCanonicalOrigin(): string
+    {
+        $configuredOrigin = trim(
+            (string)getenv('FP_WEB_CANONICAL_ORIGIN')
+        );
 
-        $dom->appendChild($root);
+        if (
+            !preg_match(
+                '#^https://[a-z0-9.-]+(?::[0-9]{1,5})?$#D',
+                $configuredOrigin
+            )
+        ) {
+            $configuredOrigin = 'https://forprint.net.ua';
+        }
 
-        $sxe = simplexml_import_dom($dom);
+        return rtrim(
+            strtolower($configuredOrigin),
+            '/'
+        );
+    }
 
-        $date = new \DateTime();
-        $lastMod = $date->format('Y-m-d') . 'T' . $date->format('H:i:s+01:00') ;
+    protected function sitemapCanonicalUrl(string $url): ?string
+    {
+        $parts = parse_url($url);
 
+        if ($parts === false) {
+            return null;
+        }
 
-        if($this->all_links){
-            foreach ($this->all_links as $item){
-                $elem = trim(mb_substr($item, mb_strlen(SITE_URL)), '/');
-                $elem = explode('/', $elem);
+        $path = (string)($parts['path'] ?? '/');
+        $path = preg_replace('#/+#', '/', $path) ?: '/';
+        $path = '/' . trim($path, '/');
 
-                $count = '0.' . (count($elem)-1);
-                $priority = 1- (float)$count;
+        if ($path === '//') {
+            $path = '/';
+        }
 
-                if($priority == 1) $priority = '1.0';
+        $normalizedPath = rtrim($path, '/');
 
-                $urlMain = $sxe->addChild('url');
+        if ($normalizedPath === '') {
+            $normalizedPath = '/';
+        }
 
-                $urlMain->addChild('loc', htmlspecialchars($item));
+        $blockedPrefixes = [
+            '/admin',
+            '/cart',
+            '/search',
+            '/lk',
+            '/login',
+            '/logout',
+            '/communication-request.php',
+            '/search-suggestions.php',
+        ];
 
-                $urlMain->addChild('lastmod',$lastMod);
-                $urlMain->addChild('changefreq', 'weekly');
-                $urlMain->addChild('priority', $priority);
+        foreach ($blockedPrefixes as $blockedPrefix) {
+            if (
+                $normalizedPath === $blockedPrefix
+                || strpos(
+                    $normalizedPath,
+                    $blockedPrefix . '/'
+                ) === 0
+            ) {
+                return null;
             }
         }
 
-        $dom->save($_SERVER['DOCUMENT_ROOT'] . PATH . 'sitemap.xml');
+        if (
+            $normalizedPath !== '/'
+            && !preg_match(
+                '/\.[a-z0-9]{1,8}$/i',
+                $normalizedPath
+            )
+        ) {
+            $normalizedPath .= '/';
+        }
+
+        return $this->sitemapCanonicalOrigin()
+            . (
+                $normalizedPath === '/'
+                    ? '/'
+                    : $normalizedPath
+            );
+    }
+
+    protected function createSitemap()
+    {
+        $dom = new \DOMDocument(
+            '1.0',
+            'UTF-8'
+        );
+        $dom->formatOutput = true;
+
+        $root = $dom->createElement('urlset');
+        $root->setAttribute(
+            'xmlns',
+            'http://www.sitemaps.org/schemas/sitemap/0.9'
+        );
+        $dom->appendChild($root);
+
+        $canonicalLinks = [];
+
+        foreach ((array)$this->all_links as $item) {
+            $canonicalUrl = $this->sitemapCanonicalUrl(
+                (string)$item
+            );
+
+            if ($canonicalUrl !== null) {
+                $canonicalLinks[$canonicalUrl] = true;
+            }
+        }
+
+        $canonicalUrls = array_keys(
+            $canonicalLinks
+        );
+
+        usort(
+            $canonicalUrls,
+            static function (
+                string $left,
+                string $right
+            ): int {
+                if ($left === 'https://forprint.net.ua/') {
+                    return -1;
+                }
+
+                if ($right === 'https://forprint.net.ua/') {
+                    return 1;
+                }
+
+                return strcmp($left, $right);
+            }
+        );
+
+        foreach ($canonicalUrls as $canonicalUrl) {
+            $urlElement = $dom->createElement('url');
+            $locationElement = $dom->createElement('loc');
+            $locationElement->appendChild(
+                $dom->createTextNode($canonicalUrl)
+            );
+            $urlElement->appendChild($locationElement);
+            $root->appendChild($urlElement);
+        }
+
+        $dom->save(
+            $_SERVER['DOCUMENT_ROOT']
+            . PATH
+            . 'sitemap.xml'
+        );
     }
 
 }

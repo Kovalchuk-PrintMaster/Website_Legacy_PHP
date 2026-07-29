@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /search/
+Disallow: /lk/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /communication-request.php
+Disallow: /search-suggestions.php
+
+Sitemap: https://forprint.net.ua/sitemap.xml
