@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "id": "FP-WEB-DOC-PACK-MAIL-001",
+    "title_uk": "Маніфест пакета документації поштових операцій",
+    "title_en": "Mail operations documentation pack manifest",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "working architecture package",
+    "serialization": "YAML 1.2 JSON-compatible subset"
+  },
+  "purpose": "Record the verified mail architecture, client settings, current working state, operational checks, incident triage and migration/rollback procedure without storing secrets.",
+  "canonical_machine_readable_documents": [
+    "docs/architecture/mail_delivery_and_hosting_architecture_v0_1.yaml",
+    "docs/reference/mail_client_and_application_configuration_v0_1.yaml",
+    "docs/workflow/mail_operations_and_hosting_migration_runbook_v0_1.yaml",
+    "docs/status/snapshots/2026-07-29_mail_delivery_working_state_v0_1.yaml"
+  ],
+  "human_readable_companions": [
+    "docs/architecture/mail_delivery_and_hosting_architecture_v0_1.md",
+    "docs/reference/mail_client_and_application_configuration_v0_1.md",
+    "docs/workflow/mail_operations_and_hosting_migration_runbook_v0_1.md",
+    "docs/status/snapshots/2026-07-29_mail_delivery_working_state_v0_1.md",
+    "docs/decisions/2026-07-29__separate_mail_service_and_verified_submission_contract.md"
+  ],
+  "validator": "scripts/inspection/check_website_mail_operations_docs.py",
+  "installation": {
+    "working_directory": "ForPrint Website repository root",
+    "extract_command": "unzip -n forprint_mail_operations_documentation_v0_1_bundle.zip -d .",
+    "validate_command": "python3 scripts/inspection/check_website_mail_operations_docs.py",
+    "whitespace_check": "git diff --check -- docs scripts/inspection/check_website_mail_operations_docs.py",
+    "git_actions_automatic": false,
+    "checksum_command": "sha256sum -c forprint_mail_operations_documentation_v0_1_SHA256SUMS"
+  },
+  "security": {
+    "contains_passwords": false,
+    "contains_private_keys": false,
+    "contains_tokens": false,
+    "contains_raw_queue_identifiers": false,
+    "contains_mailbox_contents": false
+  },
+  "evidence_basis": [
+    "controlled SMTP DATA acceptance and local delivery checkpoint 06D.36 v2",
+    "pre-delivery runtime and database audit 06D.38",
+    "successful corrected runtime fix checkpoint 06D.39 v2",
+    "browser Network HTTP 200 screenshot",
+    "operator confirmation that the real form message arrived"
+  ],
+  "file_inventory_at_build_time": [
+    {
+      "path": "README_MAIL_OPERATIONS_DOCS_INSTALL.md",
+      "sha256": "bc96b7b8c40c7e821618a3573cc1e5b9af238eac5f3a465fd1aecfdd8c893b45",
+      "size_bytes": 626
+    },
+    {
+      "path": "docs/architecture/mail_delivery_and_hosting_architecture_v0_1.md",
+      "sha256": "19f56fd87f36e363cf411b8ece0312ca0e8e4a8423f9f8595f6a2fd293dc8622",
+      "size_bytes": 2231
+    },
+    {
+      "path": "docs/architecture/mail_delivery_and_hosting_architecture_v0_1.yaml",
+      "sha256": "7093ff5fc78ff4bcac786865cae87cdbe19a2e9e62c23e04997d0fd10f6c275f",
+      "size_bytes": 8932
+    },
+    {
+      "path": "docs/decisions/2026-07-29__separate_mail_service_and_verified_submission_contract.md",
+      "sha256": "b7af6dad3744ca9eb3432144a0ee58bee242e9a198b01bcc0f8aedff7bff2b44",
+      "size_bytes": 2592
+    },
+    {
+      "path": "docs/documentation/mail_operations_documentation_pack_manifest_v0_1.md",
+      "sha256": "f721eefee89018a50f2111a0edd7edad62e8e0f9ecddf9811a68f63dcdc5bf88",
+      "size_bytes": 1091
+    },
+    {
+      "path": "docs/reference/mail_client_and_application_configuration_v0_1.md",
+      "sha256": "d91ac9e6f8392298698278b2b994ef3d3d4987baea273da6140243ff555c50a1",
+      "size_bytes": 1039
+    },
+    {
+      "path": "docs/reference/mail_client_and_application_configuration_v0_1.yaml",
+      "sha256": "21c548776ca17c581faa047378a32b1dca8e89bad790b221fc1d1d9f18b558a5",
+      "size_bytes": 2871
+    },
+    {
+      "path": "docs/status/snapshots/2026-07-29_mail_delivery_working_state_v0_1.md",
+      "sha256": "75e92e445f52e61f355867593c0d71a464f7b41f4201e03aa3aae68dfcf694c4",
+      "size_bytes": 1404
+    },
+    {
+      "path": "docs/status/snapshots/2026-07-29_mail_delivery_working_state_v0_1.yaml",
+      "sha256": "1d67d0977c1f0c5baea3ce376ce8d40b7695936831a83f4ec1628f24e01c5dfb",
+      "size_bytes": 3914
+    },
+    {
+      "path": "docs/workflow/mail_operations_and_hosting_migration_runbook_v0_1.md",
+      "sha256": "f8c9b8acddec7f2fbaf65c6b74555a7a5f6f0048f6a3120beef9e1d7b0a26aae",
+      "size_bytes": 2418
+    },
+    {
+      "path": "docs/workflow/mail_operations_and_hosting_migration_runbook_v0_1.yaml",
+      "sha256": "acad6c4915596475a2001e724830a31a0a0392fd6662b948ab41c1b8af7684d9",
+      "size_bytes": 10868
+    },
+    {
+      "path": "scripts/inspection/check_website_mail_operations_docs.py",
+      "sha256": "e4c48670d745a01e9b0fe3b0e992d61e352200c5a29ffaf6fa93db64c4daf5c2",
+      "size_bytes": 7139
+    }
+  ]
+}

@@ -99,3 +99,10 @@
 - [Frontend Next-Stage Plan v0.2](plans/frontend_next_stage_plan_v0_2.md)
 - [Documentation Package Manifest v0.2](documentation/package_manifest_v0_2.md)
 <!-- FP-FRONTEND-DOCS-V02-END -->
+
+<!-- FP_DEPLOY_NOTIFICATION_DOCS_V0_1_START -->
+## Deployment, mirroring, and notification delivery
+
+- [Deployment and Mirroring Policy v0.1](workflow/deployment_and_mirroring_policy_v0_1.md)
+- [Notification Delivery Architecture v0.1](architecture/notification_delivery_architecture_v0_1.md)
+<!-- FP_DEPLOY_NOTIFICATION_DOCS_V0_1_END -->

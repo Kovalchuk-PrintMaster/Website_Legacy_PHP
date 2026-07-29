@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "id": "FP-WEB-REF-MAIL-001",
+    "title_uk": "Довідник налаштувань поштового клієнта та вебзастосунку",
+    "title_en": "Mail client and web application configuration reference",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "active",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "outlook_or_compatible_client": {
+    "account": "office@forprint.net.ua",
+    "incoming": {
+      "protocol": "IMAP",
+      "server": "mail.forprint.net.ua",
+      "port": 993,
+      "encryption": "SSL/TLS",
+      "username": "office@forprint.net.ua",
+      "password_source": "secure mailbox credential store",
+      "spa": false
+    },
+    "outgoing": {
+      "protocol": "SMTP submission",
+      "server": "mail.forprint.net.ua",
+      "port": 587,
+      "encryption": "STARTTLS",
+      "authentication_required": true,
+      "username": "office@forprint.net.ua",
+      "password_source": "same secure mailbox credential store"
+    },
+    "known_misconfiguration": {
+      "wrong_server_value": "forprint.net.ua",
+      "correct_server_value": "mail.forprint.net.ua",
+      "symptom": "IMAP login fails and the client repeatedly asks for a password"
+    }
+  },
+  "website_runtime": {
+    "config_location": "/var/www/825163-nikolay.k/data/.forprint-secrets/communication_runtime.php",
+    "file_mode": "0600",
+    "webroot_exposure": "forbidden",
+    "git_tracking": "forbidden",
+    "documentation_values": "key names and contracts only; never secret values",
+    "smtp": {
+      "host": "mail.forprint.net.ua",
+      "port": 587,
+      "security": "STARTTLS with certificate verification",
+      "authentication": "required",
+      "enable_contract": "FP_WEB_ENABLE_SMTP resolves to exact string 1",
+      "fallback_contract": "FP_WEB_ENABLE_PHP_MAIL resolves to exact string 0"
+    }
+  },
+  "quick_checks": [
+    {
+      "name": "SMTP TLS handshake",
+      "command": "openssl s_client -starttls smtp -connect mail.forprint.net.ua:587 -servername mail.forprint.net.ua",
+      "side_effect": "none"
+    },
+    {
+      "name": "IMAP TLS handshake",
+      "command": "openssl s_client -connect mail.forprint.net.ua:993 -servername mail.forprint.net.ua",
+      "side_effect": "none"
+    },
+    {
+      "name": "Endpoint PHP syntax",
+      "command": "php -l base/communication-request.php",
+      "side_effect": "none"
+    }
+  ],
+  "security_rules": [
+    "Do not paste passwords into chat, documentation, reports, Git, or shell command arguments.",
+    "Do not disable certificate or hostname verification.",
+    "Do not use the website domain as the IMAP or SMTP server when the mail host is mail.forprint.net.ua.",
+    "Do not re-enable PHP mail fallback without a separate accepted decision and test plan."
+  ]
+}

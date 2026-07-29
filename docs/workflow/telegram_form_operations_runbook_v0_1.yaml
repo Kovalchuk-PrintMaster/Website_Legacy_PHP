@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "id": "FP-WEB-WF-TELEGRAM-001",
+    "title_uk": "Операційна процедура Telegram-форми",
+    "title_en": "Telegram form operations runbook",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "active",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "prerequisites": [
+    "A Telegram bot created and controlled by the approved operator.",
+    "A private target chat or approved group/channel.",
+    "The bot is a member of the target chat and has the permissions required to send messages.",
+    "The website endpoint and frontend form are already deployed.",
+    "A protected production runtime file exists outside the webroot with mode 0600.",
+    "A timestamped backup and rollback path are available."
+  ],
+  "initial_setup": [
+    {
+      "order": 1,
+      "action": "Prepare the target chat",
+      "checks": [
+        "Prefer a private chat or tightly controlled group.",
+        "Add the bot.",
+        "Limit chat membership.",
+        "Do not publish the token or chat ID."
+      ]
+    },
+    {
+      "order": 2,
+      "action": "Validate bot and destination before installation",
+      "telegram_methods": [
+        "getMe",
+        "getChat",
+        "getChatMember"
+      ],
+      "pass_condition": "getMe=true, getChat=true, and the bot is not left or kicked.",
+      "send_message_allowed": false
+    },
+    {
+      "order": 3,
+      "action": "Install production runtime values",
+      "destination_file": "/var/www/825163-nikolay.k/data/.forprint-secrets/communication_runtime.php",
+      "required_mode": "0600",
+      "required_keys": [
+        "FP_WEB_TELEGRAM_BOT_TOKEN",
+        "FP_WEB_TELEGRAM_CHAT_ID"
+      ],
+      "rules": [
+        "Create a backup outside webroot.",
+        "Refuse to overwrite different existing values without explicit rotation approval.",
+        "PHP-lint the replacement file.",
+        "Install atomically.",
+        "Never print secret values."
+      ]
+    },
+    {
+      "order": 4,
+      "action": "Validate from production LiteSpeed PHP",
+      "checks": [
+        "runtime config readable",
+        "mode 0600",
+        "token present",
+        "chat ID present",
+        "getMe succeeds",
+        "getChat succeeds",
+        "getChatMember succeeds or is explicitly explained",
+        "endpoint Telegram branch exists",
+        "endpoint sendMessage marker exists"
+      ],
+      "send_message_allowed": false
+    },
+    {
+      "order": 5,
+      "action": "Run one controlled end-to-end form test",
+      "checks": [
+        "Select the Telegram button.",
+        "Use non-sensitive technical test data.",
+        "Use a unique checkpoint marker.",
+        "Submit exactly once.",
+        "Confirm communication-request.php HTTP 200.",
+        "Confirm one Telegram message arrived.",
+        "Confirm delivery_status=sent_telegram when inspected through an approved sanitized method."
+      ],
+      "send_message_allowed": true,
+      "maximum_messages": 1
+    }
+  ],
+  "button_control": {
+    "enable": [
+      "Confirm Telegram runtime is valid first.",
+      "Set communication_buttons.visible=1 for alias=telegram through the approved data/admin workflow.",
+      "Confirm the button renders.",
+      "Run one controlled test."
+    ],
+    "disable": [
+      "Set communication_buttons.visible=0 for alias=telegram through the approved data/admin workflow.",
+      "Confirm the button is no longer rendered.",
+      "Keep runtime secrets in protected storage unless a security rotation or decommission requires removal."
+    ],
+    "change_label_or_nonsecret_target_metadata": "Use the approved communication_buttons management path; do not place the bot token there.",
+    "change_actual_chat": "Update FP_WEB_TELEGRAM_CHAT_ID in protected runtime, validate getChat/getChatMember, then run one controlled form test."
+  },
+  "token_rotation": {
+    "triggers": [
+      "suspected token exposure",
+      "bot ownership change",
+      "Telegram revocation",
+      "planned security rotation"
+    ],
+    "steps": [
+      "Disable or hide the Telegram button when exposure is suspected.",
+      "Revoke and regenerate the token through Telegram's official bot management interface.",
+      "Validate the new token with getMe.",
+      "Validate the approved chat with getChat/getChatMember.",
+      "Back up the current production runtime file.",
+      "Replace only the token through a protected installer.",
+      "Validate from production LiteSpeed.",
+      "Run one controlled form test.",
+      "Record the rotation date and evidence without recording the token."
+    ],
+    "rollback": "A revoked token cannot be restored. Rollback means keeping the button disabled until a valid token is installed."
+  },
+  "chat_change": {
+    "steps": [
+      "Prepare the new private target chat.",
+      "Add the bot and confirm membership.",
+      "Validate getChat and getChatMember.",
+      "Back up the production runtime file.",
+      "Replace only FP_WEB_TELEGRAM_CHAT_ID.",
+      "Validate from production LiteSpeed.",
+      "Run one controlled test.",
+      "Remove the bot from the old chat only after acceptance."
+    ]
+  },
+  "routine_health_check": {
+    "frequency": "after bot/chat/runtime changes and periodically according to the operations schedule",
+    "non_sending_checks": [
+      "endpoint PHP lint",
+      "runtime file mode 0600",
+      "getMe",
+      "getChat",
+      "getChatMember",
+      "communication_buttons row exists and visible state matches policy",
+      "endpoint and frontend file hashes match the accepted release"
+    ],
+    "sending_check": "Use one controlled form submission only when a delivery change was made or an incident requires end-to-end proof."
+  },
+  "incident_triage": [
+    {
+      "symptom": "Button is not visible",
+      "checks": [
+        "communication_buttons contains alias=telegram",
+        "visible=1",
+        "template includes the communication button component",
+        "frontend assets are loaded"
+      ]
+    },
+    {
+      "symptom": "Form returns HTTP 4xx",
+      "checks": [
+        "mode value",
+        "contact requirement",
+        "phone validation and confirmation",
+        "idempotency key",
+        "rate limit and retry interval"
+      ]
+    },
+    {
+      "symptom": "Form returns HTTP 500 before delivery",
+      "checks": [
+        "runtime security directory",
+        "database connection",
+        "communication_requests schema",
+        "quantity_requested column",
+        "communication_buttons query",
+        "endpoint-specific logs"
+      ]
+    },
+    {
+      "symptom": "HTTP 200 but no Telegram message",
+      "checks": [
+        "JSON delivery_status",
+        "stored request row",
+        "token/chat ID presence",
+        "getMe and getChat",
+        "bot membership",
+        "Telegram API connectivity",
+        "private chat history",
+        "endpoint logs without exposing secrets"
+      ],
+      "interpretation": "HTTP 200 can mean the request was stored even when external delivery failed. Inspect delivery_completed and delivery_status."
+    },
+    {
+      "symptom": "stored_telegram_not_configured",
+      "checks": [
+        "protected runtime file exists",
+        "mode is 0600",
+        "both Telegram keys are present",
+        "runtime loader exposes values to LiteSpeed PHP"
+      ]
+    },
+    {
+      "symptom": "stored_telegram_failed",
+      "checks": [
+        "getMe",
+        "getChat",
+        "getChatMember",
+        "HTTPS/TLS access to api.telegram.org",
+        "bot permission to send",
+        "API timeout",
+        "sanitized endpoint log categories"
+      ]
+    }
+  ],
+  "rollback": {
+    "runtime_change": [
+      "Restore the timestamped protected runtime backup.",
+      "PHP-lint the restored file.",
+      "Confirm mode 0600.",
+      "Repeat non-sending production validation."
+    ],
+    "code_change": [
+      "Restore timestamped copies of the endpoint/frontend/security files.",
+      "PHP-lint changed PHP files.",
+      "Verify accepted hashes.",
+      "Run HTTP smoke tests."
+    ],
+    "safe_degraded_mode": "Hide the Telegram button while preserving stored requests and email delivery."
+  },
+  "completion_evidence": [
+    "sanitized apply/validation report",
+    "accepted endpoint and frontend hashes",
+    "HTTP 200 Network screenshot",
+    "operator confirmation that one Telegram message arrived",
+    "backup directory",
+    "open warnings and ownership"
+  ]
+}

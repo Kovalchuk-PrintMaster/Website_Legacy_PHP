@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "id": "FP-WEB-PLAN-DB-SYNC-001",
+    "title_uk": "Відкладена синхронізація БД і товарних медіа",
+    "title_en": "Deferred database and product-media synchronization",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "deferred",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "decision": "Поставити на паузу передачу оновлень основної БД з локального сервера на hosting, поки оператор доповнює локальний каталог товарами.",
+  "current_rules": [
+    "No production database import.",
+    "No full replacement.",
+    "No incremental merge.",
+    "No bidirectional synchronization.",
+    "No bulk product-media synchronization.",
+    "No destructive production cleanup.",
+    "Code-only releases must remain compatible with the production schema."
+  ],
+  "reason": [
+    "Local catalog content is still being expanded.",
+    "The final transfer direction and merge strategy are not yet approved.",
+    "Product media and database references must be moved as one coordinated unit.",
+    "A premature transfer could overwrite production data or create broken references."
+  ],
+  "resume_trigger": "The operator explicitly declares local catalog enrichment ready for a database transfer phase.",
+  "questions_to_answer_before_resume": [
+    "Is production data disposable, authoritative, or mergeable?",
+    "Will the transfer be full replacement or incremental merge?",
+    "Which tables are content-owned and which are operational?",
+    "How will primary keys and relations be preserved?",
+    "How will production-only communication requests be retained?",
+    "Which userfiles are referenced by transferred rows?",
+    "What is the content freeze window?",
+    "How will schema migrations be ordered?",
+    "What is the verified rollback method?"
+  ],
+  "required_future_artifacts": [
+    "schema comparison report",
+    "data ownership map",
+    "table inclusion/exclusion manifest",
+    "media reference manifest",
+    "staging import report",
+    "cutover runbook",
+    "rollback runbook",
+    "post-transfer validation report",
+    "new historical status snapshot"
+  ],
+  "resume_sequence_outline": [
+    "Freeze the selected local content scope.",
+    "Back up local and production databases.",
+    "Export and sanitize schema metadata for comparison.",
+    "Classify tables as replace, merge, preserve-production or exclude.",
+    "Inventory product-media references.",
+    "Rehearse the transfer on staging.",
+    "Validate counts, relationships, pages, search, admin editing and media.",
+    "Approve a maintenance window.",
+    "Execute a single controlled transfer.",
+    "Validate and either accept or roll back.",
+    "Document the final repeatable procedure."
+  ]
+}

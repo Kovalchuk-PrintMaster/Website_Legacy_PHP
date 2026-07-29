@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "id": "FP-WEB-DOC-PACK-NOTIFY-RELEASE-001",
+    "title_uk": "Маніфест документації Telegram і передачі на hosting",
+    "title_en": "Telegram and hosting-transfer documentation pack manifest",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "working architecture package",
+    "serialization": "YAML 1.2 JSON-compatible subset"
+  },
+  "purpose": "Add machine-readable and human-readable documentation for the verified Telegram form, protected runtime provisioning, near-term local-to-hosting application releases and the explicit deferral of database/product-media synchronization.",
+  "supplements": [
+    "forprint_mail_operations_documentation_v0_1",
+    "docs/workflow/deployment_and_mirroring_policy_v0_1.md",
+    "docs/architecture/notification_delivery_architecture_v0_1.md",
+    "docs/architecture/runtime_and_request_flows_v0_1.md"
+  ],
+  "canonical_machine_readable_documents": [
+    "docs/architecture/telegram_form_notification_architecture_v0_1.yaml",
+    "docs/workflow/telegram_form_operations_runbook_v0_1.yaml",
+    "docs/workflow/local_to_hosting_application_release_runbook_v0_1.yaml",
+    "docs/plans/database_and_product_media_sync_deferred_v0_1.yaml",
+    "docs/status/snapshots/2026-07-29_telegram_form_delivery_working_state_v0_1.yaml"
+  ],
+  "human_readable_companions": [
+    "docs/architecture/telegram_form_notification_architecture_v0_1.md",
+    "docs/workflow/telegram_form_operations_runbook_v0_1.md",
+    "docs/workflow/local_to_hosting_application_release_runbook_v0_1.md",
+    "docs/plans/database_and_product_media_sync_deferred_v0_1.md",
+    "docs/status/snapshots/2026-07-29_telegram_form_delivery_working_state_v0_1.md",
+    "docs/decisions/2026-07-29__telegram_form_runtime_and_database_sync_deferral.md"
+  ],
+  "validator": "scripts/inspection/check_website_notification_release_docs.py",
+  "security": {
+    "contains_passwords": false,
+    "contains_private_keys": false,
+    "contains_bot_tokens": false,
+    "contains_raw_chat_ids": false,
+    "contains_visitor_form_data": false
+  },
+  "accepted_facts": [
+    "Telegram runtime provisioning checkpoint 06D.41 completed.",
+    "Production getMe/getChat/getChatMember succeeded.",
+    "The target chat is private and the bot membership status is member.",
+    "The real Telegram form returned HTTP 200.",
+    "The operator confirmed that the Telegram message arrived."
+  ],
+  "planned_boundary": {
+    "application_release": "planned and documented",
+    "runtime_secret_provisioning": "documented and already proven for SMTP and Telegram",
+    "database_sync": "deferred",
+    "database_owned_product_media_sync": "deferred"
+  },
+  "file_inventory_before_manifest": [
+    {
+      "path": "docs/architecture/telegram_form_notification_architecture_v0_1.md",
+      "sha256": "b2979db197f5356cf6c6fdad6f30ec67c89226717a9533b19d6c685b40124d93",
+      "size_bytes": 1878
+    },
+    {
+      "path": "docs/architecture/telegram_form_notification_architecture_v0_1.yaml",
+      "sha256": "b47743e9e10be42df6c655b26340ced3ce15aea4b47a034518ca82dcc05c4603",
+      "size_bytes": 10954
+    },
+    {
+      "path": "docs/decisions/2026-07-29__telegram_form_runtime_and_database_sync_deferral.md",
+      "sha256": "49fd8871bf7ffcca575ad56d79983e94b40e38f9b93e150ed5f44b4f3a9e34fd",
+      "size_bytes": 2227
+    },
+    {
+      "path": "docs/plans/database_and_product_media_sync_deferred_v0_1.md",
+      "sha256": "81aa2086e62ee6961209291e7ecdbb47c5ac4fa3051352b6028eee0150c03f44",
+      "size_bytes": 1070
+    },
+    {
+      "path": "docs/plans/database_and_product_media_sync_deferred_v0_1.yaml",
+      "sha256": "02de2dba88b70221eab630d856f4abf5e4158b4e60ac2f5b80603d91cbafabc0",
+      "size_bytes": 2939
+    },
+    {
+      "path": "docs/status/snapshots/2026-07-29_telegram_form_delivery_working_state_v0_1.md",
+      "sha256": "cf4527c77f05f49793a833cce330ec79f9e6b1b59500f752a2ea714ec9b45071",
+      "size_bytes": 787
+    },
+    {
+      "path": "docs/status/snapshots/2026-07-29_telegram_form_delivery_working_state_v0_1.yaml",
+      "sha256": "34ec0d642220ccf06ffb8711116023d3446d332055701a8919294c5a64f3fe3a",
+      "size_bytes": 3405
+    },
+    {
+      "path": "docs/workflow/local_to_hosting_application_release_runbook_v0_1.md",
+      "sha256": "4d1e6d9a7d1fb71b5882f18a41e5a08780060a1ad65a592072da8811e7c03784",
+      "size_bytes": 1624
+    },
+    {
+      "path": "docs/workflow/local_to_hosting_application_release_runbook_v0_1.yaml",
+      "sha256": "45e57746394df388ae0fcc45d5ae40f8fc14d27f35abd98cc11d55a90e4fcd28",
+      "size_bytes": 11590
+    },
+    {
+      "path": "docs/workflow/telegram_form_operations_runbook_v0_1.md",
+      "sha256": "e367ab6859a35a10c93dd57c7e5d3819ac4588dbe3e9caea4e240f2620dec7da",
+      "size_bytes": 1545
+    },
+    {
+      "path": "docs/workflow/telegram_form_operations_runbook_v0_1.yaml",
+      "sha256": "6a3a829ac6f33e393d1cb03fa252f87b5d48b4fd31423b67c2a92c3695481c3f",
+      "size_bytes": 8515
+    },
+    {
+      "path": "scripts/inspection/check_website_notification_release_docs.py",
+      "sha256": "3e975b2036ab719448e051c26ecb6a3db91d26a08f909c5f7f584f1661ab5a51",
+      "size_bytes": 4783
+    }
+  ],
+  "installation": {
+    "working_directory": "ForPrint Website repository root",
+    "extract_command": "unzip -n forprint_notification_and_release_operations_documentation_v0_1_bundle.zip -d .",
+    "checksum_command": "sha256sum -c forprint_notification_and_release_operations_documentation_v0_1_SHA256SUMS",
+    "validate_command": "python3 scripts/inspection/check_website_notification_release_docs.py",
+    "whitespace_check": "git diff --check -- docs scripts/inspection/check_website_notification_release_docs.py",
+    "git_actions_automatic": false
+  }
+}

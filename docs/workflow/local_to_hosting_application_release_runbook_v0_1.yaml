@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "id": "FP-WEB-WF-RELEASE-001",
+    "title_uk": "Передача застосунку з локального сервера на хостинг",
+    "title_en": "Local server to hosting application release runbook",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "planned",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "purpose": "Визначає найближчий план контрольованої передачі коду, статичних ресурсів і окремої runtime-конфігурації з локального сервера на production hosting. Синхронізація основної БД та DB-owned media навмисно відкладена.",
+  "current_endpoints": {
+    "local_repository_root": "/srv/software_development/forprint-project/forprint_website",
+    "local_webroot": "base/",
+    "production_ssh_target": "825163-nikolay.k@185.86.76.182",
+    "production_webroot": "/var/www/825163-nikolay.k/data/www/forprint.net.ua",
+    "production_origin": "http://forprint.net.ua",
+    "automation_status": "The final reusable release tool is not yet approved or implemented."
+  },
+  "source_of_truth": {
+    "application_code": "local Git repository and accepted commit",
+    "production_runtime": "protected hosting-side files outside webroot; never reconstructed from Git",
+    "database": "temporarily separate; synchronization direction and merge policy are deferred",
+    "db_owned_media": "temporarily coupled to the database synchronization decision",
+    "historical_evidence": "coordination/reports and versioned status snapshots"
+  },
+  "transfer_classes": {
+    "release_managed_application": {
+      "default_direction": "local server -> hosting",
+      "examples": [
+        "PHP application files under base/",
+        "templates",
+        "frontend CSS and JavaScript",
+        "libraries",
+        "approved static presentation assets",
+        "composer manifests and approved dependency artifacts"
+      ],
+      "method": "hash-manifested release package uploaded to a remote staging directory, validated and installed atomically"
+    },
+    "protected_runtime_configuration": {
+      "default_direction": "secure provisioning, not normal release copy",
+      "examples": [
+        "database credentials",
+        "SMTP credentials",
+        "Telegram bot token",
+        "Telegram chat ID",
+        "runtime enable flags"
+      ],
+      "rules": [
+        "outside webroot",
+        "mode 0600",
+        "not in Git",
+        "not in ZIP release",
+        "backup before mutation",
+        "dedicated installer or manual secure provisioning",
+        "validate from production PHP"
+      ]
+    },
+    "presentation_assets": {
+      "default_direction": "local server -> hosting with application release",
+      "examples": [
+        "versioned CSS/JS-owned icons",
+        "frontend presentation images referenced by deployed templates"
+      ],
+      "rule": "Include only when the asset path and application reference are part of the same accepted release."
+    },
+    "database_owned_userfiles": {
+      "default_direction": "deferred",
+      "examples": [
+        "product images",
+        "gallery media",
+        "content managed through database records"
+      ],
+      "reason": "Copying files without the matching database records can create orphans; copying database records without files can create broken references.",
+      "current_action": "do not bulk synchronize"
+    },
+    "database": {
+      "default_direction": "deferred",
+      "current_action": "no production import, replacement or automatic synchronization",
+      "resume_trigger": "The operator explicitly resumes the database transfer phase after local catalog enrichment."
+    },
+    "never_transfer_as_release_payload": {
+      "examples": [
+        "production config.php",
+        "protected runtime secret files",
+        "logs",
+        "temporary files",
+        "sessions",
+        "mail queues",
+        "backups",
+        "raw database dumps containing production data"
+      ]
+    }
+  },
+  "release_sequence": [
+    {
+      "order": 1,
+      "phase": "scope-freeze",
+      "actions": [
+        "Identify exact files and feature changes.",
+        "Classify each file by transfer class.",
+        "Reject database and DB-owned media changes from this release unless a separate approved plan exists.",
+        "Record the accepted local Git commit."
+      ],
+      "gate": "scope contains only approved application/runtime changes"
+    },
+    {
+      "order": 2,
+      "phase": "local-preflight",
+      "actions": [
+        "Check repository status and preserve unrelated work.",
+        "Run PHP lint on changed PHP files.",
+        "Run Python compile for release/inspection tools.",
+        "Run feature inspections and local HTTP smoke tests.",
+        "Run git diff --check.",
+        "Create a file inventory with path, size, mode and SHA-256."
+      ],
+      "gate": "all local checks pass"
+    },
+    {
+      "order": 3,
+      "phase": "build-release-package",
+      "actions": [
+        "Create a deterministic release directory from the accepted file inventory.",
+        "Exclude protected runtime, config.php, logs, temp, sessions, backups and database dumps.",
+        "Create SHA256SUMS and machine-readable manifest.",
+        "Create the archive only after the manifest is final.",
+        "Record archive SHA-256."
+      ],
+      "gate": "package contains only inventory-approved paths"
+    },
+    {
+      "order": 4,
+      "phase": "remote-preflight",
+      "actions": [
+        "Connect through SSH using the approved key.",
+        "Confirm production webroot and PHP version.",
+        "Confirm free disk space.",
+        "Confirm ownership/modes of target files.",
+        "Confirm current remote hashes match the expected predecessor release.",
+        "Confirm protected runtime files are present and not inside the release scope."
+      ],
+      "gate": "no unexpected remote drift"
+    },
+    {
+      "order": 5,
+      "phase": "remote-stage",
+      "actions": [
+        "Upload the archive to a temporary staging directory outside the webroot.",
+        "Verify archive SHA-256 on hosting.",
+        "Extract into staging, not directly into production.",
+        "PHP-lint staged PHP files.",
+        "Compare staged inventory against the approved manifest."
+      ],
+      "gate": "staged payload is complete and valid"
+    },
+    {
+      "order": 6,
+      "phase": "backup",
+      "actions": [
+        "Create a timestamped backup outside webroot.",
+        "Back up every production file that will be replaced.",
+        "Record prior path, mode, owner and SHA-256.",
+        "Do not back up logs or secrets into the public release archive."
+      ],
+      "gate": "rollback files are complete and readable"
+    },
+    {
+      "order": 7,
+      "phase": "atomic-install",
+      "actions": [
+        "Install one file at a time through a same-filesystem temporary path and atomic rename.",
+        "Preserve approved ownership and mode.",
+        "Do not delete unspecified remote files.",
+        "Do not overwrite protected runtime files.",
+        "PHP-lint installed PHP files.",
+        "Verify final hashes."
+      ],
+      "gate": "every installed path matches the manifest"
+    },
+    {
+      "order": 8,
+      "phase": "production-validation",
+      "actions": [
+        "Run read-only HTTP smoke checks for key pages and assets.",
+        "Check browser Console and Network for the changed surface.",
+        "Validate communication-request.php syntax and runtime readiness when communication code changed.",
+        "Use non-sending SMTP/Telegram checks first.",
+        "Run at most one controlled email or Telegram form test when delivery code/runtime changed."
+      ],
+      "gate": "all feature-specific acceptance checks pass"
+    },
+    {
+      "order": 9,
+      "phase": "accept-or-rollback",
+      "actions": [
+        "Accept the release only when every gate passes.",
+        "On failure, restore all affected files from the timestamped backup.",
+        "Re-run lint, hashes and smoke tests after rollback.",
+        "Keep staging and evidence until the incident is understood."
+      ]
+    },
+    {
+      "order": 10,
+      "phase": "record",
+      "actions": [
+        "Write a sanitized completion report.",
+        "Record source commit, archive hash, changed file hashes, backup location and validation results.",
+        "Update versioned documentation and status snapshot when architecture or operations changed.",
+        "Perform Git staging/commit/push only as a separate explicit action."
+      ]
+    }
+  ],
+  "planned_release_manifest_contract": {
+    "format": "YAML 1.2 JSON-compatible subset or JSON",
+    "required_fields": [
+      "release_id",
+      "created_at",
+      "source_commit",
+      "source_branch",
+      "production_target",
+      "predecessor_hashes",
+      "files",
+      "excluded_classes",
+      "local_checks",
+      "required_remote_checks",
+      "rollback_policy"
+    ],
+    "file_entry_fields": [
+      "path",
+      "sha256",
+      "size_bytes",
+      "mode",
+      "operation"
+    ],
+    "allowed_operations": [
+      "create",
+      "replace"
+    ],
+    "delete_policy": "Deletion is prohibited by default and requires a separately reviewed explicit delete list."
+  },
+  "runtime_transfer_mechanism": {
+    "normal_release_contains_runtime_secrets": false,
+    "approved_pattern": [
+      "read a trusted local secret source without printing values",
+      "validate the destination service using non-sending API methods",
+      "back up the production runtime file",
+      "build a new file in a protected temporary location",
+      "lint and set mode 0600",
+      "atomically replace",
+      "validate from production PHP",
+      "rollback on failure",
+      "store only sanitized evidence"
+    ],
+    "proven_examples": [
+      "SMTP runtime provisioning",
+      "Telegram runtime provisioning"
+    ]
+  },
+  "database_and_media_boundary": {
+    "current_status": "deferred",
+    "near_term_rule": "Application releases must remain compatible with the current production database schema. A code change that requires a new schema must include an explicitly approved migration or be held back.",
+    "product_enrichment_period": "The operator will continue adding products to the local site before resuming database transfer work.",
+    "do_not_do_now": [
+      "replace the production database",
+      "merge local product rows into production",
+      "synchronize primary keys",
+      "delete production rows",
+      "bulk-copy product userfiles",
+      "run automatic bidirectional synchronization"
+    ],
+    "resume_requirements": [
+      "fresh local and production backups",
+      "schema comparison",
+      "row-count and key inventory",
+      "decision between full replacement and controlled incremental merge",
+      "foreign-key and relationship analysis",
+      "userfiles reference inventory",
+      "staging restore rehearsal",
+      "maintenance/cutover window",
+      "rollback test",
+      "new versioned runbook and completion report"
+    ]
+  },
+  "rollback": {
+    "application_files": "Restore the exact timestamped predecessor files and verify hashes.",
+    "runtime_configuration": "Restore the protected runtime backup, lint it, enforce mode 0600 and repeat production validation.",
+    "database": "Not applicable to this near-term runbook because database changes are excluded."
+  }
+}

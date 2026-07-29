@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "id": "FP-WEB-WORKFLOW-MAIL-001",
+    "title_uk": "Операційна процедура пошти та міграції хостингу",
+    "title_en": "Mail operations and hosting migration runbook",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "active",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets",
+    "canonical_architecture": "docs/architecture/mail_delivery_and_hosting_architecture_v0_1.yaml"
+  },
+  "operator_model": {
+    "change_sequence": [
+      "inventory",
+      "read-only validation",
+      "backup",
+      "dry run",
+      "controlled apply",
+      "runtime validation",
+      "one controlled end-to-end test",
+      "report",
+      "documentation update",
+      "explicit Git staging and commit"
+    ],
+    "prohibited_shortcuts": [
+      "changing several independent layers without intermediate checks",
+      "disabling TLS verification",
+      "placing secrets inside webroot or Git",
+      "testing with repeated uncontrolled messages",
+      "cutting over DNS without a rollback window"
+    ]
+  },
+  "routine_health_check": {
+    "frequency": "after infrastructure changes and periodically according to operations policy",
+    "steps": [
+      {
+        "id": "dns",
+        "action": "Confirm MX and mail host address records.",
+        "commands": [
+          "dig +short MX forprint.net.ua",
+          "dig +short A mail.forprint.net.ua"
+        ],
+        "expected": "records point to the approved mail service"
+      },
+      {
+        "id": "tls",
+        "action": "Confirm SMTP submission and IMAP TLS handshakes with hostname verification.",
+        "commands": [
+          "openssl s_client -starttls smtp -connect mail.forprint.net.ua:587 -servername mail.forprint.net.ua",
+          "openssl s_client -connect mail.forprint.net.ua:993 -servername mail.forprint.net.ua"
+        ],
+        "expected": "valid certificate chain and matching mail.forprint.net.ua identity"
+      },
+      {
+        "id": "website-runtime",
+        "action": "Confirm endpoint syntax, runtime-config readability, exact enable flags, and writable private security runtime directory.",
+        "expected": "PHP lint passes; SMTP flag is 1; PHP-mail flag is 0; runtime directory write test passes"
+      },
+      {
+        "id": "smtp-envelope",
+        "action": "Use an approved diagnostic to verify AUTH, MAIL FROM, RCPT TO, and RSET without DATA.",
+        "expected": "235, 250, 250 and successful reset"
+      },
+      {
+        "id": "controlled-data",
+        "action": "Only when needed, send one uniquely marked technical message through the production web runtime.",
+        "expected": "final SMTP 250, queue identifier created, accepted/routed/completed log events"
+      },
+      {
+        "id": "application",
+        "action": "Submit one real communication form request in a controlled browser test.",
+        "expected": "communication-request.php returns HTTP 200 and the message appears in the office mailbox"
+      }
+    ]
+  },
+  "incident_triage": [
+    {
+      "symptom": "Outlook repeatedly asks for a password or IMAP login fails",
+      "checks": [
+        "Incoming and outgoing server must be mail.forprint.net.ua, not forprint.net.ua.",
+        "IMAP must use port 993 with SSL/TLS.",
+        "SMTP must use port 587 with STARTTLS and authentication.",
+        "Username must be the full mailbox address.",
+        "SPA must be disabled."
+      ],
+      "do_not_change_first": [
+        "mail-server configuration",
+        "website runtime configuration",
+        "mailbox password"
+      ]
+    },
+    {
+      "symptom": "Website form returns HTTP 500",
+      "checks": [
+        "Inspect Network response from communication-request.php.",
+        "Check exact SMTP/PHP-mail runtime flags.",
+        "Check private runtime directory for rate-limit and idempotency.",
+        "Check database schema readiness and communication_buttons target query.",
+        "Inspect endpoint-specific server logs."
+      ],
+      "interpretation": "A pre-delivery HTTP 500 is not proof that SMTP is broken."
+    },
+    {
+      "symptom": "Website returns HTTP 200 but no message is visible",
+      "checks": [
+        "Confirm a communication_requests row and delivery_status.",
+        "Find the SMTP queue event by the controlled message marker.",
+        "Check accepted, routed, completed, deferred, and failed log categories.",
+        "Check local mailbox, Spam/Junk, and IMAP synchronization.",
+        "Confirm the configured recipient without exposing it in reports."
+      ]
+    },
+    {
+      "symptom": "SMTP authentication fails",
+      "checks": [
+        "Confirm host mail.forprint.net.ua and port 587.",
+        "Confirm STARTTLS before AUTH.",
+        "Confirm certificate verification and peer name.",
+        "Confirm runtime secret file readability and permissions.",
+        "Rotate or re-enter credentials through a secure channel only after configuration checks."
+      ]
+    }
+  ],
+  "migration_scenarios": {
+    "website_hosting_only": {
+      "mail_server_changes": "none unless the new website source address requires allow-list changes",
+      "steps": [
+        "Inventory current webroot, database, PHP version, extensions, LiteSpeed or replacement runtime, and scheduled tasks.",
+        "Prepare the new website hosting without changing DNS.",
+        "Recreate the runtime secret file outside the new webroot with mode 0600.",
+        "Confirm outbound TCP 587 is allowed.",
+        "Confirm the new runtime validates the mail.forprint.net.ua certificate.",
+        "Run syntax, DB, security-runtime, SMTP envelope, one controlled DATA, and one form test.",
+        "Record the new outbound SMTP source address.",
+        "Change only website DNS after all gates pass.",
+        "Keep the old website hosting available through the rollback window."
+      ],
+      "dns_records_normally_unchanged": [
+        "MX for forprint.net.ua",
+        "mail.forprint.net.ua address",
+        "SPF/DKIM/DMARC unless the sender authorization model changes"
+      ]
+    },
+    "mail_server_only": {
+      "website_changes": "update SMTP runtime values only when hostname, credentials, port, or trust chain changes",
+      "steps": [
+        "Inventory mailboxes, aliases, forwarders, quotas, mail data, filters, TLS certificates, MTA/IMAP configuration, DNS records, and backup policy.",
+        "Provision the new mail server and office mailbox before DNS cutover.",
+        "Migrate mailbox data with a tested reversible method.",
+        "Configure TLS for mail.forprint.net.ua.",
+        "Prepare MX, A/AAAA, SPF, DKIM, DMARC, and PTR changes.",
+        "Validate inbound SMTP transport, authenticated submission 587, IMAP 993, local delivery, and queue processing.",
+        "Update website runtime secrets securely when required.",
+        "Update client settings only when the hostname or credentials change.",
+        "Lower DNS TTL in advance when operationally possible.",
+        "Cut over DNS and monitor both old and new queues during the rollback window."
+      ]
+    },
+    "website_and_mail_together": {
+      "recommendation": "Use separate change windows when possible so each failure domain can be isolated.",
+      "steps": [
+        "Prepare and validate the new mail service first without changing the website.",
+        "Prepare and validate the new website against the approved mail service.",
+        "Cut over one layer, validate, then cut over the second layer.",
+        "Maintain independent rollback points for website, runtime secrets, DNS, and mailbox data."
+      ]
+    }
+  },
+  "mail_server_migration_inventory": {
+    "must_capture_without_secrets": [
+      "domain and mail hostname",
+      "current public IP addresses",
+      "MX priority and target",
+      "SPF policy",
+      "DKIM selector names and public keys",
+      "DMARC policy and reporting addresses",
+      "PTR owner and requested value",
+      "mailbox and alias inventory",
+      "quota and retention rules",
+      "TLS certificate issuer and renewal owner",
+      "open ports and firewall ownership",
+      "mail log and queue locations",
+      "backup schedule and restore test date",
+      "website SMTP submission contract",
+      "mail client configuration"
+    ],
+    "must_transfer_securely_outside_docs": [
+      "mailbox passwords",
+      "SMTP passwords",
+      "DKIM private keys",
+      "TLS private keys",
+      "server root or administrator credentials",
+      "backup encryption keys"
+    ]
+  },
+  "cutover_acceptance_gates": [
+    {
+      "gate": "dns",
+      "pass_condition": "MX, mail A/AAAA, SPF, DKIM, DMARC, and PTR match the approved migration plan"
+    },
+    {
+      "gate": "tls",
+      "pass_condition": "SMTP submission and IMAP present a valid certificate for mail.forprint.net.ua"
+    },
+    {
+      "gate": "submission",
+      "pass_condition": "AUTH 235, MAIL FROM 250, RCPT TO 250, DATA 354, final acceptance 250"
+    },
+    {
+      "gate": "delivery",
+      "pass_condition": "mail logs show accepted, delivered-or-routed, and completed"
+    },
+    {
+      "gate": "client",
+      "pass_condition": "office mailbox can send and receive using IMAP 993 and SMTP 587"
+    },
+    {
+      "gate": "website",
+      "pass_condition": "communication-request.php returns HTTP 200 and the real form message reaches the mailbox"
+    },
+    {
+      "gate": "rollback",
+      "pass_condition": "old files, old runtime config, old DNS values, old mail route, and mailbox backup remain recoverable"
+    }
+  ],
+  "rollback": {
+    "website": [
+      "Restore the timestamped endpoint and security-component backups.",
+      "Restore the previous runtime configuration from secure storage when it changed.",
+      "Restore the previous website DNS value within the approved window."
+    ],
+    "mail_server": [
+      "Stop accepting new writes on the failed destination when safe.",
+      "Restore the previous MX and mail host address values.",
+      "Re-enable the previous submission and IMAP endpoints.",
+      "Preserve both mail queues and reconcile messages before deletion.",
+      "Restore mailbox data only from a verified backup."
+    ],
+    "rule": "Do not delete old infrastructure or queues until acceptance gates pass and the rollback window closes."
+  },
+  "completion_record": {
+    "required_evidence": [
+      "sanitized manifest and summary",
+      "current file hashes",
+      "TLS and SMTP result categories",
+      "queue acceptance/routing/completion categories",
+      "browser Network status",
+      "manual mailbox-arrival confirmation",
+      "backup and rollback location",
+      "open unknowns and follow-up owners"
+    ],
+    "git_rule": "Stage and commit only accepted documentation and code; never stage runtime secrets or raw mail logs."
+  }
+}

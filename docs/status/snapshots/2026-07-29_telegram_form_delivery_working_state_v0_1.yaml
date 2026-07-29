@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "id": "FP-WEB-STATUS-TELEGRAM-2026-07-29-001",
+    "title_uk": "Робочий стан Telegram-доставки форми",
+    "title_en": "Telegram form delivery working state",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "historical snapshot",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "result": {
+    "overall_telegram_form_delivery": "working",
+    "website_form_http_status": 200,
+    "telegram_message_arrived": true,
+    "chat_type": "private",
+    "bot_membership_status": "member",
+    "blockers": [],
+    "warnings": []
+  },
+  "production_runtime": {
+    "checkpoint": "telegram_runtime_install_06d41",
+    "install_completed": true,
+    "rollback_attempted": false,
+    "runtime_config_path": "/var/www/825163-nikolay.k/data/.forprint-secrets/communication_runtime.php",
+    "runtime_config_mode": "0600",
+    "telegram_token_present": true,
+    "telegram_chat_id_present": true,
+    "get_me_ok": true,
+    "get_chat_ok": true,
+    "get_chat_member_ok": true,
+    "endpoint_sha256": "1c7e156ed8541ff79593d478a0f4f125cc7238b30dcd06c45cdf69a53d975f91",
+    "endpoint_unchanged_by_runtime_install": true,
+    "backup_directory": "/var/www/825163-nikolay.k/data/.forprint-backups/telegram_runtime_install_06d41_20260729_110737"
+  },
+  "browser_and_manual_evidence": {
+    "checkpoint": "telegram_form_delivery_06d42",
+    "network_request": "communication-request.php",
+    "network_status": 200,
+    "network_type": "fetch",
+    "message_arrival_confirmed_by_operator": true,
+    "console_observations": [
+      "favicon.ico returned 404",
+      "browser reported missing autocomplete attributes",
+      "browser reported a CSP eval issue",
+      "none of these observations blocked the successful Telegram form delivery"
+    ]
+  },
+  "evidence_artifacts": [
+    {
+      "kind": "runtime-install-report",
+      "source_filename": "5fc3ff27-dc0b-4b16-8042-f3063a6514e2.zip",
+      "sha256": "af613f52c07adc65a91351ce25723d6e1800af8a108f52950f0337af8a2dd8cb"
+    },
+    {
+      "kind": "browser-network-screenshot",
+      "source_filename": "133704d8-b3c5-4566-8a09-fd68ccf4a92d.png",
+      "sha256": "7b3dc87abff37a91fd9f173ffccef00297327322c61b9ad19ff7dc1f4c165727"
+    },
+    {
+      "kind": "browser-console-and-issues-screenshot",
+      "source_filename": "a4da7340-31af-472b-aa4f-bb2d25398b58.png",
+      "sha256": "4baef7067f411446d48c8c3c9aaa9154fc307e138d6d08aad83db6ae8584a1c7"
+    },
+    {
+      "kind": "browser-issues-screenshot",
+      "source_filename": "db426768-e309-47ab-bb85-502d103f4d3f.png",
+      "sha256": "792c1f00f3ca3f97011923ddc25f68d94ee99bcdf064aa001faadba77e59357d"
+    }
+  ],
+  "current_operational_contract": {
+    "button_alias": "telegram",
+    "button_visible": true,
+    "browser_mode": "telegram",
+    "delivery_api_method": "sendMessage",
+    "runtime_keys": [
+      "FP_WEB_TELEGRAM_BOT_TOKEN",
+      "FP_WEB_TELEGRAM_CHAT_ID"
+    ],
+    "success_delivery_status": "sent_telegram",
+    "degraded_delivery_statuses": [
+      "stored_telegram_failed",
+      "stored_telegram_not_configured"
+    ]
+  },
+  "deferred_follow_up": {
+    "database_sync": "deferred",
+    "product_media_sync": "deferred",
+    "resume_condition": "operator completes the next local catalog-enrichment period and explicitly resumes the transfer task"
+  }
+}

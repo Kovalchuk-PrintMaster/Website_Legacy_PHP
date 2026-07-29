@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "id": "FP-WEB-STATUS-MAIL-2026-07-29-001",
+    "title_uk": "Робочий стан поштової доставки",
+    "title_en": "Mail delivery working state",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "historical snapshot",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "result": {
+    "overall_mail_delivery": "working",
+    "website_form_http_status": 200,
+    "website_form_message_arrived": true,
+    "mailbox_imap_access": "working",
+    "smtp_submission": "working",
+    "local_delivery": "working",
+    "blockers": [],
+    "warnings": []
+  },
+  "production_patch": {
+    "checkpoint": "predelivery_runtime_fix_apply_06d39_v2",
+    "created_at": "2026-07-29T10:27:17+03:00",
+    "apply_completed": true,
+    "rollback_attempted": false,
+    "endpoint_sha256": "1c7e156ed8541ff79593d478a0f4f125cc7238b30dcd06c45cdf69a53d975f91",
+    "security_component_sha256": "fe20952a3cbba429c63bb718cfb06f1e7d7f8e87b156816f5b9eea605fe92693",
+    "backup_directory": "/var/www/825163-nikolay.k/data/.forprint-backups/communication_runtime_fix_06d39_v2_20260729_102703",
+    "post_apply_checks": {
+      "runtime_config_loaded": true,
+      "smtp_enable_exact_one": true,
+      "php_mail_enable_exact_zero": true,
+      "security_class_loaded": true,
+      "runtime_directory_resolved": true,
+      "runtime_directory_exists": true,
+      "runtime_directory_writable": true,
+      "runtime_directory_private": true,
+      "runtime_write_test_ok": true,
+      "diagnostic_cleanup": true
+    }
+  },
+  "smtp_delivery_evidence": {
+    "checkpoint": "controlled_smtp_data_delivery_test_06d36_v2",
+    "connect_tls_auth": "yes/yes/yes",
+    "smtp_codes": {
+      "auth": 235,
+      "mail_from": 250,
+      "rcpt_to": 250,
+      "data_ready": 354,
+      "final_acceptance": 250
+    },
+    "queue_id_created": true,
+    "mail_log_categories": [
+      "accepted-by-mail-server",
+      "delivered-or-routed",
+      "completed"
+    ],
+    "outbound_source_address_observed": "185.86.77.163",
+    "destination": "local office mailbox"
+  },
+  "browser_and_manual_evidence": {
+    "network_request": "communication-request.php",
+    "network_status": 200,
+    "network_type": "fetch",
+    "mail_arrival_confirmed_by_operator": true,
+    "console_detail": "No communication-form error text is visible in the supplied console screenshot; the DevTools issue counters were not expanded and are not evaluated by this snapshot."
+  },
+  "evidence_artifacts": [
+    {
+      "kind": "apply-report",
+      "source_filename": "559cfb46-7020-49f5-88c2-efa1f4761ee9.zip",
+      "sha256": "d6db9ac17bbb81d463e29ea33db7b94ff8d22afa25b8631fd508a1d850454fe4"
+    },
+    {
+      "kind": "browser-network-screenshot",
+      "source_filename": "f1e080d1-972f-483a-a935-52b4f18af31f.png",
+      "sha256": "31980f135fe34d9d630cd6a8cbf1e0f0cc260e216193ce5694f9497dbf95f511"
+    },
+    {
+      "kind": "browser-console-screenshot",
+      "source_filename": "2ccb512b-734c-49b1-94c4-bd662052a35b.png",
+      "sha256": "924e7559250a3209ed6a3fa173e8a3fed6ab514c5affa0614bd8254a033ec802"
+    }
+  ],
+  "confirmed_configuration": {
+    "mail_host": "mail.forprint.net.ua",
+    "smtp_submission": "587 STARTTLS with authentication and verified TLS",
+    "imap": "993 SSL/TLS",
+    "mailbox": "office@forprint.net.ua",
+    "website_endpoint": "base/communication-request.php",
+    "runtime_secret_location": "/var/www/825163-nikolay.k/data/.forprint-secrets/communication_runtime.php"
+  },
+  "remaining_documentation_tasks": [
+    "capture authoritative MX values",
+    "capture SPF policy",
+    "capture DKIM selectors and public keys without private material",
+    "capture DMARC policy",
+    "confirm PTR ownership",
+    "document and test mailbox backup and restore",
+    "define periodic health-check ownership and frequency"
+  ]
+}

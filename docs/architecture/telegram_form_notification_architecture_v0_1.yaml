@@ -1,0 +1,335 @@
+{
+  "metadata": {
+    "id": "FP-WEB-ARCH-NOTIFY-001",
+    "title_uk": "Архітектура передачі заявки через Telegram",
+    "title_en": "Telegram form notification architecture",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "accepted",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "purpose": "Фіксує підтверджений механізм керування Telegram-формою, обробки заявки на сайті, збереження в БД та доставки через Telegram Bot API.",
+  "scope": {
+    "included": [
+      "Telegram communication button and modal",
+      "browser-to-endpoint request",
+      "server-side validation and anti-abuse controls",
+      "communication_buttons routing metadata",
+      "communication_requests persistence",
+      "Telegram Bot API delivery",
+      "delivery status update",
+      "runtime secret handling",
+      "validation and rollback boundaries"
+    ],
+    "excluded": [
+      "mail transport internals",
+      "database synchronization from local server to hosting",
+      "Telegram bot conversational commands",
+      "marketing broadcasts",
+      "mass notifications"
+    ]
+  },
+  "confirmed_working_state": {
+    "date": "2026-07-29",
+    "frontend_request": "working",
+    "production_endpoint_http_status": 200,
+    "telegram_message_received": true,
+    "telegram_chat_type": "private",
+    "bot_membership_status": "member",
+    "runtime_config_mode": "0600",
+    "blockers": []
+  },
+  "components": [
+    {
+      "id": "button-rendering",
+      "owner": "PHP template and database visibility configuration",
+      "known_source": "base/templates/default/include/productCommunicationButtons.php",
+      "responsibility": "Render the Telegram communication control when the communication_buttons row for alias=telegram is visible."
+    },
+    {
+      "id": "browser-controller",
+      "owner": "frontend JavaScript",
+      "known_source": "base/templates/default/assets/js/forprint-product-communication.js",
+      "responsibility": "Open the communication form, collect values, preserve the selected mode, create the idempotency key and submit fetch/FormData to the endpoint."
+    },
+    {
+      "id": "request-endpoint",
+      "owner": "PHP endpoint",
+      "known_source": "base/communication-request.php",
+      "production_path": "/var/www/825163-nikolay.k/data/www/forprint.net.ua/communication-request.php",
+      "responsibility": "Validate the request, apply security controls, persist the request, deliver through Telegram or email and return JSON."
+    },
+    {
+      "id": "request-security",
+      "owner": "PHP security component",
+      "known_source": "base/libraries/CommunicationRequestSecurity.php",
+      "responsibility": "CSRF/security configuration, rate limiting, idempotency and private runtime storage."
+    },
+    {
+      "id": "routing-metadata",
+      "owner": "database",
+      "table": "communication_buttons",
+      "telegram_row_contract": {
+        "alias": "telegram",
+        "visible": 1,
+        "target": "non-empty routing/display metadata"
+      },
+      "important_boundary": "The current endpoint reads this row to authorize/describe the selected mode and stores the target as delivery_target. The actual Telegram Bot API destination is read from FP_WEB_TELEGRAM_CHAT_ID in the protected runtime configuration."
+    },
+    {
+      "id": "request-record",
+      "owner": "database",
+      "table": "communication_requests",
+      "responsibility": "Persist every accepted request before external Telegram delivery and retain delivery status."
+    },
+    {
+      "id": "telegram-runtime",
+      "owner": "protected production runtime",
+      "path": "/var/www/825163-nikolay.k/data/.forprint-secrets/communication_runtime.php",
+      "mode": "0600",
+      "outside_webroot": true,
+      "required_keys": [
+        "FP_WEB_TELEGRAM_BOT_TOKEN",
+        "FP_WEB_TELEGRAM_CHAT_ID"
+      ],
+      "must_not_be_committed": true
+    },
+    {
+      "id": "telegram-api",
+      "owner": "Telegram Bot API",
+      "validation_methods": [
+        "getMe",
+        "getChat",
+        "getChatMember"
+      ],
+      "delivery_method": "sendMessage",
+      "transport": "HTTPS with certificate verification"
+    }
+  ],
+  "browser_request_contract": {
+    "method": "POST",
+    "endpoint": "communication-request.php",
+    "encoding": "FormData",
+    "accepted_modes": [
+      "telegram",
+      "email"
+    ],
+    "telegram_mode_value": "telegram",
+    "fields": [
+      {
+        "name": "mode",
+        "type": "string",
+        "required": true,
+        "max_length": 64
+      },
+      {
+        "name": "product_id",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "name": "product_name",
+        "type": "string",
+        "required": false,
+        "max_length": 255
+      },
+      {
+        "name": "product_url",
+        "type": "string",
+        "required": false,
+        "max_length": 500
+      },
+      {
+        "name": "primary_contact",
+        "type": "string",
+        "required_condition": "primary_contact or phone must be non-empty",
+        "max_length": 255
+      },
+      {
+        "name": "phone",
+        "type": "string",
+        "required_condition": "primary_contact or phone must be non-empty",
+        "max_length": 100
+      },
+      {
+        "name": "phone_confirmed",
+        "type": "flag",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "name": "quantity_requested",
+        "type": "string",
+        "required": false,
+        "max_length": 255
+      },
+      {
+        "name": "message",
+        "type": "string",
+        "required": false,
+        "max_length": 2000
+      },
+      {
+        "name": "idempotency_key",
+        "type": "string",
+        "required": true,
+        "max_length": 128
+      }
+    ]
+  },
+  "server_side_flow": [
+    {
+      "order": 1,
+      "stage": "security-preflight",
+      "actions": [
+        "load protected runtime values",
+        "validate request security configuration",
+        "check rate limit",
+        "validate mode"
+      ],
+      "failure_statuses": [
+        422,
+        429,
+        500
+      ]
+    },
+    {
+      "order": 2,
+      "stage": "input-validation",
+      "actions": [
+        "normalize and validate phone",
+        "require at least one contact",
+        "validate idempotency key"
+      ],
+      "failure_statuses": [
+        409,
+        422
+      ]
+    },
+    {
+      "order": 3,
+      "stage": "idempotency",
+      "actions": [
+        "begin idempotent request",
+        "return prior completed response for exact duplicate",
+        "reject a request already being processed"
+      ]
+    },
+    {
+      "order": 4,
+      "stage": "database-readiness",
+      "actions": [
+        "connect with utf8mb4",
+        "verify communication_requests table",
+        "verify quantity_requested column",
+        "read visible communication_buttons target for the selected mode"
+      ],
+      "failure_statuses": [
+        500
+      ]
+    },
+    {
+      "order": 5,
+      "stage": "persist-before-delivery",
+      "actions": [
+        "insert communication_requests row with delivery_status=stored",
+        "record selected mode and delivery_target",
+        "close the DB connection before the external API call"
+      ],
+      "safety_property": "An accepted request is stored before Telegram delivery is attempted."
+    },
+    {
+      "order": 6,
+      "stage": "telegram-delivery",
+      "condition": "mode=telegram",
+      "actions": [
+        "read bot token and chat ID from protected runtime",
+        "build plain-text request message",
+        "POST chat_id, text and disable_web_page_preview=true to sendMessage",
+        "classify API result"
+      ],
+      "timeout_seconds": 6
+    },
+    {
+      "order": 7,
+      "stage": "status-update",
+      "actions": [
+        "reconnect to DB",
+        "update communication_requests.delivery_status",
+        "complete idempotency record",
+        "return JSON"
+      ]
+    }
+  ],
+  "delivery_status_contract": {
+    "sent_telegram": {
+      "meaning": "Telegram API returned an ok=true response",
+      "delivery_completed": true
+    },
+    "stored_telegram_failed": {
+      "meaning": "The request is stored, but the Telegram API call did not confirm delivery",
+      "delivery_completed": false
+    },
+    "stored_telegram_not_configured": {
+      "meaning": "The request is stored, but token or chat ID is unavailable",
+      "delivery_completed": false
+    }
+  },
+  "response_contract": {
+    "success_http_status": 200,
+    "success_json_fields": [
+      "ok",
+      "message",
+      "request_id",
+      "delivery_status",
+      "delivery_completed"
+    ],
+    "important_behavior": "After successful DB persistence, an external Telegram failure does not discard the request. The endpoint returns ok=true with delivery_completed=false and a stored_* status."
+  },
+  "control_model": {
+    "show_or_hide_button": "Change communication_buttons.visible for alias=telegram through the approved admin/data workflow.",
+    "button_metadata": "communication_buttons.target remains non-secret routing/display metadata.",
+    "actual_api_destination": "Change FP_WEB_TELEGRAM_CHAT_ID only through a protected runtime installer or secure operator procedure.",
+    "bot_identity": "Change FP_WEB_TELEGRAM_BOT_TOKEN only through a protected runtime installer or token-rotation procedure.",
+    "disable_delivery_without_code_change": "Remove or replace Telegram runtime values only through a controlled maintenance action with backup and validation; do not expose an enabled button when delivery is intentionally disabled."
+  },
+  "security_and_privacy": {
+    "personal_data_sent_to_telegram": [
+      "contact information supplied by the visitor",
+      "phone number when supplied",
+      "product information",
+      "requested quantity",
+      "visitor message"
+    ],
+    "controls": [
+      "private target chat",
+      "restricted membership",
+      "token and chat ID outside webroot",
+      "runtime file mode 0600",
+      "HTTPS certificate verification",
+      "rate limiting",
+      "idempotency",
+      "server-side validation",
+      "no token in Git, database, browser or documentation"
+    ],
+    "operator_rule": "Screenshots and reports must redact visitor data, bot token, chat ID and raw API responses when they can contain identifiers."
+  },
+  "evidence": [
+    {
+      "checkpoint": "telegram_runtime_install_06d41",
+      "result": "completed",
+      "production_get_me_get_chat_get_chat_member": "yes/yes/yes",
+      "chat_type": "private",
+      "bot_membership_status": "member"
+    },
+    {
+      "checkpoint": "telegram_form_delivery_06d42",
+      "result": "working",
+      "endpoint_http_status": 200,
+      "telegram_message_received_by_operator": true
+    }
+  ]
+}

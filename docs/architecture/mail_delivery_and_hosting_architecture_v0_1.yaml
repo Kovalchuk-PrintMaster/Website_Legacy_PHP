@@ -1,0 +1,280 @@
+{
+  "metadata": {
+    "id": "FP-WEB-ARCH-MAIL-001",
+    "title_uk": "Архітектура поштової доставки та взаємодії з хостингом",
+    "title_en": "Mail delivery and hosting interaction architecture",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "active",
+    "language": "uk",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets",
+    "source_of_truth_order": [
+      "production runtime and server configuration",
+      "application code and database schema",
+      "versioned architecture and workflow documents",
+      "dated status snapshots and evidence reports"
+    ]
+  },
+  "scope": {
+    "system": "ForPrint Website",
+    "covers": [
+      "website communication form mail delivery",
+      "mail server submission and local delivery",
+      "IMAP client configuration",
+      "website-hosting and mail-hosting separation",
+      "migration and recovery boundaries"
+    ],
+    "does_not_store": [
+      "passwords",
+      "private keys",
+      "authentication tokens",
+      "mailbox contents",
+      "raw queue identifiers"
+    ]
+  },
+  "principles": [
+    {
+      "id": "mail-service-separation",
+      "rule": "The website hosting and mail server are separate operational components."
+    },
+    {
+      "id": "verified-tls",
+      "rule": "SMTP and IMAP TLS peer verification must remain enabled."
+    },
+    {
+      "id": "authenticated-submission",
+      "rule": "The website submits mail through authenticated SMTP submission, not unauthenticated relay."
+    },
+    {
+      "id": "secret-separation",
+      "rule": "Runtime secrets stay outside the webroot, outside documentation, and outside Git."
+    },
+    {
+      "id": "evidence-before-change",
+      "rule": "Use read-only checks, controlled tests, backups, validation, and rollback for operational changes."
+    },
+    {
+      "id": "stable-contracts",
+      "rule": "Use standard protocol contracts and explicit ports rather than provider-specific assumptions."
+    }
+  ],
+  "current_topology": {
+    "public_domain": "forprint.net.ua",
+    "website": {
+      "role": "public PHP application",
+      "production_origin_observed": "http://forprint.net.ua",
+      "technical_origin_observed": "http://825163-nikolay.k.gmhost-tech.pp.ua",
+      "hosting_control_address": "185.86.76.182",
+      "outbound_smtp_source_address_observed": "185.86.77.163",
+      "production_webroot": "/var/www/825163-nikolay.k/data/www/forprint.net.ua",
+      "php_cli_observed": "8.2.22",
+      "web_sapi_observed": "litespeed"
+    },
+    "mail_server": {
+      "role": "independent ForPrint mail service",
+      "hostname": "mail.forprint.net.ua",
+      "public_address": "176.36.207.12",
+      "ownership": "ForPrint-operated server",
+      "mta_observed": "Exim",
+      "local_delivery_transport_observed": "local_delivery",
+      "mail_log_paths_observed": [
+        "/var/log/exim4/mainlog",
+        "/var/log/mail.log"
+      ]
+    },
+    "mailbox": {
+      "primary_operational_address": "office@forprint.net.ua",
+      "client_username_format": "full email address"
+    }
+  },
+  "protocol_contracts": {
+    "website_smtp_submission": {
+      "host": "mail.forprint.net.ua",
+      "port": 587,
+      "transport": "TCP",
+      "security": "STARTTLS",
+      "authentication": "required",
+      "tls_peer_verification": "required",
+      "tls_peer_name": "mail.forprint.net.ua",
+      "php_mail_fallback": "disabled",
+      "verified_smtp_codes": {
+        "auth": 235,
+        "mail_from": 250,
+        "rcpt_to": 250,
+        "data_ready": 354,
+        "message_accepted": 250
+      }
+    },
+    "mail_client_imap": {
+      "host": "mail.forprint.net.ua",
+      "port": 993,
+      "transport": "TCP",
+      "security": "implicit TLS",
+      "authentication": "mailbox credentials",
+      "secure_password_authentication_spa": "disabled"
+    },
+    "mail_client_smtp": {
+      "host": "mail.forprint.net.ua",
+      "port": 587,
+      "transport": "TCP",
+      "security": "STARTTLS",
+      "authentication": "required",
+      "credentials": "same mailbox credentials unless a future policy explicitly changes this"
+    }
+  },
+  "website_application_contract": {
+    "repository_webroot": "base/",
+    "endpoint": "base/communication-request.php",
+    "security_component": "base/libraries/CommunicationRequestSecurity.php",
+    "persistent_runtime_config": {
+      "production_path": "/var/www/825163-nikolay.k/data/.forprint-secrets/communication_runtime.php",
+      "outside_webroot": true,
+      "required_mode": "0600",
+      "secret_values_must_not_be_committed": true
+    },
+    "runtime_keys": {
+      "required": [
+        "FP_WEB_ENABLE_SMTP",
+        "FP_WEB_ENABLE_PHP_MAIL",
+        "FP_WEB_SMTP_HOST",
+        "FP_WEB_SMTP_PORT",
+        "FP_WEB_SMTP_USER",
+        "FP_WEB_SMTP_PASS",
+        "FP_WEB_SMTP_FROM",
+        "FP_WEB_SMTP_TO"
+      ],
+      "optional": [
+        "FP_WEB_SMTP_TIMEOUT",
+        "FP_WEB_COMMUNICATION_RUNTIME_DIR"
+      ],
+      "boolean_normalization": {
+        "true_like": [
+          "1",
+          "true",
+          "yes",
+          "on"
+        ],
+        "false_like": [
+          "0",
+          "false",
+          "no",
+          "off",
+          ""
+        ],
+        "runtime_required_values": {
+          "FP_WEB_ENABLE_SMTP": "1",
+          "FP_WEB_ENABLE_PHP_MAIL": "0"
+        }
+      }
+    },
+    "security_runtime_directory": {
+      "selection_order": [
+        "FP_WEB_COMMUNICATION_RUNTIME_DIR when configured",
+        "private forprint-communication directory under session.save_path",
+        "private forprint-communication directory under sys_get_temp_dir"
+      ],
+      "required_properties": [
+        "exists",
+        "writable by LiteSpeed PHP runtime",
+        "private permissions without group or other access"
+      ],
+      "uses": [
+        "rate limiting",
+        "idempotency",
+        "communication-request security state"
+      ]
+    }
+  },
+  "request_flow": [
+    "browser communication UI",
+    "POST base/communication-request.php",
+    "CSRF and input validation",
+    "rate-limit check",
+    "idempotency check",
+    "database connection and schema readiness",
+    "insert communication_requests row",
+    "resolve visible delivery target from communication_buttons",
+    "authenticated SMTP submission with verified STARTTLS",
+    "Exim queue acceptance",
+    "local delivery to office mailbox",
+    "IMAP retrieval by mail client"
+  ],
+  "database_contract": {
+    "tables": {
+      "communication_requests": {
+        "required_columns": [
+          "id",
+          "mode",
+          "product_id",
+          "product_name",
+          "product_url",
+          "primary_contact",
+          "phone",
+          "quantity_requested",
+          "message",
+          "delivery_target",
+          "delivery_status",
+          "created_at"
+        ]
+      },
+      "communication_buttons": {
+        "required_columns": [
+          "alias",
+          "target",
+          "visible"
+        ],
+        "verified_aliases": {
+          "email": "visible target with valid email format",
+          "telegram": "visible non-empty target"
+        }
+      }
+    },
+    "failure_boundary": "A stored request and a delivery attempt are separate states; delivery status must record the result."
+  },
+  "observed_mail_log_flow": [
+    "message accepted from authenticated hosting connection",
+    "message routed to local office mailbox",
+    "queue processing completed"
+  ],
+  "standards_references": [
+    "RFC 5321 SMTP",
+    "RFC 5322 Internet Message Format",
+    "RFC 3207 SMTP STARTTLS",
+    "RFC 6409 Message Submission",
+    "RFC 8314 TLS for email submission and access",
+    "RFC 9051 IMAP4rev2"
+  ],
+  "known_unknowns": [
+    {
+      "item": "authoritative MX record values",
+      "status": "not captured in current evidence pack",
+      "required_action": "record with dig before any migration"
+    },
+    {
+      "item": "SPF policy",
+      "status": "not captured in current evidence pack",
+      "required_action": "record and validate before any migration"
+    },
+    {
+      "item": "DKIM selector and key rotation procedure",
+      "status": "not captured in current evidence pack",
+      "required_action": "record without copying private keys into Git"
+    },
+    {
+      "item": "DMARC policy and reporting addresses",
+      "status": "not captured in current evidence pack",
+      "required_action": "record and validate before any migration"
+    },
+    {
+      "item": "PTR and reverse-DNS ownership",
+      "status": "not captured in current evidence pack",
+      "required_action": "confirm with the IP provider before mail-server migration"
+    },
+    {
+      "item": "mailbox backup and restore implementation",
+      "status": "not captured in current evidence pack",
+      "required_action": "document and test a restore separately"
+    }
+  ]
+}
