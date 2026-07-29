@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "id": "FP-WEB-SEO-WF-SC-BOOTSTRAP-001",
+    "title": "Search Console bootstrap runbook",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "ready",
+    "serialization": "YAML 1.2 JSON-compatible subset"
+  },
+  "property": {
+    "type": "Domain",
+    "domain": "forprint.net.ua",
+    "verification": "DNS TXT"
+  },
+  "representative_urls": [
+    "https://forprint.net.ua/",
+    "https://forprint.net.ua/about/",
+    "one current category URL",
+    "one current product or service URL",
+    "one current contact route"
+  ],
+  "current_sitemap": {
+    "submit": false,
+    "reason": "contains legacy http://cpa.fvds.ru URLs"
+  },
+  "next_sitemap_gate": [
+    "generator corrected locally",
+    "release deployed",
+    "production sitemap returns 200",
+    "all loc URLs use https://forprint.net.ua"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "id": "FP-WEB-SEO-SOURCES-LOCAL-FIRST-001",
+    "title": "Local-first SEO launch source registry",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "active",
+    "serialization": "YAML 1.2 JSON-compatible subset"
+  },
+  "internal_documents": [
+    "docs/architecture/search_visibility_and_web_quality_strategy_v0_1.md",
+    "docs/workflow/local_to_hosting_application_release_runbook_v0_1.yaml",
+    "docs/seo/seo_growth_governance_architecture_v0_1.yaml",
+    "docs/seo/https_migration_and_canonical_origin_runbook_v0_1.yaml",
+    "docs/seo/analytics_measurement_and_attribution_policy_v0_1.yaml"
+  ],
+  "official_sources": [
+    {
+      "id": "search-console-top-tasks",
+      "owner": "Google Search Console",
+      "title": "Top tasks for Search Console users",
+      "url": "https://support.google.com/webmasters/answer/10351509",
+      "retrieved_at": "2026-07-29",
+      "used_for": [
+        "URL Inspection request indexing",
+        "sitemap submission after corrected deployment"
+      ]
+    },
+    {
+      "id": "google-search-site-move-https",
+      "owner": "Google Search Central",
+      "title": "Site moves with URL changes",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
+      "retrieved_at": "2026-07-29",
+      "used_for": [
+        "HTTP to HTTPS monitoring",
+        "HTTPS sitemap and canonical follow-up"
+      ]
+    },
+    {
+      "id": "google-ads-destination-requirements",
+      "owner": "Google Ads Policies",
+      "title": "Destination requirements",
+      "url": "https://support.google.com/adspolicy/answer/6368661",
+      "retrieved_at": "2026-07-29",
+      "used_for": [
+        "functional and crawlable landing pages",
+        "domain and destination consistency"
+      ]
+    },
+    {
+      "id": "google-ads-landing-page",
+      "owner": "Google Ads",
+      "title": "Landing page",
+      "url": "https://support.google.com/google-ads/answer/14086",
+      "retrieved_at": "2026-07-29",
+      "used_for": [
+        "direct relevant final URLs",
+        "landing-page usefulness and navigation"
+      ]
+    },
+    {
+      "id": "google-ads-billing",
+      "owner": "Google Ads",
+      "title": "Billing and payment suspensions",
+      "url": "https://support.google.com/google-ads/answer/13704200",
+      "retrieved_at": "2026-07-29",
+      "used_for": [
+        "account/payments blocker resolution",
+        "do not open replacement accounts to bypass suspension"
+      ]
+    }
+  ]
+}

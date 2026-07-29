@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "id": "FP-WEB-SEO-STATUS-2026-07-29-BOOTSTRAP-001",
+    "title": "HTTPS and search bootstrap working state",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "current working snapshot",
+    "serialization": "YAML 1.2 JSON-compatible subset"
+  },
+  "https": {
+    "certificate": "Let's Encrypt active",
+    "primary_origin": "https://forprint.net.ua",
+    "http_redirect": "active",
+    "www_redirect": "active to non-www",
+    "hsts": "disabled"
+  },
+  "forms": {
+    "email_over_https": "working",
+    "telegram_over_https": "working"
+  },
+  "search": {
+    "current_sitemap": "legacy host and HTTP URLs",
+    "submit_current_sitemap": false,
+    "search_console_bootstrap": "next external step"
+  },
+  "ads": {
+    "status": "blocked",
+    "reason": "account/payments issue"
+  },
+  "development": {
+    "source_of_truth": "local Git",
+    "production": "controlled mirror/release target",
+    "direct_production_code_edits": false
+  }
+}

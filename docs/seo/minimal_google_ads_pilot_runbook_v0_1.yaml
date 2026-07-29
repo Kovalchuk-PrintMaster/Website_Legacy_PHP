@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "id": "FP-WEB-SEO-WF-ADS-PILOT-001",
+    "title": "Minimal Google Ads pilot runbook",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "blocked",
+    "serialization": "YAML 1.2 JSON-compatible subset"
+  },
+  "blocker": "account/payments issue visible in operator screenshot",
+  "pilot": {
+    "campaign_type": "Search",
+    "scope": "narrow",
+    "final_url_scheme": "https",
+    "final_url_host": "forprint.net.ua",
+    "daily_budget": "operator-approved small cap",
+    "review_frequency": "daily during pilot",
+    "broad_expansion": false
+  },
+  "measurement_mode": {
+    "temporary": true,
+    "client_tracking_tag": false,
+    "platform_metrics": [
+      "clicks",
+      "spend"
+    ],
+    "operational_comparison": [
+      "aggregate accepted leads by time window"
+    ],
+    "precise_attribution_claimed": false
+  },
+  "stop_conditions": [
+    "landing page or form failure",
+    "certificate or redirect failure",
+    "irrelevant search terms dominate",
+    "account or policy warning",
+    "approved spend cap reached without useful inquiries"
+  ]
+}
