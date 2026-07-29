@@ -17,6 +17,13 @@ if (!empty($_GET['filters']) && is_array($_GET['filters'])) {
 }
 
 $fpCurrentCatalogAlias = trim((string)($this->parameters['alias'] ?? ''));
+$fpCatalogPageTitle = trim(strip_tags((string)(
+    $data['name'] ?? 'Каталог товарів'
+)));
+
+if ($fpCatalogPageTitle === '') {
+    $fpCatalogPageTitle = 'Каталог товарів';
+}
 $fpCatalogFormAction = $this->alias(
     'catalog' . ($fpCurrentCatalogAlias !== '' ? '/' . $fpCurrentCatalogAlias : '')
 );
@@ -51,12 +58,22 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
         <?=$this->breadcrumbs?>
     </div>
 
+    <header class="fp-layout-container fp-catalog-page__header">
+        <h1 class="page-title h1">
+            <?=htmlspecialchars(
+                $fpCatalogPageTitle,
+                ENT_QUOTES,
+                'UTF-8'
+            )?>
+        </h1>
+    </header>
+
     <section class="catalog-internal fp-catalog-page__content">
         <div class="container fp-layout-container">
             <div class="catalog-internal-wrap">
                 <?php if (empty($goods)): ?>
                     <div class="fp-catalog-empty">
-                        <h1>За заданими параметрами товари не знайдені</h1>
+                        <h2>За заданими параметрами товари не знайдені</h2>
                         <p>Спробуйте змінити фільтри або повернутися до всього каталогу.</p>
                         <a class="fp-catalog-button" href="<?=$this->alias('catalog')?>">Показати всі товари</a>
                     </div>

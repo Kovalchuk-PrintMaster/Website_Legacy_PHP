@@ -38,6 +38,14 @@ protected $model;
         protected $userData = [];
 
         /**
+         * Public document metadata populated before header rendering.
+         */
+        protected $title = '';
+        protected $description = '';
+        protected $language = 'uk';
+
+
+        /**
          * Resolve one validated presentation-only frontend profile.
          *
          * Missing, blank and unsupported environment values fall back
@@ -196,6 +204,8 @@ protected $model;
             $args = func_get_arg(0);
             $vars = $args ? $args : [];
 
+            $this->applyRouteMetadata($vars);
+
             $this->breadcrumbItems = $this->buildBreadcrumbItems($vars);
             $this->breadcrumbs = $this->render(
                 TEMPLATE . 'include/breadcrumbs',
@@ -214,6 +224,357 @@ protected $model;
 
         }
 
+
+        /**
+         * Resolve route-aware public metadata from already loaded route data.
+         */
+        protected function applyRouteMetadata(array $vars = []): void
+        {
+            $controller = strtolower(
+                trim((string)$this->getController())
+            );
+            $data = isset($vars['data']) && is_array($vars['data'])
+                ? $vars['data']
+                : [];
+            $about = isset($vars['about']) && is_array($vars['about'])
+                ? $vars['about']
+                : [];
+            $contactsPage = isset($vars['contactsPage'])
+                && is_array($vars['contactsPage'])
+                    ? $vars['contactsPage']
+                    : [];
+            $mode = strtolower(
+                trim((string)($vars['mode'] ?? ''))
+            );
+
+            $plain = static function ($value): string {
+                if (!is_scalar($value)) {
+                    return '';
+                }
+
+                $text = html_entity_decode(
+                    strip_tags((string)$value),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+                $text = preg_replace('/\s+/u', ' ', $text);
+
+                return trim((string)$text);
+            };
+
+            $length = static function (string $value): int {
+                return function_exists('mb_strlen')
+                    ? mb_strlen($value, 'UTF-8')
+                    : strlen($value);
+            };
+
+            $slice = static function (
+                string $value,
+                int $start,
+                int $limit
+            ): string {
+                return function_exists('mb_substr')
+                    ? mb_substr($value, $start, $limit, 'UTF-8')
+                    : substr($value, $start, $limit);
+            };
+
+            $excerpt = static function (
+                $value,
+                int $limit = 155
+            ) use ($plain, $length, $slice): string {
+                $text = $plain($value);
+
+                if ($text === '') {
+                    return '';
+                }
+
+                if ($length($text) <= $limit) {
+                    return rtrim(
+                        $text,
+                        " \t\n\r\0\x0B,;:-"
+                    );
+                }
+
+                $candidate = $slice($text, 0, $limit + 1);
+                $candidate = preg_replace(
+                    '/\s+\S*$/u',
+                    '',
+                    $candidate
+                );
+                $candidate = rtrim(
+                    trim((string)$candidate),
+                    " \t\n\r\0\x0B,;:-"
+                );
+
+                if ($candidate === '') {
+                    $candidate = rtrim(
+                        $slice($text, 0, $limit),
+                        " \t\n\r\0\x0B,;:-"
+                    );
+                }
+
+                return $candidate . '…';
+            };
+
+            $first = static function (
+                array $values
+            ) use ($plain): string {
+                foreach ($values as $value) {
+                    $candidate = $plain($value);
+
+                    if ($candidate !== '') {
+                        return $candidate;
+                    }
+                }
+
+                return '';
+            };
+
+            $title = '';
+            $descriptionSource = '';
+            $fallbackDescription = '';
+
+            switch ($controller) {
+                case 'index':
+                    $title = $first([
+                        $this->set['name'] ?? '',
+                        'ForPrint',
+                    ]);
+                    $descriptionSource = $first([
+                        $this->set['description'] ?? '',
+                        $this->set['about_content'] ?? '',
+                        $this->set['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'ForPrint — прінт-студія повного циклу: '
+                        . 'поліграфія, брендування та рекламна продукція.';
+                    break;
+
+                case 'catalog':
+                    $title = $first([
+                        $data['name'] ?? '',
+                        'Каталог товарів',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['short_content'] ?? '',
+                        $data['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Перегляньте доступні товари та послуги ForPrint.';
+                    break;
+
+                case 'product':
+                    $title = $first([
+                        $data['name'] ?? '',
+                        'Товар',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['short_content'] ?? '',
+                        $data['content'] ?? '',
+                        $data['price_description'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Характеристики, варіанти виготовлення '
+                        . 'та замовлення у ForPrint.';
+                    break;
+
+                case 'news':
+                    $title = $first([
+                        $data['name'] ?? '',
+                        $mode === 'detail' ? 'Новина' : 'Новини',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['short_content'] ?? '',
+                        $data['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Новини та корисна інформація від ForPrint.';
+                    break;
+
+                case 'information':
+                    $title = $first([
+                        $data['name'] ?? '',
+                        'Інформація',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['short_content'] ?? '',
+                        $data['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Актуальна інформація від ForPrint.';
+                    break;
+
+                case 'about':
+                    $title = $first([
+                        $about['about_name'] ?? '',
+                        $about['name'] ?? '',
+                        $this->set['about_name'] ?? '',
+                        'Про нас',
+                    ]);
+                    $descriptionSource = $first([
+                        $about['description'] ?? '',
+                        $about['about_content'] ?? '',
+                        $about['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Про ForPrint, наші послуги та підхід до роботи.';
+                    break;
+
+                case 'contacts':
+                    $title = $first([
+                        $this->set['contacts_title'] ?? '',
+                        $contactsPage['name'] ?? '',
+                        'Контакти',
+                    ]);
+                    $descriptionSource = $first([
+                        $contactsPage['description'] ?? '',
+                        $this->set['contacts_intro'] ?? '',
+                        $contactsPage['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Контактна інформація ForPrint: телефон, '
+                        . 'email, адреса та графік роботи.';
+                    break;
+
+                case 'promotions':
+                    $title = $first([
+                        $data['name'] ?? '',
+                        $this->set['promotions_page_name'] ?? '',
+                        'Акції і пропозиції',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Актуальні акції та пропозиції ForPrint.';
+                    break;
+
+                case 'specialoffers':
+                    $title = $first([
+                        $data['name'] ?? '',
+                        $this->set['special_offers_page_name'] ?? '',
+                        'Спеціальні пропозиції',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Спеціальні товари та пропозиції ForPrint.';
+                    break;
+
+                default:
+                    $title = $first([
+                        $data['name'] ?? '',
+                        $this->set['name'] ?? '',
+                        'ForPrint',
+                    ]);
+                    $descriptionSource = $first([
+                        $data['description'] ?? '',
+                        $data['short_content'] ?? '',
+                        $data['content'] ?? '',
+                    ]);
+                    $fallbackDescription =
+                        'Інформація на сайті ForPrint.';
+                    break;
+            }
+
+            if ($title === '') {
+                $title = 'ForPrint';
+            }
+
+            $routeAlias = trim(
+                (string)($this->parameters['alias'] ?? '')
+            );
+
+            switch ($controller) {
+                case 'index':
+                    $title = 'ForPrint — прінт-студія повного циклу';
+                    break;
+
+                case 'catalog':
+                    $title .= $routeAlias !== ''
+                        ? ' — каталог | ForPrint'
+                        : ' | ForPrint';
+                    break;
+
+                case 'product':
+                    $title .= ' — замовити у ForPrint';
+                    break;
+
+                case 'news':
+                    $title .= $mode === 'detail'
+                        ? ' — новини ForPrint'
+                        : ' | ForPrint';
+                    break;
+
+                case 'information':
+                    $title .= ' | ForPrint';
+                    break;
+
+                case 'about':
+                case 'contacts':
+                case 'promotions':
+                case 'specialoffers':
+                    $title .= ' | ForPrint';
+                    break;
+
+                default:
+                    if (stripos($title, 'ForPrint') === false) {
+                        $title .= ' | ForPrint';
+                    }
+                    break;
+            }
+
+            $title = $excerpt($title, 90);
+
+            $description = $excerpt(
+                $descriptionSource,
+                155
+            );
+            $globalDescription = $plain(
+                $this->set['description'] ?? ''
+            );
+
+            if (
+                $controller !== 'index'
+                && (
+                    $description === ''
+                    || (
+                        $globalDescription !== ''
+                        && $description === $globalDescription
+                    )
+                    || $description === $title
+                )
+            ) {
+                $description = $fallbackDescription;
+            }
+
+            if ($description === '') {
+                $description = $fallbackDescription;
+            }
+
+            if (
+                $controller !== 'index'
+                && stripos($description, $title) === false
+            ) {
+                $description = $title
+                    . '. '
+                    . $description;
+            }
+
+            $this->title = $title;
+            $this->description = $excerpt(
+                $description,
+                160
+            );
+            $this->language = 'uk';
+        }
 
         /**
          * ForPrint canonical breadcrumbs v0.6.36
