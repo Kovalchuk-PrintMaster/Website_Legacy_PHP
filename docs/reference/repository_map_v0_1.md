@@ -127,3 +127,28 @@ production-only runtime secrets       separate non-Git configuration
 Bestname DNS                           authoritative public DNS control
 ```
 <!-- FP-PRODUCTION-RELEASE-MAP-V0-1-END -->
+
+<!-- FP-GOOGLE-BUSINESS-PROFILE-MAP-V0-1-START -->
+## Google Business Profile preparation workspace — 2026-07-30
+
+```text
+seo/google-business-profile/forprint/
+├── README.md
+├── profile-data.md
+├── media-manifest.csv
+├── .gitignore
+├── 01-logo/
+├── 02-cover/
+├── 03-entrance-and-sign/
+├── 04-production/
+├── 05-equipment/
+├── 06-team-at-work/
+├── 07-finished-products/
+├── 08-profile-texts/
+├── 09-services/
+└── 10-verification-evidence/
+```
+
+Raw preparation media are ignored from Git by default. Control files,
+manifests and directory placeholders are versioned.
+<!-- FP-GOOGLE-BUSINESS-PROFILE-MAP-V0-1-END -->

@@ -45,3 +45,15 @@ Google Tag Manager remains disabled until runtime activation is explicit.
 
 Checkpoint: `SEO.MEASURE.01C`.
 <!-- FP-WEBSITE-MEASUREMENT-CONTRACT-V0-1-END -->
+
+<!-- FP-GOOGLE-BUSINESS-PROFILE-V0-1-START -->
+## Google Business Profile preparation
+
+- [Transition plan](google_business_profile_transition_plan_v0_1.md)
+- [Current state snapshot](../status/snapshots/2026-07-30_google_business_profile_state_v0_1.md)
+- Preparation workspace: `../../seo/google-business-profile/forprint/`
+
+Current rule: keep Print Master active as the equipment/service business, keep
+Друкарня Smile active during preparation, and do not create a duplicate
+ForPrint profile before the permanent sign and Google-supported transition.
+<!-- FP-GOOGLE-BUSINESS-PROFILE-V0-1-END -->
