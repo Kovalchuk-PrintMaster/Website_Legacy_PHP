@@ -58,3 +58,20 @@ Local work only:
 - aggressive link acquisition;
 - HSTS;
 - broad paid-media expansion.
+
+<!-- FP-TWO-STAGE-FIRST-30-DAYS-V0-1-START -->
+## First 30 days — current scope update
+
+The first 30 days focus on:
+
+- market matrix for the current candidate pool;
+- 10–20 selected landing pages;
+- Google Business Profile review;
+- Search Console connection after DNS TXT verification;
+- Google Ads and Keyword Planner preparation;
+- conversion-signal definition;
+- no broad catalog redesign as a launch blocker.
+
+Category descriptions, labels and other missing commercial pages continue under
+Stage 2 of the canonical execution plan.
+<!-- FP-TWO-STAGE-FIRST-30-DAYS-V0-1-END -->

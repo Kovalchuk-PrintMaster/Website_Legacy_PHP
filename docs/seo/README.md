@@ -1,0 +1,31 @@
+# ForPrint SEO documentation
+
+## Canonical documents
+
+- `seo_growth_governance_architecture_v0_1.*`
+- `https_migration_and_canonical_origin_runbook_v0_1.*`
+- `analytics_measurement_and_attribution_policy_v0_1.*`
+- `search_ads_and_content_growth_roadmap_v0_1.*`
+- `near_term_search_growth_plan_v0_1.*`
+
+## Related existing policy
+
+`docs/architecture/search_visibility_and_web_quality_strategy_v0_1.md`
+remains the detailed search-quality strategy. This directory adds HTTPS,
+measurement, promotion operations and a concrete execution order.
+
+<!-- FP-TWO-STAGE-SEARCH-GROWTH-V0-1-START -->
+## Active two-stage search-growth execution plan
+
+- [Two-Stage Search Growth Execution Plan v0.1](two_stage_search_growth_execution_plan_v0_1.md)
+- [Machine-readable plan](two_stage_search_growth_execution_plan_v0_1.yaml)
+
+Current operating rule:
+
+```text
+Stage 1: launch the strongest existing pages and collect real demand signals.
+Stage 2: expand category structure, missing products, content and seasonal pages.
+```
+
+Immediate next checkpoint: `SEO.MARKET.01`.
+<!-- FP-TWO-STAGE-SEARCH-GROWTH-V0-1-END -->
