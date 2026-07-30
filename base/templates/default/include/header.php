@@ -1,11 +1,167 @@
+<?php
+/*
+ * Canonical frontend document metadata.
+ *
+ * Controllers may provide $this->title, $this->description and
+ * $this->language. The settings singleton supplies safe site-wide
+ * fallbacks until route-specific metadata is introduced.
+ */
+$fpSiteName = trim((string)($this->set['name'] ?? 'ForPrint'));
+
+if ($fpSiteName === '') {
+    $fpSiteName = 'ForPrint';
+}
+
+$fpPageTitle = isset($this->title)
+    ? trim((string)$this->title)
+    : '';
+
+$fpDocumentTitle = $fpPageTitle !== ''
+    ? $fpPageTitle
+    : $fpSiteName;
+
+if (
+    $fpPageTitle !== ''
+    && strcasecmp($fpPageTitle, $fpSiteName) !== 0
+) {
+    $fpDocumentTitle .= ' — ' . $fpSiteName;
+}
+
+$fpMetaDescription = isset($this->description)
+    ? trim((string)$this->description)
+    : trim((string)($this->set['description'] ?? ''));
+
+if ($fpMetaDescription === '') {
+    $fpMetaDescription = $fpDocumentTitle;
+}
+
+$fpDocumentLanguage = isset($this->language)
+    ? trim((string)$this->language)
+    : 'uk';
+
+if (
+    $fpDocumentLanguage === ''
+    || !preg_match(
+        '/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/',
+        $fpDocumentLanguage
+    )
+) {
+    $fpDocumentLanguage = 'uk';
+}
+
+$fpRequestPath = parse_url(
+    (string)($_SERVER['REQUEST_URI'] ?? '/'),
+    PHP_URL_PATH
+);
+
+if (!is_string($fpRequestPath) || $fpRequestPath === '') {
+    $fpRequestPath = '/';
+}
+
+/*
+ * Canonical URLs must be absolute.
+ *
+ * An absolute PATH value is preferred. The request origin is used only
+ * while the application still has a relative PATH, as on the technical
+ * preview. The host value is validated before it is rendered.
+ */
+$fpConfiguredBase = trim((string)PATH);
+$fpConfiguredParts = preg_match(
+    '#^https?://#i',
+    $fpConfiguredBase
+)
+    ? parse_url($fpConfiguredBase)
+    : false;
+
+$fpCanonicalOrigin = '';
+
+if (
+    is_array($fpConfiguredParts)
+    && !empty($fpConfiguredParts['scheme'])
+    && !empty($fpConfiguredParts['host'])
+) {
+    $fpCanonicalOrigin = strtolower(
+        (string)$fpConfiguredParts['scheme']
+    )
+        . '://'
+        . strtolower((string)$fpConfiguredParts['host']);
+
+    if (!empty($fpConfiguredParts['port'])) {
+        $fpCanonicalOrigin .= ':'
+            . (int)$fpConfiguredParts['port'];
+    }
+}
+
+if ($fpCanonicalOrigin === '') {
+    $fpRequestHost = strtolower(
+        trim(
+            (string)(
+                $_SERVER['SERVER_NAME']
+                ?? $_SERVER['HTTP_HOST']
+                ?? ''
+            )
+        )
+    );
+
+    $fpRequestPort = '';
+
+    if (
+        preg_match(
+            '/^(?<host>[a-z0-9.-]+)(?<port>:[0-9]{1,5})?$/D',
+            $fpRequestHost,
+            $fpHostMatch
+        )
+    ) {
+        $fpRequestHost = $fpHostMatch['host'];
+        $fpRequestPort = $fpHostMatch['port'] ?? '';
+    } else {
+        $fpRequestHost = 'forprint.net.ua';
+    }
+
+    $fpIsHttps = (
+        !empty($_SERVER['HTTPS'])
+        && strtolower((string)$_SERVER['HTTPS']) !== 'off'
+    )
+        || (int)($_SERVER['SERVER_PORT'] ?? 0) === 443;
+
+    $fpCanonicalOrigin = ($fpIsHttps ? 'https' : 'http')
+        . '://'
+        . $fpRequestHost
+        . $fpRequestPort;
+}
+
+$fpCanonicalUrl = rtrim($fpCanonicalOrigin, '/')
+    . '/'
+    . ltrim($fpRequestPath, '/');
+
+$fpEscape = static function (string $value): string {
+    return htmlspecialchars(
+        $value,
+        ENT_QUOTES | ENT_SUBSTITUTE,
+        'UTF-8'
+    );
+};
+?>
 <!doctype html>
-<html lang="ru">
+<html lang="<?= $fpEscape($fpDocumentLanguage) ?>">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <title><?= $fpEscape($fpDocumentTitle) ?></title>
+    <meta
+        name="description"
+        content="<?= $fpEscape($fpMetaDescription) ?>"
+    >
+    <link
+        rel="canonical"
+        href="<?= $fpEscape($fpCanonicalUrl) ?>"
+    >
+    <?php include __DIR__ . '/structuredData.php'; ?>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
