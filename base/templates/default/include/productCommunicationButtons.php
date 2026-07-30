@@ -1,5 +1,8 @@
 <?php
 
+require_once dirname(__DIR__, 3)
+    . '/libraries/CommunicationRequestSecurity.php';
+
 if (!function_exists('fp_product_comm_html')) {
     function fp_product_comm_html(mixed $value): string
     {
@@ -196,10 +199,16 @@ if (!function_exists('fp_render_product_communication_buttons')) {
         $productId = (int)($product['id'] ?? 0);
         $productName = (string)($product['name'] ?? '');
         $productUrl = (string)($_SERVER['REQUEST_URI'] ?? '');
+        $csrfToken = ForPrintCommunicationRequestSecurity::issueCsrfToken();
 
         ob_start();
         ?>
-        <section class="fp-product-communication" data-fp-product-communication>
+        <section
+            class="fp-product-communication"
+            data-fp-product-communication
+            data-fp-product-id="<?= $productId ?>"
+            data-fp-product-name="<?= fp_product_comm_html($productName) ?>"
+        >
             <div class="fp-product-communication__buttons">
                 <?php if ($telegramDirectUrl !== '' && is_array($telegramButton)): ?>
                     <a
@@ -236,6 +245,7 @@ if (!function_exists('fp_render_product_communication_buttons')) {
                 $intro = trim((string)($button['intro'] ?? ''));
                 $primaryLabel = trim((string)($button['primary_contact_label'] ?? 'Контакт'));
                 $phoneLabel = trim((string)($button['phone_label'] ?? 'Телефон'));
+                $idempotencyKey = ForPrintCommunicationRequestSecurity::issueIdempotencyKey();
                 ?>
                 <div
                     class="fp-product-communication-modal"
@@ -271,6 +281,8 @@ if (!function_exists('fp_render_product_communication_buttons')) {
                             data-fp-comm-form
                         >
                             <input type="hidden" name="mode" value="<?= fp_product_comm_html($alias) ?>">
+                            <input type="hidden" name="csrf_token" value="<?= fp_product_comm_html($csrfToken) ?>">
+                            <input type="hidden" name="idempotency_key" value="<?= fp_product_comm_html($idempotencyKey) ?>">
                             <input type="hidden" name="product_id" value="<?= $productId ?>">
                             <input type="hidden" name="product_name" value="<?= fp_product_comm_html($productName) ?>">
                             <input type="hidden" name="product_url" value="<?= fp_product_comm_html($productUrl) ?>">

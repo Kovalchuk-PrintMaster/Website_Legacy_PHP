@@ -29,3 +29,19 @@ Stage 2: expand category structure, missing products, content and seasonal pages
 
 Immediate next checkpoint: `SEO.MARKET.01`.
 <!-- FP-TWO-STAGE-SEARCH-GROWTH-V0-1-END -->
+
+<!-- FP-WEBSITE-MEASUREMENT-CONTRACT-V0-1-START -->
+## Website measurement contract
+
+- [Website Measurement Contract v0.1](website_measurement_contract_v0_1.md)
+
+Current rule:
+
+```text
+generate_lead fires only after a confirmed, non-duplicate stored request.
+No customer-entered personal data is sent to dataLayer.
+Google Tag Manager remains disabled until runtime activation is explicit.
+```
+
+Checkpoint: `SEO.MEASURE.01C`.
+<!-- FP-WEBSITE-MEASUREMENT-CONTRACT-V0-1-END -->

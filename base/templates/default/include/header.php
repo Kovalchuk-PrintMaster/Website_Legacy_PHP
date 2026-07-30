@@ -141,11 +141,59 @@ $fpEscape = static function (string $value): string {
         'UTF-8'
     );
 };
+
+/*
+ * ForPrint measurement runtime gate v0.1.
+ *
+ * The container remains disabled until both runtime values are present.
+ * No analytics identifier is stored in the repository.
+ */
+$fpMeasurementEnabled = getenv('FP_WEB_MEASUREMENT_ENABLED') === '1';
+$fpGtmContainerId = trim((string)getenv('FP_WEB_GTM_CONTAINER_ID'));
+
+if (
+    !$fpMeasurementEnabled
+    || !preg_match('/^GTM-[A-Z0-9]+$/', $fpGtmContainerId)
+) {
+    $fpGtmContainerId = '';
+}
 ?>
 <!doctype html>
 <html lang="<?= $fpEscape($fpDocumentLanguage) ?>">
 
 <head>
+    <?php if ($fpGtmContainerId !== ''): ?>
+        <!-- Google Tag Manager: runtime-configured and explicitly enabled. -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var firstScript = d.getElementsByTagName(s)[0];
+                var tagScript = d.createElement(s);
+                var layerQuery = l !== 'dataLayer'
+                    ? '&l=' + l
+                    : '';
+                tagScript.async = true;
+                tagScript.src = 'https://www.googletagmanager.com/gtm.js?id='
+                    + i
+                    + layerQuery;
+                firstScript.parentNode.insertBefore(
+                    tagScript,
+                    firstScript
+                );
+            })(
+                window,
+                document,
+                'script',
+                'dataLayer',
+                '<?= $fpEscape($fpGtmContainerId) ?>'
+            );
+        </script>
+        <!-- End Google Tag Manager. -->
+    <?php endif; ?>
     <meta charset="UTF-8">
     <meta
         name="viewport"
@@ -174,10 +222,24 @@ $fpEscape = static function (string $value): string {
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-search-submit.js?v=20260724-0910"></script>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-header-popover.js?v=20260724-0649"></script>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
-    <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260723-0648"></script>
+    <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260730-1618"></script>
+    <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260730-1618"></script>
 </head>
 
 <body class="fp-public-page">
+<?php if ($fpGtmContainerId !== ''): ?>
+    <!-- Google Tag Manager (noscript). -->
+    <noscript>
+        <iframe
+            src="https://www.googletagmanager.com/ns.html?id=<?= $fpEscape($fpGtmContainerId) ?>"
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+            title="Google Tag Manager"
+        ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript). -->
+<?php endif; ?>
 <?php
 /* ForPrint right-rail controls v0.6.43 */
 

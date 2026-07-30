@@ -3,6 +3,115 @@
 
     var fpCommunicationCloseTimer = null;
 
+    function measurementContext(form, channelOverride) {
+        if (
+            window.ForPrintMeasurement
+            && typeof window.ForPrintMeasurement.contextFromForm === 'function'
+        ) {
+            return window.ForPrintMeasurement.contextFromForm(
+                form,
+                channelOverride || ''
+            );
+        }
+
+        return {};
+    }
+
+    function measurementPush(eventName, parameters) {
+        if (
+            window.ForPrintMeasurement
+            && typeof window.ForPrintMeasurement.push === 'function'
+        ) {
+            window.ForPrintMeasurement.push(
+                eventName,
+                parameters || {}
+            );
+        }
+    }
+
+    function measurementMerge(context, extra) {
+        if (
+            window.ForPrintMeasurement
+            && typeof window.ForPrintMeasurement.mergeContext === 'function'
+        ) {
+            return window.ForPrintMeasurement.mergeContext(
+                context || {},
+                extra || {}
+            );
+        }
+
+        var result = {};
+        var key;
+
+        for (key in context) {
+            if (Object.prototype.hasOwnProperty.call(context, key)) {
+                result[key] = context[key];
+            }
+        }
+
+        for (key in extra) {
+            if (Object.prototype.hasOwnProperty.call(extra, key)) {
+                result[key] = extra[key];
+            }
+        }
+
+        return result;
+    }
+
+    function measurementTrackFormOpen(form, channelOverride) {
+        if (
+            window.ForPrintMeasurement
+            && typeof window.ForPrintMeasurement.trackFormOpen === 'function'
+        ) {
+            window.ForPrintMeasurement.trackFormOpen(
+                form,
+                channelOverride || ''
+            );
+        }
+    }
+
+    function createIdempotencyKey() {
+        if (
+            window.crypto
+            && typeof window.crypto.randomUUID === 'function'
+        ) {
+            return window.crypto.randomUUID().replace(/-/g, '');
+        }
+
+        if (
+            window.crypto
+            && typeof window.crypto.getRandomValues === 'function'
+        ) {
+            var bytes = new Uint8Array(24);
+            window.crypto.getRandomValues(bytes);
+
+            return Array.prototype.map.call(
+                bytes,
+                function (value) {
+                    return value.toString(16).padStart(2, '0');
+                }
+            ).join('');
+        }
+
+        return String(Date.now())
+            + String(Math.random()).replace(/\D/g, '')
+            + String(Math.random()).replace(/\D/g, '');
+    }
+
+    function refreshIdempotencyKey(form) {
+        if (!form) {
+            return;
+        }
+
+        var field = form.querySelector(
+            'input[name="idempotency_key"]'
+        );
+
+        if (field) {
+            field.value = createIdempotencyKey();
+        }
+    }
+
     function clearSuccessCloseTimer() {
         if (fpCommunicationCloseTimer) {
             window.clearTimeout(fpCommunicationCloseTimer);
@@ -209,6 +318,11 @@
                 resetFormStatus(modal);
                 modal.hidden = false;
                 focusFirstField(modal);
+
+                measurementTrackFormOpen(
+                    modal.querySelector('[data-fp-comm-form]'),
+                    openButton.getAttribute('data-fp-comm-open') || ''
+                );
             }
 
             return;
@@ -236,6 +350,10 @@
         event.preventDefault();
         clearSuccessCloseTimer();
 
+        if (form.dataset.fpCommSubmitting === '1') {
+            return;
+        }
+
         var status = form.querySelector('[data-fp-comm-status]');
         var submitter = event.submitter || null;
         var submitButtons = form.querySelectorAll(
@@ -259,12 +377,22 @@
                 'Вкажіть хоча б один контакт для звʼязку.'
             );
 
+            measurementPush(
+                'lead_submit_error',
+                measurementMerge(
+                    measurementContext(form, ''),
+                    {error_category: 'missing_contact'}
+                )
+            );
+
             if (primaryContact) {
                 primaryContact.focus();
             }
 
             return;
         }
+
+        form.dataset.fpCommSubmitting = '1';
 
         var formData = new FormData(form);
         var submitMode = submitter
@@ -322,6 +450,17 @@
                         warningMessage
                     );
 
+                    measurementPush(
+                        'lead_submit_error',
+                        measurementMerge(
+                            measurementContext(form, submitMode),
+                            {
+                                error_category:
+                                    'phone_confirmation_required'
+                            }
+                        )
+                    );
+
                     if (phoneField) {
                         phoneField.focus();
                     }
@@ -330,14 +469,36 @@
                 }
 
                 if (!payload || !payload.ok) {
-                    throw new Error(
+                    var responseError = new Error(
                         payload && payload.message
                             ? payload.message
                             : 'Не вдалося відправити запит'
                     );
+                    responseError.fpMeasurementCategory =
+                        'server_rejected';
+
+                    throw responseError;
                 }
 
                 clearPhoneWarning(form, phoneField);
+
+                if (
+                    !payload.duplicate
+                    && Number(payload.request_id || 0) > 0
+                ) {
+                    measurementPush(
+                        'generate_lead',
+                        measurementMerge(
+                            measurementContext(form, submitMode),
+                            {
+                                delivery_state:
+                                    payload.delivery_completed
+                                        ? 'sent'
+                                        : 'stored'
+                            }
+                        )
+                    );
+                }
 
                 showStatus(
                     status,
@@ -348,6 +509,7 @@
                 );
 
                 form.reset();
+                refreshIdempotencyKey(form);
 
                 if (form.closest('[data-fp-home-feedback]')) {
                     scheduleStatusHide(status, 1200);
@@ -361,6 +523,18 @@
                     error
                 );
 
+                measurementPush(
+                    'lead_submit_error',
+                    measurementMerge(
+                        measurementContext(form, submitMode),
+                        {
+                            error_category:
+                                error.fpMeasurementCategory
+                                || 'network_or_response'
+                        }
+                    )
+                );
+
                 showStatus(
                     status,
                     'error',
@@ -370,6 +544,8 @@
                 );
             })
             .finally(function () {
+                delete form.dataset.fpCommSubmitting;
+
                 submitButtons.forEach(function (button) {
                     button.disabled = false;
                 });
