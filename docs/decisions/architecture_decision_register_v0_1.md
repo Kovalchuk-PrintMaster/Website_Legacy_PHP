@@ -14,7 +14,7 @@
 | `FP-WEB-ADR-007` | Old `ValidationHelper` не видаляти без migration consumers | accepted |
 | `FP-WEB-ADR-008` | International phones через `libphonenumber-for-php-lite` | accepted, pending |
 | `FP-WEB-ADR-009` | Unusual phone — soft warning + second submit | accepted, pending |
-| `FP-WEB-ADR-010` | `tmp.php`/`tmp.py` — scratch entrypoints | accepted |
+| `FP-WEB-ADR-010` | `tmp/work/tmp.php`/`tmp/work/tmp.py` — scratch entrypoints | accepted |
 | `FP-WEB-ADR-011` | Snapshots і plans версіюються окремими files | accepted |
 | `FP-WEB-ADR-012` | Reports — evidence, docs — explanation | accepted |
 | `FP-WEB-ADR-013` | Cards use cover-crop; gallery preserves fuller image | accepted |
@@ -45,3 +45,15 @@
 **Status:** accepted working architecture decision
 **Record:** `docs/decisions/2026-07-20__canonical_frontend_css_ownership_and_homepage_layout.md`
 <!-- FP-FRONTEND-DOCS-V02-END -->
+
+<!-- FP-PRODUCTION-RELEASE-ADR-V0-1-START -->
+## FP-WEB-ADR-2026-07-30-001
+
+**Decision:** s01 source of truth and controlled production mirror
+**Status:** accepted
+**Record:** `docs/decisions/2026-07-30__s01_source_of_truth_and_controlled_production_mirror.md`
+
+Normal publication requires a reviewed local commit, exact release archive,
+production baseline verification, private backup, manifest-scoped deployment,
+production validation and rollback on failure.
+<!-- FP-PRODUCTION-RELEASE-ADR-V0-1-END -->

@@ -12,7 +12,7 @@
 
 - архітектуру репозиторію і runtime;
 - межі legacy та модернізованих компонентів;
-- робочий процес через Debian terminal, `tmp.php` і `tmp.py`;
+- робочий процес через Debian terminal, `tmp/work/tmp.php` і `tmp/work/tmp.py`;
 - стан розробки на 2026-07-16;
 - план мінімально безпечної публікації;
 - прийняті рішення, які не треба щоразу обговорювати заново.
@@ -106,3 +106,17 @@
 - [Deployment and Mirroring Policy v0.1](workflow/deployment_and_mirroring_policy_v0_1.md)
 - [Notification Delivery Architecture v0.1](architecture/notification_delivery_architecture_v0_1.md)
 <!-- FP_DEPLOY_NOTIFICATION_DOCS_V0_1_END -->
+
+- Repository-root and runtime layout: `architecture/repository_root_and_runtime_layout_v0_1.md`.
+
+<!-- FP-PRODUCTION-RELEASE-DOCS-V0-1-START -->
+## Production release and recovery
+
+- [Production Release and Recovery Runbook v0.1](workflow/production_release_and_recovery_runbook_v0_1.md)
+- [Decision: s01 Source of Truth and Controlled Production Mirror](decisions/2026-07-30__s01_source_of_truth_and_controlled_production_mirror.md)
+- [Production Release State — 2026-07-30](status/snapshots/2026-07-30_production_release_state_v0_1.md)
+
+The `s01` Git repository is authoritative for versioned website code.
+Production is a controlled mirror. Database, uploaded media, DNS and
+production-only secrets are separate state classes.
+<!-- FP-PRODUCTION-RELEASE-DOCS-V0-1-END -->

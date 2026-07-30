@@ -41,8 +41,8 @@
 │   └── windows/
 ├── Makefile
 ├── README.md
-├── tmp.php
-└── tmp.py
+├── tmp/work/tmp.php
+└── tmp/work/tmp.py
 ```
 
 ## Семантика
@@ -105,3 +105,25 @@ Target homepage slider media namespace:
 base/userfiles/frontend/home/slider/
 ```
 <!-- FP-FRONTEND-DOCS-V02-END -->
+
+<!-- FP-PRODUCTION-RELEASE-MAP-V0-1-START -->
+## Production release and recovery documentation
+
+```text
+docs/workflow/production_release_and_recovery_runbook_v0_1.md
+docs/decisions/2026-07-30__s01_source_of_truth_and_controlled_production_mirror.md
+docs/status/snapshots/2026-07-30_production_release_state_v0_1.md
+scripts/inspection/check_website_production_release_docs.py
+tmp/releases/                       generated release archives and safe reports
+```
+
+Source-of-truth boundary:
+
+```text
+s01 Git repository                    versioned code/docs/tooling authority
+production hosting webroot            controlled code mirror
+production database and userfiles     separate state; not overwritten by code release
+production-only runtime secrets       separate non-Git configuration
+Bestname DNS                           authoritative public DNS control
+```
+<!-- FP-PRODUCTION-RELEASE-MAP-V0-1-END -->
