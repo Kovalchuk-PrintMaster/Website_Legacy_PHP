@@ -1,0 +1,8 @@
+priority,plan_id,slug,topic,location,positive_keywords,negative_keywords,forecast_avg_cpc_uah,forecast_clicks,forecast_cost_uah,modelled_conversions,modelled_cpa_uah,research_status,launch_status
+1,FP-ADS-RESEARCH-04-LABELS-STICKERS-UA-CLEAN,04-labels-and-stickers,"Наліпки, стікери та етикетки",Ukraine,27,55,7.44,241.80,1800.00,12,150.00,research-complete,first-candidate-not-approved
+2,FP-ADS-RESEARCH-06-BUSINESS-CARDS-FLYERS-UA,06-business-cards-flyers,"Візитки, листівки та флаєри",Ukraine,18,47,9.10,197.81,1800.00,18,99.00,research-complete,second-candidate-not-approved
+3,FP-ADS-RESEARCH-01-BADGES-UA,01-badges-and-lanyards,"Бейджі, стрічки, ланьярди та ретрактори",Ukraine,15,29,40.33,46.12,1860.00,2,1100.00,research-complete,not-approved
+4,FP-ADS-RESEARCH-02-WINDOW-BRANDING-KYIV,02-window-branding,"Брендування вітрин, вікон і графік роботи на склі",Kyiv,13,41,,,,,,research-complete-forecast-pending,not-approved
+5,FP-ADS-RESEARCH-05-SIGNS-LIGHTBOXES-KYIV,05-signs-lightboxes-led-neon,"Вивіски, лайтбокси, об’ємні літери та LED-неон",Kyiv,41,61,32.15,55.99,1800.00,3,620.00,research-complete,high-value-test-not-approved
+6,FP-ADS-RESEARCH-07-BOOKLETS-CATALOGS-UA,07-booklets-brochures-catalogs,"Буклети, брошури та каталоги",Ukraine,20,41,21.62,83.24,1800.00,5,370.00,research-complete,not-approved
+7,FP-ADS-RESEARCH-03-MENUS-UA,03-menus,Дизайн і друк меню,Ukraine,19,45,51.42,17.89,919.67,0,3700.00,research-complete,not-approved

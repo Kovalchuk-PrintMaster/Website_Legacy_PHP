@@ -440,3 +440,22 @@ seo/google-business-profile/forprint/
 The profile transition is not a blocker for technical SEO, Search Console,
 market analysis, conversion measurement or the 14-page launch package.
 <!-- FP-GOOGLE-BUSINESS-PROFILE-EXECUTION-V0-1-END -->
+
+<!-- FP-GOOGLE-ADS-EXECUTION-V0-1-START -->
+## ADS.RESEARCH.02 current state
+
+Keyword Planner research is complete for seven directions. Current execution
+order:
+
+```text
+normalize research
+→ prepare labels/stickers landing page
+→ activate and test Ads conversion measurement
+→ create one paused Search campaign
+→ manual review and budget approval
+→ controlled launch
+```
+
+First candidate: labels/stickers/product labels.
+Second candidate: business cards/leaflets/flyers.
+<!-- FP-GOOGLE-ADS-EXECUTION-V0-1-END -->

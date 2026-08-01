@@ -1,0 +1,23 @@
+plan_slug,ad_group,landing_page_title,production_url,status,notes
+01-badges-and-lanyards,Бейджі на замовлення,Персоналізовані бейджі для персоналу,,ready-title-url-to-confirm,Use the exact production URL before campaign creation.
+01-badges-and-lanyards,Бейджі з віконцем,Багаторазові бейджі з віконцем,,ready-title-url-to-confirm,
+01-badges-and-lanyards,Пластикові бейджі,Пластикові бейджі,,ready-title-url-to-confirm,
+01-badges-and-lanyards,Стрічки та ланьярди,Брендовані стрічки для бейджів,,ready-title-url-to-confirm,
+01-badges-and-lanyards,Ретрактори,Ланьярди з ретрактором,,ready-title-url-to-confirm,
+02-window-branding,Графік роботи,Оформлення графіка роботи на склі,,ready-title-url-to-confirm,Kyiv local service.
+02-window-branding,Часткова поклейка,Брендування вікон частковою поклейкою,,ready-title-url-to-confirm,Kyiv local service.
+02-window-branding,Перфорована плівка,Брендування вікон перфорованою плівкою,,ready-title-url-to-confirm,Kyiv local service.
+02-window-branding,Непрозора плівка,Суцільне брендування вікон непрозорою плівкою,,ready-title-url-to-confirm,Kyiv local service.
+03-menus,Односторінкове меню,Односторінкове меню,,ready-title-url-to-confirm,Delivery throughout Ukraine.
+03-menus,Меню на кільцях,Багатосторінкове меню на кільцях,,ready-title-url-to-confirm,
+03-menus,Меню на пружині,Багатосторінкове меню на пружині,,ready-title-url-to-confirm,
+04-labels-and-stickers,Наліпки та етикетки,Canonical labels/stickers landing page,,landing-page-required,Highest-priority first test; do not launch before a dedicated page is approved.
+05-signs-lightboxes-led-neon,Фасадні таблички,Фасадні таблички,,ready-title-url-to-confirm,Kyiv local service.
+05-signs-lightboxes-led-neon,Світлові вивіски,Фасадна світлова вивіска,,controlled-high-value-test,Kyiv local service.
+05-signs-lightboxes-led-neon,LED-неон,Dedicated LED/flexible-neon landing page,,landing-page-required,Glass gas-discharge neon is not offered.
+06-business-cards-flyers,Візитки,Current business-card page,,url-and-content-review-required,Delivery throughout Ukraine.
+06-business-cards-flyers,Листівки,Current leaflet page,,url-and-content-review-required,
+06-business-cards-flyers,Флаєри,Current flyer page,,url-and-content-review-required,
+07-booklets-brochures-catalogs,Буклети,Current booklet page,,url-and-content-review-required,Delivery throughout Ukraine.
+07-booklets-brochures-catalogs,Брошури,Current brochure page,,url-and-content-review-required,
+07-booklets-brochures-catalogs,Каталоги,Current catalogue page,,url-and-content-review-required,

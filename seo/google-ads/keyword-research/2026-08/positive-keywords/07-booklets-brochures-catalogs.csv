@@ -1,0 +1,21 @@
+keyword,language,recommended_match_type,avg_monthly_searches,competition,competition_index,bid_low_uah,bid_high_uah,status
+брошури на замовлення,uk-or-neutral,phrase,,,,,,approved-research-set
+брошюры на заказ,ru,phrase,50.0,High,71,,,approved-research-set
+буклети на замовлення,uk-or-neutral,phrase,,,,,,approved-research-set
+буклеты на заказ,ru,phrase,50.0,High,100,,,approved-research-set
+виготовлення брошур,uk-or-neutral,phrase,,,,,,approved-research-set
+виготовлення буклетів,uk-or-neutral,phrase,50.0,High,97,8.68,15.31,approved-research-set
+виготовлення каталогів,uk-or-neutral,phrase,50.0,Low,0,,,approved-research-set
+друк брошур,uk-or-neutral,phrase,50.0,High,100,7.38,35.84,approved-research-set
+друк буклетів,uk-or-neutral,phrase,50.0,High,81,9.98,28.13,approved-research-set
+друк каталогів,uk-or-neutral,phrase,50.0,High,100,19.98,59.38,approved-research-set
+друк презентаційних каталогів,uk-or-neutral,phrase,,,,,,approved-research-set
+изготовление брошюр,uk-or-neutral,phrase,50.0,Low,10,,,approved-research-set
+изготовление буклетов,uk-or-neutral,phrase,50.0,High,67,,,approved-research-set
+изготовление каталогов,uk-or-neutral,phrase,50.0,,,,,approved-research-set
+каталоги на заказ,uk-or-neutral,phrase,50.0,,,,,approved-research-set
+каталоги на замовлення,uk-or-neutral,phrase,,,,,,approved-research-set
+печать брошюр,uk-or-neutral,phrase,50.0,High,80,10.20,36.71,approved-research-set
+печать буклетов,uk-or-neutral,phrase,50.0,High,98,10.01,32.88,approved-research-set
+печать каталогов,uk-or-neutral,phrase,50.0,High,99,16.33,49.89,approved-research-set
+печать презентационных каталогов,ru,phrase,,,,,,approved-research-set

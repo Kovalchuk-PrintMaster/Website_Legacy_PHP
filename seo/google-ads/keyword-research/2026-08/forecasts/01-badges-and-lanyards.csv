@@ -1,0 +1,2 @@
+plan_id,forecast_period,location,daily_budget_uah,clicks,impressions,cost_uah,ctr,avg_cpc_uah,modelled_conversion_rate,modelled_conversions,modelled_cpa_uah,source_file,status,notes
+FP-ADS-RESEARCH-01-BADGES-UA,2026-08,Ukraine,60.00,46.12,554.97,1860.00,8.3%,40.33,3.54%,2,1100.00,01-badges-forecast.csv,captured,Google Keyword Planner model; not actual ForPrint performance and not a budget approval.

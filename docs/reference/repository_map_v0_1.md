@@ -152,3 +152,25 @@ seo/google-business-profile/forprint/
 Raw preparation media are ignored from Git by default. Control files,
 manifests and directory placeholders are versioned.
 <!-- FP-GOOGLE-BUSINESS-PROFILE-MAP-V0-1-END -->
+
+<!-- FP-GOOGLE-ADS-RESEARCH-MAP-V0-1-START -->
+## Google Ads research workspace — 2026-08
+
+```text
+seo/google-ads/keyword-research/2026-08/
+├── README.md
+├── research-register.csv
+├── campaign-priority.md
+├── landing-page-map.md
+├── landing-page-map.csv
+├── launch-gates.md
+├── conditional-negative-keywords.md
+├── raw-export-register.csv
+├── positive-keywords/
+├── negative-keywords/
+├── forecasts/
+└── raw-exports/
+```
+
+Normalized research is versioned. Raw Google exports are local ignored evidence.
+<!-- FP-GOOGLE-ADS-RESEARCH-MAP-V0-1-END -->

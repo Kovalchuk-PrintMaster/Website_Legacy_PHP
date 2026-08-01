@@ -57,3 +57,11 @@ Normal publication requires a reviewed local commit, exact release archive,
 production baseline verification, private backup, manifest-scoped deployment,
 production validation and rollback on failure.
 <!-- FP-PRODUCTION-RELEASE-ADR-V0-1-END -->
+
+<!-- FP-GOOGLE-ADS-ADR-V0-1-START -->
+## FP-ADS-ADR-2026-08-01-001
+
+**Decision:** version normalized Google Ads research and gate all advertising spend
+**Status:** accepted working decision
+**Record:** `2026-08-01__google_ads_research_workspace_and_launch_gate.md`
+<!-- FP-GOOGLE-ADS-ADR-V0-1-END -->

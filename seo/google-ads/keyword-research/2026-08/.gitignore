@@ -1,0 +1,5 @@
+# Raw Google Ads exports are local evidence, not versioned source.
+raw-exports/*.csv
+raw-exports/*.tsv
+raw-exports/*.xlsx
+raw-exports/*.zip

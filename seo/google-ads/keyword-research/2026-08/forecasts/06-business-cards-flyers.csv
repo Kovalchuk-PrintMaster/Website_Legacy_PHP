@@ -1,0 +1,2 @@
+plan_id,forecast_period,location,daily_budget_uah,clicks,impressions,cost_uah,ctr,avg_cpc_uah,modelled_conversion_rate,modelled_conversions,modelled_cpa_uah,source_file,status,notes
+FP-ADS-RESEARCH-06-BUSINESS-CARDS-FLYERS-UA,2026-09,Ukraine,60.00,197.81,4056.37,1800.00,4.9%,9.10,9.23%,18,99.00,06-business-cards-flyers-forecast.csv,captured,Google Keyword Planner model; not actual ForPrint performance and not a budget approval.
