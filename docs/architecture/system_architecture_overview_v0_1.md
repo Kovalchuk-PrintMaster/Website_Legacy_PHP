@@ -87,7 +87,7 @@ Endpoint навмисно не залежить від legacy controller traits.
 - `scripts/maintenance/` — контрольовані зміни;
 - `coordination/` — evidence і short status;
 - `docs/` — довгоживучі пояснення;
-- `tmp.php`, `tmp.py` — тимчасові operator entrypoints.
+- `tmp/work/tmp.php`, `tmp/work/tmp.py` — тимчасові operator entrypoints.
 
 ## 4. Напрямок розвитку
 

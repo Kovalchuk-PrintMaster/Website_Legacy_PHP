@@ -2,7 +2,8 @@
 
        <section class="offers fp-home-product-groups">
         <div class="offers__tabs fp-home-product-groups__tabs">
-            <ul class="offers__tabs_header fp-home-product-groups__tablist">
+            <div class="fp-home-product-groups__band">
+                <ul class="offers__tabs_header fp-home-product-groups__tablist fp-layout-container">
 
 <!--                Slide bar "Hits Goods"-->
                 <?php $activeItem = -1?>
@@ -20,7 +21,8 @@
 
                 <?php endforeach; ?>
 
-            </ul>
+                </ul>
+            </div>
 
             <!--                Slide bar "Hits Goods"-->
 

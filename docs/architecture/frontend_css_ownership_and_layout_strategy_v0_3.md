@@ -249,3 +249,22 @@ A component is accepted only when:
 - slider media upload/renaming/compression is not yet migrated to the homepage media namespace;
 - PHP 8.2 warning cleanup remains separate from CSS architecture;
 - final publication/deployment has not occurred.
+
+<!-- FP_FOUNDATION_OWNERSHIP_2026_08_06_START -->
+## Foundation ownership extension — 2026-08-06
+
+The canonical project-owned layers are:
+
+| File | Ownership |
+|---|---|
+| `forprint-tokens.css` | primitive design tokens |
+| `forprint-theme-default.css` | default theme token mapping |
+| `forprint-foundation.css` | shared primitives and controls |
+| `forprint-layout.css` | global geometry and containers |
+| `forprint-page-structure.css` | shared page title and breadcrumb rhythm |
+| `forprint-shell.css` | header, footer, utility rail and shell interactions |
+
+Surface files continue to own only their own page/component presentation.
+The inherited `style.css` remains fallback-only and must not receive new
+project-owned foundation rules.
+<!-- FP_FOUNDATION_OWNERSHIP_2026_08_06_END -->

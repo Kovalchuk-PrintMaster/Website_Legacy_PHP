@@ -19,3 +19,11 @@
 
 - [Canonical frontend CSS ownership and homepage layout](2026-07-20__canonical_frontend_css_ownership_and_homepage_layout.md)
 <!-- FP-FRONTEND-DOCS-V02-END -->
+
+<!-- FP_DECISION_2026_08_06_FRONTEND_CHECKPOINT_START -->
+## 2026-08-06
+
+- `2026-08-06__frontend-foundation-stable-checkpoint-and-next-stage.md`
+  accepts an exact application/frontend checkpoint boundary and keeps
+  SEO/Ads research, secrets and scratch artifacts outside the commit.
+<!-- FP_DECISION_2026_08_06_FRONTEND_CHECKPOINT_END -->

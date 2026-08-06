@@ -788,3 +788,29 @@ button.fp-product-communication-form__mode-button:disabled {
     height: 30px !important;
     margin: 0 !important;
 }
+
+/* FP_PRODUCT_COMM_FIXED_ICON_COLUMN_05G11B
+ * All icons use one fixed column. Labels are centered in the remaining area.
+ */
+.fp-product-communication__button {
+    display: grid !important;
+    grid-template-columns: 3.5rem minmax(0, 1fr) !important;
+    align-items: center !important;
+    column-gap: 0 !important;
+    padding-inline: 1rem !important;
+}
+
+.fp-product-communication__button > .fp-product-communication__icon,
+.fp-product-communication__button > .fp-product-communication__icon-placeholder {
+    grid-column: 1;
+    justify-self: center;
+    transform: translateX(-5px);
+}
+
+.fp-product-communication__button > span:not(.fp-product-communication__icon-placeholder) {
+    grid-column: 2;
+    justify-self: stretch;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+}

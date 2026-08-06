@@ -16,6 +16,54 @@ if(!empty($data)):?>
 
     $galleryTotal = 1 + count($galleryImages);
     $galleryHasMoreThumbs = $galleryTotal > 3;
+
+    /* FP_PHASE_1_2_EDITORIAL_MOSAIC_DATA_START */
+    /*
+     * The canonical gallery contract is an array of relative image paths.
+     * Reuse the same image resolver as the main product gallery.
+     */
+    $fpEditorialMosaicImages = [];
+    $fpEditorialMosaicSeen = [];
+
+    $fpEditorialMosaicSources = array_merge(
+        [(string)($data['img'] ?? '')],
+        is_array($galleryImages) ? $galleryImages : []
+    );
+
+    foreach ($fpEditorialMosaicSources as $fpEditorialMosaicSource) {
+        $fpEditorialMosaicPath = trim(
+            (string)$fpEditorialMosaicSource
+        );
+
+        if (
+            $fpEditorialMosaicPath === ''
+            || isset($fpEditorialMosaicSeen[$fpEditorialMosaicPath])
+        ) {
+            continue;
+        }
+
+        $fpEditorialMosaicSeen[$fpEditorialMosaicPath] = true;
+        $fpEditorialMosaicImages[] = $this->img(
+            $fpEditorialMosaicPath
+        );
+    }
+
+    $fpEditorialMosaicVisible = array_slice(
+        $fpEditorialMosaicImages,
+        0,
+        3
+    );
+
+    $fpEditorialMosaicOverflow = max(
+        0,
+        count($fpEditorialMosaicImages)
+        - count($fpEditorialMosaicVisible)
+    );
+
+    $fpEditorialMosaicTitle = trim(
+        (string)($data['name'] ?? '')
+    );
+    /* FP_PHASE_1_2_EDITORIAL_MOSAIC_DATA_END */
 ?>
 
 <div class="container fp-layout-container fp-page-heading">
@@ -342,6 +390,108 @@ if(!empty($data)):?>
                 <?= $isActiveTab ? '' : 'hidden' ?>
             >
                 <div class="fp-product-details-tabs__content-body">
+                    <?php /* FP_PHASE_1_2_EDITORIAL_MOSAIC_MARKUP_START */ ?>
+                    <?php if (
+                        $rawTabKey === 'details'
+                        && count($fpEditorialMosaicVisible) > 1
+                    ): ?>
+                        <aside
+                            class="fp-product-detail-mosaic"
+                            aria-label="Фотографії товару"
+                        >
+                            <div class="fp-product-detail-mosaic__label">
+                                Деталі виробу
+                            </div>
+
+                            <div class="fp-product-detail-mosaic__grid">
+                                <?php foreach (
+                                    $fpEditorialMosaicVisible
+                                    as $fpEditorialMosaicIndex
+                                    => $fpEditorialMosaicImage
+                                ): ?>
+                                    <?php
+                                        $fpEditorialMosaicAlt =
+                                            $fpEditorialMosaicTitle !== ''
+                                                ? $fpEditorialMosaicTitle
+                                                    . ' — фото '
+                                                    . (
+                                                        $fpEditorialMosaicIndex
+                                                        + 1
+                                                    )
+                                                : 'Фото товару '
+                                                    . (
+                                                        $fpEditorialMosaicIndex
+                                                        + 1
+                                                    );
+                                    ?>
+                                    <figure
+                                        class="
+                                            fp-product-detail-mosaic__item
+                                            fp-product-detail-mosaic__item--<?=
+                                                $fpEditorialMosaicIndex + 1
+                                            ?>
+                                        "
+                                    >
+                                        <a
+                                            class="
+                                                fp-product-detail-mosaic__link
+                                            "
+                                            href="<?=htmlspecialchars(
+                                                (string)$fpEditorialMosaicImage,
+                                                ENT_QUOTES,
+                                                'UTF-8'
+                                            )?>"
+                                            data-fancybox="gallery"
+                                            aria-label="<?=htmlspecialchars(
+                                                $fpEditorialMosaicAlt,
+                                                ENT_QUOTES,
+                                                'UTF-8'
+                                            )?>"
+                                        >
+                                            <img
+                                                class="
+                                                    fp-product-detail-mosaic__image
+                                                "
+                                                src="<?=htmlspecialchars(
+                                                    (string)$fpEditorialMosaicImage,
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                )?>"
+                                                alt="<?=htmlspecialchars(
+                                                    $fpEditorialMosaicAlt,
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                )?>"
+                                                loading="lazy"
+                                            >
+
+                                            <span
+                                                class="
+                                                    fp-product-detail-mosaic__shade
+                                                "
+                                                aria-hidden="true"
+                                            ></span>
+
+                                            <?php if (
+                                                $fpEditorialMosaicIndex === 2
+                                                && $fpEditorialMosaicOverflow > 0
+                                            ): ?>
+                                                <span
+                                                    class="
+                                                        fp-product-detail-mosaic__badge
+                                                    "
+                                                >
+                                                    +<?=$fpEditorialMosaicOverflow?>
+                                                    фото
+                                                </span>
+                                            <?php endif; ?>
+                                        </a>
+                                    </figure>
+                                <?php endforeach; ?>
+                            </div>
+                        </aside>
+                    <?php endif; ?>
+                    <?php /* FP_PHASE_1_2_EDITORIAL_MOSAIC_MARKUP_END */ ?>
                     <?php if ($rawTabKey === 'specs' && $tabContent === '' && !empty($featureGroups)): ?>
                         <div class="fp-product-detail-features fp-product-details-tabs__features" aria-label="Характеристики товару">
                             <?php foreach ($featureGroups as $featureGroup): ?>

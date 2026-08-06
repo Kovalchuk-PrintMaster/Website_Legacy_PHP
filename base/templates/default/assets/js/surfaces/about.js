@@ -175,3 +175,110 @@
             });
         });
 })();
+
+/* FP_ABOUT_PROMO_ROTATOR_05G11B */
+(function () {
+    'use strict';
+
+    function ready(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback, {
+                once: true
+            });
+            return;
+        }
+
+        callback();
+    }
+
+    function initPromoRotator(root) {
+        if (!root || root.dataset.fpAboutPromoReady === '1') {
+            return;
+        }
+
+        var slides = Array.prototype.slice.call(
+            root.querySelectorAll('[data-fp-about-promo-slide]')
+        );
+
+        root.dataset.fpAboutPromoReady = '1';
+
+        if (slides.length < 2) {
+            return;
+        }
+
+        var reducedMotion = window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reducedMotion) {
+            return;
+        }
+
+        var interval = Number.parseInt(root.dataset.interval || '6500', 10);
+
+        if (!Number.isFinite(interval) || interval < 3000) {
+            interval = 6500;
+        }
+
+        var activeIndex = Math.max(
+            0,
+            slides.findIndex(function (slide) {
+                return slide.classList.contains('is-active');
+            })
+        );
+        var timer = null;
+
+        function activate(index) {
+            activeIndex = (index + slides.length) % slides.length;
+
+            slides.forEach(function (slide, slideIndex) {
+                var active = slideIndex === activeIndex;
+                slide.classList.toggle('is-active', active);
+                slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+            });
+        }
+
+        function start() {
+            if (timer !== null || document.hidden) {
+                return;
+            }
+
+            timer = window.setInterval(function () {
+                activate(activeIndex + 1);
+            }, interval);
+        }
+
+        function stop() {
+            if (timer === null) {
+                return;
+            }
+
+            window.clearInterval(timer);
+            timer = null;
+        }
+
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+        root.addEventListener('focusin', stop);
+        root.addEventListener('focusout', start);
+
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                stop();
+            } else {
+                start();
+            }
+        });
+
+        activate(activeIndex);
+        start();
+    }
+
+    function initAll() {
+        document
+            .querySelectorAll('[data-fp-about-promo-rotator]')
+            .forEach(initPromoRotator);
+    }
+
+    ready(initAll);
+    window.addEventListener('load', initAll);
+}());

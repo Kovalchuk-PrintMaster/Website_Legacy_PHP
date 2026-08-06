@@ -47,27 +47,243 @@ $fpContactsContent = $fpContactsValue(
     trim((string)($contactsPage['content'] ?? ''))
 );
 
+/* FP_CONTACTS_SCHEDULE_COMPAT_START */
 $fpContactsSchedule = [
     'weekly' => [],
     'exceptions' => [],
 ];
-$fpContactsScheduleRaw = trim((string)($this->set['contacts_schedule'] ?? ''));
 
-if ($fpContactsScheduleRaw !== '') {
-    $fpContactsScheduleDecoded = json_decode($fpContactsScheduleRaw, true);
+$fpContactsScheduleText = '';
 
-    if (is_array($fpContactsScheduleDecoded)) {
-        $fpContactsSchedule['weekly'] = is_array(
-            $fpContactsScheduleDecoded['weekly'] ?? null
-        ) ? $fpContactsScheduleDecoded['weekly'] : [];
-        $fpContactsSchedule['exceptions'] = is_array(
-            $fpContactsScheduleDecoded['exceptions'] ?? null
-        ) ? $fpContactsScheduleDecoded['exceptions'] : [];
+$fpContactsScheduleSource = (
+    $this->set['contacts_schedule']
+    ?? $this->set['contacts_working_hours']
+    ?? $this->set['working_hours']
+    ?? $this->set['work_schedule']
+    ?? ''
+);
+
+$fpContactsScheduleDecoded = null;
+$fpContactsScheduleRaw = '';
+
+if (is_array($fpContactsScheduleSource)) {
+    $fpContactsScheduleDecoded = $fpContactsScheduleSource;
+} elseif (is_scalar($fpContactsScheduleSource)) {
+    $fpContactsScheduleRaw = html_entity_decode(
+        trim((string)$fpContactsScheduleSource),
+        ENT_QUOTES | ENT_HTML5,
+        'UTF-8'
+    );
+
+    $fpContactsScheduleRaw = preg_replace(
+        '/^\xEF\xBB\xBF/',
+        '',
+        $fpContactsScheduleRaw
+    ) ?? $fpContactsScheduleRaw;
+
+    if ($fpContactsScheduleRaw !== '') {
+        $fpContactsScheduleDecoded = json_decode(
+            $fpContactsScheduleRaw,
+            true
+        );
+
+        /*
+         * Some historical admin flows stored JSON as a JSON string.
+         * Decode that representation once more when necessary.
+         */
+        if (is_string($fpContactsScheduleDecoded)) {
+            $fpNestedSchedule = trim(
+                $fpContactsScheduleDecoded
+            );
+
+            if (
+                $fpNestedSchedule !== ''
+                && in_array(
+                    $fpNestedSchedule[0] ?? '',
+                    ['{', '['],
+                    true
+                )
+            ) {
+                $fpContactsScheduleDecoded = json_decode(
+                    $fpNestedSchedule,
+                    true
+                );
+            } elseif ($fpNestedSchedule !== '') {
+                $fpContactsScheduleText = trim(
+                    strip_tags($fpNestedSchedule)
+                );
+            }
+        }
+
+        /*
+         * Preserve an older human-readable schedule without interpreting
+         * or inventing its business hours.
+         */
+        if (
+            !is_array($fpContactsScheduleDecoded)
+            && $fpContactsScheduleText === ''
+            && !in_array(
+                $fpContactsScheduleRaw[0] ?? '',
+                ['{', '['],
+                true
+            )
+        ) {
+            $fpContactsScheduleText = trim(
+                strip_tags($fpContactsScheduleRaw)
+            );
+        }
     }
 }
 
-$fpContactsScheduleVisible = !empty($fpContactsSchedule['weekly'])
-    || !empty($fpContactsSchedule['exceptions']);
+$fpContactsNormalizeWeekly = static function (
+    $source
+): array {
+    if (!is_array($source)) {
+        return [];
+    }
+
+    $normalized = [];
+
+    foreach ($source as $key => $row) {
+        if (is_string($row)) {
+            $label = is_string($key)
+                ? trim($key)
+                : '';
+            $hours = trim($row);
+
+            if ($label === '' || $hours === '') {
+                continue;
+            }
+
+            $normalized[] = [
+                'label' => $label,
+                'status' => (
+                    mb_stripos($hours, 'вихід') !== false
+                        ? 'closed'
+                        : 'open'
+                ),
+                'hours' => $hours,
+                'open' => '',
+                'close' => '',
+            ];
+
+            continue;
+        }
+
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $fallbackLabel = is_string($key)
+            ? trim($key)
+            : '';
+
+        $label = trim((string)(
+            $row['label']
+            ?? $row['day']
+            ?? $row['name']
+            ?? $fallbackLabel
+        ));
+
+        $status = strtolower(trim((string)(
+            $row['status']
+            ?? 'open'
+        )));
+
+        if (
+            in_array(
+                $status,
+                ['off', 'day_off', 'weekend'],
+                true
+            )
+        ) {
+            $status = 'closed';
+        }
+
+        $hours = trim((string)(
+            $row['hours']
+            ?? $row['value']
+            ?? $row['time']
+            ?? ''
+        ));
+
+        $open = trim((string)(
+            $row['open']
+            ?? $row['from']
+            ?? ''
+        ));
+
+        $close = trim((string)(
+            $row['close']
+            ?? $row['to']
+            ?? ''
+        ));
+
+        if (
+            $label === ''
+            || (
+                $status !== 'closed'
+                && $hours === ''
+                && $open === ''
+                && $close === ''
+            )
+        ) {
+            continue;
+        }
+
+        $normalized[] = [
+            'label' => $label,
+            'status' => $status,
+            'hours' => $hours,
+            'open' => $open,
+            'close' => $close,
+        ];
+    }
+
+    return $normalized;
+};
+
+if (is_array($fpContactsScheduleDecoded)) {
+    $fpWeeklySource = (
+        $fpContactsScheduleDecoded['weekly']
+        ?? $fpContactsScheduleDecoded['days']
+        ?? $fpContactsScheduleDecoded['schedule']
+        ?? null
+    );
+
+    $fpExceptionsSource = (
+        $fpContactsScheduleDecoded['exceptions']
+        ?? $fpContactsScheduleDecoded['special_days']
+        ?? $fpContactsScheduleDecoded['holidays']
+        ?? []
+    );
+
+    if (
+        $fpWeeklySource === null
+        && function_exists('array_is_list')
+        && array_is_list($fpContactsScheduleDecoded)
+    ) {
+        $fpWeeklySource = $fpContactsScheduleDecoded;
+    }
+
+    $fpContactsSchedule['weekly'] = (
+        $fpContactsNormalizeWeekly($fpWeeklySource)
+    );
+
+    $fpContactsSchedule['exceptions'] = (
+        is_array($fpExceptionsSource)
+            ? $fpExceptionsSource
+            : []
+    );
+}
+
+$fpContactsScheduleVisible = (
+    !empty($fpContactsSchedule['weekly'])
+    || !empty($fpContactsSchedule['exceptions'])
+    || $fpContactsScheduleText !== ''
+);
+/* FP_CONTACTS_SCHEDULE_COMPAT_END */
+
 
 $fpContactsMapUrl = $fpContactsAddress !== ''
     ? 'https://www.google.com/maps?q='
@@ -75,21 +291,25 @@ $fpContactsMapUrl = $fpContactsAddress !== ''
         . '&output=embed'
     : '';
 ?>
-<section class="contacts-page" data-fp-surface="contacts">
-    <div class="contacts-page__inner fp-layout-container">
-        <?=$this->breadcrumbs?>
+<section
+    class="contacts-page fp-visual-system"
+    data-fp-surface="contacts"
+>
+    <div class="contacts-page__inner fp-layout-container fp-page-shell">
+        <div class="fp-page-breadcrumbs">
+            <?=$this->breadcrumbs?>
+        </div>
 
-        <div class="contacts-page__hero">
-            <div>
-                <div class="contacts-page__eyebrow">ForPrint</div>
-                <h1><?=htmlspecialchars($fpContactsTitle, ENT_QUOTES, 'UTF-8')?></h1>
+        <div class="contacts-page__hero fp-page-header fp-page-header--with-action">
+            <div class="fp-page-header__copy">
+                <h1 class="fp-page-title"><?=htmlspecialchars($fpContactsTitle, ENT_QUOTES, 'UTF-8')?></h1>
                 <?php if ($fpContactsIntro !== ''): ?>
-                    <p><?=nl2br(htmlspecialchars($fpContactsIntro, ENT_QUOTES, 'UTF-8'))?></p>
+                    <p class="fp-page-lead"><?=nl2br(htmlspecialchars($fpContactsIntro, ENT_QUOTES, 'UTF-8'))?></p>
                 <?php endif; ?>
             </div>
 
             <?php if ($fpContactsCallbackLabel !== ''): ?>
-                <button class="contacts-page__callback js-callback" type="button">
+                <button class="contacts-page__callback js-callback fp-button fp-button--primary" type="button">
                     <?=htmlspecialchars($fpContactsCallbackLabel, ENT_QUOTES, 'UTF-8')?>
                 </button>
             <?php endif; ?>
@@ -134,6 +354,16 @@ $fpContactsMapUrl = $fpContactsAddress !== ''
                     <section class="contacts-page__schedule" aria-labelledby="fp-contacts-schedule-title">
                         <h2 id="fp-contacts-schedule-title">Графік роботи</h2>
 
+                        <?php if ($fpContactsScheduleText !== ''): ?>
+                            <p class="contacts-page__schedule-text">
+                                <?=nl2br(htmlspecialchars(
+                                    $fpContactsScheduleText,
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                ))?>
+                            </p>
+                        <?php endif; ?>
+
                         <?php if (!empty($fpContactsSchedule['weekly'])): ?>
                             <div class="contacts-page__schedule-grid">
                                 <?php foreach ($fpContactsSchedule['weekly'] as $fpScheduleRow): ?>
@@ -146,9 +376,25 @@ $fpContactsMapUrl = $fpContactsAddress !== ''
                                     $fpScheduleStatus = trim((string)($fpScheduleRow['status'] ?? 'open'));
                                     $fpScheduleOpen = trim((string)($fpScheduleRow['open'] ?? ''));
                                     $fpScheduleClose = trim((string)($fpScheduleRow['close'] ?? ''));
+                                    $fpScheduleHours = trim((string)(
+                                        $fpScheduleRow['hours'] ?? ''
+                                    ));
                                     $fpScheduleValue = $fpScheduleStatus === 'closed'
                                         ? 'Вихідний'
-                                        : trim($fpScheduleOpen . ($fpScheduleOpen !== '' && $fpScheduleClose !== '' ? '–' : '') . $fpScheduleClose);
+                                        : (
+                                            $fpScheduleHours !== ''
+                                                ? $fpScheduleHours
+                                                : trim(
+                                                    $fpScheduleOpen
+                                                    . (
+                                                        $fpScheduleOpen !== ''
+                                                        && $fpScheduleClose !== ''
+                                                            ? '–'
+                                                            : ''
+                                                    )
+                                                    . $fpScheduleClose
+                                                )
+                                        );
 
                                     if ($fpScheduleLabel === '' || $fpScheduleValue === '') {
                                         continue;

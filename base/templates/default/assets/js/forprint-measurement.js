@@ -164,6 +164,166 @@
         return true;
     }
 
+
+    /* FP_GOOGLE_ADS_CONVERSION_RUNTIME_START */
+    var measurementConfig =
+        window.ForPrintMeasurementConfig || {};
+
+    var pendingLeadConversions = {};
+    var observedLeadRequests = {};
+
+    function normalizeRequestId(value) {
+        var normalized = String(value || '')
+            .replace(/\D/g, '')
+            .slice(0, 32);
+
+        if (
+            normalized === ''
+            || Number(normalized) <= 0
+        ) {
+            return '';
+        }
+
+        return normalized;
+    }
+
+    function requestFingerprint(value) {
+        var input = 'forprint-lead:' + value;
+        var hash = 2166136261;
+        var index;
+
+        for (index = 0; index < input.length; index += 1) {
+            hash ^= input.charCodeAt(index);
+            hash += (
+                (hash << 1)
+                + (hash << 4)
+                + (hash << 7)
+                + (hash << 8)
+                + (hash << 24)
+            );
+        }
+
+        return (
+            'fp_lead_conversion_'
+            + (hash >>> 0).toString(16)
+        );
+    }
+
+    function sessionStorageHas(key) {
+        try {
+            return window.sessionStorage.getItem(key) === '1';
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function sessionStorageMark(key) {
+        try {
+            window.sessionStorage.setItem(key, '1');
+        } catch (error) {
+            return;
+        }
+    }
+
+    function googleAdsConversionReady() {
+        return Boolean(
+            measurementConfig.enabled
+            && measurementConfig.provider === 'google-tag'
+            && measurementConfig.conversionDestination
+            && window.ForPrintGoogleTagReady === true
+            && window.ForPrintGoogleTagConsentGranted === true
+            && typeof window.gtag === 'function'
+        );
+    }
+
+    function sendLeadConversion(requestId) {
+        var fingerprint = requestFingerprint(
+            requestId
+        );
+
+        if (sessionStorageHas(fingerprint)) {
+            delete pendingLeadConversions[requestId];
+            return true;
+        }
+
+        if (!googleAdsConversionReady()) {
+            return false;
+        }
+
+        window.gtag(
+            'event',
+            'conversion',
+            {
+                send_to: String(
+                    measurementConfig
+                        .conversionDestination
+                )
+            }
+        );
+
+        sessionStorageMark(fingerprint);
+        delete pendingLeadConversions[requestId];
+
+        return true;
+    }
+
+    function flushLeadConversions() {
+        Object.keys(
+            pendingLeadConversions
+        ).forEach(function (requestId) {
+            sendLeadConversion(requestId);
+        });
+    }
+
+    function trackLead(requestId, parameters) {
+        var normalizedRequestId = normalizeRequestId(
+            requestId
+        );
+
+        if (
+            normalizedRequestId === ''
+            || observedLeadRequests[
+                normalizedRequestId
+            ]
+        ) {
+            return false;
+        }
+
+        observedLeadRequests[
+            normalizedRequestId
+        ] = true;
+
+        var safeContext = safeParameters(
+            'generate_lead',
+            parameters || {}
+        );
+
+        /*
+         * The request ID is used only for in-browser deduplication.
+         * It is never added to dataLayer or sent to Google.
+         */
+        push(
+            'generate_lead',
+            safeContext
+        );
+
+        pendingLeadConversions[
+            normalizedRequestId
+        ] = safeContext;
+
+        sendLeadConversion(
+            normalizedRequestId
+        );
+
+        return true;
+    }
+
+    document.addEventListener(
+        'forprint:measurement-ready',
+        flushLeadConversions
+    );
+    /* FP_GOOGLE_ADS_CONVERSION_RUNTIME_END */
+
     function trackFormOpen(form, channelOverride) {
         if (!form || form.dataset.fpMeasurementOpened === '1') {
             return;
@@ -269,6 +429,8 @@
         push: push,
         contextFromForm: contextFromForm,
         mergeContext: mergeContext,
-        trackFormOpen: trackFormOpen
+        trackFormOpen: trackFormOpen,
+        trackLead: trackLead,
+        flushLeadConversions: flushLeadConversions
     });
 })(window, document);

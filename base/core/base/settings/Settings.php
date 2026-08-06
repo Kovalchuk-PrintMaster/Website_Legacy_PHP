@@ -155,7 +155,7 @@ class Settings
             'catalog_img',
             'logo_img',
         ],
-        'gallery_img' => ['gallery_img', 'new_gallery_img', 'home_groups_gallery_img', 'catalog_gallery_img'],
+        'gallery_img' => ['gallery_img', 'about_promo_gallery_img', 'new_gallery_img', 'home_groups_gallery_img', 'catalog_gallery_img'],
         'password' => ['password'],
         'related_goods' => ['related_goods_ids']
     ];
@@ -195,6 +195,7 @@ class Settings
         'short_content' => ['Коротка інформація'],
         'img_years' => ['Зображення кількості років на ринку'],
         'promo_img' => ['Головне зображення сторінки "Про нас"'],
+        'about_promo_gallery_img' => ['Промо-фотографії сторінки "Про нас"'],
         'img' => ['Основне зображення'],
         'gallery_img' => ['Галерея зображень'],
         'number_of_years' => ['Кількість років на ринку'],
@@ -410,7 +411,7 @@ class Settings
     private $blockNeedle = [
         'vg-rows' => [],
         /* ForPrint footer admin column balance v0.6.38 */
-        'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'contacts_address', 'contacts_content', 'contacts_schedule'],
+        'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'about_promo_gallery_img', 'logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'contacts_address', 'contacts_content', 'contacts_schedule'],
         'vg-content' => ['content']
     ];
 

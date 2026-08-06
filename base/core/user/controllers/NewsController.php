@@ -15,7 +15,7 @@ class NewsController extends BaseUser
 
         $this->styles[] = PATH
             . TEMPLATE
-            . 'assets/css/forprint-news.css?v=20260722-0003';
+            . 'assets/css/forprint-news.css?v=20260806-1025';
 
         $this->scripts[] = PATH
             . TEMPLATE

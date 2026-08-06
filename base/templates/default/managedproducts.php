@@ -43,14 +43,14 @@ if (!empty($data)):
         : 'У цьому розділі поки немає товарів.';
 ?>
 <div
-    class="fp-managed-products-page"
+    class="fp-managed-products-page fp-visual-system"
     data-fp-managed-products-kind="<?=htmlspecialchars(
         (string)($listingKind ?? 'products'),
         ENT_QUOTES,
         'UTF-8'
     )?>"
 >
-    <div class="fp-layout-container fp-managed-products-page__breadcrumbs">
+    <div class="fp-layout-container fp-managed-products-page__breadcrumbs fp-page-breadcrumbs">
         <?=$this->breadcrumbs?>
     </div>
 

@@ -293,3 +293,42 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
+
+/* FP_PHASE_1_2_MANAGED_WIDTH_START */
+
+/* Breadcrumbs, toolbar and grid reuse one capped page geometry. */
+[data-fp-surface="managed-products"]
+.fp-managed-products-page__breadcrumbs,
+[data-fp-surface="managed-products"]
+.fp-managed-products-page__content
+> .fp-layout-container,
+.fp-managed-page
+> .fp-page-shell,
+.fp-managed-page
+> .managed-product-list-page
+> .fp-layout-container,
+.fp-managed-page
+> .managed-product-list-page
+> .container {
+    inline-size:
+        min(
+            calc(
+                100%
+                - var(--fp-layout-page-gutter, 1rem)
+                - var(--fp-layout-page-gutter, 1rem)
+            ),
+            var(--fp-layout-page-content-ceiling, 120rem)
+        );
+    max-inline-size: none;
+    margin-inline: auto;
+}
+
+[data-fp-surface="managed-products"]
+.fp-managed-products-page__breadcrumbs
+.breadcrumbs,
+[data-fp-surface="managed-products"]
+.fp-managed-products-toolbar {
+    margin-inline: 0;
+}
+
+/* FP_PHASE_1_2_MANAGED_WIDTH_END */

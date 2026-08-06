@@ -1105,3 +1105,16 @@ input:checked + .fp-catalog-filter-value__box::after {
         animation: none;
     }
 }
+
+/* FP_PHASE_1_2_CATALOG_ALIGNMENT_START */
+
+[data-fp-surface="catalog"]
+.fp-catalog-page__header,
+[data-fp-surface="catalog"]
+.fp-catalog-page__header
+.fp-page-title {
+    justify-self: start;
+    text-align: start;
+}
+
+/* FP_PHASE_1_2_CATALOG_ALIGNMENT_END */

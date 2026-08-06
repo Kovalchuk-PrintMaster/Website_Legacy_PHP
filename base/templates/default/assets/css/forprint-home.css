@@ -1532,3 +1532,267 @@
         min-height: 0 !important;
     }
 }
+
+/* FP_HOME_ABOUT_EXACT_EDGES_05G11B
+ * Desktop: remove the vertical content inset. The title starts at the exact
+ * media top and the Details control ends at the exact media bottom.
+ */
+@media (min-width: 64.0625em) {
+    [data-fp-surface="home"] .fp-home-about {
+        align-items: stretch !important;
+    }
+
+    [data-fp-surface="home"] .fp-home-about__content {
+        display: grid !important;
+        grid-template-rows: auto minmax(0, 1fr) auto !important;
+        align-self: stretch !important;
+        align-content: stretch !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    [data-fp-surface="home"] .fp-home-about__intro {
+        grid-row: 1 !important;
+        align-self: start !important;
+        margin: 0 !important;
+    }
+
+    [data-fp-surface="home"] .fp-home-about__title {
+        margin-top: 0 !important;
+    }
+
+    [data-fp-surface="home"] .fp-home-about__more {
+        grid-row: 3 !important;
+        justify-self: start !important;
+        align-self: end !important;
+        margin: 0 !important;
+    }
+
+    [data-fp-surface="home"] .fp-home-about__media {
+        align-self: stretch !important;
+        height: 100% !important;
+        min-height: 0 !important;
+    }
+}
+
+/* FP_HOME_CONTAINED_PRODUCT_BAND_V02_START */
+
+/*
+ * Full-width paint band with controls constrained to the shared
+ * commercial-page container.
+ */
+[data-fp-surface="home"]
+.fp-home-product-groups__band {
+    inline-size: 100%;
+    background: var(--fp-color-band-background);
+}
+
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist.fp-layout-container {
+    inline-size: min(
+        calc(
+            100%
+            - var(--fp-layout-page-gutter)
+            - var(--fp-layout-page-gutter)
+        ),
+        var(--fp-layout-page-content-ceiling)
+    );
+    width: min(
+        calc(
+            100%
+            - var(--fp-layout-page-gutter)
+            - var(--fp-layout-page-gutter)
+        ),
+        var(--fp-layout-page-content-ceiling)
+    );
+    max-inline-size: none;
+    margin-inline: auto;
+}
+
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist {
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(min(100%, 13rem), 1fr)
+        );
+    background: transparent;
+}
+
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist
+> li {
+    min-block-size:
+        clamp(3.75rem, 3.2rem + 1vw, 4.5rem);
+    padding:
+        var(--fp-space-3)
+        var(--fp-space-5);
+    border-color:
+        color-mix(
+            in srgb,
+            var(--fp-color-band-text) 24%,
+            transparent
+        );
+    background: var(--fp-color-band-background);
+    color: var(--fp-color-band-text);
+    font-size: var(--fp-font-size-lead);
+}
+
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist
+> li.active {
+    border-color: transparent;
+    background: var(--fp-color-band-active);
+    color: var(--fp-color-band-text-active);
+}
+
+[data-fp-surface="home"]
+.fp-home-product-groups__more {
+    border-color: var(--fp-color-action-border);
+    border-radius: var(--fp-radius-control);
+    background: var(--fp-color-action-background);
+    color: var(--fp-color-action-text);
+}
+
+[data-fp-surface="home"]
+.fp-home-product-groups__more:hover,
+[data-fp-surface="home"]
+.fp-home-product-groups__more:focus-visible {
+    border-color: var(--fp-color-action-border);
+    background: var(--fp-color-action-hover-background);
+    color: var(--fp-color-action-hover-text);
+}
+
+/* FP_HOME_CONTAINED_PRODUCT_BAND_V02_END */
+
+/* FP_PHASE_1_8_SAFE_HOME_GRAPHITE_BAND_START */
+
+/*
+ * Restore the inherited Bg-offers image only on the homepage product-group
+ * section. The graphite color remains limited to the tab bar.
+ */
+body.fp-public-page
+[data-fp-surface="home"]
+.offers.fp-home-product-groups {
+    background-image:
+        url("../img/Bg-offers.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.offers__tabs.fp-home-product-groups__tabs {
+    background-color: transparent;
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__band,
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist,
+body.fp-public-page
+[data-fp-surface="home"]
+.offers__tabs_header.fp-home-product-groups__tablist {
+    background-color:
+        var(--fp-color-graphite-surface);
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist
+> li {
+    background-color:
+        var(--fp-color-graphite-surface);
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist
+> li.active,
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist
+> li[aria-current="true"],
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__tablist
+> li[aria-selected="true"] {
+    background-color:
+        var(--fp-color-graphite-surface-active);
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-product-groups__panel,
+body.fp-public-page
+[data-fp-surface="home"]
+.offers__tabs_content,
+body.fp-public-page
+[data-fp-surface="home"]
+.offers__tabs_subheader,
+body.fp-public-page
+[data-fp-surface="home"]
+.offers__tabs_container {
+    background-color: transparent;
+}
+
+/*
+ * Homepage news links use the same underline contract as the shell.
+ */
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-news-card__readmore
+> a {
+    display: inline-block;
+    inline-size: fit-content;
+    width: fit-content;
+    padding-block-end:
+        var(--fp-shell-underline-offset, 0.18rem);
+    margin-block-end:
+        calc(-1 * var(--fp-shell-underline-offset, 0.18rem));
+    color: inherit;
+    text-decoration: none;
+    background-image:
+        linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0 1px;
+    transition:
+        background-size
+        var(--fp-shell-underline-duration, 900ms)
+        var(
+            --fp-shell-underline-easing,
+            cubic-bezier(0.22, 1, 0.36, 1)
+        );
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-news-card__readmore
+> a:hover,
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-news-card__readmore
+> a:focus-visible {
+    text-decoration: none;
+    background-size: 100% 1px;
+}
+
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-news-card__readmore
+> a::before,
+body.fp-public-page
+[data-fp-surface="home"]
+.fp-home-news-card__readmore
+> a::after {
+    content: none;
+    display: none;
+}
+
+/* FP_PHASE_1_8_SAFE_HOME_GRAPHITE_BAND_END */

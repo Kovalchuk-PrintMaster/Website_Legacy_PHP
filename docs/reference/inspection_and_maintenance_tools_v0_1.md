@@ -6,7 +6,7 @@ Canonical date: 2026-07-18
 
 ## 1. Purpose
 
-This registry describes persistent repository tools. Temporary root-level `tmp.php` and `tmp.py` files are operator transport mechanisms and are not persistent project tools.
+This registry describes persistent repository tools. Temporary root-level `tmp/work/tmp.php` and `tmp/work/tmp.py` files are operator transport mechanisms and are not persistent project tools.
 
 The registry distinguishes:
 

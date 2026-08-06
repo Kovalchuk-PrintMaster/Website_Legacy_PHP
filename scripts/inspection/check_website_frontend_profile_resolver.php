@@ -221,7 +221,7 @@ $paths = [
         $root
         . '/base/templates/default/surfaces/home/feedback.php',
     'env_example' =>
-        $root . '/.env.website.local.example',
+        $root . '/config/env/website.local.example',
     'makefile' =>
         $root . '/Makefile',
     'visual_md' =>

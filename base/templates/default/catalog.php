@@ -41,7 +41,7 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
 }
 ?>
 <div
-    class="fp-catalog-page"
+    class="fp-catalog-page fp-visual-system"
     data-fp-surface="catalog"
     data-fp-catalog-url="<?=htmlspecialchars(
         $fpCatalogFormAction,
@@ -54,12 +54,12 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
         'UTF-8'
     )?>"
 >
-    <div class="fp-layout-container fp-catalog-page__breadcrumbs">
+    <div class="fp-layout-container fp-catalog-page__breadcrumbs fp-page-breadcrumbs">
         <?=$this->breadcrumbs?>
     </div>
 
-    <header class="fp-layout-container fp-catalog-page__header">
-        <h1 class="page-title h1">
+    <header class="fp-layout-container fp-catalog-page__header fp-page-header">
+        <h1 class="fp-page-title">
             <?=htmlspecialchars(
                 $fpCatalogPageTitle,
                 ENT_QUOTES,

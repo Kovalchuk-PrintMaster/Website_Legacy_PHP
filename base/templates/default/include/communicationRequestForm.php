@@ -33,6 +33,8 @@ $fpCommunicationProductUrl = trim((string)(
 $fpCommunicationAction = fp_product_comm_public_path(
     'communication-request.php'
 );
+$fpCommunicationCsrfToken = ForPrintCommunicationRequestSecurity::issueCsrfToken();
+$fpCommunicationIdempotencyKey = ForPrintCommunicationRequestSecurity::issueIdempotencyKey();
 $fpCommunicationVariant = trim((string)(
     $fpCommunicationConfig['variant']
     ?? ''
@@ -62,6 +64,16 @@ $fpCommunicationVariantClass = $fpCommunicationVariant === 'panel'
             data-fp-comm-form
         >
             <input type="hidden" name="mode" value="telegram">
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="<?=fp_product_comm_html($fpCommunicationCsrfToken)?>"
+            >
+            <input
+                type="hidden"
+                name="idempotency_key"
+                value="<?=fp_product_comm_html($fpCommunicationIdempotencyKey)?>"
+            >
             <input
                 type="hidden"
                 name="product_id"

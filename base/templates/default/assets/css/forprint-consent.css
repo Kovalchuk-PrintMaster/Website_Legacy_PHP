@@ -1,0 +1,89 @@
+/*
+ * ForPrint consent UI v0.2
+ *
+ * Compact, mobile-first and token-driven.
+ * No !important declarations.
+ */
+
+.fp-consent {
+    position: fixed;
+    z-index: var(--fp-z-consent);
+    inset-inline: max(
+        var(--fp-space-3),
+        env(safe-area-inset-left)
+    );
+    inset-block-end: max(
+        var(--fp-space-3),
+        env(safe-area-inset-bottom)
+    );
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.fp-consent[hidden] {
+    display: none;
+}
+
+.fp-consent__panel {
+    display: grid;
+    inline-size: min(100%, 54rem);
+    gap: var(--fp-space-3);
+    align-items: center;
+    padding: var(--fp-space-3) var(--fp-space-4);
+    border: var(--fp-border-width) solid var(--fp-color-border);
+    border-radius: var(--fp-radius-lg);
+    background: var(--fp-color-surface);
+    box-shadow: var(--fp-shadow-floating);
+    pointer-events: auto;
+}
+
+.fp-consent__copy {
+    min-inline-size: 0;
+}
+
+.fp-consent__copy .fp-card-title {
+    margin-block-end: var(--fp-space-1);
+    font-size: 1.125rem;
+}
+
+.fp-consent__copy .fp-body-copy {
+    max-inline-size: var(--fp-measure-compact);
+    font-size: var(--fp-font-size-sm);
+    line-height: 1.45;
+}
+
+.fp-consent__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--fp-space-2);
+}
+
+.fp-consent__button {
+    inline-size: 100%;
+    padding-inline: var(--fp-space-3);
+    white-space: normal;
+}
+
+@media (min-width: 36rem) {
+    .fp-consent__actions {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 48rem) {
+    .fp-consent__panel {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(21rem, auto);
+        gap: var(--fp-space-5);
+        padding:
+            var(--fp-space-4)
+            var(--fp-space-5);
+    }
+
+    .fp-consent__actions {
+        align-self: center;
+    }
+}

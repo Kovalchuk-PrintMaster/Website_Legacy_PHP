@@ -1,39 +1,62 @@
 /**
- * ForPrint global frontend layout contract.
+ * ForPrint global frontend layout contract v0.2.
  *
- * Owns only usable page width, fixed right-rail reservation,
- * shared content ceiling, horizontal gutters and shared section spacing.
+ * Page content and shared shell intentionally use different ceilings.
  */
 
 :root {
-    --fp-layout-content-ceiling: 120rem;
-    --fp-layout-side-space: 10vw;
+    /*
+     * At 1920 CSS pixels the existing accepted body width remains
+     * approximately unchanged. At 2560 the body can grow proportionally.
+     */
+    --fp-layout-page-content-ceiling: 122rem;
+    --fp-layout-shell-content-ceiling: 91rem;
+
+    --fp-layout-page-gutter: 10vw;
+    --fp-layout-shell-gutter: 10vw;
+
     --fp-layout-rail-width: 5rem;
-    --fp-layout-section-space: clamp(3rem, 6vw, 6rem);
+
+    --fp-layout-section-space:
+        clamp(2rem, 1.5rem + 1.8vw, 4rem);
+
+    /*
+     * Compatibility aliases for existing project-owned components.
+     */
+    --fp-layout-content-ceiling:
+        var(--fp-layout-page-content-ceiling);
+
+    --fp-layout-side-space:
+        var(--fp-layout-page-gutter);
 }
 
 .fp-layout-page,
 main.main {
     box-sizing: border-box;
-    width: calc(100% - var(--fp-layout-rail-width));
-    max-width: none;
+    inline-size:
+        calc(100% - var(--fp-layout-rail-width));
+    max-inline-size: none;
     margin: 0;
-    padding-right: 0;
+    padding-inline-end: 0;
 }
 
 .fp-layout-full {
     box-sizing: border-box;
-    width: 100%;
+    inline-size: 100%;
 }
 
 .fp-layout-container {
     box-sizing: border-box;
-    width: min(
-        calc(100% - var(--fp-layout-side-space) - var(--fp-layout-side-space)),
-        var(--fp-layout-content-ceiling)
+    inline-size: min(
+        calc(
+            100%
+            - var(--fp-layout-page-gutter)
+            - var(--fp-layout-page-gutter)
+        ),
+        var(--fp-layout-page-content-ceiling)
     );
-    min-width: 0;
-    max-width: none;
+    min-inline-size: 0;
+    max-inline-size: none;
     margin-inline: auto;
     padding-inline: 0;
 }
@@ -43,39 +66,35 @@ main.main {
 }
 
 /*
- * Header and footer live outside main.main.
- *
- * Their inner containers are centered inside the usable viewport area
- * (viewport minus the fixed right rail). The max() margin formula keeps the
- * regular side space on ordinary screens and absorbs surplus space evenly
- * once the shared content ceiling is reached.
+ * Header and footer remain visually concentrated even when the main
+ * commercial surface becomes wider.
  */
 .fp-site-header .fp-site-header__container,
 .fp-site-footer .fp-site-footer__container {
     box-sizing: border-box;
-    width: min(
+    inline-size: min(
         calc(
             100%
-            - var(--fp-layout-side-space)
-            - var(--fp-layout-side-space)
+            - var(--fp-layout-shell-gutter)
+            - var(--fp-layout-shell-gutter)
             - var(--fp-layout-rail-width)
         ),
-        var(--fp-layout-content-ceiling)
+        var(--fp-layout-shell-content-ceiling)
     );
-    min-width: 0;
-    max-width: none;
-    margin-left: max(
-        var(--fp-layout-side-space),
+    min-inline-size: 0;
+    max-inline-size: none;
+    margin-inline-start: max(
+        var(--fp-layout-shell-gutter),
         calc(
             (
                 100%
                 - var(--fp-layout-rail-width)
-                - var(--fp-layout-content-ceiling)
+                - var(--fp-layout-shell-content-ceiling)
             )
             / 2
         )
     );
-    margin-right: 0;
+    margin-inline-end: 0;
     padding-inline: 0;
 }
 
@@ -87,39 +106,39 @@ main.main {
 
 @media (max-width: 64em) {
     :root {
-        --fp-layout-side-space: clamp(1rem, 4vw, 2.5rem);
+        --fp-layout-page-gutter:
+            clamp(1rem, 4vw, 2.5rem);
+
+        --fp-layout-shell-gutter:
+            clamp(1rem, 4vw, 2.5rem);
     }
 }
 
 @media (max-width: 40em) {
     :root {
-        --fp-layout-side-space: 1rem;
+        --fp-layout-page-gutter: 1rem;
+        --fp-layout-shell-gutter: 1rem;
     }
 }
 
-/*
- * Public document flex shell.
- *
- * Short pages keep the managed footer at the viewport bottom. Long pages
- * remain normal documents and extend naturally below the fold.
- */
 html {
-    min-height: 100%;
+    min-block-size: 100%;
 }
 
 body.fp-public-page {
     display: flex;
+    min-block-size: 100vh;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 body.fp-public-page > main.main {
     flex: 1 0 auto;
-    width: 100%;
-    min-height: 0;
+    inline-size:
+        calc(100% - var(--fp-layout-rail-width));
+    min-block-size: 0;
 }
 
 body.fp-public-page > .fp-site-footer {
     flex: 0 0 auto;
-    margin-top: auto;
+    margin-block-start: auto;
 }

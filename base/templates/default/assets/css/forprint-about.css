@@ -523,3 +523,101 @@
         max-width: none !important;
     }
 }
+
+/* FP_ABOUT_PROMO_ROTATOR_LAYOUT_05G11B
+ * Canonical order: title, 9:5 promo rotator, full-width article, gallery.
+ */
+[data-fp-surface="about"] .fp-about-page__inner {
+    display: block !important;
+    width: min(
+        calc(
+            100% - var(--fp-layout-side-space, 1.5rem)
+            - var(--fp-layout-side-space, 1.5rem)
+        ),
+        var(--fp-layout-content-ceiling, 96rem)
+    ) !important;
+    max-width: var(--fp-layout-content-ceiling, 96rem) !important;
+    margin-inline: auto !important;
+    overflow: visible !important;
+}
+
+[data-fp-surface="about"] .fp-about-page__header {
+    width: 100%;
+    margin: 0 0 clamp(1rem, 1.7vw, 1.75rem) !important;
+    padding: 0 !important;
+}
+
+[data-fp-surface="about"] .fp-about-page__promo {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 clamp(1.25rem, 2vw, 2rem);
+}
+
+[data-fp-surface="about"] .fp-about-page__promo-frame {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 9 / 5;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    background: #ffffff;
+    box-shadow: 0 1.125rem 2.8125rem rgba(26, 38, 52, 0.06);
+}
+
+[data-fp-surface="about"] .fp-about-page__promo-slide {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 700ms ease;
+}
+
+[data-fp-surface="about"] .fp-about-page__promo-slide.is-active {
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+[data-fp-surface="about"] .fp-about-page__promo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: zoom-in;
+}
+
+[data-fp-surface="about"] .fp-about-page__promo-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+[data-fp-surface="about"] .fp-about-page__content {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 clamp(1.25rem, 2vw, 2rem) !important;
+}
+
+[data-fp-surface="about"] .fp-about-page__gallery-section {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-fp-surface="about"] .fp-about-page__promo-slide {
+        transition: none;
+    }
+}
+
+@media (max-width: 40em) {
+    [data-fp-surface="about"] .fp-about-page__promo-frame {
+        border-radius: 1rem;
+    }
+}

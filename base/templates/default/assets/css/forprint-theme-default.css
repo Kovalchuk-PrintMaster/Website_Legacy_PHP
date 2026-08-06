@@ -1,0 +1,126 @@
+/*
+ * ForPrint default theme v0.1
+ *
+ * A future dark or seasonal theme overrides these semantic aliases
+ * without rewriting component CSS.
+ */
+
+:root,
+body[data-fp-theme="default"] {
+    --fp-color-text:
+        var(--fp-palette-slate-800);
+
+    --fp-color-text-muted:
+        var(--fp-palette-slate-500);
+
+    --fp-color-text-subtle:
+        var(--fp-palette-slate-400);
+
+    --fp-color-heading:
+        var(--fp-palette-slate-900);
+
+    --fp-color-accent:
+        var(--fp-palette-graphite-950);
+
+    --fp-color-accent-muted:
+        var(--fp-palette-slate-700);
+
+    --fp-color-accent-contrast:
+        var(--fp-palette-white);
+
+    --fp-color-page-background:
+        var(--fp-palette-slate-050);
+
+    --fp-color-surface:
+        var(--fp-palette-white);
+
+    --fp-color-surface-soft:
+        var(--fp-palette-slate-050);
+
+    --fp-color-border:
+        color-mix(
+            in srgb,
+            var(--fp-palette-slate-800) 14%,
+            transparent
+        );
+
+    --fp-color-border-strong:
+        color-mix(
+            in srgb,
+            var(--fp-palette-slate-800) 24%,
+            transparent
+        );
+
+    --fp-color-focus:
+        var(--fp-palette-slate-700);
+
+    --fp-color-success:
+        var(--fp-palette-success-700);
+
+    --fp-color-warning:
+        var(--fp-palette-warning-700);
+
+    --fp-color-danger:
+        var(--fp-palette-danger-700);
+
+    --fp-color-price:
+        var(--fp-palette-red-600);
+
+    --fp-color-shell-background:
+        var(--fp-palette-white);
+
+    --fp-color-shell-text:
+        var(--fp-palette-slate-800);
+
+    --fp-color-footer-background:
+        var(--fp-palette-graphite-800);
+
+    --fp-color-footer-text:
+        var(--fp-palette-white);
+
+    --fp-color-search-background:
+        var(--fp-palette-slate-200);
+
+    --fp-color-band-background:
+        var(--fp-palette-graphite-950);
+
+    --fp-color-band-active:
+        var(--fp-palette-graphite-700);
+
+    --fp-color-band-text:
+        var(--fp-palette-slate-300);
+
+    --fp-color-band-text-active:
+        var(--fp-palette-white);
+
+    --fp-color-action-background:
+        var(--fp-palette-graphite-950);
+
+    --fp-color-action-text:
+        var(--fp-palette-white);
+
+    --fp-color-action-border:
+        var(--fp-palette-graphite-950);
+
+    --fp-color-action-hover-background:
+        var(--fp-palette-white);
+
+    --fp-color-action-hover-text:
+        var(--fp-palette-graphite-950);
+
+    --fp-shadow-card:
+        0 1.125rem 2.8125rem
+        color-mix(
+            in srgb,
+            var(--fp-palette-slate-800) 6%,
+            transparent
+        );
+
+    --fp-shadow-floating:
+        0 0.75rem 2.25rem
+        color-mix(
+            in srgb,
+            var(--fp-palette-slate-800) 18%,
+            transparent
+        );
+}

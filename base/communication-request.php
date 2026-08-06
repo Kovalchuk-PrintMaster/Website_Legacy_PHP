@@ -6,8 +6,14 @@ declare(strict_types=1);
 define('VG_ACCESS', true);
 
 header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store, private');
+header('Pragma: no-cache');
+header('X-Content-Type-Options: nosniff');
+header('X-Robots-Tag: noindex, nofollow, noarchive');
 
 require_once __DIR__ . '/libraries/InternationalPhoneValidator.php';
+require_once __DIR__ . '/libraries/CommunicationRequestSecurity.php';
+require_once __DIR__ . '/libraries/CommunicationRequestMessageFormatter.php';
 
 function fp_comm_response(bool $ok, string $message, array $extra = []): void
 {
@@ -20,10 +26,22 @@ function fp_comm_response(bool $ok, string $message, array $extra = []): void
 
 function fp_comm_post(string $key, int $limit = 1000): string
 {
-    $value = trim((string)($_POST[$key] ?? ''));
+    $raw = $_POST[$key] ?? '';
 
-    if (mb_strlen($value) > $limit) {
-        $value = mb_substr($value, 0, $limit);
+    if (!is_scalar($raw)) {
+        return '';
+    }
+
+    $value = trim((string)$raw);
+
+    $length = function_exists('mb_strlen')
+        ? mb_strlen($value)
+        : strlen($value);
+
+    if ($length > $limit) {
+        $value = function_exists('mb_substr')
+            ? mb_substr($value, 0, $limit)
+            : substr($value, 0, $limit);
     }
 
     return $value;
@@ -212,11 +230,8 @@ function fp_comm_smtp_send_message(string $to, string $subject, string $body): b
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
+    header('Allow: POST');
     fp_comm_response(false, 'Метод не підтримується.');
-}
-
-if (fp_comm_post('fp_request_company_url_confirm', 255) !== '') {
-    fp_comm_response(true, 'Заявку прийнято.');
 }
 
 require_once __DIR__ . '/config.php';
@@ -228,7 +243,60 @@ if (
     !defined('DB_NAME')
 ) {
     http_response_code(500);
-    fp_comm_response(false, 'Налаштування бази недоступні.');
+    fp_comm_response(false, 'Налаштування сервісу недоступні.');
+}
+
+if (function_exists('mysqli_report')) {
+    mysqli_report(MYSQLI_REPORT_OFF);
+}
+
+try {
+    $csrfValid = ForPrintCommunicationRequestSecurity::verifyCsrfToken(
+        fp_comm_post('csrf_token', 2048)
+    );
+} catch (Throwable $e) {
+    error_log(
+        'ForPrint communication security configuration error ['
+        . get_class($e)
+        . ']'
+    );
+    http_response_code(500);
+    fp_comm_response(false, 'Сервіс тимчасово недоступний.');
+}
+
+if (!$csrfValid) {
+    http_response_code(403);
+    fp_comm_response(
+        false,
+        'Сесію форми завершено. Оновіть сторінку та повторіть спробу.'
+    );
+}
+
+if (fp_comm_post('fp_request_company_url_confirm', 255) !== '') {
+    fp_comm_response(true, 'Заявку прийнято.');
+}
+
+try {
+    $rateLimit = ForPrintCommunicationRequestSecurity::checkRateLimit();
+} catch (Throwable $e) {
+    error_log(
+        'ForPrint communication rate-limit error ['
+        . get_class($e)
+        . ']'
+    );
+    http_response_code(500);
+    fp_comm_response(false, 'Сервіс тимчасово недоступний.');
+}
+
+if (!$rateLimit['allowed']) {
+    $retryAfter = (int)$rateLimit['retry_after'];
+    http_response_code(429);
+    header('Retry-After: ' . $retryAfter);
+    fp_comm_response(
+        false,
+        'Забагато запитів. Спробуйте повторити трохи пізніше.',
+        ['retry_after' => $retryAfter]
+    );
 }
 
 $mode = fp_comm_post('mode', 64);
@@ -248,6 +316,28 @@ $data = [
     'quantity_requested' => fp_comm_post('quantity_requested', 255),
     'message' => fp_comm_post('message', 2000),
 ];
+
+/* FP_COMMUNICATION_ABSOLUTE_URL_V01 */
+$data['product_url'] =
+    CommunicationRequestMessageFormatter::absolutePublicUrl(
+        $data['product_url'],
+        $_SERVER,
+        (string)(getenv('FP_WEB_PUBLIC_ORIGIN') ?: '')
+    );
+
+$idempotencyKey = fp_comm_post('idempotency_key', 128);
+
+if (
+    !ForPrintCommunicationRequestSecurity::isValidIdempotencyKey(
+        $idempotencyKey
+    )
+) {
+    http_response_code(422);
+    fp_comm_response(
+        false,
+        'Ідентифікатор форми недійсний. Оновіть сторінку.'
+    );
+}
 
 $phoneRaw = $data['phone'];
 $phoneConfirmed = fp_comm_post('phone_confirmed', 8) === '1';
@@ -285,41 +375,111 @@ if ($data['primary_contact'] === '' && $data['phone'] === '') {
     fp_comm_response(false, 'Вкажіть хоча б один контакт для звʼязку.');
 }
 
+try {
+    $idempotency = ForPrintCommunicationRequestSecurity::beginIdempotentRequest(
+        $idempotencyKey
+    );
+} catch (Throwable $e) {
+    error_log(
+        'ForPrint communication idempotency error ['
+        . get_class($e)
+        . ']'
+    );
+    http_response_code(500);
+    fp_comm_response(false, 'Сервіс тимчасово недоступний.');
+}
+
+if (($idempotency['state'] ?? '') === 'completed') {
+    $previous = $idempotency['response'];
+
+    fp_comm_response(
+        (bool)($previous['ok'] ?? true),
+        (string)($previous['message'] ?? 'Заявку вже прийнято.'),
+        [
+            'request_id' => (int)($previous['request_id'] ?? 0),
+            'delivery_status' => (string)(
+                $previous['delivery_status'] ?? ''
+            ),
+            'delivery_completed' => (bool)(
+                $previous['delivery_completed'] ?? false
+            ),
+            'duplicate' => true,
+        ]
+    );
+}
+
+if (($idempotency['state'] ?? '') !== 'new') {
+    http_response_code(409);
+    fp_comm_response(
+        false,
+        'Цей запит уже обробляється. Зачекайте кілька секунд.',
+        ['duplicate' => true]
+    );
+}
+
 $db = @new mysqli(HOST, USER, PASSWORD, DB_NAME);
 
 if ($db->connect_errno) {
+    ForPrintCommunicationRequestSecurity::releaseIdempotentRequest(
+        $idempotency
+    );
     http_response_code(500);
     fp_comm_response(false, 'Не вдалося підключитися до бази.');
 }
 
 $db->set_charset('utf8mb4');
 
-$db->query("
-    CREATE TABLE IF NOT EXISTS `communication_requests` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `mode` varchar(64) NOT NULL DEFAULT '',
-        `product_id` int(11) NOT NULL DEFAULT 0,
-        `product_name` varchar(255) NOT NULL DEFAULT '',
-        `product_url` varchar(500) NOT NULL DEFAULT '',
-        `primary_contact` varchar(255) NOT NULL DEFAULT '',
-        `phone` varchar(100) NOT NULL DEFAULT '',
-        `quantity_requested` varchar(255) NOT NULL DEFAULT '',
-        `message` text,
-        `delivery_target` varchar(255) NOT NULL DEFAULT '',
-        `delivery_status` varchar(64) NOT NULL DEFAULT 'stored',
-        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-");
+$requestTable = $db->query(
+    "SHOW TABLES LIKE 'communication_requests'"
+);
+$quantityColumn = $db->query(
+    "SHOW COLUMNS FROM `communication_requests` "
+    . "LIKE 'quantity_requested'"
+);
 
-$quantityColumn = $db->query("SHOW COLUMNS FROM `communication_requests` LIKE 'quantity_requested'");
-if (!$quantityColumn || $quantityColumn->num_rows === 0) {
-    $db->query("ALTER TABLE `communication_requests` ADD `quantity_requested` varchar(255) NOT NULL DEFAULT '' AFTER `phone`");
+if (
+    !$requestTable
+    || $requestTable->num_rows === 0
+    || !$quantityColumn
+    || $quantityColumn->num_rows === 0
+) {
+    ForPrintCommunicationRequestSecurity::releaseIdempotentRequest(
+        $idempotency
+    );
+    $db->close();
+    error_log('ForPrint communication schema readiness check failed');
+    http_response_code(500);
+    fp_comm_response(false, 'Сервіс тимчасово недоступний.');
 }
 
-$stmt = $db->prepare("SELECT `target` FROM `communication_buttons` WHERE `alias` = ? AND `visible` = 1 LIMIT 1");
+$stmt = $db->prepare(
+    "SELECT `target` FROM `communication_buttons` "
+    . "WHERE `alias` = ? AND `visible` = 1 LIMIT 1"
+);
+
+if (!$stmt) {
+    ForPrintCommunicationRequestSecurity::releaseIdempotentRequest(
+        $idempotency
+    );
+    $db->close();
+    error_log('ForPrint communication target query prepare failed');
+    http_response_code(500);
+    fp_comm_response(false, 'Сервіс тимчасово недоступний.');
+}
+
 $stmt->bind_param('s', $mode);
-$stmt->execute();
+
+if (!$stmt->execute()) {
+    ForPrintCommunicationRequestSecurity::releaseIdempotentRequest(
+        $idempotency
+    );
+    $stmt->close();
+    $db->close();
+    error_log('ForPrint communication target query execute failed');
+    http_response_code(500);
+    fp_comm_response(false, 'Сервіс тимчасово недоступний.');
+}
+
 $result = $stmt->get_result();
 
 $target = '';
@@ -344,6 +504,17 @@ $insert = $db->prepare("
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
+if (!$insert) {
+    ForPrintCommunicationRequestSecurity::releaseIdempotentRequest(
+        $idempotency
+    );
+    $stmt->close();
+    $db->close();
+    error_log('ForPrint communication insert prepare failed');
+    http_response_code(500);
+    fp_comm_response(false, 'Не вдалося зберегти заявку.');
+}
+
 $insert->bind_param(
     'sissssssss',
     $data['mode'],
@@ -358,15 +529,31 @@ $insert->bind_param(
     $deliveryStatus
 );
 
-$insert->execute();
-
-if ($insert->errno) {
+if (!$insert->execute() || $insert->errno) {
+    ForPrintCommunicationRequestSecurity::releaseIdempotentRequest(
+        $idempotency
+    );
+    $insert->close();
+    $stmt->close();
+    $db->close();
     http_response_code(500);
     fp_comm_response(false, 'Не вдалося зберегти заявку.');
 }
 
 $requestId = $insert->insert_id;
+$insert->close();
+$stmt->close();
 $plainMessage = fp_comm_plain_message($data);
+
+/* FP_TELEGRAM_PRESENTATION_V01 */
+$telegramPayload =
+    CommunicationRequestMessageFormatter::telegram(
+        $data,
+        (string)(
+            getenv('FP_WEB_NOTIFICATION_THEME')
+            ?: 'default'
+        )
+    );
 
 // Close DB before slow external delivery; reconnect later only to update delivery status.
 $db->close();
@@ -385,7 +572,8 @@ if ($mode === 'telegram') {
                 'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
                 'content' => http_build_query([
                     'chat_id' => $chatId,
-                    'text' => $plainMessage,
+                    'text' => $telegramPayload['text'],
+                    'parse_mode' => $telegramPayload['parse_mode'],
                     'disable_web_page_preview' => 'true',
                 ]),
             ],
@@ -428,7 +616,11 @@ if ($mode === 'email') {
             $deliveryStatus = 'sent_smtp_email';
             $emailDelivered = true;
         } catch (Throwable $e) {
-            error_log('ForPrint SMTP delivery failed: ' . $e->getMessage());
+            error_log(
+                'ForPrint SMTP delivery failed ['
+                . get_class($e)
+                . ']'
+            );
             $deliveryStatus = 'stored_smtp_failed';
         }
     }
@@ -493,7 +685,9 @@ if ($mode === 'email') {
 $statusDb = @new mysqli(HOST, USER, PASSWORD, DB_NAME);
 
 if ($statusDb->connect_errno) {
-    error_log('ForPrint delivery status update DB reconnect failed: ' . $statusDb->connect_error);
+    error_log(
+        'ForPrint delivery status update DB reconnect failed'
+    );
 } else {
     $statusDb->set_charset('utf8mb4');
 
@@ -503,7 +697,9 @@ if ($statusDb->connect_errno) {
         $update->bind_param('si', $deliveryStatus, $requestId);
         $update->execute();
     } else {
-        error_log('ForPrint delivery status update prepare failed: ' . $statusDb->error);
+        error_log(
+            'ForPrint delivery status update prepare failed'
+        );
     }
 
     $statusDb->close();
@@ -519,8 +715,25 @@ $responseMessage = $deliveryCompleted
     : 'Заявку збережено. Зовнішня доставка тимчасово '
         . 'недоступна, але звернення не втрачено.';
 
-fp_comm_response(true, $responseMessage, [
+$responsePayload = [
+    'ok' => true,
+    'message' => $responseMessage,
     'request_id' => $requestId,
     'delivery_status' => $deliveryStatus,
     'delivery_completed' => $deliveryCompleted,
-]);
+];
+
+ForPrintCommunicationRequestSecurity::completeIdempotentRequest(
+    $idempotency,
+    $responsePayload
+);
+
+fp_comm_response(
+    true,
+    $responseMessage,
+    [
+        'request_id' => $requestId,
+        'delivery_status' => $deliveryStatus,
+        'delivery_completed' => $deliveryCompleted,
+    ]
+);

@@ -174,3 +174,28 @@ seo/google-ads/keyword-research/2026-08/
 
 Normalized research is versioned. Raw Google exports are local ignored evidence.
 <!-- FP-GOOGLE-ADS-RESEARCH-MAP-V0-1-END -->
+
+<!-- FP_REPOSITORY_MAP_FOUNDATION_2026_08_06_START -->
+## Frontend foundation files — 2026-08-06
+
+```text
+base/templates/default/assets/css/
+├── forprint-tokens.css
+├── forprint-theme-default.css
+├── forprint-foundation.css
+├── forprint-layout.css
+├── forprint-page-structure.css
+├── forprint-shell.css
+├── forprint-home.css
+├── forprint-catalog.css
+├── forprint-managed-products.css
+├── forprint-product-cards.css
+├── forprint-product-detail.css
+├── forprint-contacts.css
+├── forprint-news.css
+└── forprint-services.css
+```
+
+Shared layers own reusable contracts; surface files own page-specific
+presentation. `style.css` is an inherited compatibility asset.
+<!-- FP_REPOSITORY_MAP_FOUNDATION_2026_08_06_END -->

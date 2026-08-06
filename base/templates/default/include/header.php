@@ -143,57 +143,109 @@ $fpEscape = static function (string $value): string {
 };
 
 /*
- * ForPrint measurement runtime gate v0.1.
+ * FP_MEASUREMENT_RUNTIME_CONFIG_START
  *
- * The container remains disabled until both runtime values are present.
- * No analytics identifier is stored in the repository.
+ * Consent-aware direct Google tag runtime.
+ *
+ * Production activation:
+ * FP_WEB_MEASUREMENT_ENABLED=1
+ *
+ * Optional production test mode:
+ * FP_WEB_MEASUREMENT_TEST_MODE=1
+ *
+ * Local preview is always enabled in test mode and never loads
+ * an external Google script.
  */
-$fpMeasurementEnabled = getenv('FP_WEB_MEASUREMENT_ENABLED') === '1';
-$fpGtmContainerId = trim((string)getenv('FP_WEB_GTM_CONTAINER_ID'));
+$fpMeasurementHost = strtolower(trim((string)(
+    $_SERVER['HTTP_HOST'] ?? ''
+)));
+
+$fpMeasurementHost = explode(
+    ':',
+    $fpMeasurementHost,
+    2
+)[0];
+
+$fpMeasurementIsLocal = in_array(
+    $fpMeasurementHost,
+    [
+        '127.0.0.1',
+        'localhost',
+        '::1',
+    ],
+    true
+);
+
+$fpMeasurementEnabled =
+    getenv('FP_WEB_MEASUREMENT_ENABLED') === '1'
+    || $fpMeasurementIsLocal;
+
+$fpMeasurementTestMode =
+    getenv('FP_WEB_MEASUREMENT_TEST_MODE') === '1'
+    || $fpMeasurementIsLocal;
+
+$fpGoogleTagId = trim((string)(
+    getenv('FP_WEB_GOOGLE_TAG_ID')
+    ?: 'AW-959055246'
+));
+
+$fpGoogleAdsConversionDestination = trim((string)(
+    getenv('FP_WEB_GOOGLE_ADS_CONVERSION_DESTINATION')
+    ?: 'AW-959055246/3ccOCP6mntocEI6LqMkD'
+));
 
 if (
     !$fpMeasurementEnabled
-    || !preg_match('/^GTM-[A-Z0-9]+$/', $fpGtmContainerId)
+    || !preg_match(
+        '/^AW-\d+$/',
+        $fpGoogleTagId
+    )
+    || !preg_match(
+        '/^AW-\d+\/[A-Za-z0-9_-]+$/',
+        $fpGoogleAdsConversionDestination
+    )
 ) {
-    $fpGtmContainerId = '';
+    $fpGoogleTagId = '';
+    $fpGoogleAdsConversionDestination = '';
 }
+
+$fpMeasurementConfig = [
+    'enabled' => (
+        $fpGoogleTagId !== ''
+        && $fpGoogleAdsConversionDestination !== ''
+    ),
+    'testMode' => $fpMeasurementTestMode,
+    'provider' => 'google-tag',
+    'googleTagId' => $fpGoogleTagId,
+    'conversionDestination' => (
+        $fpGoogleAdsConversionDestination
+    ),
+    'consentStorageKey' => (
+        'fp_measurement_consent_v1'
+    ),
+    'consentVersion' => 1,
+];
+/* FP_MEASUREMENT_RUNTIME_CONFIG_END */
 ?>
 <!doctype html>
 <html lang="<?= $fpEscape($fpDocumentLanguage) ?>">
 
 <head>
-    <?php if ($fpGtmContainerId !== ''): ?>
-        <!-- Google Tag Manager: runtime-configured and explicitly enabled. -->
-        <script>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    'gtm.start': new Date().getTime(),
-                    event: 'gtm.js'
-                });
-                var firstScript = d.getElementsByTagName(s)[0];
-                var tagScript = d.createElement(s);
-                var layerQuery = l !== 'dataLayer'
-                    ? '&l=' + l
-                    : '';
-                tagScript.async = true;
-                tagScript.src = 'https://www.googletagmanager.com/gtm.js?id='
-                    + i
-                    + layerQuery;
-                firstScript.parentNode.insertBefore(
-                    tagScript,
-                    firstScript
-                );
-            })(
-                window,
-                document,
-                'script',
-                'dataLayer',
-                '<?= $fpEscape($fpGtmContainerId) ?>'
-            );
-        </script>
-        <!-- End Google Tag Manager. -->
-    <?php endif; ?>
+    <!-- FP_MEASUREMENT_BROWSER_CONFIG_START -->
+    <script>
+        window.ForPrintMeasurementConfig = Object.freeze(
+            <?=json_encode(
+                $fpMeasurementConfig,
+                JSON_UNESCAPED_SLASHES
+                | JSON_UNESCAPED_UNICODE
+                | JSON_HEX_TAG
+                | JSON_HEX_AMP
+                | JSON_HEX_APOS
+                | JSON_HEX_QUOT
+            )?>
+        );
+    </script>
+    <!-- FP_MEASUREMENT_BROWSER_CONFIG_END -->
     <meta charset="UTF-8">
     <meta
         name="viewport"
@@ -218,28 +270,26 @@ if (
         rel="stylesheet"
     >
 
+    <!-- FP_MEASUREMENT_ASSETS_START -->
+    <script
+        defer
+        src="<?=PATH . TEMPLATE?>assets/js/forprint-consent.js?v=20260803-1801"
+    ></script>
+    <!-- FP_MEASUREMENT_ASSETS_END -->
+
     <?php $this->getStyles()?>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-search-submit.js?v=20260724-0910"></script>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-header-popover.js?v=20260724-0649"></script>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
-    <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260730-1618"></script>
-    <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260730-1618"></script>
+    <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260803-1622"></script>
+    <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260803-1622"></script>
 </head>
 
-<body class="fp-public-page">
-<?php if ($fpGtmContainerId !== ''): ?>
-    <!-- Google Tag Manager (noscript). -->
-    <noscript>
-        <iframe
-            src="https://www.googletagmanager.com/ns.html?id=<?= $fpEscape($fpGtmContainerId) ?>"
-            height="0"
-            width="0"
-            style="display:none;visibility:hidden"
-            title="Google Tag Manager"
-        ></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript). -->
-<?php endif; ?>
+<body
+    class="fp-public-page"
+    data-fp-theme="default"
+>
+
 <?php
 /* ForPrint right-rail controls v0.6.43 */
 

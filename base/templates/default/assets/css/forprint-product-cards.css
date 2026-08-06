@@ -598,3 +598,39 @@
     -webkit-line-clamp: unset !important;
     -webkit-box-orient: initial !important;
 }
+
+/* FP_RELATED_CANONICAL_WIDTH_05G11B
+ * The related-goods carousel follows the same canonical width as product
+ * detail content instead of expanding to the viewport edges.
+ */
+.fp-related-section__container.fp-layout-container {
+    width: calc(100% - 3rem) !important;
+    width: min(
+        calc(
+            100% - var(--fp-layout-side-space, 1.5rem)
+            - var(--fp-layout-side-space, 1.5rem)
+        ),
+        var(--fp-layout-content-ceiling, 96rem)
+    ) !important;
+    max-width: var(--fp-layout-content-ceiling, 96rem) !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+}
+
+.fp-related-section__title.h2 {
+    margin: 0 !important;
+    font-size: clamp(1.125rem, 1.25vw, 1.25rem) !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+}
+
+@media (max-width: 40em) {
+    .fp-related-section__container.fp-layout-container {
+        width: calc(100% - 2rem) !important;
+    }
+
+    .fp-related-section__title.h2 {
+        letter-spacing: 0.04em !important;
+    }
+}

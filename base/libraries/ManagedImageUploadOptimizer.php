@@ -149,6 +149,20 @@ final class ManagedImageUploadOptimizer
                 'png_colors' => $pngColors,
                 'field_prefix' => true,
             ],
+            // FP_ABOUT_PROMO_GALLERY_05G11B
+            'settings.about_promo_gallery_img' => [
+                'directory' => 'settings/about-promo-gallery',
+                'label' => 'промо-фотографії сторінки «Про нас»',
+                'max_width' => $settingsEdge,
+                'max_height' => $settingsEdge,
+                'max_bytes' => (int)$config['settings_max_kb'] * 1024,
+                'format' => 'auto',
+                'jpeg_quality' => $jpegQuality,
+                'jpeg_min_quality' => $jpegMinQuality,
+                'png_colors' => $pngColors,
+                'name_suffix' => 'promo-gallery',
+                'multiple' => true,
+            ],
             // FP_SETTINGS_MANAGED_GALLERIES_05G2A
             'settings.gallery_img' => [
                 'directory' => 'settings/about-gallery',

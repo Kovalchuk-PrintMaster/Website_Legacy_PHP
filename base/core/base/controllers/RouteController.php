@@ -138,7 +138,20 @@ class RouteController extends BaseController
                 $this->controller .= ucfirst($route[0].'Controller');
             }
             else{
-                $this->controller .= ucfirst($arr[0].'Controller');
+                /* FP_PUBLIC_CONTROLLER_ALIASES_START */
+                $fpPublicControllerAliases = [
+                    'nashi-posluhy' => 'Nashiposluhy',
+                ];
+
+                $fpControllerSegment =
+                    $fpPublicControllerAliases[$arr[0]]
+                    ?? $arr[0];
+
+                $this->controller .= ucfirst(
+                    $fpControllerSegment
+                    . 'Controller'
+                );
+                /* FP_PUBLIC_CONTROLLER_ALIASES_END */
             }
         }else{
             $this->controller .= $this->routes['default']['controller'];

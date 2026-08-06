@@ -65,3 +65,17 @@ production validation and rollback on failure.
 **Status:** accepted working decision
 **Record:** `2026-08-01__google_ads_research_workspace_and_launch_gate.md`
 <!-- FP-GOOGLE-ADS-ADR-V0-1-END -->
+
+<!-- FP_ADR_REGISTER_2026_08_06_FRONTEND_CHECKPOINT_START -->
+## Frontend foundation checkpoint — 2026-08-06
+
+| ID | Рішення | Статус |
+|---|---|---|
+| `FP-WEB-ADR-2026-08-06-001` | Exact frontend/runtime checkpoint with separate SEO/Ads and scratch scope | accepted |
+
+Canonical decision file:
+
+```text
+docs/decisions/2026-08-06__frontend-foundation-stable-checkpoint-and-next-stage.md
+```
+<!-- FP_ADR_REGISTER_2026_08_06_FRONTEND_CHECKPOINT_END -->

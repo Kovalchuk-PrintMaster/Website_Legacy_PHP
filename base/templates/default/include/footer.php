@@ -19,6 +19,65 @@ $fpFooterLinks = !empty($this->footerLinks) && is_array($this->footerLinks)
         ['name' => 'Карта сайту', 'url' => '#', 'target_blank' => 0],
     ];
 
+/* FP_SERVICES_FOOTER_LINK_START */
+$fpServicesFooterLinkExists = false;
+
+foreach ($fpFooterLinks as $fpExistingFooterLink) {
+    $fpExistingFooterUrl = trim(
+        (string)($fpExistingFooterLink['url'] ?? ''),
+        '/'
+    );
+
+    if ($fpExistingFooterUrl === 'nashi-posluhy') {
+        $fpServicesFooterLinkExists = true;
+        break;
+    }
+}
+
+if (!$fpServicesFooterLinkExists) {
+    $fpServicesFooterLink = [
+        'name' => 'Наші послуги',
+        'url' => 'nashi-posluhy',
+        'target_blank' => 0,
+    ];
+
+    $fpServicesFooterPosition = min(
+        2,
+        count($fpFooterLinks)
+    );
+
+    array_splice(
+        $fpFooterLinks,
+        $fpServicesFooterPosition,
+        0,
+        [$fpServicesFooterLink]
+    );
+}
+/* FP_SERVICES_FOOTER_LINK_END */
+
+/* FP_CONSENT_FOOTER_LINK_START */
+$fpConsentFooterLinkExists = false;
+
+foreach ($fpFooterLinks as $fpExistingFooterLink) {
+    $fpExistingFooterUrl = trim((string)(
+        $fpExistingFooterLink['url'] ?? ''
+    ));
+
+    if ($fpExistingFooterUrl === '#fp-consent-settings') {
+        $fpConsentFooterLinkExists = true;
+        break;
+    }
+}
+
+if (!$fpConsentFooterLinkExists) {
+    $fpFooterLinks[] = [
+        'name' => 'Налаштування cookies',
+        'url' => '#fp-consent-settings',
+        'target_blank' => 0,
+    ];
+}
+/* FP_CONSENT_FOOTER_LINK_END */
+
 $fpFooterPhones = !empty($this->footerPhones) && is_array($this->footerPhones)
     ? $this->footerPhones
     : [
@@ -166,6 +225,60 @@ $fpFooterCopyright = trim((string)($fpFooterSettings['copyright_text'] ?? 'Copyr
     </div>
 </footer>
 <?php endif; ?>
+
+<!-- FP_CONSENT_BANNER_START -->
+<div
+    class="fp-consent fp-visual-system"
+    data-fp-consent-root
+    hidden
+>
+    <div
+        class="fp-consent__panel"
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="fp-consent-title"
+        aria-describedby="fp-consent-description"
+    >
+        <div class="fp-consent__copy">
+            <h2
+                id="fp-consent-title"
+                class="fp-card-title"
+            >
+                Налаштування приватності
+            </h2>
+
+            <p
+                id="fp-consent-description"
+                class="fp-body-copy"
+            >
+                Необхідні дані використовуються для роботи сайту,
+                кошика, безпеки форм і збереження вашого вибору.
+                Google Ads measurement завантажується лише після
+                вашого дозволу. Персональні дані з форм до Google
+                не передаються.
+            </p>
+        </div>
+
+        <div class="fp-consent__actions">
+            <button
+                class="fp-consent__button fp-consent__button--secondary fp-button"
+                type="button"
+                data-fp-consent-deny
+            >
+                Лише необхідні
+            </button>
+
+            <button
+                class="fp-consent__button fp-consent__button--primary fp-button fp-button--primary"
+                type="button"
+                data-fp-consent-allow
+            >
+                Дозволити вимірювання
+            </button>
+        </div>
+    </div>
+</div>
+<!-- FP_CONSENT_BANNER_END -->
 
 <div class="hide-elems">
     <svg>

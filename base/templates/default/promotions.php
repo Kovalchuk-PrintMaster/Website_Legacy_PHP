@@ -1,12 +1,16 @@
 <?php if (!empty($data)):?>
 
-<div class="container">
-    <?= $this->breadcrumbs?>
+<!-- FP_MANAGED_PAGE_SYSTEM_V02_START -->
+<div class="fp-managed-page fp-visual-system" data-fp-surface="promotions">
+
+<div class="container fp-layout-container fp-page-shell">
+    <div class="fp-page-breadcrumbs fp-managed-page__breadcrumbs">
+        <?= $this->breadcrumbs?>
+    </div>
 
     <div class="managed-product-list-hero">
         <div>
-            <div class="managed-product-list-hero__eyebrow">PrintMaster</div>
-            <h1 class="page-title h1"><?=htmlspecialchars($data['name'] ?? 'Акції і Пропозиції', ENT_QUOTES, 'UTF-8')?></h1>
+            <h1 class="page-title h1 fp-page-title"><?=htmlspecialchars($data['name'] ?? 'Акції і Пропозиції', ENT_QUOTES, 'UTF-8')?></h1>
 
             <p>
                 Тут зібрані товари, які зараз позначені в адмінці як <strong>Акція</strong>
@@ -17,7 +21,7 @@
 </div>
 
 <section class="catalog-internal managed-product-list-page">
-    <div class="container">
+    <div class="container fp-layout-container">
         <div class="catalog-internal-wrap">
 
             <?php if (empty($goods)):?>
@@ -64,5 +68,8 @@
         </div>
     </div>
 </section>
+
+</div>
+<!-- FP_MANAGED_PAGE_SYSTEM_V02_END -->
 
 <?php endif;?>

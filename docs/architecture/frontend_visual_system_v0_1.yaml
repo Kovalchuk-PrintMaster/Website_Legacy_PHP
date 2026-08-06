@@ -24,7 +24,7 @@ frontend_profiles:
   configuration_key: FP_WEB_FRONTEND_PROFILE
   resolver_owner: base/core/user/controllers/BaseUser.php
   invalid_value_fallback: legacy
-  operator_env_example: .env.website.local.example
+  operator_env_example: config/env/website.local.example
 
 palette:
   max_core_colors: 5

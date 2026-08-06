@@ -27,7 +27,7 @@ Profile selection is environment-backed:
 - allowed values: `legacy`, `controlled_v1`, `future_redesign`;
 - resolver owner: `base/core/user/controllers/BaseUser.php`;
 - missing, blank or unsupported values fall back to `legacy`;
-- `.env.website.local` is loaded by the existing preview Make workflow;
+- `.runtime/env/website.local` is loaded by the existing preview Make workflow;
 - profile rollback is performed by changing the environment value and restarting the application process.
 
 ## Canonical core palette

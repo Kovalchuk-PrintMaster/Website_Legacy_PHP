@@ -28,3 +28,11 @@ YYYY-MM-DD_development_state_v0_1.md
 
 - [Global layout, header, homepage hero, price presentation, CSS ownership, and local preview state](snapshots/2026-07-20_frontend_working_state_v0_1.md)
 <!-- FP-FRONTEND-DOCS-V02-END -->
+
+<!-- FP_STATUS_2026_08_06_FRONTEND_CHECKPOINT_START -->
+## 2026-08-06
+
+- `snapshots/2026-08-06_frontend_foundation_stable_checkpoint_v0_1.md`
+  records the accepted local frontend/runtime checkpoint before the next
+  responsive and component-refinement stage.
+<!-- FP_STATUS_2026_08_06_FRONTEND_CHECKPOINT_END -->

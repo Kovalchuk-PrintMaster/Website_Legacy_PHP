@@ -106,6 +106,7 @@ if (($this->table ?? '') === 'settings') {
             'short_content',
             'content',
             'promo_img',
+            'about_promo_gallery_img',
             'gallery_img',
         ] : [];
 
@@ -487,6 +488,10 @@ if (($this->table ?? '') === 'settings') {
                     'Головне зображення сторінки "Про нас"',
                     'Статичне зображення праворуч на сторінці /about/.',
                 ],
+                'about_promo_gallery_img' => [
+                    'Промо-фотографії сторінки "Про нас"',
+                    'Зображення 9:5 змінюються автоматично під заголовком сторінки /about/.',
+                ],
                 'gallery_img' => [
                     'Галерея сторінки "Про нас"',
                     'Автоматична ротація на головній і карусель на сторінці.',
@@ -589,6 +594,7 @@ if (($this->table ?? '') === 'settings') {
             echo '<div class="fp-admin-content-card__media fp-admin-about-card__media">';
             echo '<div class="fp-admin-content-card__panel-title fp-admin-about-card__panel-title">Зображення</div>';
             $forprintRenderSettingsAboutField('promo_img', 'vg-img');
+            $forprintRenderSettingsAboutField('about_promo_gallery_img', 'vg-img');
             $forprintRenderSettingsAboutField('gallery_img', 'vg-img');
             echo '</div>';
 

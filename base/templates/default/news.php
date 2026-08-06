@@ -174,7 +174,6 @@ $parseGallery = static function ($source): array {
 
         <?php else: ?>
             <header class="fp-news-page__header">
-                <div class="fp-news-page__eyebrow">ForPrint</div>
 
                 <h1 id="fp-news-page-title">
                     <?=htmlspecialchars(

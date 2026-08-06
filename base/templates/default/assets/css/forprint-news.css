@@ -307,3 +307,117 @@
         grid-template-columns: 4.5rem minmax(0, 1fr);
     }
 }
+
+/* FP_PHASE_1_2_NEWS_REFINEMENT_START */
+
+.fp-news-page--list .fp-news-page__header {
+    gap: var(--fp-title-content-gap, 1rem);
+}
+
+.fp-news-page--list h1 {
+    color: var(--fp-color-text-muted, #667888);
+    font-family:
+        var(--fp-font-family-mono, "Roboto Mono"),
+        "Courier New",
+        monospace;
+    font-size: clamp(1.35rem, 1.55vw, 1.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: clamp(0.08em, 0.13vw, 0.16em);
+    text-transform: uppercase;
+}
+
+.fp-news-list-card__more {
+    inline-size: fit-content;
+    color: #0f0f0f;
+    text-decoration: none;
+    background-image:
+        linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left calc(100% - 0.02em);
+    background-size: 0 1px;
+    transition:
+        background-size
+        720ms
+        cubic-bezier(0.22, 1, 0.36, 1),
+        color
+        220ms
+        ease;
+}
+
+.fp-news-list-card__more:hover,
+.fp-news-list-card__more:focus-visible {
+    text-decoration: none;
+    background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fp-news-list-card__more {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* FP_PHASE_1_2_NEWS_REFINEMENT_END */
+
+/* FP_PHASE_1_10_NEWS_UNDERLINE_START */
+
+/*
+ * The news surface owns its read-more interaction. This replaces the
+ * inherited instant text-decoration with the shared smooth underline.
+ */
+html body.fp-public-page
+.fp-news-page
+a.fp-news-list-card__more {
+    position: relative;
+    display: inline-block;
+    inline-size: fit-content;
+    width: fit-content;
+    padding-block-end:
+        var(--fp-shell-underline-offset, 0.18rem);
+    margin-block-end:
+        calc(-1 * var(--fp-shell-underline-offset, 0.18rem));
+    color: inherit;
+    text-decoration: none;
+    background-image:
+        linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0 1px;
+    transition:
+        background-size
+        var(--fp-shell-underline-duration, 900ms)
+        var(
+            --fp-shell-underline-easing,
+            cubic-bezier(0.22, 1, 0.36, 1)
+        );
+}
+
+html body.fp-public-page
+.fp-news-page
+a.fp-news-list-card__more:hover,
+html body.fp-public-page
+.fp-news-page
+a.fp-news-list-card__more:focus-visible {
+    text-decoration: none;
+    background-size: 100% 1px;
+}
+
+html body.fp-public-page
+.fp-news-page
+a.fp-news-list-card__more::before,
+html body.fp-public-page
+.fp-news-page
+a.fp-news-list-card__more::after {
+    content: none;
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html body.fp-public-page
+    .fp-news-page
+    a.fp-news-list-card__more {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* FP_PHASE_1_10_NEWS_UNDERLINE_END */

@@ -1,12 +1,12 @@
-# Протокол tmp.php і tmp.py v0.1
+# Протокол tmp/work/tmp.php і tmp/work/tmp.py v0.1
 
 **ID:** `FP-WEB-WF-002`
 
 ## Призначення
 
-`tmp.php` і `tmp.py` — одноразові operator entrypoints. Вони не є канонічними modules і не повинні містити єдину копію важливої логіки.
+`tmp/work/tmp.php` і `tmp/work/tmp.py` — одноразові operator entrypoints. Вони не є канонічними modules і не повинні містити єдину копію важливої логіки.
 
-## tmp.php
+## tmp/work/tmp.php
 
 Використовується для:
 
@@ -18,7 +18,7 @@
 - PHP library smoke;
 - template/runtime inspection.
 
-## tmp.py
+## tmp/work/tmp.py
 
 Використовується для:
 
@@ -61,15 +61,15 @@
 ## Безпечний запуск
 
 ```bash
-wc -l tmp.php
-php -l tmp.php
-php tmp.php
+wc -l tmp/work/tmp.php
+php -l tmp/work/tmp.php
+php tmp/work/tmp.php
 ```
 
 ```bash
-wc -l tmp.py
-python -m py_compile tmp.py
-python tmp.py
+wc -l tmp/work/tmp.py
+python -m py_compile tmp/work/tmp.py
+python tmp/work/tmp.py
 ```
 
 ## Типові помилки

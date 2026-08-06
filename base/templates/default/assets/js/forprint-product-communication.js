@@ -482,23 +482,43 @@
 
                 clearPhoneWarning(form, phoneField);
 
+                /* FP_GOOGLE_ADS_LEAD_CALL_START */
                 if (
                     !payload.duplicate
                     && Number(payload.request_id || 0) > 0
                 ) {
-                    measurementPush(
-                        'generate_lead',
-                        measurementMerge(
-                            measurementContext(form, submitMode),
-                            {
-                                delivery_state:
-                                    payload.delivery_completed
-                                        ? 'sent'
-                                        : 'stored'
-                            }
-                        )
+                    var leadContext = measurementMerge(
+                        measurementContext(
+                            form,
+                            submitMode
+                        ),
+                        {
+                            delivery_state:
+                                payload.delivery_completed
+                                    ? 'sent'
+                                    : 'stored'
+                        }
                     );
+
+                    if (
+                        window.ForPrintMeasurement
+                        && typeof (
+                            window.ForPrintMeasurement
+                                .trackLead
+                        ) === 'function'
+                    ) {
+                        window.ForPrintMeasurement.trackLead(
+                            payload.request_id,
+                            leadContext
+                        );
+                    } else {
+                        measurementPush(
+                            'generate_lead',
+                            leadContext
+                        );
+                    }
                 }
+                /* FP_GOOGLE_ADS_LEAD_CALL_END */
 
                 showStatus(
                     status,

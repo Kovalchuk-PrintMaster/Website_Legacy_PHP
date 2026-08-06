@@ -47,7 +47,7 @@
 - `Makefile` — repeatable commands;
 - `run_website_local_http_smoke.py` — route smoke;
 - `check_website_staging_runtime.py` — prerequisites;
-- `tmp.php`, `tmp.py` — temporary execution only.
+- `tmp/work/tmp.php`, `tmp/work/tmp.py` — temporary execution only.
 
 <!-- FP_FRONTEND_CRITICAL_REFERENCE_V0_1 -->
 ## Frontend critical reference — 2026-07-18

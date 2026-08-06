@@ -610,6 +610,10 @@ footer.fp-site-footer .footer__top_logo {
     display: block;
     grid-column: 1;
     min-width: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+
 }
 
 footer.fp-site-footer .footer__top_logo img {
@@ -635,6 +639,9 @@ footer.fp-site-footer .footer__top_menu ul {
     height: auto;
     margin: 0;
     padding: 0;
+    max-height: none;
+    overflow: visible;
+
 }
 
 footer.fp-site-footer .footer__top_menu li {
@@ -644,6 +651,8 @@ footer.fp-site-footer .footer__top_menu li {
     min-width: 0;
     padding: 0;
     line-height: 1.3;
+    grid-auto-rows: max-content;
+
 }
 
 footer.fp-site-footer .footer__top_contacts {
@@ -1160,8 +1169,8 @@ button:focus-visible {
 }
 
 /*
- * The shared content ceiling is 120rem (1920 CSS px). The additional pixel
- * keeps the 1920 baseline in the compact/full-width branch.
+ * The search strip remains full-width through the accepted 1920 CSS-pixel
+ * baseline. Above that baseline its form reuses the capped shared geometry.
  */
 @media (min-width: 120.0625rem) {
     .fp-search-strip .fp-search-strip__form {
@@ -1220,3 +1229,934 @@ button:focus-visible {
     pointer-events: none !important;
     transform: translateX(calc(100% + 5rem)) !important;
 }
+
+/* FP_FOUNDATION_SHELL_V02_START */
+
+body.fp-public-page .fp-site-header {
+    background: var(--fp-color-shell-background);
+    color: var(--fp-color-shell-text);
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts {
+    color: var(--fp-color-shell-text);
+    font-family: var(--fp-font-family-body);
+    font-size: var(--fp-shell-meta-font-size);
+    line-height: 1.25;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a {
+    position: relative;
+    color: var(--fp-color-shell-text);
+    font-family: var(--fp-font-family-body);
+    font-size: var(--fp-shell-nav-font-size);
+    font-weight: var(--fp-font-weight-bold);
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a::before {
+    display: none;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -0.3rem;
+    left: 0;
+    block-size: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition:
+        transform var(--fp-transition-fast);
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a:hover::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a:focus-visible::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a:hover::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+body.fp-public-page
+footer.fp-site-footer {
+    background: var(--fp-color-footer-background);
+    color: var(--fp-color-footer-text);
+}
+
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a {
+    color: var(--fp-color-footer-text);
+    font-family: var(--fp-font-family-body);
+    font-size: var(--fp-shell-nav-font-size);
+    font-weight: var(--fp-font-weight-bold);
+    line-height: 1.3;
+}
+
+body.fp-public-page
+footer.fp-site-footer
+.footer__bottom_copy {
+    color: var(--fp-color-footer-text);
+    font-size: var(--fp-font-size-xs);
+}
+
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a::after {
+    width: auto;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition:
+        transform var(--fp-transition-fast);
+}
+
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a:hover::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a:focus-visible::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a:hover::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+body.fp-public-page .fp-search-strip {
+    background: var(--fp-color-search-background);
+}
+
+body.fp-public-page
+.fp-search-strip
+.fp-search-strip__form
+button,
+body.fp-public-page
+.fp-search-strip
+.fp-search-strip__form
+input[type="search"] {
+    background: var(--fp-color-search-background);
+}
+
+/* FP_FOUNDATION_SHELL_V02_END */
+
+/* FP_PHASE_1_1_SHELL_REFINEMENT_START */
+
+/*
+ * Shared shell typography and one underline interaction.
+ * The old centre strike-through is explicitly neutralised.
+ */
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a {
+    font-size: var(--fp-shell-nav-font-size);
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a::before {
+    content: none;
+    display: none;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a {
+    position: relative;
+    text-decoration: none;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -0.2rem;
+    left: 0;
+    inline-size: 100%;
+    block-size: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition:
+        transform var(--fp-transition-fast);
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a:hover::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a:focus-visible::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline:hover::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline:focus-visible::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years:hover
+p::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a:hover::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a:focus-visible::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a:hover::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a:focus-visible::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a:hover::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+.footer__contact
+a:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/*
+ * A deliberately subtle SVG tone cycle.
+ * Exact travelling-mask shimmer remains a separate inline-SVG stage.
+ */
+@keyframes fp-logo-tone-cycle {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.78;
+    }
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__logo-link
+img[src*=".svg"],
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_logo
+img[src*=".svg"] {
+    animation:
+        fp-logo-tone-cycle
+        6s
+        ease-in-out
+        infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.fp-public-page
+    .fp-site-header
+    .fp-site-header__logo-link
+    img[src*=".svg"],
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_logo
+    img[src*=".svg"] {
+        animation: none;
+    }
+}
+
+/* FP_PHASE_1_1_SHELL_REFINEMENT_END */
+
+/* FP_PHASE_1_8_SAFE_SHELL_MOTION_AND_GRAPHITE_START */
+
+:root {
+    --fp-shell-underline-offset: 0.18rem;
+    --fp-shell-underline-duration: 900ms;
+    --fp-shell-underline-easing:
+        cubic-bezier(0.22, 1, 0.36, 1);
+    --fp-shell-logo-sheen-duration: 20s;
+    --fp-color-graphite-surface: #252b2f;
+    --fp-color-graphite-surface-active: #30363b;
+}
+
+/*
+ * One animated underline contract for header and footer.
+ * The line is a background layer, so inherited pseudo-elements cannot
+ * change its speed or distance.
+ */
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a {
+    position: relative;
+    inline-size: fit-content;
+    width: fit-content;
+    padding-block-end:
+        var(--fp-shell-underline-offset);
+    margin-block-end:
+        calc(-1 * var(--fp-shell-underline-offset));
+    text-decoration: none;
+    background-image:
+        linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0 1px;
+    transition:
+        background-size
+        var(--fp-shell-underline-duration)
+        var(--fp-shell-underline-easing),
+        color 240ms ease;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline:hover,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline:focus-visible,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p:hover,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a:hover,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a:focus-visible,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a:hover,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a:focus-visible,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a:hover,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a:focus-visible,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a:hover,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a:focus-visible {
+    text-decoration: none;
+    background-size: 100% 1px;
+}
+
+/*
+ * Neutralize inherited underline pseudo-elements. Only the background
+ * underline above remains active.
+ */
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline
+> span::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline
+> span::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p
+span::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__years
+p
+span::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__contacts
+a::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a::after,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a
+> span::before,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__nav-list
+> li
+> a
+> span::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a::before,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_menu
+a::after,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a::before,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_contacts
+a::after {
+    content: none;
+    display: none;
+}
+
+/*
+ * The SVG stays still. A masked diagonal band moves inside the logo.
+ * Header and footer share one timing curve and one keyframe sequence.
+ */
+body.fp-public-page
+.fp-site-header
+.fp-site-header__logo-link,
+body.fp-public-page
+footer.fp-site-footer
+.fp-site-footer__logo-link {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__logo-link
+img,
+body.fp-public-page
+footer.fp-site-footer
+.fp-site-footer__logo-link
+img {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    animation: none;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__logo-link::before,
+body.fp-public-page
+footer.fp-site-footer
+.fp-site-footer__logo-link::before,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_logo::before,
+body.fp-public-page
+footer.fp-site-footer
+.footer__top_logo::after {
+    content: none;
+    display: none;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__logo-link::after,
+body.fp-public-page
+footer.fp-site-footer
+.fp-site-footer__logo-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: 320% 320%;
+    background-position: 155% 155%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    opacity: 0;
+    will-change: background-position, opacity;
+    animation:
+        fp-shell-logo-sheen
+        var(--fp-shell-logo-sheen-duration)
+        ease-in-out
+        infinite;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__logo-link::after {
+    background-image:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.18) 44%,
+            rgba(255, 255, 255, 0.98) 50%,
+            rgba(125, 138, 148, 0.52) 56%,
+            transparent 61%,
+            transparent 100%
+        );
+    -webkit-mask-image:
+        url("/userfiles/settings/img-print-studiia-povnoho-tsyklu_01.svg");
+    mask-image:
+        url("/userfiles/settings/img-print-studiia-povnoho-tsyklu_01.svg");
+    mix-blend-mode: screen;
+}
+
+body.fp-public-page
+footer.fp-site-footer
+.fp-site-footer__logo-link::after {
+    background-image:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(115, 126, 134, 0.06) 44%,
+            rgba(69, 79, 86, 0.96) 50%,
+            rgba(142, 153, 161, 0.46) 56%,
+            transparent 61%,
+            transparent 100%
+        );
+    -webkit-mask-image:
+        url("/userfiles/footer_settings/forprint_logo_white.svg");
+    mask-image:
+        url("/userfiles/footer_settings/forprint_logo_white.svg");
+    mix-blend-mode: multiply;
+}
+
+@keyframes fp-shell-logo-sheen {
+    0%,
+    2% {
+        opacity: 0;
+        background-position: 155% 155%;
+    }
+
+    10% {
+        opacity: 0.94;
+        background-position: 135% 135%;
+    }
+
+    76% {
+        opacity: 0.94;
+        background-position: -35% -35%;
+    }
+
+    84%,
+    100% {
+        opacity: 0;
+        background-position: -58% -58%;
+    }
+}
+
+/*
+ * One graphite base. Selected and hover states use one lighter token.
+ */
+body.fp-public-page
+.header__sidebar,
+body.fp-public-page
+.header__sidebar_btn,
+body.fp-public-page
+.header__sidebar_btn.burger-menu,
+body.fp-public-page
+.fp-site-sidebar__utility,
+body.fp-public-page
+.fp-site-sidebar__utility
+.header__sidebar_btn,
+body.fp-public-page
+footer.fp-site-footer,
+body.fp-public-page
+.fp-communication-section,
+body.fp-public-page
+[data-fp-communication-surface] {
+    background:
+        var(--fp-color-graphite-surface);
+    background-color:
+        var(--fp-color-graphite-surface);
+}
+
+body.fp-public-page
+.fp-site-sidebar__utility
+a {
+    background-color: transparent;
+}
+
+body.fp-public-page
+.header__sidebar_btn:hover,
+body.fp-public-page
+.header__sidebar_btn:focus-within,
+body.fp-public-page
+.fp-site-sidebar__utility
+a:hover,
+body.fp-public-page
+.fp-site-sidebar__utility
+a:focus-visible {
+    background:
+        var(--fp-color-graphite-surface-active);
+    background-color:
+        var(--fp-color-graphite-surface-active);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.fp-public-page
+    .fp-site-header
+    .fp-site-header__tagline,
+    body.fp-public-page
+    .fp-site-header
+    .fp-site-header__years
+    p,
+    body.fp-public-page
+    .fp-site-header
+    .fp-site-header__contacts
+    a,
+    body.fp-public-page
+    .fp-site-header
+    .fp-site-header__nav-list
+    > li
+    > a,
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_menu
+    a,
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    a {
+        transition-duration: 0.01ms;
+    }
+
+    body.fp-public-page
+    .fp-site-header
+    .fp-site-header__logo-link::after,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-link::after {
+        animation: none;
+        opacity: 0;
+    }
+}
+
+/* FP_PHASE_1_8_SAFE_SHELL_MOTION_AND_GRAPHITE_END */
+
+/* FP_PHASE_1_10_FOOTER_LOGO_GEOMETRY_START */
+
+/*
+ * The footer anchor is shrink-wrapped to the rendered image.
+ * This makes the animated mask use the exact image box rather than
+ * the wider legacy footer column, which caused the detached ghost.
+ */
+html body.fp-public-page
+footer.footer.fp-site-footer
+.footer__top_logo > a,
+html body.fp-public-page
+footer.footer.fp-site-footer
+a.fp-site-footer__logo-link {
+    position: relative;
+    display: inline-flex;
+    inline-size: auto;
+    width: auto;
+    max-inline-size: 100%;
+    overflow: hidden;
+    isolation: isolate;
+    line-height: 0;
+    vertical-align: top;
+}
+
+html body.fp-public-page
+footer.footer.fp-site-footer
+.footer__top_logo > a > img,
+html body.fp-public-page
+footer.footer.fp-site-footer
+a.fp-site-footer__logo-link > img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    flex: 0 0 auto;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    animation: none;
+}
+
+html body.fp-public-page
+footer.footer.fp-site-footer
+.footer__top_logo::before,
+html body.fp-public-page
+footer.footer.fp-site-footer
+.footer__top_logo::after,
+html body.fp-public-page
+footer.footer.fp-site-footer
+.footer__top_logo > a::before,
+html body.fp-public-page
+footer.footer.fp-site-footer
+a.fp-site-footer__logo-link::before {
+    content: none;
+    display: none;
+}
+
+html body.fp-public-page
+footer.footer.fp-site-footer
+.footer__top_logo > a::after,
+html body.fp-public-page
+footer.footer.fp-site-footer
+a.fp-site-footer__logo-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 39%,
+            rgba(37, 43, 47, 0.10) 44%,
+            rgba(37, 43, 47, 0.98) 50%,
+            rgba(145, 157, 165, 0.50) 56%,
+            transparent 62%,
+            transparent 100%
+        );
+    background-repeat: no-repeat;
+    background-size: 320% 320%;
+    background-position: 155% 155%;
+    -webkit-mask-image:
+        url("/userfiles/footer_settings/forprint_logo_white.svg");
+    mask-image:
+        url("/userfiles/footer_settings/forprint_logo_white.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    will-change: background-position, opacity;
+    animation:
+        fp-shell-logo-sheen
+        14.4s
+        ease-in-out
+        infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html body.fp-public-page
+    footer.footer.fp-site-footer
+    .footer__top_logo > a::after,
+    html body.fp-public-page
+    footer.footer.fp-site-footer
+    a.fp-site-footer__logo-link::after {
+        animation: none;
+        opacity: 0;
+    }
+}
+
+/* FP_PHASE_1_10_FOOTER_LOGO_GEOMETRY_END */

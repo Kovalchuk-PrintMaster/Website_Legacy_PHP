@@ -95,3 +95,22 @@ base/core/base/controllers/BaseMethods.php
 - cart/checkout;
 - mobile application work;
 - large modern redesign switch.
+
+<!-- FP_FRONTEND_PLAN_CHECKPOINT_2026_08_06_START -->
+## Checkpoint update — 2026-08-06
+
+Completed for the current local stage:
+
+- design tokens, default theme and shared foundation layers;
+- page-structure rhythm and fluid content width;
+- shared shell, homepage, catalog, contacts, news, services and product detail;
+- exact documentation and Git checkpoint boundary.
+
+Next execution order:
+
+1. separate logo pass duration from idle interval;
+2. complete responsive acceptance;
+3. consolidate remaining temporary bounded overrides into canonical owners;
+4. continue catalog/product behavior;
+5. handle SEO/Ads as an independently reviewed checkpoint.
+<!-- FP_FRONTEND_PLAN_CHECKPOINT_2026_08_06_END -->

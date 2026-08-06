@@ -109,7 +109,7 @@
 
                                         </div>
 
-                                    <? endforeach;?>
+                                    <?php endforeach; ?>
 
                                 </div>
                             </div>

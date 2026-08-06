@@ -1,0 +1,477 @@
+/*
+ * ForPrint shared public-page structure v0.1.
+ *
+ * Owns only page entry rhythm: breadcrumbs, heading and first content block.
+ */
+
+body.fp-public-page main.main .fp-page-shell {
+    padding-block:
+        var(--fp-page-top-gap)
+        var(--fp-page-bottom-gap);
+}
+
+body.fp-public-page main.main .fp-page-breadcrumbs {
+    min-inline-size: 0;
+    margin: 0 0 var(--fp-breadcrumb-title-gap);
+    padding: 0;
+}
+
+body.fp-public-page
+main.main
+.fp-page-breadcrumbs
+.fp-breadcrumbs {
+    margin: 0;
+    padding: 0;
+}
+
+body.fp-public-page main.main .fp-page-header {
+    display: grid;
+    min-inline-size: 0;
+    gap: var(--fp-title-content-gap);
+    margin: 0 0 var(--fp-title-content-gap);
+}
+
+body.fp-public-page
+main.main
+.fp-page-header__copy {
+    display: grid;
+    min-inline-size: 0;
+    gap: var(--fp-title-content-gap);
+}
+
+body.fp-public-page
+main.main
+.fp-page-header--with-action {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+body.fp-public-page
+main.main
+.fp-page-controls {
+    margin-block-start:
+        var(--fp-breadcrumb-controls-gap);
+}
+
+/* Catalog is the visual reference for public page entry rhythm. */
+
+body.fp-public-page
+main.main
+[data-fp-surface="catalog"].fp-catalog-page {
+    padding-block-start: var(--fp-page-top-gap);
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="catalog"]
+.fp-catalog-page__breadcrumbs {
+    margin-block-end:
+        var(--fp-breadcrumb-title-gap);
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="catalog"]
+.fp-catalog-page__header {
+    margin-block-end:
+        var(--fp-title-content-gap);
+}
+
+/* Information pages */
+
+body.fp-public-page
+main.main
+[data-fp-surface="information"].information-page {
+    padding: 0;
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="information"]
+.information-page__header {
+    margin-block-end:
+        var(--fp-title-content-gap);
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="information"]
+.information-page__content {
+    margin-block-start: 0;
+}
+
+/* Contacts */
+
+body.fp-public-page
+main.main
+[data-fp-surface="contacts"].contacts-page {
+    padding-block: 0;
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="contacts"]
+.contacts-page__hero {
+    margin-block-end:
+        var(--fp-title-content-gap);
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="contacts"]
+.contacts-page__grid {
+    margin-block-start:
+        var(--fp-title-content-gap);
+}
+
+/* Promotions and special offers */
+
+body.fp-public-page
+main.main
+.fp-managed-page
+> .fp-page-shell {
+    padding-block-end: 0;
+}
+
+body.fp-public-page
+main.main
+.fp-managed-page
+> .managed-product-list-page {
+    margin-block-start:
+        var(--fp-breadcrumb-controls-gap);
+}
+
+/*
+ * Do not force the existing managed-product hero visible.
+ * Its current visibility remains surface-owned.
+ */
+body.fp-public-page
+main.main
+.fp-managed-page
+.managed-product-list-hero__eyebrow {
+    display: none;
+}
+
+@media (min-width: 64rem) {
+    body.fp-public-page
+    main.main
+    .fp-page-header--with-action {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+        align-items: center;
+    }
+}
+
+/* FP_PHASE_1_2_PAGE_TITLE_REFINEMENT_START */
+
+/* One compact, left-aligned title language for internal public pages. */
+body.fp-public-page
+main.main
+[data-fp-surface="catalog"]
+.fp-page-title,
+body.fp-public-page
+main.main
+[data-fp-surface="information"]
+.fp-page-title,
+body.fp-public-page
+main.main
+[data-fp-surface="contacts"]
+.fp-page-title,
+body.fp-public-page
+main.main
+[data-fp-surface="services"]
+.fp-page-title,
+body.fp-public-page
+main.main
+.fp-managed-page
+.fp-page-title {
+    inline-size: auto;
+    margin: 0;
+    color: var(--fp-color-text-muted, #667888);
+    font-family:
+        var(--fp-font-family-mono, "Roboto Mono"),
+        "Courier New",
+        monospace;
+    font-size: clamp(1.35rem, 1.55vw, 1.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: clamp(0.08em, 0.13vw, 0.16em);
+    text-align: start;
+    text-transform: uppercase;
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="catalog"]
+.fp-catalog-page__header {
+    justify-items: start;
+    text-align: start;
+}
+
+body.fp-public-page
+main.main
+[data-fp-surface="catalog"]
+.fp-catalog-page__header
+.fp-page-title {
+    justify-self: start;
+}
+
+/* FP_PHASE_1_2_PAGE_TITLE_REFINEMENT_END */
+
+/* FP_PHASE_1_8_SAFE_PAGE_RHYTHM_AND_TITLES_START */
+
+:root {
+    --fp-entry-top-gap-compact:
+        clamp(0.9rem, 1vw, 1.15rem);
+    --fp-entry-row-gap-compact: 0.5rem;
+    --fp-entry-content-gap-compact: 0.72rem;
+    --fp-canonical-page-title-size:
+        clamp(1.5rem, 1.4vw, 1.75rem);
+}
+
+/*
+ * Catalog, category, contacts, delivery and services use the same Lato title.
+ * Maximum size matches the existing "ФІЛЬТРИ" heading.
+ */
+html body.fp-public-page main.main
+[data-fp-surface="catalog"] .fp-page-title,
+html body.fp-public-page main.main
+[data-fp-surface="information"] .fp-page-title,
+html body.fp-public-page main.main
+[data-fp-surface="contacts"] .fp-page-title,
+html body.fp-public-page main.main
+[data-fp-surface="services"] .fp-page-title,
+html body.fp-public-page main.main
+.fp-catalog-page__header .fp-page-title {
+    color:
+        var(--fp-color-text-muted, #667888);
+    font-family:
+        var(--fp-font-family-body, Lato),
+        Arial,
+        sans-serif;
+    font-size:
+        var(--fp-canonical-page-title-size);
+    font-weight:
+        var(--fp-font-weight-bold, 700);
+    line-height: 1.1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/*
+ * Stable catalog entry geometry.
+ */
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"] {
+    padding-block-start: 0;
+}
+
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page__breadcrumbs.fp-layout-container {
+    position: static;
+    inset: auto;
+    float: none;
+    clear: both;
+    margin:
+        0
+        auto
+        var(--fp-entry-row-gap-compact);
+    padding:
+        var(--fp-entry-top-gap-compact)
+        0
+        0;
+    transform: none;
+}
+
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page__breadcrumbs.fp-layout-container
+> .breadcrumbs {
+    margin: 0;
+    padding: 0;
+}
+
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> header.fp-catalog-page__header.fp-page-header.fp-layout-container {
+    position: static;
+    display: block;
+    inset: auto;
+    float: none;
+    clear: both;
+    margin:
+        0
+        auto
+        var(--fp-entry-content-gap-compact);
+    padding: 0;
+    transform: none;
+    text-align: start;
+}
+
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> header.fp-catalog-page__header.fp-page-header.fp-layout-container
+> h1.fp-page-title {
+    position: static;
+    display: block;
+    inset: auto;
+    float: none;
+    inline-size: auto;
+    width: auto;
+    min-inline-size: 0;
+    max-inline-size: none;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    transform: none;
+    justify-self: start;
+    align-self: start;
+    text-align: start;
+}
+
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page__content,
+html body.fp-public-page main.main
+> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page__content
+> .fp-catalog-internal {
+    margin-block-start: 0;
+    padding-block-start: 0;
+}
+
+/*
+ * Promotions, special offers and search results share the same entry rhythm.
+ */
+html body.fp-public-page
+main.main[data-fp-surface="managed-products"]
+.fp-managed-products-page
+> .fp-managed-products-page__breadcrumbs.fp-layout-container {
+    position: static;
+    inset: auto;
+    float: none;
+    clear: both;
+    margin: 0 auto;
+    padding:
+        var(--fp-entry-top-gap-compact)
+        0
+        0;
+    transform: none;
+}
+
+html body.fp-public-page
+main.main[data-fp-surface="managed-products"]
+.fp-managed-products-page
+> .fp-managed-products-page__breadcrumbs
+> .breadcrumbs {
+    margin:
+        0
+        0
+        var(--fp-entry-row-gap-compact);
+    padding: 0;
+}
+
+html body.fp-public-page
+main.main[data-fp-surface="managed-products"]
+.fp-managed-products-page
+> .fp-managed-products-page__content {
+    margin: 0;
+    padding:
+        0
+        0
+        var(--fp-page-bottom-gap);
+}
+
+html body.fp-public-page
+main.main[data-fp-surface="managed-products"]
+.fp-managed-products-page
+> .fp-managed-products-page__content
+> .fp-layout-container {
+    margin-inline: auto;
+    padding-block-start: 0;
+}
+
+html body.fp-public-page
+main.main[data-fp-surface="managed-products"]
+.fp-managed-products-toolbar {
+    margin:
+        0
+        0
+        var(--fp-entry-content-gap-compact);
+}
+
+
+/*
+ * News read-more links use the same underline motion without editing PHP.
+ */
+html body.fp-public-page a.fp-news-list-card__more {
+    display: inline;
+    padding-block-end: 0.2rem;
+    color: inherit;
+    text-decoration: none;
+    background-image:
+        linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0 1px;
+    transition:
+        background-size
+        900ms
+        cubic-bezier(0.22, 1, 0.36, 1),
+        color 240ms ease;
+}
+
+html body.fp-public-page a.fp-news-list-card__more:hover,
+html body.fp-public-page a.fp-news-list-card__more:focus-visible {
+    background-size: 100% 1px;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+html body.fp-public-page a.fp-news-list-card__more {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* FP_PHASE_1_8_SAFE_PAGE_RHYTHM_AND_TITLES_END */
+
+/* FP_PHASE_1_9_FINISHING_OVERRIDES_START */
+
+/*
+ * Canonical page titles keep the accepted size and stronger Lato weight.
+ * News underline ownership lives in forprint-news.css.
+ */
+html body.fp-public-page
+main.main
+[data-fp-surface="catalog"]
+.fp-page-title,
+html body.fp-public-page
+main.main
+[data-fp-surface="information"]
+.fp-page-title,
+html body.fp-public-page
+main.main
+[data-fp-surface="contacts"]
+.fp-page-title,
+html body.fp-public-page
+main.main
+[data-fp-surface="services"]
+.fp-page-title,
+html body.fp-public-page
+main.main
+.fp-managed-page
+.fp-page-title,
+html body.fp-public-page
+main.main
+.fp-catalog-page__header
+.fp-page-title {
+    font-family:
+        var(--fp-font-family-body, Lato),
+        Arial,
+        sans-serif;
+    font-weight: 800;
+}
+
+/* FP_PHASE_1_9_FINISHING_OVERRIDES_END */

@@ -7,7 +7,7 @@
 ## Ролі
 
 - Власник запускає команди на Debian, перевіряє браузер, приймає UX-рішення, робить commit/push.
-- Помічниця аналізує зрізи, готує `tmp.php`/`tmp.py`, формує checks і наступний контрольований крок.
+- Помічниця аналізує зрізи, готує `tmp/work/tmp.php`/`tmp/work/tmp.py`, формує checks і наступний контрольований крок.
 
 ## Цикл
 
@@ -43,16 +43,16 @@ Phone validation не змішується з unrelated redesign або вели
 
 ## Повна заміна tmp-файлу
 
-Новий `tmp.php` або `tmp.py` повністю замінює старий. Перед запуском:
+Новий `tmp/work/tmp.php` або `tmp/work/tmp.py` повністю замінює старий. Перед запуском:
 
 ```bash
-php -l tmp.php
+php -l tmp/work/tmp.php
 ```
 
 або:
 
 ```bash
-python -m py_compile tmp.py
+python -m py_compile tmp/work/tmp.py
 ```
 
 ## Після patch

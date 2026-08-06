@@ -10,7 +10,12 @@ if ($aboutTitle === '') {
 }
 
 $aboutContent = trim((string)($about['content'] ?? ''));
-$aboutImage = trim((string)($about['promo_img'] ?? ''));
+$aboutImage = trim((string)(
+    $about['promo_img']
+    ?? $about['about_img']
+    ?? $about['img']
+    ?? ''
+));
 $aboutGalleryTitle = trim(strip_tags((string)(
     $about['about_gallery_title']
     ?? ''
@@ -20,45 +25,68 @@ if ($aboutGalleryTitle === '') {
     $aboutGalleryTitle = 'ГАЛЕРЕЯ';
 }
 
-$aboutGallery = [];
-$aboutGallerySource = $about['gallery_img'] ?? '';
+/**
+ * Convert a JSON gallery value into a normalized list of relative paths.
+ *
+ * @param mixed $source
+ * @return array<int, string>
+ */
+$fpAboutGalleryValues = static function ($source): array {
+    if (is_array($source)) {
+        $decoded = $source;
+    } elseif (is_string($source) && trim($source) !== '') {
+        $decoded = json_decode($source, true);
+    } else {
+        $decoded = [];
+    }
 
-if (is_string($aboutGallerySource) && trim($aboutGallerySource) !== '') {
-    $decodedAboutGallery = json_decode($aboutGallerySource, true);
+    if (!is_array($decoded)) {
+        return [];
+    }
 
-    if (is_array($decodedAboutGallery)) {
-        foreach ($decodedAboutGallery as $aboutGalleryItem) {
-            if (!is_string($aboutGalleryItem)) {
-                continue;
-            }
+    $result = [];
 
-            $aboutGalleryItem = trim($aboutGalleryItem);
+    foreach ($decoded as $item) {
+        if (!is_string($item)) {
+            continue;
+        }
 
-            if (
-                $aboutGalleryItem !== ''
-                && $aboutGalleryItem !== $aboutImage
-            ) {
-                $aboutGallery[] = $aboutGalleryItem;
-            }
+        $item = trim($item);
+
+        if ($item !== '') {
+            $result[] = $item;
         }
     }
+
+    return array_values(array_unique($result));
+};
+
+$aboutPromoGallery = $fpAboutGalleryValues(
+    $about['about_promo_gallery_img'] ?? ''
+);
+
+if (!$aboutPromoGallery && $aboutImage !== '') {
+    $aboutPromoGallery[] = $aboutImage;
 }
 
-$aboutGallery = array_values(array_unique($aboutGallery));
+$aboutPromoGalleryCount = count($aboutPromoGallery);
+
+$aboutGallery = $fpAboutGalleryValues(
+    $about['gallery_img'] ?? ''
+);
+
+if ($aboutImage !== '') {
+    $aboutGallery = array_values(array_filter(
+        $aboutGallery,
+        static fn(string $item): bool => $item !== $aboutImage
+    ));
+}
+
 $aboutGalleryCount = count($aboutGallery);
-
-$aboutLeadClass = 'fp-about-page__lead';
-
-if ($aboutContent === '') {
-    $aboutLeadClass .= ' fp-about-page__lead--media-only';
-}
-
-if ($aboutImage === '') {
-    $aboutLeadClass .= ' fp-about-page__lead--text-only';
-}
 ?>
 <section
     class="fp-about-page"
+    data-fp-about-layout="promo-9x5-v1"
     aria-labelledby="fp-about-page-title"
 >
     <div class="fp-about-page__inner fp-layout-container">
@@ -66,54 +94,71 @@ if ($aboutImage === '') {
         <?=$this->breadcrumbs?>
 
         <header class="fp-about-page__header">
-            <?php /* FP_ABOUT_EYEBROW_REMOVED_05G6A */ ?>
-
             <h1 id="fp-about-page-title">
                 <?=htmlspecialchars($aboutTitle, ENT_QUOTES, 'UTF-8')?>
             </h1>
         </header>
 
-        <?php if ($aboutContent !== '' || $aboutImage !== ''): ?>
-            <div class="<?=$aboutLeadClass?>" data-fp-about-balanced-lead>
-                <?php if ($aboutContent !== ''): ?>
-                    <div class="fp-about-page__content">
-                        <?=$aboutContent?>
-                    </div>
-                <?php endif; ?>
-
-                <?php if ($aboutImage !== ''): ?>
-                    <figure class="fp-about-page__media">
-                        <a
-                            class="fp-about-page__media-link"
-                            href="<?=htmlspecialchars(
-                                $this->img($aboutImage),
-                                ENT_QUOTES,
-                                'UTF-8'
-                            )?>"
-                            data-fancybox="gallery"
-                            data-caption="<?=htmlspecialchars(
-                                $aboutTitle,
-                                ENT_QUOTES,
-                                'UTF-8'
-                            )?>"
+        <?php if ($aboutPromoGalleryCount > 0): ?>
+            <section
+                class="fp-about-page__promo"
+                data-fp-about-promo-rotator
+                data-interval="6500"
+                aria-label="Промо-фотографії сторінки «Про нас»"
+            >
+                <div class="fp-about-page__promo-frame">
+                    <?php foreach (
+                        $aboutPromoGallery
+                        as $aboutPromoIndex => $aboutPromoImage
+                    ): ?>
+                        <figure
+                            class="fp-about-page__promo-slide<?=$aboutPromoIndex === 0 ? ' is-active' : ''?>"
+                            data-fp-about-promo-slide
+                            aria-hidden="<?=$aboutPromoIndex === 0 ? 'false' : 'true'?>"
                         >
-                            <img
-                                src="<?=htmlspecialchars(
-                                    $this->img($aboutImage),
+                            <a
+                                class="fp-about-page__promo-link"
+                                href="<?=htmlspecialchars(
+                                    $this->img($aboutPromoImage),
                                     ENT_QUOTES,
                                     'UTF-8'
                                 )?>"
-                                alt="<?=htmlspecialchars(
+                                data-fancybox="about-promo"
+                                data-caption="<?=htmlspecialchars(
                                     $aboutTitle,
                                     ENT_QUOTES,
                                     'UTF-8'
                                 )?>"
-                                decoding="async"
                             >
-                        </a>
-                    </figure>
-                <?php endif; ?>
-            </div>
+                                <img
+                                    src="<?=htmlspecialchars(
+                                        $this->img($aboutPromoImage),
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    )?>"
+                                    alt="<?=$aboutPromoIndex === 0
+                                        ? htmlspecialchars(
+                                            $aboutTitle,
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        )
+                                        : ''?>"
+                                    <?=$aboutPromoIndex === 0
+                                        ? 'fetchpriority="high"'
+                                        : 'loading="lazy"'?>
+                                    decoding="async"
+                                >
+                            </a>
+                        </figure>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <?php if ($aboutContent !== ''): ?>
+            <article class="fp-about-page__content">
+                <?=$aboutContent?>
+            </article>
         <?php endif; ?>
 
         <?php if ($aboutGalleryCount > 0): ?>
@@ -147,7 +192,7 @@ if ($aboutImage === '') {
                                             ENT_QUOTES,
                                             'UTF-8'
                                         )?>"
-                                        data-fancybox="gallery"
+                                        data-fancybox="about-gallery"
                                         data-caption="<?=htmlspecialchars(
                                             $aboutGalleryTitle,
                                             ENT_QUOTES,

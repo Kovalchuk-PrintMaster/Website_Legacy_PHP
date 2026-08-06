@@ -1,0 +1,159 @@
+/*
+ * ForPrint visual tokens v0.2
+ *
+ * Primitive values only. Theme-specific aliases belong to
+ * forprint-theme-default.css.
+ */
+
+:root {
+    /* Primitive palette */
+    --fp-palette-white: #ffffff;
+
+    --fp-palette-graphite-950: #0f0f0f;
+    --fp-palette-graphite-900: #111111;
+    --fp-palette-graphite-800: #252c31;
+    --fp-palette-graphite-700: #2d3033;
+
+    --fp-palette-slate-900: #1d2a36;
+    --fp-palette-slate-800: #24313f;
+    --fp-palette-slate-700: #33434d;
+    --fp-palette-slate-600: #40515d;
+    --fp-palette-slate-500: #5f6875;
+    --fp-palette-slate-400: #7f8b92;
+    --fp-palette-slate-300: #b8c9d0;
+    --fp-palette-slate-200: #d4dde1;
+    --fp-palette-slate-100: #eef3f5;
+    --fp-palette-slate-050: #f6f8fb;
+
+    --fp-palette-red-600: #ed2024;
+    --fp-palette-danger-700: #a92828;
+    --fp-palette-success-700: #1f5f28;
+    --fp-palette-warning-700: #7a5a12;
+
+    /* Typography */
+    --fp-font-family-body:
+        Lato, Arial, sans-serif;
+
+    --fp-font-family-display:
+        "Roboto Mono", "Courier New", monospace;
+
+    --fp-font-family-mono:
+        "Roboto Mono", "Courier New", monospace;
+
+    --fp-font-size-xs:
+        clamp(0.75rem, 0.72rem + 0.08vw, 0.8125rem);
+
+    --fp-font-size-sm:
+        clamp(0.8125rem, 0.77rem + 0.12vw, 0.875rem);
+
+    --fp-font-size-body:
+        clamp(0.9375rem, 0.89rem + 0.15vw, 1rem);
+
+    --fp-font-size-lead:
+        clamp(1rem, 0.94rem + 0.2vw, 1.125rem);
+
+    --fp-font-size-card-title:
+        clamp(1rem, 0.92rem + 0.28vw, 1.25rem);
+
+    --fp-font-size-section-title:
+        clamp(1.5rem, 1.34rem + 0.58vw, 2rem);
+
+    --fp-font-size-page-title:
+        clamp(1.75rem, 1.6rem + 0.45vw, 2rem);
+
+    --fp-shell-nav-font-size:
+        clamp(0.75rem, 0.68rem + 0.14vw, 0.875rem);
+
+    --fp-shell-meta-font-size:
+        clamp(0.75rem, 0.68rem + 0.14vw, 0.875rem);
+
+    --fp-font-weight-regular: 400;
+    --fp-font-weight-medium: 500;
+    --fp-font-weight-semibold: 600;
+    --fp-font-weight-bold: 700;
+
+    --fp-line-height-tight: 1.08;
+    --fp-line-height-heading: 1.2;
+    --fp-line-height-body: 1.55;
+    --fp-line-height-relaxed: 1.65;
+
+    --fp-letter-spacing-eyebrow: 0.1em;
+
+    /* Primitive spacing scale */
+    --fp-space-1: 0.25rem;
+    --fp-space-2: 0.5rem;
+    --fp-space-3: 0.75rem;
+    --fp-space-4: 1rem;
+    --fp-space-5: 1.5rem;
+    --fp-space-6: 2rem;
+    --fp-space-7: 3rem;
+    --fp-space-8: 4rem;
+    --fp-space-9: 4.5rem;
+    --fp-space-10: 6rem;
+
+    /* Shared page rhythm */
+    --fp-page-top-gap:
+        clamp(1.125rem, 1rem + 0.45vw, 1.5rem);
+
+    --fp-page-bottom-gap:
+        clamp(2rem, 1.6rem + 1.2vw, 3rem);
+
+    --fp-breadcrumb-title-gap:
+        clamp(0.625rem, 0.55rem + 0.2vw, 0.875rem);
+
+    --fp-breadcrumb-controls-gap:
+        clamp(0.875rem, 0.75rem + 0.3vw, 1.125rem);
+
+    --fp-title-content-gap:
+        clamp(0.75rem, 0.65rem + 0.3vw, 1rem);
+
+    --fp-page-section-gap:
+        clamp(1.75rem, 1.4rem + 1.1vw, 2.75rem);
+
+    --fp-section-heading-gap:
+        clamp(0.875rem, 0.75rem + 0.35vw, 1.25rem);
+
+    --fp-grid-gap:
+        clamp(1rem, 0.8rem + 0.6vw, 1.5rem);
+
+    --fp-card-padding:
+        clamp(1rem, 0.8rem + 0.6vw, 1.5rem);
+
+    --fp-panel-padding:
+        clamp(1rem, 0.75rem + 0.8vw, 1.75rem);
+
+    /*
+     * Backward-compatible alias retained during migration.
+     */
+    --fp-page-space-block: var(--fp-page-top-gap);
+    --fp-section-gap: var(--fp-page-section-gap);
+
+    /* Shape */
+    --fp-radius-control: 0.125rem;
+    --fp-radius-sm: 0.25rem;
+    --fp-radius-md: 0.5rem;
+    --fp-radius-lg: 0.75rem;
+    --fp-radius-pill: 999px;
+
+    --fp-border-width: 1px;
+
+    /* Controls */
+    --fp-control-min-size: 2.75rem;
+    --fp-button-min-inline-size: 11.5rem;
+    --fp-control-padding-inline:
+        clamp(1rem, 0.8rem + 0.45vw, 1.375rem);
+
+    /* Content measures */
+    --fp-measure-copy: 72ch;
+    --fp-measure-compact: 56ch;
+
+    /* Motion */
+    --fp-transition-fast: 160ms ease;
+    --fp-transition-normal: 240ms ease;
+
+    /* Layering */
+    --fp-z-header: 1000;
+    --fp-z-overlay: 10000;
+    --fp-z-modal: 50000;
+    --fp-z-consent: 100000;
+}

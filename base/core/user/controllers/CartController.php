@@ -4,7 +4,7 @@
 namespace core\user\controllers;
 
 
-class сartController extends BaseUser
+class CartController extends BaseUser
 {
 
     protected $delivery;

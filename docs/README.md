@@ -120,3 +120,13 @@ The `s01` Git repository is authoritative for versioned website code.
 Production is a controlled mirror. Database, uploaded media, DNS and
 production-only secrets are separate state classes.
 <!-- FP-PRODUCTION-RELEASE-DOCS-V0-1-END -->
+
+<!-- FP_FRONTEND_CHECKPOINT_2026_08_06_INDEX_START -->
+## Frontend foundation checkpoint — 2026-08-06
+
+- [Historical snapshot](status/snapshots/2026-08-06_frontend_foundation_stable_checkpoint_v0_1.md)
+- [Checkpoint and next-stage decision](decisions/2026-08-06__frontend-foundation-stable-checkpoint-and-next-stage.md)
+
+The checkpoint is local-source only. It does not record deployment and does
+not include the parallel SEO/Ads research workspace.
+<!-- FP_FRONTEND_CHECKPOINT_2026_08_06_INDEX_END -->
