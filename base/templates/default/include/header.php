@@ -279,6 +279,12 @@ $fpMeasurementConfig = [
 
     <?php $this->getStyles()?>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-search-submit.js?v=20260724-0910"></script>
+    <!-- FP_MOBILE_PORTRAIT_ASSET_START -->
+    <script
+        defer
+        src="<?=PATH . TEMPLATE?>assets/js/forprint-mobile-portrait.js?v=20260806-1416"
+    ></script>
+    <!-- FP_MOBILE_PORTRAIT_ASSET_END -->
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-header-popover.js?v=20260724-0649"></script>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260803-1622"></script>

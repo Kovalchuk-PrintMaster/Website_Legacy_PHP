@@ -142,3 +142,33 @@ body.fp-public-page > .fp-site-footer {
     flex: 0 0 auto;
     margin-block-start: auto;
 }
+
+/* FP_MOBILE_PORTRAIT_LAYOUT_START */
+
+/*
+ * Mobile portrait removes the desktop fixed-rail reservation.
+ * Shared geometry remains owned by forprint-layout.css.
+ */
+@media (max-width: 40rem) and (orientation: portrait) {
+    :root {
+        --fp-layout-rail-width: 0rem;
+        --fp-layout-page-gutter:
+            clamp(0.75rem, 4vw, 1rem);
+        --fp-layout-shell-gutter:
+            clamp(0.75rem, 4vw, 1rem);
+    }
+
+    html.fp-mobile-portrait-active,
+    html.fp-mobile-portrait-active body.fp-public-page {
+        inline-size: 100%;
+        max-inline-size: 100%;
+        overflow-x: clip;
+    }
+
+    html.fp-mobile-portrait-active body.fp-public-page {
+        padding-inline-end: 0;
+        margin-inline-end: 0;
+    }
+}
+
+/* FP_MOBILE_PORTRAIT_LAYOUT_END */
