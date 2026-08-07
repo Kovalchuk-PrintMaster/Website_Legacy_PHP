@@ -181,7 +181,7 @@ Can be considered for future selected tracking after review:
 - `base/mail.local.php`
 - `base/log/`
 - `base/temp/`
-- local scratch files such as `tmp.py`
+- local temporary/scratch state such as root `tmp.py`, root `tmp.php`, and the `tmp/` directory
 
 ### Needs explicit owner/Blueprint decision
 

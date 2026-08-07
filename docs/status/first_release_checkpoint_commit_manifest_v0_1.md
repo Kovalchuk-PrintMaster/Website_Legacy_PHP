@@ -144,4 +144,4 @@ Do not include these temporary generated reports:
 
 - `first_release_checkpoint_precommit_report.txt`;
 - `checkpoint_final_audit.txt`;
-- root `tmp.php`.
+- local temporary/scratch files such as root `tmp.py`, root `tmp.php`, and files under `tmp/`.

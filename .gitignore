@@ -65,7 +65,8 @@ base/config.local.php
 
 # Local scratch helper files
 /tmp.py
-tmp.py
+/tmp.php
+/tmp/
 
 
 # Inherited website base: local config / runtime / generated / dependency artifacts
@@ -94,8 +95,6 @@ __pycache__/
 .pytest_cache/
 .venv_website/
 # Local operator scratch files
-/tmp.php
-/tmp.py
 /tmp_*.php
 /tmp_*.py
 .env.website.local
