@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "default_database_ownership": "local-canonical",
+  "production_operational_tables": {
+    "communication_requests": {
+      "schema_owner": "local-canonical",
+      "schema_parity": "strict",
+      "content_owner": "production",
+      "content_parity": "informational",
+      "normal_reset_behavior": "preserve-production-table",
+      "normal_database_sync_behavior": "preserve-production-table"
+    }
+  },
+  "destructive_operational_replacement": {
+    "default": false,
+    "authorization_environment_key": "FP_HOSTING_OPERATIONAL_DATA_REPLACE_ALLOWED",
+    "required_value": "1"
+  }
+}

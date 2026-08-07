@@ -130,3 +130,46 @@ production-only secrets are separate state classes.
 The checkpoint is local-source only. It does not record deployment and does
 not include the parallel SEO/Ads research workspace.
 <!-- FP_FRONTEND_CHECKPOINT_2026_08_06_INDEX_END -->
+
+<!-- FP_HOSTING_MIRROR_DOC_INDEX_V0_1 -->
+## Hosting mirror — canonical operational references
+
+- [`workflow/hosting_mirror_reset_runbook_v0_1.md`](workflow/hosting_mirror_reset_runbook_v0_1.md) — full local-to-hosting mirror reset, database parity, environment preservation and rollback.
+- [`decisions/2026-08-07__hosting_mirror_logical_database_parity_and_environment_preservation.md`](decisions/2026-08-07__hosting_mirror_logical_database_parity_and_environment_preservation.md) — accepted database-parity and hosting-environment boundary.
+- `coordination/reports/2026-08-07_hosting_mirror_database_parity_incident_v0_1.md` — evidence for the false schema-mismatch rollback incident.
+
+Ownership is explicit: local is canonical for application files, database schema and non-operational database content; production is canonical for operational rows such as `communication_requests`; hosting runtime/environment state remains hosting-owned and preserved.
+
+<!-- FP_HOSTING_MIRROR_OPERATOR_REPORTING_V0_1 -->
+### Hosting mirror operator reporting
+
+- [`workflow/hosting_mirror_operator_reporting_v0_1.md`](workflow/hosting_mirror_operator_reporting_v0_1.md) — summary-first operator output with detailed diagnostics retained on demand.
+
+<!-- FP_HOSTING_DEPLOYMENT_PROFILES_V0_1 -->
+## Hosting deployment profiles
+
+- [`workflow/hosting_deployment_profiles_v0_1.md`](workflow/hosting_deployment_profiles_v0_1.md) — full, code, frontend, backend, dependency, database, media and exact-manifest hosting release modes.
+- [`decisions/2026-08-07__hosting_deployment_profiles_and_scope_boundaries.md`](decisions/2026-08-07__hosting_deployment_profiles_and_scope_boundaries.md) — accepted release-scope boundaries.
+
+<!-- FP_COMMUNICATION_RELEASE_SAFETY_DOCS_V0_1_START -->
+## Communication release safety
+
+- [`workflow/communication_release_safety_and_recovery_v0_1.md`](workflow/communication_release_safety_and_recovery_v0_1.md) — non-sending acceptance, deployment rules and fast recovery.
+- [`decisions/2026-08-07__communication_runtime_contract_and_deployment_acceptance.md`](decisions/2026-08-07__communication_runtime_contract_and_deployment_acceptance.md) — accepted runtime/issuer/verifier boundary.
+
+Operator command:
+
+```text
+make hosting-communication-check
+```
+
+Production-only communication state remains outside deployment payloads.
+<!-- FP_COMMUNICATION_RELEASE_SAFETY_DOCS_V0_1_END -->
+
+<!-- FP_OPERATIONAL_DB_DOCS_V0_1_START -->
+## Production operational database ownership
+
+Policy: `config/deployment/database_ownership_policy_v0_1.json`.
+
+`communication_requests` is production-owned for content and strict local-canonical for schema.
+<!-- FP_OPERATIONAL_DB_DOCS_V0_1_END -->

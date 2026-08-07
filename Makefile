@@ -1,256 +1,280 @@
-.PHONY: help check php-syntax inspect-structure inspect-security-grep
+.DEFAULT_GOAL := help
+
+SHELL := /bin/bash
+.SHELLFLAGS := -eu -o pipefail -c
+
+ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+PHP ?= $(shell command -v php8.2 2>/dev/null || command -v php 2>/dev/null)
+PYTHON ?= $(shell if [ -x "$(ROOT)/.venv_website/bin/python" ]; then printf '%s\n' "$(ROOT)/.venv_website/bin/python"; else command -v python3 2>/dev/null; fi)
+
+PREVIEW_SERVICE ?= forprint-website-preview.service
+PREVIEW_URL ?= http://127.0.0.1:8098/
+PREVIEW_SMOKE ?= scripts/inspection/run_website_local_http_smoke.py
+
+DEPLOY_TOOL ?= scripts/maintenance/deploy_website_to_hosting.py
+DEPLOY_ENV ?= .runtime/env/website.deploy
+DEPLOY_ENV_EXAMPLE ?= config/env/website.deploy.example
+DEPLOY_REPORT_DIR ?= tmp/deployments
+DEPLOY_MANIFEST ?= config/deployment/mobile_portrait_phase_1_v0_1.manifest
+COMMUNICATION_CHECK_TOOL ?= scripts/inspection/check_website_communication_runtime.py
+
+.PHONY: help check makefile-check php-syntax inspect-security communication-check \
+	preview-url preview-status preview-start preview-stop preview-restart preview-smoke \
+	db-status deploy-init deploy-check deploy-dry-run deploy deploy-latest-report
 
 help:
-	@echo "ForPrint Website make targets:"
-	@echo "  make check                 - run safe local checks"
-	@echo "  make php-syntax            - run PHP syntax check for base/*.php files"
-	@echo "  make inspect-structure     - print project structure overview"
-	@echo "  make inspect-security-grep - print high-risk grep overview without secret values"
+	@printf '%s\n' \
+		"ForPrint Website operator commands" \
+		"" \
+		"Validation:" \
+		"  make check             PHP syntax, tool syntax and local smoke" \
+		"  make php-syntax        lint project-owned PHP" \
+		"  make inspect-security  bounded read-only security grep" \
+		"  make communication-check  protected non-sending production runtime check" \
+		"" \
+		"Canonical local preview:" \
+		"  make preview-url       print http://127.0.0.1:8098/" \
+		"  make preview-status    show systemd and HTTP state" \
+		"  make preview-start     start canonical preview" \
+		"  make preview-stop      stop canonical preview" \
+		"  make preview-restart   restart and verify HTTP" \
+		"  make preview-smoke     safe route smoke" \
+		"" \
+		"Database:" \
+		"  make db-status         service/listener/config presence only" \
+		"" \
+		"Hosting:" \
+		"  make deploy-init       create ignored runtime deployment config" \
+		"  make deploy-check      validate local/SSH/remote prerequisites" \
+		"  make deploy-dry-run    build exact manifest payload; do not upload" \
+		"  make deploy            exact manifest release with communication checks" \
+		"  make deploy-latest-report  print newest safe deployment report"
 
-check: php-syntax inspect-structure inspect-security-grep
+check: makefile-check php-syntax preview-smoke
+
+makefile-check:
+	@test -n "$(PHP)" || { echo "ERROR: PHP CLI not found" >&2; exit 1; }
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@test -f "$(DEPLOY_TOOL)" || { echo "ERROR: missing $(DEPLOY_TOOL)" >&2; exit 1; }
+	@test -f "$(COMMUNICATION_CHECK_TOOL)" || { echo "ERROR: missing $(COMMUNICATION_CHECK_TOOL)" >&2; exit 1; }
+	@test -f "$(DEPLOY_MANIFEST)" || { echo "ERROR: missing $(DEPLOY_MANIFEST)" >&2; exit 1; }
+	@"$(PYTHON)" -m py_compile "$(DEPLOY_TOOL)" "$(COMMUNICATION_CHECK_TOOL)"
+	@$(MAKE) --no-print-directory -n preview-status communication-check deploy-check >/dev/null
+	@echo "[OK] Makefile and deployment tool syntax"
 
 php-syntax:
-	@echo "== PHP syntax check =="
-	@find base -type f -name "*.php" -not -path "base/vendor/*" -print0 | xargs -0 -n1 php -l
+	@test -n "$(PHP)" || { echo "ERROR: PHP CLI not found" >&2; exit 1; }
+	@find base -type f -name '*.php' \
+		-not -path 'base/vendor/*' \
+		-not -path 'base/log/*' \
+		-not -path 'base/temp/*' \
+		-print0 | xargs -0 -r -n1 "$(PHP)" -l
 
-inspect-structure:
-	@echo "== Root =="
-	@pwd
+inspect-security:
+	@echo "== Files containing configuration/security keywords =="
+	@grep -RIlE '(DB_|database|mysqli|PDO|password|passwd|secret|token|api[_-]?key|smtp)' base \
+		--include='*.php' --include='*.env*' --include='*.ini' --include='*.conf' \
+		--exclude-dir=vendor --exclude-dir=userfiles 2>/dev/null | sort || true
 	@echo
-	@echo "== Top-level directories =="
-	@find . -maxdepth 2 -type d | sort
-	@echo
-	@echo "== Important files =="
-	@find . -maxdepth 4 -type f \( \
-		-name "*.php" -o \
-		-name "*.json" -o \
-		-name "*.lock" -o \
-		-name ".htaccess" -o \
-		-name ".gitignore" -o \
-		-name "README.md" -o \
-		-name "Makefile" \
-	\) | sort
+	@echo "== Direct PHP request/session/file access =="
+	@grep -RInE '\$$_(GET|POST|REQUEST|COOKIE|FILES|SESSION)' base \
+		--include='*.php' --exclude-dir=vendor 2>/dev/null | head -250 || true
 
-inspect-security-grep:
-	@echo "== Config / DB / mail keyword files only =="
-	@grep -RIlE "(DB_|database|mysqli|PDO|mysql_connect|password|passwd|secret|token|api[_-]?key|smtp|mail)" base \
-		--include="*.php" \
-		--include="*.env*" \
-		--include="*.ini" \
-		--include="*.conf" \
-		2>/dev/null | sort || true
-	@echo
-	@echo "== Direct request/session/file usage =="
-	@grep -RInE '\$$_(GET|POST|REQUEST|COOKIE|FILES|SESSION)' base --include="*.php" 2>/dev/null | head -250 || true
-	@echo
-	@echo "== SQL construction usage =="
-	@grep -RInE "(SELECT|INSERT|UPDATE|DELETE|mysqli_query|->query|prepare\(|bindParam|bindValue)" base --include="*.php" 2>/dev/null | head -300 || true
-	@echo
-	@echo "== Upload handling usage =="
-	@grep -RInE '(\$$_FILES|move_uploaded_file|mime_content_type|pathinfo|upload)' base --include="*.php" 2>/dev/null | head -250 || true
+communication-check:
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@test -f "$(COMMUNICATION_CHECK_TOOL)" || { echo "ERROR: missing $(COMMUNICATION_CHECK_TOOL)" >&2; exit 1; }
+	@"$(PYTHON)" "$(COMMUNICATION_CHECK_TOOL)"
 
-# =============================================================================
-# Website local runtime shortcuts START
-# =============================================================================
+preview-url:
+	@echo "$(PREVIEW_URL)"
 
-WEBSITE_LOCAL_HOST ?= 127.0.0.1
-WEBSITE_LOCAL_PORT ?= 8098
-WEBSITE_LOCAL_URL ?= http://$(WEBSITE_LOCAL_HOST):$(WEBSITE_LOCAL_PORT)/
-WEBSITE_WEBROOT ?= base
-WEBSITE_HTTP_ROUTER ?= scripts/inspection/local_http_smoke_router.php
-WEBSITE_HTTP_SMOKE ?= scripts/inspection/run_website_local_http_smoke.py
+preview-status:
+	@systemctl is-enabled "$(PREVIEW_SERVICE)"
+	@systemctl is-active "$(PREVIEW_SERVICE)"
+	@systemctl --no-pager --full status "$(PREVIEW_SERVICE)" | sed -n '1,18p'
+	@curl --fail --silent --show-error --output /dev/null \
+		--write-out 'HTTP %{http_code} %{url_effective}\n' "$(PREVIEW_URL)"
 
-# Purpose: start the legacy PHP website locally for browser review.
-# Result: PHP built-in server starts on 127.0.0.1:8098.
-.PHONY: site-start
-site-start:
-	@echo "Starting ForPrint Website at $(WEBSITE_LOCAL_URL)"
-	php -S $(WEBSITE_LOCAL_HOST):$(WEBSITE_LOCAL_PORT) -t $(WEBSITE_WEBROOT) $(WEBSITE_HTTP_ROUTER)
+preview-start:
+	@systemctl start "$(PREVIEW_SERVICE)"
+	@$(MAKE) --no-print-directory preview-status
 
-# Purpose: print the local website URL.
-# Result: local browser URL is shown.
-.PHONY: site-url
-site-url:
-	@echo "$(WEBSITE_LOCAL_URL)"
+preview-stop:
+	@systemctl stop "$(PREVIEW_SERVICE)"
+	@echo "[OK] stopped $(PREVIEW_SERVICE)"
 
-# Purpose: run local HTTP smoke for the legacy PHP website.
-# Result: route smoke passes or returns non-zero.
-.PHONY: site-smoke
-site-smoke:
-	.venv_website/bin/python $(WEBSITE_HTTP_SMOKE)
+preview-restart:
+	@systemctl restart "$(PREVIEW_SERVICE)"
+	@for attempt in $$(seq 1 20); do \
+		if curl --fail --silent --output /dev/null "$(PREVIEW_URL)"; then \
+			echo "[OK] preview ready after attempt $$attempt"; exit 0; \
+		fi; sleep 0.25; \
+	done; echo "ERROR: preview did not return HTTP success" >&2; exit 1
 
-# Purpose: show the SSH tunnel command for Windows/local workstation access.
-# Result: operator can copy the tunnel command.
-.PHONY: site-tunnel-command
-site-tunnel-command:
-	@echo "ssh -N -L $(WEBSITE_LOCAL_PORT):127.0.0.1:$(WEBSITE_LOCAL_PORT) s01"
+preview-smoke:
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@test -f "$(PREVIEW_SMOKE)" || { echo "ERROR: missing $(PREVIEW_SMOKE)" >&2; exit 1; }
+	@"$(PYTHON)" "$(PREVIEW_SMOKE)"
 
-# Purpose: compatibility alias for local runtime start.
-# Result: delegates to site-start.
-.PHONY: website-start
-website-start:
-	$(MAKE) site-start
+db-status:
+	@if systemctl is-active --quiet mariadb.service; then \
+		echo "mariadb.service: active"; \
+	elif systemctl is-active --quiet mysql.service; then \
+		echo "mysql.service: active"; \
+	else echo "ERROR: MariaDB/MySQL is not active" >&2; exit 1; fi
+	@ss -ltn | grep -E ':(3306|3307)[[:space:]]' \
+		|| { echo "ERROR: database listener not found" >&2; exit 1; }
+	@test -f base/config.php || { echo "ERROR: base/config.php missing" >&2; exit 1; }
+	@printf 'base/config.php: present, mode %s\n' "$$(stat -c '%a' base/config.php)"
+	@echo "No database credentials or queries were used."
 
-# Purpose: compatibility alias for local HTTP smoke.
-# Result: delegates to site-smoke.
-.PHONY: website-smoke
-website-smoke:
-	$(MAKE) site-smoke
-
-# =============================================================================
-# Website local runtime shortcuts FINISH
-# =============================================================================
-
-# Local development PHP server with upload limits.
-#
-# Usage:
-#   make site-serve
-#   make site-serve FP_WEB_LOCAL_HTTP_PORT=8098
-#   make site-serve FP_WEB_LOCAL_HTTP_HOST=127.0.0.1
-#
-# Notes:
-# - These limits apply to PHP built-in server mode only.
-# - Production/staging PHP-FPM limits must be configured on the server.
-FP_WEB_LOCAL_HTTP_HOST ?= 0.0.0.0
-FP_WEB_LOCAL_HTTP_PORT ?= 8098
-FP_WEB_UPLOAD_MAX_FILESIZE ?= 32M
-FP_WEB_POST_MAX_SIZE ?= 128M
-FP_WEB_MAX_FILE_UPLOADS ?= 50
-FP_WEB_MEMORY_LIMIT ?= 512M
-
-.PHONY: site-serve
-site-serve:
-	php \
-		-d upload_max_filesize=$(FP_WEB_UPLOAD_MAX_FILESIZE) \
-		-d post_max_size=$(FP_WEB_POST_MAX_SIZE) \
-		-d max_file_uploads=$(FP_WEB_MAX_FILE_UPLOADS) \
-		-d memory_limit=$(FP_WEB_MEMORY_LIMIT) \
-		-S $(FP_WEB_LOCAL_HTTP_HOST):$(FP_WEB_LOCAL_HTTP_PORT) \
-		-t base
-
-.PHONY: site-serve-local
-site-serve-local:
-	$(MAKE) site-serve FP_WEB_LOCAL_HTTP_HOST=127.0.0.1
-
-.PHONY: site-serve-limits-cli
-site-serve-limits-cli:
-	php -i | grep -E "upload_max_filesize|post_max_size|max_file_uploads|memory_limit"
-
-# == ForPrint website preview env server start ==
-SITE_PREVIEW_HOST ?= 127.0.0.1
-SITE_PREVIEW_PORT ?= 8098
-SITE_PREVIEW_DOCROOT ?= base
-SITE_PREVIEW_ENV ?= .env.website.local
-SITE_PREVIEW_PID ?= /tmp/forprint_website_php8098.pid
-SITE_PREVIEW_LOG ?= /tmp/forprint_website_php8098.log
-
-.PHONY: site-preview-env-init site-preview-env-check site-preview-stop site-preview-start site-preview-restart site-preview-status site-preview-smoke
-
-site-preview-env-init:
-	@if [ ! -f "$(SITE_PREVIEW_ENV)" ]; then \
-		cp .env.website.local.example "$(SITE_PREVIEW_ENV)"; \
-		chmod 600 "$(SITE_PREVIEW_ENV)"; \
-		echo "[OK] created $(SITE_PREVIEW_ENV) from example"; \
-		echo "[NEXT] edit $(SITE_PREVIEW_ENV) and paste Telegram token/chat id there"; \
+deploy-init:
+	@test -f "$(DEPLOY_ENV_EXAMPLE)" || { echo "ERROR: missing $(DEPLOY_ENV_EXAMPLE)" >&2; exit 1; }
+	@mkdir -p "$$(dirname "$(DEPLOY_ENV)")"
+	@if [ -e "$(DEPLOY_ENV)" ]; then \
+		echo "[UNCHANGED] $(DEPLOY_ENV) already exists"; \
 	else \
-		echo "[OK] $(SITE_PREVIEW_ENV) already exists"; \
+		cp "$(DEPLOY_ENV_EXAMPLE)" "$(DEPLOY_ENV)"; chmod 600 "$(DEPLOY_ENV)"; \
+		echo "[CREATED] $(DEPLOY_ENV)"; \
+		echo "Fill it once, then run: make deploy-check"; \
 	fi
 
-site-preview-env-check:
-	@set -e; \
-	ENV_PATH="$(SITE_PREVIEW_ENV)"; \
-	case "$$ENV_PATH" in /*|./*|../*) ;; *) ENV_PATH="./$$ENV_PATH";; esac; \
-	if [ -f "$$ENV_PATH" ]; then \
-		set -a; . "$$ENV_PATH"; set +a; \
-		echo "env_file=$$ENV_PATH"; \
-	else \
-		echo "env_file=missing: $$ENV_PATH"; \
-	fi; \
-	echo "FP_WEB_ENABLE_PHP_MAIL=$${FP_WEB_ENABLE_PHP_MAIL:-0}"; \
-	echo "FP_WEB_ENABLE_SMTP=$${FP_WEB_ENABLE_SMTP:-0}"; \
-	echo "FP_WEB_TELEGRAM_BOT_TOKEN=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set}"; \
-	echo "FP_WEB_TELEGRAM_CHAT_ID=$${FP_WEB_TELEGRAM_CHAT_ID:+set}"; \
-	echo "FP_WEB_FRONTEND_PROFILE=$${FP_WEB_FRONTEND_PROFILE:-legacy}"
+deploy-check:
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@"$(PYTHON)" "$(DEPLOY_TOOL)" --check --env "$(DEPLOY_ENV)" --manifest "$(DEPLOY_MANIFEST)"
 
-site-preview-stop:
-	@set -e; \
-	if [ -f "$(SITE_PREVIEW_PID)" ]; then \
-		PID="$$(cat "$(SITE_PREVIEW_PID)" 2>/dev/null || true)"; \
-		if [ -n "$$PID" ] && kill -0 "$$PID" 2>/dev/null; then \
-			kill "$$PID" 2>/dev/null || true; \
-			sleep 1; \
-			kill -0 "$$PID" 2>/dev/null && kill -9 "$$PID" 2>/dev/null || true; \
-			echo "[OK] stopped pid $$PID from $(SITE_PREVIEW_PID)"; \
-		fi; \
-		rm -f "$(SITE_PREVIEW_PID)"; \
-	fi; \
-	PIDS="$$(ss -ltnp 2>/dev/null | grep ':$(SITE_PREVIEW_PORT) ' | sed -n 's/.*pid=\([0-9][0-9]*\).*//p' | sort -u)"; \
-	if [ -n "$$PIDS" ]; then \
-		for PID in $$PIDS; do \
-			if kill -0 "$$PID" 2>/dev/null; then \
-				kill "$$PID" 2>/dev/null || true; \
-				sleep 1; \
-				kill -0 "$$PID" 2>/dev/null && kill -9 "$$PID" 2>/dev/null || true; \
-				echo "[OK] stopped listener pid $$PID on port $(SITE_PREVIEW_PORT)"; \
-			fi; \
-		done; \
-	fi; \
-	echo "[OK] preview server stopped on $(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)"
+deploy-dry-run:
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@"$(PYTHON)" "$(DEPLOY_TOOL)" --dry-run --env "$(DEPLOY_ENV)" --manifest "$(DEPLOY_MANIFEST)"
 
-site-preview-start:
-	@set -e; \
-	ENV_PATH="$(SITE_PREVIEW_ENV)"; \
-	case "$$ENV_PATH" in /*|./*|../*) ;; *) ENV_PATH="./$$ENV_PATH";; esac; \
-	if [ -f "$$ENV_PATH" ]; then \
-		set -a; . "$$ENV_PATH"; set +a; \
-	else \
-		echo "[WARN] $$ENV_PATH not found; starting without local env"; \
-	fi; \
-	if ss -ltnp 2>/dev/null | grep -q ':$(SITE_PREVIEW_PORT) '; then \
-		echo "[ERROR] port $(SITE_PREVIEW_PORT) is already in use"; \
-		ss -ltnp | grep ':$(SITE_PREVIEW_PORT) ' || true; \
-		exit 1; \
-	fi; \
-	echo "[INFO] mail=$${FP_WEB_ENABLE_PHP_MAIL:-0} smtp=$${FP_WEB_ENABLE_SMTP:-0} telegram_token=$${FP_WEB_TELEGRAM_BOT_TOKEN:+set} telegram_chat=$${FP_WEB_TELEGRAM_CHAT_ID:+set} frontend_profile=$${FP_WEB_FRONTEND_PROFILE:-legacy}"; \
-	php -d upload_max_filesize=$(FP_WEB_UPLOAD_MAX_FILESIZE) -d post_max_size=$(FP_WEB_POST_MAX_SIZE) -d max_file_uploads=$(FP_WEB_MAX_FILE_UPLOADS) -d memory_limit=$(FP_WEB_MEMORY_LIMIT) -S "$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)" -t "$(SITE_PREVIEW_DOCROOT)" >"$(SITE_PREVIEW_LOG)" 2>&1 & \
-	echo $$! >"$(SITE_PREVIEW_PID)"; \
-	sleep 1; \
-	tail -10 "$(SITE_PREVIEW_LOG)"
+deploy:
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@"$(PYTHON)" "$(DEPLOY_TOOL)" --deploy --env "$(DEPLOY_ENV)" --manifest "$(DEPLOY_MANIFEST)"
 
-site-preview-restart: site-preview-stop site-preview-start site-preview-status
+deploy-latest-report:
+	@latest="$$(find "$(DEPLOY_REPORT_DIR)" -maxdepth 2 -type f -name report.json 2>/dev/null \
+		-printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)"; \
+	test -n "$$latest" || { echo "No deployment reports found."; exit 1; }; \
+	echo "$$latest"; cat "$$latest"
 
-site-preview-status:
-	@echo "== preview status =="
-	@echo "pid_file=$(SITE_PREVIEW_PID)"
-	@if [ -f "$(SITE_PREVIEW_PID)" ]; then \
-		echo "pid=$$(cat "$(SITE_PREVIEW_PID)")"; \
-	else \
-		echo "pid=missing"; \
-	fi
-	@ss -ltnp | grep ":$(SITE_PREVIEW_PORT) " || true
-	@curl -s -I --max-time 10 "http://$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)/" | sed -n '1,10p' || true
+# FP-HOSTING-LOCAL-MIRROR-V0-1-START
+HOSTING_RESET_PYTHON ?= $(if $(wildcard .venv_website/bin/python3),.venv_website/bin/python3,python3)
+HOSTING_RESET_TOOL ?= scripts/operations/hosting_mirror_operator.py reset
+HOSTING_PARITY_TOOL ?= scripts/operations/hosting_mirror_operator.py parity
 
-site-preview-smoke:
-	@echo "== email smoke =="
-	@curl -s --max-time 20 -X POST "http://$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)/communication-request.php" \
-		-d 'mode=email' \
-		-d 'product_id=0' \
-		-d 'product_name=Make Smoke Email' \
-		-d 'primary_contact=test@example.com' \
-		-d 'phone=0990000000' \
-		-d 'quantity_requested=100 шт' \
-		-d 'message=Make smoke email request'
-	@echo
-	@echo "== telegram smoke =="
-	@curl -s --max-time 20 -X POST "http://$(SITE_PREVIEW_HOST):$(SITE_PREVIEW_PORT)/communication-request.php" \
-		-d 'mode=telegram' \
-		-d 'product_id=0' \
-		-d 'product_name=Make Smoke Telegram' \
-		-d 'primary_contact=test_user' \
-		-d 'phone=0990000000' \
-		-d 'quantity_requested=100 шт' \
-		-d 'message=Make smoke telegram request'
-	@echo
-	@echo "== log tail =="
-	@tail -60 "$(SITE_PREVIEW_LOG)" 2>/dev/null || true
-# == ForPrint website preview env server end ==
+.PHONY: hosting-parity-check hosting-reset-from-local
+
+# Purpose: compare hosting with the deployment ownership policy.
+# Result: read-only parity report; no upload or database write.
+hosting-parity-check:
+	@$(HOSTING_RESET_PYTHON) $(HOSTING_PARITY_TOOL)
+
+# Purpose: rebuild hosting according to the accepted deployment ownership policy.
+# Result: full webroot/database backup, clean mirror, acceptance or rollback.
+hosting-reset-from-local:
+	@FP_HOSTING_RESET_ALLOWED=1 $(HOSTING_RESET_PYTHON) $(HOSTING_RESET_TOOL)
+# FP-HOSTING-LOCAL-MIRROR-V0-1-END
+
+# FP-HOSTING-DEPLOYMENT-PROFILES-V0-1-START
+HOSTING_RELEASE_TOOL ?= scripts/operations/hosting_release_authorized.py
+HOSTING_DATABASE_SYNC_TOOL ?= scripts/maintenance/sync_hosting_database_from_local.py
+MANIFEST ?=
+
+.PHONY: hosting-deploy-help \
+	hosting-deploy-full \
+	hosting-deploy-code hosting-deploy-code-dry-run \
+	hosting-deploy-frontend hosting-deploy-frontend-dry-run \
+	hosting-deploy-backend hosting-deploy-backend-dry-run \
+	hosting-deploy-dependencies hosting-deploy-dependencies-dry-run \
+	hosting-deploy-database hosting-deploy-database-dry-run \
+	hosting-deploy-media hosting-deploy-media-dry-run \
+	hosting-deploy-manifest hosting-deploy-manifest-dry-run
+
+hosting-deploy-help:
+	@printf '%s\n' \
+		"ForPrint hosting deployment profiles" \
+		"" \
+		"  make hosting-deploy-full" \
+		"      full application + vendor + userfiles + policy-aware database sync" \
+		"  make hosting-deploy-code" \
+		"      application code + vendor; database unchanged" \
+		"  make hosting-deploy-frontend" \
+		"      templates/CSS/JS/frontend media only; database/backend unchanged" \
+		"  make hosting-deploy-backend" \
+		"      PHP core/libraries/endpoint only; database unchanged" \
+		"  make hosting-deploy-dependencies" \
+		"      vendor/composer only" \
+		"  make hosting-deploy-database" \
+		"      policy-aware logical database sync; operational rows preserved" \
+		"  make hosting-deploy-media" \
+		"      frontend-owned userfiles only" \
+		"  make hosting-deploy-manifest MANIFEST=..." \
+		"      exact custom path manifest" \
+		"" \
+		"Append -dry-run to code/frontend/backend/dependencies/database/media/manifest."
+
+hosting-deploy-full:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile full --action deploy
+
+hosting-deploy-code:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile code --action deploy
+hosting-deploy-code-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile code --action dry-run
+
+hosting-deploy-frontend:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile frontend --action deploy
+hosting-deploy-frontend-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile frontend --action dry-run
+
+hosting-deploy-backend:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile backend --action deploy
+hosting-deploy-backend-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile backend --action dry-run
+
+hosting-deploy-dependencies:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile dependencies --action deploy
+hosting-deploy-dependencies-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile dependencies --action dry-run
+
+hosting-deploy-database:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile database --action deploy
+hosting-deploy-database-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile database --action dry-run
+
+hosting-deploy-media:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile media --action deploy
+hosting-deploy-media-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile media --action dry-run
+
+hosting-deploy-manifest:
+	@test -n "$(MANIFEST)" || { echo "ERROR: MANIFEST=... is required" >&2; exit 1; }
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile manifest --action deploy --manifest "$(MANIFEST)"
+hosting-deploy-manifest-dry-run:
+	@test -n "$(MANIFEST)" || { echo "ERROR: MANIFEST=... is required" >&2; exit 1; }
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile manifest --action dry-run --manifest "$(MANIFEST)"
+# FP-HOSTING-DEPLOYMENT-PROFILES-V0-1-END
+
+# FP_COMMUNICATION_ACCEPTANCE_MAKE_TARGET_V0_1
+.PHONY: hosting-communication-check
+hosting-communication-check:
+	@.venv_website/bin/python3 scripts/inspection/check_website_communication_acceptance.py
+# FP_COMMUNICATION_ACCEPTANCE_MAKE_TARGET_V0_1_END
+
+# FP_OPERATIONAL_DB_MAKE_TARGETS_V0_1
+.PHONY: hosting-deploy-full-destructive hosting-deploy-full-destructive-dry-run hosting-deploy-database-destructive hosting-deploy-database-destructive-dry-run hosting-diagnostic-hygiene hosting-diagnostic-hygiene-clean
+
+hosting-deploy-full-destructive:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile full-destructive --action deploy
+hosting-deploy-full-destructive-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile full-destructive --action dry-run
+
+hosting-deploy-database-destructive:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile database-destructive --action deploy
+hosting-deploy-database-destructive-dry-run:
+	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile database-destructive --action dry-run
+
+hosting-diagnostic-hygiene:
+	@$(HOSTING_RESET_PYTHON) scripts/maintenance/cleanup_hosting_diagnostic_artifacts.py
+hosting-diagnostic-hygiene-clean:
+	@FP_HOSTING_DIAGNOSTIC_CLEANUP_ALLOWED=1 $(HOSTING_RESET_PYTHON) scripts/maintenance/cleanup_hosting_diagnostic_artifacts.py --apply
+# FP_OPERATIONAL_DB_MAKE_TARGETS_V0_1_END

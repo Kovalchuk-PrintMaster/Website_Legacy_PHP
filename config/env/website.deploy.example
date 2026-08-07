@@ -1,0 +1,32 @@
+# ForPrint controlled hosting deployment
+#
+# Create ignored runtime copy:
+#   make deploy-init
+#
+# SSH must use an already-authorized key or agent.
+# Never store passwords or private-key contents here.
+
+FP_DEPLOY_ALLOWED=0
+FP_DEPLOY_ALLOW_DIRTY=0
+FP_DEPLOY_EXPECTED_BRANCH=main
+FP_DEPLOY_REQUIRE_UPSTREAM_SYNC=0
+
+FP_DEPLOY_HOST=
+FP_DEPLOY_USER=
+FP_DEPLOY_PORT=22
+FP_DEPLOY_IDENTITY=/root/.ssh/id_ed25519
+FP_DEPLOY_STRICT_HOST_KEY_CHECKING=yes
+FP_DEPLOY_CONNECT_TIMEOUT=20
+
+# Absolute private roots must be outside the public webroot.
+FP_DEPLOY_REMOTE_WEBROOT=
+FP_DEPLOY_REMOTE_STAGE_ROOT=
+FP_DEPLOY_REMOTE_BACKUP_ROOT=
+FP_DEPLOY_REMOTE_PHP=php
+# Private mode-0600 PHP array outside the public webroot.
+FP_DEPLOY_COMMUNICATION_RUNTIME_PATH=
+
+FP_DEPLOY_PUBLIC_URL=https://
+FP_DEPLOY_LOCAL_URL=http://127.0.0.1:8098/
+FP_DEPLOY_SMOKE_PATHS=/,/catalog/,/contacts/,/nashi-posluhy/
+FP_HOSTING_RESET_ALLOWED=0

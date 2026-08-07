@@ -122,3 +122,94 @@ Detailed implementation history remains under:
 - `coordination/reports/`.
 
 Those documents explain earlier work but do not supersede this current registry.
+
+<!-- FP_HOSTING_MIRROR_TOOLS_REFERENCE_V0_1 -->
+## Hosting mirror tools
+
+### `scripts/maintenance/reset_hosting_from_local.py`
+
+Controlled mutation under the deployment ownership policy:
+
+- local owns application payload, `vendor/`, managed `userfiles/`, database schema, and non-operational database content;
+- production-operational row content is preserved by default;
+- initial production-operational table: `communication_requests`;
+- hosting environment/runtime exclusions remain hosting-owned;
+- webroot and the complete pre-mutation production database are backed up;
+- post-install failure restores both webroot and the complete production database;
+- canonical database objects use strict logical schema/content parity;
+- production-operational tables use strict schema parity and informational row/content drift.
+
+### `scripts/inspection/check_hosting_mirror_parity.py`
+
+Read-only ownership-policy parity check. It must not mutate hosting, database,
+services or communication delivery state.
+
+Readiness semantics:
+
+```text
+canonical database schema/content mismatch -> FAIL
+operational database schema mismatch       -> FAIL
+operational row/content drift              -> INFO
+application/managed-media mismatch         -> FAIL
+```
+
+See `docs/workflow/hosting_mirror_reset_runbook_v0_1.md`.
+
+<!-- FP_HOSTING_MIRROR_OPERATOR_REPORTING_V0_1 -->
+## Hosting mirror operator reporting
+
+Canonical operator entrypoint:
+
+```text
+scripts/operations/hosting_mirror_operator.py
+```
+
+It wraps the existing reset/parity implementations without changing their
+acceptance or rollback semantics. Default output is category-level; full
+diagnostics are retained in a raw log and can be streamed with
+`FP_HOSTING_MIRROR_VERBOSE=1`.
+
+See `docs/workflow/hosting_mirror_operator_reporting_v0_1.md`.
+
+<!-- FP_HOSTING_DEPLOYMENT_PROFILES_V0_1 -->
+## Hosting deployment profiles
+
+Canonical profile router:
+
+```text
+scripts/operations/hosting_release.py
+```
+
+Database-only mirror:
+
+```text
+scripts/maintenance/sync_hosting_database_from_local.py
+```
+
+Profiles:
+
+```text
+full, code, frontend, backend, dependencies, database, media, manifest
+```
+
+See `docs/workflow/hosting_deployment_profiles_v0_1.md`.
+
+<!-- FP_COMMUNICATION_RELEASE_SAFETY_DOCS_V0_1_START -->
+## Communication deployment safety tools
+
+### `scripts/inspection/check_website_communication_acceptance.py`
+
+Read-only non-sending acceptance layered on the protected runtime checker. It verifies security prerequisites, canonical booleans, communication DB/button predicates and production CSRF issuer/verifier parity.
+
+### `scripts/operations/hosting_release_authorized.py`
+
+Canonical Makefile wrapper for release profiles. Deploy actions temporarily enable `FP_DEPLOY_ALLOWED` and restore `0` in `finally`.
+
+`deploy_website_to_hosting.py` uses full communication acceptance for its communication gates. `reset_hosting_from_local.py` performs the same check after installation before final reset acceptance.
+<!-- FP_COMMUNICATION_RELEASE_SAFETY_DOCS_V0_1_END -->
+
+<!-- FP_OPERATIONAL_DB_DOCS_V0_1_START -->
+## Production operational database tools
+
+Parity ignores operational content drift for readiness but fails on operational schema drift. Normal reset/database sync preserve operational tables. `cleanup_hosting_diagnostic_artifacts.py` removes only allowlisted stale diagnostic PHP files.
+<!-- FP_OPERATIONAL_DB_DOCS_V0_1_END -->

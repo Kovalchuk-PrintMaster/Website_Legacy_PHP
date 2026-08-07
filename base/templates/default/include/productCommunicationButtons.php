@@ -199,6 +199,14 @@ if (!function_exists('fp_render_product_communication_buttons')) {
         $productId = (int)($product['id'] ?? 0);
         $productName = (string)($product['name'] ?? '');
         $productUrl = (string)($_SERVER['REQUEST_URI'] ?? '');
+        // FP_COMMUNICATION_CSRF_ISSUER_RUNTIME_V0_1
+        $fpCommunicationSecurityWebroot = dirname(__DIR__, 3);
+
+        require_once $fpCommunicationSecurityWebroot
+            . '/libraries/CommunicationRuntimeBootstrap.php';
+
+        fp_load_communication_runtime($fpCommunicationSecurityWebroot);
+
         $csrfToken = ForPrintCommunicationRequestSecurity::issueCsrfToken();
 
         ob_start();

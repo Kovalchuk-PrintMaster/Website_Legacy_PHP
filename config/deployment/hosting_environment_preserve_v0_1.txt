@@ -1,0 +1,34 @@
+# ForPrint hosting environment preserve contract v0.1
+# Paths are relative to base/ unless explicitly absolute.
+
+[exact]
+.htaccess
+.user.ini
+config.php
+mail.php
+php.ini
+error_log
+
+[prefix]
+.well-known/
+cache/
+env/
+log/
+logs/
+sessions/
+temp/
+
+[external]
+FP_DEPLOY_COMMUNICATION_RUNTIME_PATH
+
+[mirrored]
+communication-request.php
+core/
+libraries/
+templates/
+vendor/
+userfiles/
+index.php
+composer.json
+composer.lock
+database:complete-local-dump

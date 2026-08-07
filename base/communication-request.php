@@ -5,6 +5,11 @@ declare(strict_types=1);
 
 define('VG_ACCESS', true);
 
+/* FP_COMMUNICATION_RUNTIME_BOOTSTRAP_V0_1_START */
+require_once __DIR__ . '/libraries/CommunicationRuntimeBootstrap.php';
+fp_load_communication_runtime(__DIR__);
+/* FP_COMMUNICATION_RUNTIME_BOOTSTRAP_V0_1_END */
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, private');
 header('Pragma: no-cache');

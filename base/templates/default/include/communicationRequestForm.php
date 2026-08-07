@@ -33,6 +33,14 @@ $fpCommunicationProductUrl = trim((string)(
 $fpCommunicationAction = fp_product_comm_public_path(
     'communication-request.php'
 );
+// FP_COMMUNICATION_CSRF_ISSUER_RUNTIME_V0_1
+$fpCommunicationSecurityWebroot = dirname(__DIR__, 3);
+
+require_once $fpCommunicationSecurityWebroot
+    . '/libraries/CommunicationRuntimeBootstrap.php';
+
+fp_load_communication_runtime($fpCommunicationSecurityWebroot);
+
 $fpCommunicationCsrfToken = ForPrintCommunicationRequestSecurity::issueCsrfToken();
 $fpCommunicationIdempotencyKey = ForPrintCommunicationRequestSecurity::issueIdempotencyKey();
 $fpCommunicationVariant = trim((string)(

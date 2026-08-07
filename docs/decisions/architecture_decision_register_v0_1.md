@@ -79,3 +79,81 @@ Canonical decision file:
 docs/decisions/2026-08-06__frontend-foundation-stable-checkpoint-and-next-stage.md
 ```
 <!-- FP_ADR_REGISTER_2026_08_06_FRONTEND_CHECKPOINT_END -->
+
+<!-- FP-EXACT-MANIFEST-COMMUNICATION-CHECK-V0-1-START -->
+## FP-WEB-ADR-018 — exact release manifests and non-sending communication gates
+
+**Status:** accepted
+**Date:** 2026-08-06
+
+Application releases must use an explicit machine-readable path manifest.
+A dirty working tree is never itself a release scope. The current mobile
+portrait phase 1 manifest contains exactly eight paths relative to `base/`.
+
+Normal deployment must perform guarded, non-sending production communication
+runtime checks before upload and after installation. The post-install check is
+part of acceptance; failure triggers rollback. Normal deployment must never
+send test email or Telegram messages.
+
+Production-only communication runtime configuration remains outside the public
+webroot and outside the deployment payload. The production communication
+endpoint must not be replaced by a local variant that lacks the accepted
+runtime loader.
+
+References:
+
+```text
+config/deployment/mobile_portrait_phase_1_v0_1.manifest
+docs/workflow/mobile_portrait_phase_1_release_manifest_v0_1.md
+scripts/inspection/check_website_communication_runtime.py
+scripts/maintenance/deploy_website_to_hosting.py
+```
+<!-- FP-EXACT-MANIFEST-COMMUNICATION-CHECK-V0-1-END -->
+
+<!-- FP-HOSTING-LOCAL-MIRROR-V0-1-START -->
+## FP-WEB-ADR-LOCAL-MIRROR-001
+
+**Decision:** local server is the source of truth and hosting is a disposable
+public mirror during the pre-launch test period.
+
+**Status:** superseded by the deployment ownership-policy model
+
+**Record:**
+`docs/decisions/2026-08-06__local_source_of_truth_and_disposable_hosting_mirror.md`
+
+**Operational command:** `make hosting-reset-from-local`
+<!-- FP-HOSTING-LOCAL-MIRROR-V0-1-END -->
+
+<!-- FP_HOSTING_MIRROR_DECISION_REGISTER_V0_1 -->
+## FP-WEB-ADR-2026-08-07-001
+
+**Decision:** hosting parity follows the deployment ownership policy: canonical database objects use strict logical parity, production-operational row content remains production-owned, and hosting runtime/environment state remains hosting-owned and preserved.
+**Status:** accepted
+**Record:** `docs/decisions/2026-08-07__hosting_mirror_logical_database_parity_and_environment_preservation.md`
+
+<!-- FP_HOSTING_DEPLOYMENT_PROFILES_V0_1 -->
+## FP-WEB-ADR-2026-08-07-002
+
+**Decision:** explicit hosting deployment profiles with independent file/database scope boundaries.
+**Status:** accepted
+**Record:** `docs/decisions/2026-08-07__hosting_deployment_profiles_and_scope_boundaries.md`
+
+<!-- FP_COMMUNICATION_RELEASE_SAFETY_ADR_V0_1_START -->
+## FP-WEB-ADR-2026-08-07-003
+
+**Decision:** production communication forms use one protected runtime contract through `CommunicationRuntimeBootstrap.php`; security prerequisites, canonical boolean semantics and CSRF issuer/verifier parity are mandatory non-sending deployment acceptance gates.
+
+**Status:** accepted
+
+**Record:** `docs/decisions/2026-08-07__communication_runtime_contract_and_deployment_acceptance.md`
+<!-- FP_COMMUNICATION_RELEASE_SAFETY_ADR_V0_1_END -->
+
+<!-- FP_OPERATIONAL_DB_ADR_V0_1_START -->
+## FP-WEB-ADR-2026-08-07-004
+
+**Decision:** `communication_requests` content is production-owned; schema remains strict local-canonical.
+
+**Status:** accepted
+
+**Record:** `docs/decisions/2026-08-07__production_operational_database_ownership.md`
+<!-- FP_OPERATIONAL_DB_ADR_V0_1_END -->
