@@ -103,3 +103,6 @@ __pycache__/
 *.pyc
 *.pyo
 /.runtime/
+
+# Local editor/migration backup snapshots
+*.before-*
