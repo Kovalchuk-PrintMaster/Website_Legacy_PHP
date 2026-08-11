@@ -47,7 +47,7 @@
   ],
   "file_inventory_at_build_time": [
     {
-      "path": "README_MAIL_OPERATIONS_DOCS_INSTALL.md",
+      "path": "docs/documentation/install/README_MAIL_OPERATIONS_DOCS_INSTALL.md",
       "sha256": "bc96b7b8c40c7e821618a3573cc1e5b9af238eac5f3a465fd1aecfdd8c893b45",
       "size_bytes": 626
     },

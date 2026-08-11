@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "id": "FP-WEB-ARCH-ROOT-001",
+    "title_uk": "Політика кореня репозиторію та локального runtime",
+    "title_en": "Repository root and local runtime layout policy",
+    "version": "0.1",
+    "date": "2026-07-29",
+    "status": "accepted",
+    "serialization": "YAML 1.2 JSON-compatible subset",
+    "security_classification": "internal-operational-no-secrets"
+  },
+  "canonical_root": [
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    "Makefile",
+    "README.md",
+    "base/",
+    "config/",
+    "coordination/",
+    "database_dumps/",
+    "docs/",
+    "scripts/",
+    "seo/",
+    "tmp/"
+  ],
+  "hidden_local_root": {
+    ".git/": "Git metadata",
+    ".venv_website/": "retained because current Makefile/docs/tools depend on it",
+    ".runtime/": "ignored project-local runtime fallback; no tracked secrets"
+  },
+  "paths": {
+    "documentation_install_notes": "docs/documentation/install/",
+    "documentation_packages": "docs/documentation/packages/",
+    "tracked_environment_examples": "config/env/",
+    "project_local_runtime_environment": ".runtime/env/",
+    "systemd_environment": "/etc/forprint/website-preview.env",
+    "operator_scratch": "tmp/",
+    "inspection_tools": "scripts/inspection/"
+  },
+  "rules": [
+    "README.md and Makefile stay at repository root.",
+    "Generated bundle archives and checksum files do not stay at root.",
+    "Root-level __pycache__ is prohibited.",
+    "Systemd continues to use /etc/forprint/website-preview.env.",
+    "The .venv_website path remains until a separately approved migration.",
+    "No secret value is tracked in Git.",
+    "Root tmp.py, root tmp.php and tmp/ are permitted local ignored temporary state and are not canonical repository content."
+  ],
+  "excluded_from_change": [
+    "base application files",
+    "hosting runtime",
+    "database",
+    "mail and Telegram delivery",
+    "systemd unit and service state"
+  ]
+}

@@ -1,6 +1,6 @@
 # Local website preview environment.
-# Copy to .env.website.local and fill real secrets there.
-# Never commit .env.website.local.
+# Copy to .runtime/env/website.local and fill real secrets there.
+# Never commit .runtime/env/website.local.
 
 FP_WEB_ENABLE_PHP_MAIL=1
 FP_WEB_ENABLE_SMTP=0
