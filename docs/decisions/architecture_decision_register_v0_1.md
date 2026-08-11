@@ -34,9 +34,10 @@
 ## Frontend dual-track strategy
 
 - Date: 2026-07-18
-- Status: accepted
+- Status: superseded
 - Decision: prepare the inherited frontend for practical publication while developing a separate modern preview with project-owned HTML, CSS and JavaScript.
 - Record: `docs/decisions/2026-07-18__dual_track_legacy_stabilization_and_modern_frontend.md`
+- Superseded by: `docs/decisions/2026-08-08__progressive_in_place_frontend_modernization.md`
 
 <!-- FP-FRONTEND-DOCS-V02-START -->
 ## FP-WEB-ADR-2026-07-20-001
@@ -157,3 +158,10 @@ public mirror during the pre-launch test period.
 
 **Record:** `docs/decisions/2026-08-07__production_operational_database_ownership.md`
 <!-- FP_OPERATIONAL_DB_ADR_V0_1_END -->
+
+
+## FP-WEB-ADR-2026-08-08-005
+
+**Decision:** progressive in-place frontend modernization
+**Status:** accepted
+**Record:** `docs/decisions/2026-08-08__progressive_in_place_frontend_modernization.md`

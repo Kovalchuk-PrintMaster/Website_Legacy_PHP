@@ -2,7 +2,8 @@
 
 **ID:** `FP-WEB-ARCH-001`
 **Дата:** 2026-07-16
-**Статус:** active baseline
+**Status:** superseded
+**Superseded by:** `docs/architecture/system_architecture_overview_v0_2.md`
 
 ## 1. Загальна модель
 

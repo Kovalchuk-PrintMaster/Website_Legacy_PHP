@@ -1,7 +1,10 @@
 # Decision: Dual-Track Legacy Publication and Modern Frontend
 
+
+**Status:** superseded
+**Superseded by:** `docs/decisions/2026-08-08__progressive_in_place_frontend_modernization.md`
 Date: 2026-07-18<br>
-Status: accepted<br>
+Historical status: accepted at time of decision<br>
 Decision scope: public frontend strategy
 
 ## Context

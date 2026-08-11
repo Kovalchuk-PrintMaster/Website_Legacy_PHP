@@ -63,3 +63,36 @@ Supersession is explicit:
 - package manifests are versioned independently;
 - bounded index-marker blocks may be updated idempotently without deleting unrelated index content.
 <!-- FP-FRONTEND-DOCS-V02-END -->
+
+
+<!-- FP_CURRENT_STATE_FIRST_POLICY_V0_1 -->
+## Current-state-first rule
+
+Active architecture, workflow, reference and index documents describe the
+current accepted project state. They must not retain obsolete implementation
+or ownership assumptions merely because those assumptions were documented
+earlier.
+
+```text
+same architecture + newer facts
+    -> update the active document in place
+
+material architecture / ownership / contract change
+    -> create a new versioned canonical document
+    -> mark the previous document superseded
+    -> remove it from the current reading path
+
+snapshot / completed plan / incident / coordination evidence
+    -> preserve as historical evidence
+    -> do not rewrite it into current state
+```
+
+Superseded documents remain available for historical traceability but are not
+canonical instructions for current implementation or operations.
+
+When documentation and implementation disagree, code, schema and effective
+runtime configuration remain the factual authority. Update or supersede the
+affected active documentation.
+
+Repository indexes such as `docs/README.md` must prefer the latest canonical
+documents over historical predecessors.

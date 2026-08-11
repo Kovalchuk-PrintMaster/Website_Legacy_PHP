@@ -245,7 +245,7 @@ A component is accepted only when:
 
 - inherited `style.css` remains globally available;
 - some legacy classes are retained in markup for compatibility;
-- the complete mobile/tablet visual pass is still pending;
+- mobile portrait Phase 1 is established; broader tablet, landscape and remaining responsive acceptance are still pending;
 - slider media upload/renaming/compression is not yet migrated to the homepage media namespace;
 - PHP 8.2 warning cleanup remains separate from CSS architecture;
 - final publication/deployment has not occurred.

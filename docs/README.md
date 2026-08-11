@@ -1,8 +1,8 @@
 # ForPrint Website — індекс документації
 
 **Пакет:** `forprint_website_documentation_pack_v0_1`
-**Дата зрізу:** 2026-07-16
-**Статус:** базовий пакет поточного етапу підготовки сайту до публікації
+**Оновлено:** 2026-08-08
+**Статус:** active current-state index
 
 ## Призначення
 
@@ -33,13 +33,16 @@
 
 ## Порядок читання
 
-1. `architecture/system_architecture_overview_v0_1.md`
-2. `architecture/legacy_and_modern_boundaries_v0_1.md`
-3. `workflow/operator_assistant_workflow_v0_1.md`
-4. `status/snapshots/2026-07-16_development_state_v0_1.md`
-5. `plans/launch_preparation_plan_v0_1.md`
-6. `decisions/architecture_decision_register_v0_1.md`
+1. `architecture/system_architecture_overview_v0_2.md`
+2. `architecture/legacy_and_modern_boundaries_v0_2.md`
+3. `architecture/frontend_css_ownership_and_layout_strategy_v0_3.md`
+4. `workflow/hosting_deployment_profiles_v0_1.md`
+5. `workflow/communication_release_safety_and_recovery_v0_1.md`
+6. `workflow/production_operational_data_and_database_sync_v0_1.md`
+7. `decisions/architecture_decision_register_v0_1.md`
 
+Historical snapshots, completed plans and coordination reports remain
+available for traceability but are not the primary current-state reading path.
 ## Джерела істини
 
 - Код, схема БД і runtime-конфігурація визначають фактичну поведінку.

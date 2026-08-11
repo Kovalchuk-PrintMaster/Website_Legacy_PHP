@@ -199,3 +199,67 @@ base/templates/default/assets/css/
 Shared layers own reusable contracts; surface files own page-specific
 presentation. `style.css` is an inherited compatibility asset.
 <!-- FP_REPOSITORY_MAP_FOUNDATION_2026_08_06_END -->
+
+<!-- FP-EXACT-MANIFEST-COMMUNICATION-CHECK-V0-1-START -->
+## Exact deployment scope and communication runtime check
+
+```text
+config/deployment/mobile_portrait_phase_1_v0_1.manifest
+    canonical eight-file payload scope for the current mobile portrait release
+
+scripts/inspection/check_website_communication_runtime.py
+    guarded non-sending production LiteSpeed communication readiness check
+
+scripts/maintenance/deploy_website_to_hosting.py
+    exact-manifest staging, backup, install, verification, communication
+    acceptance, and rollback owner
+
+.runtime/env/website.deploy
+    ignored mode-0600 operator coordinates, including the private production
+    communication runtime configuration path
+```
+
+The production communication runtime file is outside the public webroot and
+is never part of the application payload.
+<!-- FP-EXACT-MANIFEST-COMMUNICATION-CHECK-V0-1-END -->
+
+<!-- FP-HOSTING-LOCAL-MIRROR-V0-1-START -->
+## Local-source hosting mirror workflow
+
+```text
+base/libraries/CommunicationRuntimeBootstrap.php
+scripts/maintenance/reset_hosting_from_local.py
+scripts/inspection/check_hosting_mirror_parity.py
+config/deployment/hosting_environment_preserve_v0_1.txt
+docs/decisions/2026-08-06__local_source_of_truth_and_disposable_hosting_mirror.md
+docs/workflow/hosting_reset_from_local_v0_1.md
+```
+
+`reset_hosting_from_local.py` is the canonical full hosting mirror/reset implementation owner.
+It mirrors application code, `vendor/`, `userfiles/` and the database
+according to the declared database ownership policy, while preserving the
+hosting environment pack and production-owned operational row content.
+<!-- FP-HOSTING-LOCAL-MIRROR-V0-1-END -->
+
+<!-- FP_HOSTING_MIRROR_REPOSITORY_MAP_V0_1 -->
+## Hosting mirror operational boundary — 2026-08-07
+
+```text
+scripts/maintenance/reset_hosting_from_local.py
+    controlled full mirror mutation + backup + rollback
+
+scripts/inspection/check_hosting_mirror_parity.py
+    read-only local/hosting mirror verification
+
+.runtime/env/website.deploy
+    local deployment connection/runtime configuration; never public web content
+
+base/
+    application webroot and mirrored payload, except hosting-owned runtime exclusions
+```
+
+The mirror includes application code, CSS/JS, `vendor/` and `userfiles/`.
+Database synchronization is ownership-policy aware: local schema and
+canonical content remain local-owned, while declared production operational
+row content remains production-owned. Hosting environment/runtime paths are
+preserved by the maintenance tool.

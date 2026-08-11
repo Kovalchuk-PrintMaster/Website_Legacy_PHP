@@ -1,5 +1,8 @@
 # Межі legacy і модернізованої частини v0.1
 
+
+**Status:** superseded
+**Superseded by:** `docs/architecture/legacy_and_modern_boundaries_v0_2.md`
 **ID:** `FP-WEB-ARCH-002`
 **Дата:** 2026-07-16
 
