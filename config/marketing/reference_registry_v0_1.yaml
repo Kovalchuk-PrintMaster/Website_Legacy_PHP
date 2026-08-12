@@ -1,0 +1,162 @@
+%YAML 1.2
+---
+schema_version: '0.1'
+kind: marketing_reference_registry
+status: active
+updated_at: '2026-08-12T13:15:00+03:00'
+references:
+  - id: MKT-REF-GA-CONSENT-MODE-REFERENCE-001
+    title: Consent mode reference
+    owner: Google Analytics
+    url: https://support.google.com/analytics/answer/13802165
+    retrieved_at: '2026-07-29'
+    used_for:
+      - analytics_storage
+      - ad_storage
+      - ad_user_data
+      - ad_personalization
+    status: active
+  - id: MKT-REF-GA-CONSENT-MODE-SETUP-001
+    title: Set up consent mode
+    owner: Google Analytics
+    url: https://support.google.com/analytics/answer/14009635
+    retrieved_at: '2026-07-29'
+    used_for:
+      - basic and advanced consent-mode distinction
+      - consent-first tag loading
+    status: active
+  - id: MKT-REF-GADS-BILLING-001
+    title: Billing and payment suspensions
+    owner: Google Ads
+    url: https://support.google.com/google-ads/answer/13704200
+    retrieved_at: '2026-07-29'
+    used_for:
+      - account/payments blocker resolution
+      - do not open replacement accounts to bypass suspension
+    status: active
+  - id: MKT-REF-GADS-DESTINATION-ACCESSIBILITY-001
+    title: Destination not accessible
+    owner: Google Ads Policies
+    url: https://support.google.com/adspolicy/answer/16428223
+    retrieved_at: '2026-07-29'
+    used_for:
+      - AdsBot access
+      - landing-page availability gate
+    status: active
+  - id: MKT-REF-GADS-DESTINATION-EXPERIENCE-001
+    title: Destination experience
+    owner: Google Ads Policies
+    url: https://support.google.com/adspolicy/answer/16427615
+    retrieved_at: '2026-07-29'
+    used_for:
+      - safe and navigable landing pages
+      - avoid obstructive popups
+    status: active
+  - id: MKT-REF-GADS-DESTINATION-REQUIREMENTS-001
+    title: Destination requirements
+    owner: Google Ads Policies
+    url: https://support.google.com/adspolicy/answer/6368661
+    retrieved_at: '2026-07-29'
+    used_for:
+      - functional and crawlable landing pages
+      - domain and destination consistency
+    status: active
+  - id: MKT-REF-GADS-LANDING-PAGE-001
+    title: Landing page
+    owner: Google Ads
+    url: https://support.google.com/google-ads/answer/14086
+    retrieved_at: '2026-07-29'
+    used_for:
+      - direct relevant final URLs
+      - landing-page usefulness and navigation
+    status: active
+  - id: MKT-REF-GADS-WEB-CONVERSIONS-001
+    title: Set up your web conversions
+    owner: Google Ads
+    url: https://support.google.com/google-ads/answer/16560108
+    retrieved_at: '2026-07-29'
+    used_for:
+      - website conversion measurement
+      - Google tag validation
+    status: active
+  - id: MKT-REF-GOOGLE-HOSTING-MIGRATION-001
+    title: Changing your web hosting and SEO
+    owner: Google Search Central
+    url: https://developers.google.com/search/docs/crawling-indexing/site-move-no-url-changes
+    retrieved_at: '2026-07-29'
+    used_for:
+      - future hosting move
+      - DNS cutover
+      - old/new hosting monitoring
+    status: active
+  - id: MKT-REF-GOOGLE-HTTPS-MIGRATION-001
+    title: Site moves with URL changes
+    owner: Google Search Central
+    url: https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes
+    retrieved_at: '2026-07-29'
+    used_for:
+      - HTTP to HTTPS monitoring
+      - HTTPS sitemap and canonical follow-up
+      - HTTP to HTTPS migration
+      - redirect validation
+      - HTTPS sitemap submission
+      - Search Console handling
+    status: active
+  - id: MKT-REF-GOOGLE-MULTILINGUAL-SITES-001
+    title: Managing multi-regional and multilingual sites
+    owner: Google Search Central
+    url: https://developers.google.com/search/docs/advanced/crawling/managing-multi-regional-sites
+    retrieved_at: '2026-07-29'
+    used_for:
+      - separate language URLs
+      - hreflang
+      - language switcher
+      - avoid IP-based language redirects
+    status: active
+  - id: MKT-REF-GOOGLE-SEARCH-ESSENTIALS-001
+    title: Google Search Essentials
+    owner: Google Search Central
+    url: https://developers.google.com/search/docs/essentials
+    retrieved_at: '2026-07-29'
+    used_for:
+      - technical eligibility
+      - spam policy boundary
+      - search best-practice baseline
+    status: active
+  - id: MKT-REF-GSC-SITEMAP-001
+    title: Sitemap
+    owner: Google Search Console
+    url: https://support.google.com/webmasters/answer/12817956
+    retrieved_at: '2026-07-29'
+    used_for:
+      - sitemap submission
+      - important URL discovery
+    status: active
+  - id: MKT-REF-GSC-TOP-TASKS-001
+    title: Top tasks for Search Console users
+    owner: Google Search Console
+    url: https://support.google.com/webmasters/answer/10351509
+    retrieved_at: '2026-07-29'
+    used_for:
+      - URL Inspection request indexing
+      - sitemap submission after corrected deployment
+    status: active
+  - id: MKT-REF-ISPMANAGER-INSTALL-SSL-001
+    title: Install an SSL certificate
+    owner: ispmanager
+    url: https://www.ispmanager.com/docs/ispmanager/install-an-ssl-certificate
+    retrieved_at: '2026-07-29'
+    used_for:
+      - certificate attachment to website
+      - SSL certificate inventory
+    status: active
+  - id: MKT-REF-ISPMANAGER-LETSENCRYPT-001
+    title: Let's Encrypt certificates
+    owner: ispmanager
+    url: https://www.ispmanager.com/docs/ispmanager/let-s-encrypt-certificates
+    retrieved_at: '2026-07-29'
+    used_for:
+      - certificate prerequisites
+      - panel issuance flow
+      - automatic installation and renewal
+    status: active

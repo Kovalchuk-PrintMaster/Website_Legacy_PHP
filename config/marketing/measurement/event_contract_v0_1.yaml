@@ -1,0 +1,89 @@
+%YAML 1.2
+---
+schema_version: '0.1'
+kind: marketing_measurement_event_contract
+status: active
+updated_at: '2026-08-12T13:15:00+03:00'
+global_rules:
+  bot_or_api_credentials_allowed: false
+  free_text_allowed: false
+  language_parameter:
+    - uk
+    - other-approved-locale
+  pii_allowed: false
+  raw_request_id_allowed: false
+events:
+  - id: MKT-EVT-VIEW-ITEM-LIST-001
+    name: view_item_list
+    category: behavior
+    conversion: false
+    trigger: approved category/product list becomes visible
+    allowed_parameters:
+      - list_id
+      - page_type
+      - language
+    forbidden_parameters: []
+    privacy_note: ''
+  - id: MKT-EVT-SELECT-ITEM-001
+    name: select_item
+    category: behavior
+    conversion: false
+    trigger: visitor opens a product/service from an approved list
+    allowed_parameters:
+      - list_id
+      - item_context
+      - language
+    forbidden_parameters: []
+    privacy_note: ''
+  - id: MKT-EVT-VIEW-ITEM-001
+    name: view_item
+    category: behavior
+    conversion: false
+    trigger: product/service detail page accepted as loaded
+    allowed_parameters:
+      - item_context
+      - page_type
+      - language
+    forbidden_parameters: []
+    privacy_note: ''
+  - id: MKT-EVT-SEARCH-001
+    name: search
+    category: behavior
+    conversion: false
+    trigger: site search is submitted
+    allowed_parameters:
+      - search_term_class
+      - results_count_bucket
+      - language
+    forbidden_parameters: []
+    privacy_note: Do not send raw terms when they could contain phone, email or personal data.
+  - id: MKT-EVT-CONTACT-FORM-OPEN-001
+    name: contact_form_open
+    category: funnel
+    conversion: false
+    trigger: communication form opens
+    allowed_parameters:
+      - contact_method
+      - page_type
+      - product_context_present
+      - language
+    forbidden_parameters: []
+    privacy_note: ''
+  - id: MKT-EVT-GENERATE-LEAD-001
+    name: generate_lead
+    category: primary-conversion
+    conversion: true
+    trigger: endpoint returns ok=true for one accepted idempotent request
+    allowed_parameters:
+      - contact_method
+      - page_type
+      - product_context_present
+      - language
+    forbidden_parameters:
+      - name
+      - phone
+      - email
+      - message
+      - request_id
+      - delivery_target
+    privacy_note: ''

@@ -1,0 +1,681 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://forprint.net.ua/schemas/marketing/control-plane/v0.2",
+  "title": "ForPrint Marketing Control Plane Schema Profile v0.2",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "write_modes",
+        "sources"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_source_registry"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "write_modes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "disabled",
+              "preview_only",
+              "operator_approved",
+              "policy_managed"
+            ]
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "adapter_family",
+              "status",
+              "credential_ref",
+              "reporting_read",
+              "configuration_write",
+              "write_mode"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^MKT-SRC-[A-Z0-9-]+$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "adapter_family": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "status": {
+                "enum": [
+                  "planned",
+                  "onboarding",
+                  "active",
+                  "paused",
+                  "retired"
+                ]
+              },
+              "credential_ref": {
+                "type": "string",
+                "pattern": "^FP_MARKETING_[A-Z0-9_]+$"
+              },
+              "reporting_read": {
+                "enum": [
+                  true,
+                  false,
+                  "future"
+                ]
+              },
+              "configuration_write": {
+                "enum": [
+                  true,
+                  false,
+                  "future"
+                ]
+              },
+              "write_mode": {
+                "enum": [
+                  "disabled",
+                  "preview_only",
+                  "operator_approved",
+                  "policy_managed"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "statuses",
+        "programs"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_program_registry"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "statuses": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "programs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^MKT-PROG-[A-Z0-9-]+$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "proposed",
+                  "planned",
+                  "active",
+                  "paused",
+                  "completed",
+                  "archived"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "statuses",
+        "management_modes",
+        "campaigns"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_campaign_registry"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "statuses": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "management_modes": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "campaigns": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "statuses",
+        "items"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_work_registry"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "statuses": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title",
+              "program_id",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^MKT-WORK-[A-Z0-9-]+$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "program_id": {
+                "type": "string",
+                "pattern": "^MKT-PROG-[A-Z0-9-]+$"
+              },
+              "status": {
+                "enum": [
+                  "backlog",
+                  "ready",
+                  "in_progress",
+                  "blocked",
+                  "paused",
+                  "done",
+                  "cancelled"
+                ]
+              },
+              "priority": {
+                "enum": [
+                  "critical",
+                  "high",
+                  "normal",
+                  "low"
+                ]
+              },
+              "next_review_at": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "reports",
+        "required_provenance"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_report_registry"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reports": {
+          "type": "array"
+        },
+        "required_provenance": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "landing_pages",
+        "required_fields"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_landing_page_registry"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "landing_pages": {
+          "type": "array"
+        },
+        "required_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "global_rules",
+        "events"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_measurement_event_contract"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "paused",
+            "retired",
+            "superseded"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "global_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "bot_or_api_credentials_allowed",
+            "free_text_allowed",
+            "language_parameter",
+            "pii_allowed",
+            "raw_request_id_allowed"
+          ],
+          "properties": {
+            "bot_or_api_credentials_allowed": {
+              "const": false
+            },
+            "free_text_allowed": {
+              "const": false
+            },
+            "language_parameter": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 2
+              }
+            },
+            "pii_allowed": {
+              "const": false
+            },
+            "raw_request_id_allowed": {
+              "const": false
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "category",
+              "conversion",
+              "trigger",
+              "allowed_parameters",
+              "forbidden_parameters",
+              "privacy_note"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^MKT-EVT-[A-Z0-9-]+$"
+              },
+              "name": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "category": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "conversion": {
+                "type": "boolean"
+              },
+              "trigger": {
+                "type": "string",
+                "minLength": 1
+              },
+              "allowed_parameters": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "forbidden_parameters": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "privacy_note": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "data_sources"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_data_source_registry"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "paused",
+            "retired",
+            "superseded"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "data_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "source_class",
+              "owner",
+              "status",
+              "personal_data_class",
+              "git_policy"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^MKT-DATA-[A-Z0-9-]+$"
+              },
+              "name": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]*$"
+              },
+              "source_class": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]*$"
+              },
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "review",
+                  "planned",
+                  "available",
+                  "blocked",
+                  "retired"
+                ]
+              },
+              "provider_source_id": {
+                "type": "string",
+                "pattern": "^MKT-SRC-[A-Z0-9-]+$"
+              },
+              "personal_data_class": {
+                "enum": [
+                  "unknown_review_required",
+                  "potential_personal_data",
+                  "raw_personal_data",
+                  "mixed_raw_personal_aggregate_non_personal",
+                  "aggregate_non_personal",
+                  "sanitized_aggregate_only"
+                ]
+              },
+              "git_policy": {
+                "enum": [
+                  "reviewed_aggregate_only",
+                  "raw_prohibited",
+                  "aggregate_counts_only",
+                  "sanitized_aggregate_exports_only"
+                ]
+              },
+              "legacy_status_note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "kind",
+        "status",
+        "updated_at",
+        "references"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "kind": {
+          "const": "marketing_reference_registry"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "paused",
+            "retired",
+            "superseded"
+          ]
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "title",
+              "owner",
+              "url",
+              "retrieved_at",
+              "used_for",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^MKT-REF-[A-Z0-9-]+$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "retrieved_at": {
+                "type": "string",
+                "format": "date"
+              },
+              "used_for": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "status": {
+                "enum": [
+                  "review",
+                  "active",
+                  "retired"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

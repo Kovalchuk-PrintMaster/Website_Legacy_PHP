@@ -147,7 +147,7 @@
     },
     {
       "topic_id": "DOC-TOPIC-MARKETING-ARCHITECTURE",
-      "canonical_path": "docs/marketing/architecture/marketing_repository_architecture_v0_1.md",
+      "canonical_path": "docs/marketing/architecture/marketing_repository_architecture_v0_2.md",
       "class": "living_current",
       "status": "current",
       "last_reviewed_at": "2026-08-12",
@@ -158,7 +158,9 @@
         "data-zone or automation lifecycle changes"
       ],
       "index_required": true,
-      "supersedes": []
+      "supersedes": [
+        "docs/marketing/architecture/marketing_repository_architecture_v0_1.md"
+      ]
     },
     {
       "topic_id": "DOC-TOPIC-MARKETING-AUTOMATION-POLICY",
@@ -189,6 +191,23 @@
       ],
       "index_required": false,
       "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-MARKETING-STANDARDS",
+      "canonical_path": "docs/marketing/reference/marketing_standards_profile_v0_2.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "marketing identifier contract changes",
+        "serialization or schema-standard changes",
+        "provenance or evidence contract changes"
+      ],
+      "index_required": true,
+      "supersedes": [
+        "docs/marketing/reference/marketing_standards_profile_v0_1.md"
+      ]
     }
   ]
 }

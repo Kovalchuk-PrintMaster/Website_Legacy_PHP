@@ -180,3 +180,19 @@ organic-search subdomain. `config/marketing/` is the machine-readable control
 plane, `scripts/marketing/` owns Python automation, and provider mutations use
 plan/preview/authorize/apply/verify/evidence controls.
 <!-- FP_MARKETING_CONTROL_PLANE_ADR_V0_1_END -->
+
+<!-- FP_MARKETING_CONTROL_PLANE_SCHEMA_V02_ADR_START -->
+## FP-WEB-ADR-2026-08-12-001
+
+**Decision:** separate provider integrations, analytical data sources, official
+reference provenance and website measurement event/privacy contracts inside the
+existing marketing control plane.
+
+**Status:** accepted
+
+**Record:** `docs/decisions/2026-08-12__marketing_control_plane_contract_split_and_schema_v0_2.md`
+
+**Architecture:** `docs/marketing/architecture/marketing_repository_architecture_v0_2.md`
+
+**Schema profile:** `config/marketing/schemas/marketing_control_plane_v0_2.schema.json`
+<!-- FP_MARKETING_CONTROL_PLANE_SCHEMA_V02_ADR_END -->

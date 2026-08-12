@@ -52,3 +52,23 @@ explicit apply authorization, read-back verification, and evidence capture.
 
 After assisted mode is stable, allow bounded non-interactive routine changes
 under explicit versioned policy.
+
+<!-- FP_MARKETING_02C_PROGRESS_START -->
+## MARKETING.02C progress — 2026-08-12
+
+The active schema/validation guardrail now includes canonical contracts for:
+
+- website measurement events/privacy;
+- analytical/internal data sources;
+- official external reference provenance.
+
+The aggregate schema profile advances from v0.1 to v0.2 while v0.1 remains the
+predecessor profile.
+
+MARKETING.02 is still an active guardrail. Remaining deeper hardening includes
+operation-plan/evidence contracts, acquisition/provenance manifests, remaining
+registry referential integrity and later API-operation semantics.
+
+MARKETING.03 review evidence remains valid; MARKETING.04 is not authorized by
+this change.
+<!-- FP_MARKETING_02C_PROGRESS_END -->

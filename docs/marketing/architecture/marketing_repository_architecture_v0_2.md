@@ -1,9 +1,10 @@
-# Marketing repository architecture v0.1
+# Marketing repository architecture v0.2
 
 - **ID:** `FP-WEB-ARCH-MARKETING-001`
-- **Date:** 2026-08-11
-- **Status:** superseded
-- **Superseded by:** `marketing_repository_architecture_v0_2.md`
+- **Date:** 2026-08-12
+- **Status:** accepted current architecture
+- **Supersedes:** `marketing_repository_architecture_v0_1.md`
+- **Decision:** `docs/decisions/2026-08-12__marketing_control_plane_contract_split_and_schema_v0_2.md`
 - **Scope:** promotion, measurement, research, campaigns, local presence
 
 ## Purpose
@@ -154,3 +155,27 @@ plane or architecture.
 Material changes to domain ownership, control-plane contracts, lifecycle,
 mutation authorization, secrets, or data-zone guarantees require an ADR and a
 versioned architecture update.
+
+<!-- FP_MARKETING_CONTROL_PLANE_SPLIT_V02_START -->
+## Control-plane object separation — current refinement
+
+The control plane distinguishes four source-like concepts rather than using one
+generic source registry:
+
+1. **Provider/API integration source** — API/account/adapter capability,
+   credential reference and write mode. Owner:
+   `config/marketing/source_registry_v0_1.yaml`.
+2. **Data source** — analytical/internal dataset origin, sensitivity class,
+   repository/export policy and optional provider-source relationship. Owner:
+   `config/marketing/data_source_registry_v0_1.yaml`.
+3. **Official reference** — external standards/provider documentation
+   provenance (`owner`, URL, retrieval date, purpose). Owner:
+   `config/marketing/reference_registry_v0_1.yaml`.
+4. **Measurement event contract** — website event names, conversion semantics,
+   allowed/forbidden parameters and privacy rules. Owner:
+   `config/marketing/measurement/event_contract_v0_1.yaml`.
+
+This is a refinement of the existing four-plane architecture, not a new
+repository plane. Legacy `seo/config/*` remains migration input until exact
+MARKETING.03E/04 retirement decisions are approved.
+<!-- FP_MARKETING_CONTROL_PLANE_SPLIT_V02_END -->

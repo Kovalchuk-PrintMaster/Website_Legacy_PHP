@@ -27,3 +27,11 @@
   accepts an exact application/frontend checkpoint boundary and keeps
   SEO/Ads research, secrets and scratch artifacts outside the commit.
 <!-- FP_DECISION_2026_08_06_FRONTEND_CHECKPOINT_END -->
+
+<!-- FP_MARKETING_CONTROL_PLANE_SCHEMA_V02_ADR_START -->
+## Marketing control-plane schema v0.2
+
+- [`2026-08-12__marketing_control_plane_contract_split_and_schema_v0_2.md`](2026-08-12__marketing_control_plane_contract_split_and_schema_v0_2.md) — accepted separation of provider/API sources,
+  analytical data sources, external references and website measurement
+  contracts.
+<!-- FP_MARKETING_CONTROL_PLANE_SCHEMA_V02_ADR_END -->

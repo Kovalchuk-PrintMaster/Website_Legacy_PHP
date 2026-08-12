@@ -1,9 +1,9 @@
-# Marketing standards profile v0.1
+# Marketing standards profile v0.2
 
 - **ID:** `FP-WEB-REF-MARKETING-STANDARDS-001`
-- **Date:** 2026-08-11
-- **Status:** superseded
-- **Superseded by:** `marketing_standards_profile_v0_2.md`
+- **Date:** 2026-08-12
+- **Status:** active current reference
+- **Supersedes:** `marketing_standards_profile_v0_1.md`
 
 ## Purpose
 
@@ -137,3 +137,16 @@ durable aggregated evidence.
 Large raw provider exports and personal/user-level analytics data use protected
 local/external storage unless a reviewed policy explicitly authorizes
 repository storage.
+
+<!-- FP_MARKETING_ID_FAMILIES_V02_START -->
+## Additional stable control-plane ID families
+
+The current control plane also reserves immutable project IDs:
+
+- `MKT-DATA-*` — analytical/internal data source;
+- `MKT-REF-*` — official external reference/provenance record;
+- `MKT-EVT-*` — website measurement event.
+
+These IDs are distinct from external provider resource IDs and from provider
+integration IDs (`MKT-SRC-*`). Project IDs are never reused after retirement.
+<!-- FP_MARKETING_ID_FAMILIES_V02_END -->

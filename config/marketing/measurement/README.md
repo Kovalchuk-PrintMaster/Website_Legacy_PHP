@@ -1,19 +1,17 @@
-# Marketing measurement control-plane migration
+# Marketing measurement control plane
 
-**Status:** migration pending
+**Status:** current
 
-No canonical measurement event contract is declared in this directory yet.
+Canonical contract:
 
-The existing legacy measurement contract under:
+`config/marketing/measurement/event_contract_v0_1.yaml`
 
-```text
-seo/config/measurement_event_contract_v0_1.yaml
-```
+The event contract owns approved website measurement event names, conversion
+semantics, allowed/forbidden parameters and fail-closed privacy rules.
 
-is an input to MARKETING.03 inventory/classification.
+The legacy `seo/config/measurement_event_contract_v0_1.yaml` remains a
+migration input until MARKETING.03E/04 explicitly retires or archives it. It is
+not the current control-plane owner.
 
-It must be reviewed and reconciled before a canonical successor is created
-under `config/marketing/measurement/`.
-
-Until that migration is accepted, an empty placeholder must not be treated as
-the authoritative event contract.
+Operational exports, raw request data, credentials, cookies and personal data
+do not belong in this directory or in Git.

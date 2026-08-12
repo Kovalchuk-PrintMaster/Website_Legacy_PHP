@@ -1,0 +1,56 @@
+%YAML 1.2
+---
+schema_version: '0.1'
+kind: marketing_data_source_registry
+status: active
+updated_at: '2026-08-12T13:15:00+03:00'
+data_sources:
+  - id: MKT-DATA-COMMUNICATION-AGGREGATES-001
+    name: communication-requests-aggregates
+    source_class: lead-operations
+    owner: ForPrint application database
+    status: review
+    personal_data_class: mixed_raw_personal_aggregate_non_personal
+    git_policy: aggregate_counts_only
+  - id: MKT-DATA-GA4-001
+    name: ga4
+    source_class: behavioral-analytics
+    owner: Google account
+    status: planned
+    personal_data_class: unknown_review_required
+    git_policy: sanitized_aggregate_exports_only
+    provider_source_id: MKT-SRC-GA4-001
+    legacy_status_note: planned
+  - id: MKT-DATA-GADS-001
+    name: google-ads
+    source_class: paid-acquisition
+    owner: Google account
+    status: blocked
+    personal_data_class: unknown_review_required
+    git_policy: sanitized_aggregate_exports_only
+    provider_source_id: MKT-SRC-GADS-001
+    legacy_status_note: account issue observed
+  - id: MKT-DATA-GSC-001
+    name: google-search-console
+    source_class: organic-search
+    owner: Google account
+    status: review
+    personal_data_class: unknown_review_required
+    git_policy: sanitized_aggregate_exports_only
+    provider_source_id: MKT-SRC-GSC-001
+  - id: MKT-DATA-HOSTING-ACCESS-LOGS-001
+    name: hosting-access-logs
+    source_class: technical-observability
+    owner: hosting provider
+    status: review
+    personal_data_class: potential_personal_data
+    git_policy: raw_prohibited
+    provider_source_id: MKT-SRC-HOSTING-001
+  - id: MKT-DATA-HOSTING-DASHBOARD-001
+    name: hosting-resource-dashboard
+    source_class: technical-observability
+    owner: hosting provider
+    status: review
+    personal_data_class: unknown_review_required
+    git_policy: reviewed_aggregate_only
+    provider_source_id: MKT-SRC-HOSTING-001

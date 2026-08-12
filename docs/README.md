@@ -185,8 +185,8 @@ Policy: `config/deployment/database_ownership_policy_v0_1.json`.
 Canonical current entry point:
 
 - [`marketing/README.md`](marketing/README.md)
-- [`marketing/architecture/marketing_repository_architecture_v0_1.md`](marketing/architecture/marketing_repository_architecture_v0_1.md)
-- [`marketing/reference/marketing_standards_profile_v0_1.md`](marketing/reference/marketing_standards_profile_v0_1.md)
+- [`marketing/architecture/marketing_repository_architecture_v0_2.md`](marketing/architecture/marketing_repository_architecture_v0_2.md)
+- [`marketing/reference/marketing_standards_profile_v0_2.md`](marketing/reference/marketing_standards_profile_v0_2.md)
 - [`marketing/policies/marketing_api_automation_policy_v0_1.md`](marketing/policies/marketing_api_automation_policy_v0_1.md)
 - [`decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md`](decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md)
 - [`reference/repository_map_v0_2.md`](reference/repository_map_v0_2.md)
