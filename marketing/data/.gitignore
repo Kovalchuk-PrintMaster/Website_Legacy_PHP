@@ -1,0 +1,8 @@
+# Provider acquisitions are local/external by default.
+/raw/**
+!/raw/.gitkeep
+/staged/**
+!/staged/.gitkeep
+/private/**
+
+# Curated safe datasets and manifests may be versioned deliberately.

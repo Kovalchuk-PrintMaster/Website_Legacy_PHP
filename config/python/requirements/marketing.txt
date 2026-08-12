@@ -1,0 +1,4 @@
+# Canonical MARKETING tooling/runtime dependencies.
+# Installed into the repository-local Python virtual environment.
+ruamel.yaml==0.19.1
+jsonschema[format]==4.26.0

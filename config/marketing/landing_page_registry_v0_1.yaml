@@ -1,0 +1,13 @@
+schema_version: "0.1"
+kind: marketing_landing_page_registry
+status: active
+updated_at: "2026-08-11T17:55:00+03:00"
+
+landing_pages: []
+
+required_fields:
+  - id
+  - canonical_url
+  - lifecycle_status
+  - primary_intent
+  - owner_program_ids

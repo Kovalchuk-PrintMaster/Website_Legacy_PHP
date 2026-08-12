@@ -1,0 +1,10 @@
+schema_version: "0.1"
+kind: marketing_campaign_registry
+status: active
+updated_at: "2026-08-12T12:04:00+03:00"
+
+statuses: [draft, review, ready, active, paused, completed, archived]
+management_modes: [manual, assisted, managed]
+campaigns: []
+
+# Existing Google Ads material remains a migration input for MARKETING.03.

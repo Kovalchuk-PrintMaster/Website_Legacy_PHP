@@ -3,15 +3,14 @@
     "id": "FP-WEB-ARCH-ROOT-001",
     "title_uk": "Політика кореня репозиторію та локального runtime",
     "title_en": "Repository root and local runtime layout policy",
-    "version": "0.1",
-    "date": "2026-07-29",
-    "status": "superseded",
+    "version": "0.2",
+    "date": "2026-08-12",
+    "status": "accepted",
+    "supersedes": "docs/architecture/repository_root_and_runtime_layout_v0_1.yaml",
     "serialization": "YAML 1.2 JSON-compatible subset",
-    "security_classification": "internal-operational-no-secrets",
-    "superseded_by": "docs/architecture/repository_root_and_runtime_layout_v0_2.yaml"
+    "security_classification": "internal-operational-no-secrets"
   },
   "canonical_root": [
-    ".editorconfig",
     ".gitattributes",
     ".gitignore",
     "Makefile",
@@ -21,10 +20,12 @@
     "coordination/",
     "database_dumps/",
     "docs/",
-    "scripts/",
-    "seo/",
-    "tmp/"
+    "marketing/",
+    "scripts/"
   ],
+  "transitional_root": {
+    "seo/": "legacy SEO/Ads migration source; not canonical for new cross-channel marketing work"
+  },
   "hidden_local_root": {
     ".git/": "Git metadata",
     ".venv_website/": "retained because current Makefile/docs/tools depend on it",
@@ -34,6 +35,11 @@
     "documentation_install_notes": "docs/documentation/install/",
     "documentation_packages": "docs/documentation/packages/",
     "tracked_environment_examples": "config/env/",
+    "marketing_control_plane": "config/marketing/",
+    "python_tooling_configuration": "config/python/",
+    "marketing_workspace": "marketing/",
+    "marketing_automation": "scripts/marketing/",
+    "marketing_documentation": "docs/marketing/",
     "project_local_runtime_environment": ".runtime/env/",
     "systemd_environment": "/etc/forprint/website-preview.env",
     "operator_scratch": "tmp/",
@@ -43,6 +49,9 @@
     "README.md and Makefile stay at repository root.",
     "Generated bundle archives and checksum files do not stay at root.",
     "Root-level __pycache__ is prohibited.",
+    "Root-level requirements/ is prohibited; Python dependency manifests live under config/python/.",
+    "New cross-channel marketing work uses marketing/, config/marketing/, scripts/marketing/ and docs/marketing/.",
+    "seo/ is transitional legacy migration source until controlled migration is complete.",
     "Systemd continues to use /etc/forprint/website-preview.env.",
     "The .venv_website path remains until a separately approved migration.",
     "No secret value is tracked in Git.",
@@ -53,6 +62,12 @@
     "hosting runtime",
     "database",
     "mail and Telegram delivery",
-    "systemd unit and service state"
-  ]
+    "systemd unit and service state",
+    "legacy seo content during MARKETING.01"
+  ],
+  "permitted_local_root": {
+    "tmp/": "ignored operator/generated scratch workspace; not canonical repository content",
+    "tmp.py": "permitted ignored root scratch entrypoint",
+    "tmp.php": "permitted ignored root scratch entrypoint when locally needed"
+  }
 }

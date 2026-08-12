@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "id": "FP-WEB-DOC-REGISTRY-001",
+    "schema_version": "0.1",
+    "date": "2026-08-12",
+    "status": "active",
+    "purpose": "machine-readable registry of critical canonical current documentation",
+    "freshness_model": "event-driven",
+    "coverage": "critical-current-documents-first"
+  },
+  "lifecycle_classes": [
+    "living_current",
+    "mutable_index",
+    "decision_record",
+    "historical_evidence",
+    "transitional_compatibility"
+  ],
+  "entries": [
+    {
+      "topic_id": "DOC-TOPIC-DOCUMENTATION-GOVERNANCE",
+      "canonical_path": "docs/documentation/documentation_versioning_policy_v0_1.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "documentation lifecycle semantics change",
+        "new document class or retention rule",
+        "currentness validator contract changes"
+      ],
+      "index_required": false,
+      "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-REPOSITORY-README",
+      "canonical_path": "README.md",
+      "class": "mutable_index",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "major repository phase change",
+        "runtime/deployment model change",
+        "major subsystem introduction",
+        "root ownership change"
+      ],
+      "index_required": false,
+      "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-DOCS-INDEX",
+      "canonical_path": "docs/README.md",
+      "class": "mutable_index",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "canonical architecture revision",
+        "canonical workflow/policy revision",
+        "major subsystem introduction"
+      ],
+      "index_required": false,
+      "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-SYSTEM-ARCHITECTURE",
+      "canonical_path": "docs/architecture/system_architecture_overview_v0_2.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-08",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "system ownership change",
+        "runtime topology change",
+        "major subsystem introduction"
+      ],
+      "index_required": true,
+      "supersedes": [
+        "docs/architecture/system_architecture_overview_v0_1.md"
+      ]
+    },
+    {
+      "topic_id": "DOC-TOPIC-LEGACY-MODERN-BOUNDARY",
+      "canonical_path": "docs/architecture/legacy_and_modern_boundaries_v0_2.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-08",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "legacy ownership boundary changes",
+        "modernization strategy changes",
+        "legacy component retirement"
+      ],
+      "index_required": true,
+      "supersedes": [
+        "docs/architecture/legacy_and_modern_boundaries_v0_1.md"
+      ]
+    },
+    {
+      "topic_id": "DOC-TOPIC-REPOSITORY-ROOT",
+      "canonical_path": "docs/architecture/repository_root_and_runtime_layout_v0_2.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "top-level repository ownership changes",
+        "runtime namespace changes",
+        "tooling configuration boundary changes"
+      ],
+      "index_required": true,
+      "supersedes": [
+        "docs/architecture/repository_root_and_runtime_layout_v0_1.md"
+      ]
+    },
+    {
+      "topic_id": "DOC-TOPIC-REPOSITORY-MAP",
+      "canonical_path": "docs/reference/repository_map_v0_2.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "canonical path ownership changes",
+        "major directory migration",
+        "major tooling namespace introduction"
+      ],
+      "index_required": true,
+      "supersedes": [
+        "docs/reference/repository_map_v0_1.md"
+      ]
+    },
+    {
+      "topic_id": "DOC-TOPIC-ADR-REGISTER",
+      "canonical_path": "docs/decisions/architecture_decision_register_v0_1.md",
+      "class": "mutable_index",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "ADR accepted",
+        "ADR superseded",
+        "ADR status changes"
+      ],
+      "index_required": true,
+      "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-MARKETING-ARCHITECTURE",
+      "canonical_path": "docs/marketing/architecture/marketing_repository_architecture_v0_1.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "marketing control-plane ownership changes",
+        "provider adapter architecture changes",
+        "data-zone or automation lifecycle changes"
+      ],
+      "index_required": true,
+      "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-MARKETING-AUTOMATION-POLICY",
+      "canonical_path": "docs/marketing/policies/marketing_api_automation_policy_v0_1.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-12",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "write authorization model changes",
+        "managed automation policy changes",
+        "provider mutation safety contract changes"
+      ],
+      "index_required": true,
+      "supersedes": []
+    },
+    {
+      "topic_id": "DOC-TOPIC-PHP-BOOTSTRAP",
+      "canonical_path": "docs/reference/php_bootstrap_and_config_guard_v0_1.md",
+      "class": "living_current",
+      "status": "current",
+      "last_reviewed_at": "2026-08-11",
+      "review_mode": "event_driven",
+      "review_triggers": [
+        "PHP entrypoint bootstrap changes",
+        "config guard changes",
+        "deployment config ownership changes"
+      ],
+      "index_required": false,
+      "supersedes": []
+    }
+  ]
+}

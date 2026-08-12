@@ -1,0 +1,23 @@
+schema_version: "0.1"
+kind: marketing_program_registry
+status: active
+updated_at: "2026-08-11T17:55:00+03:00"
+
+statuses: [proposed, planned, active, paused, completed, archived]
+
+programs:
+  - id: MKT-PROG-MEASUREMENT-001
+    name: Measurement and attribution
+    status: planned
+  - id: MKT-PROG-ORGANIC-001
+    name: Organic search growth
+    status: planned
+  - id: MKT-PROG-GADS-001
+    name: Google Ads acquisition
+    status: active
+  - id: MKT-PROG-LOCAL-001
+    name: Local presence
+    status: planned
+  - id: MKT-PROG-LP-001
+    name: Landing-page optimization
+    status: planned

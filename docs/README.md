@@ -1,27 +1,28 @@
 # ForPrint Website — індекс документації
 
-**Пакет:** `forprint_website_documentation_pack_v0_1`
-**Оновлено:** 2026-08-08
+**Registry:** `documentation/canonical_document_registry_v0_1.yaml`
+**Оновлено:** 2026-08-12
 **Статус:** active current-state index
 
 ## Призначення
 
-Цей каталог є головною навігаційною точкою технічної документації ForPrint Website. Пакет не замінює вже наявні `development/`, `launch_readiness/` або `coordination/reports/`.
+Цей каталог є головною навігаційною точкою поточної технічної документації ForPrint Website. Індекс охоплює current-state документи та посилається на історичні evidence/snapshots там, де вони потрібні для traceability.
 
 Він фіксує:
 
-- архітектуру репозиторію і runtime;
-- межі legacy та модернізованих компонентів;
-- робочий процес через Debian terminal, `tmp/work/tmp.php` і `tmp/work/tmp.py`;
-- стан розробки на 2026-07-16;
-- план мінімально безпечної публікації;
-- прийняті рішення, які не треба щоразу обговорювати заново.
+- поточну архітектуру репозиторію, runtime і ownership boundaries;
+- межі legacy та прогресивно модернізованих компонентів;
+- операційний workflow, deployment/recovery та локальний scratch contract;
+- canonical marketing/API-automation architecture;
+- current plans, policies, registries та accepted decisions;
+- historical evidence, яке зберігається окремо від current-state reading path.
 
 ## Розділи
 
 | Каталог | Призначення |
 |---|---|
 | `architecture/` | Архітектура, потоки, межі старого і нового, frontend strategy |
+| `marketing/` | Marketing architecture, API automation policy, plans and reference |
 | `workflow/` | Робочий процес, tmp-протокол, checks і Git |
 | `status/` | Датовані snapshots фактичного стану |
 | `plans/` | Версійні плани запуску й стабілізації |
@@ -39,7 +40,8 @@
 4. `workflow/hosting_deployment_profiles_v0_1.md`
 5. `workflow/communication_release_safety_and_recovery_v0_1.md`
 6. `workflow/production_operational_data_and_database_sync_v0_1.md`
-7. `decisions/architecture_decision_register_v0_1.md`
+7. `marketing/README.md`
+8. `decisions/architecture_decision_register_v0_1.md`
 
 Historical snapshots, completed plans and coordination reports remain
 available for traceability but are not the primary current-state reading path.
@@ -54,7 +56,7 @@ available for traceability but are not the primary current-state reading path.
 
 ## Базовий принцип
 
-Поточна мета — контрольовано підготувати наявний сайт до публікації, а не переписати його повністю. Стабільна legacy-основа зберігається. Блок, який уже неможливо безпечно підтримувати дрібними латками, замінюється цілісним ізольованим компонентом.
+Поточна мета — безпечно підтримувати й розвивати діючий сайт, прогресивно модернізувати legacy-межі, зберігати контрольований production-release contract та будувати відтворювану marketing/API automation. Стабільна legacy-основа може зберігатися, доки її ownership і поведінка залишаються зрозумілими та контрольованими.
 
 <!-- FRONTEND_CHECKPOINT_INDEX_START -->
 ## Active first-release frontend checkpoint
@@ -110,7 +112,7 @@ available for traceability but are not the primary current-state reading path.
 - [Notification Delivery Architecture v0.1](architecture/notification_delivery_architecture_v0_1.md)
 <!-- FP_DEPLOY_NOTIFICATION_DOCS_V0_1_END -->
 
-- Repository-root and runtime layout: `architecture/repository_root_and_runtime_layout_v0_1.md`.
+- Repository-root and runtime layout: `architecture/repository_root_and_runtime_layout_v0_2.md`.
 
 <!-- FP-PRODUCTION-RELEASE-DOCS-V0-1-START -->
 ## Production release and recovery
@@ -176,3 +178,32 @@ Policy: `config/deployment/database_ownership_policy_v0_1.json`.
 
 `communication_requests` is production-owned for content and strict local-canonical for schema.
 <!-- FP_OPERATIONAL_DB_DOCS_V0_1_END -->
+
+<!-- FP_MARKETING_DOC_INDEX_V0_1_START -->
+## Marketing automation and growth subsystem
+
+Canonical current entry point:
+
+- [`marketing/README.md`](marketing/README.md)
+- [`marketing/architecture/marketing_repository_architecture_v0_1.md`](marketing/architecture/marketing_repository_architecture_v0_1.md)
+- [`marketing/reference/marketing_standards_profile_v0_1.md`](marketing/reference/marketing_standards_profile_v0_1.md)
+- [`marketing/policies/marketing_api_automation_policy_v0_1.md`](marketing/policies/marketing_api_automation_policy_v0_1.md)
+- [`decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md`](decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md)
+- [`reference/repository_map_v0_2.md`](reference/repository_map_v0_2.md)
+
+`marketing/` is canonical for new promotion, measurement, Ads, organic-search,
+local-presence, research and reporting work. Root `seo/` remains transitional
+legacy migration source until the controlled migration phases are complete.
+<!-- FP_MARKETING_DOC_INDEX_V0_1_END -->
+
+<!-- FP_DOCUMENTATION_LIFECYCLE_INDEX_V0_1_START -->
+## Documentation lifecycle and currentness
+
+- [`documentation/documentation_versioning_policy_v0_1.md`](documentation/documentation_versioning_policy_v0_1.md) — living/current/historical/transitional document lifecycle rules.
+- [`documentation/canonical_document_registry_v0_1.yaml`](documentation/canonical_document_registry_v0_1.yaml) — machine-readable critical current-document registry.
+
+Current documentation is allowed to evolve aggressively when facts change.
+Historical evidence remains historical; materially changed contracts receive a
+new canonical revision; obsolete material without a current/history/
+compatibility purpose does not remain active merely because it is old.
+<!-- FP_DOCUMENTATION_LIFECYCLE_INDEX_V0_1_END -->

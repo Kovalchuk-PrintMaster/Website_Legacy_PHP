@@ -165,3 +165,18 @@ public mirror during the pre-launch test period.
 **Decision:** progressive in-place frontend modernization
 **Status:** accepted
 **Record:** `docs/decisions/2026-08-08__progressive_in_place_frontend_modernization.md`
+
+<!-- FP_MARKETING_CONTROL_PLANE_ADR_V0_1_START -->
+## FP-WEB-ADR-2026-08-11-001
+
+**Decision:** canonical marketing control plane and API-first automation
+
+**Status:** accepted
+
+**Record:** `docs/decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md`
+
+`marketing/` is the canonical promotion/measurement workspace; SEO becomes an
+organic-search subdomain. `config/marketing/` is the machine-readable control
+plane, `scripts/marketing/` owns Python automation, and provider mutations use
+plan/preview/authorize/apply/verify/evidence controls.
+<!-- FP_MARKETING_CONTROL_PLANE_ADR_V0_1_END -->

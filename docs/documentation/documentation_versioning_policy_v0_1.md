@@ -96,3 +96,114 @@ affected active documentation.
 
 Repository indexes such as `docs/README.md` must prefer the latest canonical
 documents over historical predecessors.
+
+<!-- FP_LIVING_DOCUMENTATION_LIFECYCLE_V0_1_START -->
+## Living documentation lifecycle
+
+The repository optimizes for a correct current model, not for preserving every
+old wording as active documentation.
+
+### Document lifecycle classes
+
+`living_current`
+: Architecture, workflow, policy, runbook and reference documents that explain
+  the current accepted system.
+
+`mutable_index`
+: README/index/register documents whose purpose is to point to current
+  canonical material.
+
+`decision_record`
+: ADRs. The historical decision body is preserved; status and explicit
+  supersession links may be updated. A materially different decision gets a new
+  ADR.
+
+`historical_evidence`
+: Snapshots, incidents, completed plans, release evidence and coordination
+  reports. These remain date-bound and are not rewritten into current state.
+
+`transitional_compatibility`
+: Old material retained only because a real consumer, migration, compatibility
+  boundary or active procedure still needs it.
+
+### Update-versus-revision rule
+
+```text
+same accepted architecture / ownership / contract
++ newer facts, corrections or clearer explanation
+    -> update the living document in place
+    -> substantial editorial rewrite is allowed
+
+material architecture / ownership / contract / lifecycle change
+    -> create a newer canonical revision
+    -> mark the predecessor superseded
+    -> update indexes, registries and dependent procedures
+
+historical snapshot / incident / completed plan / release evidence
+    -> preserve as historical evidence
+    -> create new evidence for the new state
+
+obsolete material with a real compatibility consumer
+    -> mark transitional
+    -> record compatibility reason and retirement condition
+
+obsolete material with no current, historical or compatibility value
+    -> remove it from the active documentation tree after references are
+       migrated; Git history remains the audit trail
+```
+
+A higher revision number is not automatically more correct. Canonical status
+comes from the current documentation registry and current-state indexes.
+
+### No zombie documentation
+
+Every durable document should have an explainable lifecycle role.
+
+An obsolete document must not remain ambiguously `active` merely because it
+exists or because an older procedure once linked to it.
+
+Old material retained for compatibility must define:
+
+- the current consumer or reason;
+- the canonical replacement when one exists;
+- the retirement condition or next review trigger.
+
+### Freshness is event-driven
+
+Freshness is not inferred only from file modification time.
+
+Living current documents are reviewed when their facts or contracts may have
+changed, including:
+
+- architecture/ownership changes;
+- runtime or deployment contract changes;
+- API/provider integration changes;
+- schema/control-plane changes;
+- path/repository-layout changes;
+- release/stabilization checkpoints;
+- migration completion;
+- discovery that implementation and documentation disagree.
+
+A periodic review may supplement these triggers, but does not replace them.
+
+### Authority and conflict rule
+
+When an active document conflicts with verified implementation facts, schema,
+effective runtime configuration or a newer accepted ADR, the active document
+is stale until it is updated or superseded.
+
+An older agreement does not override a newer verified current state merely
+because the older text is more detailed.
+
+### Reference migration
+
+When a canonical document is superseded:
+
+1. identify inbound references;
+2. move normative/current references to the successor;
+3. retain historical references only where history is intentional;
+4. update README/index/current-document registry;
+5. validate that the predecessor is no longer on the current reading path.
+
+Compatibility is explicit; it is never inferred from a stale link.
+<!-- FP_LIVING_DOCUMENTATION_LIFECYCLE_V0_1_END -->

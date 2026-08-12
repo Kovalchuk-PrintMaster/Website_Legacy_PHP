@@ -1,0 +1,56 @@
+schema_version: "0.1"
+kind: marketing_source_registry
+status: active
+updated_at: "2026-08-11T17:55:00+03:00"
+
+write_modes:
+  - disabled
+  - preview_only
+  - operator_approved
+  - policy_managed
+
+sources:
+  - id: MKT-SRC-GA4-001
+    name: Google Analytics
+    adapter_family: google_analytics
+    status: planned
+    credential_ref: FP_MARKETING_GA4_CREDENTIAL
+    reporting_read: true
+    configuration_write: future
+    write_mode: disabled
+
+  - id: MKT-SRC-GSC-001
+    name: Google Search Console
+    adapter_family: search_console
+    status: planned
+    credential_ref: FP_MARKETING_GSC_CREDENTIAL
+    reporting_read: true
+    configuration_write: future
+    write_mode: disabled
+
+  - id: MKT-SRC-GADS-001
+    name: Google Ads
+    adapter_family: google_ads
+    status: planned
+    credential_ref: FP_MARKETING_GADS_CREDENTIAL
+    reporting_read: true
+    configuration_write: true
+    write_mode: operator_approved
+
+  - id: MKT-SRC-GBP-001
+    name: Google Business Profile
+    adapter_family: google_business_profile
+    status: planned
+    credential_ref: FP_MARKETING_GBP_CREDENTIAL
+    reporting_read: true
+    configuration_write: true
+    write_mode: operator_approved
+
+  - id: MKT-SRC-HOSTING-001
+    name: Hosting analytics
+    adapter_family: hosting_analytics
+    status: planned
+    credential_ref: FP_MARKETING_HOSTING_ANALYTICS_CREDENTIAL
+    reporting_read: future
+    configuration_write: false
+    write_mode: disabled

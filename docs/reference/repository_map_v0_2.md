@@ -1,8 +1,9 @@
-# Карта репозиторію v0.1
+# Карта репозиторію v0.2
 
 **ID:** `FP-WEB-REF-001`
-**Статус:** superseded
-**Superseded by:** `repository_map_v0_2.md`
+**Статус:** active current reference
+**Оновлено:** 2026-08-12
+**Supersedes:** `repository_map_v0_1.md`
 
 ```text
 .
@@ -24,6 +25,11 @@
 │   ├── userfiles/
 │   ├── log/
 │   └── temp/
+├── config/
+│   ├── deployment/
+│   ├── env/
+│   ├── marketing/
+│   └── python/
 ├── coordination/
 ├── database_dumps/
 │   └── migrations/
@@ -37,15 +43,27 @@
 │   ├── decisions/
 │   ├── reference/
 │   └── documentation/
+├── marketing/
 ├── scripts/
 │   ├── inspection/
 │   ├── maintenance/
+│   ├── marketing/
 │   └── windows/
+├── seo/                          # transitional legacy migration source
 ├── Makefile
-├── README.md
-├── tmp/work/tmp.php
-└── tmp/work/tmp.py
+└── README.md
 ```
+
+Allowed ignored local root state:
+
+```text
+tmp/
+tmp.py
+tmp.php
+```
+
+These paths are operator scratch/runtime workspace and are not canonical
+repository content.
 
 ## Семантика
 
@@ -55,7 +73,13 @@
 - `coordination/status/` — short coordination state;
 - `migrations/` — versioned DB changes;
 - `inspection/` — read-only/smoke;
-- `maintenance/` — explicit controlled mutation.
+- `maintenance/` — explicit controlled mutation;
+- `marketing/` — canonical promotion/measurement workspace and evidence;
+- `config/marketing/` — machine-readable marketing control plane;
+- `config/python/` — Python tooling dependency/configuration manifests;
+- `scripts/marketing/` — Python marketing automation;
+- `docs/marketing/` — current marketing architecture, policies, plans and references;
+- root `seo/` — transitional legacy migration source, not canonical for new work.
 
 ## High-risk areas
 
@@ -265,3 +289,54 @@ Database synchronization is ownership-policy aware: local schema and
 canonical content remain local-owned, while declared production operational
 row content remains production-owned. Hosting environment/runtime paths are
 preserved by the maintenance tool.
+
+<!-- FP_MARKETING_REPOSITORY_MAP_V0_1_START -->
+## Canonical marketing subsystem — 2026-08-12
+
+```text
+config/
+├── marketing/
+│   ├── source_registry_v0_1.yaml
+│   ├── program_registry_v0_1.yaml
+│   ├── campaign_registry_v0_1.yaml
+│   ├── work_registry_v0_1.yaml
+│   ├── report_registry_v0_1.yaml
+│   ├── landing_page_registry_v0_1.yaml
+│   ├── measurement/
+│   └── schemas/
+└── python/
+    └── requirements/
+        └── marketing.txt
+
+marketing/
+├── programs/
+├── campaigns/
+├── research/
+├── organic-search/
+├── local-presence/
+├── measurement/
+├── data/
+├── reports/
+├── experiments/
+└── archive/
+
+scripts/marketing/
+docs/marketing/
+```
+
+Ownership:
+
+```text
+config/marketing/   machine-readable control plane
+config/python/      Python tooling configuration/dependency manifests
+marketing/          workspace, safe evidence, curated data, reports
+scripts/marketing/  Python connectors/collectors/transforms/reporting/mutations
+docs/marketing/     architecture, policy, plans and reference
+docs/decisions/     centralized ADRs
+```
+
+The historical `seo/` Google Ads and Business Profile sections in this map are
+migration-source descriptions. New canonical marketing work does not extend
+those paths. MARKETING.03 classifies legacy artifacts and MARKETING.04 performs
+controlled physical migration.
+<!-- FP_MARKETING_REPOSITORY_MAP_V0_1_END -->

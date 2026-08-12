@@ -2,7 +2,8 @@
 
 **ID:** `FP-WEB-ARCH-ROOT-001`
 **Дата:** 2026-07-29
-**Статус:** accepted
+**Статус:** superseded
+**Superseded by:** `docs/architecture/repository_root_and_runtime_layout_v0_2.md`
 
 ## Канонічний корінь
 

@@ -1,0 +1,13 @@
+schema_version: "0.1"
+kind: marketing_work_registry
+status: active
+updated_at: "2026-08-12T12:04:00+03:00"
+
+statuses: [backlog, ready, in_progress, blocked, paused, done, cancelled]
+
+items:
+  - id: MKT-WORK-FOUNDATION-001
+    title: Establish canonical marketing control plane
+    program_id: MKT-PROG-MEASUREMENT-001
+    status: done
+    priority: high
