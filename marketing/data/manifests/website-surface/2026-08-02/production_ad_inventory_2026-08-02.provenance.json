@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "kind": "marketing_dataset_provenance",
+  "dataset_semantic_class": "WEBSITE_SURFACE_INVENTORY",
+  "data_zone": "staged",
+  "canonical_path": "marketing/data/staged/website-surface/2026-08-02/production_ad_inventory_2026-08-02.csv",
+  "legacy_source_path": "seo/google-ads/automation/account-inputs/2026-08-02/production_ad_inventory_2026-08-02.csv",
+  "source_sha256": "cea835a3d723422757f9eca87bef60fc3dc7bd502f67d240c3fc3cc45e243467",
+  "bytes_preserved": true,
+  "row_count": 106,
+  "columns": [
+    "url",
+    "http_status",
+    "final_url",
+    "title",
+    "h1",
+    "has_form",
+    "has_telegram",
+    "has_email_request",
+    "has_price",
+    "candidate_type"
+  ],
+  "personal_data_columns_detected": 0,
+  "source_owner": "ForPrint website surface",
+  "source_kind": "derived website inspection inventory",
+  "created_or_retrieved_date": "2026-08-02",
+  "producer_tool": "unknown",
+  "query_or_collection_method": "unknown",
+  "tool_version": "unknown",
+  "unknown_facts_policy": "preserve as unknown; do not infer or invent",
+  "git_policy": "data local-only and ignored; provenance metadata tracked",
+  "migration_evidence": {
+    "marketing05b2_r2_evidence_digest": "2d88785093894735b17f91e51309d58376b4805e9eeb78ff4b662a785cb97457",
+    "marketing05b2_r2_execution_input_digest": "859ad7aaf90980dea7e4029c4d47b4e233755431429181dfeac3cda0805f2658"
+  }
+}

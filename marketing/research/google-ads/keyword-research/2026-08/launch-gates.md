@@ -157,7 +157,7 @@ Google Ads website measurement remains planned work.
 
 Canonical implementation plan:
 
-`docs/plans/google_ads_measurement_follow_up_plan_v0_1.md`
+Current authorities: `config/marketing/measurement/event_contract_v0_1.yaml` and `docs/marketing/policies/marketing_api_automation_policy_v0_1.md`. Google Ads account-state facts are re-read through the MARKETING.05 read connector rather than preserved as static truth from legacy documentation. GTM/bootstrap readiness is tracked separately as deferred measurement integration state.
 
 The click-only probe does not authorize duplicate Google tags, enhanced
 conversions, transmission of personal data or conversion-based bidding.

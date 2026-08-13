@@ -26,7 +26,7 @@ groups must be removed rather than filled with unrelated URLs.
 ```bash
 cd /srv/software_development/forprint-project/forprint_website
 
-INVENTORY="seo/google-ads/automation/account-inputs/2026-08-02/production_ad_inventory_2026-08-02.csv"
+INVENTORY="marketing/data/staged/website-surface/2026-08-02/production_ad_inventory_2026-08-02.csv"
 
 python3   marketing/research/google-ads/keyword-research/2026-08/08-notebooks-planners/scripts/build_notebooks_research_preflight.py   "$INVENTORY"
 ```
