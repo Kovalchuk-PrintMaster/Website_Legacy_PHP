@@ -1,0 +1,42 @@
+negative_keyword,match_type,status,scope
+безкоштовно,phrase,candidate-review-required,campaign
+бесплатно,phrase,candidate-review-required,campaign
+скачати,phrase,candidate-review-required,campaign
+скачать,phrase,candidate-review-required,campaign
+завантажити,phrase,candidate-review-required,campaign
+download,phrase,candidate-review-required,campaign
+шаблон,phrase,candidate-review-required,campaign
+template,phrase,candidate-review-required,campaign
+макет безкоштовно,phrase,candidate-review-required,campaign
+макет бесплатно,phrase,candidate-review-required,campaign
+png,phrase,candidate-review-required,campaign
+svg,phrase,candidate-review-required,campaign
+вектор,phrase,candidate-review-required,campaign
+vector,phrase,candidate-review-required,campaign
+картинка,phrase,candidate-review-required,campaign
+картинки,phrase,candidate-review-required,campaign
+фото прапора,phrase,candidate-review-required,campaign
+фото флага,phrase,candidate-review-required,campaign
+своїми руками,phrase,candidate-review-required,campaign
+своими руками,phrase,candidate-review-required,campaign
+як зробити,phrase,candidate-review-required,campaign
+как сделать,phrase,candidate-review-required,campaign
+намалювати прапор,phrase,candidate-review-required,campaign
+нарисовать флаг,phrase,candidate-review-required,campaign
+прапор emoji,phrase,candidate-review-required,campaign
+флаг emoji,phrase,candidate-review-required,campaign
+емодзі прапор,phrase,candidate-review-required,campaign
+эмодзи флаг,phrase,candidate-review-required,campaign
+червоні прапорці у стосунках,phrase,candidate-review-required,campaign
+красные флаги в отношениях,phrase,candidate-review-required,campaign
+red flags,phrase,candidate-review-required,campaign
+значення прапора,phrase,candidate-review-required,campaign
+значение флага,phrase,candidate-review-required,campaign
+історія прапора,phrase,candidate-review-required,campaign
+история флага,phrase,candidate-review-required,campaign
+вікторина,phrase,candidate-review-required,campaign
+викторина,phrase,candidate-review-required,campaign
+вакансія,phrase,candidate-review-required,campaign
+вакансії,phrase,candidate-review-required,campaign
+вакансия,phrase,candidate-review-required,campaign
+вакансии,phrase,candidate-review-required,campaign

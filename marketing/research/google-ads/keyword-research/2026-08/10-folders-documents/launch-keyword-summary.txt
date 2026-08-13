@@ -1,0 +1,32 @@
+Folders launch keyword summary
+==============================
+
+Campaign: FP-SEARCH-08-FOLDERS-UA-PROBE
+Approved keywords: 9
+Held keywords: 20
+
+Approved by ad group:
+  AG-01-FOLDERS-GENERIC: 6
+  AG-02-FOLDERS-FULL-COLOR: 2
+  AG-04-FOLDERS-EMBOSSING: 1
+
+Held by ad group:
+  AG-01-FOLDERS-GENERIC: 2
+  AG-02-FOLDERS-FULL-COLOR: 3
+  AG-03-FOLDERS-FOIL: 6
+  AG-04-FOLDERS-EMBOSSING: 5
+  AG-05-FOLDERS-UV-VARNISH: 4
+
+Approved keywords:
+  AG-01-FOLDERS-GENERIC | 50.0 |  |  | виготовлення папок
+  AG-01-FOLDERS-GENERIC | 50.0 | 9.00 | 20.16 | друк папок
+  AG-01-FOLDERS-GENERIC | 50.0 | 9.96 | 23.90 | папки з логотипом
+  AG-01-FOLDERS-GENERIC | 50.0 | 7.26 | 14.67 | папки на замовлення
+  AG-01-FOLDERS-GENERIC | 50.0 | 7.59 | 23.87 | папки с логотипом
+  AG-01-FOLDERS-GENERIC | 50.0 | 7.56 | 32.70 | печать папок
+  AG-02-FOLDERS-FULL-COLOR | 50.0 |  |  | брендированные папки
+  AG-02-FOLDERS-FULL-COLOR | 50.0 | 9.98 | 24.55 | брендовані папки
+  AG-04-FOLDERS-EMBOSSING | 50.0 |  |  | тиснение на папках
+
+Created: seo/google-ads/keyword-research/2026-08/10-folders-documents/positive-keywords.approved.csv
+Created: seo/google-ads/keyword-research/2026-08/10-folders-documents/positive-keywords.hold.csv

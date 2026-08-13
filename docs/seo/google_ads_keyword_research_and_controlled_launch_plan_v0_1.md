@@ -3,7 +3,7 @@
 **ID:** `FP-ADS-PLAN-001`
 **Date:** `2026-08-01`
 **Status:** active
-**Workspace:** `seo/google-ads/keyword-research/2026-08/`
+**Workspace:** `marketing/research/google-ads/keyword-research/2026-08/`
 
 ## Completed
 

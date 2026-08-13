@@ -4,13 +4,18 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import re
 import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-WORKSPACE = ROOT / "seo/google-business-profile/forprint"
+WORKSPACE = ROOT / "marketing/local-presence/google-business-profile/forprint"
+
+# Accepted MARKETING.04A2R2 protective exception.
+LEGACY_PROTECTIVE_GUARD = ROOT / "seo/google-business-profile/forprint/.gitignore"
+LEGACY_PROTECTIVE_GUARD_SHA256 = "eb49487bff071b1619bc06db2aeb6e7cdeb21b3be2c4a35d546e148eb2b8f427"
 
 DIRECTORIES = (
     "01-logo",
@@ -29,7 +34,6 @@ FILES = (
     WORKSPACE / "README.md",
     WORKSPACE / "profile-data.md",
     WORKSPACE / "media-manifest.csv",
-    WORKSPACE / ".gitignore",
     ROOT / "docs/seo/google_business_profile_transition_plan_v0_1.md",
     ROOT / (
         "docs/status/snapshots/"
@@ -63,6 +67,10 @@ SECRET_RE = re.compile(
 )
 
 
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def main() -> int:
     failures: list[str] = []
 
@@ -94,13 +102,36 @@ def main() -> int:
         if path.suffix == ".md" and text.count("```") % 2:
             failures.append("unbalanced-code-fences:" + str(path))
 
+    canonical_guard = WORKSPACE / ".gitignore"
+    if canonical_guard.exists():
+        failures.append("canonical-protective-guard-unexpected:" + str(canonical_guard))
+
+    if not LEGACY_PROTECTIVE_GUARD.is_file():
+        failures.append("legacy-protective-guard-missing:" + str(LEGACY_PROTECTIVE_GUARD))
+    else:
+        actual_sha256 = file_sha256(LEGACY_PROTECTIVE_GUARD)
+        if actual_sha256 != LEGACY_PROTECTIVE_GUARD_SHA256:
+            failures.append(
+                "legacy-protective-guard-sha256:"
+                + str(LEGACY_PROTECTIVE_GUARD)
+                + ":"
+                + actual_sha256
+                + ":expected:"
+                + LEGACY_PROTECTIVE_GUARD_SHA256
+            )
+        guard_text = LEGACY_PROTECTIVE_GUARD.read_text(encoding="utf-8", errors="replace")
+        if PRIVATE_KEY_RE.search(guard_text):
+            failures.append("private-key-material:" + str(LEGACY_PROTECTIVE_GUARD))
+        if SECRET_RE.search(guard_text):
+            failures.append("secret-assignment:" + str(LEGACY_PROTECTIVE_GUARD))
+
     readme = WORKSPACE / "README.md"
 
     if readme.is_file():
         text = readme.read_text(encoding="utf-8")
 
         for required in (
-            "seo/google-business-profile/forprint/",
+            "marketing/local-presence/google-business-profile/forprint/",
             "Do not commit raw image/video files by default.",
             "Do not create a duplicate ForPrint profile",
             "10-verification-evidence/",

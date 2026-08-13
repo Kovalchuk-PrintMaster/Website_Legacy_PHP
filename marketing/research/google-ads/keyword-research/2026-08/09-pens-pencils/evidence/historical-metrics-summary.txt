@@ -1,0 +1,31 @@
+Pens and pencils historical metrics review
+==========================================
+
+Raw metric rows: 32
+Ignored blank Google rows: 2
+Real keyword rows: 30
+Keywords missing from seed map: 0
+
+Keywords by ad group:
+  AG-01-PENS-GENERIC: 8
+  AG-02-PENS-METAL: 5
+  AG-03-PENS-PLASTIC: 5
+  AG-04-PENS-ECO: 5
+  AG-05-PENCILS: 7
+
+Search-volume values:
+  500.0: 2
+  50.0: 14
+  (blank): 13
+  0.0: 1
+
+Preliminary decisions:
+  candidate-priority: 2
+  candidate-test: 14
+  hold-no-data: 14
+
+Bid statistics:
+  Median low-range bid: 13.30 UAH
+  Median high-range bid: 59.86 UAH
+
+Created: seo/google-ads/keyword-research/2026-08/09-pens-pencils/evidence/historical-metrics.review.csv

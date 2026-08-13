@@ -68,7 +68,7 @@ The Smile profile is not renamed during preparation.
 Canonical preparation path:
 
 ```text
-seo/google-business-profile/forprint/
+marketing/local-presence/google-business-profile/forprint/
 ```
 
 This path follows the repository media naming policy:

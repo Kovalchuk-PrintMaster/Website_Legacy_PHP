@@ -1,0 +1,31 @@
+keyword,language,proposed_ad_group,match_type,avg_monthly_searches,three_month_change,yoy_change,competition,competition_index,bid_low_uah,bid_high_uah,preliminary_decision,review_notes
+блокноти на замовлення,uk,AG-01-NOTEBOOKS-GENERIC,phrase,500.0,0%,0%,High,100,9.93,27.05,manual-review,Historical range requires manual interpretation
+блокноты на заказ,ru,AG-01-NOTEBOOKS-GENERIC,phrase,50.0,0%,0%,High,100,16.80,32.02,manual-review,Historical range requires manual interpretation
+виготовлення блокнотів,uk,AG-01-NOTEBOOKS-GENERIC,phrase,50.0,0%,0%,Medium,56,14.65,46.46,manual-review,Historical range requires manual interpretation
+друк блокнотів,uk,AG-01-NOTEBOOKS-GENERIC,phrase,500.0,0%,0%,High,76,19.84,86.40,manual-review,Historical range requires manual interpretation
+печать блокнотов,ru,AG-01-NOTEBOOKS-GENERIC,phrase,50.0,0%,0%,Medium,35,7.89,39.81,manual-review,Historical range requires manual interpretation
+блокноти з логотипом,uk,AG-02-NOTEBOOKS-BRANDED,phrase,500.0,0%,0%,High,100,16.34,64.67,manual-review,Historical range requires manual interpretation
+блокноты с логотипом,ru,AG-02-NOTEBOOKS-BRANDED,phrase,50.0,0%,0%,Medium,61,20.15,44.24,manual-review,Historical range requires manual interpretation
+брендированные блокноты,ru,AG-02-NOTEBOOKS-BRANDED,phrase,50.0,0%,0%,High,70,23.31,59.85,manual-review,Historical range requires manual interpretation
+брендовані блокноти,uk,AG-02-NOTEBOOKS-BRANDED,phrase,50.0,0%,0%,Medium,62,21.70,44.60,manual-review,Historical range requires manual interpretation
+друк на блокнотах,uk,AG-02-NOTEBOOKS-BRANDED,phrase,50.0,0%,0%,High,83,18.17,65.78,manual-review,Historical range requires manual interpretation
+корпоративные блокноты,ru,AG-02-NOTEBOOKS-BRANDED,phrase,50.0,0%,0%,Medium,50,,,manual-review,Historical range requires manual interpretation
+корпоративні блокноти,uk,AG-02-NOTEBOOKS-BRANDED,phrase,50.0,0%,∞,High,71,20.41,29.64,manual-review,Historical range requires manual interpretation
+блокноти оптом з логотипом,uk,AG-02-NOTEBOOKS-BRANDED,phrase,,,,,,,,hold-no-data,No usable historical demand or competition data
+брендовані щоденники,uk,AG-03-PLANNERS-DIARIES,phrase,50.0,0%,0%,High,87,14.06,99.59,manual-review,Historical range requires manual interpretation
+ежедневники на заказ,ru,AG-03-PLANNERS-DIARIES,phrase,50.0,0%,0%,High,96,11.18,16.64,manual-review,Historical range requires manual interpretation
+ежедневники с логотипом,ru,AG-03-PLANNERS-DIARIES,phrase,50.0,0%,0%,Low,25,,,manual-review,Historical range requires manual interpretation
+корпоративные ежедневники,ru,AG-03-PLANNERS-DIARIES,phrase,50.0,∞,∞,High,90,,,manual-review,Historical range requires manual interpretation
+планеры на заказ,ru,AG-03-PLANNERS-DIARIES,phrase,50.0,0%,0%,Medium,60,,,manual-review,Historical range requires manual interpretation
+щоденники з логотипом,uk,AG-03-PLANNERS-DIARIES,phrase,50.0,0%,0%,Low,1,,,manual-review,Historical range requires manual interpretation
+щоденники на замовлення,uk,AG-03-PLANNERS-DIARIES,phrase,50.0,0%,0%,High,96,10.39,99.60,manual-review,Historical range requires manual interpretation
+брендовані планери,uk,AG-03-PLANNERS-DIARIES,phrase,,,,,,,,hold-no-data,No usable historical demand or competition data
+корпоративні щоденники,uk,AG-03-PLANNERS-DIARIES,phrase,,,,,,,,hold-no-data,No usable historical demand or competition data
+планери з логотипом,uk,AG-03-PLANNERS-DIARIES,phrase,,,,,,,,hold-no-data,No usable historical demand or competition data
+планери на замовлення,uk,AG-03-PLANNERS-DIARIES,phrase,,,,,,,,hold-no-data,No usable historical demand or competition data
+планеры с логотипом,ru,AG-03-PLANNERS-DIARIES,phrase,,,,,,,,hold-no-data,No usable historical demand or competition data
+блокноти на пружині,uk,AG-04-NOTEBOOKS-SPRING,phrase,500.0,0%,0%,High,100,5.04,19.92,manual-review,Historical range requires manual interpretation
+блокноти на спіралі,uk,AG-04-NOTEBOOKS-SPRING,phrase,500.0,0%,0%,High,100,3.42,18.75,manual-review,Historical range requires manual interpretation
+блокноты на пружине,ru,AG-04-NOTEBOOKS-SPRING,phrase,50.0,900%,900%,High,100,5.01,19.93,manual-review,Historical range requires manual interpretation
+друк блокнотів на пружині,uk,AG-04-NOTEBOOKS-SPRING,phrase,50.0,0%,0%,High,100,15.56,64.79,manual-review,Historical range requires manual interpretation
+печать блокнотов на пружине,ru,AG-04-NOTEBOOKS-SPRING,phrase,50.0,0%,0%,Low,0,,,manual-review,Historical range requires manual interpretation

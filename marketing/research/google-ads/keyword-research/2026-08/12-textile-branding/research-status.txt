@@ -1,0 +1,13 @@
+Textile branding research status
+================================
+
+Campaign: FP-SEARCH-10-TEXTILE-UA-PROBE
+State: research-only
+Google Ads campaign: not created
+
+Production landing pages: 8
+Keyword seeds: 30
+Negative candidates: 45
+
+Next gate:
+Google Ads Keyword Planner historical metrics.

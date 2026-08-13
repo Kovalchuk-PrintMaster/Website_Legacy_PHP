@@ -1,0 +1,28 @@
+Historical metrics review
+=========================
+
+Raw data rows: 32
+Ignored blank Google rows: 2
+Real keyword rows: 30
+Keywords missing from seed map: 0
+
+Keywords by ad group:
+  AG-01-NOTEBOOKS-GENERIC: 5
+  AG-02-NOTEBOOKS-BRANDED: 8
+  AG-03-PLANNERS-DIARIES: 12
+  AG-04-NOTEBOOKS-SPRING: 5
+
+Search-volume ranges:
+  500.0: 5
+  50.0: 19
+  (blank): 6
+
+Preliminary decisions:
+  hold-no-data: 6
+  manual-review: 24
+
+Bid statistics:
+  Median low-range bid: 15.11 UAH
+  Median high-range bid: 44.42 UAH
+
+Created: seo/google-ads/keyword-research/2026-08/08-notebooks-planners/evidence/historical-metrics.review.csv

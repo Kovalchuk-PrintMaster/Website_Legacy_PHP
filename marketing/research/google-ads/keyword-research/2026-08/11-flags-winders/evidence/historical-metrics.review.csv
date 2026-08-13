@@ -1,0 +1,31 @@
+keyword,language,proposed_ad_group,match_type,avg_monthly_searches,three_month_change,yoy_change,competition,competition_index,bid_low_uah,bid_high_uah,preliminary_decision,review_notes
+виготовлення прапорів,uk,AG-01-FLAGS-GENERIC,phrase,500.0,0%,0%,High,100,12.10,28.10,candidate-priority,Comparatively stronger historical demand
+друк прапорів,uk,AG-01-FLAGS-GENERIC,phrase,500.0,0%,0%,High,100,13.40,34.80,candidate-priority,Comparatively stronger historical demand
+прапори на замовлення,uk,AG-01-FLAGS-GENERIC,phrase,500.0,0%,0%,High,100,8.33,25.48,candidate-priority,Comparatively stronger historical demand
+печать флагов,ru,AG-01-FLAGS-GENERIC,phrase,50.0,0%,0%,High,98,12.04,69.70,candidate-test,Low-volume commercial phrase for controlled testing
+флаги на заказ,ru,AG-01-FLAGS-GENERIC,phrase,50.0,0%,0%,High,100,8.00,36.24,candidate-test,Low-volume commercial phrase for controlled testing
+прапори з логотипом,uk,AG-01-FLAGS-GENERIC,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+класичні прапори з друком,uk,AG-02-FLAGS-CLASSIC,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+прапор з індивідуальним друком,uk,AG-02-FLAGS-CLASSIC,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+флаги с индивидуальной печатью,ru,AG-02-FLAGS-CLASSIC,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+віндери на замовлення,uk,AG-03-WINDERS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+мобільні рекламні прапори,uk,AG-03-WINDERS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+рекламные виндеры,ru,AG-03-WINDERS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+рекламні віндери,uk,AG-03-WINDERS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+настольные флажки с логотипом,ru,AG-04-TABLE-FLAGS,phrase,50.0,0%,-100%,,,,,candidate-test,Low-volume commercial phrase for controlled testing
+настільні прапорці,uk,AG-04-TABLE-FLAGS,phrase,50.0,0%,0%,High,100,4.79,21.91,candidate-test,Low-volume commercial phrase for controlled testing
+настільні прапорці з логотипом,uk,AG-04-TABLE-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+кабинетные флаги,ru,AG-05-CABINET-FLAGS,phrase,50.0,0%,0%,High,100,,,candidate-test,Low-volume commercial phrase for controlled testing
+кабінетні прапори,uk,AG-05-CABINET-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+фасадные флаги,ru,AG-06-FACADE-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+фасадні прапори,uk,AG-06-FACADE-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+прапори на флагшток,uk,AG-07-FLAGPOLE-FLAGS,phrase,50.0,∞,∞,High,100,4.82,9.01,candidate-test,Low-volume commercial phrase for controlled testing
+флаги на флагшток,ru,AG-07-FLAGPOLE-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+ручные флажки с печатью,ru,AG-08-HAND-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+ручні прапорці з друком,uk,AG-08-HAND-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+автомобильные флажки,ru,AG-09-CAR-FLAGS,phrase,50.0,0%,0%,High,100,,,candidate-test,Low-volume commercial phrase for controlled testing
+автомобільні прапорці,uk,AG-09-CAR-FLAGS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+вымпелы на заказ,ru,AG-10-PENNANTS,phrase,50.0,0%,0%,High,100,3.24,18.87,candidate-test,Low-volume commercial phrase for controlled testing
+вимпели на замовлення,uk,AG-10-PENNANTS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+гірлянди з прапорців,uk,AG-11-FLAG-GARLANDS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+флагштоки для прапорів,uk,AG-12-FLAGPOLES-ACCESSORIES,phrase,50.0,0%,0%,High,100,6.50,25.11,candidate-test,Low-volume commercial phrase for controlled testing

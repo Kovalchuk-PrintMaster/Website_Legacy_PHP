@@ -1,0 +1,28 @@
+Folders historical metrics review
+=================================
+
+Raw metric rows: 31
+Ignored blank Google rows: 2
+Real keyword rows: 29
+Keywords missing from seed map: 0
+
+Keywords by ad group:
+  AG-01-FOLDERS-GENERIC: 8
+  AG-02-FOLDERS-FULL-COLOR: 5
+  AG-03-FOLDERS-FOIL: 6
+  AG-04-FOLDERS-EMBOSSING: 6
+  AG-05-FOLDERS-UV-VARNISH: 4
+
+Search-volume values:
+  50.0: 9
+  (blank): 20
+
+Preliminary decisions:
+  candidate-test: 9
+  hold-no-data: 20
+
+Bid statistics:
+  Median low-range bid: 8.29 UAH
+  Median high-range bid: 23.88 UAH
+
+Created: seo/google-ads/keyword-research/2026-08/10-folders-documents/evidence/historical-metrics.review.csv

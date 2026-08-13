@@ -1,0 +1,27 @@
+Pens and pencils launch keyword summary
+=======================================
+
+Campaign: FP-SEARCH-07-PENS-PENCILS-UA-PROBE
+Recommended bidding: Maximize clicks
+Recommended maximum CPC: 25 UAH
+Recommended campaign total budget: 500 UAH
+
+Approved keywords: 16
+Held keywords: 14
+
+Approved by ad group:
+  AG-01-PENS-GENERIC: 6
+  AG-02-PENS-METAL: 1
+  AG-03-PENS-PLASTIC: 1
+  AG-04-PENS-ECO: 2
+  AG-05-PENCILS: 6
+
+Held by ad group:
+  AG-01-PENS-GENERIC: 2
+  AG-02-PENS-METAL: 4
+  AG-03-PENS-PLASTIC: 4
+  AG-04-PENS-ECO: 3
+  AG-05-PENCILS: 1
+
+Created: seo/google-ads/keyword-research/2026-08/09-pens-pencils/positive-keywords.approved.csv
+Created: seo/google-ads/keyword-research/2026-08/09-pens-pencils/positive-keywords.hold.csv

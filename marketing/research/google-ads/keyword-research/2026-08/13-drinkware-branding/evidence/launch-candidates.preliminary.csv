@@ -1,0 +1,25 @@
+keyword,language,proposed_ad_group,match_type,avg_monthly_searches,three_month_change,yoy_change,competition,competition_index,bid_low_uah,bid_high_uah,preliminary_decision,review_notes
+брендирование посуды,ru,AG-01-DRINKWARE-GENERIC,phrase,50.0,0%,0%,Low,32,21.09,27.38,candidate-test,Commercial phrase with measurable demand
+брендування посуду,uk,AG-01-DRINKWARE-GENERIC,phrase,50.0,0%,0%,Medium,59,12.02,42.52,candidate-test,Commercial phrase with measurable demand
+друк на посуді,uk,AG-01-DRINKWARE-GENERIC,phrase,50.0,0%,0%,High,100,9.68,26.35,candidate-test,Commercial phrase with measurable demand
+посуда с логотипом,ru,AG-01-DRINKWARE-GENERIC,phrase,50.0,0%,∞,Low,0,,,candidate-test,Commercial phrase with measurable demand
+друк на чашках,uk,AG-02-MUGS-PRINT,phrase,500.0,0%,0%,High,100,8.62,39.88,candidate-priority,Strong measurable demand for launch testing
+печать на чашках,ru,AG-02-MUGS-PRINT,phrase,500.0,0%,0%,High,100,8.51,34.23,candidate-priority,Strong measurable demand for launch testing
+чашки з логотипом,uk,AG-02-MUGS-PRINT,phrase,500.0,0%,0%,High,100,10.44,37.01,candidate-priority,Strong measurable demand for launch testing
+чашки на заказ,ru,AG-02-MUGS-PRINT,phrase,500.0,0%,0%,High,100,6.53,22.05,candidate-priority,Strong measurable demand for launch testing
+чашки на замовлення,uk,AG-02-MUGS-PRINT,phrase,500.0,0%,0%,High,100,5.27,17.10,candidate-priority,Strong measurable demand for launch testing
+брендовані чашки,uk,AG-02-MUGS-PRINT,phrase,50.0,0%,0%,High,100,12.14,37.45,candidate-test,Commercial phrase with measurable demand
+фотодрук на чашках,uk,AG-02-MUGS-PRINT,phrase,50.0,0%,0%,High,100,7.87,25.79,candidate-test,Commercial phrase with measurable demand
+чашка з власним дизайном,uk,AG-02-MUGS-PRINT,phrase,50.0,0%,0%,High,100,5.03,16.15,candidate-test,Commercial phrase with measurable demand
+чашки с логотипом,ru,AG-02-MUGS-PRINT,phrase,50.0,0%,0%,High,100,18.84,52.57,candidate-test,Commercial phrase with measurable demand
+брендирование стаканов,ru,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,88,17.10,33.54,candidate-test,Commercial phrase with measurable demand
+брендовані стакани,uk,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,100,7.78,18.94,candidate-test,Commercial phrase with measurable demand
+брендування стаканів,uk,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,100,10.43,33.27,candidate-test,Commercial phrase with measurable demand
+друк на стаканах,uk,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,100,7.97,25.64,candidate-test,Commercial phrase with measurable demand
+печать на стаканах,ru,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,100,10.08,31.06,candidate-test,Commercial phrase with measurable demand
+стакани з логотипом,uk,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,100,6.73,17.80,candidate-test,Commercial phrase with measurable demand
+стаканы с логотипом,ru,AG-03-CUPS-BRANDING,phrase,50.0,0%,0%,High,77,11.16,31.13,candidate-test,Commercial phrase with measurable demand
+брендирование термосов,ru,AG-04-THERMOSES-BRANDING,phrase,50.0,-100%,0%,,,,,candidate-test,Commercial phrase with measurable demand
+друк на термосах,uk,AG-04-THERMOSES-BRANDING,phrase,50.0,0%,0%,High,100,17.32,99.45,candidate-test,Commercial phrase with measurable demand
+печать на термосах,ru,AG-04-THERMOSES-BRANDING,phrase,50.0,0%,0%,Low,30,21.69,100.09,candidate-test,Commercial phrase with measurable demand
+термосы с логотипом,ru,AG-04-THERMOSES-BRANDING,phrase,50.0,0%,900%,Low,16,,,candidate-test,Commercial phrase with measurable demand

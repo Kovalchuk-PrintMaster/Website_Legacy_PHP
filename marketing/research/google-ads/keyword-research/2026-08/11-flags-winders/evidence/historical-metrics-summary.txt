@@ -1,0 +1,37 @@
+Flags and winders historical metrics review
+===========================================
+
+Raw metric rows: 32
+Ignored blank Google rows: 2
+Real keyword rows: 30
+Keywords missing from seed map: 0
+
+Keywords by ad group:
+  AG-01-FLAGS-GENERIC: 6
+  AG-02-FLAGS-CLASSIC: 3
+  AG-03-WINDERS: 4
+  AG-04-TABLE-FLAGS: 3
+  AG-05-CABINET-FLAGS: 2
+  AG-06-FACADE-FLAGS: 2
+  AG-07-FLAGPOLE-FLAGS: 2
+  AG-08-HAND-FLAGS: 2
+  AG-09-CAR-FLAGS: 2
+  AG-10-PENNANTS: 2
+  AG-11-FLAG-GARLANDS: 1
+  AG-12-FLAGPOLES-ACCESSORIES: 1
+
+Search-volume values:
+  500.0: 3
+  50.0: 9
+  (blank): 18
+
+Preliminary decisions:
+  candidate-priority: 3
+  candidate-test: 9
+  hold-no-data: 18
+
+Bid statistics:
+  Median low-range bid: 8.00 UAH
+  Median high-range bid: 25.48 UAH
+
+Created: seo/google-ads/keyword-research/2026-08/11-flags-winders/evidence/historical-metrics.review.csv

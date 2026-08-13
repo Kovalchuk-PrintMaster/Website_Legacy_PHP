@@ -1,0 +1,54 @@
+negative_keyword,match_type,status,scope
+безкоштовно,phrase,candidate-review-required,campaign
+бесплатно,phrase,candidate-review-required,campaign
+скачати,phrase,candidate-review-required,campaign
+скачать,phrase,candidate-review-required,campaign
+завантажити,phrase,candidate-review-required,campaign
+download,phrase,candidate-review-required,campaign
+роздрукувати,phrase,candidate-review-required,campaign
+распечатать,phrase,candidate-review-required,campaign
+шаблон,phrase,candidate-review-required,campaign
+template,phrase,candidate-review-required,campaign
+макет безкоштовно,phrase,candidate-review-required,campaign
+макет бесплатно,phrase,candidate-review-required,campaign
+pdf,phrase,candidate-review-required,campaign
+png,phrase,candidate-review-required,campaign
+jpg,phrase,candidate-review-required,campaign
+excel,phrase,candidate-review-required,campaign
+word,phrase,candidate-review-required,campaign
+онлайн календар,phrase,candidate-review-required,campaign
+онлайн календарь,phrase,candidate-review-required,campaign
+google calendar,phrase,candidate-review-required,campaign
+гугл календар,phrase,candidate-review-required,campaign
+календар iphone,phrase,candidate-review-required,campaign
+календар android,phrase,candidate-review-required,campaign
+календар свят,phrase,candidate-review-required,campaign
+календарь праздников,phrase,candidate-review-required,campaign
+календар вихідних,phrase,candidate-review-required,campaign
+календарь выходных,phrase,candidate-review-required,campaign
+виробничий календар,phrase,candidate-review-required,campaign
+производственный календарь,phrase,candidate-review-required,campaign
+церковний календар,phrase,candidate-review-required,campaign
+церковный календарь,phrase,candidate-review-required,campaign
+православний календар,phrase,candidate-review-required,campaign
+православный календарь,phrase,candidate-review-required,campaign
+місячний календар,phrase,candidate-review-required,campaign
+лунный календарь,phrase,candidate-review-required,campaign
+посівний календар,phrase,candidate-review-required,campaign
+посевной календарь,phrase,candidate-review-required,campaign
+менструальний календар,phrase,candidate-review-required,campaign
+менструальный календарь,phrase,candidate-review-required,campaign
+календар вагітності,phrase,candidate-review-required,campaign
+календарь беременности,phrase,candidate-review-required,campaign
+календар щеплень,phrase,candidate-review-required,campaign
+календарь прививок,phrase,candidate-review-required,campaign
+календар матчів,phrase,candidate-review-required,campaign
+календарь матчей,phrase,candidate-review-required,campaign
+гороскоп,phrase,candidate-review-required,campaign
+зодіак,phrase,candidate-review-required,campaign
+зодиак,phrase,candidate-review-required,campaign
+погода,phrase,candidate-review-required,campaign
+вакансія,phrase,candidate-review-required,campaign
+вакансії,phrase,candidate-review-required,campaign
+вакансия,phrase,candidate-review-required,campaign
+вакансии,phrase,candidate-review-required,campaign

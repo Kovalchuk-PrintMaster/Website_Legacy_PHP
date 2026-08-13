@@ -1,0 +1,53 @@
+negative_keyword,match_type,status,scope
+безкоштовно,phrase,candidate-review-required,campaign
+бесплатно,phrase,candidate-review-required,campaign
+скачати,phrase,candidate-review-required,campaign
+скачать,phrase,candidate-review-required,campaign
+завантажити,phrase,candidate-review-required,campaign
+download,phrase,candidate-review-required,campaign
+шаблон,phrase,candidate-review-required,campaign
+template,phrase,candidate-review-required,campaign
+макет безкоштовно,phrase,candidate-review-required,campaign
+макет бесплатно,phrase,candidate-review-required,campaign
+своїми руками,phrase,candidate-review-required,campaign
+своими руками,phrase,candidate-review-required,campaign
+як зробити,phrase,candidate-review-required,campaign
+как сделать,phrase,candidate-review-required,campaign
+принтер для чашок,phrase,candidate-review-required,campaign
+принтер для кружок,phrase,candidate-review-required,campaign
+принтер для посуду,phrase,candidate-review-required,campaign
+станок для печати на кружках,phrase,candidate-review-required,campaign
+термопрес,phrase,candidate-review-required,campaign
+термопресс,phrase,candidate-review-required,campaign
+обладнання для сублімації,phrase,candidate-review-required,campaign
+оборудование для сублимации,phrase,candidate-review-required,campaign
+сублімаційний папір,phrase,candidate-review-required,campaign
+сублимационная бумага,phrase,candidate-review-required,campaign
+фарба для сублімації,phrase,candidate-review-required,campaign
+чернила для сублимации,phrase,candidate-review-required,campaign
+заготовки для сублімації,phrase,candidate-review-required,campaign
+заготовки для сублимации,phrase,candidate-review-required,campaign
+чашка петри,phrase,candidate-review-required,campaign
+чашка петрі,phrase,candidate-review-required,campaign
+менструальна чашка,phrase,candidate-review-required,campaign
+менструальная чаша,phrase,candidate-review-required,campaign
+чашка бюстгальтера,phrase,candidate-review-required,campaign
+чашка унітазу,phrase,candidate-review-required,campaign
+чаша унитаза,phrase,candidate-review-required,campaign
+мірна чашка,phrase,candidate-review-required,campaign
+мерная чашка,phrase,candidate-review-required,campaign
+рецепт,phrase,candidate-review-required,campaign
+рецепти,phrase,candidate-review-required,campaign
+рецепты,phrase,candidate-review-required,campaign
+як почистити термос,phrase,candidate-review-required,campaign
+как почистить термос,phrase,candidate-review-required,campaign
+ремонт термоса,phrase,candidate-review-required,campaign
+кришка для термоса,phrase,candidate-review-required,campaign
+крышка для термоса,phrase,candidate-review-required,campaign
+пробка для термоса,phrase,candidate-review-required,campaign
+запчастини для термоса,phrase,candidate-review-required,campaign
+запчасти для термоса,phrase,candidate-review-required,campaign
+вакансія,phrase,candidate-review-required,campaign
+вакансії,phrase,candidate-review-required,campaign
+вакансия,phrase,candidate-review-required,campaign
+вакансии,phrase,candidate-review-required,campaign

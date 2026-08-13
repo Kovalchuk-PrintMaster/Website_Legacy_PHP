@@ -4,13 +4,24 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import re
 import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-WORKSPACE = ROOT / "seo/google-ads/keyword-research/2026-08"
+WORKSPACE = ROOT / "marketing/research/google-ads/keyword-research/2026-08"
+
+# Accepted MARKETING.04A2R2 exception boundary. These files remain under
+# the legacy namespace until raw-data/provenance migration is explicitly
+# completed; they are not missing canonical workspace files.
+LEGACY_EXCEPTION_WORKSPACE = ROOT / "seo/google-ads/keyword-research/2026-08"
+LEGACY_HELD_FILE_SHA256 = {
+    ".gitignore": "d0ce9acdb4afb8d15c0c9531097167e6b69afdd927e5087bb36a50230f701939",
+    "raw-export-register.csv": "c49dac0cbfd863805f736dc3d9970ecdda8a2df8fa40c3f4ece80ea65fab7d15",
+    "raw-exports/README.md": "ffa296a192f8db13997d2628a3cf4b698cd6bab546dfc6ee5568d7ca0e181115",
+}
 
 PLAN_SLUGS = (
     "01-badges-and-lanyards",
@@ -34,15 +45,12 @@ EXPECTED_POSITIVE_COUNTS = {
 
 REQUIRED_WORKSPACE_FILES = (
     "README.md",
-    ".gitignore",
     "research-register.csv",
     "campaign-priority.md",
     "landing-page-map.md",
     "landing-page-map.csv",
     "launch-gates.md",
     "conditional-negative-keywords.md",
-    "raw-export-register.csv",
-    "raw-exports/README.md",
 )
 
 DOCUMENT_FILES = (
@@ -86,6 +94,14 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def main() -> int:
     failures: list[str] = []
 
@@ -96,6 +112,22 @@ def main() -> int:
         path = WORKSPACE / relative
         if not path.is_file():
             failures.append("workspace-file-missing:" + str(path))
+
+    for relative, expected_sha256 in LEGACY_HELD_FILE_SHA256.items():
+        path = LEGACY_EXCEPTION_WORKSPACE / relative
+        if not path.is_file():
+            failures.append("legacy-held-file-missing:" + str(path))
+            continue
+        actual_sha256 = file_sha256(path)
+        if actual_sha256 != expected_sha256:
+            failures.append(
+                "legacy-held-file-sha256:"
+                + str(path)
+                + ":"
+                + actual_sha256
+                + ":expected:"
+                + expected_sha256
+            )
 
     for path in DOCUMENT_FILES:
         if not path.is_file():
@@ -149,13 +181,13 @@ def main() -> int:
             elif "not actual ForPrint performance" not in rows[0].get("notes", ""):
                 failures.append("forecast-warning-missing:" + slug)
 
-    raw_register = WORKSPACE / "raw-export-register.csv"
+    raw_register = LEGACY_EXCEPTION_WORKSPACE / "raw-export-register.csv"
     if raw_register.is_file():
         rows = read_csv(raw_register)
         if len(rows) != 13:
             failures.append("raw-register-row-count:" + str(len(rows)))
 
-    gitignore = WORKSPACE / ".gitignore"
+    gitignore = LEGACY_EXCEPTION_WORKSPACE / ".gitignore"
     if gitignore.is_file():
         text = gitignore.read_text(encoding="utf-8")
         if "raw-exports/*.csv" not in text:
@@ -165,7 +197,8 @@ def main() -> int:
     if launch_gates.is_file():
         text = launch_gates.read_text(encoding="utf-8")
         for required in (
-            "new campaign is created in `Paused` state",
+            "the campaign is reviewed while Paused",
+            "A campaign left Paused will not start automatically.",
             "generate_lead",
             "explicitly approved",
             "modelled conversions",
@@ -183,11 +216,17 @@ def main() -> int:
         if text.count(end) != 1:
             failures.append(f"marker-end-count:{path}:{text.count(end)}")
 
+    legacy_held_scan_files = [
+        LEGACY_EXCEPTION_WORKSPACE / relative
+        for relative in LEGACY_HELD_FILE_SHA256
+        if (LEGACY_EXCEPTION_WORKSPACE / relative).is_file()
+    ]
+
     scan_files = [
         path
         for path in WORKSPACE.rglob("*")
         if path.is_file() and "raw-exports" not in path.parts
-    ] + list(DOCUMENT_FILES) + list(INDEX_MARKERS)
+    ] + legacy_held_scan_files + list(DOCUMENT_FILES) + list(INDEX_MARKERS)
 
     for path in scan_files:
         text = path.read_text(encoding="utf-8", errors="replace")
@@ -198,7 +237,9 @@ def main() -> int:
         if path.suffix == ".md" and text.count("```") % 2:
             failures.append("unbalanced-code-fences:" + str(path))
 
-    local_raw_count = len(list((WORKSPACE / "raw-exports").glob("*.csv")))
+    local_raw_count = len(
+        list((LEGACY_EXCEPTION_WORKSPACE / "raw-exports").glob("*.csv"))
+    )
 
     if failures:
         for failure in failures:

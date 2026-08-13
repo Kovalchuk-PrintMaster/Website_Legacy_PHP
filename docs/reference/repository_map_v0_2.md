@@ -158,7 +158,7 @@ Bestname DNS                           authoritative public DNS control
 ## Google Business Profile preparation workspace — 2026-07-30
 
 ```text
-seo/google-business-profile/forprint/
+marketing/local-presence/google-business-profile/forprint/
 ├── README.md
 ├── profile-data.md
 ├── media-manifest.csv
@@ -183,7 +183,7 @@ manifests and directory placeholders are versioned.
 ## Google Ads research workspace — 2026-08
 
 ```text
-seo/google-ads/keyword-research/2026-08/
+marketing/research/google-ads/keyword-research/2026-08/
 ├── README.md
 ├── research-register.csv
 ├── campaign-priority.md

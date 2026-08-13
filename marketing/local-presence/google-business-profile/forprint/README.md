@@ -1,7 +1,7 @@
 # ForPrint Google Business Profile workspace
 
 **Operational name:** `ForPrint_Google_Profile`
-**Repository path:** `seo/google-business-profile/forprint/`
+**Repository path:** `marketing/local-presence/google-business-profile/forprint/`
 **Status:** preparation only; not yet published as a ForPrint Google Business Profile
 
 ## Purpose

@@ -1,0 +1,13 @@
+Calendars research status
+=========================
+
+Campaign: FP-SEARCH-12-CALENDARS-UA-PROBE
+State: research-only
+Google Ads campaign: not created
+
+Production landing pages: 3
+Keyword seeds: 30
+Negative candidates: 53
+
+Next gate:
+Google Ads Keyword Planner historical metrics.

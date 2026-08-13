@@ -1,0 +1,23 @@
+keyword,language,proposed_ad_group,match_type,avg_monthly_searches,three_month_change,yoy_change,competition,competition_index,bid_low_uah,bid_high_uah,preliminary_decision,review_notes
+друк на одязі,uk,AG-01-TEXTILE-GENERIC,phrase,500.0,0%,0%,High,100,9.92,36.93,candidate-priority,Strong historical demand for launch testing
+печать на одежде,ru,AG-01-TEXTILE-GENERIC,phrase,500.0,0%,0%,High,100,7.53,27.60,candidate-priority,Strong historical demand for launch testing
+нанесення логотипу на одяг,uk,AG-01-TEXTILE-GENERIC,phrase,50.0,0%,0%,High,100,17.03,49.64,candidate-test,Commercial phrase with measurable demand
+одежда с логотипом,ru,AG-01-TEXTILE-GENERIC,phrase,50.0,0%,0%,High,95,10.73,48.15,candidate-test,Commercial phrase with measurable demand
+одяг з логотипом,uk,AG-01-TEXTILE-GENERIC,phrase,50.0,0%,0%,High,100,13.60,34.40,candidate-test,Commercial phrase with measurable demand
+друк на футболках,uk,AG-02-TSHIRTS-PRINT,phrase,5000.0,0%,0%,High,100,9.91,41.11,candidate-priority,Strong historical demand for launch testing
+печать на футболках,ru,AG-02-TSHIRTS-PRINT,phrase,5000.0,0%,0%,High,100,9.78,32.40,candidate-priority,Strong historical demand for launch testing
+футболки з логотипом,uk,AG-02-TSHIRTS-PRINT,phrase,500.0,0%,0%,High,100,12.63,42.13,candidate-priority,Strong historical demand for launch testing
+футболки з принтом на замовлення,uk,AG-02-TSHIRTS-PRINT,phrase,500.0,0%,0%,High,100,6.63,26.04,candidate-priority,Strong historical demand for launch testing
+вишивка на футболках,uk,AG-03-TSHIRTS-EMBROIDERY,phrase,500.0,0%,0%,Low,32,8.84,35.50,candidate-priority,Strong historical demand for launch testing
+вышивка на футболках,ru,AG-03-TSHIRTS-EMBROIDERY,phrase,500.0,0%,0%,High,100,8.73,23.51,candidate-priority,Strong historical demand for launch testing
+футболки з вишивкою,uk,AG-03-TSHIRTS-EMBROIDERY,phrase,500.0,0%,0%,High,100,3.30,13.04,candidate-priority,Strong historical demand for launch testing
+друк на кепках,uk,AG-04-CAPS-PRINT,phrase,500.0,0%,0%,High,100,10.14,52.35,candidate-priority,Strong historical demand for launch testing
+кепки з логотипом,uk,AG-04-CAPS-PRINT,phrase,500.0,0%,0%,High,100,12.59,54.46,candidate-priority,Strong historical demand for launch testing
+печать на кепках,ru,AG-04-CAPS-PRINT,phrase,50.0,0%,0%,High,83,14.48,56.91,candidate-test,Commercial phrase with measurable demand
+вишивка на кепках,uk,AG-05-CAPS-EMBROIDERY,phrase,50.0,-90%,-90%,High,100,12.43,37.26,candidate-test,Commercial phrase with measurable demand
+кепки з вишивкою,uk,AG-05-CAPS-EMBROIDERY,phrase,50.0,0%,900%,High,100,6.70,23.13,candidate-test,Commercial phrase with measurable demand
+друк на шоперах,uk,AG-06-SHOPPERS-PRINT,phrase,500.0,0%,0%,High,100,16.88,69.78,candidate-priority,Strong historical demand for launch testing
+печать на шоперах,ru,AG-06-SHOPPERS-PRINT,phrase,50.0,0%,0%,High,95,29.73,88.28,candidate-test,Commercial phrase with measurable demand
+шопери на замовлення,uk,AG-06-SHOPPERS-PRINT,phrase,50.0,0%,0%,High,92,35.43,92.20,candidate-test,Commercial phrase with measurable demand
+брендирование спецодежды,ru,AG-08-WORKWEAR-BRANDING,phrase,50.0,0%,0%,High,67,,,candidate-test,Commercial phrase with measurable demand
+спецодяг з логотипом,uk,AG-08-WORKWEAR-BRANDING,phrase,50.0,0%,0%,High,99,18.06,36.28,candidate-test,Commercial phrase with measurable demand

@@ -434,7 +434,7 @@ Print Master cleanup
 Canonical preparation workspace:
 
 ```text
-seo/google-business-profile/forprint/
+marketing/local-presence/google-business-profile/forprint/
 ```
 
 The profile transition is not a blocker for technical SEO, Search Console,

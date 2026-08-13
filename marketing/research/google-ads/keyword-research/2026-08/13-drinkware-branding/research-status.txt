@@ -1,0 +1,13 @@
+Drinkware branding research status
+==================================
+
+Campaign: FP-SEARCH-11-DRINKWARE-UA-PROBE
+State: research-only
+Google Ads campaign: not created
+
+Production landing pages: 4
+Keyword seeds: 30
+Negative candidates: 52
+
+Next gate:
+Google Ads Keyword Planner historical metrics.

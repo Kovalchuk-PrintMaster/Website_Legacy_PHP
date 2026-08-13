@@ -1,0 +1,38 @@
+negative_keyword,match_type,status,scope,notes
+безкоштовно,phrase,candidate-review-required,campaign,Informational/free intent
+бесплатно,phrase,candidate-review-required,campaign,Informational/free intent
+скачати,phrase,candidate-review-required,campaign,Download intent
+скачать,phrase,candidate-review-required,campaign,Download intent
+завантажити,phrase,candidate-review-required,campaign,Download intent
+шаблон,phrase,candidate-review-required,campaign,Template intent
+template,phrase,candidate-review-required,campaign,Template intent
+шаблон word,phrase,candidate-review-required,campaign,Template intent
+шаблон psd,phrase,candidate-review-required,campaign,Template intent
+своїми руками,phrase,candidate-review-required,campaign,DIY intent
+своими руками,phrase,candidate-review-required,campaign,DIY intent
+як зробити,phrase,candidate-review-required,campaign,DIY intent
+как сделать,phrase,candidate-review-required,campaign,DIY intent
+роздрукувати,phrase,candidate-review-required,campaign,Home-print intent
+распечатать,phrase,candidate-review-required,campaign,Home-print intent
+цифровий планер,phrase,candidate-review-required,campaign,Digital-product intent
+електронний планер,phrase,candidate-review-required,campaign,Digital-product intent
+digital planner,phrase,candidate-review-required,campaign,Digital-product intent
+notion template,phrase,candidate-review-required,campaign,Digital-product intent
+планер для ipad,phrase,candidate-review-required,campaign,Digital-product intent
+planner app,phrase,candidate-review-required,campaign,App intent
+щоденник учня,phrase,candidate-review-required,campaign,School-product intent
+дневник школьника,phrase,candidate-review-required,campaign,School-product intent
+шкільний зошит,phrase,candidate-review-required,campaign,School-product intent
+школьная тетрадь,phrase,candidate-review-required,campaign,School-product intent
+розмальовка,phrase,candidate-review-required,campaign,Consumer content intent
+раскраска,phrase,candidate-review-required,campaign,Consumer content intent
+вакансія,phrase,candidate-review-required,campaign,Employment intent
+вакансії,phrase,candidate-review-required,campaign,Employment intent
+вакансия,phrase,candidate-review-required,campaign,Employment intent
+вакансии,phrase,candidate-review-required,campaign,Employment intent
+робота,phrase,conditional-review,campaign,Activate only if employment queries appear
+работа,phrase,conditional-review,campaign,Activate only if employment queries appear
+1 штука,phrase,conditional-review,campaign,Activate only if single-unit retail is not offered
+1 шт,phrase,conditional-review,campaign,Activate only if single-unit retail is not offered
+купити блокнот,phrase,conditional-review,campaign,May conflict with custom-order intent; verify commercial offer
+купить блокнот,phrase,conditional-review,campaign,May conflict with custom-order intent; verify commercial offer

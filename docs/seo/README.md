@@ -51,7 +51,7 @@ Checkpoint: `SEO.MEASURE.01C`.
 
 - [Transition plan](google_business_profile_transition_plan_v0_1.md)
 - [Current state snapshot](../status/snapshots/2026-07-30_google_business_profile_state_v0_1.md)
-- Preparation workspace: `../../seo/google-business-profile/forprint/`
+- Preparation workspace: `../../marketing/local-presence/google-business-profile/forprint/`
 
 Current rule: keep Print Master active as the equipment/service business, keep
 Друкарня Smile active during preparation, and do not create a duplicate
@@ -64,7 +64,7 @@ ForPrint profile before the permanent sign and Google-supported transition.
 - [Research and controlled launch plan](google_ads_keyword_research_and_controlled_launch_plan_v0_1.md)
 - [Research state snapshot](../status/snapshots/2026-08-01_google_ads_keyword_research_state_v0_1.md)
 - [Launch-gate decision](../decisions/2026-08-01__google_ads_research_workspace_and_launch_gate.md)
-- Workspace: `../../seo/google-ads/keyword-research/2026-08/`
+- Workspace: `../../marketing/research/google-ads/keyword-research/2026-08/`
 
 Seven research plans are complete. No campaign or advertising spend is
 authorized by the research checkpoint.

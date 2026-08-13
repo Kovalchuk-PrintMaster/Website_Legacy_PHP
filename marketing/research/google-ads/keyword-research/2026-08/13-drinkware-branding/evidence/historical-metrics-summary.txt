@@ -1,0 +1,25 @@
+Drinkware historical metrics review
+===================================
+
+Historical keyword rows: 30
+Ignored aggregate Google rows: 2
+Final review rows: 30
+Keywords without separate Google row: 0
+
+Search-volume values:
+  500.0: 5
+  50.0: 19
+  (blank): 6
+
+Preliminary decisions:
+  candidate-priority: 5
+  candidate-test: 19
+  hold-no-data: 6
+
+Bid statistics:
+  Median low-range bid: 10.08 UAH
+  Median high-range bid: 31.13 UAH
+
+Launch candidates: 24
+Created: seo/google-ads/keyword-research/2026-08/13-drinkware-branding/evidence/historical-metrics.review.csv
+Created: seo/google-ads/keyword-research/2026-08/13-drinkware-branding/evidence/launch-candidates.preliminary.csv

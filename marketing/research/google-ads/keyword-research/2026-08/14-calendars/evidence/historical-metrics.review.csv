@@ -1,0 +1,31 @@
+keyword,language,proposed_ad_group,match_type,avg_monthly_searches,three_month_change,yoy_change,competition,competition_index,bid_low_uah,bid_high_uah,preliminary_decision,review_notes
+друк календарів,uk,AG-01-CALENDARS-GENERIC,phrase,500.0,0%,0%,High,100,8.05,38.82,candidate-priority,Strong measurable demand for launch testing
+брендовані календарі,uk,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,0%,High,100,,,candidate-test,Commercial phrase with measurable demand
+виготовлення календарів,uk,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,0%,Medium,62,5.06,59.63,candidate-test,Commercial phrase with measurable demand
+календари на заказ,ru,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,0%,High,100,,,candidate-test,Commercial phrase with measurable demand
+календари с логотипом,ru,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,∞,Medium,50,,,candidate-test,Commercial phrase with measurable demand
+календарі на замовлення,uk,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,0%,High,100,4.98,18.28,candidate-test,Commercial phrase with measurable demand
+корпоративные календари,ru,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,0%,Low,0,,,candidate-test,Commercial phrase with measurable demand
+корпоративні календарі,uk,AG-01-CALENDARS-GENERIC,phrase,50.0,-100%,-100%,,,,,candidate-test,Commercial phrase with measurable demand
+печать календарей,ru,AG-01-CALENDARS-GENERIC,phrase,50.0,0%,0%,Medium,35,10.47,28.58,candidate-test,Commercial phrase with measurable demand
+календарі з логотипом,uk,AG-01-CALENDARS-GENERIC,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+квартальные календари с логотипом,ru,AG-02-QUARTERLY-CALENDARS,phrase,50.0,-100%,-100%,,,,,candidate-test,Commercial phrase with measurable demand
+квартальный календарь на заказ,ru,AG-02-QUARTERLY-CALENDARS,phrase,50.0,-100%,0%,,,,,candidate-test,Commercial phrase with measurable demand
+квартальні календарі,uk,AG-02-QUARTERLY-CALENDARS,phrase,50.0,0%,0%,High,100,,,candidate-test,Commercial phrase with measurable demand
+печать квартальных календарей,ru,AG-02-QUARTERLY-CALENDARS,phrase,50.0,0%,∞,Low,29,,,candidate-test,Commercial phrase with measurable demand
+брендовані квартальні календарі,uk,AG-02-QUARTERLY-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+виготовлення квартальних календарів,uk,AG-02-QUARTERLY-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+друк квартальних календарів,uk,AG-02-QUARTERLY-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+квартальні календарі з логотипом,uk,AG-02-QUARTERLY-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+квартальні календарі на замовлення,uk,AG-02-QUARTERLY-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+корпоративні квартальні календарі,uk,AG-02-QUARTERLY-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+настільні календарі,uk,AG-03-DESK-CALENDARS,phrase,500.0,0%,0%,High,100,2.09,7.59,candidate-priority,Strong measurable demand for launch testing
+настольные календари на заказ,ru,AG-03-DESK-CALENDARS,phrase,50.0,∞,0%,High,100,,,candidate-test,Commercial phrase with measurable demand
+настольные календари с логотипом,ru,AG-03-DESK-CALENDARS,phrase,50.0,0%,∞,Low,0,,,candidate-test,Commercial phrase with measurable demand
+печать настольных календарей,ru,AG-03-DESK-CALENDARS,phrase,50.0,0%,0%,Low,0,,,candidate-test,Commercial phrase with measurable demand
+брендовані настільні календарі,uk,AG-03-DESK-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+виготовлення настільних календарів,uk,AG-03-DESK-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+друк настільних календарів,uk,AG-03-DESK-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+корпоративні настільні календарі,uk,AG-03-DESK-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+настільні календарі з логотипом,uk,AG-03-DESK-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data
+настільні календарі на замовлення,uk,AG-03-DESK-CALENDARS,phrase,,,,,,,,hold-no-data,No usable historical search-volume data

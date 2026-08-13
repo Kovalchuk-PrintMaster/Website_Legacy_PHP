@@ -1,0 +1,15 @@
+Flags and winders research status
+=================================
+
+Campaign: FP-SEARCH-09-FLAGS-WINDERS-UA-PROBE
+State: research-only
+Google Ads campaign: not created
+Budget: not allocated
+
+Production landing pages: 12
+Keyword seeds: 30
+Negative candidates: 41
+
+Reason:
+The currently enabled campaign portfolio already has a maximum total allocation of 5000 UAH.
+Campaign 09 requires Keyword Planner evidence and budget reallocation before creation.

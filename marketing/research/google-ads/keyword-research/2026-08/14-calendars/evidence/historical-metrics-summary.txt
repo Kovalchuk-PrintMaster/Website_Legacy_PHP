@@ -1,0 +1,25 @@
+Calendars historical metrics review
+===================================
+
+Historical keyword rows: 30
+Ignored aggregate Google rows: 2
+Final review rows: 30
+Keywords without separate Google row: 0
+
+Search-volume values:
+  500.0: 2
+  50.0: 15
+  (blank): 13
+
+Preliminary decisions:
+  candidate-priority: 2
+  candidate-test: 15
+  hold-no-data: 13
+
+Bid statistics:
+  Median low-range bid: 5.06 UAH
+  Median high-range bid: 28.58 UAH
+
+Launch candidates: 17
+Created: seo/google-ads/keyword-research/2026-08/14-calendars/evidence/historical-metrics.review.csv
+Created: seo/google-ads/keyword-research/2026-08/14-calendars/evidence/launch-candidates.preliminary.csv
