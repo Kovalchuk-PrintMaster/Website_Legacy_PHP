@@ -106,6 +106,8 @@ if ($fpFooterLogo === '') {
     $fpFooterLogo = 'logo/Mast_LogN_square.png';
 }
 
+$fpFooterMobileLogo = trim((string)($fpFooterSettings['mobile_logo_img'] ?? ''));
+
 $fpFooterEmail = trim((string)($fpFooterSettings['email'] ?? 'druk.smile@gmail.com'));
 $fpFooterEmailLabel = trim((string)($fpFooterSettings['email_label'] ?? 'work.printmaster@gmail.com'));
 if ($fpFooterEmailLabel === '') {
@@ -128,11 +130,24 @@ $fpFooterCopyright = trim((string)($fpFooterSettings['copyright_text'] ?? 'Copyr
                         class="fp-site-footer__logo-link"
                         aria-label="На головну сторінку"
                     >
-                        <img
-                            src="<?=htmlspecialchars($this->img($fpFooterLogo), ENT_QUOTES, 'UTF-8')?>"
-                            alt=""
-                            loading="lazy"
-                        >
+                        <picture class="fp-site-footer__logo-picture">
+                            <?php if ($fpFooterMobileLogo !== ''): ?>
+                                <source
+                                    media="(max-width: 48em)"
+                                    srcset="<?=htmlspecialchars(
+                                        $this->img($fpFooterMobileLogo),
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    )?>"
+                                >
+                            <?php endif; ?>
+                            <img
+                                class="fp-site-footer__logo-image"
+                                src="<?=htmlspecialchars($this->img($fpFooterLogo), ENT_QUOTES, 'UTF-8')?>"
+                                alt=""
+                                loading="lazy"
+                            >
+                        </picture>
                     </a>
                 </div>
 

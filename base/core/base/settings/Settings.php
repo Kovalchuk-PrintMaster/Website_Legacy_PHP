@@ -154,6 +154,9 @@ class Settings
             'home_groups_img',
             'catalog_img',
             'logo_img',
+            'favicon_img',
+            'mobile_header_img',
+            'mobile_logo_img',
         ],
         'gallery_img' => ['gallery_img', 'about_promo_gallery_img', 'new_gallery_img', 'home_groups_gallery_img', 'catalog_gallery_img'],
         'password' => ['password'],
@@ -244,6 +247,9 @@ class Settings
         'tab_extra_content' => ['Текст вкладки "Додаткова інформація"'],
         'related_goods_ids' => ['З цим товаром використовується'],
         'logo_img' => ['Логотип футера'],
+        'favicon_img' => ['Favicon сайту', 'Іконка вкладки браузера'],
+        'mobile_header_img' => ['Логотип шапки для малих екранів', 'Використовується до 48em; якщо порожньо — основний логотип'],
+        'mobile_logo_img' => ['Логотип футера для малих екранів', 'Використовується до 48em; якщо порожньо — основний логотип футера'],
         'url' => ['Адреса посилання', 'Внутрішній шлях або повний https:// URL'],
         'email_label' => ['Підпис email', 'Текст, який бачить відвідувач'],
         'callback_label' => ['Назва контактної дії'],
@@ -411,7 +417,7 @@ class Settings
     private $blockNeedle = [
         'vg-rows' => [],
         /* ForPrint footer admin column balance v0.6.38 */
-        'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'about_promo_gallery_img', 'logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'contacts_address', 'contacts_content', 'contacts_schedule'],
+        'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'about_promo_gallery_img', 'logo_img', 'favicon_img', 'mobile_header_img', 'mobile_logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'contacts_address', 'contacts_content', 'contacts_schedule'],
         'vg-content' => ['content']
     ];
 

@@ -277,6 +277,17 @@ $fpMeasurementConfig = [
     ></script>
     <!-- FP_MEASUREMENT_ASSETS_END -->
 
+    <?php if (!empty($this->set['favicon_img'])): ?>
+        <link
+            rel="icon"
+            href="<?=htmlspecialchars(
+                $this->img((string)$this->set['favicon_img']),
+                ENT_QUOTES,
+                'UTF-8'
+            )?>"
+        >
+    <?php endif; ?>
+
     <?php $this->getStyles()?>
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-search-submit.js?v=20260724-0910"></script>
     <!-- FP_MOBILE_PORTRAIT_ASSET_START -->
@@ -360,7 +371,25 @@ $fpResolveInformationUrl = function (array $item): string {
         <div class="header__wrapper fp-site-header__wrapper">
 
             <div class="header__logo fp-site-header__logo">
-                <a class="fp-site-header__logo-link" href="<?= $this->alias() ?>"><img src="<?=$this->img($this->set['img'])?>" alt="<?=$this->set['name']?>"></a>
+                <a class="fp-site-header__logo-link" href="<?= $this->alias() ?>">
+                    <picture class="fp-site-header__logo-picture">
+                        <?php if (!empty($this->set['mobile_header_img'])): ?>
+                            <source
+                                media="(max-width: 48em)"
+                                srcset="<?=htmlspecialchars(
+                                    $this->img((string)$this->set['mobile_header_img']),
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                )?>"
+                            >
+                        <?php endif; ?>
+                        <img
+                            class="fp-site-header__logo-image"
+                            src="<?=$this->img($this->set['img'])?>"
+                            alt="<?=$this->set['name']?>"
+                        >
+                    </picture>
+                </a>
                 <a class="fp-site-header__tagline" href="<?= $this->alias() ?>"><span><?=$this->set['name']?></span></a>
             </div>
             <div class="header__topbar fp-site-header__topbar">
