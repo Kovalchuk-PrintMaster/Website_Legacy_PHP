@@ -1,0 +1,274 @@
+/**
+ * ForPrint homepage responsive companion.
+ *
+ * Contract:
+ * - loaded immediately after forprint-home.css;
+ * - owns only breakpoint-driven homepage composition;
+ * - all rules remain scoped to [data-fp-surface="home"] or the existing
+ *   mobile runtime boundary;
+ * - default homepage presentation stays in forprint-home.css;
+ * - do not add new !important declarations.
+ *
+ * Existing mobile portrait block below is migrated byte-for-byte from
+ * forprint-home.css so this architecture step does not redesign UI.
+ */
+
+/* FP_MOBILE_PORTRAIT_HOME_START */
+
+/*
+ * Homepage mobile portrait is intentionally reduced to:
+ * search -> catalog page fragment -> compact footer.
+ */
+.fp-mobile-catalog {
+    display: none;
+}
+
+@media (max-width: 40rem) and (orientation: portrait) {
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"] {
+        display: block;
+        inline-size: 100%;
+        min-block-size: 0;
+        padding-block-start: 0;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-hero,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-categories,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-product-groups,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-about,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-advantages,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-news,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-information,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-home-feedback {
+        display: none;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog {
+        display: block;
+        inline-size: min(
+            calc(
+                100%
+                - 2 * var(--fp-layout-page-gutter)
+            ),
+            40rem
+        );
+        margin-inline: auto;
+        padding:
+            clamp(1.4rem, 6vw, 2rem)
+            0
+            0;
+        scroll-margin-block-start: 4.5rem;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__header {
+        display: grid;
+        gap: 0.25rem;
+        margin-block-end: 1rem;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__eyebrow {
+        margin: 0;
+        color:
+            var(--fp-color-muted, #747b80);
+        font:
+            700 0.72rem/1.3
+            Lato,
+            Arial,
+            sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__title {
+        margin: 0;
+        color:
+            var(--fp-color-graphite, #252b2f);
+        font:
+            800 clamp(1.35rem, 7vw, 1.8rem)/1.1
+            Lato,
+            Arial,
+            sans-serif;
+        letter-spacing: 0.025em;
+        text-transform: uppercase;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__status {
+        min-block-size: 1.25rem;
+        margin: 0.25rem 0 0;
+        color:
+            var(--fp-color-muted, #747b80);
+        font:
+            500 0.78rem/1.4
+            Lato,
+            Arial,
+            sans-serif;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__body {
+        min-block-size: 8rem;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog[aria-busy="true"]
+    .fp-mobile-catalog__body {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(37, 43, 47, 0.04),
+                rgba(37, 43, 47, 0.09),
+                rgba(37, 43, 47, 0.04)
+            );
+        background-size: 220% 100%;
+        animation:
+            fp-mobile-catalog-loading
+            1.4s
+            linear
+            infinite;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__grid {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap:
+            clamp(0.7rem, 3vw, 1rem);
+        inline-size: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__pagination {
+        display: flex;
+        justify-content: center;
+        inline-size: 100%;
+        margin-block-start: 1.25rem;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__pager {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.35rem;
+        inline-size: 100%;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__pager
+    .catalog-section-pagination__item {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-inline-size: 2.75rem;
+        min-block-size: 2.75rem;
+        margin: 0;
+        padding: 0.45rem;
+        color:
+            var(--fp-color-graphite, #252b2f);
+        font:
+            700 0.82rem/1
+            Lato,
+            Arial,
+            sans-serif;
+        text-decoration: none;
+        border:
+            1px solid
+            rgba(37, 43, 47, 0.25);
+        background: #fff;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__pager
+    .pagination-current {
+        color: #fff;
+        border-color:
+            var(--fp-color-graphite, #252b2f);
+        background:
+            var(--fp-color-graphite, #252b2f);
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog__fallback {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 3rem;
+        padding-inline: 1rem;
+        color: #fff;
+        font:
+            700 0.82rem/1
+            Lato,
+            Arial,
+            sans-serif;
+        text-decoration: none;
+        text-transform: uppercase;
+        background:
+            var(--fp-color-graphite, #252b2f);
+    }
+
+    @keyframes fp-mobile-catalog-loading {
+        from {
+            background-position: 100% 0;
+        }
+
+        to {
+            background-position: -120% 0;
+        }
+    }
+
+    @media (max-width: 22rem) {
+        html.fp-mobile-portrait-active
+        [data-fp-surface="home"]
+        .fp-mobile-catalog__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html.fp-mobile-portrait-active
+        [data-fp-surface="home"]
+        .fp-mobile-catalog[aria-busy="true"]
+        .fp-mobile-catalog__body {
+            animation: none;
+        }
+    }
+}
+
+/* FP_MOBILE_PORTRAIT_HOME_END */

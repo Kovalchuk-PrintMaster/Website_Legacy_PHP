@@ -1,0 +1,512 @@
+/**
+ * ForPrint public responsive companion.
+ *
+ * Contract:
+ * - loaded after all globally registered public project CSS;
+ * - owns only breakpoint-driven composition for shared public layout,
+ *   shell and reusable components;
+ * - base/default presentation remains in the canonical owner files;
+ * - public selectors use fp-* / public-surface boundaries;
+ * - admin presentation is out of scope;
+ * - do not add new !important declarations.
+ *
+ * Breakpoint vocabulary for new work:
+ * - compact: max-width 64em
+ * - phone:   max-width 48em
+ * - narrow:  max-width 30em
+ * - compact landscape: orientation landscape + max-height 36rem
+ *
+ * Existing mobile portrait blocks below are migrated byte-for-byte from
+ * their previous owner files so this architecture step does not redesign UI.
+ */
+
+/* FP_MOBILE_PORTRAIT_LAYOUT_START */
+
+/*
+ * Mobile portrait removes the desktop fixed-rail reservation.
+ * Shared geometry remains owned by forprint-layout.css.
+ */
+@media (max-width: 40rem) and (orientation: portrait) {
+    :root {
+        --fp-layout-rail-width: 0rem;
+        --fp-layout-page-gutter:
+            clamp(0.75rem, 4vw, 1rem);
+        --fp-layout-shell-gutter:
+            clamp(0.75rem, 4vw, 1rem);
+    }
+
+    html.fp-mobile-portrait-active,
+    html.fp-mobile-portrait-active body.fp-public-page {
+        inline-size: 100%;
+        max-inline-size: 100%;
+        overflow-x: clip;
+    }
+
+    html.fp-mobile-portrait-active body.fp-public-page {
+        padding-inline-end: 0;
+        margin-inline-end: 0;
+    }
+}
+
+/* FP_MOBILE_PORTRAIT_LAYOUT_END */
+
+/* FP_MOBILE_PORTRAIT_SHELL_START */
+
+/*
+ * Mobile portrait shell:
+ * graphite identity bar, Telegram, two-link navigation,
+ * normal-flow search and compact footer.
+ */
+.fp-mobile-portrait-header,
+.fp-mobile-footer-links {
+    display: none;
+}
+
+@media (max-width: 40rem) and (orientation: portrait) {
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    header.fp-site-header {
+        position: relative;
+        display: block;
+        inline-size: 100%;
+        min-block-size: 0;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    header.fp-site-header
+    > .fp-site-header__container {
+        display: none;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .header__sidebar,
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-site-sidebar__utility {
+        display: none;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header {
+        position: relative;
+        z-index: 60;
+        display: block;
+        inline-size: 100%;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header__bar {
+        position: sticky;
+        inset-block-start: 0;
+        z-index: 62;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-block-size: 3.75rem;
+        padding:
+            0.6rem
+            var(--fp-layout-shell-gutter);
+        background:
+            var(--fp-color-graphite, #252b2f);
+        box-shadow:
+            0 0.25rem 1rem
+            rgba(0, 0, 0, 0.14);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header__brand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-inline-size: 3rem;
+        min-block-size: 2.75rem;
+        line-height: 0;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header__logo {
+        display: block;
+        inline-size: auto;
+        max-inline-size:
+            min(10rem, 52vw);
+        block-size: 2.1rem;
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header__telegram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        min-block-size: 2.75rem;
+        padding-inline:
+            clamp(0.7rem, 3vw, 1rem);
+        border: 1px solid
+            rgba(255, 255, 255, 0.38);
+        border-radius: 0;
+        color: #fff;
+        font:
+            700 0.76rem/1
+            Lato,
+            Arial,
+            sans-serif;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        text-transform: uppercase;
+        background:
+            rgba(255, 255, 255, 0.06);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header__telegram svg {
+        inline-size: 1.15rem;
+        block-size: 1.15rem;
+        fill: currentColor;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-nav {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        inline-size: 100%;
+        border-block-end:
+            1px solid
+            rgba(37, 43, 47, 0.15);
+        background: #fff;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-nav__link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 3.25rem;
+        padding: 0.75rem;
+        color:
+            var(--fp-color-graphite, #252b2f);
+        font:
+            800 0.86rem/1.2
+            Lato,
+            Arial,
+            sans-serif;
+        letter-spacing: 0.055em;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-image:
+            linear-gradient(
+                currentColor,
+                currentColor
+            );
+        background-repeat: no-repeat;
+        background-position:
+            left calc(100% - 0.55rem);
+        background-size: 0 1px;
+        transition:
+            background-size
+            900ms
+            cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-nav__link
+    + .fp-mobile-portrait-nav__link {
+        border-inline-start:
+            1px solid
+            rgba(37, 43, 47, 0.15);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-nav__link:hover,
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-nav__link:focus-visible {
+        background-size: 100% 1px;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-search-strip,
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-search-strip--home {
+        position: relative;
+        inset: auto;
+        z-index: 20;
+        display: block;
+        inline-size: 100%;
+        max-inline-size: none;
+        margin: 0;
+        padding:
+            0.75rem
+            var(--fp-layout-page-gutter);
+        transform: none;
+        background:
+            var(
+                --fp-color-search-background,
+                #f1f2f3
+            );
+        box-shadow: none;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-search-strip
+    .fp-search-strip__form {
+        --fp-search-strip-height: 3.25rem;
+        inline-size: 100%;
+        max-inline-size: none;
+        margin: 0;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-search-strip
+    .fp-search-strip__form
+    input[type="search"] {
+        min-inline-size: 0;
+        font-size: 1rem;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer {
+        margin-block-start: 1.5rem;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__wrapper {
+        padding-block:
+            clamp(1.5rem, 7vw, 2.5rem);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        text-align: left;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_logo {
+        display: flex;
+        justify-content: flex-start;
+        inline-size: 100%;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_logo img {
+        max-inline-size: 11rem;
+        block-size: auto;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_menu {
+        display: none;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        inline-size: 100%;
+        margin: 0;
+        text-align: left;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-footer-links {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        inline-size: 100%;
+        border-block-start:
+            1px solid
+            rgba(255, 255, 255, 0.22);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-footer-links__link {
+        display: flex;
+        align-items: center;
+        min-block-size: 2.9rem;
+        color: inherit;
+        font:
+            700 0.85rem/1.25
+            Lato,
+            Arial,
+            sans-serif;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        text-transform: uppercase;
+        border-block-end:
+            1px solid
+            rgba(255, 255, 255, 0.14);
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__bottom_copy {
+        display: none;
+    }
+
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-portrait-header a:focus-visible,
+    html.fp-mobile-portrait-active
+    body.fp-public-page
+    .fp-mobile-footer-links a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 0.2rem;
+    }
+}
+
+/* FP_MOBILE_PORTRAIT_SHELL_END */
+
+/* FP_MOBILE_PORTRAIT_CARDS_START */
+
+/*
+ * Compact product cards inside the mobile homepage catalog fragment.
+ */
+@media (max-width: 40rem) and (orientation: portrait) {
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card {
+        display: grid;
+        grid-template-rows:
+            auto 1fr;
+        min-inline-size: 0;
+        block-size: 100%;
+        margin: 0;
+        border:
+            1px solid
+            rgba(37, 43, 47, 0.14);
+        border-radius: 0;
+        background: #fff;
+        box-shadow: none;
+        overflow: hidden;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__image {
+        aspect-ratio: 4 / 3;
+        inline-size: 100%;
+        min-block-size: 0;
+        margin: 0;
+        overflow: hidden;
+        background: #f5f5f5;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__image img {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        min-inline-size: 0;
+        padding:
+            clamp(0.65rem, 3vw, 0.9rem);
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__title {
+        display: -webkit-box;
+        min-block-size: 2.55em;
+        margin: 0;
+        overflow: hidden;
+        color:
+            var(--fp-color-graphite, #252b2f);
+        font:
+            700 clamp(0.8rem, 3.6vw, 0.95rem)/1.28
+            Lato,
+            Arial,
+            sans-serif;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__excerpt,
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__features {
+        display: none;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__price {
+        min-block-size: 2.4rem;
+        margin-block-start: auto;
+    }
+
+    html.fp-mobile-portrait-active
+    [data-fp-surface="home"]
+    .fp-mobile-catalog
+    .fp-product-card__button {
+        min-block-size: 2.75rem;
+        inline-size: 100%;
+        margin: 0;
+        padding: 0.6rem;
+        border-radius: 0;
+        font-size:
+            clamp(0.7rem, 3.2vw, 0.82rem);
+    }
+}
+
+/* FP_MOBILE_PORTRAIT_CARDS_END */

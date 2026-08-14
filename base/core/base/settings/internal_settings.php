@@ -51,6 +51,7 @@ const USER_CSS_JS = [
         'assets/css/forprint-product-detail.css?v=20260805-1930',
         'assets/css/forprint-product-communication.css?v=20260726-05g11b-v4',
         'assets/css/forprint-page-structure.css?v=20260806-1025',
+        'assets/css/forprint-responsive.css?v=20260814-1715',
 
     ],
     'scripts' =>[

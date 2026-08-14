@@ -27,6 +27,9 @@ class IndexController extends BaseUser
         $this->styles[] = PATH
             . TEMPLATE
             . 'assets/css/forprint-home.css?v=20260806-1416';
+$this->styles[] = PATH
+    . TEMPLATE
+    . 'assets/css/forprint-home-responsive.css?v=20260814-1715';
         $this->scripts[] = PATH
             . TEMPLATE
             . 'assets/js/surfaces/home.js?v=20260722-0005';
