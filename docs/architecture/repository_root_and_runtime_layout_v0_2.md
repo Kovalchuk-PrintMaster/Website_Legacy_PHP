@@ -22,8 +22,7 @@ scripts/
 `marketing/` є канонічним workspace для promotion, search, advertising,
 measurement, local presence, research, reports та experiments.
 
-`seo/` більше не є канонічним top-level namespace. До завершення контрольованої
-MARKETING migration він дозволений лише як transitional legacy source.
+`seo/` більше не є канонічним top-level namespace. Контрольована migration завершена; `seo/`, `docs/seo/` і `scripts/seo/` не є current workspace. Історичний контекст зберігається у Git history та explicit historical records.
 
 ## Приховані локальні каталоги
 
@@ -73,13 +72,9 @@ coordination/reports/          historical implementation evidence
 ## Transitional root
 
 ```text
-seo/
 ```
 
-`seo/` дозволений тимчасово тільки як migration source. Нові canonical
-cross-channel marketing contracts, automation та workspace objects створюються
-під `marketing/`, `config/marketing/`, `scripts/marketing/` і
-`docs/marketing/`.
+Нові cross-channel marketing contracts, automation та workspace objects створюються тільки під `marketing/`, `config/marketing/`, `scripts/marketing/` і `docs/marketing/`.
 
 Переміщення legacy SEO material виконується лише після inventory/classification
 і explicit `git mv`.

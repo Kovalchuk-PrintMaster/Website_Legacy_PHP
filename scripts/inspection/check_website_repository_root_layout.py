@@ -95,11 +95,11 @@ def main() -> int:
             fail(f"canonical root policy missing: {required_root}")
 
     if "seo/" in canonical_root:
-        fail("seo/ must be transitional, not canonical root")
+        fail("seo/ must not be canonical root")
 
     transitional_root = policy.get("transitional_root", {})
-    if "seo/" not in transitional_root:
-        fail("seo/ transitional-root policy missing")
+    if "seo/" in transitional_root:
+        fail("seo/ must be retired, not transitional root")
 
     if "tmp/" in canonical_root:
         fail("tmp/ must be permitted local state, not canonical root")

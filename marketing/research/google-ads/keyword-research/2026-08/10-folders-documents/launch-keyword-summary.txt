@@ -28,5 +28,5 @@ Approved keywords:
   AG-02-FOLDERS-FULL-COLOR | 50.0 | 9.98 | 24.55 | брендовані папки
   AG-04-FOLDERS-EMBOSSING | 50.0 |  |  | тиснение на папках
 
-Created: seo/google-ads/keyword-research/2026-08/10-folders-documents/positive-keywords.approved.csv
-Created: seo/google-ads/keyword-research/2026-08/10-folders-documents/positive-keywords.hold.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/10-folders-documents/positive-keywords.approved.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/10-folders-documents/positive-keywords.hold.csv

@@ -173,3 +173,20 @@ Decision:
 Workflow:
 `docs/workflow/hosting_reset_from_local_v0_1.md`
 <!-- FP-HOSTING-LOCAL-MIRROR-V0-1-END -->
+
+<!-- FP_HOSTING_DEPLOY_PROFILE_TARGETS_V0_1_START -->
+## Explicit non-destructive hosting deployment profile targets
+
+Use the narrowest release profile that matches the accepted change:
+
+- `make hosting-deploy-full`
+- `make hosting-deploy-code`
+- `make hosting-deploy-frontend`
+- `make hosting-deploy-backend`
+- `make hosting-deploy-dependencies`
+- `make hosting-deploy-database`
+- `make hosting-deploy-media`
+- `make hosting-deploy-manifest`
+
+Production-owned operational rows and hosting-owned runtime/environment files remain protected by the deployment ownership and preserve policies. Destructive database/full replacement is not a routine release path.
+<!-- FP_HOSTING_DEPLOY_PROFILE_TARGETS_V0_1_END -->

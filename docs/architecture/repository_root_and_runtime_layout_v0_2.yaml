@@ -23,9 +23,7 @@
     "marketing/",
     "scripts/"
   ],
-  "transitional_root": {
-    "seo/": "legacy SEO/Ads migration source; not canonical for new cross-channel marketing work"
-  },
+  "transitional_root": {},
   "hidden_local_root": {
     ".git/": "Git metadata",
     ".venv_website/": "retained because current Makefile/docs/tools depend on it",

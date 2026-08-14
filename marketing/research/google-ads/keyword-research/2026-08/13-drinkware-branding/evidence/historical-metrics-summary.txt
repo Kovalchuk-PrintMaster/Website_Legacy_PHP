@@ -21,5 +21,5 @@ Bid statistics:
   Median high-range bid: 31.13 UAH
 
 Launch candidates: 24
-Created: seo/google-ads/keyword-research/2026-08/13-drinkware-branding/evidence/historical-metrics.review.csv
-Created: seo/google-ads/keyword-research/2026-08/13-drinkware-branding/evidence/launch-candidates.preliminary.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/13-drinkware-branding/evidence/historical-metrics.review.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/13-drinkware-branding/evidence/launch-candidates.preliminary.csv

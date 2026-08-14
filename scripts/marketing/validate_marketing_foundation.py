@@ -18,10 +18,8 @@ REQUIRED = [
     "config/marketing/measurement/README.md",
     "scripts/marketing/README.md",
     "docs/marketing/README.md",
-    "docs/marketing/architecture/marketing_repository_architecture_v0_1.md",
+    "docs/marketing/architecture/marketing_repository_architecture_v0_2.md",
     "docs/marketing/policies/marketing_api_automation_policy_v0_1.md",
-    "docs/marketing/reference/legacy_seo_to_marketing_migration_map_v0_1.md",
-    "docs/marketing/plans/marketing_foundation_migration_plan_v0_1.md",
     "docs/decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md",
 ]
 SECRET = re.compile(

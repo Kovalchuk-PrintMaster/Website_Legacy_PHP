@@ -49,7 +49,6 @@
 │   ├── maintenance/
 │   ├── marketing/
 │   └── windows/
-├── seo/                          # transitional legacy migration source
 ├── Makefile
 └── README.md
 ```
@@ -79,7 +78,6 @@ repository content.
 - `config/python/` — Python tooling dependency/configuration manifests;
 - `scripts/marketing/` — Python marketing automation;
 - `docs/marketing/` — current marketing architecture, policies, plans and references;
-- root `seo/` — transitional legacy migration source, not canonical for new work.
 
 ## High-risk areas
 
@@ -335,8 +333,8 @@ docs/marketing/     architecture, policy, plans and reference
 docs/decisions/     centralized ADRs
 ```
 
-The historical `seo/` Google Ads and Business Profile sections in this map are
-migration-source descriptions. New canonical marketing work does not extend
+The historical `seo/` Google Ads and Business Profile sections in this map describe
+pre-retirement paths only. New canonical marketing work does not extend
 those paths. MARKETING.03 classifies legacy artifacts and MARKETING.04 performs
 controlled physical migration.
 <!-- FP_MARKETING_REPOSITORY_MAP_V0_1_END -->

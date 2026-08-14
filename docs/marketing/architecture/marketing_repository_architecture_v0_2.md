@@ -125,9 +125,7 @@ sessions stay outside Git. Least privilege applies.
 
 ## Migration boundary
 
-Existing `seo/`, `docs/seo/`, Ads Editor imports/exports, keyword research,
-Business Profile assets, measurement contracts, and snapshots are migration
-inputs. MARKETING.01 does not move or reinterpret them.
+The controlled legacy SEO/Ads migration is complete. Current ownership is exclusively `config/marketing/`, `marketing/`, `scripts/marketing/` and `docs/marketing/`; historical provider exports and one-off campaign preparation files are not compatibility inputs.
 
 MARKETING.03 classifies each artifact before physical migration.
 

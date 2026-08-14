@@ -21,5 +21,5 @@ Bid statistics:
   Median high-range bid: 28.58 UAH
 
 Launch candidates: 17
-Created: seo/google-ads/keyword-research/2026-08/14-calendars/evidence/historical-metrics.review.csv
-Created: seo/google-ads/keyword-research/2026-08/14-calendars/evidence/launch-candidates.preliminary.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/14-calendars/evidence/historical-metrics.review.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/14-calendars/evidence/launch-candidates.preliminary.csv

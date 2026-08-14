@@ -191,10 +191,7 @@ Canonical current entry point:
 - [`decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md`](decisions/2026-08-11__marketing_control_plane_and_api_first_automation.md)
 - [`reference/repository_map_v0_2.md`](reference/repository_map_v0_2.md)
 
-`marketing/` is canonical for new promotion, measurement, Ads, organic-search,
-local-presence, research and reporting work. Root `seo/` remains transitional
-legacy migration source until the controlled migration phases are complete.
-<!-- FP_MARKETING_DOC_INDEX_V0_1_END -->
+`marketing/`, `config/marketing/`, `scripts/marketing/` and `docs/marketing/` are the current promotion and measurement owners. The controlled legacy SEO migration is complete.
 
 <!-- FP_DOCUMENTATION_LIFECYCLE_INDEX_V0_1_START -->
 ## Documentation lifecycle and currentness

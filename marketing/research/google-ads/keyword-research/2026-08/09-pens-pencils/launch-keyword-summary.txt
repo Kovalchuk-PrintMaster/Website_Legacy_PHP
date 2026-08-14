@@ -23,5 +23,5 @@ Held by ad group:
   AG-04-PENS-ECO: 3
   AG-05-PENCILS: 1
 
-Created: seo/google-ads/keyword-research/2026-08/09-pens-pencils/positive-keywords.approved.csv
-Created: seo/google-ads/keyword-research/2026-08/09-pens-pencils/positive-keywords.hold.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/09-pens-pencils/positive-keywords.approved.csv
+Created: marketing/research/google-ads/keyword-research/2026-08/09-pens-pencils/positive-keywords.hold.csv
