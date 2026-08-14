@@ -24,10 +24,10 @@ class RouteController extends BaseController
 
                 $url = preg_split('/(\/)|(\?.*)/', $adress_str, 0, PREG_SPLIT_NO_EMPTY);
 
-             if($url[0] && $url[0] === $this->routes['admin']['alias']){
+             if(!empty($url[0]) && $url[0] === $this->routes['admin']['alias']){
                  array_shift($url);
 
-             if($url[0] && is_dir ($_SERVER['DOCUMENT_ROOT'] . PATH . $this->routes['plugins']['path'] . $url[0])){
+             if(!empty($url[0]) && is_dir ($_SERVER['DOCUMENT_ROOT'] . PATH . $this->routes['plugins']['path'] . $url[0])){
         $plugin = array_shift($url);
         $pluginSettings = $this->routes['settings']['path'] . ucfirst($plugin . 'Settings');
 
@@ -103,7 +103,7 @@ class RouteController extends BaseController
 
         $this->createRoute($route, $url);
 
-        if($url[1]){
+        if(!empty($url[1])){
             $count = count($url);
             $key = '';
 
@@ -133,7 +133,7 @@ class RouteController extends BaseController
     private function createRoute($var, $arr){
         $route = [];
         if(!empty($arr[0])){
-            if($this->routes[$var]['routes'][$arr[0]]){
+            if(!empty($this->routes[$var]['routes'][$arr[0]])){
                 $route= explode('/', $this->routes[$var]['routes'][$arr[0]]);
                 $this->controller .= ucfirst($route[0].'Controller');
             }
@@ -156,8 +156,8 @@ class RouteController extends BaseController
         }else{
             $this->controller .= $this->routes['default']['controller'];
         }
-        $this->inputMethod= $route[1] ? $route[1] : $this->routes['default']['inputMethod'];
-        $this->outputMethod= $route[2] ? $route[2] : $this->routes['default']['outputMethod'];
+        $this->inputMethod = !empty($route[1]) ? $route[1] : $this->routes['default']['inputMethod'];
+        $this->outputMethod = !empty($route[2]) ? $route[2] : $this->routes['default']['outputMethod'];
             return;
     }
 }

@@ -23,7 +23,7 @@ abstract class BaseModelMethods
         $concat_table = '';
         $alias_table = $table;
 
-        if(!$set['no_concat']){
+        if(empty($set['no_concat'])){
             $arr = $this->createTableAlias($table);
             $concat_table = $arr['alias'] . '.';
             $alias_table = $arr['alias'];
@@ -107,7 +107,7 @@ abstract class BaseModelMethods
             $order_by = 'ORDER BY ';
             $direct_count = 0;
             foreach ($set['order'] as $order) {
-                if ($set['order_direction'][$direct_count]) {
+                if (!empty($set['order_direction'][$direct_count])) {
                     $order_direction = strtoupper($set['order_direction'][$direct_count]);
                     $direct_count++;
                 } else {
@@ -129,15 +129,15 @@ abstract class BaseModelMethods
 
         $where = '';
 
-        if(is_string($set['where'])){
+        if(isset($set['where']) && is_string($set['where'])){
             return $instruction . ' ' . trim($set['where']);
         }
 
-        if (is_array($set['where']) && !empty($set['where'])) {
+        if (isset($set['where']) && is_array($set['where']) && !empty($set['where'])) {
 
-            $set['operand'] = (is_array($set['operand']) && !empty($set['operand']))
+            $set['operand'] = (isset($set['operand']) && is_array($set['operand']) && !empty($set['operand']))
                 ? $set['operand'] : ['='];
-            $set['condition'] = (is_array($set['condition']) && !empty($set['condition']))
+            $set['condition'] = (isset($set['condition']) && is_array($set['condition']) && !empty($set['condition']))
                 ? $set['condition'] : ['AND'];
 
             $where = $instruction;
@@ -149,7 +149,7 @@ abstract class BaseModelMethods
 
                 $where .= ' ';
 
-                if ($set['operand'][$o_count]) {
+                if (!empty($set['operand'][$o_count])) {
 
                     $operand = $set['operand'][$o_count];
                     $o_count++;
@@ -159,7 +159,7 @@ abstract class BaseModelMethods
 
                 }
 
-                if ($set['condition'][$c_count]) {
+                if (!empty($set['condition'][$c_count])) {
                     $condition = $set['condition'][$c_count];
                     $c_count++;
 
@@ -221,12 +221,12 @@ abstract class BaseModelMethods
         $join = '';
         $where = '';
 
-        if($set['join']){
+        if(!empty($set['join']) && is_array($set['join'])){
             $join_table = $table;
             foreach ($set['join'] as $key=>$item) {
 
                 if(is_int($key)){
-                    if(!$item['table']) continue;
+                    if(empty($item['table'])) continue;
                     else $key = $item['table'];
                 }
 
@@ -244,12 +244,12 @@ abstract class BaseModelMethods
                         continue;
                     }
 
-                    if(!$item['type']) $join .= 'LEFT JOIN ';
+                    if(empty($item['type'])) $join .= 'LEFT JOIN ';
                     else  $join .= trim(strtoupper($item['type'])) . ' JOIN ';
 
                     $join .= $key . ' ON ';
 
-                    if ($item['on']['table']) $join_temp_table = $item['on']['table'];
+                    if (!empty($item['on']['table'])) $join_temp_table = $item['on']['table'];
                     else $join_temp_table = $join_table;
 
                     $join .= $this->createTableAlias($join_temp_table)['alias'];
@@ -258,14 +258,14 @@ abstract class BaseModelMethods
                     $join_table = $key;
 
                     if($new_where){
-                        if ($item['where']){
+                        if (!empty($item['where'])){
                             $new_where = false;
                         }
                         $group_condition = 'WHERE';
                     }else{
-                        $group_condition = $item['group_condition'] ? strtoupper($item['group_condition']) : 'AND';
+                        $group_condition = !empty($item['group_condition']) ? strtoupper($item['group_condition']) : 'AND';
                     }
-                    $fields .= $this->createFields($item, $key, $set['join_structure']);
+                    $fields .= $this->createFields($item, $key, !empty($set['join_structure']));
                     $where .= $this->createWhere($item, $key, $group_condition);
                 }
             }

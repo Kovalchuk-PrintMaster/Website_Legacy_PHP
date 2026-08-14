@@ -85,7 +85,7 @@ trait BaseMethods
         }
 
         $daysArr = [
-            'Sanday' => 'Неділя',
+            'Sunday' => 'Неділя',
             'Monday' => 'Понеділок',
             'Tuesday' => 'Вівторок',
             'Wednesday' => 'Середа',
@@ -123,7 +123,7 @@ trait BaseMethods
 
             preg_replace('/ень/u', 'ня',  $dateArr['month']);
 
-        $dateArr['weekDay'] = $dateArr[$dateData->format('l')];
+        $dateArr['weekDay'] = $daysArr[$dateData->format('l')];
 
         $dateArr['day'] = $dateData->format('d');
 

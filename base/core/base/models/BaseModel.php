@@ -112,7 +112,7 @@ abstract class BaseModel extends BaseModelMethods
 
         $fields = rtrim($fields, ',');
 
-        $limit = $set['limit'] ? 'LIMIT ' . $set['limit'] : '';
+        $limit = !empty($set['limit']) ? 'LIMIT ' . $set['limit'] : '';
 
         $this->createPagination($set, $table, $paginationWhere, $limit);
 
@@ -372,7 +372,7 @@ abstract class BaseModel extends BaseModelMethods
 
             $checkTable = $this->createTableAlias($table);
 
-            if($this->tableRows[$checkTable['table']]){
+            if(!empty($this->tableRows[$checkTable['table']])){
                 return $this->tableRows[$checkTable['alias']] = $this->tableRows[$checkTable['table']];
             }
 
