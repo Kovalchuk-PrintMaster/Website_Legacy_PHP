@@ -196,3 +196,15 @@ existing marketing control plane.
 
 **Schema profile:** `config/marketing/schemas/marketing_control_plane_v0_2.schema.json`
 <!-- FP_MARKETING_CONTROL_PLANE_SCHEMA_V02_ADR_END -->
+
+<!-- FP_MOBILE_PRESENTATION_ADR_V0_1_START -->
+## FP-WEB-ADR-2026-08-15-001
+
+**Decision:** mobile presentation architecture uses shared domain/business
+logic with an explicit presentation boundary; dedicated mobile partials are
+allowed only where semantics materially differ.
+
+**Status:** accepted working architecture decision
+
+**Record:** `docs/decisions/2026-08-15__mobile_presentation_architecture.md`
+<!-- FP_MOBILE_PRESENTATION_ADR_V0_1_END -->
