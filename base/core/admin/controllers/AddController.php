@@ -60,6 +60,46 @@ class AddController extends BaseAdmin
             }
         }
 
+
+        /*
+
+         * FP_VISUAL_ASSET_CREATE_DEFAULTS_V1
+
+         * New rows default to an enabled favicon variant.
+
+         */
+
+        if ($this->table === 'visual_assets') {
+
+            $this->data = is_array($this->data)
+
+                ? $this->data
+
+                : [];
+
+
+            if (!array_key_exists('visible', $this->data)) {
+
+                $this->data['visible'] = 1;
+
+            }
+
+
+            if (
+
+                !array_key_exists('asset_key', $this->data)
+
+                || trim((string)$this->data['asset_key']) === ''
+
+            ) {
+
+                $this->data['asset_key'] = 'favicon';
+
+            }
+
+        }
+
+
         $this->createForeignData();
 
         $this->createMenuPosition();

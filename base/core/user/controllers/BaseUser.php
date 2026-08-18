@@ -96,6 +96,131 @@ protected $model;
 
         $this->set && $this->set = $this->set[0];
 
+
+        // FP_SCHEDULED_VISUAL_ASSETS_V1
+
+        $fpVisualAssets = $this->model->get('visual_assets', [
+
+            'where' => [
+
+                'visible' => 1,
+
+                'asset_key' => 'favicon',
+
+            ],
+
+        ]) ?: [];
+
+
+        $fpToday = date('Y-m-d');
+
+        $fpActiveVisualAssets = [];
+
+
+        foreach ($fpVisualAssets as $fpVisualAsset) {
+
+            $fpFrom = trim((string)($fpVisualAsset['active_from'] ?? ''));
+
+            $fpUntil = trim((string)($fpVisualAsset['active_until'] ?? ''));
+
+
+            if ($fpFrom !== '' && $fpFrom > $fpToday) {
+
+                continue;
+
+            }
+
+
+            if ($fpUntil !== '' && $fpUntil < $fpToday) {
+
+                continue;
+
+            }
+
+
+            $fpActiveVisualAssets[] = $fpVisualAsset;
+
+        }
+
+
+        usort(
+
+            $fpActiveVisualAssets,
+
+            static function (array $left, array $right): int {
+
+                $leftScheduled = (
+
+                    trim((string)($left['active_from'] ?? '')) !== ''
+
+                    || trim((string)($left['active_until'] ?? '')) !== ''
+
+                );
+
+                $rightScheduled = (
+
+                    trim((string)($right['active_from'] ?? '')) !== ''
+
+                    || trim((string)($right['active_until'] ?? '')) !== ''
+
+                );
+
+
+                if ($leftScheduled !== $rightScheduled) {
+
+                    return $leftScheduled ? -1 : 1;
+
+                }
+
+
+                $positionCompare = (
+
+                    (int)($left['menu_position'] ?? 0)
+
+                    <=>
+
+                    (int)($right['menu_position'] ?? 0)
+
+                );
+
+
+                if ($positionCompare !== 0) {
+
+                    return $positionCompare;
+
+                }
+
+
+                return (
+
+                    (int)($right['id'] ?? 0)
+
+                    <=>
+
+                    (int)($left['id'] ?? 0)
+
+                );
+
+            }
+
+        );
+
+
+        if (
+
+            !empty($fpActiveVisualAssets)
+
+            && !empty($fpActiveVisualAssets[0]['img'])
+
+            && is_array($this->set)
+
+        ) {
+
+            $this->set['favicon_img'] = (string)$fpActiveVisualAssets[0]['img'];
+
+        }
+
+
         $this->menu['catalog'] = $this->model->get('catalog', [
            'where'=>['visible'=> 1, 'parent_id'=>null],
            'order'=>['menu_position']
@@ -849,9 +974,44 @@ protected $model;
 
         }
 
-        protected function pagination($pages){
+        protected function pagination($pages, array $excludeQueryKeys = []){
 
             $str = $_SERVER['REQUEST_URI'];
+
+            /*
+             * Presentation-only query parameters may control first paint
+             * without becoming part of the canonical pagination contract.
+             * Existing callers pass no exclusions and keep legacy behavior.
+             */
+            if ($excludeQueryKeys) {
+                $uriParts = parse_url($str);
+
+                if ($uriParts !== false) {
+                    $uriPath = (string)($uriParts['path'] ?? '');
+                    $uriQuery = [];
+
+                    if (!empty($uriParts['query'])) {
+                        parse_str((string)$uriParts['query'], $uriQuery);
+                    }
+
+                    foreach ($excludeQueryKeys as $excludeQueryKey) {
+                        if (is_string($excludeQueryKey) && $excludeQueryKey !== '') {
+                            unset($uriQuery[$excludeQueryKey]);
+                        }
+                    }
+
+                    $str = $uriPath;
+
+                    if ($uriQuery) {
+                        $str .= '?' . http_build_query(
+                            $uriQuery,
+                            '',
+                            '&',
+                            PHP_QUERY_RFC3986
+                        );
+                    }
+                }
+            }
 
             if (preg_match('/page=\d+/i', $str)){
 

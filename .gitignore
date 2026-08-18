@@ -106,3 +106,6 @@ __pycache__/
 
 # Local editor/migration backup snapshots
 *.before-*
+
+# FP hosting local rollback snapshots
+.runtime/backups/

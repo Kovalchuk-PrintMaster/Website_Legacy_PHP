@@ -293,13 +293,21 @@ $fpMeasurementConfig = [
     <!-- FP_MOBILE_PORTRAIT_ASSET_START -->
     <script
         defer
-        src="<?=PATH . TEMPLATE?>assets/js/forprint-mobile-portrait.js?v=20260806-1416"
+        src="<?=PATH . TEMPLATE?>assets/js/forprint-mobile-portrait.js?v=20260817-132728"
     ></script>
     <!-- FP_MOBILE_PORTRAIT_ASSET_END -->
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-header-popover.js?v=20260724-0649"></script>
-    <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260715-0665"></script>
+    <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260817-170525"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260803-1622"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260803-1622"></script>
+    <?php // FP_DYNAMIC_FAVICON_V1 ?>
+    <?php if (!empty($this->set['favicon_img'])): ?>
+        <link
+            rel="icon"
+            href="<?=$this->img($this->set['favicon_img'])?>"
+        >
+    <?php endif; ?>
+
 </head>
 
 <body
@@ -372,10 +380,15 @@ $fpResolveInformationUrl = function (array $item): string {
 
             <div class="header__logo fp-site-header__logo">
                 <a class="fp-site-header__logo-link" href="<?= $this->alias() ?>">
-                    <picture class="fp-site-header__logo-picture">
+                    <picture
+                        class="fp-site-header__logo-picture"
+                        data-fp-mobile-logo="<?=!empty($this->set['mobile_header_img'])
+                            ? 'configured'
+                            : 'fallback'?>"
+                    >
                         <?php if (!empty($this->set['mobile_header_img'])): ?>
                             <source
-                                media="(max-width: 48em)"
+                                media="(max-width: 48em), (orientation: landscape) and (max-width: 64em) and (max-height: 36rem)"
                                 srcset="<?=htmlspecialchars(
                                     $this->img((string)$this->set['mobile_header_img']),
                                     ENT_QUOTES,
@@ -509,6 +522,20 @@ $fpResolveInformationUrl = function (array $item): string {
             </div>
             <div class="overlay"></div>
             <div class="header__sidebar">
+                <nav
+                class="fp-mobile-primary-nav"
+                aria-label="Швидка мобільна навігація"
+                >
+                <a
+                class="fp-mobile-primary-nav__link"
+                href="<?=$this->alias('catalog', ['fp_ui' => 'filters'])?>"
+                >Каталог</a>
+                <a
+                class="fp-mobile-primary-nav__link"
+                href="<?=$this->alias('contacts')?>"
+                >Контакти</a>
+                </nav>
+
                 <?php if ($fpShowCart): ?>
                     <div class="header__sidebar_btn">
                         <a href="<?=$this->alias('cart')?>" class="cart-btn-wrap">
@@ -520,10 +547,16 @@ $fpResolveInformationUrl = function (array $item): string {
                     </div>
                 <?php endif; ?>
                 <div class="header__sidebar_btn burger-menu">
-                    <div class="burger-menu__link">
-                        <span class="burger"></span>
+                    <button
+                        type="button"
+                        class="burger-menu__link"
+                        aria-label="Відкрити меню"
+                        aria-controls="fp-site-menu-panel"
+                        aria-expanded="false"
+                    >
+                        <span class="burger" aria-hidden="true"></span>
                         <span class="burger-desc">меню</span>
-                    </div>
+                    </button>
                 </div>
 
                 <div class="fp-site-sidebar__utility">
@@ -547,8 +580,16 @@ $fpResolveInformationUrl = function (array $item): string {
                             $fpSocialUrl = $fpResolveSocialUrl(
                                 (string)($item['external_alias'] ?? '')
                             );
+                            $fpSocialIsTelegram = preg_match(
+                                '~(?:t\.me|telegram(?:\.me)?)~i',
+                                $fpSocialUrl
+                            ) === 1;
+                            $fpSocialClass = 'header__sidebar_btn fp-site-sidebar__social'
+                                . ($fpSocialIsTelegram
+                                    ? ' fp-site-sidebar__social--telegram'
+                                    : '');
                             ?>
-                            <div class="header__sidebar_btn">
+                            <div class="<?=htmlspecialchars($fpSocialClass, ENT_QUOTES, 'UTF-8')?>">
                                 <a
                                     href="<?=htmlspecialchars($fpSocialUrl, ENT_QUOTES, 'UTF-8')?>"
                                     <?=preg_match('/^https?:/i', $fpSocialUrl)
@@ -582,7 +623,10 @@ $fpResolveInformationUrl = function (array $item): string {
 <!--                        </svg>-->
 <!--                    </a></div>-->
             </div>
-            <div class="header__menu _hidden">
+            <div
+                id="fp-site-menu-panel"
+                class="header__menu _hidden"
+            >
                 <button
                     type="button"
                     class="header__menu_close fp-site-panel-close"

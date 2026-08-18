@@ -3,6 +3,12 @@
 /* ForPrint catalog surface v0.6.46 */
 
 $fpSelectedFilters = [];
+$fpCatalogInitialPanel = (
+    is_string($catalogInitialPanel ?? null)
+    ? $catalogInitialPanel
+    : ''
+);
+$fpCatalogFiltersInitiallyOpen = $fpCatalogInitialPanel === 'filters';
 
 if (!empty($_GET['filters']) && is_array($_GET['filters'])) {
     foreach ($_GET['filters'] as $fpSelectedFilter) {
@@ -43,6 +49,11 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
 <div
     class="fp-catalog-page fp-visual-system"
     data-fp-surface="catalog"
+    data-fp-catalog-initial-panel="<?=htmlspecialchars(
+        $fpCatalogInitialPanel,
+        ENT_QUOTES,
+        'UTF-8'
+    )?>"
     data-fp-catalog-url="<?=htmlspecialchars(
         $fpCatalogFormAction,
         ENT_QUOTES,
@@ -84,7 +95,7 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
                                 <div class="catalog-aside__wrap">
                                     <div class="catalog-aside-block">
                                         <div class="catalog-aside-block__top">
-                                            <div class="catalog-aside-block__title h2">Фільтри</div>
+                                            <div class="catalog-aside-block__title h2<?=$fpCatalogFiltersInitiallyOpen ? ' catalog-aside-block__title_open' : ''?>">Фільтри</div>
                                             <div class="catalog-aside-sort-mobile">
                                                 <div class="catalog-aside-sort-mobile__button h2">Сортування</div>
                                             </div>
@@ -102,7 +113,7 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
                                             </button>
                                         </div>
 
-                                        <div class="catalog-aside-block__content catalog-aside-block__drop">
+                                        <div class="catalog-aside-block__content catalog-aside-block__drop<?=$fpCatalogFiltersInitiallyOpen ? ' is-open' : ''?>">
                                             <button class="catalog-aside-block__drop-close" type="button" aria-label="Закрити фільтри">
                                                 <svg viewBox="0 0 27.33 27.01" width="100%" height="100%" aria-hidden="true">
                                                     <path d="M26.69.32a1.08 1.08 0 0 0-1.54 0L.32 25.15a1.08 1.08 0 0 0 0 1.54 1.09 1.09 0 0 0 1.54 0L26.69 1.86a1.08 1.08 0 0 0 0-1.54z"></path>
@@ -336,7 +347,7 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
 
                         <?php if (!empty($pages)): ?>
                             <nav class="catalog-section-pagination" aria-label="Сторінки каталогу">
-                                <?php $this->pagination($pages)?>
+                                <?php $this->pagination($pages, ['fp_ui'])?>
                             </nav>
                         <?php endif; ?>
                     </section>

@@ -9534,25 +9534,21 @@ html body main.main section.card-tabs .card-tabs__toggle.tabs__toggle_active .ca
 
 /* Права вертикальна панель сайту */
 html body .header__sidebar,
-html body .header__sidebar_btn,
-html body .header__sidebar_btn a,
-html body .header__sidebar_btn.burger-menu {
+html body .header__sidebar_btn:not(.burger-menu),
+html body .header__sidebar_btn a {
     background-color: var(--forprint-graphite-final) !important;
     border-color: var(--forprint-graphite-border-final) !important;
 }
 
-html body .header__sidebar_btn:hover,
-html body .header__sidebar_btn.burger-menu:hover,
-html body .header__sidebar._bg-opened .header__sidebar_btn,
-html body .header__sidebar._bg-opened .header__sidebar_btn.burger-menu {
+html body .header__sidebar_btn:not(.burger-menu):hover,
+html body .header__sidebar._bg-opened .header__sidebar_btn:not(.burger-menu) {
     background-color: var(--forprint-graphite-final-active) !important;
 }
 
-html body .header__sidebar_btn,
-html body .header__sidebar_btn *,
-html body .header__sidebar_btn a,
-html body .header__sidebar_btn span,
-html body .header__sidebar_btn .burger-desc {
+html body .header__sidebar_btn:not(.burger-menu),
+html body .header__sidebar_btn:not(.burger-menu) *,
+html body .header__sidebar_btn:not(.burger-menu) a,
+html body .header__sidebar_btn:not(.burger-menu) span {
     color: #ffffff !important;
 }
 
@@ -9564,7 +9560,7 @@ html body .header__sidebar_btn svg {
 html body .header__sidebar_btn.burger-menu .burger,
 html body .header__sidebar_btn.burger-menu .burger::before,
 html body .header__sidebar_btn.burger-menu .burger::after {
-    background-color: #ffffff !important;
+    background-color: currentColor;
 }
 
 /* Таби товару: прибрати правий хвіст без втручання в головну галерею */
@@ -10312,9 +10308,8 @@ html body main.main section.card-tabs .card-tabs__top .container,
 html body main.main section.card-tabs .card-tabs__top-items,
 html body main.main section.card-tabs .card-tabs__top-wrapper,
 html body .header__sidebar,
-html body .header__sidebar_btn,
-html body .header__sidebar_btn a,
-html body .header__sidebar_btn.burger-menu {
+html body .header__sidebar_btn:not(.burger-menu),
+html body .header__sidebar_btn a {
     background-color: var(--forprint-footer-graphite-v619) !important;
     border-color: rgba(255, 255, 255, .22) !important;
 }
@@ -10376,16 +10371,15 @@ html body main.main .card-slider__wrapper::after {
 
 /* Права фіксована смуга меню — точно в колір футера */
 html body .header__sidebar,
-html body [class^="header__sidebar"],
-html body [class*=" header__sidebar"] {
+html body [class^="header__sidebar"]:not(.burger-menu),
+html body [class*=" header__sidebar"]:not(.burger-menu) {
     background-color: var(--forprint-footer-exact-v619b) !important;
     border-color: var(--forprint-footer-exact-border-v619b) !important;
 }
 
-html body .header__sidebar_btn,
-html body .header__sidebar_btn.burger-menu,
+html body .header__sidebar_btn:not(.burger-menu),
 html body .header__sidebar_btn a,
-html body .header__sidebar [class*="btn"],
+html body .header__sidebar [class*="btn"]:not(.burger-menu),
 html body .header__sidebar [class*="item"] {
     background-color: var(--forprint-footer-exact-v619b) !important;
     border-color: var(--forprint-footer-exact-border-v619b) !important;
@@ -10475,7 +10469,7 @@ html body .right-sidebar,
 html body .side-panel,
 html body .side-menu,
 html body .header__sidebar,
-html body .header__sidebar_btn,
+html body .header__sidebar_btn:not(.burger-menu),
 html body .header__sidebar-item,
 html body .header__sidebar a,
 html body .socials-fixed,
@@ -10578,7 +10572,7 @@ html body .right-sidebar,
 html body .side-panel,
 html body .side-menu,
 html body .header__sidebar,
-html body .header__sidebar_btn,
+html body .header__sidebar_btn:not(.burger-menu),
 html body .header__sidebar-item,
 html body .header__sidebar a,
 html body .socials-fixed,

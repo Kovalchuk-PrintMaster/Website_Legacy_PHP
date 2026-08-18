@@ -265,3 +265,15 @@ Database synchronization is ownership-policy aware: local schema and
 canonical content remain local-owned, while declared production operational
 row content remains production-owned. Hosting environment/runtime paths are
 preserved by the maintenance tool.
+
+<!-- FP_CANONICAL_FULL_HOSTING_SYNC_MAP_V1 -->
+## Complete hosting synchronization tooling — 2026-08-17
+
+```text
+scripts/maintenance/hosting_mirror_common.py
+scripts/maintenance/backup_hosting_to_local.py
+scripts/maintenance/restore_hosting_from_local_backup.py
+scripts/maintenance/sync_local_to_hosting_full.py
+.runtime/backups/hosting/                  local-only rollback snapshots
+```
+<!-- /FP_CANONICAL_FULL_HOSTING_SYNC_MAP_V1 -->

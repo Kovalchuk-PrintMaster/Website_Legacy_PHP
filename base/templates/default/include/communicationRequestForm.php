@@ -66,10 +66,10 @@ $fpCommunicationVariantClass = $fpCommunicationVariant === 'panel'
         </h2>
 
         <form
-            class="fp-home-feedback__form fp-product-communication-form"
+            class="fp-home-feedback__form fp-product-communication-form fp-contact-request-form"
             method="post"
             action="<?=fp_product_comm_html($fpCommunicationAction)?>"
-            data-fp-comm-form
+            data-fp-comm-form data-fp-contact-request-form
         >
             <input type="hidden" name="mode" value="telegram">
             <input

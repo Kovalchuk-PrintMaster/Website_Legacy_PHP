@@ -755,7 +755,7 @@ button.fp-product-communication-form__mode-button:disabled {
     margin: 0 !important;
 }
 
-*(FP_PRODUCT_COMMUNICATION_OPTICAL_BALANCE_05G10B_V2)
+/* FP_PRODUCT_COMMUNICATION_OPTICAL_BALANCE_05G10B_V2
  * The entire icon+label group is centered as one unit. This gives visually
  * comparable space before the icon and after the last letter.
  */
@@ -814,3 +814,362 @@ button.fp-product-communication-form__mode-button:disabled {
     text-align: center;
     white-space: nowrap;
 }
+
+/* FP_MOBILE_INLINE_COMMUNICATION_COMPACT_START */
+/*
+ * Compact shared inline request form.
+ * Header callback keeps its dedicated --panel rules.
+ */
+@media (max-width: 48em),
+       (orientation: landscape)
+       and (max-width: 64em)
+       and (max-height: 36rem) {
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    ) {
+        padding-block: 1rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__inner {
+        width: min(
+            calc(100% - 1.5rem),
+            44rem
+        );
+        margin-inline: auto;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__title {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__form {
+        grid-template-columns:
+            minmax(0, 1fr);
+        gap: 0.7rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__contacts {
+        gap: 0.65rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__field,
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__message {
+        gap: 0.35rem;
+        font-size: 0.72rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__field input {
+        min-height: 2.75rem;
+        padding: 0.6rem 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__message textarea {
+        height: auto;
+        min-height: 7rem;
+        padding: 0.65rem 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__actions {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-product-communication-form__mode-button {
+        min-height: 2.75rem;
+        padding: 0.55rem 0.65rem;
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 30em)
+       and (orientation: portrait) {
+    .fp-communication-section:not(
+        .fp-communication-section--panel
+    )
+    .fp-home-feedback__actions {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+}
+/* FP_MOBILE_INLINE_COMMUNICATION_COMPACT_END */
+
+/* FP_PRODUCT_COMPACT_ACTIONS_V2_START */
+/*
+ * Compact communication controls.
+ *
+ * One action-text size is reused in both phone orientations.
+ * Portrait keeps three equal buttons in one row; labels may wrap to avoid
+ * icon/text overlap instead of being clipped.
+ */
+@media (max-width: 64em) {
+    .fp-product-detail-page {
+        --fp-product-action-text-compact: 0.6875rem;
+        --fp-product-action-icon-compact: 1.25rem;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__buttons {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+        font-size:
+            var(--fp-product-action-text-compact) !important;
+        line-height: 1.1;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > span:not(.fp-product-communication__icon-placeholder),
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > span:not(.fp-product-communication__icon-placeholder) {
+        width: auto !important;
+        min-width: 0;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: normal !important;
+        overflow-wrap: normal;
+        text-align: center;
+    }
+}
+
+@media (max-width: 48em)
+       and (orientation: portrait) {
+    .fp-product-detail-page
+    .fp-product-detail__actions {
+        margin-top: 0.1rem;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__buttons {
+        display: grid;
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+        gap: 0.35rem;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat {
+        display: grid !important;
+        grid-template-columns:
+            var(--fp-product-action-icon-compact)
+            minmax(0, 1fr) !important;
+        grid-template-rows: minmax(0, 1fr);
+        align-items: center !important;
+        justify-content: stretch !important;
+        column-gap: 0.25rem !important;
+        min-height: 3.55rem;
+        padding: 0.35rem 0.3rem !important;
+        letter-spacing: 0;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > .fp-product-communication__icon,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > .fp-product-communication__icon-placeholder,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > .fp-product-communication__icon,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > .fp-product-communication__icon-placeholder {
+        grid-column: 1;
+        justify-self: center;
+        width:
+            var(--fp-product-action-icon-compact) !important;
+        height:
+            var(--fp-product-action-icon-compact) !important;
+        min-width:
+            var(--fp-product-action-icon-compact);
+        min-height:
+            var(--fp-product-action-icon-compact);
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > span:not(.fp-product-communication__icon-placeholder),
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > span:not(.fp-product-communication__icon-placeholder) {
+        grid-column: 2;
+        justify-self: center;
+        align-self: center;
+        font-size: inherit !important;
+        line-height: 1.1;
+    }
+}
+
+@media (orientation: landscape)
+       and (max-width: 64em)
+       and (max-height: 36rem) {
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__buttons {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.4rem;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat {
+        display: grid !important;
+        grid-template-columns:
+            var(--fp-product-action-icon-compact)
+            minmax(0, 1fr) !important;
+        align-items: center !important;
+        column-gap: 0.35rem !important;
+        min-height: 2.9rem;
+        padding: 0.35rem 0.45rem !important;
+        letter-spacing: 0;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > .fp-product-communication__icon,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > .fp-product-communication__icon-placeholder,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > .fp-product-communication__icon,
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > .fp-product-communication__icon-placeholder {
+        grid-column: 1;
+        justify-self: center;
+        width:
+            var(--fp-product-action-icon-compact) !important;
+        height:
+            var(--fp-product-action-icon-compact) !important;
+        min-width:
+            var(--fp-product-action-icon-compact);
+        min-height:
+            var(--fp-product-action-icon-compact);
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button
+    > span:not(.fp-product-communication__icon-placeholder),
+    .fp-product-detail-page
+    .fp-product-detail__actions
+    .fp-product-communication__button--direct-chat
+    > span:not(.fp-product-communication__icon-placeholder) {
+        grid-column: 2;
+        justify-self: center;
+        font-size: inherit !important;
+        line-height: 1.1;
+        white-space: nowrap !important;
+    }
+}
+/* FP_PRODUCT_COMPACT_ACTIONS_V2_END */
+
+/* FP_PRODUCT_COMMUNICATION_TRANSIENT_PRESS_V1_START */
+.fp-product-communication__button,
+.fp-product-communication__button:link,
+.fp-product-communication__button:visited,
+.fp-product-communication__button:hover,
+.fp-product-communication__button:focus,
+.fp-product-communication__button--direct-chat,
+.fp-product-communication__button--direct-chat:link,
+.fp-product-communication__button--direct-chat:visited,
+.fp-product-communication__button--direct-chat:hover,
+.fp-product-communication__button--direct-chat:focus {
+    background: rgb(15,15,15) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.fp-product-communication__button:active,
+.fp-product-communication__button--direct-chat:active {
+    background: rgb(225,225,225) !important;
+    color: rgb(15,15,15) !important;
+}
+
+.fp-product-communication__button:focus-visible,
+.fp-product-communication__button--direct-chat:focus-visible {
+    background: rgb(15,15,15) !important;
+    color: #fff !important;
+    outline: 2px solid rgba(15,15,15,.55) !important;
+    outline-offset: 2px !important;
+}
+/* FP_PRODUCT_COMMUNICATION_TRANSIENT_PRESS_V1_END */

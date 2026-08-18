@@ -519,17 +519,13 @@ if(!empty($data)):?>
     </div>
 </section>
 <?php endif; ?>
+<?php if (!empty($relatedGoods)): ?>
 <section class="fp-related-section" data-fp-related-section>
     <!-- FP_RELATED_CANONICAL_CONTAINER_05G10B_V2 -->
     <div class="container fp-layout-container fp-related-section__container">
         <div class="fp-related-section__header">
             <div class="fp-related-section__title h2">
                 Доречі, разом з цим ще беруть і це:
-            </div>
-
-            <div class="fp-related-section__controls" aria-label="Навігація супутніх товарів">
-                <button class="fp-related-section__button fp-related-section__prev" type="button" aria-label="Попередні товари"></button>
-                <button class="fp-related-section__button fp-related-section__next" type="button" aria-label="Наступні товари"></button>
             </div>
         </div>
 
@@ -539,10 +535,16 @@ if(!empty($data)):?>
                     <?php $this->showGoods($relatedItem, [], 'goodsRelatedItem'); ?>
                 <?php endforeach; ?>
             </div>
+
+            <div class="fp-related-section__controls" aria-label="Навігація супутніх товарів">
+                <button class="fp-related-section__button fp-related-section__prev" type="button" aria-label="Попередні товари"></button>
+                <button class="fp-related-section__button fp-related-section__next" type="button" aria-label="Наступні товари"></button>
+            </div>
         </div>
     </div>
 </section>
-<script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-cards.js"></script>
+<script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-cards.js?v=20260816-2052"></script>
+<?php endif; ?>
 <?php endif;?>
 <?php
 $fpCommunicationConfig = [

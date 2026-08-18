@@ -20,493 +20,1157 @@
  * their previous owner files so this architecture step does not redesign UI.
  */
 
-/* FP_MOBILE_PORTRAIT_LAYOUT_START */
+/* FP_MOBILE_LAYOUT_START */
 
 /*
- * Mobile portrait removes the desktop fixed-rail reservation.
- * Shared geometry remains owned by forprint-layout.css.
+ * Compact public layout contract.
+ * The fixed desktop utility-rail reservation disappears when compact shell
+ * navigation is active.
  */
-@media (max-width: 40rem) and (orientation: portrait) {
+@media (max-width: 48em),
+       (orientation: landscape) and (max-width: 64em) and (max-height: 36rem) {
     :root {
         --fp-layout-rail-width: 0rem;
-        --fp-layout-page-gutter:
-            clamp(0.75rem, 4vw, 1rem);
-        --fp-layout-shell-gutter:
-            clamp(0.75rem, 4vw, 1rem);
+        --fp-layout-page-gutter: clamp(0.75rem, 4vw, 1.25rem);
     }
 
-    html.fp-mobile-portrait-active,
-    html.fp-mobile-portrait-active body.fp-public-page {
-        inline-size: 100%;
-        max-inline-size: 100%;
-        overflow-x: clip;
-    }
-
-    html.fp-mobile-portrait-active body.fp-public-page {
+    body.fp-public-page {
+        min-width: 0;
         padding-inline-end: 0;
-        margin-inline-end: 0;
+    }
+
+    body.fp-public-page .fp-layout-container {
+        min-width: 0;
+        max-width: 100%;
     }
 }
 
-/* FP_MOBILE_PORTRAIT_LAYOUT_END */
+/* FP_MOBILE_LAYOUT_END */
 
-/* FP_MOBILE_PORTRAIT_SHELL_START */
+/* FP_MOBILE_SHELL_START */
 
 /*
- * Mobile portrait shell:
- * graphite identity bar, Telegram, two-link navigation,
- * normal-flow search and compact footer.
+ * Compact shared public shell.
+ *
+ * Presentation contract:
+ * - one server-rendered header/footer DOM;
+ * - portrait and compact landscape share one visual language;
+ * - orientation differences remain CSS-only presentation concerns;
+ * - the landscape block below is an explicit future override boundary;
+ * - no user-agent split and no duplicate business controller/model.
  */
-.fp-mobile-portrait-header,
-.fp-mobile-footer-links {
-    display: none;
-}
-
-@media (max-width: 40rem) and (orientation: portrait) {
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    header.fp-site-header {
+@media (max-width: 48em),
+       (orientation: landscape) and (max-width: 80em) and (max-height: 36rem) {
+    body.fp-public-page header.fp-site-header {
         position: relative;
-        display: block;
+        z-index: 12000;
         inline-size: 100%;
+        block-size: auto;
         min-block-size: 0;
-        height: auto;
+        max-block-size: none;
         margin: 0;
         padding: 0;
-        background: #fff;
+        overflow: visible;
+        color: #ffffff;
+        background: #272c30;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
     header.fp-site-header
     > .fp-site-header__container {
-        display: none;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .header__sidebar,
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-site-sidebar__utility {
-        display: none;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-portrait-header {
-        position: relative;
-        z-index: 60;
         display: block;
         inline-size: 100%;
+        max-inline-size: none;
+        margin: 0;
+        padding-inline: var(--fp-layout-page-gutter);
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-portrait-header__bar {
-        position: sticky;
-        inset-block-start: 0;
-        z-index: 62;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-block-size: 3.75rem;
-        padding:
-            0.6rem
-            var(--fp-layout-shell-gutter);
-        background:
-            var(--fp-color-graphite, #252b2f);
-        box-shadow:
-            0 0.25rem 1rem
-            rgba(0, 0, 0, 0.14);
+    header.fp-site-header
+    .fp-site-header__wrapper {
+        display: grid;
+        grid-template-columns:
+            4rem minmax(0, 1fr) 3rem minmax(0, 1fr) 3rem;
+        grid-template-rows: 4rem;
+        align-items: stretch;
+        column-gap: 0;
+        inline-size: 100%;
+        min-inline-size: 0;
+        height: 4rem;
+        min-height: 4rem;
+        max-height: 4rem;
+        margin: 0;
+        padding-block: 0.3rem;
+        overflow: visible;
+}
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo {
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+        min-width: 0;
+        width: auto;
+        height: 2.8rem;
+        margin: 0;
+        padding: 0;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-portrait-header__brand {
+    header.fp-site-header
+    .fp-site-header__logo-link {
         display: inline-flex;
         align-items: center;
-        justify-content: flex-start;
-        min-inline-size: 3rem;
-        min-block-size: 2.75rem;
-        line-height: 0;
+        inline-size: auto;
+        max-inline-size: 6rem;
+        block-size: 2.8rem;
+        margin: 0;
+        padding: 0;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-portrait-header__logo {
+    header.fp-site-header
+    .fp-site-header__logo-picture,
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo-image {
         display: block;
         inline-size: auto;
-        max-inline-size:
-            min(10rem, 52vw);
-        block-size: 2.1rem;
+        max-inline-size: 100%;
+        block-size: 100%;
+        max-block-size: 2.8rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo-image {
         object-fit: contain;
         object-position: left center;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-portrait-header__telegram {
+    header.fp-site-header
+    .fp-site-header__logo-picture[data-fp-mobile-logo="fallback"]
+    .fp-site-header__logo-image {
+        filter: brightness(0) invert(1);
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__tagline,
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__topbar,
+    body.fp-public-page
+    header.fp-site-header
+    .overlay {
+        display: none;
+    }body.fp-public-page header.fp-site-header .header__sidebar {
+        display: contents;
+}
+
+    body.fp-public-page
+    header.fp-site-header
+    .header__sidebar
+    > .header__sidebar_btn:not(.burger-menu) {
+        display: none;
+    }body.fp-public-page header.fp-site-header .burger-menu {
+        display: contents;
+}
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu__link {
+        position: static;
+        grid-column: 3;
+        grid-row: 1;
+        align-self: center;
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        inline-size: 2.65rem;
+        block-size: 2.65rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        color: #ffffff;
+        background: transparent;
+        box-shadow: none;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu .burger {
+        position: relative;
+        display: block;
+        inline-size: 1.42rem;
+        block-size: 2px;
+        margin: 0;
+        border: 0;
+        border-radius: 999px;
+        background: currentColor;
+        box-shadow: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu .burger::before,
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu .burger::after {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        inline-size: 1.42rem;
+        block-size: 2px;
+        border-radius: 999px;
+        background: currentColor;
+        box-shadow: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu .burger::before {
+        inset-block-start: -0.42rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu .burger::after {
+        inset-block-start: 0.42rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu .burger-desc {
+        display: none;
+    }body.fp-public-page header.fp-site-header .fp-site-sidebar__utility {
+        position: static;
+        grid-column: 5;
+        grid-row: 1;
+        align-self: stretch;
+        justify-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        inline-size: 3rem;
+        min-inline-size: 0;
+        block-size: 100%;
+        min-block-size: 0;
+        max-block-size: 3rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        z-index: 2;
+        pointer-events: auto;
+}
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-sidebar__utility
+    > .header__sidebar_btn {
+        display: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-sidebar__utility
+    > .fp-site-sidebar__social--telegram {
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        inline-size: auto;
+        block-size: auto;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-sidebar__social--telegram
+    > a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.45rem;
-        min-block-size: 2.75rem;
-        padding-inline:
-            clamp(0.7rem, 3vw, 1rem);
-        border: 1px solid
-            rgba(255, 255, 255, 0.38);
-        border-radius: 0;
-        color: #fff;
-        font:
-            700 0.76rem/1
-            Lato,
-            Arial,
-            sans-serif;
-        letter-spacing: 0.06em;
-        text-decoration: none;
-        text-transform: uppercase;
-        background:
-            rgba(255, 255, 255, 0.06);
+        inline-size: 2.65rem;
+        block-size: 2.65rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        color: #ffffff;
+        background: transparent;
+        box-shadow: none;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-portrait-header__telegram svg {
-        inline-size: 1.15rem;
-        block-size: 1.15rem;
-        fill: currentColor;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-portrait-nav {
+    header.fp-site-header
+    .fp-site-sidebar__social--telegram
+    img {
+        display: block;
+        inline-size: 1.55rem;
+        block-size: 1.55rem;
+        max-inline-size: 1.55rem;
+        max-block-size: 1.55rem;
+        margin: 0;
+        object-fit: contain;
+    }body.fp-public-page header.fp-site-header .fp-mobile-primary-nav {
+        grid-column: 2 / 5;
+        grid-row: 1;
+        align-self: stretch;
         display: grid;
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            minmax(0, 1fr) 3rem minmax(0, 1fr);
+        grid-template-rows: 1fr;
+        align-items: stretch;
         inline-size: 100%;
-        border-block-end:
-            1px solid
-            rgba(37, 43, 47, 0.15);
-        background: #fff;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-portrait-nav__link {
+        min-inline-size: 0;
+        block-size: 100%;
+        min-block-size: 0;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        z-index: 0;
+}body.fp-public-page header.fp-site-header .fp-mobile-primary-nav__link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-block-size: 3.25rem;
-        padding: 0.75rem;
-        color:
-            var(--fp-color-graphite, #252b2f);
-        font:
-            800 0.86rem/1.2
-            Lato,
-            Arial,
-            sans-serif;
-        letter-spacing: 0.055em;
+        justify-self: center;
+        align-self: center;
+        min-width: 0;
+        width: max-content;
+        min-height: 0;
+        margin: 0;
+        padding: 0.25rem 0.1rem;
+        border: 0;
+        color: #ffffff;
+        background: transparent;
+        font-size: clamp(0.7rem, 3vw, 0.9rem);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: 0.025em;
+        text-align: center;
         text-decoration: none;
         text-transform: uppercase;
-        background-image:
-            linear-gradient(
-                currentColor,
-                currentColor
-            );
-        background-repeat: no-repeat;
-        background-position:
-            left calc(100% - 0.55rem);
-        background-size: 0 1px;
-        transition:
-            background-size
-            900ms
-            cubic-bezier(0.22, 1, 0.36, 1);
+        transition: color 160ms ease;
+}
+
+    body.fp-public-page header.fp-site-header
+    .fp-mobile-primary-nav__link:first-child {
+        grid-column: 1;
+        grid-row: 1;
     }
 
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-portrait-nav__link
-    + .fp-mobile-portrait-nav__link {
-        border-inline-start:
-            1px solid
-            rgba(37, 43, 47, 0.15);
+    body.fp-public-page header.fp-site-header
+    .fp-mobile-primary-nav__link:last-child {
+        grid-column: 3;
+        grid-row: 1;
     }
 
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-portrait-nav__link:hover,
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-portrait-nav__link:focus-visible {
-        background-size: 100% 1px;
+    body.fp-public-page header.fp-site-header
+    .fp-mobile-primary-nav__link,
+    body.fp-public-page header.fp-site-header
+    .burger-menu__link,
+    body.fp-public-page footer.fp-site-footer
+    .fp-mobile-footer-links__link,
+    body.fp-public-page footer.fp-site-footer
+    .footer__top_contacts a {
+        -webkit-tap-highlight-color: transparent;
     }
 
-    html.fp-mobile-portrait-active
+    body.fp-public-page header.fp-site-header
+    .fp-mobile-primary-nav__link:hover,
+    body.fp-public-page header.fp-site-header
+    .fp-mobile-primary-nav__link:active {
+        color: #d4dde1;
+        background: transparent;
+        text-decoration: none;
+    }
+
+    body.fp-public-page header.fp-site-header
+    .fp-mobile-primary-nav__link:focus-visible {
+        color: #d4dde1;
+        background: transparent;
+        outline: 2px solid rgba(255, 255, 255, 0.78);
+        outline-offset: 0.14rem;
+        text-decoration: none;
+    }
+
+    body.fp-public-page header.fp-site-header
+    .burger-menu__link:active {
+        color: #d4dde1;
+    }
+
+    body.fp-public-page header.fp-site-header
+    .burger-menu__link:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.78);
+        outline-offset: 0.08rem;
+    }
+
     body.fp-public-page
-    .fp-search-strip,
-    html.fp-mobile-portrait-active
+    header.fp-site-header
+    .fp-mobile-primary-nav__link
+    + .fp-mobile-primary-nav__link {
+        border-inline-start: 0;
+}
+
+        /*
+     * Compact menu state belongs to the shared compact shell.
+     * The class is synchronized by the existing burger behavior owner.
+     * This isolates legacy _bg-opened chrome without changing desktop/base.
+     */
+    body.fp-public-page header.fp-site-header.fp-site-header--menu-open {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        min-height: 100dvh;
+        background: #ffffff;
+    }
+
     body.fp-public-page
-    .fp-search-strip--home {
+    header.fp-site-header.fp-site-header--menu-open
+    > .fp-site-header__container,
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .fp-site-header__wrapper {
+        min-height: 100dvh;
+        height: 100dvh;
+        max-height: none;
+        background: #ffffff;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .fp-site-header__logo,
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .fp-mobile-primary-nav,
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .burger-menu,
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .fp-site-sidebar__utility,
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .header__callback {
+        display: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .header__menu {
+        position: fixed;
+        inset: 0;
+        z-index: 1001;
+        display: block;
+        width: 100%;
+        max-width: none;
+        min-height: 100dvh;
+        height: 100dvh;
+        margin: 0;
+        padding: clamp(4.5rem, 12vw, 6rem) 1.25rem 2rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #ffffff;
+        color: #222222;
+        box-shadow: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .header__menu._hidden {
+        display: none;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .header__menu_close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: block;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .header__menu_burger {
+        width: min(100%, 42rem);
+        margin: 0 auto;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    .header__menu_burger a {
+        color: #222222;
+    }
+
+    body.fp-public-page
+    header.fp-site-header.fp-site-header--menu-open
+    + .fp-search-strip--home {
+        display: none;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link:hover,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link:active {
+        color: #d4dde1;
+        background: transparent;
+        text-decoration: none;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link:focus-visible {
+        color: #d4dde1;
+        background: transparent;
+        outline: 2px solid rgba(255, 255, 255, 0.78);
+        outline-offset: 0.12rem;
+        text-decoration: none;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__contact {
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__contact a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0 auto;
+        color: #ffffff;
+        background: transparent;
+        font-size: clamp(0.58rem, 2.15vw, 0.7rem);
+        line-height: 1.18;
+        text-align: center;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+        transition: color 160ms ease;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__contact
+    a[href^="tel:"] {
+        white-space: nowrap;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__callback-link {
+        white-space: nowrap;
+        text-align: center;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__contact a:hover,
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__contact a:active {
+        color: #d4dde1;
+        background: transparent;
+        text-decoration: none;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_contacts
+    .footer__contact a:focus-visible {
+        color: #d4dde1;
+        background: transparent;
+        outline: 2px solid rgba(255, 255, 255, 0.78);
+        outline-offset: 0.12rem;
+        text-decoration: none;
+    }
+
+body.fp-public-page
+    header.fp-site-header
+    > .fp-search-strip--home {
         position: relative;
         inset: auto;
-        z-index: 20;
+        z-index: 1;
         display: block;
         inline-size: 100%;
         max-inline-size: none;
         margin: 0;
-        padding:
-            0.75rem
-            var(--fp-layout-page-gutter);
+        padding: 0;
         transform: none;
-        background:
-            var(
-                --fp-color-search-background,
-                #f1f2f3
-            );
-        box-shadow: none;
+        background: #f3f3f3;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-search-strip
+    header.fp-site-header
+    > .fp-search-strip--home
     .fp-search-strip__form {
-        --fp-search-strip-height: 3.25rem;
         inline-size: 100%;
+        width: 100%;
         max-inline-size: none;
         margin: 0;
-    }
+        padding-inline: 0;
+}
 
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-search-strip
-    .fp-search-strip__form
-    input[type="search"] {
-        min-inline-size: 0;
-        font-size: 1rem;
-    }
-
-    html.fp-mobile-portrait-active
     body.fp-public-page
     footer.fp-site-footer {
-        margin-block-start: 1.5rem;
+        inline-size: 100%;
+        min-block-size: 0;
+        margin-block-start: 0;
+        color: #ffffff;
+        background: #272c30;
     }
 
-    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__container {
+        inline-size: 100%;
+        max-inline-size: none;
+        min-block-size: 0;
+        margin: 0;
+        padding-inline: var(--fp-layout-page-gutter);
+    }
+
     body.fp-public-page
     footer.fp-site-footer
     .footer__wrapper {
-        padding-block:
-            clamp(1.5rem, 7vw, 2.5rem);
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    footer.fp-site-footer
-    .footer__top {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-        text-align: left;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    footer.fp-site-footer
-    .footer__top_logo {
-        display: flex;
-        justify-content: flex-start;
-        inline-size: 100%;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    footer.fp-site-footer
-    .footer__top_logo img {
-        max-inline-size: 11rem;
-        block-size: auto;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    footer.fp-site-footer
-    .footer__top_menu {
-        display: none;
-    }
-
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    footer.fp-site-footer
-    .footer__top_contacts {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-        inline-size: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: none;
         margin: 0;
-        text-align: left;
+        padding-block: 0;
+    }
+    body.fp-public-page
+    header.fp-site-header
+    .fp-mobile-primary-nav__link:active,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link:active {
+        color: #d4dde1;
+        background: transparent;
     }
 
-    html.fp-mobile-portrait-active
-    body.fp-public-page
-    .fp-mobile-footer-links {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
+    body.fp-public-page .fp-search-strip {
         inline-size: 100%;
-        border-block-start:
-            1px solid
-            rgba(255, 255, 255, 0.22);
+        width: 100%;
+        max-inline-size: none;
+        margin-inline: 0;
+        padding: 0;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-footer-links__link {
+    .fp-search-strip
+    .fp-search-strip__form {
+        inline-size: 100%;
+        width: 100%;
+        max-inline-size: none;
+        margin: 0;
+        padding-inline: 0;
+    }
+
+    body.fp-public-page .fp-search-strip--footer {
+        position: relative;
+        inset: auto;
+        z-index: 1;
+        display: block;
+        inline-size: 100%;
+        width: 100%;
+        max-inline-size: none;
+        margin: 0;
+        padding: 0;
+        transform: none;
+        background: var(--fp-color-search-background, #d4dde1);
+    }
+
+    body.fp-public-page
+    .fp-search-strip--footer
+    .fp-search-strip__form {
+        --fp-search-strip-height: 3.5rem;
+        inline-size: 100%;
+        width: 100%;
+        max-inline-size: none;
+        margin: 0;
+        padding: 0;
+    }
+
+body.fp-public-page footer.fp-site-footer .footer__top {
+        display: grid;
+        grid-template-columns: 3.25rem minmax(0, 1fr);
+        grid-template-areas:
+            "logo nav"
+            "logo contacts";
+        grid-template-rows: max-content max-content;
+        align-items: center;
+        align-content: space-evenly;
+        gap: 0 0.5rem;
+        inline-size: 100%;
+        block-size: 3.8rem;
+        min-block-size: 3.8rem;
+        height: 3.8rem;
+        margin: 0;
+        padding: 0;
+}body.fp-public-page footer.fp-site-footer .footer__top_logo {
+        grid-area: logo;
         display: flex;
         align-items: center;
-        min-block-size: 2.9rem;
-        color: inherit;
-        font:
-            700 0.85rem/1.25
-            Lato,
-            Arial,
-            sans-serif;
-        letter-spacing: 0.04em;
-        text-decoration: none;
-        text-transform: uppercase;
-        border-block-end:
-            1px solid
-            rgba(255, 255, 255, 0.14);
+        justify-content: flex-start;
+        align-self: stretch;
+        inline-size: 3rem;
+        min-block-size: 0;
+        margin: 0;
+        padding: 0;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-link,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-picture {
+        display: flex;
+        align-items: center;
+        inline-size: 3rem;
+        max-inline-size: 3rem;
+        min-block-size: 0;
+        margin: 0;
+        padding: 0;
     }
 
-    html.fp-mobile-portrait-active
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-image {
+        display: block;
+        inline-size: 100%;
+        max-inline-size: 3rem;
+        block-size: auto;
+        max-block-size: 2.7rem;
+        margin: 0;
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    /*
+     * Footer mobile logo is rendered inside a wider compact box.
+     * Stretch the sheen mask to that exact box so it cannot appear
+     * as a shifted second logo. Header geometry remains unchanged.
+     */
+    html body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-link::after {
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_menu,
     body.fp-public-page
     footer.fp-site-footer
     .footer__bottom_copy {
         display: none;
+    }body.fp-public-page footer.fp-site-footer .footer__top_contacts {
+        grid-area: contacts;
+        align-self: center;
+        display: grid;
+        grid-template-columns:
+            minmax(0, 1.25fr)
+            minmax(0, 1fr)
+            minmax(0, 1.05fr);
+        align-items: center;
+        justify-items: center;
+        gap: 0 0.45rem;
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__contact,
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__contact--email,
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__contact--phones,
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__contact--action {
+        grid-column: auto;
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        font-size: 0.76rem;
+        line-height: 1.2;
     }
 
-    html.fp-mobile-portrait-active
     body.fp-public-page
-    .fp-mobile-portrait-header a:focus-visible,
-    html.fp-mobile-portrait-active
+    footer.fp-site-footer
+    .footer__contact--phones,
     body.fp-public-page
-    .fp-mobile-footer-links a:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 0.2rem;
+    footer.fp-site-footer
+    .footer__contact--action {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.55rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__contact a {
+        width: auto;
+        max-width: 100%;
+        color: #ffffff;
+        line-height: inherit;
+        text-decoration: none;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__callback-link {
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+    }body.fp-public-page footer.fp-site-footer .fp-mobile-footer-links {
+        grid-area: nav;
+        align-self: center;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        column-gap: 0.6rem;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: center;
+        min-block-size: 0;
+        width: max-content;
+        margin: 0;
+        padding: 0.04rem 0.1rem;
+        border: 0;
+        color: #ffffff;
+        background: transparent;
+        font-size: 0.76rem;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: 0.045em;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 160ms ease;
+}
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link
+    + .fp-mobile-footer-links__link {
+        border-inline-start: 1px solid rgba(255, 255, 255, 0.18);
     }
 }
 
-/* FP_MOBILE_PORTRAIT_SHELL_END */
-
-/* FP_MOBILE_PORTRAIT_CARDS_START */
-
 /*
- * Compact product cards inside the mobile homepage catalog fragment.
+ * Explicit compact-landscape presentation boundary.
+ *
+ * It intentionally keeps the same shell language now. Future accepted work
+ * may change burger placement, shell height, footer density, and card column
+ * counts inside orientation-specific owners without introducing new DOM.
  */
-@media (max-width: 40rem) and (orientation: portrait) {
-    html.fp-mobile-portrait-active
+@media (orientation: landscape)
+       and (max-width: 80em)
+       and (max-height: 36rem) {
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__wrapper {
+        grid-template-rows: 3.35rem;
+        block-size: 3.35rem;
+        min-block-size: 3.35rem;
+        max-block-size: 3.35rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo,
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo-link {
+        height: 2.55rem;
+        block-size: 2.55rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo-picture,
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-header__logo-image {
+        max-block-size: 2.55rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu,
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-sidebar__utility {
+        block-size: 2.8rem;
+        max-block-size: 2.8rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .burger-menu__link,
+    body.fp-public-page
+    header.fp-site-header
+    .fp-site-sidebar__social--telegram
+    > a {
+        inline-size: 2.45rem;
+        block-size: 2.45rem;
+    }
+
+    body.fp-public-page
+    header.fp-site-header
+    .fp-mobile-primary-nav__link {
+        min-block-size: 2.35rem;
+        padding-block: 0.4rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__wrapper {
+        padding-block: 0;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top {
+        grid-template-columns: 3rem minmax(0, 1fr);
+        grid-template-rows: max-content max-content;
+        align-content: space-evenly;
+        gap: 0 0.7rem;
+        block-size: 3.55rem;
+        min-block-size: 3.55rem;
+        height: 3.55rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_logo,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-link,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-picture {
+        inline-size: 2.8rem;
+        max-inline-size: 2.8rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-image {
+        max-inline-size: 2.8rem;
+        max-block-size: 2.45rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-mobile-footer-links__link {
+        min-block-size: 1.55rem;
+        padding-block: 0.05rem;
+    }
+}
+
+@media (max-width: 30em) and (orientation: portrait) {
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top {
+        grid-template-columns: 2.8rem minmax(0, 1fr);
+        gap: 0 0.45rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__top_logo,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-link,
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-picture {
+        inline-size: 2.8rem;
+        max-inline-size: 2.8rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .fp-site-footer__logo-image {
+        max-inline-size: 2.8rem;
+        max-block-size: 2.45rem;
+    }
+
+    body.fp-public-page
+    footer.fp-site-footer
+    .footer__contact {
+        font-size: 0.73rem;
+    }
+}
+
+/* FP_MOBILE_SHELL_END */
+
+/* FP_MOBILE_CARDS_START */
+
+/* Existing server-rendered product cards remain the canonical mobile data. */
+@media (max-width: 48em),
+       (orientation: landscape) and (max-width: 64em) and (max-height: 36rem) {
     [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card {
+    .fp-home-product-groups__grid {
         display: grid;
-        grid-template-rows:
-            auto 1fr;
-        min-inline-size: 0;
-        block-size: 100%;
-        margin: 0;
-        border:
-            1px solid
-            rgba(37, 43, 47, 0.14);
-        border-radius: 0;
-        background: #fff;
-        box-shadow: none;
-        overflow: hidden;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__image {
-        aspect-ratio: 4 / 3;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
         inline-size: 100%;
-        min-block-size: 0;
-        margin: 0;
-        overflow: hidden;
-        background: #f5f5f5;
     }
 
-    html.fp-mobile-portrait-active
     [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__image img {
-        display: block;
-        inline-size: 100%;
-        block-size: 100%;
-        object-fit: cover;
+    .fp-home-product-groups__grid
+    .fp-product-card {
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 22rem) and (orientation: portrait) {
+    [data-fp-surface="home"]
+    .fp-home-product-groups__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* FP_MOBILE_CARDS_END */
+
+/* FP_COMPACT_BREADCRUMB_SCROLL_V3_START */
+/*
+ * Compact breadcrumb row.
+ * Keep the accepted spacing, but make the separator visually light.
+ */
+@media (max-width: 64em) {
+    .breadcrumbs {
+        box-sizing: border-box;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__body {
-        display: flex;
-        flex-direction: column;
-        gap: 0.55rem;
-        min-inline-size: 0;
-        padding:
-            clamp(0.65rem, 3vw, 0.9rem);
+    .breadcrumbs__list {
+        display: flex !important;
+        flex-flow: row nowrap !important;
+        align-items: center !important;
+        gap: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__title {
-        display: -webkit-box;
-        min-block-size: 2.55em;
-        margin: 0;
-        overflow: hidden;
-        color:
-            var(--fp-color-graphite, #252b2f);
-        font:
-            700 clamp(0.8rem, 3.6vw, 0.95rem)/1.28
-            Lato,
-            Arial,
-            sans-serif;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__excerpt,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__features {
+    .breadcrumbs__list::-webkit-scrollbar {
         display: none;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__price {
-        min-block-size: 2.4rem;
-        margin-block-start: auto;
+    .breadcrumbs__item {
+        position: static !important;
+        display: inline-flex !important;
+        flex: 0 0 auto !important;
+        align-items: center !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog
-    .fp-product-card__button {
-        min-block-size: 2.75rem;
-        inline-size: 100%;
-        margin: 0;
-        padding: 0.6rem;
-        border-radius: 0;
-        font-size:
-            clamp(0.7rem, 3.2vw, 0.82rem);
+    .breadcrumbs__item::before {
+        content: none !important;
+        display: none !important;
+    }
+
+    .breadcrumbs__item + .breadcrumbs__item::before {
+        content: "|" !important;
+        position: static !important;
+        display: inline-block !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 0.38rem !important;
+        padding: 0 !important;
+        color: currentColor !important;
+        font-family: Arial, sans-serif !important;
+        font-size: 0.9em !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        opacity: 0.45 !important;
+        transform: scaleX(0.62) !important;
+        transform-origin: center !important;
+    }
+
+    .breadcrumbs__link,
+    .fp-breadcrumbs__link,
+    .fp-breadcrumbs__current {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
     }
 }
-
-/* FP_MOBILE_PORTRAIT_CARDS_END */
+/* FP_COMPACT_BREADCRUMB_SCROLL_V3_END */

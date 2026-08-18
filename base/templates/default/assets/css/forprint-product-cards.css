@@ -427,10 +427,16 @@
 
 @media (max-width: 560px) {
     [data-fp-surface="home"] .fp-home-grid,
-    .catalog-internal .catalog-section-items__wrapper_no-aside,
-    .catalog-section-items__wrapper_no-aside,
     .fp-related-section__slider_no-swiper .fp-related-section__wrapper {
         grid-template-columns: 1fr !important;
+    }
+
+    .catalog-internal
+    .catalog-section-items__wrapper_no-aside,
+    .catalog-section-items__wrapper_no-aside {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+        gap: 0.75rem !important;
     }
 
     .fp-related-section {
@@ -634,3 +640,282 @@
         letter-spacing: 0.04em !important;
     }
 }
+
+/* FP_CATALOG_COMPACT_LANDSCAPE_FOUR_PRODUCTS_START */
+@media (orientation: landscape)
+       and (max-width: 64em)
+       and (max-height: 36rem) {
+    .catalog-internal
+    .catalog-section-items__wrapper_no-aside,
+    .catalog-section-items__wrapper_no-aside {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr)) !important;
+        gap: 0.65rem !important;
+    }
+}
+/* FP_CATALOG_COMPACT_LANDSCAPE_FOUR_PRODUCTS_END */
+
+/* FP_RELATED_COMPACT_CATALOG_PARITY_V2_START */
+/*
+ * Related/search use catalog density:
+ * portrait 2 cards, compact landscape 4.
+ * Related controls are inside the slider, so top:50% is the true card center.
+ */
+@media (max-width: 48em),
+       (orientation: landscape) and (max-width: 64em) and (max-height: 36rem) {
+    .fp-related-section {
+        margin-top: 0 !important;
+        padding:
+            var(--fp-mobile-space-md, 1.25rem)
+            0
+            var(--fp-mobile-space-md, 1.25rem)
+            !important;
+    }
+
+    .fp-related-section__container.fp-layout-container {
+        width: min(
+            calc(
+                100%
+                - var(--fp-layout-page-gutter)
+                - var(--fp-layout-page-gutter)
+            ),
+            var(--fp-layout-page-content-ceiling, 122rem)
+        ) !important;
+        max-width: none !important;
+        margin-inline: auto !important;
+        padding-inline: 0 !important;
+    }
+
+    .fp-related-section__header {
+        margin: 0 0 var(--fp-mobile-space-sm, 0.75rem) !important;
+    }
+
+    .fp-related-section__title.h2 {
+        font-size: 1rem !important;
+        line-height: 1.22 !important;
+        letter-spacing: 0.04em !important;
+    }
+
+    .fp-related-section__slider {
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .fp-related-section__controls {
+        position: static !important;
+        display: contents !important;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .fp-related-section__button {
+        position: absolute !important;
+        top: 50% !important;
+        z-index: 12 !important;
+        width: 2.55rem !important;
+        height: 1.7rem !important;
+        min-width: 2.55rem !important;
+        min-height: 1.7rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 999px !important;
+        background: rgba(45, 48, 51, 0.24) !important;
+        box-shadow: none !important;
+        opacity: 0.78 !important;
+        transform: translateY(-50%) !important;
+    }
+
+    .fp-related-section__prev {
+        left: 0.35rem !important;
+        right: auto !important;
+    }
+
+    .fp-related-section__next {
+        left: auto !important;
+        right: 0.35rem !important;
+    }
+
+    .fp-related-section__button::before {
+        content: "" !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        width: 0.5rem !important;
+        height: 0.5rem !important;
+        border-top: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 0.12rem solid rgba(255, 255, 255, 0.92) !important;
+        border-left: 0.12rem solid rgba(255, 255, 255, 0.92) !important;
+        background: transparent !important;
+    }
+
+    .fp-related-section__prev::before {
+        transform: translate(-35%, -50%) rotate(45deg) !important;
+    }
+
+    .fp-related-section__next::before {
+        transform: translate(-65%, -50%) rotate(225deg) !important;
+    }
+
+    .fp-grid-card .fp-product-card__price,
+    .fp-related-card .fp-product-card__price {
+        display: flex !important;
+        flex-flow: row nowrap !important;
+        align-items: baseline !important;
+        gap: 0.35rem !important;
+        width: 100% !important;
+        height: 1.5rem !important;
+        min-height: 1.5rem !important;
+        max-height: 1.5rem !important;
+        overflow: hidden !important;
+    }
+
+    .fp-grid-card .fp-product-card__price-label,
+    .fp-related-card .fp-product-card__price-label {
+        flex: 0 0 auto;
+        white-space: nowrap !important;
+        font-size: 0.72rem !important;
+        line-height: 1 !important;
+    }
+
+    .fp-grid-card .fp-product-card__old-price,
+    .fp-grid-card .fp-product-card__new-price,
+    .fp-grid-card .fp-product-card__current-price,
+    .fp-related-card .fp-product-card__old-price,
+    .fp-related-card .fp-product-card__new-price,
+    .fp-related-card .fp-product-card__current-price {
+        flex: 0 1 auto;
+        min-width: 0;
+        white-space: nowrap !important;
+        font-size: clamp(0.72rem, 2.8vw, 0.9rem) !important;
+        line-height: 1 !important;
+    }
+
+    .fp-grid-card .fp-product-card__price span,
+    .fp-related-card .fp-product-card__price span {
+        white-space: nowrap !important;
+        line-height: 1 !important;
+    }
+}
+
+@media (max-width: 48em) and (orientation: portrait) {
+    .fp-related-section__slider_no-swiper
+    .fp-related-section__wrapper {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: var(--fp-mobile-space-sm, 0.75rem) !important;
+    }
+
+    .catalog-internal
+    .catalog-section-items__wrapper_no-aside,
+    .catalog-section-items__wrapper_no-aside {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: var(--fp-mobile-space-sm, 0.75rem) !important;
+    }
+}
+
+@media (orientation: landscape)
+       and (max-width: 64em)
+       and (max-height: 36rem) {
+    .fp-related-section__slider_no-swiper
+    .fp-related-section__wrapper {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 0.65rem !important;
+    }
+
+    .catalog-internal
+    .catalog-section-items__wrapper_no-aside,
+    .catalog-section-items__wrapper_no-aside {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 0.65rem !important;
+    }
+}
+
+
+
+
+
+/* FP_RELATED_TAIL_CLEANUP_V53_START */
+/* Complete thin chevrons at the true vertical center of the related slider. */
+@media (max-width: 64em) {
+    .fp-related-section__slider {
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .fp-related-section__controls {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 15 !important;
+        display: block !important;
+        width: auto !important;
+        height: auto !important;
+        pointer-events: none !important;
+    }
+
+    .fp-related-section__button {
+        position: absolute !important;
+        top: 50% !important;
+        width: 1.5rem !important;
+        height: 2.7rem !important;
+        min-width: 1.5rem !important;
+        min-height: 2.7rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0.15rem !important;
+        background: rgba(255, 255, 255, 0.68) !important;
+        box-shadow: none !important;
+        opacity: 0.9 !important;
+        transform: translateY(-50%) !important;
+        pointer-events: auto !important;
+    }
+
+    .fp-related-section__button svg,
+    .fp-related-section__button img {
+        display: none !important;
+    }
+
+    .fp-related-section__button::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    .fp-related-section__button::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        display: block !important;
+        width: 0.66rem !important;
+        height: 0.66rem !important;
+        border: 0 !important;
+        border-top: 2px solid rgba(35, 42, 47, 0.82) !important;
+        border-right: 2px solid rgba(35, 42, 47, 0.82) !important;
+        background: transparent !important;
+    }
+
+    .fp-related-section__prev {
+        left: 0.25rem !important;
+        right: auto !important;
+    }
+
+    .fp-related-section__prev::before {
+        transform: translate(-38%, -50%) rotate(-135deg) !important;
+    }
+
+    .fp-related-section__next {
+        left: auto !important;
+        right: 0.25rem !important;
+    }
+
+    .fp-related-section__next::before {
+        transform: translate(-62%, -50%) rotate(45deg) !important;
+    }
+}
+/* FP_RELATED_TAIL_CLEANUP_V53_END */
+/* FP_RELATED_COMPACT_CATALOG_PARITY_V2_END */

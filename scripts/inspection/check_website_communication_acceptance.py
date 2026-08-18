@@ -8,6 +8,7 @@ import json
 import shlex
 import subprocess
 import sys
+import time
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -341,23 +342,78 @@ def production_facts(module, values, paths) -> None:
         f"{shlex.quote(php_bin)} -r {shlex.quote(REMOTE_FACTS_PHP)}"
     )
 
-    result = subprocess.run(
-        [*module.ssh_base(values), command],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-        timeout=300,
-    )
+    result = None
+    payload = None
+    probe_attempts = 3
 
-    if result.returncode != 0:
-        fail("production communication predicate probe failed")
+    for attempt in range(1, probe_attempts + 1):
+        try:
+            candidate = subprocess.run(
+                [*module.ssh_base(values), command],
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+                timeout=300,
+            )
+        except subprocess.TimeoutExpired:
+            print(
+                "[WARN] production predicate probe timed out "
+                f"(attempt {attempt}/{probe_attempts})"
+            )
 
-    try:
-        payload = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        fail("production communication predicate probe returned non-JSON")
+            if attempt < probe_attempts:
+                time.sleep(1.0)
+                continue
+
+            fail(
+                "production communication predicate probe "
+                "timed out after bounded retries"
+            )
+
+        if candidate.returncode != 0:
+            print(
+                "[WARN] production predicate probe process failed "
+                f"(attempt {attempt}/{probe_attempts}, "
+                f"returncode={candidate.returncode})"
+            )
+
+            if attempt < probe_attempts:
+                time.sleep(1.0)
+                continue
+
+            fail(
+                "production communication predicate probe failed "
+                "after bounded retries"
+            )
+
+        try:
+            candidate_payload = json.loads(candidate.stdout)
+        except json.JSONDecodeError:
+            print(
+                "[WARN] production predicate probe returned non-JSON "
+                f"(attempt {attempt}/{probe_attempts})"
+            )
+
+            if attempt < probe_attempts:
+                time.sleep(1.0)
+                continue
+
+            fail(
+                "production communication predicate probe returned "
+                "non-JSON after bounded retries"
+            )
+
+        result = candidate
+        payload = candidate_payload
+        break
+
+    if result is None or payload is None:
+        fail(
+            "production communication predicate probe did not "
+            "produce a usable result"
+        )
 
     safe_fields = (
         "bootstrap_loaded",
@@ -502,28 +558,77 @@ def verify_token(module, values, paths, token: str) -> bool:
         f"{shlex.quote(php_bin)} -r {shlex.quote(REMOTE_VERIFY_PHP)}"
     )
 
-    result = subprocess.run(
-        [*module.ssh_base(values), command],
-        cwd=ROOT,
-        input=token,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-        timeout=300,
-    )
+    attempts = 3
 
-    if result.returncode != 0:
-        fail("production CSRF verifier failed")
+    for attempt in range(1, attempts + 1):
+        try:
+            result = subprocess.run(
+                [*module.ssh_base(values), command],
+                cwd=ROOT,
+                input=token,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+                timeout=300,
+            )
+        except subprocess.TimeoutExpired:
+            print(
+                "[WARN] production CSRF verifier timed out "
+                f"(attempt {attempt}/{attempts})"
+            )
 
-    try:
-        payload = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        fail("production CSRF verifier returned non-JSON")
+            if attempt < attempts:
+                time.sleep(1.0)
+                continue
 
-    return (
-        payload.get("received") is True
-        and payload.get("valid") is True
+            fail(
+                "production CSRF verifier timed out "
+                "after bounded retries"
+            )
+
+        if result.returncode != 0:
+            print(
+                "[WARN] production CSRF verifier process failed "
+                f"(attempt {attempt}/{attempts}, "
+                f"returncode={result.returncode})"
+            )
+
+            if attempt < attempts:
+                time.sleep(1.0)
+                continue
+
+            fail(
+                "production CSRF verifier failed "
+                "after bounded retries"
+            )
+
+        try:
+            payload = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            print(
+                "[WARN] production CSRF verifier returned non-JSON "
+                f"(attempt {attempt}/{attempts})"
+            )
+
+            if attempt < attempts:
+                time.sleep(1.0)
+                continue
+
+            fail(
+                "production CSRF verifier returned non-JSON "
+                "after bounded retries"
+            )
+
+        # Logical verification remains fail-closed:
+        # an actually invalid token is NOT retried into success.
+        return (
+            payload.get("received") is True
+            and payload.get("valid") is True
+        )
+
+    fail(
+        "production CSRF verifier did not produce a usable result"
     )
 
 

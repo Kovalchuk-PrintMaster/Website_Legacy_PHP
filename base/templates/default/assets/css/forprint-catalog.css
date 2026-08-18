@@ -377,13 +377,31 @@
 }
 
 @media (max-width: 40em) {
-    [data-fp-surface="catalog"] .catalog-section-items__wrapper,
-    [data-fp-surface="catalog"] .catalog-filter-range__inputs {
+    [data-fp-surface="catalog"]
+    .catalog-section-items__wrapper {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    [data-fp-surface="catalog"]
+    .catalog-filter-range__inputs {
         grid-template-columns: minmax(0, 1fr);
     }
 
     [data-fp-surface="catalog"] .catalog-filter-wrap__remove {
         margin-left: 0;
+    }
+}
+
+@media (orientation: landscape)
+       and (max-width: 64em)
+       and (max-height: 36rem) {
+    [data-fp-surface="catalog"]
+    .catalog-section-items__wrapper {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+        gap: 0.65rem;
     }
 }
 
@@ -1118,3 +1136,91 @@ input:checked + .fp-catalog-filter-value__box::after {
 }
 
 /* FP_PHASE_1_2_CATALOG_ALIGNMENT_END */
+
+/* FP_CATALOG_COMPACT_TYPOGRAPHY_RHYTHM_V1_START */
+/*
+ * Compact catalog controls should visually belong to the same typography
+ * scale as product cards. This block owns only the catalog surface.
+ */
+@media (max-width: 48em) and (orientation: portrait),
+       (orientation: landscape) and (max-width: 64em) and (max-height: 36rem) {
+    [data-fp-surface="catalog"] .fp-catalog-page__header {
+        margin-top: 0.45rem !important;
+        margin-bottom: 0.45rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    [data-fp-surface="catalog"] .fp-catalog-page__header h1,
+    [data-fp-surface="catalog"] .fp-catalog-page__header .h1,
+    [data-fp-surface="catalog"] .fp-catalog-page__header .fp-page-title {
+        margin: 0 !important;
+        font-size: 1.25rem !important;
+        line-height: 1.18 !important;
+        letter-spacing: 0.035em !important;
+    }
+
+    [data-fp-surface="catalog"] .fp-catalog-page__content,
+    [data-fp-surface="catalog"] .catalog-internal,
+    [data-fp-surface="catalog"] .catalog-internal-wrap,
+    [data-fp-surface="catalog"] .catalog-section,
+    [data-fp-surface="catalog"] .catalog-section__wrapper,
+    [data-fp-surface="catalog"] .catalog-section-items {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-internal-wrap {
+        row-gap: 0.55rem !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-aside {
+        margin-top: 0 !important;
+        margin-bottom: 0.55rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-aside-block,
+    [data-fp-surface="catalog"] .catalog-aside-block__top {
+        min-height: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-aside-block__title,
+    [data-fp-surface="catalog"] .catalog-aside-sort-mobile__button,
+    [data-fp-surface="catalog"] .catalog-section-top-items__title,
+    [data-fp-surface="catalog"] .catalog-section-top-items__unit {
+        font-size: 1rem !important;
+        line-height: 1.18 !important;
+        letter-spacing: 0.015em !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-aside-block__title,
+    [data-fp-surface="catalog"] .catalog-aside-sort-mobile__button {
+        font-weight: 700 !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-section-top {
+        min-height: 0 !important;
+        margin: 0 0 0.55rem !important;
+        padding: 0 !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-section-top-items {
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0.45rem 0.75rem !important;
+    }
+
+    [data-fp-surface="catalog"] .catalog-section__wrapper,
+    [data-fp-surface="catalog"] .catalog-section-items__wrapper {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+/* FP_CATALOG_COMPACT_TYPOGRAPHY_RHYTHM_V1_END */

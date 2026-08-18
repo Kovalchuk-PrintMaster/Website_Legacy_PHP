@@ -208,3 +208,23 @@ allowed only where semantics materially differ.
 
 **Record:** `docs/decisions/2026-08-15__mobile_presentation_architecture.md`
 <!-- FP_MOBILE_PRESENTATION_ADR_V0_1_END -->
+
+<!-- FP_CANONICAL_FULL_HOSTING_SYNC_ADR_V1 -->
+## FP-WEB-ADR-2026-08-17-002
+
+**Decision:** canonical complete local-to-hosting sync with off-host rollback
+**Status:** accepted
+**Record:** `docs/decisions/2026-08-17__canonical_full_hosting_sync_and_local_rollback.md`
+<!-- /FP_CANONICAL_FULL_HOSTING_SYNC_ADR_V1 -->
+
+<!-- FP_HOSTING_FULL_SYNC_HARDENING_ADR_V1 -->
+## FP-WEB-ADR-2026-08-18-001
+
+**Decision:** production-proven complete hosting synchronization baseline with
+local regression contract
+
+**Status:** accepted / verified in production
+
+**Working state:**
+`docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md`
+<!-- /FP_HOSTING_FULL_SYNC_HARDENING_ADR_V1 -->

@@ -278,43 +278,98 @@ $(function () {
     );
 
     //------------------- Burger Sidebar  -------------------//
+    var fpCompactShellMedia = window.matchMedia
+        ? window.matchMedia(
+            '(max-width: 48em), '
+            + '(orientation: landscape) and '
+            + '(max-width: 80em) and (max-height: 36rem)'
+        )
+        : null;
+
+    var fpSyncCompactMenuState = function () {
+        var compactShell = Boolean(
+            fpCompactShellMedia && fpCompactShellMedia.matches
+        );
+        var menuOpen = !$('.header__menu').hasClass('_hidden');
+
+        $('.fp-site-header').toggleClass(
+            'fp-site-header--menu-open',
+            compactShell && menuOpen
+        );
+
+        $('.burger-menu__link')
+            .attr('aria-expanded', menuOpen ? 'true' : 'false')
+            .attr(
+                'aria-label',
+                menuOpen ? 'Закрити меню' : 'Відкрити меню'
+            );
+    };
+
     $('.burger-menu').on('click', function () {
         var burgerHidden = $('.header__menu').hasClass('_hidden');
         var callbackHidden = $('.header__callback').hasClass('_hidden');
-        if(burgerHidden) {//бургер скрыт
-            if(!callbackHidden) {//но открыта обратка
-                $('.header__callback').addClass('_hidden');//скроем обратку
-                if ($(window).width() <= 1024) {//на мобилке
+
+        if (burgerHidden) {
+            if (!callbackHidden) {
+                $('.header__callback').addClass('_hidden');
+
+                if ($(window).width() <= 1024) {
                     $('.overlay').removeClass('_visible');
                     $('.header__sidebar').removeClass('_bg-opened');
                 }
-            }
-            else {//обратка закрыта
-                $('.overlay').addClass('_visible');//покажем оверлей тк его нет
-                if($(window).width() <= 1024) {
-                    $('.header__sidebar').addClass('_bg-opened')//на бургере повернем крестик
+            } else {
+                $('.overlay').addClass('_visible');
+
+                if ($(window).width() <= 1024) {
+                    $('.header__sidebar').addClass('_bg-opened');
                     $('.header__menu').removeClass('_hidden');
                 }
             }
-            if($(window).width() > 1024){
-                $('.header__menu').removeClass('_hidden');//в любом случае вызовем меню на десктопе
+
+            if ($(window).width() > 1024) {
+                $('.header__menu').removeClass('_hidden');
             }
-        }
-        else {//бургер открыт
-            $('.overlay').removeClass('_visible');//скроем оверлей
-            if($(window).width() <= 1024) {
-                $('.header__sidebar').removeClass('_bg-opened')//свернем крестик в бургер
+        } else {
+            $('.overlay').removeClass('_visible');
+
+            if ($(window).width() <= 1024) {
+                $('.header__sidebar').removeClass('_bg-opened');
             }
-            $('.header__menu').addClass('_hidden');//скроем меню
+
+            $('.header__menu').addClass('_hidden');
         }
+
+        fpSyncCompactMenuState();
     });
+
     $('.header__menu_close').on('click', function () {
         $('.overlay').removeClass('_visible');
-        if($(window).width() <= 1024) {
-            $('.header__sidebar').removeClass('_bg-opened')
+
+        if ($(window).width() <= 1024) {
+            $('.header__sidebar').removeClass('_bg-opened');
         }
+
         $('.header__menu').addClass('_hidden');
+        fpSyncCompactMenuState();
     });
+
+    if (fpCompactShellMedia) {
+        var fpCompactShellMediaChanged = function () {
+            fpSyncCompactMenuState();
+        };
+
+        if (typeof fpCompactShellMedia.addEventListener === 'function') {
+            fpCompactShellMedia.addEventListener(
+                'change',
+                fpCompactShellMediaChanged
+            );
+        } else if (typeof fpCompactShellMedia.addListener === 'function') {
+            fpCompactShellMedia.addListener(fpCompactShellMediaChanged);
+        }
+    }
+
+    fpSyncCompactMenuState();
+
     //------------------- Callback Popup  -------------------//
     $('.js-callback').on('click', function () {
         $('.overlay').addClass('_visible');
@@ -322,6 +377,7 @@ $(function () {
             $('.header__sidebar').addClass('_bg-opened')
         }
         $('.header__callback').removeClass('_hidden');
+        fpSyncCompactMenuState();
     });
     $('.header__callback_close').on('click', function () {
         $('.overlay').removeClass('_visible');
@@ -329,6 +385,7 @@ $(function () {
             $('.header__sidebar').removeClass('_bg-opened')
         }
         $('.header__callback').addClass('_hidden');
+        fpSyncCompactMenuState();
     });
     //------------------- Overlay Events  -------------------//
     $('.overlay').on('click', function () {
@@ -346,6 +403,8 @@ $(function () {
         if($(window).width() <= 1024) {
             $('.header__sidebar').removeClass('_bg-opened')
         }
+
+        fpSyncCompactMenuState();
     });
     //------------------- Masked Inputs  -------------------//
     $('.js-mask-phone').mask("+38 (000) 999-99-99");

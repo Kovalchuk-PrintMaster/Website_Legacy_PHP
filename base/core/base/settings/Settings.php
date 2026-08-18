@@ -63,6 +63,7 @@ class Settings
         'sales' => ['name'=>'Головний слайдер'],
         'socials'=> ['name' => 'Соціальні мережі'],
         'settings' => ['name'=>'Системні налаштування'],
+        'visual_assets' => ['name'=>'Візуальне оформлення','img'=>'pages.png'],
         'communication_buttons' => ['name'=>'Службові кнопки','img'=>'pages.png'],
         'advantages' => ['name'=>'Переваги'],
         'user' => ['name'=>'Безпека адмінки', 'img'=>'pages.png', 'menu'=>false],
@@ -124,6 +125,9 @@ class Settings
             'contacts_callback_label',
             'catalog_menu_position',
             'catalog_default_quantity',
+            'asset_key',
+            'active_from',
+            'active_until',
         ],
         'textarea' => [
             'keywords',
@@ -164,6 +168,20 @@ class Settings
     ];
 
     private $translate = [
+        // FP_SCHEDULED_VISUAL_ASSETS_V1
+        'asset_key' => [
+            'Тип візуального елемента',
+            'Для фавікона: favicon'
+        ],
+        'active_from' => [
+            'Активний від',
+            'YYYY-MM-DD; порожньо = без нижньої межі'
+        ],
+        'active_until' => [
+            'Активний до',
+            'YYYY-MM-DD; порожньо = без верхньої межі'
+        ],
+
         'name' => ['Назва', 'Не більше 100 символів'],
         'login' => ['Логін адміністратора', 'Унікальне ім’я для входу в адмінку'],
         'password' => ['Пароль адміністратора', 'Під час редагування залиште порожнім, щоб не змінювати пароль'],

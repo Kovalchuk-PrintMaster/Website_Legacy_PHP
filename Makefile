@@ -222,7 +222,9 @@ hosting-deploy-code-dry-run:
 	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile code --action dry-run
 
 hosting-deploy-frontend:
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_storage_capacity.py --prepare
 	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile frontend --action deploy
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_storage_capacity.py --cleanup-release-storage
 hosting-deploy-frontend-dry-run:
 	@$(HOSTING_RESET_PYTHON) "$(HOSTING_RELEASE_TOOL)" --profile frontend --action dry-run
 
@@ -278,3 +280,48 @@ hosting-diagnostic-hygiene:
 hosting-diagnostic-hygiene-clean:
 	@FP_HOSTING_DIAGNOSTIC_CLEANUP_ALLOWED=1 $(HOSTING_RESET_PYTHON) scripts/maintenance/cleanup_hosting_diagnostic_artifacts.py --apply
 # FP_OPERATIONAL_DB_MAKE_TARGETS_V0_1_END
+
+# FP_HOSTING_CAPACITY_OFFHOST_BACKUP_V1
+.PHONY: hosting-storage-check hosting-storage-prepare hosting-clean-release-storage hosting-backup-local-dry-run hosting-backup-local
+
+hosting-storage-check:
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_storage_capacity.py --check
+
+hosting-storage-prepare:
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_storage_capacity.py --prepare
+
+hosting-clean-release-storage:
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_storage_capacity.py --cleanup-release-storage
+
+hosting-backup-local-dry-run:
+	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/backup_hosting_to_local.py --dry-run
+
+hosting-backup-local:
+	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/backup_hosting_to_local.py
+# /FP_HOSTING_CAPACITY_OFFHOST_BACKUP_V1
+
+# FP_CANONICAL_FULL_HOSTING_SYNC_V1
+HOSTING_BACKUP ?= latest
+
+.PHONY: hosting-sync-full-dry-run hosting-sync-full hosting-restore-local-backup-dry-run hosting-restore-local-backup
+
+hosting-sync-full-dry-run:
+	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/sync_local_to_hosting_full.py --dry-run
+
+hosting-sync-full:
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_full_sync_contract.py
+	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/sync_local_to_hosting_full.py --apply
+
+hosting-restore-local-backup-dry-run:
+	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/restore_hosting_from_local_backup.py --backup "$(HOSTING_BACKUP)" --dry-run
+
+hosting-restore-local-backup:
+	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/restore_hosting_from_local_backup.py --backup "$(HOSTING_BACKUP)" --apply
+# /FP_CANONICAL_FULL_HOSTING_SYNC_V1
+
+# FP_HOSTING_FULL_SYNC_HARDENING_V1
+.PHONY: hosting-sync-contract-check
+
+hosting-sync-contract-check:
+	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_full_sync_contract.py
+# /FP_HOSTING_FULL_SYNC_HARDENING_V1

@@ -120,6 +120,11 @@ $fpFooterCopyright = trim((string)($fpFooterSettings['copyright_text'] ?? 'Copyr
 ?>
 
 <?php if ($fpFooterVisible): ?>
+<?php
+$fpSearchStripModifier = 'footer';
+include __DIR__ . '/searchStrip.php';
+unset($fpSearchStripModifier);
+?>
 <footer class="footer fp-site-footer" xmlns="http://www.w3.org/1999/html">
     <div class="container fp-site-footer__container fp-layout-container">
         <div class="footer__wrapper">
@@ -133,7 +138,7 @@ $fpFooterCopyright = trim((string)($fpFooterSettings['copyright_text'] ?? 'Copyr
                         <picture class="fp-site-footer__logo-picture">
                             <?php if ($fpFooterMobileLogo !== ''): ?>
                                 <source
-                                    media="(max-width: 48em)"
+                                    media="(max-width: 48em), (orientation: landscape) and (max-width: 64em) and (max-height: 36rem)"
                                     srcset="<?=htmlspecialchars(
                                         $this->img($fpFooterMobileLogo),
                                         ENT_QUOTES,
@@ -150,6 +155,20 @@ $fpFooterCopyright = trim((string)($fpFooterSettings['copyright_text'] ?? 'Copyr
                         </picture>
                     </a>
                 </div>
+
+                <nav
+                    class="fp-mobile-footer-links"
+                    aria-label="Швидка мобільна навігація футера"
+                >
+                    <a
+                        class="fp-mobile-footer-links__link"
+                        href="<?=$this->alias('catalog', ['fp_ui' => 'filters'])?>"
+                    >Каталог</a>
+                    <a
+                        class="fp-mobile-footer-links__link"
+                        href="<?=$this->alias('contacts')?>"
+                    >Контакти</a>
+                </nav>
 
                 <nav class="footer__top_menu" aria-label="Навігація футера">
                     <ul>

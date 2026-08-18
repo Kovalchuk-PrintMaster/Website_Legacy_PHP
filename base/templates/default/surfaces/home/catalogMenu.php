@@ -4,6 +4,48 @@
     class="fp-home-categories fp-layout-container"
     aria-label="Категорії продукції"
 >
+    <div
+        class="fp-home-categories__mobile-list"
+        aria-label="Категорії продукції"
+    >
+        <?php foreach ($this->menu['catalog'] as $item): ?>
+            <?php
+            $mobileCategoryName = htmlspecialchars(
+                (string)($item['name'] ?? ''),
+                ENT_QUOTES,
+                'UTF-8'
+            );
+
+            $mobileCategoryImage = $this->img(
+                (string)($item['img'] ?? '')
+            );
+            ?>
+
+            <a
+                class="fp-home-categories__mobile-card"
+                href="<?=$this->alias([
+                    'catalog' => $item['alias']
+                ])?>"
+                aria-label="<?=$mobileCategoryName?>"
+            >
+                <span class="fp-home-categories__mobile-media">
+                    <img
+                        src="<?=$mobileCategoryImage?>"
+                        alt="<?=$mobileCategoryName?>"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </span>
+
+                <span class="fp-home-categories__mobile-content">
+                    <span class="fp-home-categories__mobile-title">
+                        <?=$mobileCategoryName?>
+                    </span>
+                </span>
+            </a>
+        <?php endforeach; ?>
+    </div>
+
     <div class="fp-home-categories__viewport swiper">
         <div class="fp-home-categories__track swiper-wrapper">
 

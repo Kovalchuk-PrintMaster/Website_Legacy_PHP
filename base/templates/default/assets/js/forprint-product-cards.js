@@ -51,20 +51,16 @@
                     threshold: 8,
                     observer: true,
                     observeParents: true,
-                    slidesPerView: 1,
-                    spaceBetween: 18,
+                    slidesPerView: 2,
+                    spaceBetween: 12,
                     navigation: {
                         nextEl: nextButton,
                         prevEl: prevButton
                     },
                     breakpoints: {
-                        480: {
-                            slidesPerView: 2,
-                            spaceBetween: 18
-                        },
-                        780: {
-                            slidesPerView: 3,
-                            spaceBetween: 18
+                        640: {
+                            slidesPerView: 4,
+                            spaceBetween: 12
                         },
                         1366: {
                             slidesPerView: 4,

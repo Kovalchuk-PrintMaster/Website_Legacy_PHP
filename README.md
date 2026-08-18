@@ -117,3 +117,50 @@ the public webroot and outside Git-tracked configuration.
 
 Prefer read-only inspection before mutation, explicit scope before apply, and
 post-change verification with durable evidence.
+
+<!-- FP_HOSTING_CAPACITY_OFFHOST_BACKUP_DOC_V1 -->
+## Hosting capacity and backup boundary
+
+Production hosting is a runtime target, not a backup repository. Persistent
+release archives and database/media backups are kept off-hosting.
+
+- [Hosting capacity and off-host backup decision](docs/decisions/2026-08-17__hosting_capacity_and_offhost_backup_policy.md)
+- `make hosting-storage-check` — inspect remote storage policy;
+- `make hosting-storage-prepare` — remove stale deployment payload and verify
+  bounded write headroom;
+- `make hosting-backup-local` — stream a rollback snapshot directly to
+  `.runtime/backups/hosting/`.
+
+Historical retention and Google Drive remain owned by Cloud Backup Manager.
+<!-- /FP_HOSTING_CAPACITY_OFFHOST_BACKUP_DOC_V1 -->
+
+<!-- FP_CANONICAL_FULL_HOSTING_SYNC_DOC_V1 -->
+## Canonical complete hosting synchronization
+
+```bash
+make hosting-sync-full-dry-run
+make hosting-sync-full
+make hosting-restore-local-backup-dry-run
+make hosting-restore-local-backup
+```
+
+Complete sync first streams a production rollback snapshot to local storage,
+then mirrors managed media, application source and the complete local database.
+Decision: `docs/decisions/2026-08-17__canonical_full_hosting_sync_and_local_rollback.md`.
+<!-- /FP_CANONICAL_FULL_HOSTING_SYNC_DOC_V1 -->
+
+<!-- FP_HOSTING_FULL_SYNC_HARDENING_DOC_V1 -->
+### Full-sync regression gate
+
+The production-proven complete synchronization is guarded by:
+
+```bash
+make hosting-sync-contract-check
+```
+
+`make hosting-sync-full` runs this contract automatically before the
+high-risk operation.
+
+Current proven baseline:
+`docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md`.
+<!-- /FP_HOSTING_FULL_SYNC_HARDENING_DOC_V1 -->

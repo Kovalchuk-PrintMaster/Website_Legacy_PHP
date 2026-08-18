@@ -13,262 +13,252 @@
  * forprint-home.css so this architecture step does not redesign UI.
  */
 
-/* FP_MOBILE_PORTRAIT_HOME_START */
+/* FP_MOBILE_HOME_START */
 
 /*
- * Homepage mobile portrait is intentionally reduced to:
- * search -> catalog page fragment -> compact footer.
+ * Mobile homepage is reduced without creating a second catalog data source:
+ *   search (temporarily moved under header nav)
+ *   first server-rendered product group ("Хіти продажів")
+ *   compact footer
  */
 .fp-mobile-catalog {
     display: none;
 }
 
-@media (max-width: 40rem) and (orientation: portrait) {
-    html.fp-mobile-portrait-active
+@media (max-width: 48em),
+       (orientation: landscape) and (max-width: 64em) and (max-height: 36rem) {
     [data-fp-surface="home"] {
         display: block;
-        inline-size: 100%;
-        min-block-size: 0;
-        padding-block-start: 0;
+        min-width: 0;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-hero,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-categories,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-product-groups,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-about,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-advantages,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-news,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-information,
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-home-feedback {
+    [data-fp-surface="home"] .fp-home-hero,
+    [data-fp-surface="home"] .fp-home-categories,
+    [data-fp-surface="home"] .fp-home-about,
+    [data-fp-surface="home"] .fp-home-advantages,
+    [data-fp-surface="home"] .fp-home-feedback,
+    [data-fp-surface="home"] .fp-home-news {
         display: none;
     }
 
-    html.fp-mobile-portrait-active
     [data-fp-surface="home"]
-    .fp-mobile-catalog {
+    .fp-home-product-groups {
         display: block;
-        inline-size: min(
-            calc(
-                100%
-                - 2 * var(--fp-layout-page-gutter)
-            ),
-            40rem
-        );
-        margin-inline: auto;
-        padding:
-            clamp(1.4rem, 6vw, 2rem)
-            0
-            0;
-        scroll-margin-block-start: 4.5rem;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__header {
-        display: grid;
-        gap: 0.25rem;
-        margin-block-end: 1rem;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__eyebrow {
-        margin: 0;
-        color:
-            var(--fp-color-muted, #747b80);
-        font:
-            700 0.72rem/1.3
-            Lato,
-            Arial,
-            sans-serif;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__title {
-        margin: 0;
-        color:
-            var(--fp-color-graphite, #252b2f);
-        font:
-            800 clamp(1.35rem, 7vw, 1.8rem)/1.1
-            Lato,
-            Arial,
-            sans-serif;
-        letter-spacing: 0.025em;
-        text-transform: uppercase;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__status {
-        min-block-size: 1.25rem;
-        margin: 0.25rem 0 0;
-        color:
-            var(--fp-color-muted, #747b80);
-        font:
-            500 0.78rem/1.4
-            Lato,
-            Arial,
-            sans-serif;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__body {
-        min-block-size: 8rem;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog[aria-busy="true"]
-    .fp-mobile-catalog__body {
-        background:
-            linear-gradient(
-                90deg,
-                rgba(37, 43, 47, 0.04),
-                rgba(37, 43, 47, 0.09),
-                rgba(37, 43, 47, 0.04)
-            );
-        background-size: 220% 100%;
-        animation:
-            fp-mobile-catalog-loading
-            1.4s
-            linear
-            infinite;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__grid {
-        display: grid;
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-        gap:
-            clamp(0.7rem, 3vw, 1rem);
         inline-size: 100%;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-product-groups__band {
+        display: none;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-product-groups__panel {
+        display: none;
+        inline-size: 100%;
+        max-inline-size: none;
+        margin: 0;
+        padding:
+            clamp(0.9rem, 4vw, 1.2rem)
+            var(--fp-layout-page-gutter)
+            clamp(1.5rem, 6vw, 2.25rem);
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-product-groups__panel.active {
+        display: block;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-product-groups__heading {
+        margin: 0 0 0.9rem;
+        padding: 0;
+        color: #1d1f21;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.035em;
+        text-transform: uppercase;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-product-groups__grid-container {
+        overflow: visible;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-product-groups__more {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 2.9rem;
+        margin-block-start: 1rem;
+        padding: 0.65rem 1rem;
+        font-size: 0.78rem;
+        line-height: 1.2;
+        text-align: center;
+    }
+}
+
+/* FP_MOBILE_HOME_END */
+
+/* Mobile home category cards */
+[data-fp-surface="home"] .fp-home-categories__mobile-list {
+    display: none;
+}
+
+@media (max-width: 48em),
+       (orientation: landscape) and (max-width: 64em) and (max-height: 36rem) {
+    [data-fp-surface="home"] .fp-home-product-groups {
+        display: none;
+    }
+
+    [data-fp-surface="home"] .fp-home-categories {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding:
+            0.75rem
+            var(--fp-layout-page-gutter)
+            1.25rem;
+    }
+
+    [data-fp-surface="home"] .fp-home-categories__viewport {
+        display: none;
+    }
+
+    [data-fp-surface="home"] .fp-home-categories__mobile-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        width: 100%;
+        min-width: 0;
         margin: 0;
         padding: 0;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__pagination {
-        display: flex;
-        justify-content: center;
-        inline-size: 100%;
-        margin-block-start: 1.25rem;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__pager {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.35rem;
-        inline-size: 100%;
-    }
-
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__pager
-    .catalog-section-pagination__item {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-inline-size: 2.75rem;
-        min-block-size: 2.75rem;
+    [data-fp-surface="home"] .fp-home-categories__mobile-card {
+        display: grid;
+        grid-template-rows: auto minmax(3.1rem, auto);
+        min-width: 0;
         margin: 0;
-        padding: 0.45rem;
-        color:
-            var(--fp-color-graphite, #252b2f);
-        font:
-            700 0.82rem/1
-            Lato,
-            Arial,
-            sans-serif;
+        overflow: hidden;
+        color: #1d1f21;
         text-decoration: none;
-        border:
-            1px solid
-            rgba(37, 43, 47, 0.25);
-        background: #fff;
+        background: #ffffff;
+        border: 1px solid rgba(37, 43, 47, 0.14);
+        border-radius: 0.6rem;
+        box-shadow: 0 0.15rem 0.45rem rgba(30, 45, 55, 0.06);
+        transition:
+            border-color 160ms ease,
+            box-shadow 160ms ease,
+            transform 160ms ease;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__pager
-    .pagination-current {
-        color: #fff;
-        border-color:
-            var(--fp-color-graphite, #252b2f);
-        background:
-            var(--fp-color-graphite, #252b2f);
+    [data-fp-surface="home"] .fp-home-categories__mobile-card:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
     }
 
-    html.fp-mobile-portrait-active
-    [data-fp-surface="home"]
-    .fp-mobile-catalog__fallback {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-block-size: 3rem;
-        padding-inline: 1rem;
-        color: #fff;
-        font:
-            700 0.82rem/1
-            Lato,
-            Arial,
-            sans-serif;
-        text-decoration: none;
-        text-transform: uppercase;
-        background:
-            var(--fp-color-graphite, #252b2f);
+    [data-fp-surface="home"] .fp-home-categories__mobile-card:active {
+        transform: translateY(1px);
     }
 
-    @keyframes fp-mobile-catalog-loading {
-        from {
-            background-position: 100% 0;
-        }
-
-        to {
-            background-position: -120% 0;
-        }
+    [data-fp-surface="home"] .fp-home-categories__mobile-media {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: #f1f3f4;
     }
 
-    @media (max-width: 22rem) {
-        html.fp-mobile-portrait-active
-        [data-fp-surface="home"]
-        .fp-mobile-catalog__grid {
-            grid-template-columns: 1fr;
-        }
+    [data-fp-surface="home"] .fp-home-categories__mobile-media img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        html.fp-mobile-portrait-active
-        [data-fp-surface="home"]
-        .fp-mobile-catalog[aria-busy="true"]
-        .fp-mobile-catalog__body {
-            animation: none;
-        }
+    [data-fp-surface="home"] .fp-home-categories__mobile-content {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
+        padding: 0.62rem 0.7rem 0.72rem;
+        background: #ffffff;
+    }
+
+    [data-fp-surface="home"] .fp-home-categories__mobile-title {
+        display: -webkit-box;
+        min-width: 0;
+        max-height: 2.5em;
+        margin: 0;
+        overflow: hidden;
+        color: #1d1f21;
+        font-size: clamp(0.86rem, 3.75vw, 0.98rem);
+        font-weight: 700;
+        line-height: 1.25;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
 }
 
-/* FP_MOBILE_PORTRAIT_HOME_END */
+@media (max-width: 20rem) and (orientation: portrait) {
+    [data-fp-surface="home"] .fp-home-categories__mobile-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    [data-fp-surface="home"] .fp-home-categories__mobile-card {
+        grid-template-columns: minmax(7rem, 42%) minmax(0, 1fr);
+        grid-template-rows: minmax(6.5rem, auto);
+    }
+
+    [data-fp-surface="home"] .fp-home-categories__mobile-media {
+        height: 100%;
+        aspect-ratio: auto;
+    }
+
+    [data-fp-surface="home"] .fp-home-categories__mobile-content {
+        align-items: center;
+    }
+}
+
+/* FP_HOME_COMPACT_LANDSCAPE_FOUR_CARDS_START */
+@media (orientation: landscape)
+       and (max-width: 64em)
+       and (max-height: 36rem) {
+    [data-fp-surface="home"]
+    .fp-home-categories__mobile-list {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+        gap: 0.6rem;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-categories__mobile-card {
+        grid-template-rows:
+            auto
+            minmax(2.6rem, auto);
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-categories__mobile-content {
+        padding: 0.45rem 0.5rem 0.55rem;
+    }
+
+    [data-fp-surface="home"]
+    .fp-home-categories__mobile-title {
+        max-height: 2.4em;
+        font-size:
+            clamp(0.72rem, 1.7vw, 0.9rem);
+        line-height: 1.2;
+    }
+}
+/* FP_HOME_COMPACT_LANDSCAPE_FOUR_CARDS_END */
