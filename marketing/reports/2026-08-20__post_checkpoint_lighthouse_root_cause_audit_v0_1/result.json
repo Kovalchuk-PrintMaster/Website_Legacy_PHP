@@ -1,0 +1,327 @@
+{
+  "after_report": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_after_batch_a_v0_3",
+  "after_valid_runs": 36,
+  "before_report": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_before_resumable_v0_3",
+  "before_valid_runs": 36,
+  "database_mutation": false,
+  "generated": "2026-08-20T17:27:15.303420+03:00",
+  "git_checkpoint": "93b1905cb0276740e12f4fb5cb2a004986722e73",
+  "image_heavy_desktop": {
+    "after": {
+      "benchmark_index": 1768.0,
+      "image_bytes": 21123229.0,
+      "lcp_ms": 2403.1171824646,
+      "performance_score": 50.0,
+      "requests": 106.0,
+      "script_bytes": 303775.0,
+      "speed_index_ms": 2972.3294974403852,
+      "tbt_ms": 1575.433
+    },
+    "after_application_bootup_ms": 365.8730000000086,
+    "after_mainthread": {
+      "Garbage Collection": 1.2209999999999996,
+      "Other": 2471.905000000176,
+      "Parse HTML & CSS": 28.217,
+      "Rendering": 137.28000000001447,
+      "Script Evaluation": 128.38000000000048,
+      "Script Parsing & Compilation": 25.242,
+      "Style & Layout": 192.958
+    },
+    "after_top_sources": [
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 2471.905000000176,
+        "occurrences": 3,
+        "source": "Other"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 2276.596000000155,
+        "occurrences": 3,
+        "source": "Unattributable"
+      },
+      {
+        "audit": "long-tasks",
+        "median_duration_ms": 1784.9999999999998,
+        "occurrences": 5,
+        "source": "Unattributable"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 418.0980000000116,
+        "occurrences": 3,
+        "source": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 192.958,
+        "occurrences": 3,
+        "source": "Style & Layout"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 137.28000000001447,
+        "occurrences": 3,
+        "source": "Rendering"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 128.38000000000048,
+        "occurrences": 3,
+        "source": "Script Evaluation"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 122.60799999999995,
+        "occurrences": 3,
+        "source": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 60.8915,
+        "occurrences": 2,
+        "source": "https://forprint.net.ua/templates/default/assets/js/app.js"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 38.54800000000001,
+        "occurrences": 1,
+        "source": "Script Parsing & Compilation"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 28.057000000000006,
+        "occurrences": 1,
+        "source": "Parse HTML & CSS"
+      }
+    ],
+    "application_bootup_regressed_50pct": false,
+    "before": {
+      "benchmark_index": 1748.0,
+      "image_bytes": 21123229.0,
+      "lcp_ms": 3453.8199999999997,
+      "performance_score": 74.0,
+      "requests": 106.0,
+      "script_bytes": 303782.0,
+      "speed_index_ms": 2832.3325982306137,
+      "tbt_ms": 0.0
+    },
+    "before_application_bootup_ms": 521.7680000000173,
+    "before_mainthread": {
+      "Garbage Collection": 1.1939999999999995,
+      "Other": 681.6190000000022,
+      "Parse HTML & CSS": 38.363,
+      "Rendering": 187.3460000000192,
+      "Script Evaluation": 125.20500000000024,
+      "Script Parsing & Compilation": 25.206000000000007,
+      "Style & Layout": 218.45699999999997
+    },
+    "before_top_sources": [
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 681.6190000000022,
+        "occurrences": 3,
+        "source": "Other"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 582.2810000000175,
+        "occurrences": 3,
+        "source": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 398.0449999999887,
+        "occurrences": 3,
+        "source": "Unattributable"
+      },
+      {
+        "audit": "long-tasks",
+        "median_duration_ms": 294.0,
+        "occurrences": 1,
+        "source": "Unattributable"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 218.45699999999997,
+        "occurrences": 3,
+        "source": "Style & Layout"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 187.3460000000192,
+        "occurrences": 3,
+        "source": "Rendering"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 125.20500000000024,
+        "occurrences": 3,
+        "source": "Script Evaluation"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 115.54699999999988,
+        "occurrences": 3,
+        "source": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+      },
+      {
+        "audit": "long-tasks",
+        "median_duration_ms": 78.0,
+        "occurrences": 1,
+        "source": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+      },
+      {
+        "audit": "bootup-time",
+        "median_duration_ms": 62.89750000000002,
+        "occurrences": 2,
+        "source": "https://forprint.net.ua/templates/default/assets/js/app.js"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 39.105999999999995,
+        "occurrences": 2,
+        "source": "Parse HTML & CSS"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 26.469,
+        "occurrences": 2,
+        "source": "Script Parsing & Compilation"
+      },
+      {
+        "audit": "mainthread-work-breakdown",
+        "median_duration_ms": 1.1939999999999995,
+        "occurrences": 1,
+        "source": "Garbage Collection"
+      }
+    ],
+    "browser_or_unattributable_lab_signal_supported": true,
+    "direct_application_js_regression_supported": false,
+    "other_or_unattributable_dominant": true,
+    "requests_stable": true,
+    "script_payload_delta_bytes": -7.0,
+    "script_payload_stable": true,
+    "tail_session": {
+      "desktop_before_final_group_tbt_median": 0.0,
+      "desktop_tbt_by_sequence": [
+        {
+          "benchmark_index": 1778.5,
+          "route": "home",
+          "run_index": 4,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1785.0,
+          "route": "home",
+          "run_index": 5,
+          "tbt_ms": 240.40800000000002
+        },
+        {
+          "benchmark_index": 1657.0,
+          "route": "home",
+          "run_index": 6,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1727.0,
+          "route": "catalog",
+          "run_index": 10,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1780.0,
+          "route": "catalog",
+          "run_index": 11,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1770.5,
+          "route": "catalog",
+          "run_index": 12,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1725.0,
+          "route": "services",
+          "run_index": 16,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1792.5,
+          "route": "services",
+          "run_index": 17,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1777.0,
+          "route": "services",
+          "run_index": 18,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1763.5,
+          "route": "contacts",
+          "run_index": 22,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1766.5,
+          "route": "contacts",
+          "run_index": 23,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1783.5,
+          "route": "contacts",
+          "run_index": 24,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1766.0,
+          "route": "representative_product",
+          "run_index": 28,
+          "tbt_ms": 2039.8269999999993
+        },
+        {
+          "benchmark_index": 1779.5,
+          "route": "representative_product",
+          "run_index": 29,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1777.0,
+          "route": "representative_product",
+          "run_index": 30,
+          "tbt_ms": 0.0
+        },
+        {
+          "benchmark_index": 1762.0,
+          "route": "image_heavy_product",
+          "run_index": 34,
+          "tbt_ms": 1575.433
+        },
+        {
+          "benchmark_index": 1768.0,
+          "route": "image_heavy_product",
+          "run_index": 35,
+          "tbt_ms": 1390.9809999999998
+        },
+        {
+          "benchmark_index": 1769.5,
+          "route": "image_heavy_product",
+          "run_index": 36,
+          "tbt_ms": 2068.2240000000006
+        }
+      ],
+      "final_image_heavy_desktop_tbt_median": 1575.433,
+      "final_three_run_indices": [
+        34,
+        35,
+        36
+      ]
+    }
+  },
+  "lighthouse_rerun": false,
+  "production_mutation": false
+}
