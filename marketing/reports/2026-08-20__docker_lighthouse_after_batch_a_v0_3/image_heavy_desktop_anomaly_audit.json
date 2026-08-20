@@ -1,0 +1,540 @@
+{
+  "after_runs": [
+    {
+      "benchmarkIndex": 1762,
+      "metrics": {
+        "cls": 0.008133339779972621,
+        "fcp_ms": 656.134,
+        "lcp_ms": 2400.335,
+        "performance_score": 50.0,
+        "speed_index_ms": 2939.957279693839,
+        "tbt_ms": 1575.433,
+        "ttfb_ms": 74.0
+      },
+      "network": {
+        "image_transfer_bytes": 21123229,
+        "requests": 106,
+        "script_transfer_bytes": 303768,
+        "transfer_bytes": 23184758
+      },
+      "run_index": 1,
+      "source_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_after_batch_a_v0_3/runs/image_heavy_product__desktop__rep1.json",
+      "top_task_items": [
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 2471.905000000176,
+          "label": "Other",
+          "url": "Other"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 2276.596000000155,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 1906.0,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 365.8730000000086,
+          "label": "",
+          "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 176.3829999999998,
+          "label": "Style & Layout",
+          "url": "Style & Layout"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 128.69800000001175,
+          "label": "Rendering",
+          "url": "Rendering"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 120.3899999999999,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 100.2910000000003,
+          "label": "Script Evaluation",
+          "url": "Script Evaluation"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 95.0,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 51.0,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 28.217,
+          "label": "Parse HTML & CSS",
+          "url": "Parse HTML & CSS"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 25.242,
+          "label": "Script Parsing & Compilation",
+          "url": "Script Parsing & Compilation"
+        }
+      ]
+    },
+    {
+      "benchmarkIndex": 1768,
+      "metrics": {
+        "cls": 0.008118459384530992,
+        "fcp_ms": 654.038,
+        "lcp_ms": 2403.1171824646,
+        "performance_score": 50.0,
+        "speed_index_ms": 2995.479161281149,
+        "tbt_ms": 1390.9809999999998,
+        "ttfb_ms": 74.0
+      },
+      "network": {
+        "image_transfer_bytes": 21123229,
+        "requests": 106,
+        "script_transfer_bytes": 304000,
+        "transfer_bytes": 23184842
+      },
+      "run_index": 2,
+      "source_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_after_batch_a_v0_3/runs/image_heavy_product__desktop__rep2.json",
+      "top_task_items": [
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 2228.3420000001383,
+          "label": "Other",
+          "url": "Other"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 1988.992999999876,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 1784.9999999999998,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 418.0980000000116,
+          "label": "",
+          "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 192.958,
+          "label": "Style & Layout",
+          "url": "Style & Layout"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 150.73499999999996,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 137.28000000001447,
+          "label": "Rendering",
+          "url": "Rendering"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 128.6680000000002,
+          "label": "Script Evaluation",
+          "url": "Script Evaluation"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 54.511999999999986,
+          "label": "",
+          "url": "https://forprint.net.ua/templates/default/assets/js/app.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 38.54800000000001,
+          "label": "Script Parsing & Compilation",
+          "url": "Script Parsing & Compilation"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 28.56200000000001,
+          "label": "Parse HTML & CSS",
+          "url": "Parse HTML & CSS"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 1.2209999999999996,
+          "label": "Garbage Collection",
+          "url": "Garbage Collection"
+        }
+      ]
+    },
+    {
+      "benchmarkIndex": 1769.5,
+      "metrics": {
+        "cls": 0.008126612592495098,
+        "fcp_ms": 655.552,
+        "lcp_ms": 5774.431999999999,
+        "performance_score": 39.0,
+        "speed_index_ms": 2972.3294974403852,
+        "tbt_ms": 2068.2240000000006,
+        "ttfb_ms": 74.0
+      },
+      "network": {
+        "image_transfer_bytes": 21123229,
+        "requests": 106,
+        "script_transfer_bytes": 303775,
+        "transfer_bytes": 23184788
+      },
+      "run_index": 3,
+      "source_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_after_batch_a_v0_3/runs/image_heavy_product__desktop__rep3.json",
+      "top_task_items": [
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 2899.200000000179,
+          "label": "Other",
+          "url": "Other"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 2693.6460000001593,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 2452.000000000001,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 438.28400000001307,
+          "label": "",
+          "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 212.93699999999995,
+          "label": "Style & Layout",
+          "url": "Style & Layout"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 148.38100000001722,
+          "label": "Rendering",
+          "url": "Rendering"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 128.38000000000048,
+          "label": "Script Evaluation",
+          "url": "Script Evaluation"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 122.60799999999995,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 67.27100000000002,
+          "label": "",
+          "url": "https://forprint.net.ua/templates/default/assets/js/app.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 28.057000000000006,
+          "label": "Parse HTML & CSS",
+          "url": "Parse HTML & CSS"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 24.63699999999999,
+          "label": "Script Parsing & Compilation",
+          "url": "Script Parsing & Compilation"
+        }
+      ]
+    }
+  ],
+  "before_runs": [
+    {
+      "benchmarkIndex": 1740,
+      "metrics": {
+        "cls": 0.008133339779972621,
+        "fcp_ms": 661.528,
+        "lcp_ms": 3453.8199999999997,
+        "performance_score": 74.0,
+        "speed_index_ms": 2825.15490090143,
+        "tbt_ms": 0.0,
+        "ttfb_ms": 69.0
+      },
+      "network": {
+        "image_transfer_bytes": 21123229,
+        "requests": 106,
+        "script_transfer_bytes": 303782,
+        "transfer_bytes": 23184449
+      },
+      "run_index": 1,
+      "source_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_before_resumable_v0_3/raw/image_heavy_product__desktop__run1.json",
+      "top_task_items": [
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 659.7840000000002,
+          "label": "Other",
+          "url": "Other"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 582.2810000000175,
+          "label": "",
+          "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 398.0449999999887,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 231.24200000000008,
+          "label": "Style & Layout",
+          "url": "Style & Layout"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 187.3460000000192,
+          "label": "Rendering",
+          "url": "Rendering"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 142.2910000000003,
+          "label": "Script Evaluation",
+          "url": "Script Evaluation"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 115.54699999999988,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 60.82400000000003,
+          "label": "",
+          "url": "https://forprint.net.ua/templates/default/assets/js/app.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 44.941,
+          "label": "Parse HTML & CSS",
+          "url": "Parse HTML & CSS"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 27.732,
+          "label": "Script Parsing & Compilation",
+          "url": "Script Parsing & Compilation"
+        }
+      ]
+    },
+    {
+      "benchmarkIndex": 1778.5,
+      "metrics": {
+        "cls": 0.008388581927383981,
+        "fcp_ms": 656.5799999999999,
+        "lcp_ms": 1921.4499999999998,
+        "performance_score": 84.0,
+        "speed_index_ms": 2832.3325982306137,
+        "tbt_ms": 28.0,
+        "ttfb_ms": 72.0
+      },
+      "network": {
+        "image_transfer_bytes": 21123229,
+        "requests": 106,
+        "script_transfer_bytes": 303792,
+        "transfer_bytes": 23184587
+      },
+      "run_index": 2,
+      "source_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_before_resumable_v0_3/raw/image_heavy_product__desktop__run2.json",
+      "top_task_items": [
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 864.510999999998,
+          "label": "Other",
+          "url": "Other"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 574.1350000000001,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 521.7680000000173,
+          "label": "",
+          "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 294.0,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 202.55500000000018,
+          "label": "Style & Layout",
+          "url": "Style & Layout"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 163.62200000001786,
+          "label": "Rendering",
+          "url": "Rendering"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 129.44500000000008,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 118.71300000000042,
+          "label": "Script Evaluation",
+          "url": "Script Evaluation"
+        },
+        {
+          "audit": "long-tasks",
+          "duration_ms": 78.0,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 64.97100000000002,
+          "label": "",
+          "url": "https://forprint.net.ua/templates/default/assets/js/app.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 38.363,
+          "label": "Parse HTML & CSS",
+          "url": "Parse HTML & CSS"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 24.32300000000001,
+          "label": "Script Parsing & Compilation",
+          "url": "Script Parsing & Compilation"
+        }
+      ]
+    },
+    {
+      "benchmarkIndex": 1748,
+      "metrics": {
+        "cls": 0.0162556707295417,
+        "fcp_ms": 654.9140000000001,
+        "lcp_ms": 4444.741999999999,
+        "performance_score": 70.0,
+        "speed_index_ms": 3176.40635537411,
+        "tbt_ms": 0.0,
+        "ttfb_ms": 78.0
+      },
+      "network": {
+        "image_transfer_bytes": 21123229,
+        "requests": 106,
+        "script_transfer_bytes": 303777,
+        "transfer_bytes": 23184467
+      },
+      "run_index": 3,
+      "source_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_before_resumable_v0_3/raw/image_heavy_product__desktop__run3.json",
+      "top_task_items": [
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 681.6190000000022,
+          "label": "Other",
+          "url": "Other"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 660.467000000018,
+          "label": "",
+          "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 341.77799999998837,
+          "label": "",
+          "url": "Unattributable"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 218.45699999999997,
+          "label": "Style & Layout",
+          "url": "Style & Layout"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 202.78400000002256,
+          "label": "Rendering",
+          "url": "Rendering"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 125.20500000000024,
+          "label": "Script Evaluation",
+          "url": "Script Evaluation"
+        },
+        {
+          "audit": "bootup-time",
+          "duration_ms": 102.99700000000006,
+          "label": "",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 33.270999999999994,
+          "label": "Parse HTML & CSS",
+          "url": "Parse HTML & CSS"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 25.206000000000007,
+          "label": "Script Parsing & Compilation",
+          "url": "Script Parsing & Compilation"
+        },
+        {
+          "audit": "mainthread-work-breakdown",
+          "duration_ms": 1.1939999999999995,
+          "label": "Garbage Collection",
+          "url": "Garbage Collection"
+        }
+      ]
+    }
+  ]
+}

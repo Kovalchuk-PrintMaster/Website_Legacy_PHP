@@ -1,5 +1,6 @@
 <?php
-/* ForPrint canonical breadcrumbs v0.6.36 */
+/* ForPrint visible canonical breadcrumbs v0.6.36 */
+/* FP_BREADCRUMB_VISIBLE_ONLY_V0_1 */
 
 $items = isset($breadcrumbItems) && is_array($breadcrumbItems)
     ? array_values(array_filter(
@@ -13,11 +14,7 @@ $items = isset($breadcrumbItems) && is_array($breadcrumbItems)
 
 <?php if ($items): ?>
     <nav class="breadcrumbs fp-breadcrumbs" aria-label="Хлібні крихти">
-        <ol
-            class="breadcrumbs__list fp-breadcrumbs__list"
-            itemscope
-            itemtype="https://schema.org/BreadcrumbList"
-        >
+        <ol class="breadcrumbs__list fp-breadcrumbs__list">
             <?php foreach ($items as $index => $item): ?>
                 <?php
                 $position = $index + 1;
@@ -27,28 +24,23 @@ $items = isset($breadcrumbItems) && is_array($breadcrumbItems)
                     : null;
                 $isCurrent = $position === count($items);
                 ?>
-                <li
-                    class="breadcrumbs__item fp-breadcrumbs__item"
-                    itemprop="itemListElement"
-                    itemscope
-                    itemtype="https://schema.org/ListItem"
-                >
+                <li class="breadcrumbs__item fp-breadcrumbs__item">
                     <?php if (!$isCurrent && $url !== null): ?>
                         <a
                             class="breadcrumbs__link fp-breadcrumbs__link"
-                            itemprop="item"
-                            href="<?=htmlspecialchars($url, ENT_QUOTES, 'UTF-8')?>"
-                        >
-                            <span itemprop="name"><?=htmlspecialchars(
-                                $label,
+                            href="<?=htmlspecialchars(
+                                $url,
                                 ENT_QUOTES,
                                 'UTF-8'
-                            )?></span>
-                        </a>
+                            )?>"
+                        ><?=htmlspecialchars(
+                            $label,
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )?></a>
                     <?php else: ?>
                         <span
                             class="fp-breadcrumbs__current"
-                            itemprop="name"
                             aria-current="page"
                         ><?=htmlspecialchars(
                             $label,
@@ -56,8 +48,6 @@ $items = isset($breadcrumbItems) && is_array($breadcrumbItems)
                             'UTF-8'
                         )?></span>
                     <?php endif; ?>
-
-                    <meta itemprop="position" content="<?=$position?>">
                 </li>
             <?php endforeach; ?>
         </ol>

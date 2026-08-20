@@ -19,6 +19,30 @@ class ProductController extends BaseUser
 
         }
 
+        /* FP_PRODUCT_LEGACY_REDIRECTS_START */
+        $legacyProductAliases = [
+            'obmna-vishivka-na-kepkah' => 'brenduvannya-avto',
+        'shirokoformatn-baneri-222' => 'reklamni-baneri-dlya-fasadiv-ta-konstruktsiy',
+        ];
+
+        $requestedProductAlias = trim(
+            (string)($this->parameters['alias'] ?? '')
+        );
+
+        if (isset($legacyProductAliases[$requestedProductAlias])) {
+            header(
+                'Location: '
+                . $this->alias(
+                    'product/'
+                    . $legacyProductAliases[$requestedProductAlias]
+                ),
+                true,
+                301
+            );
+            exit;
+        }
+        /* FP_PRODUCT_LEGACY_REDIRECTS_END */
+
         $data = $this->model->getGoods([
 
             'where' => ['alias' => $this->parameters['alias'],

@@ -15,25 +15,13 @@ require_once __DIR__ . '/../../config.php';
 
 function forprint_editor_slug(string $value, string $fallback): string
 {
-    $value = trim($value);
-
-    if ($value === '') {
-        return $fallback;
+    /* FP_CANONICAL_UK_SLUG_GENERATOR_V0_1_EDITOR */
+    if (!class_exists('\ForPrintSlug', false)) {
+        require_once dirname(__DIR__, 2) . '/libraries/ForPrintSlug.php';
     }
 
-    if (function_exists('transliterator_transliterate')) {
-        $value = transliterator_transliterate('Any-Latin; Latin-ASCII;', $value);
-    } else {
-        $converted = @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
-        $value = is_string($converted) ? $converted : $value;
+    return \ForPrintSlug::uk($value, $fallback);
     }
-
-    $value = strtolower($value);
-    $value = preg_replace('~[^a-z0-9]+~', '-', $value) ?: '';
-    $value = trim($value, '-');
-
-    return $value !== '' ? mb_substr($value, 0, 100) : $fallback;
-}
 
 function forprint_editor_catalog_alias(int $catalogId): string
 {

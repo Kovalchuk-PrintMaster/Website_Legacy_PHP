@@ -165,6 +165,15 @@ $fpSchemaSameAs = array_values(
 );
 
 $fpSchemaOpeningHours = [];
+
+/*
+ * FP_SCHEMA_OPENING_HOURS_GROUP_KEYS_V0_1
+ *
+ * contacts_schedule is the same structured source rendered on /contacts/.
+ * Canonical admin rows may use grouped keys such as "mon-fri" plus compact
+ * single-day keys such as "sat" and "sun". Expand those keys into individual
+ * Schema.org DayOfWeek values so the visible schedule and JSON-LD stay aligned.
+ */
 $fpSchemaScheduleRaw = trim(
     (string)($this->set['contacts_schedule'] ?? '')
 );
@@ -174,6 +183,28 @@ if ($fpSchemaScheduleRaw !== '') {
         $fpSchemaScheduleRaw,
         true
     );
+
+    /*
+     * Keep compatibility with historical admin flows that stored the JSON
+     * document as a JSON string.
+     */
+    if (is_string($fpSchemaSchedule)) {
+        $fpSchemaNestedSchedule = trim($fpSchemaSchedule);
+
+        if (
+            $fpSchemaNestedSchedule !== ''
+            && in_array(
+                $fpSchemaNestedSchedule[0] ?? '',
+                ['{', '['],
+                true
+            )
+        ) {
+            $fpSchemaSchedule = json_decode(
+                $fpSchemaNestedSchedule,
+                true
+            );
+        }
+    }
 
     if (
         is_array($fpSchemaSchedule)
@@ -185,25 +216,84 @@ if ($fpSchemaScheduleRaw !== '') {
             'понеділок' => 'Monday',
             'пн' => 'Monday',
             'monday' => 'Monday',
+            'mon' => 'Monday',
             'вівторок' => 'Tuesday',
             'вт' => 'Tuesday',
             'tuesday' => 'Tuesday',
+            'tue' => 'Tuesday',
+            'tues' => 'Tuesday',
             'середа' => 'Wednesday',
             'ср' => 'Wednesday',
             'wednesday' => 'Wednesday',
+            'wed' => 'Wednesday',
             'четвер' => 'Thursday',
             'чт' => 'Thursday',
             'thursday' => 'Thursday',
+            'thu' => 'Thursday',
+            'thur' => 'Thursday',
+            'thurs' => 'Thursday',
             "п'ятниця" => 'Friday',
             'п’ятниця' => 'Friday',
             'пт' => 'Friday',
             'friday' => 'Friday',
+            'fri' => 'Friday',
             'субота' => 'Saturday',
             'сб' => 'Saturday',
             'saturday' => 'Saturday',
+            'sat' => 'Saturday',
             'неділя' => 'Sunday',
             'нд' => 'Sunday',
             'sunday' => 'Sunday',
+            'sun' => 'Sunday',
+        ];
+
+        $fpSchemaDayGroupMap = [
+            'mon-fri' => [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+            ],
+            'mon–fri' => [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+            ],
+            'mon—fri' => [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+            ],
+            'пн-пт' => [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+            ],
+            'пн–пт' => [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+            ],
+            'пн—пт' => [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+            ],
+            'sat' => ['Saturday'],
+            'сб' => ['Saturday'],
+            'sun' => ['Sunday'],
+            'нд' => ['Sunday'],
         ];
 
         foreach (
@@ -227,16 +317,25 @@ if ($fpSchemaScheduleRaw !== '') {
                 continue;
             }
 
-            $fpSchemaScheduleLabel = strtolower(
+            $fpSchemaScheduleKey = strtolower(
                 trim(
                     (string)(
-                        $fpSchemaScheduleRow['day']
-                        ?? $fpSchemaScheduleRow['key']
-                        ?? $fpSchemaScheduleRow['label']
+                        $fpSchemaScheduleRow['key']
                         ?? ''
                     )
                 )
             );
+
+            $fpSchemaScheduleLabel = strtolower(
+                trim(
+                    (string)(
+                        $fpSchemaScheduleRow['day']
+                        ?? $fpSchemaScheduleRow['label']
+                        ?? $fpSchemaScheduleKey
+                    )
+                )
+            );
+
             $fpSchemaScheduleOpen = trim(
                 (string)(
                     $fpSchemaScheduleRow['open']
@@ -263,25 +362,31 @@ if ($fpSchemaScheduleRaw !== '') {
                 continue;
             }
 
-            $fpSchemaMatchedDays = [];
+            $fpSchemaMatchedDays = (
+                $fpSchemaDayGroupMap[$fpSchemaScheduleKey]
+                ?? $fpSchemaDayGroupMap[$fpSchemaScheduleLabel]
+                ?? []
+            );
 
-            foreach (
-                $fpSchemaDayMap
-                as $fpSchemaDayLabel => $fpSchemaDay
-            ) {
-                if (
-                    $fpSchemaScheduleLabel === $fpSchemaDayLabel
-                    || preg_match(
-                        '/(?:^|[\s,;\/\-–—])'
-                        . preg_quote(
-                            $fpSchemaDayLabel,
-                            '/'
-                        )
-                        . '(?:$|[\s,;\/\-–—])/u',
-                        $fpSchemaScheduleLabel
-                    )
+            if (!$fpSchemaMatchedDays) {
+                foreach (
+                    $fpSchemaDayMap
+                    as $fpSchemaDayLabel => $fpSchemaDay
                 ) {
-                    $fpSchemaMatchedDays[] = $fpSchemaDay;
+                    if (
+                        $fpSchemaScheduleLabel === $fpSchemaDayLabel
+                        || preg_match(
+                            '/(?:^|[\s,;\/\-–—])'
+                            . preg_quote(
+                                $fpSchemaDayLabel,
+                                '/'
+                            )
+                            . '(?:$|[\s,;\/\-–—])/u',
+                            $fpSchemaScheduleLabel
+                        )
+                    ) {
+                        $fpSchemaMatchedDays[] = $fpSchemaDay;
+                    }
                 }
             }
 
@@ -289,19 +394,46 @@ if ($fpSchemaScheduleRaw !== '') {
                 array_unique($fpSchemaMatchedDays)
             );
 
-            if (count($fpSchemaMatchedDays) !== 1) {
-                continue;
+            foreach (
+                $fpSchemaMatchedDays
+                as $fpSchemaMatchedDay
+            ) {
+                $fpSchemaOpeningHours[] = [
+                    '@type' => 'OpeningHoursSpecification',
+                    'dayOfWeek' => 'https://schema.org/'
+                        . $fpSchemaMatchedDay,
+                    'opens' => $fpSchemaScheduleOpen,
+                    'closes' => $fpSchemaScheduleClose,
+                ];
             }
-
-            $fpSchemaOpeningHours[] = [
-                '@type' => 'OpeningHoursSpecification',
-                'dayOfWeek' => 'https://schema.org/'
-                    . $fpSchemaMatchedDays[0],
-                'opens' => $fpSchemaScheduleOpen,
-                'closes' => $fpSchemaScheduleClose,
-            ];
         }
     }
+}
+
+/*
+ * FP_SCHEMA_MANAGED_CONTACT_EMPTY_FALLBACK_V0_1
+ *
+ * The Contacts page treats an empty managed contacts_* value as
+ * "use the legacy/general setting". PHP null-coalescing does not:
+ * an existing empty string suppresses the fallback. Mirror the visible
+ * Contacts page semantics here.
+ */
+if ($fpSchemaAddress === '') {
+    $fpSchemaAddress = $fpSchemaCleanText(
+        $this->set['address'] ?? ''
+    );
+}
+
+if ($fpSchemaPhone === '') {
+    $fpSchemaPhone = $fpSchemaCleanText(
+        $this->set['phone'] ?? ''
+    );
+}
+
+if ($fpSchemaEmail === '') {
+    $fpSchemaEmail = trim(
+        (string)($this->set['email'] ?? '')
+    );
 }
 
 if (
@@ -312,7 +444,14 @@ if (
     )
 ) {
     $fpSchemaBusiness = [
-        '@type' => $fpSchemaAddress !== ''
+        /*
+         * FP_SCHEMA_CONTACT_LOCALBUSINESS_ONLY_V0_1
+         * Homepage remains Organization; dedicated contacts page is LocalBusiness.
+         */
+        '@type' => (
+            $fpSchemaController === 'contacts'
+            && $fpSchemaAddress !== ''
+        )
             ? 'LocalBusiness'
             : 'Organization',
         '@id' => $fpSchemaBusinessId,
@@ -567,6 +706,95 @@ if (
             $fpSchemaGraph[] = $fpSchemaProduct;
         }
     }
+}
+
+
+/*
+ * FP_SCHEMA_CANONICAL_BREADCRUMB_JSONLD_V0_1
+ *
+ * Canonical breadcrumb data is built once in
+ * BaseUser::buildBreadcrumbItems().
+ *
+ * The visible breadcrumb template renders navigation only.
+ * This centralized structured-data owner emits the same
+ * canonical trail as JSON-LD.
+ *
+ * The final breadcrumb item may omit its URL because it
+ * represents the current document.
+ */
+$fpSchemaBreadcrumbSource = (
+    isset($this->breadcrumbItems)
+    && is_array($this->breadcrumbItems)
+)
+    ? array_values($this->breadcrumbItems)
+    : [];
+
+$fpSchemaBreadcrumbElements = [];
+
+foreach (
+    $fpSchemaBreadcrumbSource
+    as $fpSchemaBreadcrumbItem
+) {
+    if (!is_array($fpSchemaBreadcrumbItem)) {
+        continue;
+    }
+
+    $fpSchemaBreadcrumbName = $fpSchemaCleanText(
+        $fpSchemaBreadcrumbItem['label'] ?? ''
+    );
+
+    if ($fpSchemaBreadcrumbName === '') {
+        continue;
+    }
+
+    $fpSchemaBreadcrumbElement = [
+        '@type' => 'ListItem',
+        'position' => (
+            count($fpSchemaBreadcrumbElements) + 1
+        ),
+        'name' => $fpSchemaBreadcrumbName,
+    ];
+
+    $fpSchemaBreadcrumbUrl = trim(
+        (string)(
+            $fpSchemaBreadcrumbItem['url']
+            ?? ''
+        )
+    );
+
+    if ($fpSchemaBreadcrumbUrl !== '') {
+        $fpSchemaBreadcrumbAbsoluteUrl = (
+            $fpSchemaAbsoluteUrl(
+                $fpSchemaBreadcrumbUrl
+            )
+        );
+
+        if (
+            $fpSchemaBreadcrumbAbsoluteUrl !== ''
+        ) {
+            $fpSchemaBreadcrumbElement['item'] = (
+                $fpSchemaBreadcrumbAbsoluteUrl
+            );
+        }
+    }
+
+    $fpSchemaBreadcrumbElements[] = (
+        $fpSchemaBreadcrumbElement
+    );
+}
+
+if (
+    count($fpSchemaBreadcrumbElements) >= 2
+) {
+    $fpSchemaGraph[] = [
+        '@type' => 'BreadcrumbList',
+        '@id' => (
+            $fpCanonicalUrl . '#breadcrumb'
+        ),
+        'itemListElement' => (
+            $fpSchemaBreadcrumbElements
+        ),
+    ];
 }
 
 if ($fpSchemaGraph) {

@@ -1,0 +1,33 @@
+{
+  "batch": "A_IMAGE_DIMENSIONS_PERFORMANCE",
+  "batch_b_contamination": false,
+  "checkpoint_policy": "After Lighthouse AFTER is accepted, perform exact Git staging, commit and push before starting Batch B.",
+  "database_mutation": false,
+  "fresh_offhost_backup": "/srv/software_development/forprint-project/forprint_website/.runtime/backups/hosting/20260820_143820",
+  "full_sync_used": false,
+  "generated": "2026-08-20T14:41:05.521590+03:00",
+  "next_action": "RUN_EXACT_36_LIGHTHOUSE_AFTER",
+  "production_acceptance": {
+    "batch_b_contamination": false,
+    "img_instances": 9851,
+    "missing_dimensions": 0,
+    "pages_missing_dimensions": 0,
+    "urls": 191
+  },
+  "production_mutation": true,
+  "source_release_manifest": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__explicit_release_manifest_20260820_143050",
+  "webroot_files": [
+    {
+      "path": "base/core/user/controllers/BaseUser.php",
+      "sha256": "52844377bb78a2334f5e4116d151a8c40c6fb81ead20917e1fbc9ec0962c12b7"
+    },
+    {
+      "path": "base/libraries/ForPrintImageDimensions.php",
+      "sha256": "420d0cdc130eb74b4e58d5f290c8a42e8bc301ef02d359b95fc30275ab7a9673"
+    },
+    {
+      "path": "base/libraries/generated/forprint_image_dimensions_manifest.php",
+      "sha256": "fcf1a2d9accf570baeabfd08d6a1e305d2ed552cc57c7485016ac3baae504153"
+    }
+  ]
+}

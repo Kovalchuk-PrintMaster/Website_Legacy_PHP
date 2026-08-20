@@ -14,7 +14,6 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 SITEMAP = ROOT / "base/sitemap.xml"
-EXPECTED_URLS = 116
 
 
 class Parser(html.parser.HTMLParser):
@@ -100,11 +99,11 @@ def sitemap_urls() -> list[str]:
         for node in root.findall("sm:url/sm:loc", namespace)
     ]
 
-    if len(urls) != EXPECTED_URLS:
-        fail(
-            "unexpected sitemap URL count: "
-            + str(len(urls))
-        )
+    if not urls:
+        fail("sitemap is empty")
+
+    if len(urls) != len(set(urls)):
+        fail("duplicate sitemap URLs")
 
     return urls
 

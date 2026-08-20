@@ -482,7 +482,29 @@ abstract class BaseAdmin extends BaseController
             if($key==='id_row') continue;
 
             if($item['Type']==='date' || $item['Type']==='datetime'){
-                !$_POST[$key] && $_POST[$key] = 'NOW()';
+                /*
+                 * FP_VISUAL_ASSET_NULLABLE_DATES_V0_1
+                 *
+                 * visual_assets.active_from / active_until explicitly define
+                 * an empty value as an unbounded interval in the admin UI and
+                 * public selection contract. Preserve that meaning as SQL NULL.
+                 *
+                 * Other legacy DATE/DATETIME fields keep their historical
+                 * empty -> NOW() behavior until they receive their own
+                 * field-level contract.
+                 */
+                $fpVisualAssetNullableDate = (
+                    $this->table === 'visual_assets'
+                    && in_array($key, ['active_from', 'active_until'], true)
+                );
+
+                $fpPostedDate = trim((string)($_POST[$key] ?? ''));
+
+                if ($fpPostedDate === '') {
+                    $_POST[$key] = $fpVisualAssetNullableDate
+                        ? 'NULL'
+                        : 'NOW()';
+                }
             }
         }
 
@@ -810,7 +832,11 @@ abstract class BaseAdmin extends BaseController
                 $alias_str = $_POST['alias'] = $this->clearStr($_POST['alias']);
             }
             $textModify = new \libraries\TextModify();
-            $alias = $textModify->translit($alias_str);
+            /* FP_CANONICAL_UK_SLUG_GENERATOR_V0_1_ADMIN */
+            if (!class_exists('\ForPrintSlug', false)) {
+                require_once dirname(__DIR__, 3) . '/libraries/ForPrintSlug.php';
+            }
+            $alias = \ForPrintSlug::uk($alias_str, 'item');
 
             $where['alias'] = $alias;
             $operand[] = '=';

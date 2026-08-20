@@ -284,23 +284,12 @@ class GoodsImageUploadOptimizer
 
     protected function slugify(string $value): string
     {
-        $value = trim($value);
-
-        if ($value === '') {
-            return '';
+        /* FP_CANONICAL_UK_SLUG_GENERATOR_V0_1_IMAGE */
+        if (!class_exists('\ForPrintSlug', false)) {
+            require_once __DIR__ . '/ForPrintSlug.php';
         }
 
-        if (function_exists('transliterator_transliterate')) {
-            $value = transliterator_transliterate('Any-Latin; Latin-ASCII; Lower()', $value);
-        } else {
-            $converted = @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
-            $value = $converted !== false ? strtolower($converted) : strtolower($value);
-        }
-
-        $value = preg_replace('~[^a-z0-9]+~i', '-', (string)$value);
-        $value = trim((string)$value, '-');
-
-        return strtolower($value);
+        return \ForPrintSlug::uk($value, 'item');
     }
 
     protected function nextOutputPath(string $targetDir, string $productSlug, string $suffix = ''): string

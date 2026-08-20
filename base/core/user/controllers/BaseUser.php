@@ -79,6 +79,11 @@ protected $model;
 
         $this->init();
 
+        /* FP_IMAGE_DIMENSION_RESPONSE_ENHANCER_V0_1 */
+        if (!$this->isAjax()) {
+            \libraries\ForPrintImageDimensions::startHtmlBuffer();
+        }
+
         $this->checkAuth();
 
         !$this->model && $this->model = Model::instance();
@@ -743,7 +748,13 @@ protected $model;
             };
 
             switch ($controller) {
-                case 'catalog':
+                                /* FP_SERVICES_CANONICAL_BREADCRUMB_V0_1 */
+                case 'nashiposluhy':
+                case 'nashi-posluhy':
+                    $append($items, 'Наші послуги');
+                    break;
+
+case 'catalog':
                     $catalogName = trim((string)($data['name'] ?? ''));
 
                     if (!empty($this->parameters['alias']) && $catalogName !== '') {

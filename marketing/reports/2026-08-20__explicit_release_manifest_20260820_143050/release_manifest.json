@@ -1,0 +1,361 @@
+{
+  "batch_a_image_dimensions_performance": {
+    "database_rows": [],
+    "local_support_not_published": [
+      {
+        "bytes": 3045,
+        "path": "scripts/inspection/check_website_image_dimensions_contract.py",
+        "sha256": "f1ff1a2e1a982b36e1d3fa2475555ba736bfac13ea748603b9b28afc07363495"
+      },
+      {
+        "bytes": 5325,
+        "path": "scripts/maintenance/rebuild_image_dimensions_manifest.py",
+        "sha256": "a5e44a02470294e353372d71eb6f943fe2c3babfb561ae8959f11bef16a5c749"
+      }
+    ],
+    "post_release_acceptance": [
+      "Production image-dimensions contract: missing dimensions=0.",
+      "Representative production HTTP smoke and existing metadata/schema contracts.",
+      "Run the exact same 36-run Docker Lighthouse AFTER matrix before publishing Batch B."
+    ],
+    "pre_release_required": [
+      "Fresh off-host production backup immediately before mutation.",
+      "Guarded selective publication of exactly the listed webroot files; no full sync."
+    ],
+    "production_differential": [
+      {
+        "changed_lines": 5,
+        "diff_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__explicit_release_manifest_20260820_143050/production_code_diff/base__core__user__controllers__BaseUser.php.diff",
+        "local_sha256": "52844377bb78a2334f5e4116d151a8c40c6fb81ead20917e1fbc9ec0962c12b7",
+        "path": "base/core/user/controllers/BaseUser.php",
+        "production_sha256": "02a29fc2d9173c8104e8529a0888338371c75c00cf8a31649071b698117289f8",
+        "production_state": "EXISTS",
+        "same": false
+      },
+      {
+        "changed_lines": null,
+        "diff_file": null,
+        "local_sha256": "420d0cdc130eb74b4e58d5f290c8a42e8bc301ef02d359b95fc30275ab7a9673",
+        "path": "base/libraries/ForPrintImageDimensions.php",
+        "production_sha256": null,
+        "production_state": "MISSING",
+        "same": false
+      },
+      {
+        "changed_lines": null,
+        "diff_file": null,
+        "local_sha256": "fcf1a2d9accf570baeabfd08d6a1e305d2ed552cc57c7485016ac3baae504153",
+        "path": "base/libraries/generated/forprint_image_dimensions_manifest.php",
+        "production_sha256": null,
+        "production_state": "MISSING",
+        "same": false
+      }
+    ],
+    "purpose": "Publish only intrinsic image dimension delivery code. No DB changes.",
+    "webroot_files": [
+      {
+        "bytes": 39859,
+        "path": "base/core/user/controllers/BaseUser.php",
+        "sha256": "52844377bb78a2334f5e4116d151a8c40c6fb81ead20917e1fbc9ec0962c12b7"
+      },
+      {
+        "bytes": 7203,
+        "path": "base/libraries/ForPrintImageDimensions.php",
+        "sha256": "420d0cdc130eb74b4e58d5f290c8a42e8bc301ef02d359b95fc30275ab7a9673"
+      },
+      {
+        "bytes": 197524,
+        "path": "base/libraries/generated/forprint_image_dimensions_manifest.php",
+        "sha256": "fcf1a2d9accf570baeabfd08d6a1e305d2ed552cc57c7485016ac3baae504153"
+      }
+    ]
+  },
+  "batch_b_seo_semantics_metadata": {
+    "database_rows": {
+      "goods.content": [
+        {
+          "alias": "eko-bloknoti",
+          "id": 129
+        },
+        {
+          "alias": "eko-vzitki",
+          "id": 110
+        },
+        {
+          "alias": "fgurna-vzitka",
+          "id": 114
+        },
+        {
+          "alias": "goods-2",
+          "id": 111
+        },
+        {
+          "alias": "kreativn-bloknoti",
+          "id": 131
+        },
+        {
+          "alias": "vzitki-dlya-lyudey-z-obmezhenimi-mozhlivostyami",
+          "id": 120
+        },
+        {
+          "alias": "vzitki-na-plastikovy-osnov",
+          "id": 117
+        }
+      ],
+      "information.metadata": [
+        {
+          "alias": "contacts",
+          "fields": [
+            "description",
+            "keywords"
+          ],
+          "id": 8
+        }
+      ],
+      "news.content": [
+        {
+          "alias": "scho-vam-treba-znati-pro-druk-na-ruchkah",
+          "id": 3
+        },
+        {
+          "alias": "scho-vi-znate-pro-vzitku",
+          "id": 2
+        },
+        {
+          "alias": "yak-buvayut-bloknoti",
+          "id": 1
+        }
+      ]
+    },
+    "post_release_acceptance": [
+      "191-page production crawl.",
+      "Actionable SEO P2=0; three reviewed long-title advisories remain accepted.",
+      "Product heading gaps=0; news heading gaps=0.",
+      "Unique titles/descriptions 191/191 and stale PrintMaster meta descriptions=0."
+    ],
+    "pre_release_required": [
+      "Fresh off-host production backup immediately before mutation.",
+      "Guarded selective code publication.",
+      "Bounded production DB migration with exact production-state preconditions and rollback SQL; do not mirror the whole local DB."
+    ],
+    "production_differential": [
+      {
+        "changed_lines": 9,
+        "diff_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__explicit_release_manifest_20260820_143050/production_code_diff/base__templates__default__include__header.php.diff",
+        "local_sha256": "7d8b4278f887418212443ae6a1f0c5555ac03b8e001abd7013a4ffa442927833",
+        "path": "base/templates/default/include/header.php",
+        "production_sha256": "864b2e45fa6696006880c0584ff14669514f934c6bb5a722efb4116cea56eebb",
+        "production_state": "EXISTS",
+        "same": false
+      },
+      {
+        "changed_lines": 30,
+        "diff_file": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__explicit_release_manifest_20260820_143050/production_code_diff/base__templates__default__include__productCommunicationButtons.php.diff",
+        "local_sha256": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+        "path": "base/templates/default/include/productCommunicationButtons.php",
+        "production_sha256": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+        "production_state": "EXISTS",
+        "same": false
+      }
+    ],
+    "purpose": "Publish semantic heading/title code and exactly the reviewed local DB rows after performance AFTER is captured.",
+    "webroot_files": [
+      {
+        "bytes": 29233,
+        "path": "base/templates/default/include/header.php",
+        "sha256": "7d8b4278f887418212443ae6a1f0c5555ac03b8e001abd7013a4ffa442927833"
+      },
+      {
+        "bytes": 14337,
+        "path": "base/templates/default/include/productCommunicationButtons.php",
+        "sha256": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9"
+      }
+    ]
+  },
+  "evidence": {
+    "contacts_metadata": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__canonical_contacts_metadata_cleanup_20260820_141313",
+    "goods_heading": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__bounded_7_goods_heading_migration_v0_2_20260820_115616",
+    "image_dimensions": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-19__local_post_image_dimensions_20260819_175726",
+    "lighthouse_before": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__docker_lighthouse_before_resumable_v0_3",
+    "news_heading": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__bounded_3_news_heading_migration_v0_2_20260820_125646",
+    "seo_p2_rebaseline": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__seo_p2_rebaseline_release_boundary_20260820_142400",
+    "title_fix": "/srv/software_development/forprint-project/forprint_website/marketing/reports/2026-08-20__central_title_composition_local_fix_20260820_133308"
+  },
+  "excluded_worktree_paths": [
+    "README.md",
+    "base/core/admin/controllers/BaseAdmin.php",
+    "base/core/admin/editor_upload.php",
+    "base/libraries/ForPrintSlug.php",
+    "base/libraries/GoodsImageUploadOptimizer.php",
+    "base/libraries/generated/",
+    "coordination/reports/2026-08-19__centralized_head_og_schema_production_release_v0_1.md",
+    "docs/README.md",
+    "docs/architecture/search_visibility_and_web_quality_strategy_v0_1.md",
+    "docs/decisions/2026-08-19__canonical_public_metadata_and_breadcrumb_structured_data_ownership.md",
+    "docs/decisions/architecture_decision_register_v0_1.md",
+    "docs/marketing/README.md",
+    "docs/marketing/plans/",
+    "docs/reference/inspection_and_maintenance_tools_v0_1.md",
+    "docs/reference/repository_map_v0_1.md",
+    "docs/status/snapshots/2026-08-19_search_visibility_release_state_v0_1.md",
+    "docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md",
+    "lighthouse.py",
+    "marketing/README.md",
+    "marketing/campaigns/README.md",
+    "marketing/organic-search/README.md",
+    "marketing/programs/README.md",
+    "marketing/programs/forprint_growth_roadmap_v0_1.md",
+    "marketing/reports/2026-08-18__seo_baseline_v0_1/",
+    "marketing/reports/2026-08-18__seo_baseline_v0_2/",
+    "marketing/reports/2026-08-18__seo_baseline_v0_3_after_banner_sitemap_release/",
+    "marketing/reports/2026-08-19__docker_lighthouse_before_20260819_190341/",
+    "marketing/reports/2026-08-19__docker_lighthouse_before_recovery_20260819_191120/",
+    "marketing/reports/2026-08-19__lighthouse_toolchain_audit_20260819_181455/",
+    "marketing/reports/2026-08-19__local_post_image_dimensions_20260819_175726/",
+    "marketing/reports/2026-08-19__seo_baseline_151827/",
+    "marketing/reports/2026-08-20__bounded_3_news_heading_migration_v0_2_20260820_125646/",
+    "marketing/reports/2026-08-20__bounded_7_goods_heading_migration_v0_2_20260820_115616/",
+    "marketing/reports/2026-08-20__canonical_contacts_metadata_cleanup_20260820_141313/",
+    "marketing/reports/2026-08-20__canonical_product_content_owner_20260820_114225/",
+    "marketing/reports/2026-08-20__canonical_title_pipeline_audit_20260820_132044/",
+    "marketing/reports/2026-08-20__central_title_composition_local_fix_20260820_133308/",
+    "marketing/reports/2026-08-20__contacts_metadata_row_pinpoint_20260820_140700/",
+    "marketing/reports/2026-08-20__current_goods_content_owner_20260820_115132/",
+    "marketing/reports/2026-08-20__current_news_content_owner_20260820_123818/",
+    "marketing/reports/2026-08-20__docker_lighthouse_before_resumable_v0_3/",
+    "marketing/reports/2026-08-20__heading_title_fix_design_20260820_110955/",
+    "marketing/reports/2026-08-20__remaining_product_heading_gaps_pinpoint_20260820_113921/",
+    "marketing/reports/2026-08-20__remaining_seo_p2_pinpoint_20260820_110321/",
+    "marketing/reports/2026-08-20__remaining_title_contacts_owner_20260820_140324/",
+    "marketing/reports/2026-08-20__resume_after_7_goods_heading_migration_20260820_120325/",
+    "marketing/reports/2026-08-20__resume_after_7_goods_heading_migration_20260820_120758/",
+    "marketing/reports/2026-08-20__seo_p2_rebaseline_release_boundary_20260820_142400/",
+    "scripts/inspection/audit_search_visibility.py",
+    "scripts/inspection/check_hosting_full_sync_contract.py",
+    "scripts/inspection/check_hosting_storage_capacity.py",
+    "scripts/inspection/check_public_static_asset_permissions.py",
+    "scripts/inspection/check_search_visibility_release_docs.py",
+    "scripts/inspection/check_website_head_social_contract.py",
+    "scripts/inspection/check_website_localbusiness_schedule_contract.py",
+    "scripts/inspection/check_website_route_metadata_contract.py",
+    "scripts/inspection/check_website_structured_data_contract.py",
+    "scripts/maintenance/backup_hosting_to_local.py",
+    "scripts/maintenance/hosting_mirror_common.py",
+    "scripts/maintenance/rebuild_sitemap_from_search_audit.py",
+    "scripts/maintenance/restore_hosting_from_local_backup.py",
+    "scripts/operations/hosting_transport.py"
+  ],
+  "generated": "2026-08-20T14:31:05.428087+03:00",
+  "known_already_released_invariants": {
+    "files": [
+      {
+        "changed_lines": null,
+        "diff_file": null,
+        "local_sha256": "893fe659f68ddcd2b1e9a19eb76e6b3e836780ce509a51985d54d17d78659e88",
+        "path": "base/templates/default/include/breadcrumbs.php",
+        "production_sha256": "893fe659f68ddcd2b1e9a19eb76e6b3e836780ce509a51985d54d17d78659e88",
+        "production_state": "EXISTS",
+        "same": true
+      },
+      {
+        "changed_lines": null,
+        "diff_file": null,
+        "local_sha256": "119afad79990762d122fd8d8a849feda2e36e872f0d1b1164ddc689e76439797",
+        "path": "base/templates/default/include/structuredData.php",
+        "production_sha256": "119afad79990762d122fd8d8a849feda2e36e872f0d1b1164ddc689e76439797",
+        "production_state": "EXISTS",
+        "same": true
+      },
+      {
+        "changed_lines": null,
+        "diff_file": null,
+        "local_sha256": "b882f2752d97ed282bf034e0d4988f9302d2a56b9184c9b7c026ecccb348b7ea",
+        "path": "base/core/user/controllers/ProductController.php",
+        "production_sha256": "b882f2752d97ed282bf034e0d4988f9302d2a56b9184c9b7c026ecccb348b7ea",
+        "production_state": "EXISTS",
+        "same": true
+      }
+    ],
+    "policy": "These are not automatically included in either new batch. Any unexpected production/local difference must be reviewed before publication."
+  },
+  "next_action": "Review generated production diffs. If Batch A differential is isolated to image-dimension ownership, build a guarded selective Batch A publication script.",
+  "production_pre_batch_state": {
+    "production_contacts_metadata_pre_fix": true,
+    "production_image_dimensions_pre_fix": true,
+    "production_news_heading_pre_fix": true,
+    "production_product_modal_pre_fix": true,
+    "production_title_pre_fix": true,
+    "rows": [
+      {
+        "description": "ForPrint — це сучасна принт-студія повного циклу, яка допомагає бізнесу, організаціям і приватним клієнтам створювати якісну друковану, рекламну та…",
+        "heading_gap": false,
+        "img_count": 104,
+        "img_missing_dimensions": 104,
+        "modal_title_tags": [],
+        "path": "/",
+        "title": "ForPrint — прінт-студія повного циклу — Прінт студія повного циклу"
+      },
+      {
+        "description": "Контакти | ForPrint. Контакти PrintMaster",
+        "heading_gap": false,
+        "img_count": 22,
+        "img_missing_dimensions": 22,
+        "modal_title_tags": [],
+        "path": "/contacts/",
+        "title": "Контакти | ForPrint — Прінт студія повного циклу"
+      },
+      {
+        "description": "Еко-візитки — замовити у ForPrint. Еко-візитки — це візитки, виготовлені з екологічно чистих або перероблених матеріалів, що підкреслюють відповідальне…",
+        "heading_gap": true,
+        "img_count": 48,
+        "img_missing_dimensions": 48,
+        "modal_title_tags": [
+          "h3",
+          "h3"
+        ],
+        "path": "/product/eko-vzitki/",
+        "title": "Еко-візитки — замовити у ForPrint — Прінт студія повного циклу"
+      },
+      {
+        "description": "Що вам треба знати про друк на ручках — новини ForPrint. Друк на ручках — це нанесення логотипу, слогану, контактної інформації або іншої графіки на корпус…",
+        "heading_gap": true,
+        "img_count": 22,
+        "img_missing_dimensions": 22,
+        "modal_title_tags": [],
+        "path": "/news/scho-vam-treba-znati-pro-druk-na-ruchkah/",
+        "title": "Що вам треба знати про друк на ручках — новини ForPrint — Прінт студія повного циклу"
+      },
+      {
+        "description": "Що ви знаєте про візитку — новини ForPrint. Візитка — це невелика картка, на якій міститься контактна інформація особи або компанії. Вона слугує для знайомства…",
+        "heading_gap": true,
+        "img_count": 29,
+        "img_missing_dimensions": 29,
+        "modal_title_tags": [],
+        "path": "/news/scho-vi-znate-pro-vzitku/",
+        "title": "Що ви знаєте про візитку — новини ForPrint — Прінт студія повного циклу"
+      },
+      {
+        "description": "Які бувають блокноти — новини ForPrint. Блокноти бувають дуже різноманітні за типами залежно від конструкції, призначення та матеріалів. Ось основні типи…",
+        "heading_gap": true,
+        "img_count": 22,
+        "img_missing_dimensions": 22,
+        "modal_title_tags": [],
+        "path": "/news/yak-buvayut-bloknoti/",
+        "title": "Які бувають блокноти — новини ForPrint — Прінт студія повного циклу"
+      }
+    ]
+  },
+  "reason_full_sync_is_not_approved": [
+    "Current worktree contains many changes outside the intended release batches.",
+    "hosting-sync-full mirrors the entire current local database, not only the reviewed SEO rows.",
+    "Image-dimensions performance release must remain isolated until the same-tool Lighthouse AFTER matrix is captured."
+  ],
+  "safety": {
+    "full_sync_publication_allowed": false,
+    "git_mutation": false,
+    "production_db_mutation": false,
+    "production_mutation": false,
+    "remote_temp_file_created": false
+  },
+  "status": "READY_FOR_TWO_BATCH_GUARDED_RELEASE_PREPARATION"
+}

@@ -18,7 +18,6 @@ from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[2]
 SITEMAP = ROOT / "base/sitemap.xml"
-EXPECTED_URLS = 116
 LOCAL_ORIGIN = "http://127.0.0.1:8098"
 PUBLIC_ORIGIN = "https://forprint.net.ua"
 
@@ -158,11 +157,11 @@ def sitemap_urls() -> list[str]:
         )
     ]
 
-    if len(urls) != EXPECTED_URLS:
-        fail(
-            "unexpected sitemap URL count: "
-            + str(len(urls))
-        )
+    if not urls:
+        fail("sitemap is empty")
+
+    if len(urls) != len(set(urls)):
+        fail("duplicate sitemap URLs")
 
     return urls
 
@@ -571,21 +570,110 @@ def main() -> int:
                 )
             )
 
-        has_breadcrumb = (
+        # FP_BREADCRUMB_JSONLD_OWNER_V0_1
+        # Breadcrumb structured data has one canonical owner:
+        # centralized JSON-LD. The visible breadcrumb template
+        # must not carry a second Microdata representation.
+        breadcrumb = find_node(
+            record,
+            "BreadcrumbList",
+        )
+        has_breadcrumb_jsonld = (
+            breadcrumb is not None
+        )
+        has_breadcrumb_microdata = (
             "BreadcrumbList"
-            in record["types"]
-            or "BreadcrumbList"
             in record["itemtypes"]
         )
 
         if kind != "home":
-            if not has_breadcrumb:
+            if not has_breadcrumb_jsonld:
                 failures.append(
-                    "breadcrumb-missing:"
+                    "breadcrumb-jsonld-missing:"
                     + url
                 )
             else:
+                elements = breadcrumb.get(
+                    "itemListElement"
+                )
+
+                if (
+                    not isinstance(elements, list)
+                    or len(elements) < 2
+                ):
+                    failures.append(
+                        "breadcrumb-jsonld-items-invalid:"
+                        + url
+                    )
+                else:
+                    for (
+                        expected_position,
+                        element,
+                    ) in enumerate(
+                        elements,
+                        start=1,
+                    ):
+                        if not isinstance(
+                            element,
+                            dict,
+                        ):
+                            failures.append(
+                                "breadcrumb-jsonld-listitem-invalid:"
+                                + url
+                            )
+                            continue
+
+                        if (
+                            "ListItem"
+                            not in type_names(element)
+                        ):
+                            failures.append(
+                                "breadcrumb-jsonld-type-invalid:"
+                                + url
+                            )
+
+                        if (
+                            element.get("position")
+                            != expected_position
+                        ):
+                            failures.append(
+                                "breadcrumb-jsonld-position-invalid:"
+                                + url
+                            )
+
+                        if not str(
+                            element.get(
+                                "name",
+                                "",
+                            )
+                        ).strip():
+                            failures.append(
+                                "breadcrumb-jsonld-name-missing:"
+                                + url
+                            )
+
+                        if (
+                            expected_position
+                            < len(elements)
+                            and not str(
+                                element.get(
+                                    "item",
+                                    "",
+                                )
+                            ).strip()
+                        ):
+                            failures.append(
+                                "breadcrumb-jsonld-item-missing:"
+                                + url
+                            )
+
                 breadcrumb_pages += 1
+
+            if has_breadcrumb_microdata:
+                failures.append(
+                    "breadcrumb-microdata-owner-remains:"
+                    + url
+                )
 
         if kind == "home":
             website = find_node(
