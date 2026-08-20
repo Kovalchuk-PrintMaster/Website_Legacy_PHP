@@ -204,3 +204,28 @@ Historical evidence remains historical; materially changed contracts receive a
 new canonical revision; obsolete material without a current/history/
 compatibility purpose does not remain active merely because it is old.
 <!-- FP_DOCUMENTATION_LIFECYCLE_INDEX_V0_1_END -->
+
+<!-- FP_SEARCH_VISIBILITY_RELEASE_20260819_START -->
+## Search visibility production checkpoint — 2026-08-19
+
+- `decisions/2026-08-19__canonical_public_metadata_and_breadcrumb_structured_data_ownership.md`
+- `status/snapshots/2026-08-19_search_visibility_release_state_v0_1.md`
+- `marketing/plans/organic_search_measurement_next_stage_plan_v0_1.md`
+
+Production evidence is stored under `coordination/reports/`.
+<!-- FP_SEARCH_VISIBILITY_RELEASE_20260819_END -->
+
+<!-- FP-MARKETING-SEARCH-ADS-2026-08-20-START -->
+## Marketing, Search and Google Ads checkpoint — 2026-08-20
+
+- [Marketing, Search and Google Ads Working State — 2026-08-20 v0.1](status/snapshots/2026-08-20_marketing_search_ads_working_state_v0_1.md)
+- [Marketing, Search, Ads and SERP Enhancement Next-Stage Plan v0.1](plans/marketing_search_ads_and_serp_enhancement_plan_v0_1.md)
+
+This checkpoint separates:
+
+- accepted technical SEO / Batch A evidence;
+- pending SEO Batch B release;
+- Google Ads verification/policy/delivery work;
+- rich organic-search image and price presentation;
+- later performance optimization.
+<!-- FP-MARKETING-SEARCH-ADS-2026-08-20-END -->
