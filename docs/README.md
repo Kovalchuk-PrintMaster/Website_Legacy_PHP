@@ -243,3 +243,13 @@ Current product-media documentation:
 
 `GoodsImageUploadOptimizer.php` is the canonical product-media owner. Product search variants are deterministic derivatives of `goods.img`, not independent database records.
 <!-- FP-PRODUCT-MEDIA-DOCS-V03-END -->
+
+<!-- FP-SEARCH-IDENTITY-BACKUP-ROADMAP-2026-08-21-START -->
+## Search identity and final off-site backup roadmap — 2026-08-21
+
+Two explicit planned items were added:
+
+- [Search identity and Google Drive backup roadmap addendum v0.1](plans/2026-08-21__search_identity_and_google_drive_backup_roadmap_addendum_v0_1.md) — improve Google Search site identity/direct-contact eligibility and finish the website workstream with a verified Google Drive backup through Cloud Backup Manager/rclone.
+
+The active Google Ads payments-profile correction and direct-advertiser verification reset remain higher priority than these planned items.
+<!-- FP-SEARCH-IDENTITY-BACKUP-ROADMAP-2026-08-21-END -->
