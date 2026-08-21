@@ -9,6 +9,31 @@ class GoodsImageUploadOptimizer
     protected int $quality = 98;
     protected int $galleryMaxSide = 1600;
     protected int $galleryQuality = 94;
+    protected int $searchQuality = 94;
+
+    /*
+     * FP_PRODUCT_SEARCH_RENDITIONS_V0_2
+     *
+     * Search renditions are entity-owned derivatives of the canonical main
+     * product image. They do not replace img/gallery_img and are not stored
+     * in database columns. Fixed canvases make aspect ratios stable while
+     * fit/pad avoids blind subject cropping.
+     */
+    protected const SEARCH_RENDITION_PROFILES = [
+        '1x1' => [
+            'width' => 700,
+            'height' => 700,
+        ],
+        '4x3' => [
+            'width' => 700,
+            'height' => 525,
+        ],
+        '16x9' => [
+            'width' => 704,
+            'height' => 396,
+        ],
+    ];
+
     protected string $projectRoot;
     protected string $userfilesRoot;
 
@@ -37,6 +62,18 @@ class GoodsImageUploadOptimizer
              * not leave it in base/userfiles/goods/.
              */
             $this->removePublicFile($publicPath);
+            return null;
+        }
+
+        /*
+         * The accepted canonical main image owns one deterministic search
+         * rendition family. A future main upload succeeds only when the
+         * complete family can also be created.
+         */
+        if ($this->ensureSearchRenditions($optimized) === null) {
+            $this->removeSearchRenditions($optimized);
+            $this->removePublicFile($optimized);
+            return null;
         }
 
         return $optimized;
@@ -99,6 +136,380 @@ class GoodsImageUploadOptimizer
         }
 
         return $result;
+    }
+
+    /**
+     * Return deterministic relative paths for the search rendition family.
+     *
+     * @return array<string, string>
+     */
+    public function searchRenditionPublicPaths(
+        string $mainPublicPath
+    ): array {
+        $normalized = $this->normalizePublicPath(
+            $mainPublicPath
+        );
+
+        if (
+            $normalized === null
+            || !str_starts_with($normalized, 'goods/')
+        ) {
+            return [];
+        }
+
+        $directory = dirname($normalized);
+        $stem = pathinfo(
+            $normalized,
+            PATHINFO_FILENAME
+        );
+
+        if (
+            $directory === '.'
+            || $stem === ''
+        ) {
+            return [];
+        }
+
+        $base =
+            trim(
+                str_replace('\\', '/', $directory),
+                '/'
+            )
+            . '/search/'
+            . $stem;
+
+        $paths = [];
+
+        foreach (
+            self::SEARCH_RENDITION_PROFILES
+            as $profile => $_dimensions
+        ) {
+            $paths[$profile] =
+                $base
+                . '_'
+                . $profile
+                . '.jpg';
+        }
+
+        return $paths;
+    }
+
+    /**
+     * Return the complete, correctly-sized rendition family or an empty array.
+     *
+     * @return array<string, string>
+     */
+    public function existingSearchRenditions(
+        string $mainPublicPath
+    ): array {
+        $paths = $this->searchRenditionPublicPaths(
+            $mainPublicPath
+        );
+
+        if (
+            count($paths)
+            !== count(self::SEARCH_RENDITION_PROFILES)
+        ) {
+            return [];
+        }
+
+        $firstPublicPath = reset($paths);
+
+        if (
+            !is_string($firstPublicPath)
+            || $firstPublicPath === ''
+            || !is_dir(
+                dirname(
+                    $this->userfilesRoot
+                    . '/'
+                    . $firstPublicPath
+                )
+            )
+        ) {
+            return [];
+        }
+
+        foreach ($paths as $profile => $publicPath) {
+            $dimensions =
+                self::SEARCH_RENDITION_PROFILES[$profile]
+                ?? null;
+
+            if (!is_array($dimensions)) {
+                return [];
+            }
+
+            $candidate =
+                $this->userfilesRoot
+                . '/'
+                . $publicPath;
+
+            $size = @getimagesize($candidate);
+
+            if (
+                !is_array($size)
+                || (int)($size[0] ?? 0)
+                    !== (int)$dimensions['width']
+                || (int)($size[1] ?? 0)
+                    !== (int)$dimensions['height']
+            ) {
+                return [];
+            }
+        }
+
+        return $paths;
+    }
+
+    /**
+     * Build the complete fixed-aspect rendition family.
+     *
+     * The source is the already-accepted canonical main image. All profile
+     * files are rendered to temporary paths before any final path is touched.
+     *
+     * @return array<string, string>|null
+     */
+    public function ensureSearchRenditions(
+        string $mainPublicPath
+    ): ?array {
+        $normalized = $this->normalizePublicPath(
+            $mainPublicPath
+        );
+
+        if (
+            $normalized === null
+            || !str_starts_with($normalized, 'goods/')
+        ) {
+            return null;
+        }
+
+        $existing = $this->existingSearchRenditions(
+            $normalized
+        );
+
+        if (
+            count($existing)
+            === count(self::SEARCH_RENDITION_PROFILES)
+        ) {
+            return $existing;
+        }
+
+        $source =
+            $this->userfilesRoot
+            . '/'
+            . $normalized;
+
+        if (
+            !is_file($source)
+            || !$this->inspectImage($source)
+        ) {
+            return null;
+        }
+
+        $paths = $this->searchRenditionPublicPaths(
+            $normalized
+        );
+
+        if (
+            count($paths)
+            !== count(self::SEARCH_RENDITION_PROFILES)
+        ) {
+            return null;
+        }
+
+        $temporary = [];
+        $finalized = [];
+
+        foreach ($paths as $profile => $publicPath) {
+            $dimensions =
+                self::SEARCH_RENDITION_PROFILES[$profile]
+                ?? null;
+
+            if (!is_array($dimensions)) {
+                $this->cleanupFilesystemPaths(
+                    array_values($temporary)
+                );
+                return null;
+            }
+
+            $target =
+                $this->userfilesRoot
+                . '/'
+                . $publicPath;
+            $targetDir = dirname($target);
+
+            if (
+                !is_dir($targetDir)
+                && !@mkdir(
+                    $targetDir,
+                    0777,
+                    true
+                )
+                && !is_dir($targetDir)
+            ) {
+                $this->cleanupFilesystemPaths(
+                    array_values($temporary)
+                );
+                return null;
+            }
+
+            try {
+                $randomSuffix = bin2hex(
+                    random_bytes(6)
+                );
+            } catch (\Throwable $e) {
+                $randomSuffix = uniqid('', false);
+            }
+
+            $temp =
+                $target
+                . '.tmp-'
+                . $randomSuffix;
+
+            $ok = false;
+
+            if (extension_loaded('imagick')) {
+                try {
+                    $ok =
+                        $this->createSearchFitWithImagick(
+                            $source,
+                            $temp,
+                            (int)$dimensions['width'],
+                            (int)$dimensions['height']
+                        );
+                } catch (\Throwable $e) {
+                    $ok = false;
+                }
+            }
+
+            if (
+                !$ok
+                && extension_loaded('gd')
+            ) {
+                $ok =
+                    $this->createSearchFitWithGd(
+                        $source,
+                        $temp,
+                        (int)$dimensions['width'],
+                        (int)$dimensions['height']
+                    );
+            }
+
+            if (
+                !$ok
+                || !is_file($temp)
+            ) {
+                @unlink($temp);
+                $this->cleanupFilesystemPaths(
+                    array_values($temporary)
+                );
+                return null;
+            }
+
+            $temporary[$profile] = $temp;
+        }
+
+        /*
+         * Any pre-existing partial/invalid family is not eligible for
+         * structured data. Remove those stale targets only after all new
+         * temporary files have rendered successfully.
+         */
+        foreach ($paths as $publicPath) {
+            $target =
+                $this->userfilesRoot
+                . '/'
+                . $publicPath;
+
+            if (
+                is_file($target)
+                && !@unlink($target)
+            ) {
+                $this->cleanupFilesystemPaths(
+                    array_values($temporary)
+                );
+                return null;
+            }
+        }
+
+        foreach ($paths as $profile => $publicPath) {
+            $target =
+                $this->userfilesRoot
+                . '/'
+                . $publicPath;
+            $temp =
+                $temporary[$profile]
+                ?? '';
+
+            if (
+                $temp === ''
+                || !is_file($temp)
+                || !@rename($temp, $target)
+            ) {
+                $this->cleanupFilesystemPaths(
+                    array_values($temporary)
+                );
+                $this->cleanupFilesystemPaths(
+                    $finalized
+                );
+                return null;
+            }
+
+            $finalized[] = $target;
+            unset($temporary[$profile]);
+        }
+
+        $created = $this->existingSearchRenditions(
+            $normalized
+        );
+
+        if (
+            count($created)
+            !== count(self::SEARCH_RENDITION_PROFILES)
+        ) {
+            $this->cleanupFilesystemPaths(
+                $finalized
+            );
+            return null;
+        }
+
+        return $created;
+    }
+
+    /**
+     * Remove only deterministic derivatives owned by one canonical main image.
+     */
+    public function removeSearchRenditions(
+        string $mainPublicPath
+    ): bool {
+        $paths = $this->searchRenditionPublicPaths(
+            $mainPublicPath
+        );
+
+        if (!$paths) {
+            return false;
+        }
+
+        $ok = true;
+
+        foreach ($paths as $publicPath) {
+            if (!$this->removePublicFile($publicPath)) {
+                $ok = false;
+            }
+        }
+
+        return $ok;
+    }
+
+    protected function cleanupFilesystemPaths(
+        array $paths
+    ): void {
+        foreach ($paths as $path) {
+            if (
+                is_string($path)
+                && $path !== ''
+                && is_file($path)
+            ) {
+                @unlink($path);
+            }
+        }
     }
 
     protected function optimizeImagePath(
@@ -370,6 +781,100 @@ class GoodsImageUploadOptimizer
         return (bool)$ok;
     }
 
+    protected function createSearchFitWithImagick(
+        string $source,
+        string $target,
+        int $targetWidth,
+        int $targetHeight
+    ): bool {
+        if (
+            $targetWidth <= 0
+            || $targetHeight <= 0
+        ) {
+            return false;
+        }
+
+        $image = new \Imagick($source);
+
+        if (method_exists($image, 'autoOrient')) {
+            $image->autoOrient();
+        }
+
+        $srcWidth = max(
+            1,
+            $image->getImageWidth()
+        );
+        $srcHeight = max(
+            1,
+            $image->getImageHeight()
+        );
+
+        $scale = min(
+            $targetWidth / $srcWidth,
+            $targetHeight / $srcHeight,
+            1.0
+        );
+
+        $resizeWidth = max(
+            1,
+            (int)round($srcWidth * $scale)
+        );
+        $resizeHeight = max(
+            1,
+            (int)round($srcHeight * $scale)
+        );
+
+        if (
+            $resizeWidth !== $srcWidth
+            || $resizeHeight !== $srcHeight
+        ) {
+            $image->thumbnailImage(
+                $resizeWidth,
+                $resizeHeight,
+                true,
+                false
+            );
+        }
+
+        $canvas = new \Imagick();
+        $canvas->newImage(
+            $targetWidth,
+            $targetHeight,
+            'white',
+            'jpg'
+        );
+
+        $x = (int)floor(
+            ($targetWidth - $image->getImageWidth())
+            / 2
+        );
+        $y = (int)floor(
+            ($targetHeight - $image->getImageHeight())
+            / 2
+        );
+
+        $canvas->compositeImage(
+            $image,
+            \Imagick::COMPOSITE_OVER,
+            $x,
+            $y
+        );
+        $canvas->setImageFormat('jpeg');
+        $canvas->setImageCompressionQuality(
+            $this->searchQuality
+        );
+        $canvas->stripImage();
+
+        $ok = $canvas->writeImage($target);
+
+        $image->clear();
+        $image->destroy();
+        $canvas->clear();
+        $canvas->destroy();
+
+        return (bool)$ok;
+    }
+
     protected function trimImageWhitespaceWithImagick(\Imagick $image): void
     {
         try {
@@ -467,6 +972,95 @@ class GoodsImageUploadOptimizer
         );
 
         $ok = imagejpeg($dst, $target, $this->galleryQuality);
+
+        imagedestroy($src);
+        imagedestroy($dst);
+
+        return (bool)$ok;
+    }
+
+    protected function createSearchFitWithGd(
+        string $source,
+        string $target,
+        int $targetWidth,
+        int $targetHeight
+    ): bool {
+        if (
+            $targetWidth <= 0
+            || $targetHeight <= 0
+        ) {
+            return false;
+        }
+
+        $loaded = $this->loadGdImage($source);
+
+        if (!$loaded) {
+            return false;
+        }
+
+        [$src, $srcWidth, $srcHeight] = $loaded;
+
+        $scale = min(
+            $targetWidth / $srcWidth,
+            $targetHeight / $srcHeight,
+            1.0
+        );
+
+        $resizeWidth = max(
+            1,
+            (int)round($srcWidth * $scale)
+        );
+        $resizeHeight = max(
+            1,
+            (int)round($srcHeight * $scale)
+        );
+
+        $dst = imagecreatetruecolor(
+            $targetWidth,
+            $targetHeight
+        );
+        $white = imagecolorallocate(
+            $dst,
+            255,
+            255,
+            255
+        );
+        imagefilledrectangle(
+            $dst,
+            0,
+            0,
+            $targetWidth - 1,
+            $targetHeight - 1,
+            $white
+        );
+
+        $dstX = (int)floor(
+            ($targetWidth - $resizeWidth)
+            / 2
+        );
+        $dstY = (int)floor(
+            ($targetHeight - $resizeHeight)
+            / 2
+        );
+
+        imagecopyresampled(
+            $dst,
+            $src,
+            $dstX,
+            $dstY,
+            0,
+            0,
+            $resizeWidth,
+            $resizeHeight,
+            $srcWidth,
+            $srcHeight
+        );
+
+        $ok = imagejpeg(
+            $dst,
+            $target,
+            $this->searchQuality
+        );
 
         imagedestroy($src);
         imagedestroy($dst);

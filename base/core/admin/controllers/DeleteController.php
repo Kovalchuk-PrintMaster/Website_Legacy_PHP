@@ -88,6 +88,19 @@ class DeleteController extends BaseAdmin
                                         foreach ($fileData as $f)
                                             @unlink($_SERVER['DOCUMENT_ROOT'] . PATH . UPLOAD_DIR. $f);
                                     }else {
+                                        /*
+                                         * FP_PRODUCT_SEARCH_RENDITIONS_DELETE_V0_1
+                                         *
+                                         * A goods main image owns deterministic
+                                         * search renditions outside DB columns.
+                                         * Remove that derivative family before
+                                         * the legacy main-file unlink.
+                                         */
+                                        $this->removeGoodsSearchRenditionsForMainImage(
+                                            $item,
+                                            $fileData
+                                        );
+
                                         @unlink($_SERVER['DOCUMENT_ROOT'] . PATH . UPLOAD_DIR. $fileData);
                                     }
                                 }
@@ -163,6 +176,34 @@ class DeleteController extends BaseAdmin
 
         $this->redirect();
     }
+    /**
+     * Remove search renditions only for the canonical goods main-image field.
+     *
+     * This helper deliberately ignores galleries and all non-goods entities.
+     * Missing renditions are harmless because the optimizer owns the exact
+     * deterministic derivative paths.
+     */
+    protected function removeGoodsSearchRenditionsForMainImage(
+        $field,
+        $publicPath
+    ): void {
+        if (
+            $this->table !== 'goods'
+            || $field !== 'img'
+            || !is_string($publicPath)
+            || trim($publicPath) === ''
+        ) {
+            return;
+        }
+
+        $goodsImageOptimizer =
+            new \libraries\GoodsImageUploadOptimizer();
+
+        $goodsImageOptimizer->removeSearchRenditions(
+            $publicPath
+        );
+    }
+
     protected function checkDeleteFile(){
 
         unset($this->parameters[$this->table]);
@@ -198,6 +239,15 @@ class DeleteController extends BaseAdmin
                  }elseif($this->data[$row] === $item){
 
                      $updateFlag = true;
+
+                     /*
+                      * Main-image field deletion must remove its deterministic
+                      * search rendition family as part of the same lifecycle.
+                      */
+                     $this->removeGoodsSearchRenditionsForMainImage(
+                         $row,
+                         $item
+                     );
 
                      @unlink($_SERVER['DOCUMENT_ROOT'] . PATH . UPLOAD_DIR . $item);
 

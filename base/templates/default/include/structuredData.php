@@ -535,6 +535,8 @@ if (
 ) {
     require_once dirname(__DIR__)
         . '/include/productCardHelpers.php';
+    require_once dirname(__DIR__, 3)
+        . '/libraries/GoodsImageUploadOptimizer.php';
 
     $fpSchemaPriceState = function_exists(
         'fp_product_price_state'
@@ -648,6 +650,41 @@ if (
             $fpSchemaProductImages[] = (
                 $fpSchemaMainImage
             );
+        }
+
+        /*
+         * FP_PRODUCT_SEARCH_RENDITIONS_V0_2
+         *
+         * Deterministic 1:1, 4:3 and 16:9 renditions supplement the
+         * canonical main image. The optimizer returns them only when the
+         * complete family exists with the exact expected dimensions.
+         * og:image ownership remains unchanged.
+         */
+        $fpSchemaSearchImageOptimizer =
+            new \libraries\GoodsImageUploadOptimizer();
+
+        $fpSchemaSearchRenditions =
+            $fpSchemaSearchImageOptimizer
+                ->existingSearchRenditions(
+                    (string)($data['img'] ?? '')
+                );
+
+        foreach (
+            $fpSchemaSearchRenditions
+            as $fpSchemaSearchRendition
+        ) {
+            $fpSchemaSearchRenditionUrl =
+                $fpSchemaAbsoluteUrl(
+                    $this->img(
+                        (string)$fpSchemaSearchRendition
+                    )
+                );
+
+            if ($fpSchemaSearchRenditionUrl !== '') {
+                $fpSchemaProductImages[] = (
+                    $fpSchemaSearchRenditionUrl
+                );
+            }
         }
 
         $fpSchemaGalleryRaw = (

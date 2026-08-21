@@ -765,6 +765,18 @@ abstract class BaseAdmin extends BaseController
          * this stage. Existing database images are merged later by
          * checkFiles(), therefore they are not removed here.
          */
+        if (
+            !empty($this->fileArray['img'])
+            && is_string($this->fileArray['img'])
+        ) {
+            $goodsImageOptimizer =
+                new \libraries\GoodsImageUploadOptimizer();
+
+            $goodsImageOptimizer->removeSearchRenditions(
+                $this->fileArray['img']
+            );
+        }
+
         $this->removePartiallyUploadedFiles(
             $this->fileArray
         );
@@ -1620,6 +1632,28 @@ abstract class BaseAdmin extends BaseController
                                 }
 
                             } elseif (!empty($this->fileArray[$key])) {
+
+                                /*
+                                 * FP_PRODUCT_SEARCH_RENDITIONS_V0_2
+                                 *
+                                 * The stored main image owns deterministic
+                                 * search renditions outside DB columns.
+                                 * Remove that family immediately before the
+                                 * legacy stored-main cleanup on replacement.
+                                 */
+                                if (
+                                    $this->table === 'goods'
+                                    && $key === 'img'
+                                    && is_string($item)
+                                    && trim($item) !== ''
+                                ) {
+                                    $goodsImageOptimizer =
+                                        new \libraries\GoodsImageUploadOptimizer();
+
+                                    $goodsImageOptimizer->removeSearchRenditions(
+                                        $item
+                                    );
+                                }
 
                                 @unlink($_SERVER['DOCUMENT_ROOT'] . PATH . UPLOAD_DIR . $item);
                         }
