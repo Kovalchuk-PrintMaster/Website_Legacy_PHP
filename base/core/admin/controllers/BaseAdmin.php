@@ -255,7 +255,7 @@ abstract class BaseAdmin extends BaseController
             return;
         }
 
-        $allowedModes = ['exact', 'range', 'request'];
+        $allowedModes = ['exact', 'starting', 'range', 'request'];
         $mode = strtolower(trim((string)($_POST['price_mode'] ?? 'request')));
 
         if (!in_array($mode, $allowedModes, true)) {
@@ -284,6 +284,10 @@ abstract class BaseAdmin extends BaseController
 
         if ($mode === 'exact') {
             if ((int)($_POST['price'] ?? 0) <= 0) {
+                $mode = 'request';
+            }
+        } elseif ($mode === 'starting') {
+            if ((int)($_POST['price_from'] ?? 0) <= 0) {
                 $mode = 'request';
             }
         } elseif ($mode === 'range') {

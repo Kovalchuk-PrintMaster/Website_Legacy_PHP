@@ -14,12 +14,13 @@ $getPriceFieldValue = function (string $field, string $default = ''): string {
 
 $priceMode = strtolower(trim($getPriceFieldValue('price_mode', 'request')));
 
-if (!in_array($priceMode, ['exact', 'range', 'request'], true)) {
+if (!in_array($priceMode, ['exact', 'starting', 'range', 'request'], true)) {
     $priceMode = 'request';
 }
 
 $priceModeOptions = [
     'exact' => 'Точна ціна',
+    'starting' => 'Ціна від',
     'range' => 'Діапазон цін',
     'request' => 'Ціна за запитом',
 ];
@@ -36,7 +37,7 @@ $priceDescription = $getPriceFieldValue('price_description');
     <div class="fp-admin-price-panel__heading">
         <span class="vg-header">Ціна товару</span>
         <span class="vg_subheader">
-            Обери точну ціну, діапазон або індивідуальний розрахунок.
+            Обери точну ціну, ціну від, діапазон або індивідуальний розрахунок.
         </span>
     </div>
 
@@ -104,8 +105,8 @@ $priceDescription = $getPriceFieldValue('price_description');
 
         <div
             class="fp-admin-price-group"
-            data-price-group="range"
-            <?=$priceMode !== 'range' ? 'hidden' : ''?>
+            data-price-group="starting range"
+            <?=!in_array($priceMode, ['starting', 'range'], true) ? 'hidden' : ''?>
         >
             <div class="fp-admin-price-field">
                 <label for="fp-admin-price-from">Ціна від</label>
@@ -122,7 +123,11 @@ $priceDescription = $getPriceFieldValue('price_description');
                 >
             </div>
 
-            <div class="fp-admin-price-field">
+            <div
+                class="fp-admin-price-field"
+                data-price-range-only
+                <?=$priceMode !== 'range' ? 'hidden' : ''?>
+            >
                 <label for="fp-admin-price-to">Ціна до</label>
 
                 <input
@@ -137,7 +142,11 @@ $priceDescription = $getPriceFieldValue('price_description');
                 >
             </div>
 
-            <p class="fp-admin-price-panel__hint">
+            <p
+                class="fp-admin-price-panel__hint"
+                data-price-range-only
+                <?=$priceMode !== 'range' ? 'hidden' : ''?>
+            >
                 Можна заповнити обидві межі або лише одну: «від» чи «до».
             </p>
         </div>
@@ -203,6 +212,7 @@ $priceDescription = $getPriceFieldValue('price_description');
     var form = panel.closest('form');
     var modeInputs = panel.querySelectorAll('[data-price-mode]');
     var groups = panel.querySelectorAll('[data-price-group]');
+    var rangeOnly = panel.querySelectorAll('[data-price-range-only]');
     var exactPrice = panel.querySelector('[name="price"]');
     var priceFrom = panel.querySelector('[name="price_from"]');
     var priceTo = panel.querySelector('[name="price_to"]');
@@ -217,11 +227,21 @@ $priceDescription = $getPriceFieldValue('price_description');
         var mode = selectedMode();
 
         groups.forEach(function (group) {
-            var active = group.dataset.priceGroup === mode;
+            var active = group.dataset.priceGroup.split(/\s+/).indexOf(mode) !== -1;
 
             group.hidden = !active;
 
             group.querySelectorAll('input').forEach(function (input) {
+                input.disabled = !active;
+            });
+        });
+
+        rangeOnly.forEach(function (element) {
+            var active = mode === 'range';
+
+            element.hidden = !active;
+
+            element.querySelectorAll('input').forEach(function (input) {
                 input.disabled = !active;
             });
         });
@@ -232,6 +252,7 @@ $priceDescription = $getPriceFieldValue('price_description');
         }
 
         if (priceFrom) {
+            priceFrom.required = mode === 'starting';
             priceFrom.setCustomValidity('');
         }
 
@@ -247,6 +268,25 @@ $priceDescription = $getPriceFieldValue('price_description');
     if (form) {
         form.addEventListener('submit', function (event) {
             var mode = selectedMode();
+
+            if (mode === 'starting') {
+                var startingValue = priceFrom
+                    ? Number(priceFrom.value || 0)
+                    : 0;
+
+                if (startingValue <= 0) {
+                    event.preventDefault();
+
+                    if (priceFrom) {
+                        priceFrom.setCustomValidity(
+                            'Вкажи реальну мінімальну ціну більше нуля.'
+                        );
+                        priceFrom.reportValidity();
+                    }
+                }
+
+                return;
+            }
 
             if (mode !== 'range') {
                 return;

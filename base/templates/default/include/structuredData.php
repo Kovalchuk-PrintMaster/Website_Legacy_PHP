@@ -10,8 +10,9 @@
  * - URLs: the canonical origin already resolved by header.php.
  *
  * No availability, reviews, ratings, delivery promises or return policies are
- * invented. Product markup is emitted only for a complete exact-price offer
- * or a range with a truthful lower bound.
+ * invented. Product markup is emitted only for a complete exact-price offer,
+ * a real attainable starting-price offer, or a range with a truthful lower
+ * bound.
  */
 
 $fpSchemaController = strtolower(
@@ -548,6 +549,21 @@ if (
 
     if (
         ($fpSchemaPriceState['mode'] ?? '') === 'exact'
+        && (float)(
+            $fpSchemaPriceState['current_price']
+            ?? 0
+        ) > 0
+    ) {
+        $fpSchemaOffer = [
+            '@type' => 'Offer',
+            'url' => $fpCanonicalUrl,
+            'price' => $fpSchemaNumber(
+                $fpSchemaPriceState['current_price']
+            ),
+            'priceCurrency' => 'UAH',
+        ];
+    } elseif (
+        ($fpSchemaPriceState['mode'] ?? '') === 'starting'
         && (float)(
             $fpSchemaPriceState['current_price']
             ?? 0

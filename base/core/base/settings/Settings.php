@@ -399,6 +399,7 @@ class Settings
         'hot' =>['Ні', 'Так', 'default' => 'Ні'],
         'price_mode' => [
             'exact' => 'Точна ціна',
+            'starting' => 'Ціна від',
             'range' => 'Діапазон цін',
             'request' => 'Ціна за запитом',
             'default' => 'Ціна за запитом',

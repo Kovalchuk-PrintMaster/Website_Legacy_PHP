@@ -317,6 +317,7 @@ if (!function_exists('fp_product_price_state')) {
      *
      * Supported modes:
      * - exact: exact numeric price, optionally with a discount;
+     * - starting: real attainable minimum price, displayed as "від";
      * - range: lower and/or upper price boundary;
      * - request: individual price calculation.
      *
@@ -345,7 +346,7 @@ if (!function_exists('fp_product_price_state')) {
             $requestText = 'Ціна за запитом';
         }
 
-        $allowedModes = ['exact', 'range', 'request'];
+        $allowedModes = ['exact', 'starting', 'range', 'request'];
 
         $mode = strtolower(trim((string)($data['price_mode'] ?? '')));
 
@@ -353,6 +354,28 @@ if (!function_exists('fp_product_price_state')) {
             $mode = (float)($data['price'] ?? 0) > 0
                 ? 'exact'
                 : 'request';
+        }
+
+        if ($mode === 'starting') {
+            $priceFrom = max(0.0, (float)($data['price_from'] ?? 0));
+
+            if ($priceFrom > 0) {
+                return [
+                    'mode' => 'starting',
+                    'label' => 'Вартість:',
+                    'display' => 'від '
+                        . fp_product_card_format_price($priceFrom)
+                        . ' грн.',
+                    'base_price' => 0.0,
+                    'current_price' => $priceFrom,
+                    'discount' => 0.0,
+                    'has_discount' => false,
+                    'purchasable' => false,
+                    'source' => 'starting',
+                ];
+            }
+
+            $mode = 'request';
         }
 
         if ($mode === 'range') {
