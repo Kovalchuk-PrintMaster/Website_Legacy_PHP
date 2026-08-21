@@ -277,3 +277,39 @@ scripts/maintenance/sync_local_to_hosting_full.py
 .runtime/backups/hosting/                  local-only rollback snapshots
 ```
 <!-- /FP_CANONICAL_FULL_HOSTING_SYNC_MAP_V1 -->
+
+<!-- FP-PRODUCT-MEDIA-REPOSITORY-MAP-V01-START -->
+## Product media architecture additions — 2026-08-21
+
+```text
+base/
+├── libraries/
+│   └── GoodsImageUploadOptimizer.php      canonical product-media owner
+├── core/admin/controllers/
+│   ├── BaseAdmin.php                      upload/save/replacement orchestration
+│   └── DeleteController.php               single-image/full-record cleanup lifecycle
+├── templates/default/include/
+│   └── structuredData.php                 verified Product.image search-rendition consumer
+└── userfiles/goods/
+    └── <catalog-alias>/
+        ├── <canonical-main>.jpg
+        ├── <gallery>.jpg
+        └── search/
+            ├── <main-stem>_1x1.jpg
+            ├── <main-stem>_4x3.jpg
+            └── <main-stem>_16x9.jpg
+
+scripts/inspection/
+└── check_website_product_image_runtime.php
+```
+
+Runtime mapping:
+
+```text
+local repository webroot: base/
+production webroot:       deployment root without base/
+canonical media root:     sibling userfiles/ resolved from libraries/
+```
+
+Search renditions are deterministic derived files and therefore have no separate database columns.
+<!-- FP-PRODUCT-MEDIA-REPOSITORY-MAP-V01-END -->

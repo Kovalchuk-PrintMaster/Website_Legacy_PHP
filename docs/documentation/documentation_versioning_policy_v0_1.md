@@ -207,3 +207,19 @@ When a canonical document is superseded:
 
 Compatibility is explicit; it is never inferred from a stale link.
 <!-- FP_LIVING_DOCUMENTATION_LIFECYCLE_V0_1_END -->
+
+<!-- FP-PRODUCT-MEDIA-DOC-POLICY-V03-START -->
+## Product media architecture package v0.3 application note
+
+The 2026-08-21 product-media change is a major architecture/runtime checkpoint, so documentation is added as new versioned canonical records rather than rewriting historical July snapshots.
+
+Supersession and evidence rules:
+
+- `media_storage_and_image_processing_policy_v0_2.md` explicitly supersedes v0.1;
+- the v0.1 policy remains historical evidence of the earlier baseline;
+- `product_media_pipeline_v0_1.md` is the current operational reference;
+- the 2026-08-21 decision record preserves ownership rationale;
+- the 2026-08-21 snapshot preserves completed production/backfill facts and is not edited into future state;
+- dated migration reports remain execution evidence, not the only source of architectural explanation;
+- bounded index marker blocks may be updated without deleting unrelated index history.
+<!-- FP-PRODUCT-MEDIA-DOC-POLICY-V03-END -->

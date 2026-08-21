@@ -229,3 +229,17 @@ This checkpoint separates:
 - rich organic-search image and price presentation;
 - later performance optimization.
 <!-- FP-MARKETING-SEARCH-ADS-2026-08-20-END -->
+
+<!-- FP-PRODUCT-MEDIA-DOCS-V03-START -->
+## Canonical product media architecture — 2026-08-21
+
+Current product-media documentation:
+
+- [Media Storage and Image Processing Policy v0.2](architecture/media_storage_and_image_processing_policy_v0_2.md) — canonical media ownership, runtime storage, search profiles, cleanup and production policy;
+- [Product Media Pipeline Reference v0.1](reference/product_media_pipeline_v0_1.md) — practical end-to-end runtime map for developers and operators;
+- [Decision: canonical product media owner and search renditions](decisions/2026-08-21__canonical_product_media_owner_and_search_renditions.md) — accepted ownership and derivative architecture;
+- [Product media and search-rendition production state — 2026-08-21](status/snapshots/2026-08-21_product_media_search_rendition_state_v0_1.md) — dated production/backfill evidence summary;
+- [Documentation Package Manifest v0.3](documentation/package_manifest_v0_3.md) — package scope and validation.
+
+`GoodsImageUploadOptimizer.php` is the canonical product-media owner. Product search variants are deterministic derivatives of `goods.img`, not independent database records.
+<!-- FP-PRODUCT-MEDIA-DOCS-V03-END -->

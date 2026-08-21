@@ -228,3 +228,13 @@ local regression contract
 **Working state:**
 `docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md`
 <!-- /FP_HOSTING_FULL_SYNC_HARDENING_ADR_V1 -->
+
+<!-- FP-PRODUCT-MEDIA-ADR-2026-08-21-START -->
+## FP-WEB-ADR-2026-08-21-001
+
+**Decision:** canonical product media owner and deterministic search renditions
+**Status:** accepted
+**Record:** `docs/decisions/2026-08-21__canonical_product_media_owner_and_search_renditions.md`
+
+`GoodsImageUploadOptimizer.php` owns product-media processing and deterministic main-image search families. Search renditions remain filesystem derivatives of canonical `goods.img`; lifecycle cleanup and runtime-root portability are part of the same owner contract.
+<!-- FP-PRODUCT-MEDIA-ADR-2026-08-21-END -->

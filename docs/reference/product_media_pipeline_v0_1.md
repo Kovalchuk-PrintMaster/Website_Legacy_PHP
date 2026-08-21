@@ -1,0 +1,222 @@
+# Product Media Pipeline Reference v0.1
+
+**Document ID:** `FP-WEB-REF-PRODUCT-MEDIA-001`
+**Date:** `2026-08-21`
+**Status:** `active`
+**Scope:** current ForPrint product-image runtime, ownership, structured data, and lifecycle
+
+## 1. Quick orientation
+
+```text
+Database source fields
+    goods.img
+    goods.gallery_img
+        │
+        ▼
+BaseAdmin.php
+        │
+        ▼
+GoodsImageUploadOptimizer.php   ← canonical media owner
+        │
+        ├── canonical main/gallery JPEGs
+        │
+        └── deterministic main-image search family
+             1x1 / 4x3 / 16x9
+        │
+        ▼
+structuredData.php
+        │
+        └── Product.image receives only a verified complete family
+```
+
+Deletion and replacement flows call the same optimizer owner for derivative cleanup.
+
+## 2. Critical files and responsibilities
+
+| File | Responsibility |
+|---|---|
+| `base/libraries/GoodsImageUploadOptimizer.php` | canonical product-media path, processing, search generation, verification, cleanup |
+| `base/core/admin/controllers/BaseAdmin.php` | admin save/upload orchestration and replacement/failure lifecycle |
+| `base/core/admin/controllers/DeleteController.php` | single-file and full-record deletion lifecycle |
+| `base/templates/default/include/structuredData.php` | Product JSON-LD image exposure after complete-family verification |
+| `scripts/inspection/check_website_product_image_runtime.php` | persistent local/runtime contract inspection |
+
+No other file should independently invent the search-rendition namespace.
+
+## 3. Runtime layout
+
+Local repository:
+
+```text
+forprint_website/
+└── base/                       ← local webroot
+    ├── libraries/
+    │   └── GoodsImageUploadOptimizer.php
+    └── userfiles/
+```
+
+Production:
+
+```text
+forprint.net.ua/                ← production webroot
+├── libraries/
+│   └── GoodsImageUploadOptimizer.php
+└── userfiles/
+```
+
+Therefore the canonical runtime rule is sibling ownership from `libraries/`:
+
+```php
+dirname(__DIR__) . '/userfiles'
+```
+
+Do not rebuild `base/userfiles` from a repository root inside runtime code.
+
+## 4. Canonical database paths
+
+Examples:
+
+```text
+goods.img         = goods/<catalog-alias>/<main-file>.jpg
+goods.gallery_img = JSON/list of goods/<catalog-alias>/<gallery-file>.jpg
+```
+
+The paths are relative to `userfiles/`.
+
+Search renditions have no database fields.
+
+## 5. Search-rendition path derivation
+
+For:
+
+```text
+goods/catalog-name/product-name_01.jpg
+```
+
+expected derivative family is:
+
+```text
+goods/catalog-name/search/product-name_01_1x1.jpg
+goods/catalog-name/search/product-name_01_4x3.jpg
+goods/catalog-name/search/product-name_01_16x9.jpg
+```
+
+Profiles:
+
+```text
+1x1  = 700 × 700
+4x3  = 700 × 525
+16x9 = 704 × 396
+JPEG quality = 94
+```
+
+Rendering uses centered fit/pad on a white canvas without upscaling the source.
+
+## 6. Upload path
+
+```text
+admin form
+→ BaseAdmin upload handling
+→ GoodsImageUploadOptimizer::optimizeMainImage()
+→ canonical main image finalized
+→ search-rendition family generated and verified
+→ save may continue
+```
+
+If required processing fails, the request fails closed and current-request media is cleaned.
+
+Gallery images remain canonical gallery files and do not currently receive the search family.
+
+## 7. Read path
+
+Public page rendering does not query extra search-image database columns.
+
+`structuredData.php` asks the optimizer for existing verified search renditions based on the current canonical main path.
+
+Only a complete valid family is emitted.
+
+## 8. Replacement path
+
+```text
+old goods.img
+→ remove old deterministic search family
+→ remove/replace old canonical file through existing file lifecycle
+→ process new canonical main
+→ generate new family
+```
+
+This keeps old derivatives from becoming orphans.
+
+## 9. Deletion path
+
+### Delete only main image
+
+`DeleteController.php` recognizes `goods.img` and calls the optimizer derivative cleanup before the legacy canonical file unlink continues.
+
+### Delete product record
+
+The same derivative cleanup occurs in the full record deletion file lifecycle before record deletion.
+
+### Gallery deletion
+
+Gallery behavior remains the existing gallery-file lifecycle; no main search-family rule is applied to gallery entries.
+
+## 10. Structured-data behavior
+
+For eligible Product schema pages, image order is conceptually:
+
+```text
+canonical main
+verified search aspect variants
+gallery images
+```
+
+The exact page remains governed by the canonical Product/price eligibility contract.
+
+The search family is an image-discovery/search-quality asset. It does not change product identity or price authority.
+
+## 11. Historical backfill versus future operation
+
+Historical backfill was a one-time additive maintenance migration for product rows that existed before automatic search-family generation.
+
+Future uploads do not require that migration path. They use normal admin save processing.
+
+Production backfill completion state:
+
+```text
+164 canonical main images
+492 generated search JPEGs
+66,307,706 generated bytes
+15 search directories
+0 temporary files
+```
+
+## 12. Inspection and troubleshooting
+
+Persistent check:
+
+```bash
+php scripts/inspection/check_website_product_image_runtime.php
+```
+
+Useful focused checks after product-media owner changes:
+
+```bash
+php -l base/libraries/GoodsImageUploadOptimizer.php
+php -l base/core/admin/controllers/BaseAdmin.php
+php -l base/core/admin/controllers/DeleteController.php
+php -l base/templates/default/include/structuredData.php
+make preview-smoke
+.venv_website/bin/python3 scripts/inspection/check_website_structured_data_contract.py
+```
+
+When production and local paths disagree, inspect the optimizer's resolved `userfilesRoot`; do not patch a migration script to compensate for an incorrect runtime owner.
+
+## 13. Safety boundaries
+
+- Canonical source files are not disposable derivatives.
+- Search family files are deterministic derivatives.
+- Mass historical changes require a manifest and backup.
+- Deletion must remain owner-aware.
+- Database source authority and derivative filesystem authority must not be mixed.
+- Production code deployment and historical media migration are separate mutation classes even when performed in the same feature lifecycle.
