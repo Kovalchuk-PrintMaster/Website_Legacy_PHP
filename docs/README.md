@@ -245,11 +245,11 @@ Current product-media documentation:
 <!-- FP-PRODUCT-MEDIA-DOCS-V03-END -->
 
 <!-- FP-SEARCH-IDENTITY-BACKUP-ROADMAP-2026-08-21-START -->
-## Search identity and final off-site backup roadmap — 2026-08-21
+## Search identity, final off-site backup, and admin modernization roadmap — 2026-08-21
 
-Two explicit planned items were added:
+Three explicit planned items are tracked:
 
-- [Search identity and Google Drive backup roadmap addendum v0.1](plans/2026-08-21__search_identity_and_google_drive_backup_roadmap_addendum_v0_1.md) — improve Google Search site identity/direct-contact eligibility and finish the website workstream with a verified Google Drive backup through Cloud Backup Manager/rclone.
+- [Search identity, Google Drive backup, and admin UI roadmap addendum v0.2](plans/2026-08-21__search_identity_and_google_drive_backup_roadmap_addendum_v0_2.md) — improve Google Search site identity/direct-contact eligibility, finish public-production protection with a verified Google Drive backup through Cloud Backup Manager/rclone, and only then modernize the internal admin UI under one canonical project-owned style architecture.
 
-The active Google Ads payments-profile correction and direct-advertiser verification reset remain higher priority than these planned items.
+The active Google Ads payments-profile correction and direct-advertiser verification reset remain higher priority. Admin UI modernization is intentionally the final roadmap item.
 <!-- FP-SEARCH-IDENTITY-BACKUP-ROADMAP-2026-08-21-END -->
