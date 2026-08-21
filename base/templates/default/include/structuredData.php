@@ -11,8 +11,8 @@
  *
  * No availability, reviews, ratings, delivery promises or return policies are
  * invented. Product markup is emitted only for a complete exact-price offer,
- * a real attainable starting-price offer, or a range with a truthful lower
- * bound.
+ * a real attainable starting-price offer, or a range with two truthful
+ * positive bounds.
  */
 
 $fpSchemaController = strtolower(

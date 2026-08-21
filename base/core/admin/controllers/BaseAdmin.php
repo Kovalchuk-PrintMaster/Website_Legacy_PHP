@@ -302,7 +302,9 @@ abstract class BaseAdmin extends BaseController
                 $priceTo = (int)$_POST['price_to'];
             }
 
-            if ($priceFrom <= 0 && $priceTo <= 0) {
+            if ($priceFrom > 0 && $priceTo <= 0) {
+                $mode = 'starting';
+            } elseif ($priceFrom <= 0 || $priceTo <= 0) {
                 $mode = 'request';
             }
         }

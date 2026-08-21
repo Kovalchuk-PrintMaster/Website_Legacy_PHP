@@ -387,27 +387,13 @@ if (!function_exists('fp_product_price_state')) {
             }
 
             if ($priceFrom > 0 && $priceTo > 0) {
-                $display = fp_product_card_format_price($priceFrom)
-                    . '–'
-                    . fp_product_card_format_price($priceTo)
-                    . ' грн.';
-            } elseif ($priceFrom > 0) {
-                $display = 'від '
-                    . fp_product_card_format_price($priceFrom)
-                    . ' грн.';
-            } elseif ($priceTo > 0) {
-                $display = 'до '
-                    . fp_product_card_format_price($priceTo)
-                    . ' грн.';
-            } else {
-                $mode = 'request';
-            }
-
-            if ($mode === 'range') {
                 return [
                     'mode' => 'range',
                     'label' => 'Вартість:',
-                    'display' => $display,
+                    'display' => fp_product_card_format_price($priceFrom)
+                        . '–'
+                        . fp_product_card_format_price($priceTo)
+                        . ' грн.',
                     'base_price' => 0.0,
                     'current_price' => 0.0,
                     'discount' => 0.0,
@@ -416,6 +402,24 @@ if (!function_exists('fp_product_price_state')) {
                     'source' => 'range',
                 ];
             }
+
+            if ($priceFrom > 0) {
+                return [
+                    'mode' => 'starting',
+                    'label' => 'Вартість:',
+                    'display' => 'від '
+                        . fp_product_card_format_price($priceFrom)
+                        . ' грн.',
+                    'base_price' => 0.0,
+                    'current_price' => $priceFrom,
+                    'discount' => 0.0,
+                    'has_discount' => false,
+                    'purchasable' => false,
+                    'source' => 'range_lower_bound_normalized_to_starting',
+                ];
+            }
+
+            $mode = 'request';
         }
 
         if ($mode === 'request') {

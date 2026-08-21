@@ -147,7 +147,7 @@ $priceDescription = $getPriceFieldValue('price_description');
                 data-price-range-only
                 <?=$priceMode !== 'range' ? 'hidden' : ''?>
             >
-                Можна заповнити обидві межі або лише одну: «від» чи «до».
+                Для діапазону обов’язково вкажи обидві реальні межі: «від» і «до».
             </p>
         </div>
 
@@ -252,11 +252,12 @@ $priceDescription = $getPriceFieldValue('price_description');
         }
 
         if (priceFrom) {
-            priceFrom.required = mode === 'starting';
+            priceFrom.required = mode === 'starting' || mode === 'range';
             priceFrom.setCustomValidity('');
         }
 
         if (priceTo) {
+            priceTo.required = mode === 'range';
             priceTo.setCustomValidity('');
         }
     }
@@ -295,12 +296,12 @@ $priceDescription = $getPriceFieldValue('price_description');
             var fromValue = priceFrom ? Number(priceFrom.value || 0) : 0;
             var toValue = priceTo ? Number(priceTo.value || 0) : 0;
 
-            if (fromValue <= 0 && toValue <= 0) {
+            if (fromValue <= 0 || toValue <= 0) {
                 event.preventDefault();
 
                 if (priceFrom) {
                     priceFrom.setCustomValidity(
-                        'Вкажи хоча б одну межу діапазону ціни.'
+                        'Вкажи обидві межі діапазону ціни більше нуля.'
                     );
                     priceFrom.reportValidity();
                 }
