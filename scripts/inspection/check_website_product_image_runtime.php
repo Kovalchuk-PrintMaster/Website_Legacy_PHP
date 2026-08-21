@@ -5,9 +5,18 @@ declare(strict_types=1);
 /**
  * ForPrint managed preview/product upload runtime smoke.
  * READ ONLY.
+ *
+ * Canonical runtime ownership:
+ * - local preview process: forprint-website-preview.service;
+ * - hosting/deployment PHP limits: base/.user.ini;
+ * - Makefile: operator facade for the systemd preview service.
+ *
+ * The historical FP_WEB_* Makefile variables are intentionally not part of
+ * the current runtime contract.
  */
 
 $root = dirname(__DIR__, 2);
+$previewService = 'forprint-website-preview.service';
 
 $paths = [
     'makefile' => $root . '/Makefile',
@@ -40,31 +49,28 @@ foreach ($paths as $label => $path) {
 }
 
 $checks = [
-    'site runtime variables exist' =>
+    'Makefile delegates preview to systemd' =>
         str_contains(
             $content['makefile'],
-            'FP_WEB_UPLOAD_MAX_FILESIZE ?= 32M'
+            'PREVIEW_SERVICE ?= forprint-website-preview.service'
         )
         && str_contains(
             $content['makefile'],
-            'FP_WEB_POST_MAX_SIZE ?= 128M'
-        ),
-    'managed preview uses upload variables' =>
-        str_contains(
-            $content['makefile'],
-            'site-preview-start:'
+            'preview-start:'
         )
-        && (
-            str_contains(
-                $content['makefile'],
-                '-d upload_max_filesize=$(FP_WEB_UPLOAD_MAX_FILESIZE)'
-            )
-            || preg_match(
-                '/site-preview-start:.*?site-serve/s',
-                $content['makefile']
-            ) === 1
+        && str_contains(
+            $content['makefile'],
+            'systemctl start "$(PREVIEW_SERVICE)"'
+        )
+        && str_contains(
+            $content['makefile'],
+            'preview-restart:'
+        )
+        && str_contains(
+            $content['makefile'],
+            'systemctl restart "$(PREVIEW_SERVICE)"'
         ),
-    'deployment ini matches preview' =>
+    'deployment ini matches canonical upload limits' =>
         str_contains(
             $content['user_ini'],
             'upload_max_filesize=32M'
@@ -72,6 +78,10 @@ $checks = [
         && str_contains(
             $content['user_ini'],
             'post_max_size=128M'
+        )
+        && str_contains(
+            $content['user_ini'],
+            'max_file_uploads=50'
         ),
     'form remains multipart' =>
         str_contains(
@@ -131,27 +141,68 @@ foreach ($checks as $label => $passed) {
     }
 }
 
-$pidFile = '/tmp/forprint_website_php8098.pid';
+$systemctl = trim(
+    (string)shell_exec(
+        'command -v systemctl 2>/dev/null'
+    )
+);
 
-if (!is_file($pidFile)) {
+if ($systemctl === '') {
     fwrite(
         STDERR,
-        "[FAIL] Preview PID file is missing.\n"
+        "[FAIL] systemctl is unavailable.\n"
     );
     exit(3);
 }
 
-$pid = trim(
-    (string)file_get_contents($pidFile)
+$activeResult = 1;
+
+exec(
+    escapeshellcmd($systemctl)
+    . ' is-active --quiet '
+    . escapeshellarg($previewService),
+    $unusedActiveOutput,
+    $activeResult
 );
-$cmdlinePath = '/proc/' . $pid . '/cmdline';
+
+printf(
+    "[%s] canonical preview service active\n",
+    $activeResult === 0 ? 'OK' : 'FAIL'
+);
+
+if ($activeResult !== 0) {
+    exit(4);
+}
+
+$mainPid = trim(
+    (string)shell_exec(
+        escapeshellcmd($systemctl)
+        . ' show --property=MainPID --value '
+        . escapeshellarg($previewService)
+        . ' 2>/dev/null'
+    )
+);
+
+if (
+    !preg_match('/^[1-9][0-9]*$/', $mainPid)
+) {
+    fwrite(
+        STDERR,
+        "[FAIL] Preview service MainPID is invalid: "
+        . $mainPid
+        . "\n"
+    );
+    exit(5);
+}
+
+$cmdlinePath = '/proc/' . $mainPid . '/cmdline';
 
 if (!is_file($cmdlinePath)) {
     fwrite(
         STDERR,
-        "[FAIL] Preview process is not running.\n"
+        "[FAIL] Preview service process is not running.\n"
     );
-    exit(4);
+    exit(6);
 }
 
 $cmdline = str_replace(
@@ -160,32 +211,39 @@ $cmdline = str_replace(
     (string)file_get_contents($cmdlinePath)
 );
 
-$runtimePassed =
-    str_contains(
-        $cmdline,
-        'upload_max_filesize=32M'
-    )
-    && str_contains(
-        $cmdline,
-        'post_max_size=128M'
-    )
-    && str_contains(
-        $cmdline,
-        'max_file_uploads=50'
-    )
-    && str_contains(
-        $cmdline,
-        'memory_limit=512M'
-    );
+$runtimeChecks = [
+    'upload_max_filesize=32M',
+    'post_max_size=128M',
+    'max_file_uploads=50',
+    'memory_limit=512M',
+    '127.0.0.1:8098',
+    $root . '/base',
+];
+
+$missingRuntime = [];
+
+foreach ($runtimeChecks as $needle) {
+    if (!str_contains($cmdline, $needle)) {
+        $missingRuntime[] = $needle;
+    }
+}
+
+$runtimePassed = $missingRuntime === [];
 
 printf(
-    "[%s] managed preview process arguments\n",
+    "[%s] canonical preview process arguments\n",
     $runtimePassed ? 'OK' : 'FAIL'
 );
 
 if (!$runtimePassed) {
     echo "[INFO] {$cmdline}\n";
-    exit(5);
+    echo "[INFO] missing="
+        . json_encode(
+            $missingRuntime,
+            JSON_UNESCAPED_SLASHES
+        )
+        . "\n";
+    exit(7);
 }
 
 echo "All product image runtime checks passed.\n";
