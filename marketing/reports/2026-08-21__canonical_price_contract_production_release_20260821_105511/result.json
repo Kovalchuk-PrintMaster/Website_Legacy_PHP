@@ -1,0 +1,47 @@
+{
+  "after_visible_modes": {
+    "exact": 1,
+    "range": 119,
+    "request": 44
+  },
+  "before_visible_modes": {
+    "exact": 1,
+    "range": 161,
+    "request": 2
+  },
+  "contamination_guards": {
+    "base/templates/default/include/header.php": "864b2e45fa6696006880c0584ff14669514f934c6bb5a722efb4116cea56eebb",
+    "base/templates/default/include/productCommunicationButtons.php": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6"
+  },
+  "database_from_mode": "range",
+  "database_rows_migrated": 42,
+  "database_to_mode": "request",
+  "fresh_offhost_backup": "/srv/software_development/forprint-project/forprint_website/.runtime/backups/hosting/20260821_105541",
+  "generated": "2026-08-21T10:58:34.048094+03:00",
+  "git_checkpoint": "1b90064529e4484d3f4824a376c0705e223a75ac",
+  "git_mutation": false,
+  "google_ads_mutation": false,
+  "new_hashes": {
+    "base/core/admin/controllers/BaseAdmin.php": "3238f15ef6bb157c7d91c1d6da8b4ba97e1773f6e05d5449a9b3cc7ffa0cefc9",
+    "base/core/admin/views/include/form_templates/price_mode.php": "a3efc7596d7b8919cbe0ba2dc8661cb157246626845ccfeddacf36340cd34b46",
+    "base/core/base/settings/Settings.php": "2cc731e723d73b5530539804feeca3b4bfa1755d19b8c551869aa1a699616c6b",
+    "base/templates/default/include/productCardHelpers.php": "6cb6c71b0c23d50ac61ed1ac11e6635c9e6725dd09895620f7c2d838fd5b0a99",
+    "base/templates/default/include/structuredData.php": "e8f57fb44a72483d835c82d2386953956882a24b05baf6c18734daab3ef1cc77"
+  },
+  "old_hashes": {
+    "base/core/admin/controllers/BaseAdmin.php": "ac9fbeb2683ee747d573a47e4e1a9dd8a65f75c1d2ad124bd139855fc1ba0a4d",
+    "base/core/admin/views/include/form_templates/price_mode.php": "f9ca404d79a039c908c016f6ec87edee759541593ee82b80ac2fce91160b8713",
+    "base/core/base/settings/Settings.php": "a2a32171af38fbf984399ae6b7daf9c360f113ea8873f98fee3d928f80f9f389",
+    "base/templates/default/include/productCardHelpers.php": "d221d603f712923db8e5cf123528f225ab428f828c182f473779b75387889cca",
+    "base/templates/default/include/structuredData.php": "119afad79990762d122fd8d8a849feda2e36e872f0d1b1164ddc689e76439797"
+  },
+  "production_code_base": "93b59a19485df3bb36afb54687e3e1b4fa3632d8",
+  "production_origin": "https://forprint.net.ua",
+  "released_files": [
+    "base/core/admin/controllers/BaseAdmin.php",
+    "base/core/admin/views/include/form_templates/price_mode.php",
+    "base/core/base/settings/Settings.php",
+    "base/templates/default/include/productCardHelpers.php",
+    "base/templates/default/include/structuredData.php"
+  ]
+}
