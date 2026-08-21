@@ -125,6 +125,11 @@ $checks = [
             $content['optimizer'],
             'protected int $galleryQuality = 94;'
         ),
+    'optimizer media root follows runtime webroot' =>
+        str_contains(
+            $content['optimizer'],
+            "\$this->userfilesRoot = dirname(__DIR__) . '/userfiles';"
+        ),
 ];
 
 echo "== ForPrint product image runtime smoke ==\n";

@@ -40,7 +40,16 @@ class GoodsImageUploadOptimizer
     public function __construct()
     {
         $this->projectRoot = dirname(__DIR__, 2);
-        $this->userfilesRoot = $this->projectRoot . '/base/userfiles';
+
+        /*
+         * Runtime ownership is the webroot, not the repository root:
+         * - local:      base/libraries + base/userfiles;
+         * - production: libraries + userfiles (base/ is stripped).
+         *
+         * Anchoring userfiles to the libraries directory keeps the same
+         * storage contract in both layouts and also works from CLI helpers.
+         */
+        $this->userfilesRoot = dirname(__DIR__) . '/userfiles';
     }
 
     public function optimizeMainImage(
