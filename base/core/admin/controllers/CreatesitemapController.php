@@ -50,6 +50,9 @@ class CreatesitemapController extends BaseAdmin
             if($item) $this->$name = json_decode($item);
                 elseif($name === 'all_links' || $name === 'temp_links') $this->$name = [SITE_URL];
         }
+
+        // FP_SITEMAP_VISIBLE_PRODUCT_SEED_CALL_V0_1
+        $this->seedVisibleProductLinks();
         $this->maxLinks = (int)$links_counter > 1 ? ceil($this->maxLinks / $links_counter) : $this->maxLinks;
 
         while ($this->temp_links){
@@ -292,6 +295,77 @@ class CreatesitemapController extends BaseAdmin
             exit(json_encode($exitArr));
         }
     }
+
+    /**
+     * Seed the crawl queue from the canonical visible Goods collection.
+     *
+     * The legacy sitemap generator is link-crawler based. A valid public
+     * Goods record can therefore be absent when no crawlable page links to it.
+     * The existing crawler still validates HTTP/content type and bad links.
+     *
+     * FP_SITEMAP_VISIBLE_PRODUCT_SEED_METHOD_V0_1
+     */
+    protected function seedVisibleProductLinks(): void
+    {
+        $routes = \core\base\settings\Settings::get('routes');
+        $productRoute = trim(
+            (string)($routes['product']['alias'] ?? ''),
+            '/'
+        );
+
+        if ($productRoute === '') {
+            $this->cancel(
+                0,
+                'Product route alias is missing for sitemap generation',
+                '',
+                true
+            );
+
+            return;
+        }
+
+        $goods = $this->model->get(
+            'goods',
+            [
+                'fields' => ['alias'],
+                'where' => ['visible' => 1],
+            ]
+        );
+
+        if (!$goods) {
+            return;
+        }
+
+        foreach ((array)$goods as $item) {
+            $alias = trim(
+                (string)($item['alias'] ?? ''),
+                '/'
+            );
+
+            if ($alias === '') {
+                continue;
+            }
+
+            $link = rtrim(SITE_URL, '/')
+                . '/'
+                . $productRoute
+                . '/'
+                . $alias
+                . '/';
+
+            if (
+                in_array($link, $this->bad_links, true)
+                || in_array($link, $this->all_links, true)
+            ) {
+                continue;
+            }
+
+            $this->all_links[] = $link;
+            $this->temp_links[] = $link;
+        }
+    }
+
+
 
 
     /**
