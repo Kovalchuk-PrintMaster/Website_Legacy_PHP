@@ -134,6 +134,30 @@ $fpCanonicalUrl = rtrim($fpCanonicalOrigin, '/')
     . '/'
     . ltrim($fpRequestPath, '/');
 
+/*
+ * FP_CANONICAL_QUERY_RENDER_V0_1
+ *
+ * Route controllers may expose a bounded structured canonical query. The
+ * shared header owns serialization so arbitrary request query strings never
+ * become canonical by accident.
+ */
+$fpCanonicalQuery = (
+    isset($this->canonicalQuery)
+    && is_array($this->canonicalQuery)
+)
+    ? $this->canonicalQuery
+    : [];
+
+if ($fpCanonicalQuery) {
+    $fpCanonicalUrl .= '?'
+        . http_build_query(
+            $fpCanonicalQuery,
+            '',
+            '&',
+            PHP_QUERY_RFC3986
+        );
+}
+
 $fpEscape = static function (string $value): string {
     return htmlspecialchars(
         $value,

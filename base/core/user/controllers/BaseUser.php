@@ -44,6 +44,15 @@ protected $model;
         protected $description = '';
         protected $language = 'uk';
 
+        /*
+         * FP_CANONICAL_QUERY_METADATA_V0_1
+         *
+         * Page controllers may provide a small structured canonical-query
+         * extension. The shared header remains the owner of canonical origin
+         * and absolute URL rendering.
+         */
+        protected $canonicalQuery = [];
+
 
         /**
          * Resolve one validated presentation-only frontend profile.

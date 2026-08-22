@@ -119,6 +119,36 @@ class CatalogController extends BaseUser
 
         $pages = $this->model->getPagination();
 
+        /*
+         * FP_CATALOG_CANONICAL_PAGINATION_V0_1
+         *
+         * A clean, non-empty page > 1 is a distinct crawlable pagination
+         * document and therefore canonicalizes to itself. page=1,
+         * out-of-range pages, and sort/filter/quantity combinations retain
+         * the shared queryless canonical policy.
+         */
+        $canonicalPageRaw = $_GET['page'] ?? null;
+        $canonicalPage = (
+            is_scalar($canonicalPageRaw)
+            && preg_match(
+                '/^\d+$/D',
+                trim((string)$canonicalPageRaw)
+            )
+        )
+            ? (int)$canonicalPageRaw
+            : 0;
+
+        if (
+            $canonicalPage > 1
+            && !empty($goods)
+            && count($_GET) === 1
+            && array_key_exists('page', $_GET)
+        ) {
+            $this->canonicalQuery = [
+                'page' => $canonicalPage,
+            ];
+        }
+
         /* ForPrint visible catalog navigation v0.6.43 */
         $catalogCategories = [];
         $catalogGoodsCounts = [];
