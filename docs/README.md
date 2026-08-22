@@ -253,3 +253,10 @@ Three explicit planned items are tracked:
 
 The active Google Ads payments-profile correction and direct-advertiser verification reset remain higher priority. Admin UI modernization is intentionally the final roadmap item.
 <!-- FP-SEARCH-IDENTITY-BACKUP-ROADMAP-2026-08-21-END -->
+
+<!-- FP_RECURRING_PRODUCTION_QUALITY_AUDIT_V0_1_START -->
+## Recurring production quality audits
+
+- [`workflow/recurring_production_quality_audits_v0_1.md`](workflow/recurring_production_quality_audits_v0_1.md) — canonical policy and regression registry for recurring read-only production audits.
+- [`plans/recurring_production_quality_audit_roadmap_v0_1.md`](plans/recurring_production_quality_audit_roadmap_v0_1.md) — intentionally final operationalization phase, after verified backup/restore protection and remaining implementation work.
+<!-- FP_RECURRING_PRODUCTION_QUALITY_AUDIT_V0_1_END -->
