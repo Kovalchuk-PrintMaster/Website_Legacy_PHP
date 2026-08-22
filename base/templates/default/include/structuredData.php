@@ -99,9 +99,6 @@ if ($fpSchemaBusinessName === '') {
     $fpSchemaBusinessName = 'ForPrint';
 }
 
-$fpSchemaAlternateName = $fpSchemaCleanText(
-    $fpSiteName ?? ''
-);
 
 $fpSchemaPhone = $fpSchemaCleanText(
     $this->set['contacts_phone']
@@ -459,18 +456,6 @@ if (
         'name' => $fpSchemaBusinessName,
         'url' => $fpSchemaHomeUrl,
     ];
-
-    if (
-        $fpSchemaAlternateName !== ''
-        && strcasecmp(
-            $fpSchemaAlternateName,
-            $fpSchemaBusinessName
-        ) !== 0
-    ) {
-        $fpSchemaBusiness['alternateName'] = (
-            $fpSchemaAlternateName
-        );
-    }
 
     if ($fpSchemaLogo !== '') {
         $fpSchemaBusiness['logo'] = [
