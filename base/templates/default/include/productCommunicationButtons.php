@@ -254,6 +254,21 @@ if (!function_exists('fp_render_product_communication_buttons')) {
                 $primaryLabel = trim((string)($button['primary_contact_label'] ?? 'Контакт'));
                 $phoneLabel = trim((string)($button['phone_label'] ?? 'Телефон'));
                 $idempotencyKey = ForPrintCommunicationRequestSecurity::issueIdempotencyKey();
+                $dialogTitleKey = preg_replace(
+                    '/[^a-zA-Z0-9_-]+/',
+                    '-',
+                    $alias !== '' ? $alias : 'request'
+                );
+                $dialogTitleKey = trim((string)$dialogTitleKey, '-_');
+
+                if ($dialogTitleKey === '') {
+                    $dialogTitleKey = 'request';
+                }
+
+                $dialogTitleId = 'fp-product-communication-modal-title-'
+                    . $dialogTitleKey
+                    . '-'
+                    . $productId;
                 ?>
                 <div
                     class="fp-product-communication-modal"
@@ -262,7 +277,12 @@ if (!function_exists('fp_render_product_communication_buttons')) {
                 >
                     <div class="fp-product-communication-modal__backdrop" data-fp-comm-close></div>
 
-                    <div class="fp-product-communication-modal__dialog" role="dialog" aria-modal="true">
+                    <div
+                        class="fp-product-communication-modal__dialog"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="<?= fp_product_comm_html($dialogTitleId) ?>"
+                    >
                         <button
                             type="button"
                             class="fp-product-communication-modal__close"
@@ -272,9 +292,13 @@ if (!function_exists('fp_render_product_communication_buttons')) {
                             ×
                         </button>
 
-                        <h3 class="fp-product-communication-modal__title">
+                        <?php // FP_PRODUCT_COMM_DIALOG_SEMANTICS_V0_1 ?>
+                        <div
+                            id="<?= fp_product_comm_html($dialogTitleId) ?>"
+                            class="fp-product-communication-modal__title"
+                        >
                             <?= fp_product_comm_html($title) ?>
-                        </h3>
+                        </div>
 
                         <?php if ($intro !== ''): ?>
                             <p class="fp-product-communication-modal__intro">

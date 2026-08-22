@@ -16,16 +16,11 @@ $fpPageTitle = isset($this->title)
     ? trim((string)$this->title)
     : '';
 
+// FP_CANONICAL_TITLE_COMPOSITION_V0_1
+// Controllers own complete route titles; the site name is fallback-only.
 $fpDocumentTitle = $fpPageTitle !== ''
     ? $fpPageTitle
     : $fpSiteName;
-
-if (
-    $fpPageTitle !== ''
-    && strcasecmp($fpPageTitle, $fpSiteName) !== 0
-) {
-    $fpDocumentTitle .= ' — ' . $fpSiteName;
-}
 
 $fpMetaDescription = isset($this->description)
     ? trim((string)$this->description)
@@ -285,6 +280,67 @@ $fpMeasurementConfig = [
         rel="canonical"
         href="<?= $fpEscape($fpCanonicalUrl) ?>"
     >
+    <?php
+    /*
+     * FP_CANONICAL_SOCIAL_HEAD_V0_1
+     * Canonical server-rendered Open Graph metadata.
+     */
+    $fpOgController = strtolower(trim((string)$this->getController()));
+    $fpOgType = $fpOgController === 'product' ? 'product' : 'website';
+
+    $fpOgSiteName = trim((string)($this->set['business_name'] ?? 'ForPrint'));
+    if ($fpOgSiteName === '') {
+        $fpOgSiteName = 'ForPrint';
+    }
+
+    $fpOgAbsoluteUrl = static function (string $value) use ($fpCanonicalOrigin): string {
+        $value = trim($value);
+        if ($value === '') {
+            return '';
+        }
+        if (preg_match('~^https?://~i', $value)) {
+            return $value;
+        }
+        return rtrim($fpCanonicalOrigin, '/') . '/' . ltrim($value, '/');
+    };
+
+    $fpOgImage = '';
+
+    if (
+        $fpOgController === 'product'
+        && isset($data)
+        && is_array($data)
+        && !empty($data['img'])
+    ) {
+        $fpOgImage = $fpOgAbsoluteUrl(
+            (string)$this->img((string)$data['img'])
+        );
+    }
+
+    if ($fpOgImage === '') {
+        foreach (['logo_img', 'main_img', 'favicon_img'] as $fpOgImageSetting) {
+            if (empty($this->set[$fpOgImageSetting])) {
+                continue;
+            }
+            $fpOgImage = $fpOgAbsoluteUrl(
+                (string)$this->img((string)$this->set[$fpOgImageSetting])
+            );
+            if ($fpOgImage !== '') {
+                break;
+            }
+        }
+    }
+    ?>
+    <meta property="og:title" content="<?= $fpEscape($fpDocumentTitle) ?>">
+    <meta property="og:description" content="<?= $fpEscape($fpMetaDescription) ?>">
+    <meta property="og:url" content="<?= $fpEscape($fpCanonicalUrl) ?>">
+    <meta property="og:type" content="<?= $fpEscape($fpOgType) ?>">
+    <meta property="og:site_name" content="<?= $fpEscape($fpOgSiteName) ?>">
+    <meta property="og:locale" content="uk_UA">
+    <?php if ($fpOgImage !== ''): ?>
+        <meta property="og:image" content="<?= $fpEscape($fpOgImage) ?>">
+        <meta property="og:image:alt" content="<?= $fpEscape($fpDocumentTitle) ?>">
+    <?php endif; ?>
     <?php include __DIR__ . '/structuredData.php'; ?>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -324,14 +380,6 @@ $fpMeasurementConfig = [
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260817-170525"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260803-1622"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260803-1622"></script>
-    <?php // FP_DYNAMIC_FAVICON_V1 ?>
-    <?php if (!empty($this->set['favicon_img'])): ?>
-        <link
-            rel="icon"
-            href="<?=$this->img($this->set['favicon_img'])?>"
-        >
-    <?php endif; ?>
-
 </head>
 
 <body
