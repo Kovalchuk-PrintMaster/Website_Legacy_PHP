@@ -260,3 +260,9 @@ The active Google Ads payments-profile correction and direct-advertiser verifica
 - [`workflow/recurring_production_quality_audits_v0_1.md`](workflow/recurring_production_quality_audits_v0_1.md) — canonical policy and regression registry for recurring read-only production audits.
 - [`plans/recurring_production_quality_audit_roadmap_v0_1.md`](plans/recurring_production_quality_audit_roadmap_v0_1.md) — intentionally final operationalization phase, after verified backup/restore protection and remaining implementation work.
 <!-- FP_RECURRING_PRODUCTION_QUALITY_AUDIT_V0_1_END -->
+
+<!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_INDEX_START -->
+## Operator / assistant handoff
+
+- [`workflow/operator_assistant_workflow_v0_1.md`](workflow/operator_assistant_workflow_v0_1.md) — canonical operator/assistant workflow and current context-window bootstrap.
+<!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_INDEX_END -->
