@@ -99,8 +99,8 @@ Feature block зазвичай має:
 # Current assistant bootstrap / project handoff
 
 **Document role:** active operator-assistant bootstrap inside the existing canonical workflow document.
-**Last refreshed:** `2026-08-22T19:44:00+03:00`
-**Accepted Git checkpoint at refresh:** `b30971cf66dc385b73ef8f3f6ab831dec4a51af0`
+**Last refreshed:** `2026-08-22T21:07:39+03:00`
+**Accepted release/code checkpoint at refresh:** `80cb51a6e575bb84e6c8749db13a8983be1fab42`
 **Project:** ForPrint Website
 **Repository:** `/srv/software_development/forprint-project/forprint_website`
 **Branch:** `main`
@@ -472,36 +472,40 @@ Do not use broad `git add -A` in a dirty working tree.
 
 Do not silently discard, stage, reset or rewrite unrelated dirty work.
 
-## 8. Current protected dirty work
+## 8. Current protected / intentional working state
 
-At this refresh the project intentionally has separate local/unreleased work:
+Batch B is no longer a dirty-work boundary. Its accepted source files are committed, pushed and released.
+
+Current accepted source state:
 
 ```text
 base/templates/default/include/header.php
 base/templates/default/include/productCommunicationButtons.php
 ```
 
-This is the known Batch B working state. Do not accidentally include it in unrelated releases.
+Both files are expected clean in Git after checkpoint:
 
-There is also a working roadmap candidate:
+```text
+80cb51a6e575bb84e6c8749db13a8983be1fab42
+```
+
+The one intentionally untracked project file that must still not be staged, deleted or treated as canonical without a separate provenance decision is:
 
 ```text
 marketing/programs/forprint_growth_roadmap_v0_1.md
 ```
 
-Its Git status must be checked before treating it as a committed source of truth.
-
-Roadmap files discovered now:
+A deliberate local/production DB difference remains outside public rendering:
 
 ```text
-docs/plans/2026-08-21__search_identity_and_google_drive_backup_roadmap_addendum_v0_1.md    [tracked-clean]
-docs/plans/2026-08-21__search_identity_and_google_drive_backup_roadmap_addendum_v0_2.md    [tracked-clean]
-docs/plans/frontend_surface_stabilization_roadmap_v0_1.md    [tracked-clean]
-docs/plans/recurring_production_quality_audit_roadmap_v0_1.md    [tracked-clean]
-marketing/programs/forprint_growth_roadmap_v0_1.md    [?? marketing/programs/forprint_growth_roadmap_v0_1.md]
+information.id=8 keywords
+local:      контакти, друк, ForPrint
+production: контакти, друк, PrintMaster
 ```
 
-When roadmap documents disagree, inspect Git status, document status metadata and the latest accepted decisions/reports before choosing the active one.
+The public frontend does not render a meta-keywords tag for contacts. This field was intentionally excluded from Batch B production mutation. Do not repair this difference automatically.
+
+There is no remaining goods/news Batch B DB delta.
 
 ## 9. Production release protocol
 
@@ -626,6 +630,7 @@ Completed/accepted public-production work includes:
 - catalog pagination discovery audit;
 - valid pagination canonical repair;
 - thin/duplicate/noncanonical baseline audit;
+- Batch B public metadata/title/dialog semantics production release;
 - recurring production quality audit documentation.
 
 Use reports under:
@@ -640,51 +645,138 @@ before repeating an old audit or migration.
 
 ## 13. Current search-quality checkpoint
 
-Latest accepted code checkpoint at this refresh:
+Accepted release/code checkpoint:
 
 ```text
-b30971cf66dc385b73ef8f3f6ab831dec4a51af0
+80cb51a6e575bb84e6c8749db13a8983be1fab42
 ```
 
-Latest production pagination release evidence:
+Latest completed production release:
 
 ```text
-.runtime/backups/hosting/20260822_191148/catalog_valid_pagination_canonical_release_v0_2
-.runtime/reports/catalog_valid_pagination_canonical_release_v0_2_20260822_191148
+Batch B public metadata production release v0.2
 ```
 
-Latest thin/duplicate/noncanonical audit evidence:
+Evidence:
 
 ```text
-marketing/reports/2026-08-22__thin_duplicate_noncanonical_url_audit_20260822_192048/result.json
-marketing/reports/2026-08-22__thin_duplicate_noncanonical_url_audit_20260822_192048/summary.md
+.runtime/backups/hosting/20260822_205406/batch_b_public_metadata_release_v0_2
+.runtime/reports/batch_b_public_metadata_release_v0_2_20260822_205406
 ```
 
-That audit classified the baseline as:
+Current protected production hashes:
 
 ```text
-THIN_DUPLICATE_NONCANONICAL_BASELINE_HEALTHY
+header.php
+ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e
+
+productCommunicationButtons.php
+977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9
+
+BaseUser.php
+dc977c1dab1824254df31356f66d43321416f0ad6ba08affb1977cb11e3f5ab4
+
+CatalogController.php
+da16a9d9d6b51bbc306591e82d2d0b50db58e0636120abea371b375c5e61ab28
+
+CreatesitemapController.php
+34bf3f89efe78f1cf179d2315ecd00c85feed17acc1edf9f607785439c0948c7
+
+sitemap.xml
+dc7737e23974d8fb8da876ee2d3117e93c398dc28ceb0080d1e46cd18af41eff
 ```
 
-Do not invent a fix when the audit is green.
+Current accepted production DB state:
 
-## 14. Batch B — active local/unreleased boundary
+```text
+information.id=8 description:
+Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.
 
-Batch B is deliberately separate from already released production work.
+information.id=8 keywords:
+контакти, друк, PrintMaster
+```
 
-Known local scope includes:
+Batch B production acceptance:
 
-- `base/templates/default/include/header.php` — title composition / metadata-related local work;
-- `base/templates/default/include/productCommunicationButtons.php` — communication modal semantic local work;
-- associated local content/metadata database adjustments created during the batch.
+```text
+public canonical pages: 194/194
+public titles: 194/194
+public H1: 194/194
+public og:title / og:url: 194/194
+contacts metadata: PASS
+communication dialogs labelled: 3/3
+pagination canonical regression: PASS
+sitemap owner protected: PASS
+sitemap protected: PASS
+rollback attempted: NO
+```
 
-Rules:
+The earlier thin/duplicate/noncanonical baseline remains healthy:
 
-- do not mix Batch B into an unrelated exact-file production release;
-- when Batch B is deliberately resumed, re-audit its current exact diff and DB state first;
-- production baseline may differ from committed history; use production-aware guarded artifacts.
+```text
+sitemap HTTP issues: 0
+sitemap canonical issues: 0
+canonical collision groups: 0
+exact visible-text duplicate groups: 0
+thin candidates under 350 visible-text chars: 0
+representative indexable internal URLs outside sitemap: 0
+```
 
-Metadata/H1 work was intentionally kept out of the latest thin/duplicate audit because this batch is not yet a clean released baseline.
+Do not reopen these green blocks without new evidence.
+
+## 14. Batch B — CLOSED
+
+Batch B is completed in Git and production.
+
+Committed source / migration checkpoint:
+
+```text
+80cb51a6e575bb84e6c8749db13a8983be1fab42
+```
+
+Released source:
+
+```text
+base/templates/default/include/header.php
+base/templates/default/include/productCommunicationButtons.php
+```
+
+Released public behavior:
+
+- route/controller titles are treated as complete titles rather than receiving the old global suffix;
+- already-live canonical social-head/Open Graph behavior is reconciled into Git;
+- canonical pagination behavior remains preserved;
+- the duplicate dynamic favicon owner remains absent;
+- product communication dialogs have stable `aria-labelledby` semantics;
+- contacts public description now uses the accepted ForPrint description.
+
+Released DB mutation:
+
+```text
+information.id=8 description ONLY
+```
+
+Explicitly not mutated:
+
+```text
+goods
+news
+information.id=8 keywords
+```
+
+Persistent release contract:
+
+```text
+scripts/inspection/check_batch_b_release_contract.py
+```
+
+Versioned migration:
+
+```text
+database_dumps/migrations/2026_08_22_information_contacts_description_forprint_v0_1.sql
+```
+
+Do not describe Batch B as unreleased or dirty in future work. If metadata/title/dialog behavior changes again, open a new bounded work item rather than silently extending Batch B.
 
 ## 15. Google/Search Console/Ads boundary
 
@@ -808,17 +900,29 @@ When continuing from a context-window reset, start by reporting:
 
 ## 21. Current next-step guidance
 
-The latest thin/duplicate/noncanonical audit is green, so there is no justified thin/duplicate fix to apply.
+Batch B is closed and the public/search baseline is green. Do not continue by inventing another metadata, canonical, sitemap or duplicate-content fix without new evidence.
 
-The next public/search-quality step should be selected from the current roadmap after confirming its Git status and priority. A likely technical boundary to revisit deliberately is the still-unreleased Batch B metadata/title/H1 work, but it must be handled as its own audited/releasable unit rather than being smuggled into unrelated changes.
-
-Keep these sequencing constraints:
+Next work should be selected from the current roadmap using the normal source-of-truth order. The operational direction remains:
 
 ```text
-public/search/customer quality first
-verified backup/restore protection checkpoint before final admin modernization
-admin UI modernization last
-recurring read-only production audits as the final operational phase
+1. keep Google Ads/payment/verification changes frozen while the active support case is unresolved;
+2. continue only evidence-backed public/search/customer-quality work that is still genuinely open;
+3. establish the verified external / Google Drive backup-and-restore protection checkpoint before final admin modernization;
+4. keep admin UI modernization last;
+5. keep recurring production audits read-only and human-reviewed.
+```
+
+Before choosing the next implementation block, inspect the active roadmap files and their Git status. The untracked growth roadmap must not be promoted to canonical truth implicitly.
+
+A context-window handoff after this refresh should report:
+
+```text
+Batch B: CLOSED
+accepted release/code checkpoint: 80cb51a6e575bb84e6c8749db13a8983be1fab42
+latest production release: batch_b_public_metadata_release_v0_2_20260822_205406
+public acceptance: 194/194
+known intentional DB difference: contacts keywords local != production, non-public
+next action: review active roadmap and select the next genuinely open public/protection checkpoint
 ```
 
 ## 22. Updating this bootstrap
