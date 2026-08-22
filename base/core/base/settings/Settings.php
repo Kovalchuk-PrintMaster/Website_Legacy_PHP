@@ -78,6 +78,10 @@ class Settings
         'price_mode' => ['price_mode'],
         'text' => [
             'name',
+            'business_name',
+            'legal_name',
+            'edrpou',
+            'vat_id',
             'login',
             'phone',
             'email',
@@ -195,6 +199,16 @@ class Settings
         'phone' => ['Телефон'],
         'email' => ['Email'],
         'address' => ['Адреса'],
+        'business_name' => [
+            'Публічна назва бренду',
+            'Назва, яку бачать клієнти та пошукові системи.'
+        ],
+        'legal_name' => [
+            'Юридична назва',
+            'Повна зареєстрована назва юридичної особи.'
+        ],
+        'edrpou' => ['ЄДРПОУ'],
+        'vat_id' => ['ІПН платника ПДВ'],
         'alias' => ['Посилання ЧПУ'],
         'show_top_menu' => ['Показувати в верхньому меню'],
         'external_alias' => ['Зовнішнє посилання'],
@@ -436,7 +450,7 @@ class Settings
     private $blockNeedle = [
         'vg-rows' => [],
         /* ForPrint footer admin column balance v0.6.38 */
-        'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'about_promo_gallery_img', 'logo_img', 'favicon_img', 'mobile_header_img', 'mobile_logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'contacts_address', 'contacts_content', 'contacts_schedule'],
+        'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'about_promo_gallery_img', 'logo_img', 'favicon_img', 'mobile_header_img', 'mobile_logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'contacts_address', 'contacts_content', 'contacts_schedule', 'business_name', 'legal_name', 'edrpou', 'vat_id'],
         'vg-content' => ['content']
     ];
 
@@ -476,6 +490,10 @@ class Settings
         'contacts_title' => ['trim'=>true, 'count'=>255],
         'contacts_phone' => ['trim'=>true, 'count'=>255],
         'contacts_email' => ['trim'=>true, 'count'=>255],
+        'business_name' => ['trim'=>true, 'count'=>160],
+        'legal_name' => ['trim'=>true, 'count'=>255],
+        'edrpou' => ['trim'=>true, 'count'=>8],
+        'vat_id' => ['trim'=>true, 'count'=>12],
         'contacts_callback_label' => ['trim'=>true, 'count'=>255],
         'contacts_schedule' => ['trim'=>true]
     ];

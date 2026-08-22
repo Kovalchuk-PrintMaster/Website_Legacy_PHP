@@ -148,6 +148,10 @@ if (($this->table ?? '') === 'settings') {
             'contacts_phone',
             'contacts_email',
             'contacts_address',
+            'business_name',
+            'legal_name',
+            'edrpou',
+            'vat_id',
             'contacts_callback_label',
             'contacts_content',
             'contacts_schedule',
@@ -1091,6 +1095,16 @@ if (($this->table ?? '') === 'settings') {
                 'contacts_phone' => ['Телефон'],
                 'contacts_email' => ['Email'],
                 'contacts_address' => ['Адреса'],
+                'business_name' => [
+                    'Публічна назва бренду',
+                    'Комерційна назва сайту. Не є юридичною назвою компанії.',
+                ],
+                'legal_name' => [
+                    'Юридична назва',
+                    'Повна назва зареєстрованої юридичної особи.',
+                ],
+                'edrpou' => ['ЄДРПОУ', '8 цифр.'],
+                'vat_id' => ['ІПН платника ПДВ', '12 цифр.'],
                 'contacts_callback_label' => ['Назва контактної кнопки'],
                 'contacts_content' => ['Додаткова інформація'],
             ];
@@ -1196,6 +1210,12 @@ if (($this->table ?? '') === 'settings') {
             $forprintRenderContactsField('contacts_phone');
             $forprintRenderContactsField('contacts_email');
             $forprintRenderContactsField('contacts_address');
+
+            echo '<div class="fp-admin-content-card__panel-title">Юридичні реквізити</div>';
+            $forprintRenderContactsField('business_name');
+            $forprintRenderContactsField('legal_name');
+            $forprintRenderContactsField('edrpou');
+            $forprintRenderContactsField('vat_id');
             echo '</div>';
             echo '</div>';
 

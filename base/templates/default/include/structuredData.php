@@ -99,6 +99,15 @@ if ($fpSchemaBusinessName === '') {
     $fpSchemaBusinessName = 'ForPrint';
 }
 
+$fpSchemaLegalName = $fpSchemaCleanText(
+    $this->set['legal_name'] ?? ''
+);
+$fpSchemaTaxId = trim(
+    (string)($this->set['edrpou'] ?? '')
+);
+$fpSchemaVatId = trim(
+    (string)($this->set['vat_id'] ?? '')
+);
 
 $fpSchemaPhone = $fpSchemaCleanText(
     $this->set['contacts_phone']
@@ -456,6 +465,18 @@ if (
         'name' => $fpSchemaBusinessName,
         'url' => $fpSchemaHomeUrl,
     ];
+
+    if ($fpSchemaLegalName !== '') {
+        $fpSchemaBusiness['legalName'] = $fpSchemaLegalName;
+    }
+
+    if (preg_match('/^\d{8}$/', $fpSchemaTaxId) === 1) {
+        $fpSchemaBusiness['taxID'] = $fpSchemaTaxId;
+    }
+
+    if (preg_match('/^\d{12}$/', $fpSchemaVatId) === 1) {
+        $fpSchemaBusiness['vatID'] = $fpSchemaVatId;
+    }
 
     if ($fpSchemaLogo !== '') {
         $fpSchemaBusiness['logo'] = [
