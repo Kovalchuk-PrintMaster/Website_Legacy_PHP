@@ -274,3 +274,10 @@ The active Google Ads payments-profile correction and direct-advertiser verifica
 - [`workflow/direct_google_drive_backup_and_restore_runbook_v0_1.md`](workflow/direct_google_drive_backup_and_restore_runbook_v0_1.md) — direct `rclone` Google Drive backup, verification and restore workflow.
 - [`reference/backup_storage_and_recovery_resources_v0_1.md`](reference/backup_storage_and_recovery_resources_v0_1.md) — current production paths, rclone remotes, recovery-material locations and operator handoff map.
 <!-- FP-BACKUP-DR-GOVERNANCE-V0-1-END -->
+
+<!-- FP-ADMIN-UI-MODERNIZATION-V0-1-START -->
+## Admin UI modernization
+
+- [`decisions/2026-08-23__canonical_admin_css_ownership_and_migration_order.md`](decisions/2026-08-23__canonical_admin_css_ownership_and_migration_order.md) — accepted admin CSS ownership, legacy boundary and migration order.
+- [`plans/admin_ui_modernization_plan_v0_1.md`](plans/admin_ui_modernization_plan_v0_1.md) — bounded implementation sequence from ownership consolidation through responsive/accessibility and legacy-CSS reduction.
+<!-- FP-ADMIN-UI-MODERNIZATION-V0-1-END -->
