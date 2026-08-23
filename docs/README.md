@@ -266,3 +266,11 @@ The active Google Ads payments-profile correction and direct-advertiser verifica
 
 - [`workflow/operator_assistant_workflow_v0_1.md`](workflow/operator_assistant_workflow_v0_1.md) — canonical operator/assistant workflow and current context-window bootstrap.
 <!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_INDEX_END -->
+
+<!-- FP-BACKUP-DR-GOVERNANCE-V0-1-START -->
+## Backup and disaster recovery
+
+- [`architecture/backup_and_disaster_recovery_policy_v0_1.md`](architecture/backup_and_disaster_recovery_policy_v0_1.md) — canonical full-backup, dirty-worktree, database, encryption and retention policy.
+- [`workflow/direct_google_drive_backup_and_restore_runbook_v0_1.md`](workflow/direct_google_drive_backup_and_restore_runbook_v0_1.md) — direct `rclone` Google Drive backup, verification and restore workflow.
+- [`reference/backup_storage_and_recovery_resources_v0_1.md`](reference/backup_storage_and_recovery_resources_v0_1.md) — current production paths, rclone remotes, recovery-material locations and operator handoff map.
+<!-- FP-BACKUP-DR-GOVERNANCE-V0-1-END -->
