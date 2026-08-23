@@ -99,8 +99,8 @@ Feature block зазвичай має:
 # Current assistant bootstrap / project handoff
 
 **Document role:** active operator-assistant bootstrap inside the existing canonical workflow document.
-**Last refreshed:** `2026-08-22T21:07:39+03:00`
-**Accepted release/code checkpoint at refresh:** `80cb51a6e575bb84e6c8749db13a8983be1fab42`
+**Last refreshed:** `2026-08-23T12:52:06+03:00`
+**Accepted release/code checkpoint at refresh:** `28ad2312bfce7fdf068326a8d2cda19e3b21f3d5`
 **Project:** ForPrint Website
 **Repository:** `/srv/software_development/forprint-project/forprint_website`
 **Branch:** `main`
@@ -900,30 +900,29 @@ When continuing from a context-window reset, start by reporting:
 
 ## 21. Current next-step guidance
 
-Batch B is closed and the public/search baseline is green. Do not continue by inventing another metadata, canonical, sitemap or duplicate-content fix without new evidence.
+The public/search protection sequence is now materially complete through the verified external Google Drive backup checkpoint.
 
-Next work should be selected from the current roadmap using the normal source-of-truth order. The operational direction remains:
-
-```text
-1. keep Google Ads/payment/verification changes frozen while the active support case is unresolved;
-2. continue only evidence-backed public/search/customer-quality work that is still genuinely open;
-3. establish the verified external / Google Drive backup-and-restore protection checkpoint before final admin modernization;
-4. keep admin UI modernization last;
-5. keep recurring production audits read-only and human-reviewed.
-```
-
-Before choosing the next implementation block, inspect the active roadmap files and their Git status. The untracked growth roadmap must not be promoted to canonical truth implicitly.
-
-A context-window handoff after this refresh should report:
+Current accepted code/operations checkpoint:
 
 ```text
-Batch B: CLOSED
-accepted release/code checkpoint: 80cb51a6e575bb84e6c8749db13a8983be1fab42
-latest production release: batch_b_public_metadata_release_v0_2_20260822_205406
-public acceptance: 194/194
-known intentional DB difference: contacts keywords local != production, non-public
-next action: review active roadmap and select the next genuinely open public/protection checkpoint
+28ad2312bfce7fdf068326a8d2cda19e3b21f3d5
 ```
+
+Current next operational action:
+
+```text
+MONITOR_FIRST_SCHEDULED_GOOGLE_DRIVE_BACKUP_RUN
+```
+
+The first timer-triggered run is currently scheduled for:
+
+```text
+Sun 2026-08-30 03:41:30 EEST
+```
+
+After that run, verify from journal + Google Drive evidence that it created a new `VERIFIED` generation without requiring a clean Git worktree. The first pinned baseline `20260823T090153Z_8aced26df4b0` must remain intact.
+
+Do not manufacture new SEO/canonical/sitemap work without new evidence. Google Ads/payment/verification mutations remain separate from this backup checkpoint. Admin UI modernization remains after the public/protection work. Recurring production audits remain read-only and human-reviewed.
 
 ## 22. Updating this bootstrap
 
@@ -941,5 +940,76 @@ Update it when one of these changes materially:
 - canonical documentation entrypoints.
 
 Do not append conversational history indefinitely. Replace the managed section with the current operational truth and link to detailed reports/docs for history.
+
+<!-- FP_GOOGLE_DRIVE_BACKUP_AUTOMATION_CHECKPOINT_START -->
+## Verified external backup automation checkpoint
+
+The external disaster-recovery protection checkpoint is complete.
+
+First verified/pinned generation:
+
+```text
+run_id:
+20260823T090153Z_8aced26df4b0
+
+remote:
+forprint_backup_crypt:forprint/website_archives/20260823T090153Z_8aced26df4b0
+
+markers:
+VERIFIED.json
+PINNED.json
+```
+
+The verified baseline passed:
+
+```text
+production webroot: 3522 files
+userfiles: 2505 files
+fresh production DB dump: 30 InnoDB tables
+dirty development state: captured
+working-state consistency: STABLE_DURING_SNAPSHOT
+end-to-end download SHA256: PASS
+isolated webroot extraction: PASS
+database dump readability: PASS
+Git bundle clone: PASS
+encrypted recovery material: PASS
+```
+
+Permanent repository owners:
+
+```text
+scripts/maintenance/backup_forprint_to_google_drive.py
+ops/systemd/forprint-google-drive-backup.service
+ops/systemd/forprint-google-drive-backup.timer
+```
+
+Installed timer state at closure:
+
+```text
+enabled: yes
+active: yes
+Persistent: yes
+RandomizedDelaySec: 20m
+next elapse: Sun 2026-08-30 03:41:30 EEST
+```
+
+Operational policy:
+
+```text
+weekly full backup: yes
+clean Git tree required: no
+upstream synchronization required: no
+dirty/staged/untracked development state: captured and labelled WIP
+scheduled generations pinned by default: no
+target verified generations: 8
+minimum verified generations: 6
+provider reserve: 20%
+Cloud Backup Manager: not used for this interim workflow
+```
+
+The first pinned generation must remain protected while the scheduled system accumulates normal verified generations.
+
+Do not reopen the backup architecture merely because the Git worktree is dirty. Dirty development state is an expected backup input.
+<!-- FP_GOOGLE_DRIVE_BACKUP_AUTOMATION_CHECKPOINT_END -->
 
 <!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_CURRENT_END -->
