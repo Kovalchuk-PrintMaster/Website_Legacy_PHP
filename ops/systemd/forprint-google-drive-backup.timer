@@ -1,0 +1,12 @@
+[Unit]
+Description=Weekly ForPrint verified encrypted Google Drive backup
+
+[Timer]
+OnCalendar=Sun *-*-* 03:30:00 Europe/Kyiv
+Persistent=true
+RandomizedDelaySec=20m
+AccuracySec=1m
+Unit=forprint-google-drive-backup.service
+
+[Install]
+WantedBy=timers.target

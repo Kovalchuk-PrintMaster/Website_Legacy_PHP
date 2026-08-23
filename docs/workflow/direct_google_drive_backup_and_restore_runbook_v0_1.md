@@ -175,3 +175,93 @@ After Google Drive mutation begins:
 - mark/remove it only through an exact-path cleanup procedure.
 
 Automatic retention never treats a failed/partial run as verified.
+
+<!-- FP-PERMANENT-GDRIVE-BACKUP-AUTOMATION-V1-START -->
+## 11. Permanent weekly automation
+
+The first direct Google Drive disaster-recovery baseline was verified successfully before enabling automation:
+
+```text
+run_id:
+20260823T090153Z_8aced26df4b0
+
+committed baseline:
+8aced26df4b026b26addf74880cad0515a6ea5bb
+
+remote:
+forprint_backup_crypt:forprint/website_archives/20260823T090153Z_8aced26df4b0
+
+status:
+VERIFIED + PINNED
+
+working-state consistency:
+STABLE_DURING_SNAPSHOT
+```
+
+Permanent executable:
+
+```text
+scripts/maintenance/backup_forprint_to_google_drive.py
+```
+
+The permanent executable deliberately does **not** pin itself to one historical Git commit, one historical production file count, or one historical database table count. At the start of each run it chooses the current committed `HEAD` as the recovery baseline, records upstream/ahead-behind information when available, and captures the dirty/staged/untracked working state separately.
+
+Git cleanliness and upstream synchronization are not backup preconditions.
+
+Normal manual execution:
+
+```bash
+cd /srv/software_development/forprint-project/forprint_website
+python scripts/maintenance/backup_forprint_to_google_drive.py
+```
+
+Manual milestone/pinned execution:
+
+```bash
+cd /srv/software_development/forprint-project/forprint_website
+FORPRINT_BACKUP_PIN=1 \
+FORPRINT_BACKUP_PIN_REASON="before major infrastructure migration" \
+python scripts/maintenance/backup_forprint_to_google_drive.py
+```
+
+Canonical systemd units:
+
+```text
+ops/systemd/forprint-google-drive-backup.service
+ops/systemd/forprint-google-drive-backup.timer
+```
+
+Installed system units:
+
+```text
+/etc/systemd/system/forprint-google-drive-backup.service
+/etc/systemd/system/forprint-google-drive-backup.timer
+```
+
+Schedule:
+
+```text
+Sunday 03:30 Europe/Kyiv
+RandomizedDelaySec=20m
+Persistent=true
+```
+
+The systemd service is serialized through:
+
+```text
+/run/lock/forprint-google-drive-backup.lock
+```
+
+Useful operator commands:
+
+```bash
+systemctl status forprint-google-drive-backup.timer
+systemctl list-timers forprint-google-drive-backup.timer
+systemctl start forprint-google-drive-backup.service
+journalctl -u forprint-google-drive-backup.service
+```
+
+A scheduled generation is unpinned by default. It becomes `VERIFIED` only after the full isolated download/restore drill passes. Milestone generations are pinned only by explicit operator intent.
+
+The previously verified pinned baseline remains a protected disaster-recovery generation and is not replaced by installation of the timer.
+<!-- FP-PERMANENT-GDRIVE-BACKUP-AUTOMATION-V1-END -->

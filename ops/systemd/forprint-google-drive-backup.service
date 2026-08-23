@@ -1,0 +1,26 @@
+[Unit]
+Description=ForPrint verified encrypted Google Drive disaster-recovery backup
+Documentation=file:///srv/software_development/forprint-project/forprint_website/docs/workflow/direct_google_drive_backup_and_restore_runbook_v0_1.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/srv/software_development/forprint-project/forprint_website
+UMask=0077
+Environment=HOME=/root
+Environment=PYTHONUNBUFFERED=1
+Environment=RCLONE_CONFIG=/root/.config/rclone/rclone.conf
+ExecStartPre=/usr/bin/test -x /usr/bin/python3
+ExecStartPre=/usr/bin/test -x /usr/bin/rclone
+ExecStartPre=/usr/bin/test -x /usr/bin/flock
+ExecStartPre=/usr/bin/test -r /root/.ssh/id_ed25519
+ExecStartPre=/usr/bin/test -r /root/.config/rclone/rclone.conf
+ExecStartPre=/usr/bin/test -d /srv/software_development/forprint-project/forprint_website/.runtime/recovery/access-bundles
+ExecStart=/usr/bin/flock -n /run/lock/forprint-google-drive-backup.lock /usr/bin/python3 /srv/software_development/forprint-project/forprint_website/scripts/maintenance/backup_forprint_to_google_drive.py
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+TimeoutStartSec=12h
+StandardOutput=journal
+StandardError=journal

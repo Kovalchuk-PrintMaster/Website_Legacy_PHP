@@ -147,3 +147,97 @@ A new project operator must be able to answer from repository documentation:
 11. how the weekly timer is installed and checked.
 
 If any answer depends only on somebody's memory, the backup documentation is incomplete.
+
+<!-- FP-BACKUP-AUTOMATION-IMPLEMENTATION-V1-START -->
+## 9. First verified Google Drive disaster-recovery baseline
+
+Verified on 2026-08-23:
+
+```text
+run_id:
+20260823T090153Z_8aced26df4b0
+
+Git checkpoint:
+8aced26df4b026b26addf74880cad0515a6ea5bb
+
+Google Drive:
+forprint_backup_crypt:forprint/website_archives/20260823T090153Z_8aced26df4b0
+
+markers:
+VERIFIED.json
+PINNED.json
+```
+
+Verification evidence included:
+
+```text
+production webroot: 3522 files
+userfiles: 2505 files
+fresh production DB dump: 30 InnoDB tables
+dirty development state: captured
+working-state consistency: STABLE_DURING_SNAPSHOT
+encrypted recovery material: verified and included
+end-to-end download SHA256: PASS
+isolated webroot extraction: PASS
+database dump readability: PASS
+Git bundle clone: PASS
+```
+
+Local evidence:
+
+```text
+.runtime/reports/google_drive_full_backup_20260823T090153Z_8aced26df4b0/
+```
+
+The large local staging/download drill payload was removed only after successful remote verification.
+
+## 10. Permanent scheduler implementation
+
+Repository owners:
+
+```text
+scripts/maintenance/backup_forprint_to_google_drive.py
+ops/systemd/forprint-google-drive-backup.service
+ops/systemd/forprint-google-drive-backup.timer
+```
+
+System installation:
+
+```text
+/etc/systemd/system/forprint-google-drive-backup.service
+/etc/systemd/system/forprint-google-drive-backup.timer
+```
+
+Execution identity:
+
+```text
+root
+```
+
+Root execution is currently required because the bounded interim workflow reads:
+
+```text
+/root/.ssh/id_ed25519
+/root/.config/rclone/rclone.conf
+```
+
+and accesses the project recovery material under:
+
+```text
+.runtime/recovery/access-bundles/
+```
+
+The raw SSH key and raw rclone configuration are not copied into the Google Drive backup. Only the separately encrypted recovery material is included.
+
+The current transport/storage chain is:
+
+```text
+ForPrint project + production hosting
+  -> permanent Python backup script
+  -> rclone
+  -> forprint_backup_crypt:
+  -> Google Drive
+```
+
+Cloud Backup Manager remains out of scope until it is independently production-ready.
+<!-- FP-BACKUP-AUTOMATION-IMPLEMENTATION-V1-END -->
