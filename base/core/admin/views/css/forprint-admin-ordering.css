@@ -72,6 +72,24 @@
     background: rgba(145, 40, 40, .96) !important;
 }
 
+/* FP_PHASE7_SIDEBAR_SAVE_ERROR_OWNER_CONVERGENCE_START */
+/**
+ * Sidebar ordering error residual presentation.
+ *
+ * Generic status content, position, color, typography and error background
+ * remain owned by the ordering rules above. This bounded rule owns only the
+ * sidebar-specific residual properties previously supplied by legacy/project
+ * sidebar error selectors.
+ */
+.fp-admin-sidebar[data-fp-admin-menu-sortable][data-fp-order-group].has-save-error::after {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 12px 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+/* FP_PHASE7_SIDEBAR_SAVE_ERROR_OWNER_CONVERGENCE_END */
+
 [data-fp-admin-sortable-entity-group] > [data-fp-admin-entity-id],
 [data-fp-admin-sortable-filter-group] > [data-fp-admin-filter-id],
 [data-fp-admin-menu-sortable] > [data-fp-admin-menu-table] {

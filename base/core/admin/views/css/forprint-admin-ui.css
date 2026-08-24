@@ -1,87 +1,12 @@
 /*
- * ForPrint admin shared UI refinements.
+ * ForPrint admin specialized UI.
  *
- * Owner:
- *   base/core/admin/views/css/forprint-admin-ui.css
+ * Transitional owner:
+ * - Media Processing settings presentation only.
  *
- * Scope:
- * - independent sidebar scrolling;
- * - calm edit-control focus states.
+ * Shared sidebar scrolling and generic form-control states were consolidated
+ * into base/core/admin/views/css/forprint-admin.css in Phase 1A.
  */
-
-/* Left navigation must remain independently scrollable. */
-.fp-admin-sidebar,
-.fp-admin-shell .fp-admin-sidebar {
-    max-height: 100vh !important;
-    max-height: 100dvh !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    overscroll-behavior: contain !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-gutter: stable;
-}
-
-/*
- * Some inherited layouts place the links in a nested menu element. Let the
- * outer sidebar own scrolling and avoid an inner clipping layer.
- */
-.fp-admin-sidebar .vg-menu,
-.fp-admin-sidebar__menu {
-    overflow: visible !important;
-}
-
-/* Light neutral focus instead of the heavy blue-grey inherited fill. */
-.fp-admin-shell input.vg-input:focus,
-.fp-admin-shell textarea.vg-input:focus,
-.fp-admin-shell select.vg-input:focus,
-.fp-admin-shell input:focus-visible,
-.fp-admin-shell textarea:focus-visible,
-.fp-admin-shell select:focus-visible {
-    background-color: #f1f4f6 !important;
-    border-color: #aab8c2 !important;
-    box-shadow: 0 0 0 0.15rem rgba(170, 184, 194, 0.18) !important;
-    outline: none !important;
-}
-
-/* Do not darken readonly or disabled controls. */
-.fp-admin-shell input[readonly]:focus,
-.fp-admin-shell textarea[readonly]:focus,
-.fp-admin-shell input:disabled:focus,
-.fp-admin-shell textarea:disabled:focus,
-.fp-admin-shell select:disabled:focus {
-    background-color: #f5f7f8 !important;
-    box-shadow: none !important;
-}
-
-/* FP_ADMIN_LIGHT_CONTROL_HOVER_START */
-/*
- * Keep hover and focus equally calm. Legacy admin CSS used a much darker
- * hover fill on text controls.
- */
-.fp-admin-shell input:not([type="radio"]):not([type="checkbox"]):hover,
-.fp-admin-shell textarea:hover,
-.fp-admin-shell select:hover,
-.fp-admin-shell .vg-input:hover,
-.fp-admin-shell input:not([type="radio"]):not([type="checkbox"]):focus,
-.fp-admin-shell textarea:focus,
-.fp-admin-shell select:focus,
-.fp-admin-shell .vg-input:focus {
-    background-color: #f1f4f6 !important;
-    border-color: #aab8c2 !important;
-    box-shadow:
-        0 0 0 0.15rem rgba(170, 184, 194, 0.18) !important;
-    outline: none !important;
-}
-
-.fp-admin-shell input[readonly]:hover,
-.fp-admin-shell textarea[readonly]:hover,
-.fp-admin-shell input:disabled:hover,
-.fp-admin-shell textarea:disabled:hover,
-.fp-admin-shell select:disabled:hover {
-    background-color: #f5f7f8 !important;
-    box-shadow: none !important;
-}
-/* FP_ADMIN_LIGHT_CONTROL_HOVER_END */
 
 /* FP_MEDIA_PROCESSING_SETTINGS_CARD_05D1_2 START */
 .fp-media-settings-card {
@@ -227,7 +152,7 @@
 .fp-media-settings-card__hint {
     min-height: 36px;
     color: #77848c;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.45;
 }
 

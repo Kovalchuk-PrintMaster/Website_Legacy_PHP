@@ -172,7 +172,6 @@ label.vg-element {
     max-height: 50px;
 }
 
-
 .reverse {
     flex-wrap: wrap-reverse;
     align-items: flex-end;
@@ -431,7 +430,6 @@ label.vg-element {
     border-left: 2px solid #00bfe8;
 }
 
-
 /*global*/
 
 .vg-no-offset {
@@ -524,10 +522,6 @@ textarea {
 .error {
     background: #ff8080;
     color: #eceef2;
-}
-
-.select_wrap{
-    margin-top: 10px;
 }
 
 .select-wrapper {
@@ -675,27 +669,6 @@ textarea {
     width: 10vw;
 }
 
-.select_wrap:after {
-    position: absolute;
-    content: "";
-    top: calc(50% - 4px);
-    right: 12px;
-    height: 8px;
-    border: 8px solid transparent;
-    border-top: 8px solid;
-}
-
-.select_all {
-    padding-right: 30px;
-}
-
-.option_wrap {
-    display: -webkit-flex;
-    display: none;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-}
-
 .custom_label {
     display: -webkit-flex;
     display: flex;
@@ -747,17 +720,6 @@ input[type="checkbox"] {
 
 .sort_panel{
     display:none;
-}
-
-.sitemap-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: max-content;
-}
-
-.sitemap-button:hover {
-    background: #eceef2
 }
 
 /*подбор цвета*/
@@ -1107,7 +1069,6 @@ video{
         grid-template-columns: 1fr !important;
     }
 }
-
 
 /* v0.6.18d admin tab layout */
 .fp-admin-tab-grid {
@@ -1996,9 +1957,6 @@ form .select-wrapper {
     }
 }
 
-
-
-
 /* v0.6.18q admin compact final cleanup start */
 
 body {
@@ -2226,8 +2184,6 @@ form [class*="filter"] select {
 }
 
 /* v0.6.18q admin compact final cleanup end */
-
-
 
 /* v0.6.18r admin legacy compact spacing start */
 .vg-content .vg-element,
@@ -3232,43 +3188,6 @@ form#main-form .fp-admin-price-comment textarea {
     margin-top: 12px;
 }
 
-.fp-admin-news-card__date-field {
-    display: grid;
-    gap: 6px;
-    padding: 14px 12px;
-    border-top: 1px solid #d8dde2;
-}
-
-.fp-admin-news-card__date-label {
-    font-weight: 700;
-}
-
-.fp-admin-news-card__date-hint {
-    color: #687782;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.fp-admin-news-card__date-field input {
-    width: 100%;
-    min-height: 42px;
-    padding: 8px 10px;
-    border: 1px solid #aeb9c1;
-    background: #ffffff;
-}
-
-.fp-admin-news-card__summary {
-    margin-top: 8px;
-}
-
-.fp-admin-news-card__summary textarea {
-    min-height: 240px;
-}
-
-.fp-admin-news-card__full-editor {
-    margin-top: 12px;
-}
-
 .fp-admin-index-card__link {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) minmax(92px, 44%);
@@ -4155,7 +4074,6 @@ form#main-form .fp-admin-price-comment textarea {
     }
 }
 
-
 /* ForPrint admin navigation and header controls v0.6.44 */
 .fp-admin-shell {
     --fp-admin-sidebar-width: 18rem;
@@ -4175,18 +4093,8 @@ form#main-form .fp-admin-price-comment textarea {
     scrollbar-width: thin;
 }
 
-.fp-admin-sidebar::-webkit-scrollbar {
-    width: 0.45rem;
-}
 
-.fp-admin-sidebar::-webkit-scrollbar-track {
-    background: #2f4054;
-}
 
-.fp-admin-sidebar::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: #728596;
-}
 
 .fp-admin-shell:not(.vg-hide) .fp-admin-sidebar__link {
     display: grid;
@@ -4402,7 +4310,6 @@ body {
     }
 }
 
-
 /* ForPrint full-width grouped admin collections v0.6.46 */
 .fp-admin-workspace {
     position: relative;
@@ -4546,7 +4453,6 @@ body {
     }
 }
 
-
 /* ForPrint release-admin refinement v0.6.47 */
 .fp-admin-home-groups-card .fp-admin-text-field {
     display: grid;
@@ -4604,37 +4510,10 @@ body {
     cursor: grabbing;
 }
 
-.fp-admin-sidebar[data-fp-admin-menu-sortable] .fp-admin-sidebar__link.is-dragging {
-    opacity: .45;
-}
 
-.fp-admin-sidebar[data-fp-admin-menu-sortable].is-saving {
-    cursor: progress;
-}
 
-.fp-admin-sidebar[data-fp-admin-menu-sortable].is-saved::after,
-.fp-admin-sidebar[data-fp-admin-menu-sortable].has-save-error::after {
-    position: sticky;
-    bottom: 12px;
-    display: block;
-    width: calc(100% - 20px);
-    margin: 12px 10px;
-    padding: 8px 10px;
-    border-radius: 4px;
-    background: #ffffff;
-    color: #1f3042;
-    font-size: 12px;
-    line-height: 1.35;
-    box-sizing: border-box;
-}
 
-.fp-admin-sidebar[data-fp-admin-menu-sortable].is-saved::after {
-    content: "Порядок меню збережено";
-}
 
-.fp-admin-sidebar[data-fp-admin-menu-sortable].has-save-error::after {
-    content: "Не вдалося зберегти порядок";
-}
 
 .fp-admin-settings-index > .vg-element,
 .fp-admin-shell .fp-admin-entity-card {

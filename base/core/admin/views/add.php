@@ -19,9 +19,45 @@ $forprintFormAction = $this->adminPath . $this->action;
 if (($this->table ?? '') === 'settings') {
     $forprintFormAction .= '?section=' . rawurlencode($forprintSettingsSection);
 }
+
+$forprintAdminSurfaceClass = '';
+$forprintAdminSurfaceName = '';
+
+if (($this->table ?? '') === 'settings') {
+    $forprintSettingsSectionClass = preg_replace(
+        '/[^a-z0-9_-]+/i',
+        '-',
+        (string)$forprintSettingsSection
+    );
+    $forprintAdminSurfaceClass =
+        ' fp-admin-settings-surface fp-admin-settings-surface--'
+        . $forprintSettingsSectionClass;
+    $forprintAdminSurfaceName = 'settings-' . $forprintSettingsSectionClass;
+} elseif (($this->table ?? '') === 'visual_assets') {
+    $forprintAdminSurfaceClass = ' fp-admin-visual-assets-surface';
+    $forprintAdminSurfaceName = 'visual-assets';
+} elseif (($this->table ?? '') === 'footer_settings') {
+    $forprintAdminSurfaceClass = ' fp-admin-footer-settings-surface';
+    $forprintAdminSurfaceName = 'footer-settings';
+} elseif (($this->table ?? '') === 'information') {
+    $forprintAdminSurfaceClass = ' fp-admin-information-surface';
+    $forprintAdminSurfaceName = 'information';
+}
 ?>
-<form id="main-form" class="vg-wrap vg-element vg-ninteen-of-twenty" method="post" action="<?=htmlspecialchars($forprintFormAction, ENT_QUOTES, 'UTF-8')?>"
-      enctype="multipart/form-data">
+<form
+    id="main-form"
+    class="vg-wrap vg-element vg-ninteen-of-twenty<?=$forprintAdminSurfaceClass?>"
+    method="post"
+    action="<?=htmlspecialchars($forprintFormAction, ENT_QUOTES, 'UTF-8')?>"
+    enctype="multipart/form-data"
+    <?=$forprintAdminSurfaceName !== ''
+        ? 'data-fp-admin-edit-surface="' . htmlspecialchars(
+            $forprintAdminSurfaceName,
+            ENT_QUOTES,
+            'UTF-8'
+        ) . '"'
+        : ''?>
+>
     <div class="vg-wrap vg-element vg-full fp-admin-action-bar">
         <div class="vg-wrap vg-element vg-full vg-firm-background-color4 vg-box-shadow fp-admin-action-bar__inner">
             <div class="vg-element vg-left fp-admin-action-bar__actions">
@@ -48,6 +84,28 @@ if (($this->table ?? '') === 'settings') {
             </div>
         </div>
     </div>
+
+    <?php if (
+        (($this->table ?? '') === 'settings' && $forprintSettingsSection === 'header')
+        || (($this->table ?? '') === 'visual_assets')
+    ): ?>
+        <?php
+        $forprintSurfaceTitle = ($this->table ?? '') === 'visual_assets'
+            ? 'Візуальне оформлення'
+            : 'Шапка сайту';
+        $forprintSurfaceDescription = ($this->table ?? '') === 'visual_assets'
+            ? 'Керуйте візуальними активами через наявний upload та збереження без зміни backend-контракту.'
+            : 'Основні параметри шапки сайту. Поля зберігають існуючі імена та серверну поведінку.';
+        ?>
+        <header class="fp-admin-surface-intro">
+            <h1 class="fp-admin-surface-intro__title">
+                <?=htmlspecialchars($forprintSurfaceTitle, ENT_QUOTES, 'UTF-8')?>
+            </h1>
+            <p class="fp-admin-surface-intro__description">
+                <?=htmlspecialchars($forprintSurfaceDescription, ENT_QUOTES, 'UTF-8')?>
+            </p>
+        </header>
+    <?php endif; ?>
 
     <?php
         $forprintIdRow = $this->columns['id_row'] ?? null;

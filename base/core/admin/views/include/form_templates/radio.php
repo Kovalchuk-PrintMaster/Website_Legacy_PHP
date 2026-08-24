@@ -53,6 +53,8 @@ $fieldClasses = [
     'vg-full',
     'vg-left',
     'fp-radio-template-field',
+    'fp-admin-field',
+    'fp-admin-field--choice',
     'fp-radio-template-field--' . $safeRow,
 ];
 
@@ -61,27 +63,27 @@ if (in_array((string)$row, ['hit', 'sale', 'new', 'hot'], true)) {
 }
 
 ?>
-<div class="<?=htmlspecialchars(implode(' ', $fieldClasses), ENT_QUOTES, 'UTF-8')?>">
-    <div class="fp-radio-template-head">
-        <span class="fp-radio-template-title">
+<div class="<?=htmlspecialchars(implode(' ', $fieldClasses), ENT_QUOTES, 'UTF-8')?>" data-fp-admin-field data-fp-admin-field-name="<?=htmlspecialchars((string)$row, ENT_QUOTES, 'UTF-8')?>">
+    <div class="fp-radio-template-head fp-admin-field__heading">
+        <span class="fp-radio-template-title fp-admin-field__label">
             <?=htmlspecialchars((string)$title, ENT_QUOTES, 'UTF-8')?>
         </span>
 
         <?php if ($subtitle !== ''):?>
-            <span class="fp-radio-template-subtitle">
+            <span class="fp-radio-template-subtitle fp-admin-field__hint">
                 <?=htmlspecialchars((string)$subtitle, ENT_QUOTES, 'UTF-8')?>
             </span>
         <?php endif;?>
     </div>
 
-    <div class="fp-radio-template-options">
+    <div class="fp-radio-template-options fp-admin-choice-group">
         <?php foreach ($options as $option):?>
             <?php
                 $inputId = $row . '_' . preg_replace('/[^a-zA-Z0-9_-]+/', '_', $option['value']);
                 $checked = $currentValue === $option['value'] ? ' checked' : '';
             ?>
-            <label class="fp-radio-template-option" for="<?=htmlspecialchars($inputId, ENT_QUOTES, 'UTF-8')?>">
-                <span class="fp-radio-template-option-text">
+            <label class="fp-radio-template-option fp-admin-choice" for="<?=htmlspecialchars($inputId, ENT_QUOTES, 'UTF-8')?>">
+                <span class="fp-radio-template-option-text fp-admin-choice__label">
                     <?=htmlspecialchars($option['label'], ENT_QUOTES, 'UTF-8')?>
                 </span>
                 <input

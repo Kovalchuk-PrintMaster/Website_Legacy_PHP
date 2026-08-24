@@ -244,6 +244,14 @@ $fpAdminTableClass = preg_replace(
                 'order' => (int)($fpAdminSettingsData['contacts_menu_position'] ?? 40),
             ],
             [
+                'key' => 'visual-assets',
+                'title' => 'Візуальне оформлення',
+                'subtitle' => 'Керовані візуальні активи сайту',
+                'image' => '',
+                'url' => $this->adminPath . 'show/visual_assets',
+                'order' => 42,
+            ],
+            [
                 // FP_MEDIA_PROCESSING_SETTINGS_INDEX_CARD_05D1_3
                 'key' => 'media-processing',
                 'title' => 'Обробка зображень',
@@ -292,6 +300,7 @@ $fpAdminTableClass = preg_replace(
         <?php foreach ($fpAdminSettingsCards as $fpAdminCard): ?>
             <div
                 class="vg-element vg-fourth fp-admin-settings-section-card"
+                data-fp-admin-settings-key="<?=htmlspecialchars((string)($fpAdminCard['key'] ?? ''), ENT_QUOTES, 'UTF-8')?>"
                 data-fp-admin-settings-order="<?= (int)($fpAdminCard['order'] ?? 100) ?>"
             >
                 <a

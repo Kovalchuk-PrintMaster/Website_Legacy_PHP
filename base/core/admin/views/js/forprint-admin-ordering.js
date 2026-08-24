@@ -416,6 +416,47 @@
         });
     }
 
+    /**
+     * Canonical admin menu local-order restore.
+     *
+     * Preserved verbatim from the former global compatibility runtime.
+     * The specialized ordering module now owns both restore and save.
+     */
+    function applyLocalMenuOrder(nav) {
+            var order = [];
+
+            try {
+                order = JSON.parse(
+                    window.localStorage.getItem("fp-admin-menu-order") || "[]"
+                );
+            } catch (error) {
+                order = [];
+            }
+
+            if (!Array.isArray(order) || order.length === 0) {
+                return;
+            }
+
+            var links = {};
+            nav.querySelectorAll("[data-fp-admin-menu-table]")
+                .forEach(function (link) {
+                    links[
+                        link.getAttribute("data-fp-admin-menu-table") || ""
+                    ] = link;
+                });
+
+            order.forEach(function (table) {
+                if (links[table]) {
+                    nav.appendChild(links[table]);
+                    delete links[table];
+                }
+            });
+
+            Object.keys(links).forEach(function (table) {
+                nav.appendChild(links[table]);
+            });
+        }
+
     function initMenu() {
         var group = document.querySelector(
             "[data-fp-admin-menu-sortable]"
@@ -424,6 +465,8 @@
         if (!group) {
             return;
         }
+
+        applyLocalMenuOrder(group);
 
         bindSort({
             group: group,

@@ -400,3 +400,101 @@ textarea:not(.tox-textarea) {
         padding: 11px !important;
     }
 }
+
+/**
+ * Canonical Related Goods presentation owner.
+ *
+ * Presentation moved out of related_goods.php without changing the accepted
+ * geometry. Legacy vg-related-goods-panel classes remain compatibility hooks.
+ */
+.vg-related-goods-panel {
+    padding: 20px 24px;
+    background: #fff;
+    border-top: 1px solid #d7e0e5;
+    border-bottom: 1px solid #d7e0e5;
+}
+
+.vg-related-goods-panel__title {
+    margin-bottom: 6px;
+    color: #173042;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.vg-related-goods-panel__hint {
+    margin-bottom: 14px;
+    color: #607481;
+    font-size: 14px;
+}
+
+.vg-related-goods-panel__search {
+    display: flex;
+    gap: 10px;
+    max-width: 860px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.vg-related-goods-panel__search input {
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #9fb0ba;
+    font-size: 16px;
+    flex: 1 1 auto;
+}
+
+.vg-related-goods-panel__search button,
+.vg-related-goods-panel__item button {
+    min-height: 38px;
+    padding: 7px 14px;
+    border: 1px solid #173042;
+    color: #173042;
+    background: #eef4f7;
+    cursor: pointer;
+}
+
+.vg-related-goods-panel__selected,
+.vg-related-goods-panel__results {
+    display: grid;
+    gap: 8px;
+    max-width: 980px;
+}
+
+.vg-related-goods-panel__caption {
+    margin: 14px 0 8px;
+    color: #173042;
+    font-weight: 700;
+}
+
+.vg-related-goods-panel__item {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 8px;
+    align-items: center;
+    border: 1px solid #d7e0e5;
+    background: #f7fafb;
+}
+
+.vg-related-goods-panel__item img {
+    width: 54px;
+    height: 42px;
+    background: #e7eef2;
+    object-fit: cover;
+}
+
+.vg-related-goods-panel__name {
+    color: #173042;
+    font-weight: 700;
+}
+
+.vg-related-goods-panel__meta {
+    color: #607481;
+    font-size: 12px;
+}
+
+.vg-related-goods-panel__empty {
+    padding: 8px 0;
+    color: #607481;
+    font-style: italic;
+}

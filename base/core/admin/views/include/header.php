@@ -59,7 +59,7 @@
                 </div>
             </div>
             <!--кнопка-->
-            <a href="<?=PATH . \core\base\settings\Settings::get('routes')['admin']['alias']?>/createsitemap" class="vg-element vg-box-shadow sitemap-button">
+            <a href="<?=PATH . \core\base\settings\Settings::get('routes')['admin']['alias']?>/createsitemap" class="vg-element vg-box-shadow sitemap-button fp-admin-create-sitemap" data-fp-admin-create-sitemap>
                             <span class="vg-text vg-firm-color1">
                                 Create sitemap
                             </span>

@@ -14,6 +14,463 @@
     box-sizing: border-box;
 }
 
+
+/*
+ * Canonical shared admin tokens and control states.
+ * Phase 1A ownership consolidation:
+ * - shared shell/control behavior belongs to forprint-admin.css;
+ * - forprint-admin-ui.css remains bounded to Media Processing.
+ */
+.fp-admin-shell[data-fp-admin-shell] {
+    --fp-admin-color-text: #1f3042;
+    --fp-admin-color-strong: #2f4054;
+    --fp-admin-color-control-hover: #f1f4f6;
+    --fp-admin-color-control-disabled: #f5f7f8;
+    --fp-admin-color-control-border: #aab8c2;
+    --fp-admin-color-danger: #8f3f3f;
+    --fp-admin-focus-ring:
+        0 0 0 0.15rem rgba(170, 184, 194, 0.18);
+}
+
+/*
+ * Shared shell owns sidebar scrolling. The extra shell scope is deliberate
+ * while inherited main.css remains loaded.
+ */
+.fp-admin-shell .fp-admin-sidebar {
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
+}
+
+/*
+ * Some inherited layouts place links in a nested legacy menu. The outer
+ * project-owned sidebar owns scrolling, so nested menu layers must not clip.
+ */
+.fp-admin-shell .fp-admin-sidebar .vg-menu,
+.fp-admin-shell .fp-admin-sidebar__menu {
+    overflow: visible !important;
+}
+
+/* Shared text-control hover/focus contract. */
+.fp-admin-shell input.vg-input:focus,
+.fp-admin-shell textarea.vg-input:focus,
+.fp-admin-shell select.vg-input:focus,
+.fp-admin-shell input:focus-visible,
+.fp-admin-shell textarea:focus-visible,
+.fp-admin-shell select:focus-visible,
+.fp-admin-shell input:not([type="radio"]):not([type="checkbox"]):hover,
+.fp-admin-shell textarea:hover,
+.fp-admin-shell select:hover,
+.fp-admin-shell .vg-input:hover,
+.fp-admin-shell input:not([type="radio"]):not([type="checkbox"]):focus,
+.fp-admin-shell textarea:focus,
+.fp-admin-shell select:focus,
+.fp-admin-shell .vg-input:focus {
+    background-color: var(--fp-admin-color-control-hover) !important;
+    border-color: var(--fp-admin-color-control-border) !important;
+    box-shadow: var(--fp-admin-focus-ring) !important;
+    outline: none !important;
+}
+
+.fp-admin-shell input[readonly]:focus,
+.fp-admin-shell textarea[readonly]:focus,
+.fp-admin-shell input:disabled:focus,
+.fp-admin-shell textarea:disabled:focus,
+.fp-admin-shell select:disabled:focus,
+.fp-admin-shell input[readonly]:hover,
+.fp-admin-shell textarea[readonly]:hover,
+.fp-admin-shell input:disabled:hover,
+.fp-admin-shell textarea:disabled:hover,
+.fp-admin-shell select:disabled:hover {
+    background-color: var(--fp-admin-color-control-disabled) !important;
+    box-shadow: none !important;
+}
+
+/*
+ * Canonical shared form primitives.
+ *
+ * Generic PHP form templates add these semantic classes while retaining
+ * inherited vg-* compatibility classes and unchanged backend field names.
+ */
+.fp-admin-shell[data-fp-admin-shell] {
+    --fp-admin-color-surface: #ffffff;
+    --fp-admin-color-muted: #718491;
+    --fp-admin-color-field-border: #d8e0e5;
+    --fp-admin-field-radius: 0.25rem;
+    --fp-admin-control-height: 2.5rem;
+    --fp-admin-field-gap: 0.55rem;
+}
+
+.fp-admin-field {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    box-shadow: none !important;
+}
+
+.fp-admin-field__surface {
+    display: grid;
+    gap: var(--fp-admin-field-gap);
+    width: 100%;
+    min-width: 0;
+    padding: 0.85rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-field-radius);
+    background: var(--fp-admin-color-surface);
+    box-shadow: none !important;
+}
+
+.fp-admin-field__heading {
+    display: grid;
+    gap: 0.2rem;
+    width: 100%;
+    min-width: 0;
+}
+
+.fp-admin-field__label {
+    display: block;
+    margin: 0;
+    color: var(--fp-admin-color-text);
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.fp-admin-field__hint {
+    display: block;
+    min-height: 0;
+    margin: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.fp-admin-field__hint:empty {
+    display: none;
+}
+
+.fp-admin-field__control {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.fp-admin-field__input,
+.fp-admin-field__select {
+    width: 100% !important;
+    min-width: 0;
+    min-height: var(--fp-admin-control-height);
+    margin: 0 !important;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-field-radius);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    font: inherit;
+    line-height: 1.25;
+}
+
+.fp-admin-field__select-wrap {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.fp-admin-field__select-wrap .select-arrow-3 {
+    pointer-events: none;
+}
+
+@media (max-width: 42rem) {
+    .fp-admin-field__surface {
+        padding: 0.7rem;
+    }
+}
+
+/*
+ * Shared textarea / rich-editor primitive.
+ * TinyMCE behavior stays in existing JavaScript hooks.
+ */
+.fp-admin-field__textarea {
+    width: 100% !important;
+    min-width: 0;
+    min-height: 8rem;
+    margin: 0 !important;
+    padding: 0.65rem 0.7rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-field-radius);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    font: inherit;
+    line-height: 1.45;
+    resize: vertical;
+}
+
+.fp-admin-rich-editor {
+    display: flex !important;
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 0;
+}
+
+.fp-admin-rich-editor__toggle {
+    width: 100%;
+    margin: 0 0 0.6rem;
+}
+
+.fp-admin-rich-editor__toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    color: var(--fp-admin-color-text);
+    cursor: pointer;
+}
+
+.fp-admin-rich-editor__toggle-input {
+    width: auto !important;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+/*
+ * Shared choice-field semantics.
+ *
+ * Radio/checkbox runtime hooks and specialized Goods presentation remain
+ * intact. These rules define only the reusable admin choice vocabulary.
+ */
+.fp-admin-field--choice,
+.fp-admin-field--checkboxlist {
+    min-width: 0;
+}
+
+.fp-admin-field--choice .fp-radio-template-head {
+    display: grid;
+    gap: 0.2rem;
+    margin: 0 0 0.5rem;
+}
+
+.fp-admin-field--choice .fp-radio-template-title {
+    color: var(--fp-admin-color-text);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.fp-admin-field--choice .fp-radio-template-subtitle {
+    color: var(--fp-admin-color-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.fp-radio-template-options.fp-admin-choice-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem 0.85rem;
+    min-width: 0;
+}
+
+.fp-radio-template-option.fp-admin-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.fp-admin-choice__label {
+    min-width: 0;
+    color: var(--fp-admin-color-text);
+    line-height: 1.35;
+}
+
+.fp-admin-checkboxlist__heading {
+    min-width: 0;
+}
+
+.fp-admin-checkboxlist__option.fp-admin-choice {
+    min-width: 0;
+}
+
+@media (max-width: 42rem) {
+    .fp-radio-template-options.fp-admin-choice-group {
+        gap: 0.5rem 0.7rem;
+    }
+}
+
+/*
+ * Phase 2 bounded admin surfaces.
+ *
+ * Settings remains the navigation hub. Visual Assets keeps its existing
+ * table/controller/upload contract and receives only a project-owned
+ * presentation boundary. Footer keeps its existing dedicated card structure.
+ */
+.fp-admin-settings-surface,
+.fp-admin-visual-assets-surface,
+.fp-admin-footer-settings-surface {
+    min-width: 0;
+    align-content: start;
+}
+
+.fp-admin-settings-surface > .fp-admin-action-bar,
+.fp-admin-visual-assets-surface > .fp-admin-action-bar,
+.fp-admin-footer-settings-surface > .fp-admin-action-bar {
+    width: 100%;
+}
+
+.fp-admin-surface-intro {
+    display: grid;
+    gap: 0.25rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 0.75rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-field-radius);
+    background: var(--fp-admin-color-surface);
+}
+
+.fp-admin-surface-intro__title {
+    margin: 0;
+    color: var(--fp-admin-color-text);
+    font-size: 1.05rem;
+    line-height: 1.3;
+}
+
+.fp-admin-surface-intro__description {
+    margin: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.fp-admin-settings-index
+.fp-admin-settings-section-card[data-fp-admin-settings-key="visual-assets"]
+.fp-admin-index-card__media img {
+    object-fit: contain;
+}
+
+@media (max-width: 42rem) {
+    .fp-admin-surface-intro {
+        padding: 0.7rem;
+    }
+}
+
+/*
+ * Shared single-image field primitive.
+ *
+ * Existing runtime hooks remain in place for scripts.js and legacy fallback:
+ * .img_container, .img_wrapper, .file_upload, .single_img,
+ * .img_show, .main_img_show and .vg_delete.
+ */
+.fp-admin-image-field {
+    min-width: 0;
+}
+
+.fp-admin-image-field__surface {
+    grid-template-columns: minmax(0, 1fr) minmax(10rem, 18rem);
+    align-items: start;
+    gap: 0.85rem;
+}
+
+.fp-admin-image-field__controls {
+    display: grid;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.fp-admin-image-field__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+}
+
+.fp-admin-image-field__upload.file_upload,
+.fp-admin-image-field__delete {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0;
+    margin: 0 !important;
+    align-items: center;
+    text-decoration: none;
+}
+
+.fp-admin-image-field__upload.file_upload {
+    cursor: pointer;
+}
+
+.fp-admin-image-field__upload-label {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0;
+    margin: 0 !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.fp-admin-image-field__delete {
+    color: var(--fp-admin-color-text) !important;
+}
+
+.fp-admin-image-field__input.single_img {
+    position: absolute;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.fp-admin-image-field__preview.img_show,
+.fp-admin-image-field__preview.main_img_show {
+    display: flex;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 8rem;
+    margin: 0 !important;
+    padding: 0.55rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-field-radius);
+    background: var(--fp-admin-color-surface);
+    overflow: hidden;
+}
+
+.fp-admin-image-field__preview.img_show:empty,
+.fp-admin-image-field__preview.main_img_show:empty {
+    min-height: 5rem;
+}
+
+.fp-admin-image-field__preview img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 14rem;
+    object-fit: contain;
+}
+
+@media (max-width: 42rem) {
+    .fp-admin-image-field__surface {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-admin-image-field__preview.img_show,
+    .fp-admin-image-field__preview.main_img_show {
+        min-height: 6rem;
+    }
+}
+
 /* Unified edit-card actions. */
 .fp-admin-action-bar {
     flex-basis: 100%;
@@ -279,10 +736,15 @@
 }
 
 /*
- * Unified admin indexes and interaction layers
- * Version: v0.6.48
+ * Canonical admin indexes, cards and interaction layers.
+ *
+ * Consolidated in Phase 1B from the accepted v0.6.48/v0.6.49 behavior.
+ * One current definition owns each shared primitive; responsive rules below
+ * express only the active breakpoints.
  */
 .fp-admin-workspace {
+    position: relative;
+    z-index: 1;
     min-width: 0;
     min-height: calc(100vh - 5rem);
     align-items: stretch;
@@ -300,15 +762,15 @@
 
 .fp-admin-index {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     align-content: start;
     align-items: start;
-    gap: 0.75rem;
+    gap: 0.42rem;
     width: auto !important;
     min-width: 0;
     max-width: none;
     margin: 0;
-    padding: 0.75rem;
+    padding: 0.5rem;
     flex: 1 1 0 !important;
 }
 
@@ -326,50 +788,80 @@
 
 .fp-admin-add-card {
     grid-column: 1 / -1;
-    width: min(100%, 24rem) !important;
+    width: min(100%, 20rem) !important;
 }
 
 .fp-admin-add-card > a {
-    min-height: 7.5rem;
+    min-height: 5.8rem;
+    max-height: 5.8rem;
 }
 
 .fp-admin-index-card__link,
 .fp-admin-entity-card__link,
 .fp-admin-settings-section-card__link {
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) minmax(7.5rem, 42%);
+    grid-template-columns: minmax(0, 1fr) minmax(5.5rem, 38%);
     width: 100% !important;
     min-width: 0;
-    min-height: 9.5rem;
+    height: 7rem;
+    min-height: 7rem;
+    max-height: 7rem;
     margin: 0 !important;
     overflow: hidden;
 }
 
 .fp-admin-index-card__caption,
+.fp-admin-entity-card__caption {
+    width: auto !important;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    padding: 0.5rem;
+    overflow: hidden;
+    flex-basis: auto !important;
+}
+
 .fp-admin-index-card__media,
-.fp-admin-entity-card__caption,
 .fp-admin-entity-card__media {
     width: auto !important;
     min-width: 0;
     max-width: none;
-    padding: 0.75rem;
+    height: 7rem;
+    min-height: 0;
+    padding: 0.5rem;
+    overflow: hidden;
+    box-sizing: border-box;
     flex-basis: auto !important;
 }
 
 .fp-admin-index-card__media img,
 .fp-admin-entity-card__media img {
+    display: block;
     width: 100%;
     height: 100%;
     max-width: 100%;
-    max-height: 8rem;
+    max-height: 6rem;
     object-fit: contain;
+    object-position: center;
+}
+
+.fp-admin-index-card__title,
+.fp-admin-settings-section-card__title {
+    font-size: 0.88rem;
+    line-height: 1.25;
+}
+
+.fp-admin-index-card__subtitle,
+.fp-admin-settings-section-card__subtitle {
+    font-size: 0.72rem;
+    line-height: 1.25;
 }
 
 .fp-admin-goods-accordion,
 .fp-admin-filter-accordion {
     grid-column: 1 / -1;
     display: grid;
-    gap: 0.65rem;
+    gap: 0.34rem;
     width: 100%;
     min-width: 0;
     margin: 0;
@@ -383,10 +875,10 @@
 
 .fp-admin-goods-group__summary {
     display: flex;
-    min-height: 3.7rem;
+    min-height: 2.8rem;
     align-items: center;
-    gap: 0.7rem;
-    padding: 0.7rem 0.95rem;
+    gap: 0.52rem;
+    padding: 0.48rem 0.7rem;
     list-style: none;
     cursor: pointer;
 }
@@ -395,17 +887,24 @@
     display: none;
 }
 
-.fp-admin-goods-group__items {
+.fp-admin-goods-group__items,
+.fp-admin-filter-group__items {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.65rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 0.42rem !important;
+    align-items: start;
     width: 100%;
     min-width: 0;
-    padding: 0.65rem 0 0;
+    padding: 0.42rem 0 0;
 }
 
-.fp-admin-goods-group__items .fp-admin-entity-card {
+.fp-admin-goods-group__items .fp-admin-entity-card,
+.fp-admin-filter-group__items .fp-admin-filter-card {
     width: auto !important;
+    height: 7rem !important;
+    min-height: 7rem !important;
+    max-height: 7rem !important;
+    overflow: hidden;
 }
 
 .fp-admin-filter-card {
@@ -414,12 +913,12 @@
 
 .fp-admin-filter-card__drag {
     position: absolute;
-    top: 0.45rem;
-    left: 0.45rem;
+    top: 0.25rem;
+    left: 0.25rem;
     z-index: 3;
     display: inline-flex;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.45rem;
+    height: 1.45rem;
     align-items: center;
     justify-content: center;
     border-radius: 0.25rem;
@@ -469,86 +968,9 @@
     cursor: progress;
 }
 
-.fp-admin-sidebar.is-saved::after,
-.fp-admin-sidebar.has-save-error::after {
-    position: sticky;
-    bottom: 0.5rem;
-    display: block;
-    margin: 0.5rem;
-    padding: 0.55rem 0.7rem;
-    border-radius: 0.25rem;
-    color: #ffffff;
-    text-align: center;
-}
 
-.fp-admin-sidebar.is-saved::after {
-    content: "Порядок збережено";
-    background: #2f7d5c;
-}
 
-.fp-admin-sidebar.has-save-error::after {
-    content: "Не вдалося зберегти порядок";
-    background: #8f3f3f;
-}
 
-.fp-admin-topbar {
-    position: relative;
-    z-index: 1200;
-}
-
-.fp-admin-topbar__content,
-#searchButton,
-#searchButton form {
-    position: relative;
-    z-index: 1210;
-}
-
-#searchButton .search_res {
-    position: absolute;
-    top: calc(100% + 0.35rem);
-    left: 0;
-    z-index: 1400 !important;
-    width: min(34rem, calc(100vw - 2rem));
-    max-height: min(32rem, 70vh);
-    overflow-y: auto;
-    background: #ffffff;
-}
-
-.fp-admin-workspace {
-    z-index: 1;
-}
-
-@media (max-width: 82rem) {
-    .fp-admin-index,
-    .fp-admin-goods-group__items {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 62rem) {
-    .fp-admin-index,
-    .fp-admin-goods-group__items {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 42rem) {
-    .fp-admin-index,
-    .fp-admin-goods-group__items {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .fp-admin-index-card__link,
-    .fp-admin-entity-card__link,
-    .fp-admin-settings-section-card__link {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-/*
- * ForPrint compact unified admin cards
- * Version: v0.6.49
- */
 .fp-admin-topbar__brand {
     background: #d8e0e5 !important;
 }
@@ -566,7 +988,19 @@
 }
 
 .fp-admin-topbar {
+    position: relative;
     z-index: 2147481000;
+}
+
+.fp-admin-topbar__content,
+#searchButton,
+#searchButton form {
+    position: relative;
+}
+
+.fp-admin-topbar__content,
+#searchButton form {
+    z-index: 1210;
 }
 
 #searchButton {
@@ -575,104 +1009,14 @@
 
 #searchButton .search_res,
 #searchButton .search_links.search_res {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    left: 0;
     z-index: 2147483000 !important;
-}
-
-.fp-admin-index {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.42rem;
-    padding: 0.5rem;
-}
-
-.fp-admin-add-card {
-    width: min(100%, 20rem) !important;
-}
-
-.fp-admin-add-card > a {
-    min-height: 5.8rem;
-    max-height: 5.8rem;
-}
-
-.fp-admin-index-card__link,
-.fp-admin-entity-card__link,
-.fp-admin-settings-section-card__link {
-    grid-template-columns: minmax(0, 1fr) minmax(5.5rem, 38%);
-    height: 7rem;
-    min-height: 7rem;
-    max-height: 7rem;
-}
-
-.fp-admin-index-card__caption,
-.fp-admin-index-card__media,
-.fp-admin-entity-card__caption,
-.fp-admin-entity-card__media {
-    min-height: 0;
-    padding: 0.5rem;
-    overflow: hidden;
-}
-
-.fp-admin-index-card__media,
-.fp-admin-entity-card__media {
-    height: 7rem;
-    box-sizing: border-box;
-}
-
-.fp-admin-index-card__media img,
-.fp-admin-entity-card__media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 6rem;
-    object-fit: contain;
-    object-position: center;
-}
-
-.fp-admin-index-card__title,
-.fp-admin-settings-section-card__title {
-    font-size: 0.88rem;
-    line-height: 1.25;
-}
-
-.fp-admin-index-card__subtitle,
-.fp-admin-settings-section-card__subtitle {
-    font-size: 0.72rem;
-    line-height: 1.25;
-}
-
-.fp-admin-goods-accordion,
-.fp-admin-filter-accordion {
-    gap: 0.34rem;
-}
-
-.fp-admin-goods-group__summary {
-    min-height: 2.8rem;
-    gap: 0.52rem;
-    padding: 0.48rem 0.7rem;
-}
-
-.fp-admin-goods-group__items,
-.fp-admin-filter-group__items {
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 0.42rem !important;
-    align-items: start;
-    padding-top: 0.42rem;
-}
-
-.fp-admin-goods-group__items .fp-admin-entity-card,
-.fp-admin-filter-group__items .fp-admin-filter-card {
-    width: auto !important;
-    height: 7rem !important;
-    min-height: 7rem !important;
-    max-height: 7rem !important;
-    overflow: hidden;
-}
-
-.fp-admin-filter-card__drag {
-    top: 0.25rem;
-    left: 0.25rem;
-    width: 1.45rem;
-    height: 1.45rem;
+    width: min(34rem, calc(100vw - 2rem));
+    max-height: min(32rem, 70vh);
+    overflow-y: auto;
+    background: #ffffff;
 }
 
 .fp-admin-catalog-card__grid {
@@ -720,6 +1064,14 @@
     }
 }
 
+@media (max-width: 42rem) {
+    .fp-admin-index-card__link,
+    .fp-admin-entity-card__link,
+    .fp-admin-settings-section-card__link {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 @media (max-width: 34rem) {
     .fp-admin-index,
     .fp-admin-goods-group__items,
@@ -727,3 +1079,139 @@
         grid-template-columns: minmax(0, 1fr) !important;
     }
 }
+
+/**
+ * Canonical checkboxlist legacy-class presentation bridge.
+ *
+ * These historical classes remain in checkboxlist.php only as bounded markup
+ * compatibility hooks. Runtime ownership is data-fp-admin-checkboxlist*.
+ * Visibility is owned separately by the semantic data-hook contract below.
+ */
+.select_wrap {
+    margin-top: 10px;
+}
+
+.select_wrap::after {
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 12px;
+    height: 8px;
+    border: 8px solid transparent;
+    border-top: 8px solid;
+    content: "";
+}
+
+.select_all {
+    padding-right: 30px;
+}
+
+.option_wrap {
+    flex-direction: column;
+}
+
+/**
+ * Canonical checkboxlist visibility contract.
+ *
+ * Legacy main.css keeps .option_wrap { display: none; } as compatibility
+ * presentation. Modern data hooks override that fallback explicitly so the
+ * shared UI runtime can use the standard hidden state without inline styles.
+ */
+[data-fp-admin-checkboxlist-options] {
+    display: flex;
+    flex-direction: column;
+}
+
+[data-fp-admin-checkboxlist-options][hidden] {
+    display: none;
+}
+
+/* FP_PHASE4_INFORMATION_EDIT_SURFACE_START */
+/**
+ * Phase 4: Information generic BaseAdmin edit surface.
+ *
+ * The generic add.php surface registry owns table identity.
+ * Shared form templates own field rendering.
+ * This block owns only bounded Information presentation.
+ */
+.fp-admin-shell
+[data-fp-admin-edit-surface="information"].fp-admin-information-surface {
+    min-width: 0;
+    align-content: start;
+}
+
+.fp-admin-shell
+[data-fp-admin-edit-surface="information"]
+.fp-admin-field--textarea
+.fp-admin-field__textarea {
+    min-height: 12rem;
+}
+
+.fp-admin-shell
+[data-fp-admin-edit-surface="information"]
+.fp-admin-rich-editor,
+.fp-admin-shell
+[data-fp-admin-edit-surface="information"]
+.fp-admin-image-field {
+    min-width: 0;
+}
+/* FP_PHASE4_INFORMATION_EDIT_SURFACE_END */
+
+/* FP_PHASE4_NEWS_CANONICAL_CSS_START */
+/**
+ * Phase 4: News presentation ownership migrated from legacy main.css.
+ * Exact selector/property semantics are preserved.
+ */
+.fp-admin-news-card__date-field {
+    display: grid;
+    gap: 6px;
+    padding: 14px 12px;
+    border-top: 1px solid #d8dde2;
+}
+
+.fp-admin-news-card__date-label {
+    font-weight: 700;
+}
+
+.fp-admin-news-card__date-hint {
+    color: #687782;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.fp-admin-news-card__date-field input {
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1px solid #aeb9c1;
+    background: #ffffff;
+}
+
+.fp-admin-news-card__summary {
+    margin-top: 8px;
+}
+
+.fp-admin-news-card__summary textarea {
+    min-height: 240px;
+}
+
+.fp-admin-news-card__full-editor {
+    margin-top: 12px;
+}
+/* FP_PHASE4_NEWS_CANONICAL_CSS_END */
+
+/* FP_PHASE5_CREATE_SITEMAP_CSS_START */
+/**
+ * Phase 5: Create Sitemap admin presentation ownership.
+ * Declarations migrated from legacy main.css; behavior uses data hook.
+ */
+.fp-admin-create-sitemap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+}
+
+.fp-admin-create-sitemap:hover {
+    background: #eceef2
+}
+/* FP_PHASE5_CREATE_SITEMAP_CSS_END */

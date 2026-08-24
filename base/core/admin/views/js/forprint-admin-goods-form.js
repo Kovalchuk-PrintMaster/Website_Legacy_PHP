@@ -662,8 +662,7 @@
         var groups = Object.keys(byId).map(function (id) {
             var groupInputs = byId[id];
             var options = groupInputs[0].closest(
-                ".fp-admin-checkboxlist__options, "
-                + ".option_wrap"
+                ".fp-admin-checkboxlist__options"
             );
             var header = options
                 ? options.previousElementSibling
@@ -672,8 +671,7 @@
             if (
                 header
                 && !header.matches(
-                    ".fp-admin-checkboxlist__header, "
-                    + ".select_wrap"
+                    ".fp-admin-checkboxlist__header"
                 )
             ) {
                 header = null;
@@ -1089,5 +1087,354 @@
         );
     } else {
         init();
+    }
+}());
+
+/**
+ * Canonical Related Goods behavior owner.
+ *
+ * PHP keeps the hidden field and application/json catalog as the server-to-
+ * client data boundary. Search, selection, serialization and placement belong
+ * to this Goods-owned module.
+ */
+(function () {
+    "use strict";
+
+    var ROOT_SELECTOR = "[data-related-goods-widget]";
+
+    function parseIds(value) {
+        return String(value || "")
+            .split(/[,\s;]+/)
+            .map(function (item) {
+                return parseInt(item, 10);
+            })
+            .filter(function (item, index, items) {
+                return (
+                    Number.isInteger(item)
+                    && item > 0
+                    && items.indexOf(item) === index
+                );
+            });
+    }
+
+    function parseCatalog(catalogNode) {
+        if (!catalogNode) {
+            return [];
+        }
+
+        try {
+            var value = JSON.parse(
+                catalogNode.textContent || "[]"
+            );
+
+            return Array.isArray(value) ? value : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function initRelatedGoodsWidget(root) {
+        if (
+            !root
+            || root.dataset.relatedGoodsReady === "1"
+        ) {
+            return;
+        }
+
+        var input = root.querySelector(
+            "[data-related-goods-input]"
+        );
+        var catalogNode = root.querySelector(
+            "[data-related-goods-catalog]"
+        );
+        var searchInput = root.querySelector(
+            "[data-related-goods-search]"
+        );
+        var clearButton = root.querySelector(
+            "[data-related-goods-clear]"
+        );
+        var selectedNode = root.querySelector(
+            "[data-related-goods-selected]"
+        );
+        var resultsNode = root.querySelector(
+            "[data-related-goods-results]"
+        );
+
+        if (
+            !input
+            || !catalogNode
+            || !searchInput
+            || !clearButton
+            || !selectedNode
+            || !resultsNode
+        ) {
+            return;
+        }
+
+        root.dataset.relatedGoodsReady = "1";
+
+        var catalog = parseCatalog(catalogNode);
+        var selectedIds = parseIds(input.value);
+
+        function saveIds() {
+            input.value = selectedIds.join(",");
+        }
+
+        function findById(id) {
+            return catalog.find(function (item) {
+                return (
+                    parseInt(item.id, 10)
+                    === parseInt(id, 10)
+                );
+            });
+        }
+
+        function makeItem(item, actionText, action) {
+            var row = document.createElement("div");
+            var image = document.createElement("img");
+            var body = document.createElement("div");
+            var name = document.createElement("div");
+            var meta = document.createElement("div");
+            var button = document.createElement("button");
+
+            row.className = "vg-related-goods-panel__item";
+
+            image.alt = item.name || "";
+            image.src = item.img
+                ? "/userfiles/" + item.img
+                : "/assets/img/additional_offer.png";
+            image.onerror = function () {
+                this.onerror = null;
+                this.src = "/assets/img/additional_offer.png";
+            };
+
+            name.className = "vg-related-goods-panel__name";
+            name.textContent = (
+                item.name
+                || "Товар #" + item.id
+            );
+
+            meta.className = "vg-related-goods-panel__meta";
+            meta.textContent = (
+                "ID "
+                + item.id
+                + (
+                    item.alias
+                        ? " · " + item.alias
+                        : ""
+                )
+            );
+
+            body.appendChild(name);
+            body.appendChild(meta);
+
+            button.type = "button";
+            button.textContent = actionText;
+            button.addEventListener("click", action);
+
+            row.appendChild(image);
+            row.appendChild(body);
+            row.appendChild(button);
+
+            return row;
+        }
+
+        function renderSelected() {
+            selectedNode.innerHTML = "";
+
+            if (!selectedIds.length) {
+                var empty = document.createElement("div");
+
+                empty.className =
+                    "vg-related-goods-panel__empty";
+                empty.textContent =
+                    "Супутні товари ще не вибрані.";
+                selectedNode.appendChild(empty);
+                return;
+            }
+
+            selectedIds.forEach(function (id) {
+                var item = findById(id) || {
+                    id: id,
+                    name: "Товар #" + id,
+                    alias: ""
+                };
+
+                selectedNode.appendChild(
+                    makeItem(
+                        item,
+                        "Прибрати",
+                        function () {
+                            selectedIds = selectedIds.filter(
+                                function (selectedId) {
+                                    return selectedId !== id;
+                                }
+                            );
+                            saveIds();
+                            renderSelected();
+                            renderResults();
+                        }
+                    )
+                );
+            });
+        }
+
+        function renderResults() {
+            var query = String(
+                searchInput.value || ""
+            ).trim().toLowerCase();
+
+            resultsNode.innerHTML = "";
+
+            if (!query) {
+                var initial = document.createElement("div");
+
+                initial.className =
+                    "vg-related-goods-panel__empty";
+                initial.textContent =
+                    "Введи частину назви або ID товару.";
+                resultsNode.appendChild(initial);
+                return;
+            }
+
+            var found = catalog
+                .filter(function (item) {
+                    return !selectedIds.includes(
+                        parseInt(item.id, 10)
+                    );
+                })
+                .filter(function (item) {
+                    var haystack = [
+                        item.id,
+                        item.name,
+                        item.alias
+                    ].join(" ").toLowerCase();
+
+                    return haystack.indexOf(query) !== -1;
+                })
+                .slice(0, 20);
+
+            if (!found.length) {
+                var empty = document.createElement("div");
+
+                empty.className =
+                    "vg-related-goods-panel__empty";
+                empty.textContent = "Нічого не знайдено.";
+                resultsNode.appendChild(empty);
+                return;
+            }
+
+            found.forEach(function (item) {
+                resultsNode.appendChild(
+                    makeItem(
+                        item,
+                        "Додати",
+                        function () {
+                            var id = parseInt(
+                                item.id,
+                                10
+                            );
+
+                            if (!selectedIds.includes(id)) {
+                                selectedIds.push(id);
+                            }
+
+                            saveIds();
+                            renderSelected();
+                            renderResults();
+                        }
+                    )
+                );
+            });
+        }
+
+        searchInput.addEventListener(
+            "input",
+            renderResults
+        );
+
+        clearButton.addEventListener(
+            "click",
+            function () {
+                searchInput.value = "";
+                renderResults();
+                searchInput.focus();
+            }
+        );
+
+        renderSelected();
+        renderResults();
+    }
+
+    function findFiltersBlock(form) {
+        return form.querySelector(
+            "[data-fp-admin-goods-filters]"
+        );
+    }
+
+    function moveRelatedGoodsPanel() {
+        var form = document.getElementById("main-form");
+
+        if (!form) {
+            return;
+        }
+
+        var tableInput = form.querySelector(
+            'input[name="table"]'
+        );
+
+        if (!tableInput || tableInput.value !== "goods") {
+            return;
+        }
+
+        var panel = form.querySelector(ROOT_SELECTOR);
+
+        if (!panel) {
+            return;
+        }
+
+        var filtersBlock = findFiltersBlock(form);
+
+        if (!filtersBlock) {
+            return;
+        }
+
+        panel.classList.remove(
+            "fp-related-goods-after-filters"
+        );
+        panel.classList.add(
+            "fp-related-goods-inside-filters"
+        );
+
+        if (panel.parentNode !== filtersBlock) {
+            filtersBlock.appendChild(panel);
+        }
+
+        panel.setAttribute(
+            "data-related-goods-moved",
+            "inside-filters"
+        );
+    }
+
+    function initRelatedGoods() {
+        document
+            .querySelectorAll(ROOT_SELECTOR)
+            .forEach(initRelatedGoodsWidget);
+
+        moveRelatedGoodsPanel();
+
+        window.setTimeout(moveRelatedGoodsPanel, 80);
+        window.setTimeout(moveRelatedGoodsPanel, 250);
+        window.setTimeout(moveRelatedGoodsPanel, 700);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initRelatedGoods,
+            { once: true }
+        );
+    } else {
+        initRelatedGoods();
     }
 }());

@@ -122,7 +122,7 @@ html.fp-admin-gallery-dialog-open body {
 .fp-admin-gallery__action-delete::after {
     content: "Видалити";
     color: #343a3f;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1;
