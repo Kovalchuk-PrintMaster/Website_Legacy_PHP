@@ -106,8 +106,15 @@ def main() -> int:
 
     os.chdir(ROOT)
 
+    # FP_ACTIVE_DEVELOPMENT_MIRROR_POLICY_V1
+    # While the project remains in active local-development mode, the local
+    # application tree, project-managed userfiles and FULL local database are
+    # authoritative. Hosting-specific runtime/env/secrets remain protected.
+    # Do not replace the full DB import with operational-row preservation unless
+    # the canonical development-mirror decision is explicitly superseded.
     print("ForPrint canonical FULL local -> hosting sync v1")
     print("=" * 84)
+    print("[ACTIVE DEVELOPMENT MIRROR] local application state is authoritative")
     print("Owned webroot: exact local mirror; protected hosting runtime untouched.")
     print("Database: full local database mirror.")
     print("Rollback: streamed hosting -> local before mutation.")
@@ -131,7 +138,7 @@ def main() -> int:
 
     run_make("hosting-storage-check")
     run_make("hosting-backup-local-dry-run")
-    run_make("hosting-communication-check")
+    run_make("hosting-health-pre")
 
     report_dir = TMP / (
         "full_hosting_sync_v1_"
@@ -187,8 +194,8 @@ def main() -> int:
         f"db_tables={backup_info['db']['table_count']}"
     )
 
-    print("== final communication gate before mutation ==")
-    run_make("hosting-communication-check")
+    print("== final release-health gate before mutation ==")
+    run_make("hosting-health-pre")
 
     mutation_started = False
     try:
@@ -206,14 +213,11 @@ def main() -> int:
             raise RuntimeError("Production DB row counts differ from local package.")
         print(f"[DB COUNTS OK] tables={local_db_info['table_count']}")
 
-        print("== post-release communication gate ==")
-        run_make("hosting-communication-check")
-
-        print("== production HTTP acceptance ==")
-        http_acceptance()
-
         print("== transient release-storage cleanup ==")
         run_make("hosting-clean-release-storage")
+
+        print("== post-release production health gate ==")
+        run_make("hosting-health-post")
 
     except Exception as original_error:
         if mutation_started:
@@ -246,6 +250,9 @@ def main() -> int:
         "communication_pre": "OK",
         "communication_post": "OK",
         "http_acceptance": "OK",
+        "release_health_pre": "OK",
+        "release_health_post": "OK",
+        "measurement_post": "OK",
         "remote_archive_staging": False,
     }
     (report_dir / "release_manifest.json").write_text(
@@ -262,8 +269,32 @@ def main() -> int:
     print(f"db_tables={local_db_info['table_count']}")
     print("communication=PRE+POST OK")
     print("http=OK")
+    print("release_health=PRE+POST OK; Telegram/Email/HTTP/Google measurement checked")
     print("remote_backup_archives=NONE")
     print(f"report={report_dir}")
+
+    # FP_FINAL_RELEASE_HEALTH_TABLE_V1
+    # The blocking POST gate already passed inside the rollback boundary.
+    # Re-render only its recorded evidence so a successful sync ends visually
+    # on the production health table.
+    print()
+    print("== final production release-health table ==")
+    summary = subprocess.run(
+        [
+            "make",
+            "--no-print-directory",
+            "hosting-health-summary",
+        ],
+        cwd=ROOT,
+        text=True,
+        check=False,
+    )
+    if summary.returncode != 0:
+        print(
+            "[WARN] accepted POST health exists, but final table "
+            f"rendering failed ({summary.returncode})"
+        )
+
     return 0
 
 

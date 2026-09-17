@@ -109,7 +109,7 @@ body form label {
 
 body form input[name="login"],
 body form input[name="username"],
-body form input[type="password"] {
+body form .fp-admin-login-password__input {
     display: block !important;
     width: 100% !important;
     min-height: 3rem !important;
@@ -126,7 +126,7 @@ body form input[type="password"] {
 
 body form input[name="login"]:focus,
 body form input[name="username"]:focus,
-body form input[type="password"]:focus {
+body form .fp-admin-login-password__input:focus {
     border-color: var(--fp-login-focus) !important;
     box-shadow:
         0 0 0 0.2rem rgba(9, 185, 219, 0.16) !important;
@@ -206,3 +206,121 @@ body form button:not([type]) {
     font-weight: 600 !important;
 }
 /* FP_ADMIN_LOGIN_WEIGHT_REFINEMENT_END */
+
+/* FP_ADMIN_LOGIN_PASSWORD_REVEAL_V01_START */
+.fp-admin-login-password {
+    position: relative;
+    width: 100%;
+}
+
+.fp-admin-login-password__input {
+    padding-right: 2.75rem;
+}
+
+.fp-admin-login-password__toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.55rem;
+    transform: translateY(-50%);
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0.45rem;
+    color: #263d50;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.fp-admin-login-password__toggle:hover {
+    background: rgba(38, 61, 80, 0.08);
+}
+
+.fp-admin-login-password__toggle:focus-visible {
+    outline: 2px solid var(--fp-login-focus);
+    outline-offset: 2px;
+}
+
+.fp-admin-login-password__icon {
+    position: relative;
+    display: inline-block;
+    width: 1.2rem;
+    height: 0.8rem;
+    border: 2px solid currentColor;
+    border-radius: 999px / 70%;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.fp-admin-login-password__icon::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 50%;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+}
+
+.fp-admin-login-password__icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.45rem;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transform: translate(-50%, -50%) rotate(-32deg) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.16s ease;
+    opacity: 0.9;
+}
+
+.fp-admin-login-password__toggle[aria-pressed="true"] .fp-admin-login-password__icon::after {
+    transform: translate(-50%, -50%) rotate(-32deg) scaleX(1);
+}
+/* FP_ADMIN_LOGIN_PASSWORD_REVEAL_V01_END */
+
+/* FP_PHASE8_LOGIN_EYE_VECTOR_FINISH_V04_START */
+/*
+ * Final bounded password-toggle icon owner.
+ * Uses embedded SVG, so no external asset dependency is introduced.
+ */
+.fp-admin-login-password__toggle {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.fp-admin-login-password__toggle:hover,
+.fp-admin-login-password__toggle:focus-visible {
+    background: rgba(38, 61, 80, 0.08);
+}
+
+.fp-admin-login-password__toggle .fp-admin-login-password__icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1.2rem 1.2rem;
+    box-shadow: none;
+    transform: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23263d50' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z'/%3E%3Ccircle cx='12' cy='12' r='2.75'/%3E%3C/svg%3E");
+}
+
+.fp-admin-login-password__toggle[aria-pressed="true"] .fp-admin-login-password__icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23263d50' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3l18 18'/%3E%3Cpath d='M10.6 5.7A9.8 9.8 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16.7 16.7 0 0 1-2.2 3.1'/%3E%3Cpath d='M6.3 7.2A17.7 17.7 0 0 0 2.5 12S6 18.5 12 18.5c1.1 0 2.1-.2 3-.5'/%3E%3Cpath d='M9.9 9.9a3 3 0 0 0 4.2 4.2'/%3E%3C/svg%3E");
+}
+/* FP_PHASE8_LOGIN_EYE_VECTOR_FINISH_V04_END */

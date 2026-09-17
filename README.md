@@ -1,5 +1,13 @@
 # ForPrint Website
 
+<!-- FP_AI_ASSISTANT_ENTRYPOINT_INDEX_V0_1_START -->
+
+> **Primary assistant entrypoint: root `AGENTS.md`.**
+> New AI/operator sessions start there, then follow the live current-state and
+> single-command workflow links defined in that file.
+
+<!-- FP_AI_ASSISTANT_ENTRYPOINT_INDEX_V0_1_END -->
+
 ## Purpose
 
 This repository is the versioned source of truth for the maintained ForPrint
@@ -164,3 +172,65 @@ high-risk operation.
 Current proven baseline:
 `docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md`.
 <!-- /FP_HOSTING_FULL_SYNC_HARDENING_DOC_V1 -->
+
+<!-- FP_HOSTING_SSH_TRANSPORT_HARDENING_V1_START -->
+## Canonical hosting SSH transport hardening
+
+The production hosting workflow uses the shared transport implementation in:
+
+- [`scripts/operations/hosting_transport.py`](scripts/operations/hosting_transport.py);
+- [`scripts/inspection/check_hosting_full_sync_contract.py`](scripts/inspection/check_hosting_full_sync_contract.py);
+- [`docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md`](docs/working-state/2026-08-18__hosting_full_sync_working_state_v0_1.md);
+- [`docs/decisions/architecture_decision_register_v0_1.md`](docs/decisions/architecture_decision_register_v0_1.md).
+
+Policy summary: keepalive + bounded connection attempts + SSH multiplexing are
+enabled for normal transport; read-only/idempotent operations may retry only
+recognized transient transport failures; deterministic tar streams restart
+from byte zero; normal production DB import remains fail-closed and is not
+generically retried. Rollback restore may retry the complete deterministic DB
+package.
+
+`FORPRINT_DISABLE_SSH_MULTIPLEX=1` is the explicit troubleshooting escape hatch.
+<!-- FP_HOSTING_SSH_TRANSPORT_HARDENING_V1_END -->
+
+<!-- FP_GROWTH_ROADMAP_INDEX_V0_1_START -->
+## ForPrint growth / SEO / Google Ads execution roadmap
+
+Current cross-channel execution roadmap:
+
+- [`marketing/programs/forprint_growth_roadmap_v0_1.md`](marketing/programs/forprint_growth_roadmap_v0_1.md) — active roadmap for technical SEO,
+  Search Console, Google Ads follow-up, measurement and staged growth work.
+
+The roadmap is an execution index. Architecture and policy remain owned by
+their canonical documents under `docs/architecture/`, `docs/decisions/` and
+the marketing control-plane documentation.
+<!-- FP_GROWTH_ROADMAP_INDEX_V0_1_END -->
+
+<!-- FP_BROWSER_VISUAL_INSPECTION_ROOT_V0_1_START -->
+## Browser visual inspection tooling
+
+Real-browser frontend inspection uses Playwright-managed Chromium.
+
+Canonical reference:
+
+```text
+docs/development/browser_visual_inspection_playwright_v0_1.md
+```
+
+Tracked dependencies:
+
+```text
+config/python/requirements-browser-inspection.txt
+config/system/debian12-playwright-chromium-runtime-packages.txt
+```
+
+Persistent entrypoint:
+
+```text
+scripts/inspection/browser_visual_inspection.py
+```
+
+The tool supports local preview by default and explicitly guarded read-only
+inspection of public/hosting URLs. It is development/QA infrastructure, not PHP
+production runtime.
+<!-- FP_BROWSER_VISUAL_INSPECTION_ROOT_V0_1_END -->

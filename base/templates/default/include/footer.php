@@ -299,7 +299,7 @@ unset($fpSearchStripModifier);
                 type="button"
                 data-fp-consent-deny
             >
-                Лише необхідні
+                Відхилити
             </button>
 
             <button
@@ -307,7 +307,7 @@ unset($fpSearchStripModifier);
                 type="button"
                 data-fp-consent-allow
             >
-                Дозволити вимірювання
+                Прийняти cookies
             </button>
         </div>
     </div>

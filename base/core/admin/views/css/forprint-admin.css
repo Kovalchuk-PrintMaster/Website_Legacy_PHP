@@ -100,9 +100,24 @@
     --fp-admin-color-surface: #ffffff;
     --fp-admin-color-muted: #718491;
     --fp-admin-color-field-border: #d8e0e5;
-    --fp-admin-field-radius: 0.25rem;
+    --fp-admin-radius-sm: 0.5rem;
+    --fp-admin-radius-md: 0.625rem;
+    --fp-admin-list-card-height: 5.8rem;
+    --fp-admin-list-card-radius: var(--fp-admin-radius-md);
+    --fp-admin-shadow-card: 0 1px 2px rgba(31, 48, 66, 0.06);
+    --fp-admin-shadow-control-hover: 0 4px 12px rgba(31, 48, 66, 0.10);
+    --fp-admin-space-1: 0.25rem;
+    --fp-admin-space-2: 0.5rem;
+    --fp-admin-space-3: 0.75rem;
+    --fp-admin-space-4: 1rem;
+    --fp-admin-font-size-body: 0.875rem;
+    --fp-admin-font-size-label: 0.9375rem;
+    --fp-admin-font-size-hint: 0.8125rem;
+    --fp-admin-badge-bg: #eef2f4;
+    --fp-admin-badge-text: #5f717d;
+    --fp-admin-field-radius: var(--fp-admin-radius-md);
     --fp-admin-control-height: 2.5rem;
-    --fp-admin-field-gap: 0.55rem;
+    --fp-admin-field-gap: var(--fp-admin-space-2);
 }
 
 .fp-admin-field {
@@ -117,11 +132,11 @@
     gap: var(--fp-admin-field-gap);
     width: 100%;
     min-width: 0;
-    padding: 0.85rem;
+    padding: var(--fp-admin-space-4);
     border: 1px solid var(--fp-admin-color-field-border);
     border-radius: var(--fp-admin-field-radius);
     background: var(--fp-admin-color-surface);
-    box-shadow: none !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
 }
 
 .fp-admin-field__heading {
@@ -136,6 +151,7 @@
     margin: 0;
     color: var(--fp-admin-color-text);
     font: inherit;
+    font-size: var(--fp-admin-font-size-label);
     font-weight: 700;
     line-height: 1.35;
 }
@@ -145,8 +161,8 @@
     min-height: 0;
     margin: 0;
     color: var(--fp-admin-color-muted);
-    font-size: 0.8rem;
-    line-height: 1.4;
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.45;
 }
 
 .fp-admin-field__hint:empty {
@@ -372,32 +388,81 @@
 }
 
 .fp-admin-image-field__surface {
-    grid-template-columns: minmax(0, 1fr) minmax(10rem, 18rem);
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
-    gap: 0.85rem;
+    gap: var(--fp-admin-space-3);
 }
 
 .fp-admin-image-field__controls {
-    display: grid;
-    gap: 0.75rem;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center !important;
+    gap: var(--fp-admin-space-2) var(--fp-admin-space-3);
+    width: 100%;
     min-width: 0;
 }
 
-.fp-admin-image-field__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.55rem;
-    min-width: 0;
+.fp-admin-image-field__heading {
+    grid-column: 1;
+    justify-self: start;
+    float: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 8rem;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
+
+.fp-admin-image-field__actions {
+    grid-column: 2;
+    justify-self: center;
+    display: flex !important;
+    flex: 0 0 auto;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    float: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: var(--fp-admin-space-2);
+}
+/* Shared image-control responsive fallback. */
+@media (max-width: 47.5rem) {
+    .fp-admin-image-field__controls {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start !important;
+    }
+
+    .fp-admin-image-field__heading,
+    .fp-admin-image-field__actions {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    .fp-admin-image-field__actions {
+        flex-wrap: wrap !important;
+        margin-top: var(--fp-admin-space-2) !important;
+    }
+}
+
 
 .fp-admin-image-field__upload.file_upload,
 .fp-admin-image-field__delete {
     display: inline-flex !important;
+    flex: 0 0 auto !important;
     width: auto !important;
+    max-width: max-content !important;
     min-width: 0;
     margin: 0 !important;
     align-items: center;
+    white-space: nowrap;
     text-decoration: none;
 }
 
@@ -409,13 +474,39 @@
     display: inline-flex !important;
     width: auto !important;
     min-width: 0;
+    min-height: 2.25rem;
     margin: 0 !important;
+    padding: 0.45rem 0.75rem !important;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--fp-admin-color-control-border) !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    font-size: var(--fp-admin-font-size-hint);
+    font-weight: 400;
 }
 
 .fp-admin-image-field__delete {
+    min-height: 2.25rem;
+    padding: 0.45rem 0.75rem !important;
+    justify-content: center;
+    border: 1px solid var(--fp-admin-color-control-border) !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
     color: var(--fp-admin-color-text) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    font-size: var(--fp-admin-font-size-hint);
+    font-weight: 400;
+}
+
+.fp-admin-image-field__upload:hover .fp-admin-image-field__upload-label,
+.fp-admin-image-field__upload:focus-within .fp-admin-image-field__upload-label,
+.fp-admin-image-field__delete:hover,
+.fp-admin-image-field__delete:focus-visible {
+    background: var(--fp-admin-color-control-hover) !important;
+    box-shadow: var(--fp-admin-shadow-control-hover) !important;
+    outline: none;
 }
 
 .fp-admin-image-field__input.single_img {
@@ -474,19 +565,29 @@
 /* Unified edit-card actions. */
 .fp-admin-action-bar {
     flex-basis: 100%;
-    width: 100%;
-    margin: 0 0 0.75rem;
+    width: auto;
+    margin: var(--fp-admin-space-2) var(--fp-admin-space-3) var(--fp-admin-space-3);
     padding: 0;
+    border: 0;
+    box-shadow: none;
 }
 
 .fp-admin-action-bar--bottom {
-    margin: 0.75rem 0 0;
+    margin: var(--fp-admin-space-3) var(--fp-admin-space-3) var(--fp-admin-space-2);
 }
 
 .fp-admin-action-bar__inner {
+    display: flex;
+    align-items: center;
     width: 100%;
     min-height: 3.75rem;
+    margin: 0;
     padding: 0.65rem 0.85rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    overflow: hidden;
 }
 
 .fp-admin-action-bar__actions {
@@ -496,7 +597,7 @@
     width: auto;
     max-width: 100%;
     align-items: center;
-    gap: 0.65rem;
+    gap: var(--fp-admin-space-2);
     padding: 0;
 }
 
@@ -505,29 +606,50 @@
 .fp-admin-action-button.vg-button {
     display: inline-flex;
     flex: 0 0 auto;
-    width: auto;
-    min-width: 7.5rem;
-    min-height: 2.5rem;
+    width: auto !important;
+    min-width: 6.5rem !important;
+    min-height: 2.25rem !important;
     margin: 0;
-    padding: 0.65rem 1rem;
+    padding: 0.45rem 0.8rem !important;
     align-items: center;
     justify-content: center;
-    border: 1px solid #2f4054;
-    border-radius: 0.2rem;
-    color: #1f3042;
-    background: #ffffff;
+    border: 1px solid var(--fp-admin-color-strong) !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
     font: inherit;
+    font-size: var(--fp-admin-font-size-hint);
+    font-weight: 600;
     line-height: 1.15;
     text-align: center;
     white-space: nowrap;
     cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
-.fp-admin-action-button:hover,
+.fp-admin-action-button:hover {
+    color: #ffffff;
+    background: var(--fp-admin-color-strong);
+    box-shadow: var(--fp-admin-shadow-control-hover);
+}
+
 .fp-admin-action-button:focus-visible {
     color: #ffffff;
-    background: #2f4054;
+    background: var(--fp-admin-color-strong);
+    box-shadow:
+        var(--fp-admin-focus-ring),
+        var(--fp-admin-shadow-control-hover);
     outline: none;
+}
+
+.fp-admin-action-button.fp-admin-action-button--delete,
+.fp-admin-action-button.fp-admin-action-button--delete.vg_delete {
+    border-radius: var(--fp-admin-radius-sm) !important;
 }
 
 .fp-admin-action-button--delete:hover,
@@ -707,6 +829,2962 @@
     padding: 1rem;
 }
 
+
+/* FP-ADMIN-FOOTER-VISUAL-OWNER-V10 START */
+/*
+ * Footer settings canonical visual owner.
+ *
+ * V06 refines the accepted Footer admin composition without changing data:
+ * compact visibility cards, balanced media pair, transparency-safe logo preview,
+ * and clearer collection rows.
+ */
+.fp-admin-footer-settings-surface {
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-body);
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-card {
+    margin-top: 0;
+}
+
+.fp-admin-footer-settings-surface
+> .fp-admin-action-bar {
+    flex: 0 0 calc(100% - 10px);
+    width: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+> .fp-admin-action-bar:not(.fp-admin-action-bar--bottom) {
+    margin-bottom: var(--fp-admin-space-1);
+}
+
+.fp-admin-footer-settings-surface
+> .fp-admin-action-bar
+.fp-admin-action-bar__inner {
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card > .fp-admin-footer-card__inner {
+    display: grid;
+    gap: var(--fp-admin-space-2);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-card__settings-grid,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__media-grid,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__contact-grid,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__collections {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    column-gap: var(--fp-admin-space-3);
+    row-gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: var(--fp-admin-space-2);
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-card__settings-cell,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__contact-cell,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__media-cell {
+    min-width: 0;
+    align-self: stretch;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-field,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell > .fp-admin-field,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell > .fp-admin-field {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__surface,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__surface {
+    display: grid;
+    grid-template-rows: minmax(1.25rem, auto) 2.25rem;
+    align-content: start;
+    min-height: 5.25rem;
+    height: 5.25rem;
+    padding: 0.5625rem 0.75rem;
+    row-gap: var(--fp-admin-space-2);
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__heading,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    min-height: 1.25rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1.25;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__heading > .vg-left,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__heading > .vg-left {
+    float: none;
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__label,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__hint,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__label,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__hint {
+    margin: 0;
+    padding: 0;
+    line-height: 1.25;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__control,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__control > .vg-element,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__control,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__control > .vg-element {
+    float: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__input,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-field__select,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__input,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__contact-cell .fp-admin-field__select,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-number-field input,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-admin-position-composite select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field {
+    display: grid;
+    grid-template-rows: auto 2.25rem;
+    align-content: start;
+    align-items: stretch;
+    row-gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    min-height: 5.25rem;
+    height: 5.25rem;
+    margin: 0;
+    padding: 0.5625rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-field-radius);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-number-field__heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0 var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    min-height: 1.25rem;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-number-field__label {
+    flex: 0 0 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    line-height: 1.25;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-number-field__label-text {
+    /*
+     * Temporary legacy isolation:
+     * inherited strong/label rules still win at lower specificity.
+     */
+    font-weight: 700 !important;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-number-field__hint {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.25;
+    text-align: left;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+> input[name="menu_position"] {
+    grid-row: 2;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-position-composite {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-position-composite > input[name="menu_position"],
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-position-composite__select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-admin-number-field
+.fp-admin-position-composite select {
+    order: -1;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--position
+.fp-admin-position-composite__select,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--position
+.fp-admin-position-composite > input[name="menu_position"] {
+    min-height: 2.25rem !important;
+    height: 2.25rem;
+    margin: 0 !important;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell > .fp-radio-template-field,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-radio-template-field--visible {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    min-height: 3rem;
+    height: 3rem;
+    margin: 0;
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3);
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-radio-template-head {
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--fp-admin-space-2);
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-radio-template-title,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-radio-template-subtitle {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell .fp-radio-template-options {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--fp-admin-space-2);
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__surface {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    margin: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__surface {
+    display: grid;
+    grid-template-rows: auto minmax(12rem, 1fr);
+    gap: var(--fp-admin-space-2);
+    height: 100%;
+    min-height: 100%;
+    padding: 0.25rem 0.75rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--fp-admin-space-2) var(--fp-admin-space-3);
+    width: 100%;
+    min-width: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__heading {
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--fp-admin-space-2);
+    justify-self: stretch;
+    width: auto;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__heading > * {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__actions {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    gap: var(--fp-admin-space-2);
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__preview.img_show,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__preview.main_img_show {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 12rem;
+    height: 12rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: var(--fp-admin-space-3);
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background-color: #ffffff;
+    background-image:
+        linear-gradient(45deg, #edf1f3 25%, transparent 25%),
+        linear-gradient(-45deg, #edf1f3 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #edf1f3 75%),
+        linear-gradient(-45deg, transparent 75%, #edf1f3 75%);
+    background-position:
+        0 0,
+        0 0.5rem,
+        0.5rem -0.5rem,
+        -0.5rem 0;
+    background-size: 1rem 1rem;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell .fp-admin-image-field__preview img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    align-self: stretch;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+> .fp-admin-field {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    align-self: stretch;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+> .fp-admin-gallery-shell {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0.25rem 0.75rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+> .fp-admin-gallery-shell
+> .vg-wrap {
+    display: grid;
+    grid-template-rows: auto minmax(12rem, 1fr);
+    align-content: stretch;
+    gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading {
+    display: grid;
+    align-content: start;
+    gap: var(--fp-admin-space-1);
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading .vg-header {
+    margin: 0;
+    padding: 0;
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__hint {
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.35;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__grid {
+    width: 100%;
+    min-width: 0;
+    min-height: 12rem;
+    height: 100%;
+    margin: 0;
+    align-content: start;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-card__media-cell--empty,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__settings-cell--empty,
+.fp-admin-footer-settings-surface .fp-admin-footer-card__contact-cell--empty {
+    min-height: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--position
+.fp-admin-number-field__label {
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    line-height: 1.3;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 3rem;
+    height: 3rem;
+    align-items: center;
+    margin: 0;
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3);
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-field--visible,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-field--show_gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-head {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0 var(--fp-admin-space-2);
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-title {
+    color: var(--fp-admin-color-text);
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    font-size: var(--fp-admin-font-size-label);
+    /*
+     * Temporary legacy isolation:
+     * main.css still owns form#main-form .fp-radio-template-title
+     * with font-weight: 400 !important.
+     */
+    font-weight: 700 !important;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-subtitle:empty {
+    display: none;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-options {
+    float: none;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--fp-admin-space-2);
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-field--visible,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-field--show_gallery {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: center;
+    align-items: center;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__settings-cell--visibility
+.fp-radio-template-head {
+    flex: 0 0 auto;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection {
+    min-width: 0;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: #f7f9fa;
+    overflow: hidden;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--fp-admin-space-3);
+    padding: var(--fp-admin-space-3);
+    border-bottom: 1px solid var(--fp-admin-color-field-border);
+    background: var(--fp-admin-color-surface);
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading > div {
+    display: grid;
+    min-width: 0;
+    gap: var(--fp-admin-space-1);
+    text-align: left;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading span {
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading strong {
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__add {
+    display: inline-flex;
+    flex: 0 0 auto;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    text-decoration: none;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__add:hover,
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__add:focus-visible {
+    background: var(--fp-admin-color-control-hover);
+    box-shadow: var(--fp-admin-shadow-control-hover);
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__items {
+    display: grid;
+    gap: var(--fp-admin-space-2);
+    padding: var(--fp-admin-space-2);
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-width: 0;
+    min-height: 3.75rem;
+    align-items: center;
+    gap: var(--fp-admin-space-3);
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #e0e6ea;
+    border-radius: var(--fp-admin-radius-sm);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__item:hover,
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__item:focus-visible {
+    background: var(--fp-admin-color-control-hover);
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__item-main {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 0.45fr) minmax(0, 1.55fr);
+    align-items: center;
+    column-gap: var(--fp-admin-space-3);
+    row-gap: var(--fp-admin-space-1);
+    min-width: 0;
+    text-align: left;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__item-main strong,
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__item-main small {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__item-aside {
+    display: grid;
+    justify-items: end;
+    gap: var(--fp-admin-space-1);
+    min-width: max-content;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__position {
+    color: var(--fp-admin-color-muted);
+    font-size: 0.72rem;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.fp-admin-footer-settings-surface .fp-admin-footer-collection__status {
+    flex: 0 0 auto;
+    justify-self: end;
+    padding: 0.3rem 0.45rem;
+    border-radius: var(--fp-admin-radius-sm);
+    color: var(--fp-admin-badge-text);
+    background: var(--fp-admin-badge-bg);
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__status.is-visible {
+    color: #2e6243;
+    background: #dfeee5;
+}
+
+@media (max-width: 70rem) {
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__settings-grid,
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__contact-grid,
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__media-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__media-cell--empty,
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__settings-cell--empty,
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__contact-cell--empty {
+        display: none;
+    }
+}
+
+@media (max-width: 47.5rem) {
+    .fp-admin-footer-settings-surface .fp-admin-footer-card__collections {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-admin-footer-settings-surface .fp-admin-footer-collection__heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .fp-admin-footer-settings-surface
+    .fp-admin-footer-card__media-cell .fp-admin-image-field__controls {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-admin-footer-settings-surface
+    .fp-admin-footer-card__media-cell .fp-admin-image-field__actions {
+        grid-column: 1;
+        justify-self: start;
+        flex-wrap: wrap;
+    }
+
+    .fp-admin-footer-settings-surface
+    .fp-admin-footer-collection__item-main {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+/* FP-ADMIN-FOOTER-COLLECTIONS-INLINE-EDIT-V08 START */
+/*
+ * Canonical Footer collection editor.
+ *
+ * One collection owns one compact heading card plus full-width record cards.
+ * Existing save/delete JavaScript and field names remain unchanged.
+ */
+.fp-admin-footer-settings-surface .fp-admin-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__collections {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading-text {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading-text > strong {
+    margin: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700 !important;
+    line-height: 1.25;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__heading-text > span {
+    margin: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__add {
+    display: inline-flex;
+    flex: 0 0 auto;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    text-decoration: none;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__add:hover,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__add:focus-visible {
+    background: var(--fp-admin-color-control-hover);
+    box-shadow: var(--fp-admin-shadow-control-hover);
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-collection__items,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editors {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__heading {
+    display: flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__status {
+    order: 2;
+    flex: 0 1 auto;
+    min-width: 0;
+    min-height: 1rem;
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.2;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__status.is-error {
+    color: #8b2f2f;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__status.is-success {
+    color: #2e6243;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__actions {
+    order: 1;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+button.fp-admin-footer-inline-editor__action {
+    width: auto;
+    min-width: 6.5rem;
+    min-height: 2.25rem;
+    height: auto;
+    margin: 0;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--fp-admin-color-strong);
+    border-radius: var(--fp-admin-radius-sm) !important;
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__toggles {
+    min-width: 0;
+    min-height: 4.5rem;
+    margin: 0;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field {
+    display: grid;
+    grid-template-rows: minmax(1.15rem, auto) 2.25rem;
+    align-content: start;
+    gap: 0.375rem;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.2;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field > span {
+    margin: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field input[type="text"],
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field input[type="tel"],
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field input[type="number"],
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__toggles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__choice {
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: 0;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-sm);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__choice > span {
+    margin: 0 0.1rem 0 0;
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__choice [role="radio"] {
+    position: relative;
+    display: inline-flex;
+    min-width: 0;
+    min-height: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    border: 0;
+    border-radius: 0;
+    color: var(--fp-admin-color-text);
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__choice [role="radio"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: 50%;
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__choice [role="radio"][aria-checked="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0.1875rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: #168eea;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__choice [role="radio"]:focus-visible {
+    outline: 2px solid var(--fp-admin-color-control-border);
+    outline-offset: 1px;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite
+.fp-admin-position-composite__select,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite
+> input[data-fp-footer-field="menu_position"] {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite
+.fp-admin-position-composite__select {
+    order: -1;
+    padding: 0.375rem 2rem 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+}
+
+form#main-form.fp-admin-footer-settings-surface
+[data-fp-footer-delete-dialog]
+.fp-admin-gallery-dialog__button {
+    min-height: 2.5rem;
+    height: auto;
+    padding: 0.5rem 1rem;
+    border-radius: var(--fp-admin-radius-sm) !important;
+}
+
+@media (max-width: 70rem) {
+    form#main-form.fp-admin-footer-settings-surface
+    .fp-admin-footer-inline-editor__row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 47.5rem) {
+    form#main-form.fp-admin-footer-settings-surface
+    .fp-admin-footer-collection__heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    form#main-form.fp-admin-footer-settings-surface
+    .fp-admin-footer-inline-editor__actions,
+    form#main-form.fp-admin-footer-settings-surface
+    .fp-admin-footer-inline-editor__toggles {
+        width: 100%;
+    }
+
+    form#main-form.fp-admin-footer-settings-surface
+    button.fp-admin-footer-inline-editor__action {
+        flex: 1 1 8rem;
+    }
+}
+
+/* FP-ADMIN-FOOTER-COLLECTION-RUNTIME-GEOMETRY START */
+/*
+ * Runtime-measured Footer collection geometry.
+ * Position controls stay adjacent to their label and use equal 36px controls.
+ */
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field--position {
+    display: grid;
+    grid-template-columns: max-content auto;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite {
+    display: grid;
+    grid-template-columns: repeat(2, 7.25rem);
+    justify-content: start;
+    justify-self: start;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite
+> select.fp-admin-position-composite__select[data-fp-footer-position-select],
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__position-composite
+> input[type="number"][data-fp-footer-field="menu_position"] {
+    width: 7.25rem;
+    min-width: 7.25rem;
+    max-width: 7.25rem;
+    height: 2.25rem;
+    min-height: 2.25rem;
+    max-height: 2.25rem;
+    margin: 0;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__collections {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+> .fp-admin-action-bar--bottom {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 47.5rem) {
+    form#main-form.fp-admin-footer-settings-surface
+    .fp-admin-footer-inline-editor__field--position {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+    }
+
+    form#main-form.fp-admin-footer-settings-surface
+    .fp-admin-footer-inline-editor__position-composite {
+        justify-self: start;
+    }
+}
+/* FP-ADMIN-FOOTER-POSITION-SELECT-HEIGHT-EQUALIZE-V02 START */
+/*
+ * Targeted runtime geometry fix.
+ *
+ * DevTools measured the Footer link position select at about 44px
+ * while its paired number input is about 36px.
+ *
+ * Extra Footer-specific selector scope wins by normal cascade/specificity.
+ */
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-inline-editor__field--position
+.fp-admin-footer-inline-editor__position-composite
+> select.fp-admin-position-composite__select[data-fp-footer-position-select] {
+    width: 7.25rem;
+    min-width: 7.25rem;
+    max-width: 7.25rem;
+    height: 2.25rem;
+    min-height: 2.25rem;
+    max-height: 2.25rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+/* FP-ADMIN-FOOTER-POSITION-SELECT-HEIGHT-EQUALIZE-V02 END */
+/* FP-ADMIN-FOOTER-COLLECTION-RUNTIME-GEOMETRY END */
+
+/* FP-ADMIN-FOOTER-COLLECTIONS-INLINE-EDIT-V08 END */
+
+/* FP-ADMIN-FOOTER-CHILD-FORM-V03 START */
+/*
+ * Canonical Footer link/phone add-edit layout.
+ *
+ * Existing controls are reorganized by the Footer child JS only; field names,
+ * submission and backend behavior are unchanged.
+ */
+form#main-form.fp-admin-footer-child-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    justify-content: stretch;
+    gap: 0.5rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar
+.fp-admin-action-bar__inner {
+    min-height: 3.75rem;
+    padding: 0.625rem 0.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.5rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__primary,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__secondary,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    min-width: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field {
+    /*
+     * Temporary legacy geometry isolation for inherited vg-* field widths.
+     */
+    float: none !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__surface {
+    display: grid;
+    grid-template-rows: minmax(1.15rem, auto) 2.25rem;
+    align-content: start;
+    gap: 0.375rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 4.5rem;
+    height: 4.5rem;
+    margin: 0;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__heading {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-width: 0;
+    min-height: 1.15rem;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__heading > .vg-left {
+    float: none;
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__label {
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__hint {
+    flex: 0 1 auto;
+    min-width: 0;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__control,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__control > .vg-element {
+    float: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+input[type="text"],
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+input[type="tel"],
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+input[type="number"],
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 4.5rem;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group
+.fp-radio-template-field {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    min-width: 0;
+    min-height: 0;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group
+.fp-radio-template-head,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group
+.fp-radio-template-options {
+    display: flex;
+    width: auto;
+    min-width: 0;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group
+.fp-radio-template-title {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    /*
+     * main.css owns the generic form radio title weight with !important.
+     */
+    font-weight: 700 !important;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group
+.fp-radio-template-subtitle:empty {
+    display: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position.fp-admin-number-field {
+    display: grid;
+    grid-template-columns: minmax(9rem, 1fr) minmax(14rem, 20rem);
+    grid-template-rows: minmax(2.25rem, auto);
+    min-width: 0;
+    min-height: 4.5rem;
+    height: 4.5rem;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__heading {
+    grid-column: 1;
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__label,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__label-text {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__hint {
+    display: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(7rem, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite__select,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite > input {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite select {
+    order: -1;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media {
+    align-items: stretch;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    min-height: 11rem;
+    height: 11rem;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.img_wrapper {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__surface,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    display: grid;
+    grid-template-rows: 2.25rem 7rem;
+    align-content: start;
+    gap: 0.5rem;
+    min-height: 11rem;
+    height: 11rem;
+    margin: 0;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__controls,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading {
+    display: flex;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    align-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__controls {
+    justify-content: space-between;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading > strong {
+    flex: 0 0 auto;
+    margin: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading > span {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin: 0;
+    color: var(--fp-admin-color-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__preview.img_show,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__preview.main_img_show,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-placeholder {
+    min-height: 7rem;
+    height: 7rem;
+    margin: 0;
+    padding: 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-placeholder {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-plus {
+    display: inline-grid;
+    width: 4.5rem;
+    height: 4.5rem;
+    place-items: center;
+    border: 1px solid var(--fp-admin-color-control-border);
+    color: var(--fp-admin-color-text);
+    background: var(--fp-admin-color-surface);
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+@media (max-width: 70rem) {
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__primary,
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__secondary,
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__media {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+        grid-template-columns: minmax(9rem, 1fr) minmax(14rem, 20rem);
+    }
+}
+
+@media (max-width: 47.5rem) {
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 2.25rem;
+        height: auto;
+    }
+
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position
+    .fp-admin-number-field__heading,
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position
+    .fp-admin-position-composite {
+        grid-column: 1;
+    }
+
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__media-main,
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__media-placeholder {
+        height: auto;
+    }
+}
+
+/* Footer child polish V04: softer media cards, smaller position composite, tighter action spacing. */
+form#main-form.fp-admin-footer-child-form {
+    gap: 0.375rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar
+.fp-admin-action-bar__inner {
+    min-height: 2.75rem;
+    padding: 0.375rem 0.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__layout {
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__primary,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__secondary,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media {
+    align-items: stretch;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position.fp-admin-number-field {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field
+.fp-admin-field__surface {
+    grid-template-rows: minmax(1.1rem, auto) 2.25rem;
+    gap: 0.3rem;
+    min-height: 4.25rem;
+    height: 4.25rem;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 4.25rem;
+    height: 4.25rem;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__boolean-group
+.fp-radio-template-field {
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position.fp-admin-number-field {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-rows: 2.25rem;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 4.25rem;
+    height: 4.25rem;
+    padding: 0.5rem 0.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__heading {
+    grid-column: 1;
+    min-height: 0;
+    height: auto;
+    align-items: center;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__label,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__label-text {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__hint {
+    display: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: minmax(7rem, 1fr) minmax(5.25rem, 0.72fr);
+    gap: 0.5rem;
+    width: min(100%, 17.5rem);
+    max-width: 17.5rem;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0 0 0 auto;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite
+> * {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    box-sizing: border-box;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media {
+    align-items: start;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem;
+    border: 1px solid rgb(216, 224, 229);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-surface);
+    box-shadow: var(--fp-admin-shadow-soft);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.img_wrapper {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__surface,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    display: grid;
+    grid-template-rows: 2.25rem 7.5rem;
+    align-content: start;
+    gap: 0.5rem;
+    min-height: 0;
+    height: auto;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    padding: 0.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__surface {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__controls,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading {
+    display: flex;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading {
+    flex-wrap: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> strong,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> span {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> span {
+    flex: 1 1 auto;
+    margin-left: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__preview.img_show,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__preview.main_img_show,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-placeholder {
+    min-height: 7.5rem;
+    height: 7.5rem;
+    margin: 0;
+    padding: 0.625rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid rgb(216, 224, 229);
+    border-radius: var(--fp-admin-radius-sm);
+    background: #fff;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-plus {
+    display: inline-grid;
+    width: 6.25rem;
+    height: 6.25rem;
+    place-items: center;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar--bottom {
+    margin-top: 0;
+}
+
+@media (max-width: 70rem) {
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__primary,
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__secondary,
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__media {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 2.25rem;
+        height: auto;
+    }
+
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position
+    .fp-admin-position-composite {
+        grid-column: 1;
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* FP-ADMIN-FOOTER-CHILD-RUNTIME-GEOMETRY START */
+/*
+ * Runtime-measured Footer link/phone child-form finish.
+ * Existing controls only: no schema, endpoint or save-contract change.
+ */
+form#main-form.fp-admin-footer-child-form {
+    gap: 0.25rem;
+    font-size: 0.875rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: auto;
+    max-width: none;
+    margin: 0 0.75rem;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar
+.fp-admin-action-bar__inner {
+    min-height: 3rem;
+    padding: 0.25rem 0.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__layout {
+    gap: 0.5rem;
+    margin-top: 0;
+    padding: 0.375rem 0.5rem 0.5rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field {
+    min-width: 0;
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field .fp-admin-field__surface {
+    background: #fff;
+    width: 100%;
+    min-width: 0;
+    min-height: 4.5rem;
+    height: auto;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field .fp-admin-field__heading {
+    display: flex;
+    min-height: 1.5rem;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    margin: 0 0 0.25rem;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field .fp-admin-field__heading
+> .fp-admin-field__label,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field .fp-admin-field__heading
+> .fp-admin-field__hint {
+    display: inline-flex;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field .fp-admin-field__hint {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position.fp-admin-number-field {
+    display: grid;
+    grid-template-columns: max-content auto;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4.5rem;
+    height: 4.5rem;
+    padding: 0.5rem 0.75rem;
+    align-content: center;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-number-field__heading {
+    grid-column: 1;
+    align-self: center;
+    min-height: 0;
+    margin: 0;
+    text-align: left;
+    font-weight: 700;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 7.25rem);
+    justify-self: start;
+    align-self: center;
+    gap: 0.5rem;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite
+> select.fp-admin-position-composite__select,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__field--position
+.fp-admin-position-composite
+> input[type="number"] {
+    width: 7.25rem;
+    min-width: 7.25rem;
+    max-width: 7.25rem;
+    height: 2.25rem;
+    min-height: 2.25rem;
+    max-height: 2.25rem;
+    margin: 0;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media {
+    align-items: start;
+    gap: 0.5rem;
+    background: transparent;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    align-self: start;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 0.625rem;
+    border: 1px solid #d8e0e5;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: none;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__surface,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 2.25rem 8rem;
+    align-content: start;
+    gap: 0.5rem;
+    min-height: 10.75rem;
+    height: 10.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__controls,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading {
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center;
+    justify-content: start;
+    column-gap: 0.625rem;
+    min-width: 0;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> strong,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> span {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> strong {
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-placeholder-heading
+> span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__preview.img_show,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__media-main
+.fp-admin-image-field__preview.main_img_show,
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-placeholder {
+    min-height: 8rem;
+    height: 8rem;
+    margin: 0;
+    padding: 0.625rem;
+    border: 1px solid #aab8c2;
+    border-radius: 8px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+.fp-admin-footer-child-form__gallery-plus {
+    display: inline-grid;
+    width: 4.5rem;
+    height: 4.5rem;
+    place-items: center;
+    border: 1px solid #aab8c2;
+    background: #fff;
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form
+> .fp-admin-action-bar--bottom {
+    margin-top: 0.375rem;
+}
+
+@media (max-width: 47.5rem) {
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+    }
+
+    form#main-form.fp-admin-footer-child-form
+    .fp-admin-footer-child-form__field--position
+    .fp-admin-position-composite {
+        grid-column: 1;
+        justify-self: start;
+    }
+}
+/* FP-ADMIN-FOOTER-CHILD-RUNTIME-GEOMETRY END */
+
+/* FP-ADMIN-FOOTER-CHILD-FORM-V03 END */
+
+/*
+ * Canonical Footer media geometry.
+ *
+ * Runtime finish:
+ * - title + hint stay together at the left;
+ * - both media wells share one vertical rhythm;
+ * - legacy gallery wrapper no longer creates a narrower/lower inner frame.
+ */
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    align-self: start;
+    margin: 0;
+    padding: 0.75rem;
+    border: 1px solid #d8e0e5;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+> .fp-admin-field,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+.fp-admin-image-field,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+.img_wrapper {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+.fp-admin-image-field__surface,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+> .fp-admin-gallery-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 2.5rem 10.5rem;
+    align-content: start;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 13.5rem;
+    height: 13.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+> .fp-admin-gallery-shell
+> .vg-wrap {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    float: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+.fp-admin-image-field__controls,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading {
+    min-height: 2.5rem;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center;
+    justify-content: start;
+    column-gap: 0.625rem;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    float: none;
+    text-align: left;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading
+> * {
+    position: static;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    float: none;
+    transform: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading
+> .vg-header {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__heading
+> .fp-admin-gallery__hint {
+    justify-self: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+.fp-admin-image-field__preview.img_show,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--main
+.fp-admin-image-field__preview.main_img_show,
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__grid {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    min-height: 10.5rem;
+    height: 10.5rem;
+    margin: 0;
+    float: none;
+    border: 1px solid #aab8c2;
+    border-radius: 8px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-settings-surface
+.fp-admin-footer-card__media-cell--gallery
+.fp-admin-gallery__grid {
+    padding: 0.625rem;
+}
+
+/* FP-ADMIN-FOOTER-VISUAL-OWNER-V10 END */
+
+/* FP-ADMIN-SHARED-BINARY-RADIO-OWNER-V02 START */
+/*
+ * Canonical shared owner for the common binary admin fields:
+ * visible / show_gallery.
+ *
+ * The controls are deliberately left aligned. Page-specific surfaces can
+ * control the surrounding card, but must not reimplement radio geometry.
+ */
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible,
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 3.25rem;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+}
+
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible
+.fp-radio-template-head,
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery
+.fp-radio-template-head {
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible
+.fp-radio-template-title,
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery
+.fp-radio-template-title {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-label);
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible
+.fp-radio-template-subtitle:empty,
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery
+.fp-radio-template-subtitle:empty {
+    display: none;
+}
+
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible
+.fp-radio-template-options,
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery
+.fp-radio-template-options {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible
+.fp-radio-template-option,
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery
+.fp-radio-template-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--visible
+input[type="radio"],
+.fp-admin-shell
+form#main-form
+.fp-radio-template-field.fp-radio-template-field--show_gallery
+input[type="radio"] {
+    width: 13px;
+    height: 13px;
+    min-width: 13px;
+    min-height: 13px;
+    margin: 0;
+    padding: 0;
+    transform: none;
+    vertical-align: middle;
+}
+
+@media (max-width: 47.5rem) {
+    .fp-admin-shell
+    form#main-form
+    .fp-radio-template-field.fp-radio-template-field--visible,
+    .fp-admin-shell
+    form#main-form
+    .fp-radio-template-field.fp-radio-template-field--show_gallery {
+        flex-wrap: wrap;
+    }
+}
+/* FP-ADMIN-SHARED-BINARY-RADIO-OWNER-V02 END */
+
+/* FP-ADMIN-SHARED-ACTION-TEXT-OWNER-V01 START */
+/*
+ * Shared action buttons use normal text weight. Section headings and labels
+ * remain bold; Save/Delete are actions, not headings.
+ */
+.fp-admin-shell .fp-admin-action-button,
+.fp-admin-shell .fp-admin-action-bar .fp-admin-action-button {
+    font-weight: 400;
+}
+/* FP-ADMIN-SHARED-ACTION-TEXT-OWNER-V01 END */
+
 .fp-admin-settings-index {
     align-content: start;
 }
@@ -794,6 +3872,8 @@
 .fp-admin-add-card > a {
     min-height: 5.8rem;
     max-height: 5.8rem;
+    border-radius: var(--fp-admin-list-card-radius);
+    overflow: hidden;
 }
 
 .fp-admin-index-card__link,
@@ -803,11 +3883,13 @@
     grid-template-columns: minmax(0, 1fr) minmax(5.5rem, 38%);
     width: 100% !important;
     min-width: 0;
-    height: 7rem;
-    min-height: 7rem;
-    max-height: 7rem;
+    height: var(--fp-admin-list-card-height);
+    min-height: var(--fp-admin-list-card-height);
+    max-height: var(--fp-admin-list-card-height);
+    padding: 0 !important;
     margin: 0 !important;
     overflow: hidden;
+    border-radius: var(--fp-admin-list-card-radius);
 }
 
 .fp-admin-index-card__caption,
@@ -826,9 +3908,9 @@
     width: auto !important;
     min-width: 0;
     max-width: none;
-    height: 7rem;
+    height: var(--fp-admin-list-card-height);
     min-height: 0;
-    padding: 0.5rem;
+    padding: 0;
     overflow: hidden;
     box-sizing: border-box;
     flex-basis: auto !important;
@@ -840,8 +3922,8 @@
     width: 100%;
     height: 100%;
     max-width: 100%;
-    max-height: 6rem;
-    object-fit: contain;
+    max-height: none;
+    object-fit: cover;
     object-position: center;
 }
 
@@ -901,10 +3983,11 @@
 .fp-admin-goods-group__items .fp-admin-entity-card,
 .fp-admin-filter-group__items .fp-admin-filter-card {
     width: auto !important;
-    height: 7rem !important;
-    min-height: 7rem !important;
-    max-height: 7rem !important;
+    height: var(--fp-admin-list-card-height) !important;
+    min-height: var(--fp-admin-list-card-height) !important;
+    max-height: var(--fp-admin-list-card-height) !important;
     overflow: hidden;
+    border-radius: var(--fp-admin-list-card-radius);
 }
 
 .fp-admin-filter-card {
@@ -1019,6 +4102,557 @@
     background: #ffffff;
 }
 
+
+
+/*
+ * Catalog entity edit surface.
+ *
+ * Catalog reuses the accepted Goods visual language without importing
+ * Goods-only functionality. This is the single active Catalog edit
+ * presentation contract: shared admin tokens own card appearance while
+ * Catalog selectors own only Catalog composition and legacy isolation.
+ */
+/* Catalog edit action bars use the accepted rounded admin card shell. */
+
+
+
+
+
+form#main-form.fp-admin-catalog-edit-surface {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    color: var(--fp-admin-color-text);
+    font-size: var(--fp-admin-font-size-body);
+    text-align: left !important;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-catalog-edit-surface,
+form#main-form.fp-admin-catalog-edit-surface * {
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+> .vg-rows {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit {
+    display: grid !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: var(--fp-admin-space-3);
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3)
+        var(--fp-admin-space-3) !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    column-gap: var(--fp-admin-space-3);
+    row-gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-grid,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: var(--fp-admin-space-3);
+    width: 100%;
+    min-width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-cell,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel {
+    min-width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-cell > .fp-admin-field {
+    height: 100%;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field {
+    min-width: 0;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+/* One visible card shell for all Catalog edit cards. */
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-cell
+.fp-admin-field__surface,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field,
+form#main-form.fp-admin-catalog-edit-surface
+:is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility),
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main
+.fp-admin-image-field__surface,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel {
+    border: 1px solid var(--fp-admin-color-field-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-cell
+.fp-admin-field__surface {
+    display: grid !important;
+    grid-template-rows: minmax(1.25rem, auto) 2.25rem !important;
+    align-content: start !important;
+    min-height: 5.25rem !important;
+    height: 100% !important;
+    padding: 0.5625rem 0.75rem !important;
+    row-gap: 0.5rem !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__heading {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 0 var(--fp-admin-space-2) !important;
+    width: 100%;
+    min-width: 0;
+    min-height: 1.25rem !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1.25;
+}
+
+/* Catalog edit: keep label and short hint on one visual row. */
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-grid
+.fp-admin-field__heading
+> .vg-left {
+    float: none !important;
+    flex: 0 0 auto;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__primary-grid
+.fp-admin-field__heading
+.fp-admin-field__hint {
+    flex: 0 1 auto;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__heading > * {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__label,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field
+.fp-admin-number-field__label,
+form#main-form.fp-admin-catalog-edit-surface
+:is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility)
+.fp-radio-template-title {
+    color: var(--fp-admin-color-text) !important;
+    font-size: var(--fp-admin-font-size-label) !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__hint,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field
+.fp-admin-number-field__hint {
+    color: var(--fp-admin-color-muted) !important;
+    font-size: var(--fp-admin-font-size-hint) !important;
+    font-weight: 400 !important;
+    line-height: 1.45 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__control,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__control > .vg-element {
+    float: none !important;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__input,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-field__select,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-number-field input,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit
+.fp-admin-position-composite select {
+    width: 100% !important;
+    min-width: 0;
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    margin: 0 !important;
+    padding: 0.375rem 0.625rem !important;
+    border: 1px solid var(--fp-admin-color-control-border) !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: none !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field {
+    display: grid !important;
+    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-rows: 1.25rem 2.25rem !important;
+    grid-template-areas:
+        "position-label position-hint"
+        "position-controls position-controls";
+    align-content: start !important;
+    align-items: baseline;
+    column-gap: var(--fp-admin-space-2);
+    row-gap: 0.5rem !important;
+    min-height: 5.25rem !important;
+    height: 5.25rem !important;
+    padding: 0.5625rem 0.75rem !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field
+.fp-admin-number-field__label {
+    grid-area: position-label;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field
+.fp-admin-number-field__hint {
+    grid-area: position-hint;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field
+.fp-admin-position-composite {
+    grid-area: position-controls;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: var(--fp-admin-space-2) !important;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__position-field
+.fp-admin-position-composite select {
+    order: -1;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+:is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility) {
+    display: flex !important;
+    align-items: center;
+    min-height: 3rem !important;
+    height: 3rem !important;
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3) !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+:is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility)
+.fp-radio-template-field {
+    display: flex !important;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: var(--fp-admin-space-2);
+    width: 100%;
+    min-width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+:is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility)
+.fp-radio-template-head {
+    display: flex !important;
+    align-items: center;
+    flex: 0 0 auto;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+:is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility)
+.fp-radio-template-options {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--fp-admin-space-2);
+    margin: 0 !important;
+}
+
+/* Goods-like natural media row; no fixed 19rem Catalog height. */
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery {
+    align-self: stretch;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main
+.fp-admin-image-field {
+    width: 100%;
+    height: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main
+.fp-admin-image-field__surface {
+    height: 100%;
+    padding: var(--fp-admin-space-4) !important;
+}
+
+
+
+
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main
+.fp-admin-image-field__preview.img_show,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-main
+.fp-admin-image-field__preview.main_img_show {
+    width: 100% !important;
+    min-height: 10rem;
+    margin-top: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery {
+    height: auto;
+    align-self: start;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery
+> .fp-admin-gallery-shell {
+    width: 100% !important;
+    height: auto;
+    margin: 0 !important;
+    padding: var(--fp-admin-space-3) !important;
+    border: 1px solid var(--fp-admin-color-field-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+/* Catalog gallery matches Main Image height and grows with additional rows. */
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery {
+    align-self: stretch !important;
+    height: 100% !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery
+> .fp-admin-gallery-shell {
+    display: grid !important;
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery
+> .fp-admin-gallery-shell
+> .vg-wrap {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    align-content: stretch !important;
+    gap: var(--fp-admin-space-2) !important;
+    min-height: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery
+.fp-admin-gallery__heading {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start !important;
+    gap: 0.2rem !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery
+.fp-admin-gallery__hint {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.35;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__media-gallery
+.fp-admin-gallery__grid {
+    align-content: start !important;
+    min-height: 12rem !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+
+/* Same text-card and TinyMCE height contract as Goods. */
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel {
+    display: block !important;
+    height: 100%;
+    padding: var(--fp-admin-space-4) !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel
+.fp-admin-field--textarea,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel
+.fp-admin-rich-editor,
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel
+.fp-admin-rich-editor > .vg-element {
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+form#main-form.fp-admin-catalog-edit-surface
+.fp-admin-catalog-edit__editor-panel
+.tox-tinymce {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 24rem !important;
+    min-height: 24rem !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    overflow: hidden;
+}
+
+@media (max-width: 70rem) {
+    form#main-form.fp-admin-catalog-edit-surface
+    .fp-admin-catalog-edit__primary-grid,
+    form#main-form.fp-admin-catalog-edit-surface
+    .fp-admin-catalog-edit__media-grid,
+    form#main-form.fp-admin-catalog-edit-surface
+    .fp-admin-catalog-edit__editor-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    form#main-form.fp-admin-catalog-edit-surface
+    .fp-admin-catalog-edit__position-field
+    .fp-admin-position-composite {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 47.5rem) {
+    form#main-form.fp-admin-catalog-edit-surface
+    .fp-admin-catalog-edit {
+        padding-inline: var(--fp-admin-space-2) !important;
+    }
+
+    form#main-form.fp-admin-catalog-edit-surface
+    :is(.fp-admin-catalog-edit__primary-cell--visibility, .fp-admin-catalog-edit__primary-cell--thumbnail-visibility)
+    .fp-radio-template-field {
+        flex-wrap: wrap;
+    }
+}
+
 .fp-admin-catalog-card__grid {
     grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 0.9fr);
 }
@@ -1127,75 +4761,86 @@
 
 /* FP_PHASE4_INFORMATION_EDIT_SURFACE_START */
 /**
- * Phase 4: Information generic BaseAdmin edit surface.
- *
- * The generic add.php surface registry owns table identity.
- * Shared form templates own field rendering.
- * This block owns only bounded Information presentation.
+ * Information reuses the canonical fp-admin-catalog-edit composition.
+ * Only field-specific placement remains owned here.
  */
-.fp-admin-shell
-[data-fp-admin-edit-surface="information"].fp-admin-information-surface {
-    min-width: 0;
-    align-content: start;
+form#main-form.fp-admin-information-edit-surface
+.fp-admin-information-edit__primary-cell--alias {
+    grid-column: 1 / -1;
 }
 
-.fp-admin-shell
-[data-fp-admin-edit-surface="information"]
-.fp-admin-field--textarea
-.fp-admin-field__textarea {
-    min-height: 12rem;
+form#main-form.fp-admin-information-edit-surface
+.fp-admin-information-edit__editor-panel {
+    min-width: 0;
 }
 
-.fp-admin-shell
-[data-fp-admin-edit-surface="information"]
-.fp-admin-rich-editor,
-.fp-admin-shell
-[data-fp-admin-edit-surface="information"]
-.fp-admin-image-field {
-    min-width: 0;
+form#main-form.fp-admin-information-edit-surface
+.fp-admin-information-edit__editor-panel--content {
+    width: 100%;
 }
 /* FP_PHASE4_INFORMATION_EDIT_SURFACE_END */
 
 /* FP_PHASE4_NEWS_CANONICAL_CSS_START */
 /**
- * Phase 4: News presentation ownership migrated from legacy main.css.
- * Exact selector/property semantics are preserved.
+ * News keeps only the field-specific date adapter here.
+ * Overall News edit composition is owned by the shared
+ * fp-admin-catalog-edit surface contract.
  */
+form#main-form.fp-admin-news-edit-surface
 .fp-admin-news-card__date-field {
     display: grid;
-    gap: 6px;
-    padding: 14px 12px;
-    border-top: 1px solid #d8dde2;
+    grid-template-rows: minmax(1.25rem, auto) 2.25rem;
+    align-content: start;
+    gap: var(--fp-admin-space-2);
+    min-height: 5.25rem;
+    height: 100%;
+    padding: 0.5625rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
 }
 
+form#main-form.fp-admin-news-edit-surface
+.fp-admin-news-card__date-heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    min-width: 0;
+}
+
+form#main-form.fp-admin-news-edit-surface
 .fp-admin-news-card__date-label {
     font-weight: 700;
+    line-height: 1.3;
 }
 
+form#main-form.fp-admin-news-edit-surface
 .fp-admin-news-card__date-hint {
-    color: #687782;
-    font-size: 13px;
-    line-height: 1.4;
+    color: var(--fp-admin-color-muted);
+    font-size: 0.8125rem;
+    line-height: 1.3;
 }
 
+form#main-form.fp-admin-news-edit-surface
 .fp-admin-news-card__date-field input {
     width: 100%;
-    min-height: 42px;
-    padding: 8px 10px;
-    border: 1px solid #aeb9c1;
-    background: #ffffff;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    color: var(--fp-admin-color-text);
+    box-sizing: border-box;
 }
 
-.fp-admin-news-card__summary {
-    margin-top: 8px;
-}
-
-.fp-admin-news-card__summary textarea {
-    min-height: 240px;
-}
-
-.fp-admin-news-card__full-editor {
-    margin-top: 12px;
+form#main-form.fp-admin-news-edit-surface
+.fp-admin-news-edit__editor-panel {
+    min-width: 0;
 }
 /* FP_PHASE4_NEWS_CANONICAL_CSS_END */
 
@@ -1215,3 +4860,468 @@
     background: #eceef2
 }
 /* FP_PHASE5_CREATE_SITEMAP_CSS_END */
+
+/* FP_PHASE8_FOOTER_CHILD_SHARED_CONTRACT_V01_START */
+/*
+ * Canonical shared layout for Footer link/phone add-edit pages.
+ *
+ * Both pages use the same geometry. Entity-specific differences are limited to
+ * which existing controls are present; field names and backend contracts stay
+ * unchanged. No new priority declarations are introduced.
+ */
+form#main-form.fp-admin-footer-child-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.875rem;
+}
+
+form#main-form.fp-admin-footer-child-form > .fp-admin-action-bar {
+    margin: 0;
+}
+
+form#main-form.fp-admin-footer-child-form > .fp-admin-action-bar .fp-admin-action-bar__inner {
+    min-height: 3rem;
+    padding: 0.375rem 0.75rem;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0.5rem 0.5rem;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__primary,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__secondary,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field {
+    float: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__surface {
+    display: grid;
+    grid-template-rows: minmax(1.25rem, auto) 2.25rem;
+    align-content: start;
+    gap: 0.375rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 4.5rem;
+    height: 4.5rem;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 1.25rem;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__heading > .vg-left,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__label,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__hint {
+    float: none;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__label {
+    flex: 0 0 auto;
+    font-weight: 700;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__hint {
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__control,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field .fp-admin-field__control > .vg-element {
+    float: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field input[type="text"],
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field input[type="tel"],
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field input[type="number"],
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-shadow: none;
+    box-sizing: border-box;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    min-height: 4.5rem;
+    height: 4.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group > .fp-admin-footer-child-form__field,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group > .fp-radio-template-field {
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+    min-height: 2.5rem;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group .fp-radio-template-head,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group .fp-radio-template-options {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.375rem;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group .fp-radio-template-title {
+    margin: 0;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group .fp-radio-template-subtitle:empty {
+    display: none;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: 2.25rem;
+    align-items: center;
+    justify-content: start;
+    gap: 0.75rem;
+    min-height: 4.5rem;
+    height: 4.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-number-field__heading {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-number-field__label,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-number-field__label-text {
+    margin: 0;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-number-field__hint {
+    display: none;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 7.25rem);
+    align-items: stretch;
+    justify-self: start;
+    gap: 0.5rem;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite > select.fp-admin-position-composite__select,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite > input[type="number"] {
+    width: 7.25rem;
+    min-width: 7.25rem;
+    max-width: 7.25rem;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0.375rem 0.625rem;
+    box-sizing: border-box;
+    line-height: 1.2;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media {
+    align-items: stretch;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media > * {
+    min-height: 12rem;
+    height: 12rem;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder {
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.625rem;
+    border: 1px solid #d8e0e5;
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-admin-color-surface);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .fp-admin-image-field,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .img_wrapper {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .fp-admin-image-field__surface,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 2.25rem minmax(0, 1fr);
+    align-content: stretch;
+    gap: 0.5rem;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .fp-admin-image-field__surface {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .fp-admin-image-field__controls,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder-heading {
+    min-width: 0;
+    min-height: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    overflow: hidden;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder-heading > strong,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder-heading > span {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder-heading > strong {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-placeholder-heading > span {
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .fp-admin-image-field__preview.img_show,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media-main .fp-admin-image-field__preview.main_img_show,
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__gallery-placeholder {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0.625rem;
+    border: 1px solid #aab8c2;
+    border-radius: var(--fp-admin-radius-sm);
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__gallery-placeholder {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__gallery-plus {
+    display: inline-grid;
+    width: 4.5rem;
+    height: 4.5rem;
+    place-items: center;
+    border: 1px solid #aab8c2;
+    background: #fff;
+    color: var(--fp-admin-color-text);
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+form#main-form.fp-admin-footer-child-form > .fp-admin-action-bar--bottom {
+    margin-top: 0;
+}
+
+@media (max-width: 64rem) {
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__primary,
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__secondary,
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__media {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position.fp-admin-number-field {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 2.25rem;
+        height: auto;
+    }
+
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 40rem) {
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group {
+        align-items: stretch;
+    }
+
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group > .fp-admin-footer-child-form__field,
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__boolean-group > .fp-radio-template-field {
+        width: 100%;
+    }
+
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite > select.fp-admin-position-composite__select,
+    form#main-form.fp-admin-footer-child-form .fp-admin-footer-child-form__field--position .fp-admin-position-composite > input[type="number"] {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+    }
+}
+/* FP_PHASE8_FOOTER_CHILD_SHARED_CONTRACT_V01_END */

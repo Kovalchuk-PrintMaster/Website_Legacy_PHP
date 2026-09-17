@@ -1,0 +1,123 @@
+{
+  "candidate_batch_b_migrations": [
+    {
+      "path": "database_dumps/migrations/2026_07_12_goods_optional_tabs_v0_6_14.sql",
+      "score": 3,
+      "sha256": "52eb3f42c6f622389a09c52bc42ce4a6fdbb4deb6339029a69b00cb0cb7e1724",
+      "status": "tracked-clean"
+    },
+    {
+      "path": "database_dumps/migrations/2026_07_13_goods_extra_tab_v0_6_18f.sql",
+      "score": 3,
+      "sha256": "22f5370c30e34b0d292cede9099f13cbcbc1a9d816fea674b08ef0655a4198ca",
+      "status": "tracked-clean"
+    },
+    {
+      "path": "database_dumps/migrations/2026_07_13_goods_extra_tab_v0_6_18g.sql",
+      "score": 3,
+      "sha256": "98b85cd09baf599dc529ef03410c28b019123f8bec7b6e39106e28e6144649c4",
+      "status": "tracked-clean"
+    },
+    {
+      "path": "database_dumps/migrations/2026_07_22_settings_contacts_controls_v0_6_43.sql",
+      "score": 3,
+      "sha256": "f5209d4dff691dce77c1b4ffd076e7b6bfee3631038048855105a78fab9479b0",
+      "status": "tracked-clean"
+    },
+    {
+      "path": "database_dumps/migrations/2026_07_12_goods_related_goods_v0_6_18.sql",
+      "score": 2,
+      "sha256": "d255a89e47e7c872b61683339d0e7f5d2178cff8c4c60d49b63e514f6c81319a",
+      "status": "tracked-clean"
+    },
+    {
+      "path": "database_dumps/migrations/2026_07_19_goods_price_modes_v0_6_19.sql",
+      "score": 2,
+      "sha256": "c231734ae346b16d13ae15271f40dc2f23233791024e6d8996074b9717d5bdb6",
+      "status": "tracked-clean"
+    },
+    {
+      "path": "database_dumps/migrations/2026_07_22_settings_about_gallery_title_v0_6_27.sql",
+      "score": 2,
+      "sha256": "2c00e62457cae53b800bd3cd1ac0d944936b333bca3b59d54a26dc69ac65174c",
+      "status": "tracked-clean"
+    }
+  ],
+  "classification": "BATCH_B_SCOPE_DRIFT_REQUIRES_REVIEW",
+  "communication_diff_analysis": {
+    "added_lines": 27,
+    "removed_lines": 3,
+    "touches_aria": true,
+    "touches_button_semantics": false,
+    "touches_dialog": true
+  },
+  "generated": "2026-08-22T19:55:55.944694+03:00",
+  "git": {
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "communication_working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+    "head": "51774693f675b3722f4bbf7cad05e0743739dcca",
+    "header_status": "M base/templates/default/include/header.php",
+    "header_working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e",
+    "roadmap_status": "?? marketing/programs/forprint_growth_roadmap_v0_1.md"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "header_diff_analysis": {
+    "added_lines": 63,
+    "removed_lines": 15,
+    "touches": {
+      "alternate_name": false,
+      "canonical": true,
+      "description": true,
+      "robots": false,
+      "site_name": true,
+      "structured_data": false,
+      "title": true
+    }
+  },
+  "known_local_db_batch_b": {
+    "contacts_row_id": 8,
+    "goods_content_heading_rows": 7,
+    "news_content_heading_rows": 3
+  },
+  "next_action": "SEPARATE_OR_EXPLAIN_NON_METADATA_HEADER_CHANGES_BEFORE_RELEASE",
+  "php_lint_pass": true,
+  "preview": {
+    "preview_smoke_pass": true,
+    "preview_smoke_returncode": 0,
+    "service_active": true
+  },
+  "production_db_mutation": false,
+  "production_hashes": {
+    "COMM": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "HEADER": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa"
+  },
+  "production_probe": {
+    "attempts": 1,
+    "errors": [],
+    "hashes": {
+      "COMM": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+      "HEADER": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa"
+    },
+    "reachable": true
+  },
+  "production_source_mutation": false,
+  "source_state": {
+    "communication": {
+      "head_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+      "production_differs_from_head": false,
+      "production_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+      "working_differs_from_head": true,
+      "working_differs_from_production": true,
+      "working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9"
+    },
+    "header": {
+      "head_sha": "ade3f77ac9ff481b5ecd38d26f6d4fd88ab7ee3acb73b7992ed0ca43bc1ffb5f",
+      "production_differs_from_head": true,
+      "production_sha": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa",
+      "working_differs_from_head": true,
+      "working_differs_from_production": true,
+      "working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e"
+    }
+  }
+}

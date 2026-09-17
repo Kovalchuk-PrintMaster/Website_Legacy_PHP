@@ -1,0 +1,6438 @@
+{
+  "categories": [
+    {
+      "base_url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "case_type": "base",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "case_type": "page1",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "case_type": "out_of_range",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "case_type": "out_of_range",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 17,
+      "name": "Блокноти Щоденники Зошити",
+      "product_count": 12
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "case_type": "base",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "case_type": "page1",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 1,
+      "name": "Оперативна поліграфія",
+      "product_count": 4
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/vzitki/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/vzitki/",
+          "case_type": "base",
+          "expected_product_count": 11,
+          "final_url": "https://forprint.net.ua/catalog/vzitki/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 11,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/vzitki/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/vzitki/",
+          "case_type": "page1",
+          "expected_product_count": 11,
+          "final_url": "https://forprint.net.ua/catalog/vzitki/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 11,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/vzitki/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/vzitki/",
+          "case_type": "out_of_range",
+          "expected_product_count": 11,
+          "final_url": "https://forprint.net.ua/catalog/vzitki/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/vzitki/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/vzitki/",
+          "case_type": "out_of_range",
+          "expected_product_count": 11,
+          "final_url": "https://forprint.net.ua/catalog/vzitki/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/vzitki/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 7,
+      "name": "Виготовлення візиток / Пластикових карт",
+      "product_count": 11
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/konverti/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/konverti/",
+          "case_type": "base",
+          "expected_product_count": 13,
+          "final_url": "https://forprint.net.ua/catalog/konverti/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/konverti/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/konverti/",
+          "case_type": "page1",
+          "expected_product_count": 13,
+          "final_url": "https://forprint.net.ua/catalog/konverti/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/konverti/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/konverti/",
+          "case_type": "valid_pagination",
+          "expected_product_count": 13,
+          "final_url": "https://forprint.net.ua/catalog/konverti/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 1,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/konverti/?page=2",
+          "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/konverti/",
+          "case_type": "out_of_range",
+          "expected_product_count": 13,
+          "final_url": "https://forprint.net.ua/catalog/konverti/?page=3",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/konverti/?page=3",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/konverti/",
+          "case_type": "out_of_range",
+          "expected_product_count": 13,
+          "final_url": "https://forprint.net.ua/catalog/konverti/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/konverti/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 2,
+      "id": 22,
+      "name": "Конверти",
+      "product_count": 13
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "case_type": "base",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "case_type": "page1",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/druk-na-ruchkah/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/druk-na-ruchkah/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/druk-na-ruchkah/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/druk-na-ruchkah/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/druk-na-ruchkah/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/druk-na-ruchkah/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 6,
+      "name": "Друк на ручках / Олівцях",
+      "product_count": 4
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/beydzh/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/beydzh/",
+          "case_type": "base",
+          "expected_product_count": 23,
+          "final_url": "https://forprint.net.ua/catalog/beydzh/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/beydzh/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/beydzh/",
+          "case_type": "page1",
+          "expected_product_count": 23,
+          "final_url": "https://forprint.net.ua/catalog/beydzh/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/beydzh/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/beydzh/",
+          "case_type": "valid_pagination",
+          "expected_product_count": 23,
+          "final_url": "https://forprint.net.ua/catalog/beydzh/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 11,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/beydzh/?page=2",
+          "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/beydzh/",
+          "case_type": "out_of_range",
+          "expected_product_count": 23,
+          "final_url": "https://forprint.net.ua/catalog/beydzh/?page=3",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/beydzh/?page=3",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/beydzh/",
+          "case_type": "out_of_range",
+          "expected_product_count": 23,
+          "final_url": "https://forprint.net.ua/catalog/beydzh/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/beydzh/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 2,
+      "id": 14,
+      "name": "Бейджі і Стрічки",
+      "product_count": 23
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "case_type": "base",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "case_type": "page1",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 11,
+      "name": "Папки для документів",
+      "product_count": 4
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "case_type": "base",
+          "expected_product_count": 5,
+          "final_url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 5,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "case_type": "page1",
+          "expected_product_count": 5,
+          "final_url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 5,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "case_type": "out_of_range",
+          "expected_product_count": 5,
+          "final_url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "case_type": "out_of_range",
+          "expected_product_count": 5,
+          "final_url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 10,
+      "name": "Меню для кафе, барів і ресторанів",
+      "product_count": 5
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/kalendar/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/kalendar/",
+          "case_type": "base",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/kalendar/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 2,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/kalendar/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/kalendar/",
+          "case_type": "page1",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/kalendar/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 2,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/kalendar/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/kalendar/",
+          "case_type": "out_of_range",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/kalendar/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/kalendar/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/kalendar/",
+          "case_type": "out_of_range",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/kalendar/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/kalendar/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 16,
+      "name": "Календарі",
+      "product_count": 2
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "case_type": "base",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "case_type": "page1",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-posudu/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 4,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-posudu/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-posudu/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-posudu/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "case_type": "out_of_range",
+          "expected_product_count": 4,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-posudu/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-posudu/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 18,
+      "name": "Брендування посуду",
+      "product_count": 4
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/foto-kartini/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/foto-kartini/",
+          "case_type": "base",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/foto-kartini/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 2,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/foto-kartini/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/foto-kartini/",
+          "case_type": "page1",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/foto-kartini/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 2,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/foto-kartini/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/foto-kartini/",
+          "case_type": "out_of_range",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/foto-kartini/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/foto-kartini/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/foto-kartini/",
+          "case_type": "out_of_range",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/foto-kartini/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/foto-kartini/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 12,
+      "name": "Фото і Картини",
+      "product_count": 2
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/print-on-garment/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/print-on-garment/",
+          "case_type": "base",
+          "expected_product_count": 10,
+          "final_url": "https://forprint.net.ua/catalog/print-on-garment/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 10,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/print-on-garment/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/print-on-garment/",
+          "case_type": "page1",
+          "expected_product_count": 10,
+          "final_url": "https://forprint.net.ua/catalog/print-on-garment/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 10,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/print-on-garment/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/print-on-garment/",
+          "case_type": "out_of_range",
+          "expected_product_count": 10,
+          "final_url": "https://forprint.net.ua/catalog/print-on-garment/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/print-on-garment/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/print-on-garment/",
+          "case_type": "out_of_range",
+          "expected_product_count": 10,
+          "final_url": "https://forprint.net.ua/catalog/print-on-garment/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/print-on-garment/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 2,
+      "name": "Брендування текстильної продукції",
+      "product_count": 10
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/prapori-vnderi/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "case_type": "base",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "case_type": "page1",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/prapori-vnderi/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/prapori-vnderi/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "case_type": "out_of_range",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/prapori-vnderi/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/prapori-vnderi/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "case_type": "out_of_range",
+          "expected_product_count": 12,
+          "final_url": "https://forprint.net.ua/catalog/prapori-vnderi/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/prapori-vnderi/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 13,
+      "name": "Прапори, віндери та прапорна продукція",
+      "product_count": 12
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "case_type": "base",
+          "expected_product_count": 21,
+          "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "case_type": "page1",
+          "expected_product_count": 21,
+          "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "case_type": "valid_pagination",
+          "expected_product_count": 21,
+          "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 9,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2",
+          "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "case_type": "out_of_range",
+          "expected_product_count": 21,
+          "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=3",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=3",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "case_type": "out_of_range",
+          "expected_product_count": 21,
+          "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 2,
+      "id": 19,
+      "name": "Широкоформатний друк",
+      "product_count": 21
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "case_type": "base",
+          "expected_product_count": 18,
+          "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "case_type": "page1",
+          "expected_product_count": 18,
+          "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "case_type": "valid_pagination",
+          "expected_product_count": 18,
+          "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 6,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2",
+          "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "case_type": "out_of_range",
+          "expected_product_count": 18,
+          "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=3",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=3",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "case_type": "out_of_range",
+          "expected_product_count": 18,
+          "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 2,
+      "id": 21,
+      "name": "Інтер'єрне оформлення та конструкції",
+      "product_count": 18
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "case_type": "base",
+          "expected_product_count": 17,
+          "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "case_type": "page1",
+          "expected_product_count": 17,
+          "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 12,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "case_type": "valid_pagination",
+          "expected_product_count": 17,
+          "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 5,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2",
+          "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "case_type": "out_of_range",
+          "expected_product_count": 17,
+          "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=3",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=3",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+          "case_type": "out_of_range",
+          "expected_product_count": 17,
+          "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 2,
+      "id": 8,
+      "name": "Зовнішня реклама",
+      "product_count": 17
+    },
+    {
+      "base_url": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+      "cases": [
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "case_type": "base",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "in_sitemap": true,
+          "meta_noindex": false,
+          "product_links_on_page": 2,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "verdict": "BASE_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "case_type": "page1",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-avto/?page=1",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 2,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-avto/?page=1",
+          "verdict": "PAGE1_DEDUP_OK"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "case_type": "out_of_range",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-avto/?page=2",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-avto/?page=2",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        },
+        {
+          "canonical": "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "case_type": "out_of_range",
+          "expected_product_count": 2,
+          "final_url": "https://forprint.net.ua/catalog/brenduvannya-avto/?page=50",
+          "in_sitemap": false,
+          "meta_noindex": false,
+          "product_links_on_page": 0,
+          "status": 200,
+          "url": "https://forprint.net.ua/catalog/brenduvannya-avto/?page=50",
+          "verdict": "OUT_OF_RANGE_CANONICALIZED"
+        }
+      ],
+      "expected_last_page": 1,
+      "id": 3,
+      "name": "Брендування авто",
+      "product_count": 2
+    }
+  ],
+  "classification": "VALID_PAGINATION_CANONICAL_POLICY_DEFECT_CONFIRMED",
+  "generated": "2026-08-22T18:41:21.819688+03:00",
+  "git": {
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "hashes": {
+      "COMM": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+      "HEADER": "864b2e45fa6696006880c0584ff14669514f934c6bb5a722efb4116cea56eebb",
+      "OWNER": "34bf3f89efe78f1cf179d2315ecd00c85feed17acc1edf9f607785439c0948c7",
+      "SITEMAP": "dc7737e23974d8fb8da876ee2d3117e93c398dc28ceb0080d1e46cd18af41eff"
+    },
+    "head": "fad07a236ade1090f408a7a08eb2ad2f2fbc7f4f",
+    "header_status": "M base/templates/default/include/header.php",
+    "untracked_status": "?? marketing/programs/forprint_growth_roadmap_v0_1.md"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "next_action": "BUILD_BOUNDED_LOCAL_FIX_FOR_VALID_PAGE_GT_1_SELF_CANONICAL_WHILE_PRESERVING_SORT_FILTER_DEDUP",
+  "observed_search_console_query_variant": {
+    "canonical": "https://forprint.net.ua/catalog/",
+    "final_url": "https://forprint.net.ua/catalog/?quantity=3&order=name_asc&page=50",
+    "in_sitemap": false,
+    "meta_noindex": false,
+    "status": 200,
+    "url": "https://forprint.net.ua/catalog/?quantity=3&order=name_asc&page=50"
+  },
+  "out_of_range_issues": [],
+  "page1_issues": [],
+  "production_db_mutation": false,
+  "production_source_mutation": false,
+  "settings": {
+    "catalog_default_order": "menu_position_asc",
+    "catalog_default_quantity": "12",
+    "id": "1"
+  },
+  "source_owner_evidence": {
+    "base/core/base/settings/Settings.php": {
+      "hits": [
+        {
+          "context": [
+            {
+              "line": 7,
+              "text": "use core\\base\\controllers\\Singleton;"
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "class Settings"
+            },
+            {
+              "line": 10,
+              "text": "{"
+            },
+            {
+              "line": 11,
+              "text": "    /* ForPrint home group limits and settings section order v0.6.39 */"
+            },
+            {
+              "line": 12,
+              "text": "    use Singleton;"
+            },
+            {
+              "line": 13,
+              "text": "    private $routes = ["
+            },
+            {
+              "line": 14,
+              "text": "        'admin' => ["
+            },
+            {
+              "line": 15,
+              "text": "            'alias'=> 'admin',"
+            },
+            {
+              "line": 16,
+              "text": "            'path' => 'core/admin/controllers/',"
+            },
+            {
+              "line": 17,
+              "text": "            'hrUrl' => false,"
+            },
+            {
+              "line": 18,
+              "text": "            'routes' => ["
+            }
+          ],
+          "line": 11,
+          "text": "/* ForPrint home group limits and settings section order v0.6.39 */"
+        },
+        {
+          "context": [
+            {
+              "line": 127,
+              "text": "            'contacts_phone',"
+            },
+            {
+              "line": 128,
+              "text": "            'contacts_email',"
+            },
+            {
+              "line": 129,
+              "text": "            'contacts_callback_label',"
+            },
+            {
+              "line": 130,
+              "text": "            'catalog_menu_position',"
+            },
+            {
+              "line": 131,
+              "text": "            'catalog_default_quantity',"
+            },
+            {
+              "line": 132,
+              "text": "            'asset_key',"
+            },
+            {
+              "line": 133,
+              "text": "            'active_from',"
+            },
+            {
+              "line": 134,
+              "text": "            'active_until',"
+            },
+            {
+              "line": 135,
+              "text": "        ],"
+            },
+            {
+              "line": 136,
+              "text": "        'textarea' => ["
+            },
+            {
+              "line": 137,
+              "text": "            'keywords',"
+            },
+            {
+              "line": 138,
+              "text": "            'short_content',"
+            }
+          ],
+          "line": 131,
+          "text": "'catalog_default_quantity',"
+        },
+        {
+          "context": [
+            {
+              "line": 388,
+              "text": "        'catalog_default_order' => ["
+            },
+            {
+              "line": 389,
+              "text": "            'Сортування товарів за замовчуванням',"
+            },
+            {
+              "line": 390,
+              "text": "            'Застосовується, якщо відвідувач не обрав інший порядок.'"
+            },
+            {
+              "line": 391,
+              "text": "        ],"
+            },
+            {
+              "line": 392,
+              "text": "        'catalog_default_quantity' => ["
+            },
+            {
+              "line": 393,
+              "text": "            'Кількість товарів на сторінці каталогу',"
+            },
+            {
+              "line": 394,
+              "text": "            'Допустиме значення: від 1 до 60.'"
+            },
+            {
+              "line": 395,
+              "text": "        ],"
+            },
+            {
+              "line": 396,
+              "text": "        'target_blank' => ['Відкривати у новій вкладці'],"
+            },
+            {
+              "line": 397,
+              "text": "    ];"
+            },
+            {
+              "line": 398,
+              "text": ""
+            },
+            {
+              "line": 399,
+              "text": "    private $radio = ["
+            }
+          ],
+          "line": 392,
+          "text": "'catalog_default_quantity' => ["
+        }
+      ],
+      "line_count": 541
+    },
+    "base/core/user/controllers/BaseUser.php": {
+      "hits": [
+        {
+          "context": [
+            {
+              "line": 88,
+              "text": ""
+            },
+            {
+              "line": 89,
+              "text": "        !$this->model && $this->model = Model::instance();"
+            },
+            {
+              "line": 90,
+              "text": ""
+            },
+            {
+              "line": 91,
+              "text": "        $this->set = $this->model->get('settings', ["
+            },
+            {
+              "line": 92,
+              "text": "            'order' => ['id'],"
+            },
+            {
+              "line": 93,
+              "text": "            'limit' => 1"
+            },
+            {
+              "line": 94,
+              "text": "        ]);"
+            },
+            {
+              "line": 95,
+              "text": ""
+            },
+            {
+              "line": 96,
+              "text": "        if (!$this->isAjax()){"
+            },
+            {
+              "line": 97,
+              "text": ""
+            },
+            {
+              "line": 98,
+              "text": "            $this->getCartData();"
+            },
+            {
+              "line": 99,
+              "text": ""
+            }
+          ],
+          "line": 92,
+          "text": "'order' => ['id'],"
+        },
+        {
+          "context": [
+            {
+              "line": 89,
+              "text": "        !$this->model && $this->model = Model::instance();"
+            },
+            {
+              "line": 90,
+              "text": ""
+            },
+            {
+              "line": 91,
+              "text": "        $this->set = $this->model->get('settings', ["
+            },
+            {
+              "line": 92,
+              "text": "            'order' => ['id'],"
+            },
+            {
+              "line": 93,
+              "text": "            'limit' => 1"
+            },
+            {
+              "line": 94,
+              "text": "        ]);"
+            },
+            {
+              "line": 95,
+              "text": ""
+            },
+            {
+              "line": 96,
+              "text": "        if (!$this->isAjax()){"
+            },
+            {
+              "line": 97,
+              "text": ""
+            },
+            {
+              "line": 98,
+              "text": "            $this->getCartData();"
+            },
+            {
+              "line": 99,
+              "text": ""
+            },
+            {
+              "line": 100,
+              "text": "        }"
+            }
+          ],
+          "line": 93,
+          "text": "'limit' => 1"
+        },
+        {
+          "context": [
+            {
+              "line": 227,
+              "text": ""
+            },
+            {
+              "line": 228,
+              "text": ""
+            },
+            {
+              "line": 229,
+              "text": "        $this->menu['catalog'] = $this->model->get('catalog', ["
+            },
+            {
+              "line": 230,
+              "text": "           'where'=>['visible'=> 1, 'parent_id'=>null],"
+            },
+            {
+              "line": 231,
+              "text": "           'order'=>['menu_position']"
+            },
+            {
+              "line": 232,
+              "text": "        ]);"
+            },
+            {
+              "line": 233,
+              "text": ""
+            },
+            {
+              "line": 234,
+              "text": "        $this->menu['information'] = $this->model->get('information', ["
+            },
+            {
+              "line": 235,
+              "text": "            'where' => ['visible'=>1, 'show_top_menu'=>1],"
+            },
+            {
+              "line": 236,
+              "text": "            'order' => ['menu_position']"
+            },
+            {
+              "line": 237,
+              "text": "        ]);"
+            },
+            {
+              "line": 238,
+              "text": ""
+            }
+          ],
+          "line": 231,
+          "text": "'order'=>['menu_position']"
+        },
+        {
+          "context": [
+            {
+              "line": 232,
+              "text": "        ]);"
+            },
+            {
+              "line": 233,
+              "text": ""
+            },
+            {
+              "line": 234,
+              "text": "        $this->menu['information'] = $this->model->get('information', ["
+            },
+            {
+              "line": 235,
+              "text": "            'where' => ['visible'=>1, 'show_top_menu'=>1],"
+            },
+            {
+              "line": 236,
+              "text": "            'order' => ['menu_position']"
+            },
+            {
+              "line": 237,
+              "text": "        ]);"
+            },
+            {
+              "line": 238,
+              "text": ""
+            },
+            {
+              "line": 239,
+              "text": "        /*"
+            },
+            {
+              "line": 240,
+              "text": "         * ForPrint managed marketing links v0.6.47.2."
+            },
+            {
+              "line": 241,
+              "text": "         *"
+            },
+            {
+              "line": 242,
+              "text": "         * The information table still owns route order and the generic"
+            },
+            {
+              "line": 243,
+              "text": "         * show_top_menu switch. Settings own the editable public labels and"
+            }
+          ],
+          "line": 236,
+          "text": "'order' => ['menu_position']"
+        },
+        {
+          "context": [
+            {
+              "line": 238,
+              "text": ""
+            },
+            {
+              "line": 239,
+              "text": "        /*"
+            },
+            {
+              "line": 240,
+              "text": "         * ForPrint managed marketing links v0.6.47.2."
+            },
+            {
+              "line": 241,
+              "text": "         *"
+            },
+            {
+              "line": 242,
+              "text": "         * The information table still owns route order and the generic"
+            },
+            {
+              "line": 243,
+              "text": "         * show_top_menu switch. Settings own the editable public labels and"
+            },
+            {
+              "line": 244,
+              "text": "         * the two dedicated visibility switches so seasonal naming does not"
+            },
+            {
+              "line": 245,
+              "text": "         * require editing legacy information rows."
+            },
+            {
+              "line": 246,
+              "text": "         */"
+            },
+            {
+              "line": 247,
+              "text": "        $fpPromotionsMenuVisible ="
+            },
+            {
+              "line": 248,
+              "text": "            (int)($this->set['promotions_menu_visible'] ?? 1) === 1;"
+            },
+            {
+              "line": 249,
+              "text": "        $fpSpecialOffersMenuVisible ="
+            }
+          ],
+          "line": 242,
+          "text": "* The information table still owns route order and the generic"
+        },
+        {
+          "context": [
+            {
+              "line": 297,
+              "text": "        $this->menu['information'] = $fpInformationMenu;"
+            },
+            {
+              "line": 298,
+              "text": ""
+            },
+            {
+              "line": 299,
+              "text": "        $this->socials = $this->model->get('socials', ["
+            },
+            {
+              "line": 300,
+              "text": "            'where' => ['visible'=>1],"
+            },
+            {
+              "line": 301,
+              "text": "            'order' => ['menu_position']"
+            },
+            {
+              "line": 302,
+              "text": "            ]);"
+            },
+            {
+              "line": 303,
+              "text": ""
+            },
+            {
+              "line": 304,
+              "text": "        $availableTables = $this->model->showTables();"
+            },
+            {
+              "line": 305,
+              "text": ""
+            },
+            {
+              "line": 306,
+              "text": "        if (in_array('footer_settings', $availableTables, true)) {"
+            },
+            {
+              "line": 307,
+              "text": "            $footerSettingsRows = $this->model->get('footer_settings', ["
+            },
+            {
+              "line": 308,
+              "text": "                'order' => ['menu_position', 'id'],"
+            }
+          ],
+          "line": 301,
+          "text": "'order' => ['menu_position']"
+        },
+        {
+          "context": [
+            {
+              "line": 304,
+              "text": "        $availableTables = $this->model->showTables();"
+            },
+            {
+              "line": 305,
+              "text": ""
+            },
+            {
+              "line": 306,
+              "text": "        if (in_array('footer_settings', $availableTables, true)) {"
+            },
+            {
+              "line": 307,
+              "text": "            $footerSettingsRows = $this->model->get('footer_settings', ["
+            },
+            {
+              "line": 308,
+              "text": "                'order' => ['menu_position', 'id'],"
+            },
+            {
+              "line": 309,
+              "text": "                'limit' => 1,"
+            },
+            {
+              "line": 310,
+              "text": "            ]);"
+            },
+            {
+              "line": 311,
+              "text": ""
+            },
+            {
+              "line": 312,
+              "text": "            if (!empty($footerSettingsRows[0]) && is_array($footerSettingsRows[0])) {"
+            },
+            {
+              "line": 313,
+              "text": "                $this->footerSettings = $footerSettingsRows[0];"
+            },
+            {
+              "line": 314,
+              "text": "            }"
+            },
+            {
+              "line": 315,
+              "text": "        }"
+            }
+          ],
+          "line": 308,
+          "text": "'order' => ['menu_position', 'id'],"
+        },
+        {
+          "context": [
+            {
+              "line": 305,
+              "text": ""
+            },
+            {
+              "line": 306,
+              "text": "        if (in_array('footer_settings', $availableTables, true)) {"
+            },
+            {
+              "line": 307,
+              "text": "            $footerSettingsRows = $this->model->get('footer_settings', ["
+            },
+            {
+              "line": 308,
+              "text": "                'order' => ['menu_position', 'id'],"
+            },
+            {
+              "line": 309,
+              "text": "                'limit' => 1,"
+            },
+            {
+              "line": 310,
+              "text": "            ]);"
+            },
+            {
+              "line": 311,
+              "text": ""
+            },
+            {
+              "line": 312,
+              "text": "            if (!empty($footerSettingsRows[0]) && is_array($footerSettingsRows[0])) {"
+            },
+            {
+              "line": 313,
+              "text": "                $this->footerSettings = $footerSettingsRows[0];"
+            },
+            {
+              "line": 314,
+              "text": "            }"
+            },
+            {
+              "line": 315,
+              "text": "        }"
+            },
+            {
+              "line": 316,
+              "text": ""
+            }
+          ],
+          "line": 309,
+          "text": "'limit' => 1,"
+        },
+        {
+          "context": [
+            {
+              "line": 316,
+              "text": ""
+            },
+            {
+              "line": 317,
+              "text": "        if (in_array('footer_links', $availableTables, true)) {"
+            },
+            {
+              "line": 318,
+              "text": "            $this->footerLinks = $this->model->get('footer_links', ["
+            },
+            {
+              "line": 319,
+              "text": "                'where' => ['visible' => 1],"
+            },
+            {
+              "line": 320,
+              "text": "                'order' => ['menu_position', 'id'],"
+            },
+            {
+              "line": 321,
+              "text": "            ]) ?: [];"
+            },
+            {
+              "line": 322,
+              "text": "        }"
+            },
+            {
+              "line": 323,
+              "text": ""
+            },
+            {
+              "line": 324,
+              "text": "        if (in_array('footer_phones', $availableTables, true)) {"
+            },
+            {
+              "line": 325,
+              "text": "            $this->footerPhones = $this->model->get('footer_phones', ["
+            },
+            {
+              "line": 326,
+              "text": "                'where' => ['visible' => 1],"
+            },
+            {
+              "line": 327,
+              "text": "                'order' => ['menu_position', 'id'],"
+            }
+          ],
+          "line": 320,
+          "text": "'order' => ['menu_position', 'id'],"
+        },
+        {
+          "context": [
+            {
+              "line": 323,
+              "text": ""
+            },
+            {
+              "line": 324,
+              "text": "        if (in_array('footer_phones', $availableTables, true)) {"
+            },
+            {
+              "line": 325,
+              "text": "            $this->footerPhones = $this->model->get('footer_phones', ["
+            },
+            {
+              "line": 326,
+              "text": "                'where' => ['visible' => 1],"
+            },
+            {
+              "line": 327,
+              "text": "                'order' => ['menu_position', 'id'],"
+            },
+            {
+              "line": 328,
+              "text": "            ]) ?: [];"
+            },
+            {
+              "line": 329,
+              "text": "        }"
+            },
+            {
+              "line": 330,
+              "text": ""
+            },
+            {
+              "line": 331,
+              "text": "        }"
+            },
+            {
+              "line": 332,
+              "text": "        protected function outputData(){"
+            },
+            {
+              "line": 333,
+              "text": ""
+            },
+            {
+              "line": 334,
+              "text": "            $args = func_get_arg(0);"
+            }
+          ],
+          "line": 327,
+          "text": "'order' => ['menu_position', 'id'],"
+        },
+        {
+          "context": [
+            {
+              "line": 400,
+              "text": ""
+            },
+            {
+              "line": 401,
+              "text": "            $slice = static function ("
+            },
+            {
+              "line": 402,
+              "text": "                string $value,"
+            },
+            {
+              "line": 403,
+              "text": "                int $start,"
+            },
+            {
+              "line": 404,
+              "text": "                int $limit"
+            },
+            {
+              "line": 405,
+              "text": "            ): string {"
+            },
+            {
+              "line": 406,
+              "text": "                return function_exists('mb_substr')"
+            },
+            {
+              "line": 407,
+              "text": "                    ? mb_substr($value, $start, $limit, 'UTF-8')"
+            },
+            {
+              "line": 408,
+              "text": "                    : substr($value, $start, $limit);"
+            },
+            {
+              "line": 409,
+              "text": "            };"
+            },
+            {
+              "line": 410,
+              "text": ""
+            },
+            {
+              "line": 411,
+              "text": "            $excerpt = static function ("
+            }
+          ],
+          "line": 404,
+          "text": "int $limit"
+        },
+        {
+          "context": [
+            {
+              "line": 403,
+              "text": "                int $start,"
+            },
+            {
+              "line": 404,
+              "text": "                int $limit"
+            },
+            {
+              "line": 405,
+              "text": "            ): string {"
+            },
+            {
+              "line": 406,
+              "text": "                return function_exists('mb_substr')"
+            },
+            {
+              "line": 407,
+              "text": "                    ? mb_substr($value, $start, $limit, 'UTF-8')"
+            },
+            {
+              "line": 408,
+              "text": "                    : substr($value, $start, $limit);"
+            },
+            {
+              "line": 409,
+              "text": "            };"
+            },
+            {
+              "line": 410,
+              "text": ""
+            },
+            {
+              "line": 411,
+              "text": "            $excerpt = static function ("
+            },
+            {
+              "line": 412,
+              "text": "                $value,"
+            },
+            {
+              "line": 413,
+              "text": "                int $limit = 155"
+            },
+            {
+              "line": 414,
+              "text": "            ) use ($plain, $length, $slice): string {"
+            }
+          ],
+          "line": 407,
+          "text": "? mb_substr($value, $start, $limit, 'UTF-8')"
+        },
+        {
+          "context": [
+            {
+              "line": 404,
+              "text": "                int $limit"
+            },
+            {
+              "line": 405,
+              "text": "            ): string {"
+            },
+            {
+              "line": 406,
+              "text": "                return function_exists('mb_substr')"
+            },
+            {
+              "line": 407,
+              "text": "                    ? mb_substr($value, $start, $limit, 'UTF-8')"
+            },
+            {
+              "line": 408,
+              "text": "                    : substr($value, $start, $limit);"
+            },
+            {
+              "line": 409,
+              "text": "            };"
+            },
+            {
+              "line": 410,
+              "text": ""
+            },
+            {
+              "line": 411,
+              "text": "            $excerpt = static function ("
+            },
+            {
+              "line": 412,
+              "text": "                $value,"
+            },
+            {
+              "line": 413,
+              "text": "                int $limit = 155"
+            },
+            {
+              "line": 414,
+              "text": "            ) use ($plain, $length, $slice): string {"
+            },
+            {
+              "line": 415,
+              "text": "                $text = $plain($value);"
+            }
+          ],
+          "line": 408,
+          "text": ": substr($value, $start, $limit);"
+        },
+        {
+          "context": [
+            {
+              "line": 409,
+              "text": "            };"
+            },
+            {
+              "line": 410,
+              "text": ""
+            },
+            {
+              "line": 411,
+              "text": "            $excerpt = static function ("
+            },
+            {
+              "line": 412,
+              "text": "                $value,"
+            },
+            {
+              "line": 413,
+              "text": "                int $limit = 155"
+            },
+            {
+              "line": 414,
+              "text": "            ) use ($plain, $length, $slice): string {"
+            },
+            {
+              "line": 415,
+              "text": "                $text = $plain($value);"
+            },
+            {
+              "line": 416,
+              "text": ""
+            },
+            {
+              "line": 417,
+              "text": "                if ($text === '') {"
+            },
+            {
+              "line": 418,
+              "text": "                    return '';"
+            },
+            {
+              "line": 419,
+              "text": "                }"
+            },
+            {
+              "line": 420,
+              "text": ""
+            }
+          ],
+          "line": 413,
+          "text": "int $limit = 155"
+        },
+        {
+          "context": [
+            {
+              "line": 417,
+              "text": "                if ($text === '') {"
+            },
+            {
+              "line": 418,
+              "text": "                    return '';"
+            },
+            {
+              "line": 419,
+              "text": "                }"
+            },
+            {
+              "line": 420,
+              "text": ""
+            },
+            {
+              "line": 421,
+              "text": "                if ($length($text) <= $limit) {"
+            },
+            {
+              "line": 422,
+              "text": "                    return rtrim("
+            },
+            {
+              "line": 423,
+              "text": "                        $text,"
+            },
+            {
+              "line": 424,
+              "text": "                        \" \\t\\n\\r\\0\\x0B,;:-\""
+            },
+            {
+              "line": 425,
+              "text": "                    );"
+            },
+            {
+              "line": 426,
+              "text": "                }"
+            },
+            {
+              "line": 427,
+              "text": ""
+            },
+            {
+              "line": 428,
+              "text": "                $candidate = $slice($text, 0, $limit + 1);"
+            }
+          ],
+          "line": 421,
+          "text": "if ($length($text) <= $limit) {"
+        },
+        {
+          "context": [
+            {
+              "line": 424,
+              "text": "                        \" \\t\\n\\r\\0\\x0B,;:-\""
+            },
+            {
+              "line": 425,
+              "text": "                    );"
+            },
+            {
+              "line": 426,
+              "text": "                }"
+            },
+            {
+              "line": 427,
+              "text": ""
+            },
+            {
+              "line": 428,
+              "text": "                $candidate = $slice($text, 0, $limit + 1);"
+            },
+            {
+              "line": 429,
+              "text": "                $candidate = preg_replace("
+            },
+            {
+              "line": 430,
+              "text": "                    '/\\s+\\S*$/u',"
+            },
+            {
+              "line": 431,
+              "text": "                    '',"
+            },
+            {
+              "line": 432,
+              "text": "                    $candidate"
+            },
+            {
+              "line": 433,
+              "text": "                );"
+            },
+            {
+              "line": 434,
+              "text": "                $candidate = rtrim("
+            },
+            {
+              "line": 435,
+              "text": "                    trim((string)$candidate),"
+            }
+          ],
+          "line": 428,
+          "text": "$candidate = $slice($text, 0, $limit + 1);"
+        },
+        {
+          "context": [
+            {
+              "line": 437,
+              "text": "                );"
+            },
+            {
+              "line": 438,
+              "text": ""
+            },
+            {
+              "line": 439,
+              "text": "                if ($candidate === '') {"
+            },
+            {
+              "line": 440,
+              "text": "                    $candidate = rtrim("
+            },
+            {
+              "line": 441,
+              "text": "                        $slice($text, 0, $limit),"
+            },
+            {
+              "line": 442,
+              "text": "                        \" \\t\\n\\r\\0\\x0B,;:-\""
+            },
+            {
+              "line": 443,
+              "text": "                    );"
+            },
+            {
+              "line": 444,
+              "text": "                }"
+            },
+            {
+              "line": 445,
+              "text": ""
+            },
+            {
+              "line": 446,
+              "text": "                return $candidate . '…';"
+            },
+            {
+              "line": 447,
+              "text": "            };"
+            },
+            {
+              "line": 448,
+              "text": ""
+            }
+          ],
+          "line": 441,
+          "text": "$slice($text, 0, $limit),"
+        },
+        {
+          "context": [
+            {
+              "line": 706,
+              "text": "            $this->language = 'uk';"
+            },
+            {
+              "line": 707,
+              "text": "        }"
+            },
+            {
+              "line": 708,
+              "text": ""
+            },
+            {
+              "line": 709,
+              "text": "        /**"
+            },
+            {
+              "line": 710,
+              "text": "         * ForPrint canonical breadcrumbs v0.6.36"
+            },
+            {
+              "line": 711,
+              "text": "         *"
+            },
+            {
+              "line": 712,
+              "text": "         * Build route-aware breadcrumb data in the controller layer. Public"
+            },
+            {
+              "line": 713,
+              "text": "         * templates receive one normalized list and never hard-code URLs."
+            },
+            {
+              "line": 714,
+              "text": "         */"
+            },
+            {
+              "line": 715,
+              "text": "        protected function buildBreadcrumbItems(array $vars = []): array"
+            },
+            {
+              "line": 716,
+              "text": "        {"
+            },
+            {
+              "line": 717,
+              "text": "            $items = ["
+            }
+          ],
+          "line": 710,
+          "text": "* ForPrint canonical breadcrumbs v0.6.36"
+        },
+        {
+          "context": [
+            {
+              "line": 747,
+              "text": "                ];"
+            },
+            {
+              "line": 748,
+              "text": "            };"
+            },
+            {
+              "line": 749,
+              "text": ""
+            },
+            {
+              "line": 750,
+              "text": "            switch ($controller) {"
+            },
+            {
+              "line": 751,
+              "text": "                                /* FP_SERVICES_CANONICAL_BREADCRUMB_V0_1 */"
+            },
+            {
+              "line": 752,
+              "text": "                case 'nashiposluhy':"
+            },
+            {
+              "line": 753,
+              "text": "                case 'nashi-posluhy':"
+            },
+            {
+              "line": 754,
+              "text": "                    $append($items, 'Наші послуги');"
+            },
+            {
+              "line": 755,
+              "text": "                    break;"
+            },
+            {
+              "line": 756,
+              "text": ""
+            },
+            {
+              "line": 757,
+              "text": "case 'catalog':"
+            },
+            {
+              "line": 758,
+              "text": "                    $catalogName = trim((string)($data['name'] ?? ''));"
+            }
+          ],
+          "line": 751,
+          "text": "/* FP_SERVICES_CANONICAL_BREADCRUMB_V0_1 */"
+        },
+        {
+          "context": [
+            {
+              "line": 984,
+              "text": "            }"
+            },
+            {
+              "line": 985,
+              "text": ""
+            },
+            {
+              "line": 986,
+              "text": "        }"
+            },
+            {
+              "line": 987,
+              "text": ""
+            },
+            {
+              "line": 988,
+              "text": "        protected function pagination($pages, array $excludeQueryKeys = []){"
+            },
+            {
+              "line": 989,
+              "text": ""
+            },
+            {
+              "line": 990,
+              "text": "            $str = $_SERVER['REQUEST_URI'];"
+            },
+            {
+              "line": 991,
+              "text": ""
+            },
+            {
+              "line": 992,
+              "text": "            /*"
+            },
+            {
+              "line": 993,
+              "text": "             * Presentation-only query parameters may control first paint"
+            },
+            {
+              "line": 994,
+              "text": "             * without becoming part of the canonical pagination contract."
+            },
+            {
+              "line": 995,
+              "text": "             * Existing callers pass no exclusions and keep legacy behavior."
+            }
+          ],
+          "line": 988,
+          "text": "protected function pagination($pages, array $excludeQueryKeys = []){"
+        },
+        {
+          "context": [
+            {
+              "line": 990,
+              "text": "            $str = $_SERVER['REQUEST_URI'];"
+            },
+            {
+              "line": 991,
+              "text": ""
+            },
+            {
+              "line": 992,
+              "text": "            /*"
+            },
+            {
+              "line": 993,
+              "text": "             * Presentation-only query parameters may control first paint"
+            },
+            {
+              "line": 994,
+              "text": "             * without becoming part of the canonical pagination contract."
+            },
+            {
+              "line": 995,
+              "text": "             * Existing callers pass no exclusions and keep legacy behavior."
+            },
+            {
+              "line": 996,
+              "text": "             */"
+            },
+            {
+              "line": 997,
+              "text": "            if ($excludeQueryKeys) {"
+            },
+            {
+              "line": 998,
+              "text": "                $uriParts = parse_url($str);"
+            },
+            {
+              "line": 999,
+              "text": ""
+            },
+            {
+              "line": 1000,
+              "text": "                if ($uriParts !== false) {"
+            },
+            {
+              "line": 1001,
+              "text": "                    $uriPath = (string)($uriParts['path'] ?? '');"
+            }
+          ],
+          "line": 994,
+          "text": "* without becoming part of the canonical pagination contract."
+        },
+        {
+          "context": [
+            {
+              "line": 1023,
+              "text": "                    }"
+            },
+            {
+              "line": 1024,
+              "text": "                }"
+            },
+            {
+              "line": 1025,
+              "text": "            }"
+            },
+            {
+              "line": 1026,
+              "text": ""
+            },
+            {
+              "line": 1027,
+              "text": "            if (preg_match('/page=\\d+/i', $str)){"
+            },
+            {
+              "line": 1028,
+              "text": ""
+            },
+            {
+              "line": 1029,
+              "text": "                $str = preg_replace('/page=\\d+/i', '', $str);"
+            },
+            {
+              "line": 1030,
+              "text": ""
+            },
+            {
+              "line": 1031,
+              "text": "            }"
+            },
+            {
+              "line": 1032,
+              "text": ""
+            },
+            {
+              "line": 1033,
+              "text": "            if (preg_match('/(\\?&)|(\\?amp;)/i', $str)){"
+            },
+            {
+              "line": 1034,
+              "text": ""
+            }
+          ],
+          "line": 1027,
+          "text": "if (preg_match('/page=\\d+/i', $str)){"
+        },
+        {
+          "context": [
+            {
+              "line": 1025,
+              "text": "            }"
+            },
+            {
+              "line": 1026,
+              "text": ""
+            },
+            {
+              "line": 1027,
+              "text": "            if (preg_match('/page=\\d+/i', $str)){"
+            },
+            {
+              "line": 1028,
+              "text": ""
+            },
+            {
+              "line": 1029,
+              "text": "                $str = preg_replace('/page=\\d+/i', '', $str);"
+            },
+            {
+              "line": 1030,
+              "text": ""
+            },
+            {
+              "line": 1031,
+              "text": "            }"
+            },
+            {
+              "line": 1032,
+              "text": ""
+            },
+            {
+              "line": 1033,
+              "text": "            if (preg_match('/(\\?&)|(\\?amp;)/i', $str)){"
+            },
+            {
+              "line": 1034,
+              "text": ""
+            },
+            {
+              "line": 1035,
+              "text": "                $str = preg_replace('/(\\?&)|(\\?amp;)/i', '?', $str);"
+            },
+            {
+              "line": 1036,
+              "text": ""
+            }
+          ],
+          "line": 1029,
+          "text": "$str = preg_replace('/page=\\d+/i', '', $str);"
+        },
+        {
+          "context": [
+            {
+              "line": 1055,
+              "text": "                $str .= '?';"
+            },
+            {
+              "line": 1056,
+              "text": ""
+            },
+            {
+              "line": 1057,
+              "text": "            }"
+            },
+            {
+              "line": 1058,
+              "text": ""
+            },
+            {
+              "line": 1059,
+              "text": "            $str .= 'page=';"
+            },
+            {
+              "line": 1060,
+              "text": ""
+            },
+            {
+              "line": 1061,
+              "text": "            $firstPagesStr = !empty($pages['first']) ? ($pages['first'] === 1 ?  $basePageStr : $str . $pages['first']) : '';"
+            },
+            {
+              "line": 1062,
+              "text": ""
+            },
+            {
+              "line": 1063,
+              "text": "            $backPagesStr = !empty($pages['back']) ? ($pages['back'] === 1 ?  $basePageStr : $str . $pages['back']) : '';"
+            },
+            {
+              "line": 1064,
+              "text": ""
+            },
+            {
+              "line": 1065,
+              "text": "            if (!empty($pages['first'])){"
+            },
+            {
+              "line": 1066,
+              "text": ""
+            }
+          ],
+          "line": 1059,
+          "text": "$str .= 'page=';"
+        },
+        {
+          "context": [
+            {
+              "line": 1065,
+              "text": "            if (!empty($pages['first'])){"
+            },
+            {
+              "line": 1066,
+              "text": ""
+            },
+            {
+              "line": 1067,
+              "text": "                echo <<<HEREDOC"
+            },
+            {
+              "line": 1068,
+              "text": ""
+            },
+            {
+              "line": 1069,
+              "text": "                    <a href=\"$firstPagesStr\" class=\"catalog-section-pagination__item\">"
+            },
+            {
+              "line": 1070,
+              "text": "                            <<"
+            },
+            {
+              "line": 1071,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1072,
+              "text": ""
+            },
+            {
+              "line": 1073,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1074,
+              "text": ""
+            },
+            {
+              "line": 1075,
+              "text": "            }"
+            },
+            {
+              "line": 1076,
+              "text": ""
+            }
+          ],
+          "line": 1069,
+          "text": "<a href=\"$firstPagesStr\" class=\"catalog-section-pagination__item\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1077,
+              "text": "            if (!empty($pages['back'])) {"
+            },
+            {
+              "line": 1078,
+              "text": ""
+            },
+            {
+              "line": 1079,
+              "text": "                echo <<<HEREDOC"
+            },
+            {
+              "line": 1080,
+              "text": ""
+            },
+            {
+              "line": 1081,
+              "text": "                    <a href=\"$backPagesStr\" class=\"catalog-section-pagination__item\">"
+            },
+            {
+              "line": 1082,
+              "text": "                            <"
+            },
+            {
+              "line": 1083,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1084,
+              "text": ""
+            },
+            {
+              "line": 1085,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1086,
+              "text": ""
+            },
+            {
+              "line": 1087,
+              "text": "            }"
+            },
+            {
+              "line": 1088,
+              "text": ""
+            }
+          ],
+          "line": 1081,
+          "text": "<a href=\"$backPagesStr\" class=\"catalog-section-pagination__item\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1093,
+              "text": "                    $href = $item === 1 ?  $basePageStr : $str . $item;"
+            },
+            {
+              "line": 1094,
+              "text": ""
+            },
+            {
+              "line": 1095,
+              "text": "                    echo <<<HEREDOC"
+            },
+            {
+              "line": 1096,
+              "text": ""
+            },
+            {
+              "line": 1097,
+              "text": "                    <a href=\"$href\" class=\"catalog-section-pagination__item\">"
+            },
+            {
+              "line": 1098,
+              "text": "                            $item"
+            },
+            {
+              "line": 1099,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1100,
+              "text": ""
+            },
+            {
+              "line": 1101,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1102,
+              "text": ""
+            },
+            {
+              "line": 1103,
+              "text": ""
+            },
+            {
+              "line": 1104,
+              "text": "                }"
+            }
+          ],
+          "line": 1097,
+          "text": "<a href=\"$href\" class=\"catalog-section-pagination__item\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1108,
+              "text": "            if (!empty($pages['current'])) {"
+            },
+            {
+              "line": 1109,
+              "text": ""
+            },
+            {
+              "line": 1110,
+              "text": "                echo <<<HEREDOC"
+            },
+            {
+              "line": 1111,
+              "text": ""
+            },
+            {
+              "line": 1112,
+              "text": "                    <a href=\"\" class=\"catalog-section-pagination__item pagination-current\">"
+            },
+            {
+              "line": 1113,
+              "text": "                           {$pages['current']}"
+            },
+            {
+              "line": 1114,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1115,
+              "text": ""
+            },
+            {
+              "line": 1116,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1117,
+              "text": ""
+            },
+            {
+              "line": 1118,
+              "text": "            }"
+            },
+            {
+              "line": 1119,
+              "text": ""
+            }
+          ],
+          "line": 1112,
+          "text": "<a href=\"\" class=\"catalog-section-pagination__item pagination-current\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1124,
+              "text": "                    $href = $str . $item;"
+            },
+            {
+              "line": 1125,
+              "text": ""
+            },
+            {
+              "line": 1126,
+              "text": "                    echo <<<HEREDOC"
+            },
+            {
+              "line": 1127,
+              "text": ""
+            },
+            {
+              "line": 1128,
+              "text": "                    <a href=\"$href\" class=\"catalog-section-pagination__item\">"
+            },
+            {
+              "line": 1129,
+              "text": "                            $item"
+            },
+            {
+              "line": 1130,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1131,
+              "text": ""
+            },
+            {
+              "line": 1132,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1133,
+              "text": ""
+            },
+            {
+              "line": 1134,
+              "text": ""
+            },
+            {
+              "line": 1135,
+              "text": "                }"
+            }
+          ],
+          "line": 1128,
+          "text": "<a href=\"$href\" class=\"catalog-section-pagination__item\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1141,
+              "text": "                $href = $str . $pages['forward'];"
+            },
+            {
+              "line": 1142,
+              "text": ""
+            },
+            {
+              "line": 1143,
+              "text": "                echo <<<HEREDOC"
+            },
+            {
+              "line": 1144,
+              "text": ""
+            },
+            {
+              "line": 1145,
+              "text": "                    <a href=\"$href\" class=\"catalog-section-pagination__item\">"
+            },
+            {
+              "line": 1146,
+              "text": "                            >"
+            },
+            {
+              "line": 1147,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1148,
+              "text": ""
+            },
+            {
+              "line": 1149,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1150,
+              "text": ""
+            },
+            {
+              "line": 1151,
+              "text": "            }"
+            },
+            {
+              "line": 1152,
+              "text": ""
+            }
+          ],
+          "line": 1145,
+          "text": "<a href=\"$href\" class=\"catalog-section-pagination__item\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1155,
+              "text": "                $href = $str . $pages['last'];"
+            },
+            {
+              "line": 1156,
+              "text": ""
+            },
+            {
+              "line": 1157,
+              "text": "                echo <<<HEREDOC"
+            },
+            {
+              "line": 1158,
+              "text": ""
+            },
+            {
+              "line": 1159,
+              "text": "                    <a href=\"$href\" class=\"catalog-section-pagination__item\">"
+            },
+            {
+              "line": 1160,
+              "text": "                            >>"
+            },
+            {
+              "line": 1161,
+              "text": "                    </a>"
+            },
+            {
+              "line": 1162,
+              "text": ""
+            },
+            {
+              "line": 1163,
+              "text": "HEREDOC;"
+            },
+            {
+              "line": 1164,
+              "text": ""
+            },
+            {
+              "line": 1165,
+              "text": "            }"
+            },
+            {
+              "line": 1166,
+              "text": ""
+            }
+          ],
+          "line": 1159,
+          "text": "<a href=\"$href\" class=\"catalog-section-pagination__item\">"
+        },
+        {
+          "context": [
+            {
+              "line": 1189,
+              "text": "            $data = $this->model->get('goods', ["
+            },
+            {
+              "line": 1190,
+              "text": ""
+            },
+            {
+              "line": 1191,
+              "text": "                'where' => ['id' => $id, 'visible' => 1 ],"
+            },
+            {
+              "line": 1192,
+              "text": ""
+            },
+            {
+              "line": 1193,
+              "text": "                'limit' => 1"
+            },
+            {
+              "line": 1194,
+              "text": ""
+            },
+            {
+              "line": 1195,
+              "text": "            ]);"
+            },
+            {
+              "line": 1196,
+              "text": ""
+            },
+            {
+              "line": 1197,
+              "text": "            if (!$data){"
+            },
+            {
+              "line": 1198,
+              "text": ""
+            },
+            {
+              "line": 1199,
+              "text": "                return ['success' => 0, 'message' => 'Упс, здається данний товар відсутній для додавання в кошик'];"
+            },
+            {
+              "line": 1200,
+              "text": ""
+            }
+          ],
+          "line": 1193,
+          "text": "'limit' => 1"
+        }
+      ],
+      "line_count": 1394
+    },
+    "base/core/user/controllers/CatalogController.php": {
+      "hits": [
+        {
+          "context": [
+            {
+              "line": 15,
+              "text": "        /*"
+            },
+            {
+              "line": 16,
+              "text": "         * ForPrint presentation-only catalog entry state."
+            },
+            {
+              "line": 17,
+              "text": "         *"
+            },
+            {
+              "line": 18,
+              "text": "         * Consume the namespaced UI request here, then remove it before"
+            },
+            {
+              "line": 19,
+              "text": "         * business filter/order/pagination logic reads or republishes GET."
+            },
+            {
+              "line": 20,
+              "text": "         */"
+            },
+            {
+              "line": 21,
+              "text": "        $catalogUiRequest = $_GET['fp_ui'] ?? null;"
+            },
+            {
+              "line": 22,
+              "text": "        $catalogInitialPanel = ("
+            },
+            {
+              "line": 23,
+              "text": "            is_string($catalogUiRequest)"
+            },
+            {
+              "line": 24,
+              "text": "            && $catalogUiRequest === 'filters'"
+            },
+            {
+              "line": 25,
+              "text": "        ) ? 'filters' : '';"
+            },
+            {
+              "line": 26,
+              "text": ""
+            }
+          ],
+          "line": 19,
+          "text": "* business filter/order/pagination logic reads or republishes GET."
+        },
+        {
+          "context": [
+            {
+              "line": 17,
+              "text": "         *"
+            },
+            {
+              "line": 18,
+              "text": "         * Consume the namespaced UI request here, then remove it before"
+            },
+            {
+              "line": 19,
+              "text": "         * business filter/order/pagination logic reads or republishes GET."
+            },
+            {
+              "line": 20,
+              "text": "         */"
+            },
+            {
+              "line": 21,
+              "text": "        $catalogUiRequest = $_GET['fp_ui'] ?? null;"
+            },
+            {
+              "line": 22,
+              "text": "        $catalogInitialPanel = ("
+            },
+            {
+              "line": 23,
+              "text": "            is_string($catalogUiRequest)"
+            },
+            {
+              "line": 24,
+              "text": "            && $catalogUiRequest === 'filters'"
+            },
+            {
+              "line": 25,
+              "text": "        ) ? 'filters' : '';"
+            },
+            {
+              "line": 26,
+              "text": ""
+            },
+            {
+              "line": 27,
+              "text": "        unset($_GET['fp_ui']);"
+            },
+            {
+              "line": 28,
+              "text": ""
+            }
+          ],
+          "line": 21,
+          "text": "$catalogUiRequest = $_GET['fp_ui'] ?? null;"
+        },
+        {
+          "context": [
+            {
+              "line": 23,
+              "text": "            is_string($catalogUiRequest)"
+            },
+            {
+              "line": 24,
+              "text": "            && $catalogUiRequest === 'filters'"
+            },
+            {
+              "line": 25,
+              "text": "        ) ? 'filters' : '';"
+            },
+            {
+              "line": 26,
+              "text": ""
+            },
+            {
+              "line": 27,
+              "text": "        unset($_GET['fp_ui']);"
+            },
+            {
+              "line": 28,
+              "text": ""
+            },
+            {
+              "line": 29,
+              "text": "        $catalogDefaultQuantity = (int)("
+            },
+            {
+              "line": 30,
+              "text": "            $this->set['catalog_default_quantity'] ?? 12"
+            },
+            {
+              "line": 31,
+              "text": "        );"
+            },
+            {
+              "line": 32,
+              "text": ""
+            },
+            {
+              "line": 33,
+              "text": "        if ($catalogDefaultQuantity < 1 || $catalogDefaultQuantity > 60) {"
+            },
+            {
+              "line": 34,
+              "text": "            $catalogDefaultQuantity = 12;"
+            }
+          ],
+          "line": 27,
+          "text": "unset($_GET['fp_ui']);"
+        },
+        {
+          "context": [
+            {
+              "line": 25,
+              "text": "        ) ? 'filters' : '';"
+            },
+            {
+              "line": 26,
+              "text": ""
+            },
+            {
+              "line": 27,
+              "text": "        unset($_GET['fp_ui']);"
+            },
+            {
+              "line": 28,
+              "text": ""
+            },
+            {
+              "line": 29,
+              "text": "        $catalogDefaultQuantity = (int)("
+            },
+            {
+              "line": 30,
+              "text": "            $this->set['catalog_default_quantity'] ?? 12"
+            },
+            {
+              "line": 31,
+              "text": "        );"
+            },
+            {
+              "line": 32,
+              "text": ""
+            },
+            {
+              "line": 33,
+              "text": "        if ($catalogDefaultQuantity < 1 || $catalogDefaultQuantity > 60) {"
+            },
+            {
+              "line": 34,
+              "text": "            $catalogDefaultQuantity = 12;"
+            },
+            {
+              "line": 35,
+              "text": "        }"
+            },
+            {
+              "line": 36,
+              "text": ""
+            }
+          ],
+          "line": 29,
+          "text": "$catalogDefaultQuantity = (int)("
+        },
+        {
+          "context": [
+            {
+              "line": 26,
+              "text": ""
+            },
+            {
+              "line": 27,
+              "text": "        unset($_GET['fp_ui']);"
+            },
+            {
+              "line": 28,
+              "text": ""
+            },
+            {
+              "line": 29,
+              "text": "        $catalogDefaultQuantity = (int)("
+            },
+            {
+              "line": 30,
+              "text": "            $this->set['catalog_default_quantity'] ?? 12"
+            },
+            {
+              "line": 31,
+              "text": "        );"
+            },
+            {
+              "line": 32,
+              "text": ""
+            },
+            {
+              "line": 33,
+              "text": "        if ($catalogDefaultQuantity < 1 || $catalogDefaultQuantity > 60) {"
+            },
+            {
+              "line": 34,
+              "text": "            $catalogDefaultQuantity = 12;"
+            },
+            {
+              "line": 35,
+              "text": "        }"
+            },
+            {
+              "line": 36,
+              "text": ""
+            },
+            {
+              "line": 37,
+              "text": "        $quantities = array_values(array_unique(["
+            }
+          ],
+          "line": 30,
+          "text": "$this->set['catalog_default_quantity'] ?? 12"
+        },
+        {
+          "context": [
+            {
+              "line": 29,
+              "text": "        $catalogDefaultQuantity = (int)("
+            },
+            {
+              "line": 30,
+              "text": "            $this->set['catalog_default_quantity'] ?? 12"
+            },
+            {
+              "line": 31,
+              "text": "        );"
+            },
+            {
+              "line": 32,
+              "text": ""
+            },
+            {
+              "line": 33,
+              "text": "        if ($catalogDefaultQuantity < 1 || $catalogDefaultQuantity > 60) {"
+            },
+            {
+              "line": 34,
+              "text": "            $catalogDefaultQuantity = 12;"
+            },
+            {
+              "line": 35,
+              "text": "        }"
+            },
+            {
+              "line": 36,
+              "text": ""
+            },
+            {
+              "line": 37,
+              "text": "        $quantities = array_values(array_unique(["
+            },
+            {
+              "line": 38,
+              "text": "            3,"
+            },
+            {
+              "line": 39,
+              "text": "            6,"
+            },
+            {
+              "line": 40,
+              "text": "            12,"
+            }
+          ],
+          "line": 33,
+          "text": "if ($catalogDefaultQuantity < 1 || $catalogDefaultQuantity > 60) {"
+        },
+        {
+          "context": [
+            {
+              "line": 30,
+              "text": "            $this->set['catalog_default_quantity'] ?? 12"
+            },
+            {
+              "line": 31,
+              "text": "        );"
+            },
+            {
+              "line": 32,
+              "text": ""
+            },
+            {
+              "line": 33,
+              "text": "        if ($catalogDefaultQuantity < 1 || $catalogDefaultQuantity > 60) {"
+            },
+            {
+              "line": 34,
+              "text": "            $catalogDefaultQuantity = 12;"
+            },
+            {
+              "line": 35,
+              "text": "        }"
+            },
+            {
+              "line": 36,
+              "text": ""
+            },
+            {
+              "line": 37,
+              "text": "        $quantities = array_values(array_unique(["
+            },
+            {
+              "line": 38,
+              "text": "            3,"
+            },
+            {
+              "line": 39,
+              "text": "            6,"
+            },
+            {
+              "line": 40,
+              "text": "            12,"
+            },
+            {
+              "line": 41,
+              "text": "            21,"
+            }
+          ],
+          "line": 34,
+          "text": "$catalogDefaultQuantity = 12;"
+        },
+        {
+          "context": [
+            {
+              "line": 39,
+              "text": "            6,"
+            },
+            {
+              "line": 40,
+              "text": "            12,"
+            },
+            {
+              "line": 41,
+              "text": "            21,"
+            },
+            {
+              "line": 42,
+              "text": "            30,"
+            },
+            {
+              "line": 43,
+              "text": "            $catalogDefaultQuantity,"
+            },
+            {
+              "line": 44,
+              "text": "        ]));"
+            },
+            {
+              "line": 45,
+              "text": "        sort($quantities, SORT_NUMERIC);"
+            },
+            {
+              "line": 46,
+              "text": ""
+            },
+            {
+              "line": 47,
+              "text": "        $requestedQuantity = $this->clearNum($_GET['quantity'] ?? 0);"
+            },
+            {
+              "line": 48,
+              "text": ""
+            },
+            {
+              "line": 49,
+              "text": "        if ($requestedQuantity >= 1 && $requestedQuantity <= 60) {"
+            },
+            {
+              "line": 50,
+              "text": "            $_SESSION['quantities'] = $requestedQuantity;"
+            }
+          ],
+          "line": 43,
+          "text": "$catalogDefaultQuantity,"
+        },
+        {
+          "context": [
+            {
+              "line": 43,
+              "text": "            $catalogDefaultQuantity,"
+            },
+            {
+              "line": 44,
+              "text": "        ]));"
+            },
+            {
+              "line": 45,
+              "text": "        sort($quantities, SORT_NUMERIC);"
+            },
+            {
+              "line": 46,
+              "text": ""
+            },
+            {
+              "line": 47,
+              "text": "        $requestedQuantity = $this->clearNum($_GET['quantity'] ?? 0);"
+            },
+            {
+              "line": 48,
+              "text": ""
+            },
+            {
+              "line": 49,
+              "text": "        if ($requestedQuantity >= 1 && $requestedQuantity <= 60) {"
+            },
+            {
+              "line": 50,
+              "text": "            $_SESSION['quantities'] = $requestedQuantity;"
+            },
+            {
+              "line": 51,
+              "text": "        } elseif ("
+            },
+            {
+              "line": 52,
+              "text": "            empty($_SESSION['quantities'])"
+            },
+            {
+              "line": 53,
+              "text": "            || (int)$_SESSION['quantities'] < 1"
+            },
+            {
+              "line": 54,
+              "text": "            || (int)$_SESSION['quantities'] > 60"
+            }
+          ],
+          "line": 47,
+          "text": "$requestedQuantity = $this->clearNum($_GET['quantity'] ?? 0);"
+        },
+        {
+          "context": [
+            {
+              "line": 45,
+              "text": "        sort($quantities, SORT_NUMERIC);"
+            },
+            {
+              "line": 46,
+              "text": ""
+            },
+            {
+              "line": 47,
+              "text": "        $requestedQuantity = $this->clearNum($_GET['quantity'] ?? 0);"
+            },
+            {
+              "line": 48,
+              "text": ""
+            },
+            {
+              "line": 49,
+              "text": "        if ($requestedQuantity >= 1 && $requestedQuantity <= 60) {"
+            },
+            {
+              "line": 50,
+              "text": "            $_SESSION['quantities'] = $requestedQuantity;"
+            },
+            {
+              "line": 51,
+              "text": "        } elseif ("
+            },
+            {
+              "line": 52,
+              "text": "            empty($_SESSION['quantities'])"
+            },
+            {
+              "line": 53,
+              "text": "            || (int)$_SESSION['quantities'] < 1"
+            },
+            {
+              "line": 54,
+              "text": "            || (int)$_SESSION['quantities'] > 60"
+            },
+            {
+              "line": 55,
+              "text": "        ) {"
+            },
+            {
+              "line": 56,
+              "text": "            $_SESSION['quantities'] = $catalogDefaultQuantity;"
+            }
+          ],
+          "line": 49,
+          "text": "if ($requestedQuantity >= 1 && $requestedQuantity <= 60) {"
+        },
+        {
+          "context": [
+            {
+              "line": 46,
+              "text": ""
+            },
+            {
+              "line": 47,
+              "text": "        $requestedQuantity = $this->clearNum($_GET['quantity'] ?? 0);"
+            },
+            {
+              "line": 48,
+              "text": ""
+            },
+            {
+              "line": 49,
+              "text": "        if ($requestedQuantity >= 1 && $requestedQuantity <= 60) {"
+            },
+            {
+              "line": 50,
+              "text": "            $_SESSION['quantities'] = $requestedQuantity;"
+            },
+            {
+              "line": 51,
+              "text": "        } elseif ("
+            },
+            {
+              "line": 52,
+              "text": "            empty($_SESSION['quantities'])"
+            },
+            {
+              "line": 53,
+              "text": "            || (int)$_SESSION['quantities'] < 1"
+            },
+            {
+              "line": 54,
+              "text": "            || (int)$_SESSION['quantities'] > 60"
+            },
+            {
+              "line": 55,
+              "text": "        ) {"
+            },
+            {
+              "line": 56,
+              "text": "            $_SESSION['quantities'] = $catalogDefaultQuantity;"
+            },
+            {
+              "line": 57,
+              "text": "        }"
+            }
+          ],
+          "line": 50,
+          "text": "$_SESSION['quantities'] = $requestedQuantity;"
+        },
+        {
+          "context": [
+            {
+              "line": 52,
+              "text": "            empty($_SESSION['quantities'])"
+            },
+            {
+              "line": 53,
+              "text": "            || (int)$_SESSION['quantities'] < 1"
+            },
+            {
+              "line": 54,
+              "text": "            || (int)$_SESSION['quantities'] > 60"
+            },
+            {
+              "line": 55,
+              "text": "        ) {"
+            },
+            {
+              "line": 56,
+              "text": "            $_SESSION['quantities'] = $catalogDefaultQuantity;"
+            },
+            {
+              "line": 57,
+              "text": "        }"
+            },
+            {
+              "line": 58,
+              "text": ""
+            },
+            {
+              "line": 59,
+              "text": ""
+            },
+            {
+              "line": 60,
+              "text": "        $data = [];"
+            },
+            {
+              "line": 61,
+              "text": ""
+            },
+            {
+              "line": 62,
+              "text": "        if (!empty($this->parameters['alias'])){"
+            },
+            {
+              "line": 63,
+              "text": ""
+            }
+          ],
+          "line": 56,
+          "text": "$_SESSION['quantities'] = $catalogDefaultQuantity;"
+        },
+        {
+          "context": [
+            {
+              "line": 64,
+              "text": "            $data = $this->model->get('catalog', ["
+            },
+            {
+              "line": 65,
+              "text": ""
+            },
+            {
+              "line": 66,
+              "text": "                'where' => ['alias' => $this->parameters['alias'], 'visible' => 1],"
+            },
+            {
+              "line": 67,
+              "text": ""
+            },
+            {
+              "line": 68,
+              "text": "                'limit' => 1"
+            },
+            {
+              "line": 69,
+              "text": ""
+            },
+            {
+              "line": 70,
+              "text": "            ]);"
+            },
+            {
+              "line": 71,
+              "text": ""
+            },
+            {
+              "line": 72,
+              "text": "            if (!$data){"
+            },
+            {
+              "line": 73,
+              "text": ""
+            },
+            {
+              "line": 74,
+              "text": "                throw new RouteException('Товари по даному запиту не знайдені - ' . $this->parameters['alias']);"
+            },
+            {
+              "line": 75,
+              "text": ""
+            }
+          ],
+          "line": 68,
+          "text": "'limit' => 1"
+        },
+        {
+          "context": [
+            {
+              "line": 93,
+              "text": ""
+            },
+            {
+              "line": 94,
+              "text": ""
+            },
+            {
+              "line": 95,
+              "text": "        $catalogFilters = $catalogPrices = $orderDb = null;"
+            },
+            {
+              "line": 96,
+              "text": ""
+            },
+            {
+              "line": 97,
+              "text": "        $order = $this->createCatalogOrder($orderDb);"
+            },
+            {
+              "line": 98,
+              "text": ""
+            },
+            {
+              "line": 99,
+              "text": "        $operand = $this->checkFilters($where);"
+            },
+            {
+              "line": 100,
+              "text": ""
+            },
+            {
+              "line": 101,
+              "text": "        $goods = $this->model->getGoods(["
+            },
+            {
+              "line": 102,
+              "text": "                'where' => $where,"
+            },
+            {
+              "line": 103,
+              "text": ""
+            },
+            {
+              "line": 104,
+              "text": "                'operand' => $operand,"
+            }
+          ],
+          "line": 97,
+          "text": "$order = $this->createCatalogOrder($orderDb);"
+        },
+        {
+          "context": [
+            {
+              "line": 102,
+              "text": "                'where' => $where,"
+            },
+            {
+              "line": 103,
+              "text": ""
+            },
+            {
+              "line": 104,
+              "text": "                'operand' => $operand,"
+            },
+            {
+              "line": 105,
+              "text": ""
+            },
+            {
+              "line": 106,
+              "text": "                'order' => $orderDb['order'],"
+            },
+            {
+              "line": 107,
+              "text": ""
+            },
+            {
+              "line": 108,
+              "text": "                'order_direction' => $orderDb['order_direction'],"
+            },
+            {
+              "line": 109,
+              "text": ""
+            },
+            {
+              "line": 110,
+              "text": "                'pagination' => ["
+            },
+            {
+              "line": 111,
+              "text": ""
+            },
+            {
+              "line": 112,
+              "text": "                    'qty' => $_SESSION['quantities'] ?? QTY,"
+            },
+            {
+              "line": 113,
+              "text": ""
+            }
+          ],
+          "line": 106,
+          "text": "'order' => $orderDb['order'],"
+        },
+        {
+          "context": [
+            {
+              "line": 106,
+              "text": "                'order' => $orderDb['order'],"
+            },
+            {
+              "line": 107,
+              "text": ""
+            },
+            {
+              "line": 108,
+              "text": "                'order_direction' => $orderDb['order_direction'],"
+            },
+            {
+              "line": 109,
+              "text": ""
+            },
+            {
+              "line": 110,
+              "text": "                'pagination' => ["
+            },
+            {
+              "line": 111,
+              "text": ""
+            },
+            {
+              "line": 112,
+              "text": "                    'qty' => $_SESSION['quantities'] ?? QTY,"
+            },
+            {
+              "line": 113,
+              "text": ""
+            },
+            {
+              "line": 114,
+              "text": "                    'page' => $this->clearNum($_GET['page'] ?? 1) ? : 1"
+            },
+            {
+              "line": 115,
+              "text": ""
+            },
+            {
+              "line": 116,
+              "text": "                ],"
+            },
+            {
+              "line": 117,
+              "text": ""
+            }
+          ],
+          "line": 110,
+          "text": "'pagination' => ["
+        },
+        {
+          "context": [
+            {
+              "line": 110,
+              "text": "                'pagination' => ["
+            },
+            {
+              "line": 111,
+              "text": ""
+            },
+            {
+              "line": 112,
+              "text": "                    'qty' => $_SESSION['quantities'] ?? QTY,"
+            },
+            {
+              "line": 113,
+              "text": ""
+            },
+            {
+              "line": 114,
+              "text": "                    'page' => $this->clearNum($_GET['page'] ?? 1) ? : 1"
+            },
+            {
+              "line": 115,
+              "text": ""
+            },
+            {
+              "line": 116,
+              "text": "                ],"
+            },
+            {
+              "line": 117,
+              "text": ""
+            },
+            {
+              "line": 118,
+              "text": "            ], $catalogFilters, $catalogPrices);"
+            },
+            {
+              "line": 119,
+              "text": ""
+            },
+            {
+              "line": 120,
+              "text": "        $pages = $this->model->getPagination();"
+            },
+            {
+              "line": 121,
+              "text": ""
+            }
+          ],
+          "line": 114,
+          "text": "'page' => $this->clearNum($_GET['page'] ?? 1) ? : 1"
+        },
+        {
+          "context": [
+            {
+              "line": 116,
+              "text": "                ],"
+            },
+            {
+              "line": 117,
+              "text": ""
+            },
+            {
+              "line": 118,
+              "text": "            ], $catalogFilters, $catalogPrices);"
+            },
+            {
+              "line": 119,
+              "text": ""
+            },
+            {
+              "line": 120,
+              "text": "        $pages = $this->model->getPagination();"
+            },
+            {
+              "line": 121,
+              "text": ""
+            },
+            {
+              "line": 122,
+              "text": "        /* ForPrint visible catalog navigation v0.6.43 */"
+            },
+            {
+              "line": 123,
+              "text": "        $catalogCategories = [];"
+            },
+            {
+              "line": 124,
+              "text": "        $catalogGoodsCounts = [];"
+            },
+            {
+              "line": 125,
+              "text": ""
+            },
+            {
+              "line": 126,
+              "text": "        try {"
+            },
+            {
+              "line": 127,
+              "text": "            $catalogGoodsRows = $this->model->get('goods', ["
+            }
+          ],
+          "line": 120,
+          "text": "$pages = $this->model->getPagination();"
+        },
+        {
+          "context": [
+            {
+              "line": 142,
+              "text": ""
+            },
+            {
+              "line": 143,
+              "text": "            $catalogCategories = $this->model->get('catalog', ["
+            },
+            {
+              "line": 144,
+              "text": "                'fields' => ['id', 'name', 'alias', 'menu_position'],"
+            },
+            {
+              "line": 145,
+              "text": "                'where' => ['visible' => 1],"
+            },
+            {
+              "line": 146,
+              "text": "                'order' => ['menu_position', 'id'],"
+            },
+            {
+              "line": 147,
+              "text": "                'order_direction' => ['ASC', 'ASC'],"
+            },
+            {
+              "line": 148,
+              "text": "            ]) ?: [];"
+            },
+            {
+              "line": 149,
+              "text": ""
+            },
+            {
+              "line": 150,
+              "text": "            foreach ($catalogCategories as &$catalogCategory) {"
+            },
+            {
+              "line": 151,
+              "text": "                $catalogCategoryId = (int)($catalogCategory['id'] ?? 0);"
+            },
+            {
+              "line": 152,
+              "text": "                $catalogCategory['goods_count'] ="
+            },
+            {
+              "line": 153,
+              "text": "                    $catalogGoodsCounts[$catalogCategoryId] ?? 0;"
+            }
+          ],
+          "line": 146,
+          "text": "'order' => ['menu_position', 'id'],"
+        },
+        {
+          "context": [
+            {
+              "line": 163,
+              "text": "                'catalogFilters',"
+            },
+            {
+              "line": 164,
+              "text": "                'catalogPrices',"
+            },
+            {
+              "line": 165,
+              "text": "                'catalogCategories',"
+            },
+            {
+              "line": 166,
+              "text": "                'catalogInitialPanel',"
+            },
+            {
+              "line": 167,
+              "text": "                'order',"
+            },
+            {
+              "line": 168,
+              "text": "                'quantities',"
+            },
+            {
+              "line": 169,
+              "text": "                'pages'"
+            },
+            {
+              "line": 170,
+              "text": "            );"
+            },
+            {
+              "line": 171,
+              "text": ""
+            },
+            {
+              "line": 172,
+              "text": "    }"
+            },
+            {
+              "line": 173,
+              "text": ""
+            },
+            {
+              "line": 174,
+              "text": "    protected function checkFilters(&$where){"
+            }
+          ],
+          "line": 167,
+          "text": "'order',"
+        },
+        {
+          "context": [
+            {
+              "line": 176,
+              "text": "        $dbWhere = [];"
+            },
+            {
+              "line": 177,
+              "text": ""
+            },
+            {
+              "line": 178,
+              "text": "        $dbOperand = [];"
+            },
+            {
+              "line": 179,
+              "text": ""
+            },
+            {
+              "line": 180,
+              "text": "        if(isset($_GET['min_price'])){"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "            $dbWhere['price'] = $this->clearNum($_GET['min_price']);"
+            },
+            {
+              "line": 183,
+              "text": ""
+            },
+            {
+              "line": 184,
+              "text": "            $dbOperand[] = '>=';"
+            },
+            {
+              "line": 185,
+              "text": ""
+            },
+            {
+              "line": 186,
+              "text": "        }"
+            },
+            {
+              "line": 187,
+              "text": ""
+            }
+          ],
+          "line": 180,
+          "text": "if(isset($_GET['min_price'])){"
+        },
+        {
+          "context": [
+            {
+              "line": 178,
+              "text": "        $dbOperand = [];"
+            },
+            {
+              "line": 179,
+              "text": ""
+            },
+            {
+              "line": 180,
+              "text": "        if(isset($_GET['min_price'])){"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "            $dbWhere['price'] = $this->clearNum($_GET['min_price']);"
+            },
+            {
+              "line": 183,
+              "text": ""
+            },
+            {
+              "line": 184,
+              "text": "            $dbOperand[] = '>=';"
+            },
+            {
+              "line": 185,
+              "text": ""
+            },
+            {
+              "line": 186,
+              "text": "        }"
+            },
+            {
+              "line": 187,
+              "text": ""
+            },
+            {
+              "line": 188,
+              "text": "        if(isset($_GET['max_price'])){"
+            },
+            {
+              "line": 189,
+              "text": ""
+            }
+          ],
+          "line": 182,
+          "text": "$dbWhere['price'] = $this->clearNum($_GET['min_price']);"
+        },
+        {
+          "context": [
+            {
+              "line": 184,
+              "text": "            $dbOperand[] = '>=';"
+            },
+            {
+              "line": 185,
+              "text": ""
+            },
+            {
+              "line": 186,
+              "text": "        }"
+            },
+            {
+              "line": 187,
+              "text": ""
+            },
+            {
+              "line": 188,
+              "text": "        if(isset($_GET['max_price'])){"
+            },
+            {
+              "line": 189,
+              "text": ""
+            },
+            {
+              "line": 190,
+              "text": "            $dbWhere[' price'] = $this->clearNum($_GET['max_price']); // [' price'] - is correct video 132"
+            },
+            {
+              "line": 191,
+              "text": ""
+            },
+            {
+              "line": 192,
+              "text": "            $dbOperand[] = '<=';"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "        }"
+            },
+            {
+              "line": 195,
+              "text": ""
+            }
+          ],
+          "line": 188,
+          "text": "if(isset($_GET['max_price'])){"
+        },
+        {
+          "context": [
+            {
+              "line": 186,
+              "text": "        }"
+            },
+            {
+              "line": 187,
+              "text": ""
+            },
+            {
+              "line": 188,
+              "text": "        if(isset($_GET['max_price'])){"
+            },
+            {
+              "line": 189,
+              "text": ""
+            },
+            {
+              "line": 190,
+              "text": "            $dbWhere[' price'] = $this->clearNum($_GET['max_price']); // [' price'] - is correct video 132"
+            },
+            {
+              "line": 191,
+              "text": ""
+            },
+            {
+              "line": 192,
+              "text": "            $dbOperand[] = '<=';"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "        }"
+            },
+            {
+              "line": 195,
+              "text": ""
+            },
+            {
+              "line": 196,
+              "text": "        if (!empty($_GET['filters']) && is_array($_GET['filters'])){"
+            },
+            {
+              "line": 197,
+              "text": ""
+            }
+          ],
+          "line": 190,
+          "text": "$dbWhere[' price'] = $this->clearNum($_GET['max_price']); // [' price'] - is correct video 132"
+        },
+        {
+          "context": [
+            {
+              "line": 192,
+              "text": "            $dbOperand[] = '<=';"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "        }"
+            },
+            {
+              "line": 195,
+              "text": ""
+            },
+            {
+              "line": 196,
+              "text": "        if (!empty($_GET['filters']) && is_array($_GET['filters'])){"
+            },
+            {
+              "line": 197,
+              "text": ""
+            },
+            {
+              "line": 198,
+              "text": "            $subFiltersQuery = $this->setFilters();"
+            },
+            {
+              "line": 199,
+              "text": ""
+            },
+            {
+              "line": 200,
+              "text": "            if ($subFiltersQuery){"
+            },
+            {
+              "line": 201,
+              "text": ""
+            },
+            {
+              "line": 202,
+              "text": "                $dbWhere['id'] = $subFiltersQuery;"
+            },
+            {
+              "line": 203,
+              "text": ""
+            }
+          ],
+          "line": 196,
+          "text": "if (!empty($_GET['filters']) && is_array($_GET['filters'])){"
+        },
+        {
+          "context": [
+            {
+              "line": 217,
+              "text": "    }"
+            },
+            {
+              "line": 218,
+              "text": ""
+            },
+            {
+              "line": 219,
+              "text": "    protected function setFilters(){"
+            },
+            {
+              "line": 220,
+              "text": ""
+            },
+            {
+              "line": 221,
+              "text": "     foreach ($_GET['filters'] as $key=>$item){"
+            },
+            {
+              "line": 222,
+              "text": ""
+            },
+            {
+              "line": 223,
+              "text": "         $_GET['filters'][$key] = $this->clearNum($item);"
+            },
+            {
+              "line": 224,
+              "text": ""
+            },
+            {
+              "line": 225,
+              "text": ""
+            },
+            {
+              "line": 226,
+              "text": ""
+            },
+            {
+              "line": 227,
+              "text": "     if (!$_GET['filters'][$key]){"
+            },
+            {
+              "line": 228,
+              "text": ""
+            }
+          ],
+          "line": 221,
+          "text": "foreach ($_GET['filters'] as $key=>$item){"
+        },
+        {
+          "context": [
+            {
+              "line": 219,
+              "text": "    protected function setFilters(){"
+            },
+            {
+              "line": 220,
+              "text": ""
+            },
+            {
+              "line": 221,
+              "text": "     foreach ($_GET['filters'] as $key=>$item){"
+            },
+            {
+              "line": 222,
+              "text": ""
+            },
+            {
+              "line": 223,
+              "text": "         $_GET['filters'][$key] = $this->clearNum($item);"
+            },
+            {
+              "line": 224,
+              "text": ""
+            },
+            {
+              "line": 225,
+              "text": ""
+            },
+            {
+              "line": 226,
+              "text": ""
+            },
+            {
+              "line": 227,
+              "text": "     if (!$_GET['filters'][$key]){"
+            },
+            {
+              "line": 228,
+              "text": ""
+            },
+            {
+              "line": 229,
+              "text": "         unset($_GET['filters'][$key]);"
+            },
+            {
+              "line": 230,
+              "text": ""
+            }
+          ],
+          "line": 223,
+          "text": "$_GET['filters'][$key] = $this->clearNum($item);"
+        },
+        {
+          "context": [
+            {
+              "line": 223,
+              "text": "         $_GET['filters'][$key] = $this->clearNum($item);"
+            },
+            {
+              "line": 224,
+              "text": ""
+            },
+            {
+              "line": 225,
+              "text": ""
+            },
+            {
+              "line": 226,
+              "text": ""
+            },
+            {
+              "line": 227,
+              "text": "     if (!$_GET['filters'][$key]){"
+            },
+            {
+              "line": 228,
+              "text": ""
+            },
+            {
+              "line": 229,
+              "text": "         unset($_GET['filters'][$key]);"
+            },
+            {
+              "line": 230,
+              "text": ""
+            },
+            {
+              "line": 231,
+              "text": "         continue;"
+            },
+            {
+              "line": 232,
+              "text": ""
+            },
+            {
+              "line": 233,
+              "text": "            }"
+            },
+            {
+              "line": 234,
+              "text": ""
+            }
+          ],
+          "line": 227,
+          "text": "if (!$_GET['filters'][$key]){"
+        },
+        {
+          "context": [
+            {
+              "line": 225,
+              "text": ""
+            },
+            {
+              "line": 226,
+              "text": ""
+            },
+            {
+              "line": 227,
+              "text": "     if (!$_GET['filters'][$key]){"
+            },
+            {
+              "line": 228,
+              "text": ""
+            },
+            {
+              "line": 229,
+              "text": "         unset($_GET['filters'][$key]);"
+            },
+            {
+              "line": 230,
+              "text": ""
+            },
+            {
+              "line": 231,
+              "text": "         continue;"
+            },
+            {
+              "line": 232,
+              "text": ""
+            },
+            {
+              "line": 233,
+              "text": "            }"
+            },
+            {
+              "line": 234,
+              "text": ""
+            },
+            {
+              "line": 235,
+              "text": "        $other = array_search($_GET['filters'][$key], $_GET['filters']);"
+            },
+            {
+              "line": 236,
+              "text": ""
+            }
+          ],
+          "line": 229,
+          "text": "unset($_GET['filters'][$key]);"
+        },
+        {
+          "context": [
+            {
+              "line": 231,
+              "text": "         continue;"
+            },
+            {
+              "line": 232,
+              "text": ""
+            },
+            {
+              "line": 233,
+              "text": "            }"
+            },
+            {
+              "line": 234,
+              "text": ""
+            },
+            {
+              "line": 235,
+              "text": "        $other = array_search($_GET['filters'][$key], $_GET['filters']);"
+            },
+            {
+              "line": 236,
+              "text": ""
+            },
+            {
+              "line": 237,
+              "text": "     if ($other !== false && $other !== $key)"
+            },
+            {
+              "line": 238,
+              "text": ""
+            },
+            {
+              "line": 239,
+              "text": "         unset($_GET['filters'][$key]);"
+            },
+            {
+              "line": 240,
+              "text": ""
+            },
+            {
+              "line": 241,
+              "text": "         }"
+            },
+            {
+              "line": 242,
+              "text": ""
+            }
+          ],
+          "line": 235,
+          "text": "$other = array_search($_GET['filters'][$key], $_GET['filters']);"
+        },
+        {
+          "context": [
+            {
+              "line": 235,
+              "text": "        $other = array_search($_GET['filters'][$key], $_GET['filters']);"
+            },
+            {
+              "line": 236,
+              "text": ""
+            },
+            {
+              "line": 237,
+              "text": "     if ($other !== false && $other !== $key)"
+            },
+            {
+              "line": 238,
+              "text": ""
+            },
+            {
+              "line": 239,
+              "text": "         unset($_GET['filters'][$key]);"
+            },
+            {
+              "line": 240,
+              "text": ""
+            },
+            {
+              "line": 241,
+              "text": "         }"
+            },
+            {
+              "line": 242,
+              "text": ""
+            },
+            {
+              "line": 243,
+              "text": "        $res = $this->model->get('filters_categories', ["
+            },
+            {
+              "line": 244,
+              "text": "         'operand' => ['IN'],"
+            },
+            {
+              "line": 245,
+              "text": ""
+            },
+            {
+              "line": 246,
+              "text": "         'join' => ["
+            }
+          ],
+          "line": 239,
+          "text": "unset($_GET['filters'][$key]);"
+        },
+        {
+          "context": [
+            {
+              "line": 245,
+              "text": ""
+            },
+            {
+              "line": 246,
+              "text": "         'join' => ["
+            },
+            {
+              "line": 247,
+              "text": ""
+            },
+            {
+              "line": 248,
+              "text": "             'filters' => ["
+            },
+            {
+              "line": 249,
+              "text": "                 'where' => ['id' => 'SELECT DISTINCT id FROM filters WHERE id IN ('. implode(',', $_GET['filters']) .')'],"
+            },
+            {
+              "line": 250,
+              "text": "//                 'where' => ['id' => implode(',', $_GET['filters'])],"
+            },
+            {
+              "line": 251,
+              "text": "                 'operand' => ['IN'],"
+            },
+            {
+              "line": 252,
+              "text": "                 'fields' => ['id'],"
+            },
+            {
+              "line": 253,
+              "text": "                 'on' => ['id', 'parent_id']"
+            },
+            {
+              "line": 254,
+              "text": "             ]"
+            },
+            {
+              "line": 255,
+              "text": "         ],"
+            },
+            {
+              "line": 256,
+              "text": ""
+            }
+          ],
+          "line": 249,
+          "text": "'where' => ['id' => 'SELECT DISTINCT id FROM filters WHERE id IN ('. implode(',', $_GET['filters']) .')'],"
+        },
+        {
+          "context": [
+            {
+              "line": 246,
+              "text": "         'join' => ["
+            },
+            {
+              "line": 247,
+              "text": ""
+            },
+            {
+              "line": 248,
+              "text": "             'filters' => ["
+            },
+            {
+              "line": 249,
+              "text": "                 'where' => ['id' => 'SELECT DISTINCT id FROM filters WHERE id IN ('. implode(',', $_GET['filters']) .')'],"
+            },
+            {
+              "line": 250,
+              "text": "//                 'where' => ['id' => implode(',', $_GET['filters'])],"
+            },
+            {
+              "line": 251,
+              "text": "                 'operand' => ['IN'],"
+            },
+            {
+              "line": 252,
+              "text": "                 'fields' => ['id'],"
+            },
+            {
+              "line": 253,
+              "text": "                 'on' => ['id', 'parent_id']"
+            },
+            {
+              "line": 254,
+              "text": "             ]"
+            },
+            {
+              "line": 255,
+              "text": "         ],"
+            },
+            {
+              "line": 256,
+              "text": ""
+            },
+            {
+              "line": 257,
+              "text": "         'join_structure' => true,"
+            }
+          ],
+          "line": 250,
+          "text": "//                 'where' => ['id' => implode(',', $_GET['filters'])],"
+        },
+        {
+          "context": [
+            {
+              "line": 336,
+              "text": "        }"
+            },
+            {
+              "line": 337,
+              "text": ""
+            },
+            {
+              "line": 338,
+              "text": "    protected function createCatalogOrder(&$orderDb){"
+            },
+            {
+              "line": 339,
+              "text": ""
+            },
+            {
+              "line": 340,
+              "text": "        $order = ["
+            },
+            {
+              "line": 341,
+              "text": "            'Ціні' => 'price_asc',"
+            },
+            {
+              "line": 342,
+              "text": "            'Назві' => 'name_asc'"
+            },
+            {
+              "line": 343,
+              "text": "        ];"
+            },
+            {
+              "line": 344,
+              "text": ""
+            },
+            {
+              "line": 345,
+              "text": "        $allowedOrders = ["
+            },
+            {
+              "line": 346,
+              "text": "            'menu_position_asc' => ['menu_position', 'ASC'],"
+            },
+            {
+              "line": 347,
+              "text": "            'price_asc' => ['price', 'ASC'],"
+            }
+          ],
+          "line": 340,
+          "text": "$order = ["
+        },
+        {
+          "context": [
+            {
+              "line": 350,
+              "text": "            'name_desc' => ['name', 'DESC'],"
+            },
+            {
+              "line": 351,
+              "text": "        ];"
+            },
+            {
+              "line": 352,
+              "text": ""
+            },
+            {
+              "line": 353,
+              "text": "        $requestedOrder = trim((string)("
+            },
+            {
+              "line": 354,
+              "text": "            $_GET['order']"
+            },
+            {
+              "line": 355,
+              "text": "            ?? ($this->set['catalog_default_order'] ?? 'menu_position_asc')"
+            },
+            {
+              "line": 356,
+              "text": "        ));"
+            },
+            {
+              "line": 357,
+              "text": ""
+            },
+            {
+              "line": 358,
+              "text": "        if (!isset($allowedOrders[$requestedOrder])) {"
+            },
+            {
+              "line": 359,
+              "text": "            $requestedOrder = 'menu_position_asc';"
+            },
+            {
+              "line": 360,
+              "text": "        }"
+            },
+            {
+              "line": 361,
+              "text": ""
+            }
+          ],
+          "line": 354,
+          "text": "$_GET['order']"
+        },
+        {
+          "context": [
+            {
+              "line": 361,
+              "text": ""
+            },
+            {
+              "line": 362,
+              "text": "        [$selectedField, $selectedDirection] = $allowedOrders[$requestedOrder];"
+            },
+            {
+              "line": 363,
+              "text": ""
+            },
+            {
+              "line": 364,
+              "text": "        $orderDb = ["
+            },
+            {
+              "line": 365,
+              "text": "            'order' => [$selectedField, 'id'],"
+            },
+            {
+              "line": 366,
+              "text": "            'order_direction' => [$selectedDirection, 'ASC'],"
+            },
+            {
+              "line": 367,
+              "text": "        ];"
+            },
+            {
+              "line": 368,
+              "text": ""
+            },
+            {
+              "line": 369,
+              "text": "        foreach ($order as $label => $fallbackOrder) {"
+            },
+            {
+              "line": 370,
+              "text": "            [$field] = explode('_', $fallbackOrder, 2);"
+            },
+            {
+              "line": 371,
+              "text": ""
+            },
+            {
+              "line": 372,
+              "text": "            if ($field === $selectedField) {"
+            }
+          ],
+          "line": 365,
+          "text": "'order' => [$selectedField, 'id'],"
+        },
+        {
+          "context": [
+            {
+              "line": 365,
+              "text": "            'order' => [$selectedField, 'id'],"
+            },
+            {
+              "line": 366,
+              "text": "            'order_direction' => [$selectedDirection, 'ASC'],"
+            },
+            {
+              "line": 367,
+              "text": "        ];"
+            },
+            {
+              "line": 368,
+              "text": ""
+            },
+            {
+              "line": 369,
+              "text": "        foreach ($order as $label => $fallbackOrder) {"
+            },
+            {
+              "line": 370,
+              "text": "            [$field] = explode('_', $fallbackOrder, 2);"
+            },
+            {
+              "line": 371,
+              "text": ""
+            },
+            {
+              "line": 372,
+              "text": "            if ($field === $selectedField) {"
+            },
+            {
+              "line": 373,
+              "text": "                $order[$label] = $field"
+            },
+            {
+              "line": 374,
+              "text": "                    . '_'"
+            },
+            {
+              "line": 375,
+              "text": "                    . ($selectedDirection === 'ASC' ? 'desc' : 'asc');"
+            },
+            {
+              "line": 376,
+              "text": "            }"
+            }
+          ],
+          "line": 369,
+          "text": "foreach ($order as $label => $fallbackOrder) {"
+        },
+        {
+          "context": [
+            {
+              "line": 369,
+              "text": "        foreach ($order as $label => $fallbackOrder) {"
+            },
+            {
+              "line": 370,
+              "text": "            [$field] = explode('_', $fallbackOrder, 2);"
+            },
+            {
+              "line": 371,
+              "text": ""
+            },
+            {
+              "line": 372,
+              "text": "            if ($field === $selectedField) {"
+            },
+            {
+              "line": 373,
+              "text": "                $order[$label] = $field"
+            },
+            {
+              "line": 374,
+              "text": "                    . '_'"
+            },
+            {
+              "line": 375,
+              "text": "                    . ($selectedDirection === 'ASC' ? 'desc' : 'asc');"
+            },
+            {
+              "line": 376,
+              "text": "            }"
+            },
+            {
+              "line": 377,
+              "text": "        }"
+            },
+            {
+              "line": 378,
+              "text": ""
+            },
+            {
+              "line": 379,
+              "text": "        return $order;"
+            },
+            {
+              "line": 380,
+              "text": ""
+            }
+          ],
+          "line": 373,
+          "text": "$order[$label] = $field"
+        },
+        {
+          "context": [
+            {
+              "line": 375,
+              "text": "                    . ($selectedDirection === 'ASC' ? 'desc' : 'asc');"
+            },
+            {
+              "line": 376,
+              "text": "            }"
+            },
+            {
+              "line": 377,
+              "text": "        }"
+            },
+            {
+              "line": 378,
+              "text": ""
+            },
+            {
+              "line": 379,
+              "text": "        return $order;"
+            },
+            {
+              "line": 380,
+              "text": ""
+            },
+            {
+              "line": 381,
+              "text": "    }"
+            },
+            {
+              "line": 382,
+              "text": ""
+            },
+            {
+              "line": 383,
+              "text": "}"
+            }
+          ],
+          "line": 379,
+          "text": "return $order;"
+        }
+      ],
+      "line_count": 383
+    },
+    "base/templates/default/catalog.php": {
+      "hits": [
+        {
+          "context": [
+            {
+              "line": 9,
+              "text": "    : ''"
+            },
+            {
+              "line": 10,
+              "text": ");"
+            },
+            {
+              "line": 11,
+              "text": "$fpCatalogFiltersInitiallyOpen = $fpCatalogInitialPanel === 'filters';"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "if (!empty($_GET['filters']) && is_array($_GET['filters'])) {"
+            },
+            {
+              "line": 14,
+              "text": "    foreach ($_GET['filters'] as $fpSelectedFilter) {"
+            },
+            {
+              "line": 15,
+              "text": "        $fpSelectedFilter = (int)$fpSelectedFilter;"
+            },
+            {
+              "line": 16,
+              "text": ""
+            },
+            {
+              "line": 17,
+              "text": "        if ($fpSelectedFilter > 0) {"
+            },
+            {
+              "line": 18,
+              "text": "            $fpSelectedFilters[] = $fpSelectedFilter;"
+            },
+            {
+              "line": 19,
+              "text": "        }"
+            },
+            {
+              "line": 20,
+              "text": "    }"
+            }
+          ],
+          "line": 13,
+          "text": "if (!empty($_GET['filters']) && is_array($_GET['filters'])) {"
+        },
+        {
+          "context": [
+            {
+              "line": 10,
+              "text": ");"
+            },
+            {
+              "line": 11,
+              "text": "$fpCatalogFiltersInitiallyOpen = $fpCatalogInitialPanel === 'filters';"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "if (!empty($_GET['filters']) && is_array($_GET['filters'])) {"
+            },
+            {
+              "line": 14,
+              "text": "    foreach ($_GET['filters'] as $fpSelectedFilter) {"
+            },
+            {
+              "line": 15,
+              "text": "        $fpSelectedFilter = (int)$fpSelectedFilter;"
+            },
+            {
+              "line": 16,
+              "text": ""
+            },
+            {
+              "line": 17,
+              "text": "        if ($fpSelectedFilter > 0) {"
+            },
+            {
+              "line": 18,
+              "text": "            $fpSelectedFilters[] = $fpSelectedFilter;"
+            },
+            {
+              "line": 19,
+              "text": "        }"
+            },
+            {
+              "line": 20,
+              "text": "    }"
+            },
+            {
+              "line": 21,
+              "text": ""
+            }
+          ],
+          "line": 14,
+          "text": "foreach ($_GET['filters'] as $fpSelectedFilter) {"
+        },
+        {
+          "context": [
+            {
+              "line": 46,
+              "text": "    );"
+            },
+            {
+              "line": 47,
+              "text": "}"
+            },
+            {
+              "line": 48,
+              "text": "?>"
+            },
+            {
+              "line": 49,
+              "text": "<div"
+            },
+            {
+              "line": 50,
+              "text": "    class=\"fp-catalog-page fp-visual-system\""
+            },
+            {
+              "line": 51,
+              "text": "    data-fp-surface=\"catalog\""
+            },
+            {
+              "line": 52,
+              "text": "    data-fp-catalog-initial-panel=\"<?=htmlspecialchars("
+            },
+            {
+              "line": 53,
+              "text": "        $fpCatalogInitialPanel,"
+            },
+            {
+              "line": 54,
+              "text": "        ENT_QUOTES,"
+            },
+            {
+              "line": 55,
+              "text": "        'UTF-8'"
+            },
+            {
+              "line": 56,
+              "text": "    )?>\""
+            },
+            {
+              "line": 57,
+              "text": "    data-fp-catalog-url=\"<?=htmlspecialchars("
+            }
+          ],
+          "line": 50,
+          "text": "class=\"fp-catalog-page fp-visual-system\""
+        },
+        {
+          "context": [
+            {
+              "line": 64,
+              "text": "        ENT_QUOTES,"
+            },
+            {
+              "line": 65,
+              "text": "        'UTF-8'"
+            },
+            {
+              "line": 66,
+              "text": "    )?>\""
+            },
+            {
+              "line": 67,
+              "text": ">"
+            },
+            {
+              "line": 68,
+              "text": "    <div class=\"fp-layout-container fp-catalog-page__breadcrumbs fp-page-breadcrumbs\">"
+            },
+            {
+              "line": 69,
+              "text": "        <?=$this->breadcrumbs?>"
+            },
+            {
+              "line": 70,
+              "text": "    </div>"
+            },
+            {
+              "line": 71,
+              "text": ""
+            },
+            {
+              "line": 72,
+              "text": "    <header class=\"fp-layout-container fp-catalog-page__header fp-page-header\">"
+            },
+            {
+              "line": 73,
+              "text": "        <h1 class=\"fp-page-title\">"
+            },
+            {
+              "line": 74,
+              "text": "            <?=htmlspecialchars("
+            },
+            {
+              "line": 75,
+              "text": "                $fpCatalogPageTitle,"
+            }
+          ],
+          "line": 68,
+          "text": "<div class=\"fp-layout-container fp-catalog-page__breadcrumbs fp-page-breadcrumbs\">"
+        },
+        {
+          "context": [
+            {
+              "line": 68,
+              "text": "    <div class=\"fp-layout-container fp-catalog-page__breadcrumbs fp-page-breadcrumbs\">"
+            },
+            {
+              "line": 69,
+              "text": "        <?=$this->breadcrumbs?>"
+            },
+            {
+              "line": 70,
+              "text": "    </div>"
+            },
+            {
+              "line": 71,
+              "text": ""
+            },
+            {
+              "line": 72,
+              "text": "    <header class=\"fp-layout-container fp-catalog-page__header fp-page-header\">"
+            },
+            {
+              "line": 73,
+              "text": "        <h1 class=\"fp-page-title\">"
+            },
+            {
+              "line": 74,
+              "text": "            <?=htmlspecialchars("
+            },
+            {
+              "line": 75,
+              "text": "                $fpCatalogPageTitle,"
+            },
+            {
+              "line": 76,
+              "text": "                ENT_QUOTES,"
+            },
+            {
+              "line": 77,
+              "text": "                'UTF-8'"
+            },
+            {
+              "line": 78,
+              "text": "            )?>"
+            },
+            {
+              "line": 79,
+              "text": "        </h1>"
+            }
+          ],
+          "line": 72,
+          "text": "<header class=\"fp-layout-container fp-catalog-page__header fp-page-header\">"
+        },
+        {
+          "context": [
+            {
+              "line": 69,
+              "text": "        <?=$this->breadcrumbs?>"
+            },
+            {
+              "line": 70,
+              "text": "    </div>"
+            },
+            {
+              "line": 71,
+              "text": ""
+            },
+            {
+              "line": 72,
+              "text": "    <header class=\"fp-layout-container fp-catalog-page__header fp-page-header\">"
+            },
+            {
+              "line": 73,
+              "text": "        <h1 class=\"fp-page-title\">"
+            },
+            {
+              "line": 74,
+              "text": "            <?=htmlspecialchars("
+            },
+            {
+              "line": 75,
+              "text": "                $fpCatalogPageTitle,"
+            },
+            {
+              "line": 76,
+              "text": "                ENT_QUOTES,"
+            },
+            {
+              "line": 77,
+              "text": "                'UTF-8'"
+            },
+            {
+              "line": 78,
+              "text": "            )?>"
+            },
+            {
+              "line": 79,
+              "text": "        </h1>"
+            },
+            {
+              "line": 80,
+              "text": "    </header>"
+            }
+          ],
+          "line": 73,
+          "text": "<h1 class=\"fp-page-title\">"
+        },
+        {
+          "context": [
+            {
+              "line": 285,
+              "text": ""
+            },
+            {
+              "line": 286,
+              "text": "                    <section class=\"catalog-section catalog-section__four\">"
+            },
+            {
+              "line": 287,
+              "text": "                        <div class=\"catalog-section-top\">"
+            },
+            {
+              "line": 288,
+              "text": "                            <div class=\"catalog-section-top-items\">"
+            },
+            {
+              "line": 289,
+              "text": "                                <?php if (!empty($order)): ?>"
+            },
+            {
+              "line": 290,
+              "text": "                                    <div class=\"catalog-section-top-items__title catalog-section-top-items__unit\">"
+            },
+            {
+              "line": 291,
+              "text": "                                        Відсортувати:"
+            },
+            {
+              "line": 292,
+              "text": "                                    </div>"
+            },
+            {
+              "line": 293,
+              "text": "                                    <?php foreach ($order as $name => $item): ?>"
+            },
+            {
+              "line": 294,
+              "text": "                                        <a"
+            },
+            {
+              "line": 295,
+              "text": "                                            href=\"<?=$this->alias("
+            },
+            {
+              "line": 296,
+              "text": "                                                'catalog/' . ($this->parameters['alias'] ?? ''),"
+            }
+          ],
+          "line": 289,
+          "text": "<?php if (!empty($order)): ?>"
+        },
+        {
+          "context": [
+            {
+              "line": 289,
+              "text": "                                <?php if (!empty($order)): ?>"
+            },
+            {
+              "line": 290,
+              "text": "                                    <div class=\"catalog-section-top-items__title catalog-section-top-items__unit\">"
+            },
+            {
+              "line": 291,
+              "text": "                                        Відсортувати:"
+            },
+            {
+              "line": 292,
+              "text": "                                    </div>"
+            },
+            {
+              "line": 293,
+              "text": "                                    <?php foreach ($order as $name => $item): ?>"
+            },
+            {
+              "line": 294,
+              "text": "                                        <a"
+            },
+            {
+              "line": 295,
+              "text": "                                            href=\"<?=$this->alias("
+            },
+            {
+              "line": 296,
+              "text": "                                                'catalog/' . ($this->parameters['alias'] ?? ''),"
+            },
+            {
+              "line": 297,
+              "text": "                                                array_merge($_GET ?? [], ['order' => $item])"
+            },
+            {
+              "line": 298,
+              "text": "                                            )?>\""
+            },
+            {
+              "line": 299,
+              "text": "                                            class=\"catalog-section-top-items__unit catalog-section-top-items__toggle <?=preg_match('/_desc$/', $item) ? 'order_desc' : ''?>\""
+            },
+            {
+              "line": 300,
+              "text": "                                        >"
+            }
+          ],
+          "line": 293,
+          "text": "<?php foreach ($order as $name => $item): ?>"
+        },
+        {
+          "context": [
+            {
+              "line": 293,
+              "text": "                                    <?php foreach ($order as $name => $item): ?>"
+            },
+            {
+              "line": 294,
+              "text": "                                        <a"
+            },
+            {
+              "line": 295,
+              "text": "                                            href=\"<?=$this->alias("
+            },
+            {
+              "line": 296,
+              "text": "                                                'catalog/' . ($this->parameters['alias'] ?? ''),"
+            },
+            {
+              "line": 297,
+              "text": "                                                array_merge($_GET ?? [], ['order' => $item])"
+            },
+            {
+              "line": 298,
+              "text": "                                            )?>\""
+            },
+            {
+              "line": 299,
+              "text": "                                            class=\"catalog-section-top-items__unit catalog-section-top-items__toggle <?=preg_match('/_desc$/', $item) ? 'order_desc' : ''?>\""
+            },
+            {
+              "line": 300,
+              "text": "                                        >"
+            },
+            {
+              "line": 301,
+              "text": "                                            <span><?=htmlspecialchars((string)$name, ENT_QUOTES, 'UTF-8')?></span>"
+            },
+            {
+              "line": 302,
+              "text": "                                            <span class=\"fp-catalog-toolbar__arrow\" aria-hidden=\"true\"></span>"
+            },
+            {
+              "line": 303,
+              "text": "                                        </a>"
+            },
+            {
+              "line": 304,
+              "text": "                                    <?php endforeach; ?>"
+            }
+          ],
+          "line": 297,
+          "text": "array_merge($_GET ?? [], ['order' => $item])"
+        },
+        {
+          "context": [
+            {
+              "line": 304,
+              "text": "                                    <?php endforeach; ?>"
+            },
+            {
+              "line": 305,
+              "text": "                                <?php endif; ?>"
+            },
+            {
+              "line": 306,
+              "text": ""
+            },
+            {
+              "line": 307,
+              "text": "                                <?php if (!empty($quantities)): ?>"
+            },
+            {
+              "line": 308,
+              "text": "                                    <details class=\"fp-catalog-quantity\">"
+            },
+            {
+              "line": 309,
+              "text": "                                        <summary class=\"catalog-section-top-items__unit catalog-section-top-items__toggle\">"
+            },
+            {
+              "line": 310,
+              "text": "                                            <span>Показувати: <?=$_SESSION['quantities'] ?? ''?></span>"
+            },
+            {
+              "line": 311,
+              "text": "                                            <span class=\"fp-catalog-toolbar__arrow\" aria-hidden=\"true\"></span>"
+            },
+            {
+              "line": 312,
+              "text": "                                        </summary>"
+            },
+            {
+              "line": 313,
+              "text": "                                        <div class=\"qtyItems\">"
+            },
+            {
+              "line": 314,
+              "text": "                                            <?php foreach ($quantities as $item): ?>"
+            },
+            {
+              "line": 315,
+              "text": "                                                <a"
+            }
+          ],
+          "line": 308,
+          "text": "<details class=\"fp-catalog-quantity\">"
+        },
+        {
+          "context": [
+            {
+              "line": 314,
+              "text": "                                            <?php foreach ($quantities as $item): ?>"
+            },
+            {
+              "line": 315,
+              "text": "                                                <a"
+            },
+            {
+              "line": 316,
+              "text": "                                                    href=\"<?=$this->alias("
+            },
+            {
+              "line": 317,
+              "text": "                                                        'catalog/' . ($this->parameters['alias'] ?? ''),"
+            },
+            {
+              "line": 318,
+              "text": "                                                        array_merge($_GET ?? [], ['quantity' => $item, 'page' => 1])"
+            },
+            {
+              "line": 319,
+              "text": "                                                    )?>\""
+            },
+            {
+              "line": 320,
+              "text": "                                                ><?=$item?></a>"
+            },
+            {
+              "line": 321,
+              "text": "                                            <?php endforeach; ?>"
+            },
+            {
+              "line": 322,
+              "text": "                                        </div>"
+            },
+            {
+              "line": 323,
+              "text": "                                    </details>"
+            },
+            {
+              "line": 324,
+              "text": "                                <?php endif; ?>"
+            },
+            {
+              "line": 325,
+              "text": "                            </div>"
+            }
+          ],
+          "line": 318,
+          "text": "array_merge($_GET ?? [], ['quantity' => $item, 'page' => 1])"
+        },
+        {
+          "context": [
+            {
+              "line": 345,
+              "text": "                            </div>"
+            },
+            {
+              "line": 346,
+              "text": "                        </div>"
+            },
+            {
+              "line": 347,
+              "text": ""
+            },
+            {
+              "line": 348,
+              "text": "                        <?php if (!empty($pages)): ?>"
+            },
+            {
+              "line": 349,
+              "text": "                            <nav class=\"catalog-section-pagination\" aria-label=\"Сторінки каталогу\">"
+            },
+            {
+              "line": 350,
+              "text": "                                <?php $this->pagination($pages, ['fp_ui'])?>"
+            },
+            {
+              "line": 351,
+              "text": "                            </nav>"
+            },
+            {
+              "line": 352,
+              "text": "                        <?php endif; ?>"
+            },
+            {
+              "line": 353,
+              "text": "                    </section>"
+            },
+            {
+              "line": 354,
+              "text": "                <?php endif; ?>"
+            },
+            {
+              "line": 355,
+              "text": "            </div>"
+            },
+            {
+              "line": 356,
+              "text": "        </div>"
+            }
+          ],
+          "line": 349,
+          "text": "<nav class=\"catalog-section-pagination\" aria-label=\"Сторінки каталогу\">"
+        },
+        {
+          "context": [
+            {
+              "line": 346,
+              "text": "                        </div>"
+            },
+            {
+              "line": 347,
+              "text": ""
+            },
+            {
+              "line": 348,
+              "text": "                        <?php if (!empty($pages)): ?>"
+            },
+            {
+              "line": 349,
+              "text": "                            <nav class=\"catalog-section-pagination\" aria-label=\"Сторінки каталогу\">"
+            },
+            {
+              "line": 350,
+              "text": "                                <?php $this->pagination($pages, ['fp_ui'])?>"
+            },
+            {
+              "line": 351,
+              "text": "                            </nav>"
+            },
+            {
+              "line": 352,
+              "text": "                        <?php endif; ?>"
+            },
+            {
+              "line": 353,
+              "text": "                    </section>"
+            },
+            {
+              "line": 354,
+              "text": "                <?php endif; ?>"
+            },
+            {
+              "line": 355,
+              "text": "            </div>"
+            },
+            {
+              "line": 356,
+              "text": "        </div>"
+            },
+            {
+              "line": 357,
+              "text": "    </section>"
+            }
+          ],
+          "line": 350,
+          "text": "<?php $this->pagination($pages, ['fp_ui'])?>"
+        }
+      ],
+      "line_count": 359
+    },
+    "base/templates/default/include/header.php": {
+      "hits": [
+        {
+          "context": [
+            {
+              "line": 1,
+              "text": "<?php"
+            },
+            {
+              "line": 2,
+              "text": "/*"
+            },
+            {
+              "line": 3,
+              "text": " * Canonical frontend document metadata."
+            },
+            {
+              "line": 4,
+              "text": " *"
+            },
+            {
+              "line": 5,
+              "text": " * Controllers may provide $this->title, $this->description and"
+            },
+            {
+              "line": 6,
+              "text": " * $this->language. The settings singleton supplies safe site-wide"
+            },
+            {
+              "line": 7,
+              "text": " * fallbacks until route-specific metadata is introduced."
+            },
+            {
+              "line": 8,
+              "text": " */"
+            },
+            {
+              "line": 9,
+              "text": "$fpSiteName = trim((string)($this->set['name'] ?? 'ForPrint'));"
+            },
+            {
+              "line": 10,
+              "text": ""
+            }
+          ],
+          "line": 3,
+          "text": "* Canonical frontend document metadata."
+        },
+        {
+          "context": [
+            {
+              "line": 58,
+              "text": "    $fpRequestPath = '/';"
+            },
+            {
+              "line": 59,
+              "text": "}"
+            },
+            {
+              "line": 60,
+              "text": ""
+            },
+            {
+              "line": 61,
+              "text": "/*"
+            },
+            {
+              "line": 62,
+              "text": " * Canonical URLs must be absolute."
+            },
+            {
+              "line": 63,
+              "text": " *"
+            },
+            {
+              "line": 64,
+              "text": " * An absolute PATH value is preferred. The request origin is used only"
+            },
+            {
+              "line": 65,
+              "text": " * while the application still has a relative PATH, as on the technical"
+            },
+            {
+              "line": 66,
+              "text": " * preview. The host value is validated before it is rendered."
+            },
+            {
+              "line": 67,
+              "text": " */"
+            },
+            {
+              "line": 68,
+              "text": "$fpConfiguredBase = trim((string)PATH);"
+            },
+            {
+              "line": 69,
+              "text": "$fpConfiguredParts = preg_match("
+            }
+          ],
+          "line": 62,
+          "text": "* Canonical URLs must be absolute."
+        },
+        {
+          "context": [
+            {
+              "line": 72,
+              "text": ")"
+            },
+            {
+              "line": 73,
+              "text": "    ? parse_url($fpConfiguredBase)"
+            },
+            {
+              "line": 74,
+              "text": "    : false;"
+            },
+            {
+              "line": 75,
+              "text": ""
+            },
+            {
+              "line": 76,
+              "text": "$fpCanonicalOrigin = '';"
+            },
+            {
+              "line": 77,
+              "text": ""
+            },
+            {
+              "line": 78,
+              "text": "if ("
+            },
+            {
+              "line": 79,
+              "text": "    is_array($fpConfiguredParts)"
+            },
+            {
+              "line": 80,
+              "text": "    && !empty($fpConfiguredParts['scheme'])"
+            },
+            {
+              "line": 81,
+              "text": "    && !empty($fpConfiguredParts['host'])"
+            },
+            {
+              "line": 82,
+              "text": ") {"
+            },
+            {
+              "line": 83,
+              "text": "    $fpCanonicalOrigin = strtolower("
+            }
+          ],
+          "line": 76,
+          "text": "$fpCanonicalOrigin = '';"
+        },
+        {
+          "context": [
+            {
+              "line": 79,
+              "text": "    is_array($fpConfiguredParts)"
+            },
+            {
+              "line": 80,
+              "text": "    && !empty($fpConfiguredParts['scheme'])"
+            },
+            {
+              "line": 81,
+              "text": "    && !empty($fpConfiguredParts['host'])"
+            },
+            {
+              "line": 82,
+              "text": ") {"
+            },
+            {
+              "line": 83,
+              "text": "    $fpCanonicalOrigin = strtolower("
+            },
+            {
+              "line": 84,
+              "text": "        (string)$fpConfiguredParts['scheme']"
+            },
+            {
+              "line": 85,
+              "text": "    )"
+            },
+            {
+              "line": 86,
+              "text": "        . '://'"
+            },
+            {
+              "line": 87,
+              "text": "        . strtolower((string)$fpConfiguredParts['host']);"
+            },
+            {
+              "line": 88,
+              "text": ""
+            },
+            {
+              "line": 89,
+              "text": "    if (!empty($fpConfiguredParts['port'])) {"
+            },
+            {
+              "line": 90,
+              "text": "        $fpCanonicalOrigin .= ':'"
+            }
+          ],
+          "line": 83,
+          "text": "$fpCanonicalOrigin = strtolower("
+        },
+        {
+          "context": [
+            {
+              "line": 86,
+              "text": "        . '://'"
+            },
+            {
+              "line": 87,
+              "text": "        . strtolower((string)$fpConfiguredParts['host']);"
+            },
+            {
+              "line": 88,
+              "text": ""
+            },
+            {
+              "line": 89,
+              "text": "    if (!empty($fpConfiguredParts['port'])) {"
+            },
+            {
+              "line": 90,
+              "text": "        $fpCanonicalOrigin .= ':'"
+            },
+            {
+              "line": 91,
+              "text": "            . (int)$fpConfiguredParts['port'];"
+            },
+            {
+              "line": 92,
+              "text": "    }"
+            },
+            {
+              "line": 93,
+              "text": "}"
+            },
+            {
+              "line": 94,
+              "text": ""
+            },
+            {
+              "line": 95,
+              "text": "if ($fpCanonicalOrigin === '') {"
+            },
+            {
+              "line": 96,
+              "text": "    $fpRequestHost = strtolower("
+            },
+            {
+              "line": 97,
+              "text": "        trim("
+            }
+          ],
+          "line": 90,
+          "text": "$fpCanonicalOrigin .= ':'"
+        },
+        {
+          "context": [
+            {
+              "line": 91,
+              "text": "            . (int)$fpConfiguredParts['port'];"
+            },
+            {
+              "line": 92,
+              "text": "    }"
+            },
+            {
+              "line": 93,
+              "text": "}"
+            },
+            {
+              "line": 94,
+              "text": ""
+            },
+            {
+              "line": 95,
+              "text": "if ($fpCanonicalOrigin === '') {"
+            },
+            {
+              "line": 96,
+              "text": "    $fpRequestHost = strtolower("
+            },
+            {
+              "line": 97,
+              "text": "        trim("
+            },
+            {
+              "line": 98,
+              "text": "            (string)("
+            },
+            {
+              "line": 99,
+              "text": "                $_SERVER['SERVER_NAME']"
+            },
+            {
+              "line": 100,
+              "text": "                ?? $_SERVER['HTTP_HOST']"
+            },
+            {
+              "line": 101,
+              "text": "                ?? ''"
+            },
+            {
+              "line": 102,
+              "text": "            )"
+            }
+          ],
+          "line": 95,
+          "text": "if ($fpCanonicalOrigin === '') {"
+        },
+        {
+          "context": [
+            {
+              "line": 123,
+              "text": "        && strtolower((string)$_SERVER['HTTPS']) !== 'off'"
+            },
+            {
+              "line": 124,
+              "text": "    )"
+            },
+            {
+              "line": 125,
+              "text": "        || (int)($_SERVER['SERVER_PORT'] ?? 0) === 443;"
+            },
+            {
+              "line": 126,
+              "text": ""
+            },
+            {
+              "line": 127,
+              "text": "    $fpCanonicalOrigin = ($fpIsHttps ? 'https' : 'http')"
+            },
+            {
+              "line": 128,
+              "text": "        . '://'"
+            },
+            {
+              "line": 129,
+              "text": "        . $fpRequestHost"
+            },
+            {
+              "line": 130,
+              "text": "        . $fpRequestPort;"
+            },
+            {
+              "line": 131,
+              "text": "}"
+            },
+            {
+              "line": 132,
+              "text": ""
+            },
+            {
+              "line": 133,
+              "text": "$fpCanonicalUrl = rtrim($fpCanonicalOrigin, '/')"
+            },
+            {
+              "line": 134,
+              "text": "    . '/'"
+            }
+          ],
+          "line": 127,
+          "text": "$fpCanonicalOrigin = ($fpIsHttps ? 'https' : 'http')"
+        },
+        {
+          "context": [
+            {
+              "line": 129,
+              "text": "        . $fpRequestHost"
+            },
+            {
+              "line": 130,
+              "text": "        . $fpRequestPort;"
+            },
+            {
+              "line": 131,
+              "text": "}"
+            },
+            {
+              "line": 132,
+              "text": ""
+            },
+            {
+              "line": 133,
+              "text": "$fpCanonicalUrl = rtrim($fpCanonicalOrigin, '/')"
+            },
+            {
+              "line": 134,
+              "text": "    . '/'"
+            },
+            {
+              "line": 135,
+              "text": "    . ltrim($fpRequestPath, '/');"
+            },
+            {
+              "line": 136,
+              "text": ""
+            },
+            {
+              "line": 137,
+              "text": "$fpEscape = static function (string $value): string {"
+            },
+            {
+              "line": 138,
+              "text": "    return htmlspecialchars("
+            },
+            {
+              "line": 139,
+              "text": "        $value,"
+            },
+            {
+              "line": 140,
+              "text": "        ENT_QUOTES | ENT_SUBSTITUTE,"
+            }
+          ],
+          "line": 133,
+          "text": "$fpCanonicalUrl = rtrim($fpCanonicalOrigin, '/')"
+        },
+        {
+          "context": [
+            {
+              "line": 257,
+              "text": "        name=\"description\""
+            },
+            {
+              "line": 258,
+              "text": "        content=\"<?= $fpEscape($fpMetaDescription) ?>\""
+            },
+            {
+              "line": 259,
+              "text": "    >"
+            },
+            {
+              "line": 260,
+              "text": "    <link"
+            },
+            {
+              "line": 261,
+              "text": "        rel=\"canonical\""
+            },
+            {
+              "line": 262,
+              "text": "        href=\"<?= $fpEscape($fpCanonicalUrl) ?>\""
+            },
+            {
+              "line": 263,
+              "text": "    >"
+            },
+            {
+              "line": 264,
+              "text": "    <?php include __DIR__ . '/structuredData.php'; ?>"
+            },
+            {
+              "line": 265,
+              "text": ""
+            },
+            {
+              "line": 266,
+              "text": "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">"
+            },
+            {
+              "line": 267,
+              "text": "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>"
+            },
+            {
+              "line": 268,
+              "text": "    <link"
+            }
+          ],
+          "line": 261,
+          "text": "rel=\"canonical\""
+        },
+        {
+          "context": [
+            {
+              "line": 258,
+              "text": "        content=\"<?= $fpEscape($fpMetaDescription) ?>\""
+            },
+            {
+              "line": 259,
+              "text": "    >"
+            },
+            {
+              "line": 260,
+              "text": "    <link"
+            },
+            {
+              "line": 261,
+              "text": "        rel=\"canonical\""
+            },
+            {
+              "line": 262,
+              "text": "        href=\"<?= $fpEscape($fpCanonicalUrl) ?>\""
+            },
+            {
+              "line": 263,
+              "text": "    >"
+            },
+            {
+              "line": 264,
+              "text": "    <?php include __DIR__ . '/structuredData.php'; ?>"
+            },
+            {
+              "line": 265,
+              "text": ""
+            },
+            {
+              "line": 266,
+              "text": "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">"
+            },
+            {
+              "line": 267,
+              "text": "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>"
+            },
+            {
+              "line": 268,
+              "text": "    <link"
+            },
+            {
+              "line": 269,
+              "text": "        href=\"https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap\""
+            }
+          ],
+          "line": 262,
+          "text": "href=\"<?= $fpEscape($fpCanonicalUrl) ?>\""
+        },
+        {
+          "context": [
+            {
+              "line": 310,
+              "text": ""
+            },
+            {
+              "line": 311,
+              "text": "</head>"
+            },
+            {
+              "line": 312,
+              "text": ""
+            },
+            {
+              "line": 313,
+              "text": "<body"
+            },
+            {
+              "line": 314,
+              "text": "    class=\"fp-public-page\""
+            },
+            {
+              "line": 315,
+              "text": "    data-fp-theme=\"default\""
+            },
+            {
+              "line": 316,
+              "text": ">"
+            },
+            {
+              "line": 317,
+              "text": ""
+            },
+            {
+              "line": 318,
+              "text": "<?php"
+            },
+            {
+              "line": 319,
+              "text": "/* ForPrint right-rail controls v0.6.43 */"
+            },
+            {
+              "line": 320,
+              "text": ""
+            },
+            {
+              "line": 321,
+              "text": "$fpShowCart = (int)($this->set['show_cart'] ?? 0) === 1;"
+            }
+          ],
+          "line": 314,
+          "text": "class=\"fp-public-page\""
+        }
+      ],
+      "line_count": 739
+    }
+  },
+  "valid_pagination_issues": [
+    {
+      "canonical": "https://forprint.net.ua/catalog/konverti/",
+      "case_type": "valid_pagination",
+      "category": "Конверти",
+      "category_id": 22,
+      "expected_product_count": 13,
+      "final_url": "https://forprint.net.ua/catalog/konverti/?page=2",
+      "in_sitemap": false,
+      "meta_noindex": false,
+      "product_links_on_page": 1,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/konverti/?page=2",
+      "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/beydzh/",
+      "case_type": "valid_pagination",
+      "category": "Бейджі і Стрічки",
+      "category_id": 14,
+      "expected_product_count": 23,
+      "final_url": "https://forprint.net.ua/catalog/beydzh/?page=2",
+      "in_sitemap": false,
+      "meta_noindex": false,
+      "product_links_on_page": 11,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/beydzh/?page=2",
+      "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+      "case_type": "valid_pagination",
+      "category": "Широкоформатний друк",
+      "category_id": 19,
+      "expected_product_count": 21,
+      "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2",
+      "in_sitemap": false,
+      "meta_noindex": false,
+      "product_links_on_page": 9,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2",
+      "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+      "case_type": "valid_pagination",
+      "category": "Інтер'єрне оформлення та конструкції",
+      "category_id": 21,
+      "expected_product_count": 18,
+      "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2",
+      "in_sitemap": false,
+      "meta_noindex": false,
+      "product_links_on_page": 6,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2",
+      "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/",
+      "case_type": "valid_pagination",
+      "category": "Зовнішня реклама",
+      "category_id": 8,
+      "expected_product_count": 17,
+      "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2",
+      "in_sitemap": false,
+      "meta_noindex": false,
+      "product_links_on_page": 5,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2",
+      "verdict": "VALID_PAGINATION_CANONICAL_COLLAPSE"
+    }
+  ]
+}

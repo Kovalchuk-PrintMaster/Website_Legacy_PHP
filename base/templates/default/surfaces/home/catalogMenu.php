@@ -1,4 +1,74 @@
 <?php if (!empty($this->menu['catalog'])): ?>
+<?php
+$fpResolveCatalogCardImages = function (array $item): array {
+    $paths = [];
+
+    $mainImage = trim((string)($item['img'] ?? ''));
+
+    if ($mainImage !== '') {
+        $paths[] = $mainImage;
+    }
+
+    $galleryEnabled =
+        !array_key_exists('show_gallery', $item)
+        || (int)$item['show_gallery'] === 1;
+
+    if (!$galleryEnabled) {
+        return array_values(array_unique($paths));
+    }
+
+    $gallerySource = $item['gallery_img'] ?? '';
+    $galleryImages = [];
+
+    if (is_array($gallerySource)) {
+        $galleryImages = $gallerySource;
+    } elseif (
+        is_string($gallerySource)
+        && trim($gallerySource) !== ''
+    ) {
+        $decoded = json_decode($gallerySource, true);
+
+        if (is_array($decoded)) {
+            $galleryImages = $decoded;
+        }
+    }
+
+    foreach ($galleryImages as $galleryImage) {
+        if (!is_string($galleryImage)) {
+            continue;
+        }
+
+        $galleryImage = trim($galleryImage);
+
+        if ($galleryImage !== '') {
+            $paths[] = $galleryImage;
+        }
+    }
+
+    $paths = array_values(array_unique($paths));
+    $urls = [];
+
+    foreach ($paths as $path) {
+        $url = trim((string)$this->img($path));
+
+        if ($url !== '') {
+            $urls[] = $url;
+        }
+    }
+
+    $urls = array_values(array_unique($urls));
+
+    if (!$urls) {
+        $fallback = trim((string)$this->img(''));
+
+        if ($fallback !== '') {
+            $urls[] = $fallback;
+        }
+    }
+
+    return $urls;
+};
+?>
 
 <section
     class="fp-home-categories fp-layout-container"
@@ -16,9 +86,8 @@
                 'UTF-8'
             );
 
-            $mobileCategoryImage = $this->img(
-                (string)($item['img'] ?? '')
-            );
+            $mobileCategoryImages =
+                $fpResolveCatalogCardImages($item);
             ?>
 
             <a
@@ -28,13 +97,21 @@
                 ])?>"
                 aria-label="<?=$mobileCategoryName?>"
             >
-                <span class="fp-home-categories__mobile-media">
-                    <img
-                        src="<?=$mobileCategoryImage?>"
-                        alt="<?=$mobileCategoryName?>"
-                        loading="lazy"
-                        decoding="async"
-                    >
+                <span
+                    class="fp-home-categories__mobile-media"
+                    data-fp-catalog-image-rotator
+                >
+                    <?php foreach ($mobileCategoryImages as $mobileImageIndex => $mobileImage): ?>
+                        <img
+                            class="<?=$mobileImageIndex === 0 ? 'is-active' : ''?>"
+                            data-fp-catalog-image
+                            src="<?=$mobileImage?>"
+                            alt="<?=$mobileImageIndex === 0 ? $mobileCategoryName : ''?>"
+                            <?=$mobileImageIndex === 0 ? '' : 'aria-hidden="true"'?>
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    <?php endforeach; ?>
                 </span>
 
                 <span class="fp-home-categories__mobile-content">
@@ -57,9 +134,8 @@
                     'UTF-8'
                 );
 
-                $categoryImage = $this->img(
-                    (string)($item['img'] ?? '')
-                );
+                $categoryImages =
+                    $fpResolveCatalogCardImages($item);
                 ?>
 
                 <a
@@ -75,13 +151,21 @@
                         </span>
                     </span>
 
-                    <span class="fp-home-categories__media">
-                        <img
-                            src="<?=$categoryImage?>"
-                            alt="<?=$categoryName?>"
-                            loading="lazy"
-                            decoding="async"
-                        >
+                    <span
+                        class="fp-home-categories__media"
+                        data-fp-catalog-image-rotator
+                    >
+                        <?php foreach ($categoryImages as $imageIndex => $categoryImage): ?>
+                            <img
+                                class="<?=$imageIndex === 0 ? 'is-active' : ''?>"
+                                data-fp-catalog-image
+                                src="<?=$categoryImage?>"
+                                alt="<?=$imageIndex === 0 ? $categoryName : ''?>"
+                                <?=$imageIndex === 0 ? '' : 'aria-hidden="true"'?>
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        <?php endforeach; ?>
                     </span>
                 </a>
             <?php endforeach; ?>

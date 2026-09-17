@@ -35,7 +35,9 @@ class Settings
                     'site' => 'index/hello',
                     'special-offers' => 'specialoffers/inputData/outputData',
                     'promotions' => 'promotions/inputData/outputData',
+                    'technical-requirements'=>'technicalrequirements/inputData/outputData', // FP_TECHREQ_ROUTE_V1
                     'news' => 'news/inputData/outputData',
+                    'supplier-catalog' => 'suppliercatalog/inputData/outputData',
 //                'catalog' => 'site/input/output/'
             ]
         ],
@@ -58,7 +60,7 @@ class Settings
         'filters' => ['name'=> 'Фільтри'],
         'information' => ['name'=> 'Інформація'],
         'articles' => ['name'=>'Статті','menu'=>false],
-        'knoweleges' => ['name'=>'Корисна інформація','menu'=>false],
+        'knoweleges' => ['name'=>'Технічні вимоги'], // FP_TECHREQ_ADMIN_V1
         'news' => ['name'=>'Новини'],
         'sales' => ['name'=>'Головний слайдер'],
         'socials'=> ['name' => 'Соціальні мережі'],
@@ -150,7 +152,7 @@ class Settings
             'contacts_schedule',
             'credentials',
         ],
-        'radio' => ['visible', 'about_visible', 'home_groups_visible', 'home_hit_visible', 'home_hot_visible', 'home_new_visible', 'home_sale_visible', 'promotions_menu_visible', 'special_offers_menu_visible', 'show_top_menu', 'hit', 'sale','hot','new', 'price_mode', 'tab_details_enabled', 'tab_specs_enabled', 'tab_conditions_enabled', 'tab_extra_enabled', 'target_blank', 'show_cart', 'show_auth', 'show_socials', 'catalog_default_order',],
+        'radio' => ['visible', 'about_visible', 'home_groups_visible', 'home_hit_visible', 'home_hot_visible', 'home_new_visible', 'home_sale_visible', 'promotions_menu_visible', 'special_offers_menu_visible', 'show_top_menu', 'hit', 'sale','hot','new', 'price_mode', 'tab_details_enabled', 'tab_specs_enabled', 'tab_conditions_enabled', 'tab_extra_enabled', 'target_blank', 'show_cart', 'show_auth', 'show_socials', 'catalog_default_order', 'show_thumbnail', 'show_gallery',],
         'checkboxlist' => ['filters'],
         'select' => ['menu_position', 'parent_id'],
         'img' => [
@@ -192,6 +194,8 @@ class Settings
         'credentials' => ['Примітка до адміністратора', 'Внутрішня службова інформація'],
         'date' => ['Дата публікації', 'Дата і час, які показуються у новині'],
         'visible' => ['Показувати на сторінці'],
+        'show_thumbnail' => ['Показувати мініатюру'],
+        'show_gallery' => ['Дозволити публічну галерею'],
         'menu_position' => ['Позиція в списку'],
         'keywords' => ['Ключові слова','Не більше 70 символів'],
         'content' => ['Інформація'],
@@ -398,6 +402,7 @@ class Settings
 
     private $radio = [
         'visible' =>['Ні', 'Так', 'default' => 'Так'],
+        'show_thumbnail' =>['Ні', 'Так', 'default' => 'Так'],
         'about_visible' =>['Ні', 'Так', 'default' => 'Так'],
         'home_groups_visible' =>['Ні', 'Так', 'default' => 'Так'],
         'home_hit_visible' =>['Ні', 'Так', 'default' => 'Так'],

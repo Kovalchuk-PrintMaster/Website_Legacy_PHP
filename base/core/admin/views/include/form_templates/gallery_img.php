@@ -1,6 +1,11 @@
 <?php
+$fpAdminGalleryTable = (string)($this->table ?? '');
 $fpAdminSafeGallery = (
-    ($this->table ?? '') === 'goods'
+    in_array(
+        $fpAdminGalleryTable,
+        ['goods', 'catalog', 'filters_categories', 'filters', 'sales', 'news', 'advantages', 'footer_settings'],
+        true
+    )
     && $row === 'gallery_img'
 );
 
@@ -44,6 +49,72 @@ if ($fpAdminSafeGallery):
     $fpAdminGallerySubtitle = (
         $this->translate[$row][1] ?? ''
     );
+    $fpAdminGalleryHint =
+        'Натискання вибирає зображення. Перетягування змінює '
+        . 'порядок. Видалення виконується тільки після підтвердження.';
+
+    if ($fpAdminGalleryTable === 'catalog') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint =
+            'Додайте зображення для автоматичної зміни на сайті. '
+            . 'Якщо галерея порожня, показується лише основне зображення.';
+    }
+
+    if ($fpAdminGalleryTable === 'advantages') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint =
+            'Додаткові фото для динамічної зміни основного зображення '
+            . 'на сайті. Публічний показ керується перемикачем '
+            . '«Дозволити публічну галерею».';
+    }
+
+    if ($fpAdminGalleryTable === 'filters_categories') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint = '';
+    }
+
+    if ($fpAdminGalleryTable === 'filters') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint =
+            'Галерея зберігається для майбутнього використання окремого '
+            . 'фільтра. Публічний вивід цієї галереї на сайті поки '
+            . 'не підключено.';
+    }
+
+    if ($fpAdminGalleryTable === 'sales') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint =
+            'Додайте зображення для автоматичної зміни всередині '
+            . 'цього слайда. Якщо галерея порожня, показується лише '
+            . 'основне зображення.';
+    }
+
+    if ($fpAdminGalleryTable === 'news') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint =
+            'Показуються на детальній сторінці новини, коли дозволено '
+            . 'публічну галерею. Якщо галерея порожня, лишається '
+            . 'основне зображення.';
+    }
+
+    if ($fpAdminGalleryTable === 'footer_settings') {
+        $fpAdminGalleryTitle = 'Додаткові зображення';
+        $fpAdminGallerySubtitle = '';
+        $fpAdminGalleryHint =
+            'Якщо галерея порожня, показується лише основне зображення.';
+    }
+
+    $fpAdminGalleryTableEscaped = htmlspecialchars(
+        $fpAdminGalleryTable,
+        ENT_QUOTES,
+        'UTF-8'
+    );
 ?>
 <div
     class="vg-element vg-full vg-box-shadow img_wrapper fp-admin-gallery-shell"
@@ -73,8 +144,11 @@ if ($fpAdminSafeGallery):
             <?php endif;?>
             <div class="vg-element vg-full vg-left">
                 <span class="fp-admin-gallery__hint">
-                    Натискання вибирає зображення. Перетягування змінює
-                    порядок. Видалення виконується тільки після підтвердження.
+                    <?=htmlspecialchars(
+                        $fpAdminGalleryHint,
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )?>
                 </span>
             </div>
         </div>
@@ -82,7 +156,7 @@ if ($fpAdminSafeGallery):
         <div
             class="vg-wrap vg-element vg-full gallery_container fp-admin-gallery__grid"
             data-fp-admin-gallery
-            data-table="goods"
+            data-table="<?=$fpAdminGalleryTableEscaped?>"
             data-record-id="<?=$fpAdminGalleryRecordId?>"
             data-field="gallery_img"
         >

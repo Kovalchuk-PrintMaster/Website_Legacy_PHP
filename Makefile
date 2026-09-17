@@ -6,6 +6,7 @@ SHELL := /bin/bash
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 PHP ?= $(shell command -v php8.2 2>/dev/null || command -v php 2>/dev/null)
 PYTHON ?= $(shell if [ -x "$(ROOT)/.venv_website/bin/python" ]; then printf '%s\n' "$(ROOT)/.venv_website/bin/python"; else command -v python3 2>/dev/null; fi)
+AGENTS_CHECK_TOOL := scripts/check_agents_entrypoint.py
 
 PREVIEW_SERVICE ?= forprint-website-preview.service
 PREVIEW_URL ?= http://127.0.0.1:8098/
@@ -17,6 +18,8 @@ DEPLOY_ENV_EXAMPLE ?= config/env/website.deploy.example
 DEPLOY_REPORT_DIR ?= tmp/deployments
 DEPLOY_MANIFEST ?= config/deployment/mobile_portrait_phase_1_v0_1.manifest
 COMMUNICATION_CHECK_TOOL ?= scripts/inspection/check_website_communication_runtime.py
+RELEASE_HEALTH_TOOL ?= scripts/inspection/check_website_release_health.py
+DEVELOPMENT_MIRROR_POLICY_CHECK_TOOL ?= scripts/inspection/check_development_hosting_mirror_policy.py
 
 .PHONY: help check makefile-check php-syntax inspect-security communication-check \
 	preview-url preview-status preview-start preview-stop preview-restart preview-smoke \
@@ -31,6 +34,7 @@ help:
 		"  make php-syntax        lint project-owned PHP" \
 		"  make inspect-security  bounded read-only security grep" \
 		"  make communication-check  protected non-sending production runtime check" \
+		"  make hosting-health-check  colored read-only production health table" \
 		"" \
 		"Canonical local preview:" \
 		"  make preview-url       print http://127.0.0.1:8098/" \
@@ -50,15 +54,22 @@ help:
 		"  make deploy            exact manifest release with communication checks" \
 		"  make deploy-latest-report  print newest safe deployment report"
 
-check: makefile-check php-syntax preview-smoke
+check: agents-entrypoint-check makefile-check development-mirror-policy-check php-syntax preview-smoke
+
+agents-entrypoint-check:
+	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
+	@test -f "$(AGENTS_CHECK_TOOL)" || { echo "ERROR: missing $(AGENTS_CHECK_TOOL)" >&2; exit 1; }
+	@"$(PYTHON)" "$(AGENTS_CHECK_TOOL)"
 
 makefile-check:
 	@test -n "$(PHP)" || { echo "ERROR: PHP CLI not found" >&2; exit 1; }
 	@test -n "$(PYTHON)" || { echo "ERROR: Python 3 not found" >&2; exit 1; }
 	@test -f "$(DEPLOY_TOOL)" || { echo "ERROR: missing $(DEPLOY_TOOL)" >&2; exit 1; }
 	@test -f "$(COMMUNICATION_CHECK_TOOL)" || { echo "ERROR: missing $(COMMUNICATION_CHECK_TOOL)" >&2; exit 1; }
+	@test -f "$(RELEASE_HEALTH_TOOL)" || { echo "ERROR: missing $(RELEASE_HEALTH_TOOL)" >&2; exit 1; }
+	@test -f "$(DEVELOPMENT_MIRROR_POLICY_CHECK_TOOL)" || { echo "ERROR: missing $(DEVELOPMENT_MIRROR_POLICY_CHECK_TOOL)" >&2; exit 1; }
 	@test -f "$(DEPLOY_MANIFEST)" || { echo "ERROR: missing $(DEPLOY_MANIFEST)" >&2; exit 1; }
-	@"$(PYTHON)" -m py_compile "$(DEPLOY_TOOL)" "$(COMMUNICATION_CHECK_TOOL)"
+	@"$(PYTHON)" -m py_compile "$(DEPLOY_TOOL)" "$(COMMUNICATION_CHECK_TOOL)" "$(RELEASE_HEALTH_TOOL)" "$(DEVELOPMENT_MIRROR_POLICY_CHECK_TOOL)"
 	@$(MAKE) --no-print-directory -n preview-status communication-check deploy-check >/dev/null
 	@echo "[OK] Makefile and deployment tool syntax"
 
@@ -262,6 +273,24 @@ hosting-communication-check:
 	@.venv_website/bin/python3 scripts/inspection/check_website_communication_acceptance.py
 # FP_COMMUNICATION_ACCEPTANCE_MAKE_TARGET_V0_1_END
 
+# FP_RELEASE_HEALTH_MAKE_TARGET_V0_1_START
+.PHONY: hosting-health-check hosting-health-pre hosting-health-post hosting-health-summary
+
+hosting-health-check:
+	@$(HOSTING_RESET_PYTHON) "$(RELEASE_HEALTH_TOOL)" --phase standalone
+
+hosting-health-pre:
+	@$(HOSTING_RESET_PYTHON) "$(RELEASE_HEALTH_TOOL)" --phase pre
+
+hosting-health-post:
+	@$(HOSTING_RESET_PYTHON) "$(RELEASE_HEALTH_TOOL)" --phase post
+
+# Re-render already accepted POST evidence; no new production checks.
+# Canonical full sync uses this as its final normal terminal surface.
+hosting-health-summary:
+	@$(HOSTING_RESET_PYTHON) "$(RELEASE_HEALTH_TOOL)" --render-latest-post
+# FP_RELEASE_HEALTH_MAKE_TARGET_V0_1_END
+
 # FP_OPERATIONAL_DB_MAKE_TARGETS_V0_1
 .PHONY: hosting-deploy-full-destructive hosting-deploy-full-destructive-dry-run hosting-deploy-database-destructive hosting-deploy-database-destructive-dry-run hosting-diagnostic-hygiene hosting-diagnostic-hygiene-clean
 
@@ -300,15 +329,30 @@ hosting-backup-local:
 	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/backup_hosting_to_local.py
 # /FP_HOSTING_CAPACITY_OFFHOST_BACKUP_V1
 
+# FP_ACTIVE_DEVELOPMENT_MIRROR_MAKE_POLICY_V1
+# ACTIVE POLICY: while local development is authoritative, hosting-sync-full
+# intentionally replaces application code, project-managed userfiles and the
+# FULL hosting database from local. Hosting runtime/env/secrets remain protected.
+# Do not convert this command to operational-row preservation until the
+# canonical decision is explicitly superseded.
+.PHONY: development-mirror-policy-check
+
+development-mirror-policy-check:
+	@$(HOSTING_RESET_PYTHON) "$(DEVELOPMENT_MIRROR_POLICY_CHECK_TOOL)"
+
 # FP_CANONICAL_FULL_HOSTING_SYNC_V1
 HOSTING_BACKUP ?= latest
 
 .PHONY: hosting-sync-full-dry-run hosting-sync-full hosting-restore-local-backup-dry-run hosting-restore-local-backup
 
 hosting-sync-full-dry-run:
+	@$(MAKE) --no-print-directory development-mirror-policy-check
+	@printf '\033[1;33m[ACTIVE DEVELOPMENT MIRROR]\033[0m local code + userfiles + FULL database -> hosting; hosting runtime/config preserved\n'
 	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/sync_local_to_hosting_full.py --dry-run
 
 hosting-sync-full:
+	@$(MAKE) --no-print-directory development-mirror-policy-check
+	@printf '\033[1;33m[ACTIVE DEVELOPMENT MIRROR]\033[0m local code + userfiles + FULL database -> hosting; hosting runtime/config preserved\n'
 	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_full_sync_contract.py
 	$(CURDIR)/.venv_website/bin/python3 scripts/maintenance/sync_local_to_hosting_full.py --apply
 
@@ -325,3 +369,24 @@ hosting-restore-local-backup:
 hosting-sync-contract-check:
 	$(CURDIR)/.venv_website/bin/python3 scripts/inspection/check_hosting_full_sync_contract.py
 # /FP_HOSTING_FULL_SYNC_HARDENING_V1
+
+# FP_RELEASE_HEALTH_EVIDENCE_DIAGNOSTICS_V02_START
+HEALTH_REPORT ?=
+
+.PHONY: hosting-health-diagnose
+
+hosting-health-diagnose:
+	@HEALTH_REPORT="$(HEALTH_REPORT)" .venv_website/bin/python3 \
+		scripts/inspection/diagnose_protected_release_integrations.py
+# FP_RELEASE_HEALTH_EVIDENCE_DIAGNOSTICS_V02_END
+
+# FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_START
+.PHONY: public-assets-permission-check
+
+public-assets-permission-check:
+	@.venv_website/bin/python3 scripts/inspection/check_public_web_asset_permissions.py
+
+check: public-assets-permission-check
+hosting-sync-full-dry-run: public-assets-permission-check
+hosting-sync-full: public-assets-permission-check
+# FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_END

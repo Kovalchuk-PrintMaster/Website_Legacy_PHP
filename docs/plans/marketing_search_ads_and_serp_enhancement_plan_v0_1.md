@@ -6,6 +6,27 @@
 **Status:** `planned`
 **Depends on:** `2026-08-20_marketing_search_ads_working_state_v0_1.md`
 
+<!-- FP_ADS_SERP_PLAN_LIVE_OVERRIDE_2026_09_06_V2 -->
+## Live status override — 2026-09-06
+
+This plan contains older pre-resolution Google Ads assumptions.
+
+Current authority:
+
+- production Google measurement: **PASS**;
+- Google Ads workstream: **closed / reopen on explicit trigger**;
+- bidding baseline: **Maximize clicks**;
+- real lead-conversion E2E: **not fired**;
+- no automatic Search Partners / Display / budget / auto-apply expansion.
+
+Current growth priority is fresh Search Console/search evidence plus the local
+supplier-catalog pilot.
+
+Use `marketing/programs/forprint_growth_roadmap_v0_1.md` for the current timed
+Ads horizon.
+
+<!-- /FP_ADS_SERP_PLAN_LIVE_OVERRIDE_2026_09_06_V2 -->
+
 ## 1. Objective
 
 Move ForPrint from a technically valid search/Ads foundation to a controlled acquisition system with:

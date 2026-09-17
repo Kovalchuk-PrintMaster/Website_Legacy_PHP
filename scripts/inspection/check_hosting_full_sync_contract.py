@@ -131,7 +131,9 @@ def assert_operator_scripts() -> None:
     required_sync = [
         "hosting-storage-prepare",
         "hosting-backup-local",
-        "hosting-communication-check",
+        "hosting-health-pre",
+        "hosting-health-post",
+        "hosting-health-summary",
         "exact_sync_scope",
         "import_database_package",
         "automatic_restore",
@@ -151,6 +153,113 @@ def assert_operator_scripts() -> None:
 
     print("[OK] full-sync safety sequence is present")
 
+    # FP_ACTIVE_DEVELOPMENT_MIRROR_CONTRACT_V1
+    required_development_mirror = [
+        "FP_ACTIVE_DEVELOPMENT_MIRROR_POLICY_V1",
+        "Database: full local database mirror.",
+        "import_database_package",
+    ]
+    missing_development_mirror = [
+        token
+        for token in required_development_mirror
+        if token not in sync_text
+    ]
+    if missing_development_mirror:
+        raise RuntimeError(
+            "Active development-mirror DB contract is incomplete: "
+            + ", ".join(missing_development_mirror)
+        )
+    forbidden_development_mirror = [
+        "sync_hosting_database_from_local.py",
+        "HOSTING_DATABASE_SYNC_TOOL",
+    ]
+    unexpected = [
+        token
+        for token in forbidden_development_mirror
+        if token in sync_text
+    ]
+    if unexpected:
+        raise RuntimeError(
+            "Canonical hosting-sync-full drifted away from the active full DB "
+            "development mirror: "
+            + ", ".join(unexpected)
+        )
+    print("[OK] active development full-DB mirror contract is present")
+
+
+# FP_HOSTING_TRANSPORT_HARDENING_CONTRACT_V1
+def assert_transport_hardening_contract() -> None:
+    transport = (
+        ROOT / "scripts/operations/hosting_transport.py"
+    ).read_text(encoding="utf-8")
+    common = (
+        ROOT / "scripts/maintenance/hosting_mirror_common.py"
+    ).read_text(encoding="utf-8")
+    backup = (
+        ROOT / "scripts/maintenance/backup_hosting_to_local.py"
+    ).read_text(encoding="utf-8")
+    restore = (
+        ROOT / "scripts/maintenance/restore_hosting_from_local_backup.py"
+    ).read_text(encoding="utf-8")
+
+    required_transport = [
+        "FORPRINT_CANONICAL_SSH_TRANSPORT_HARDENING_V1",
+        "ssh_exec_idempotent",
+        "ControlMaster",
+        "ControlPersist",
+        "ServerAliveInterval",
+        "ConnectionAttempts",
+    ]
+
+    required_common = [
+        "FORPRINT_CANONICAL_SSH_TRANSPORT_HARDENING_V1",
+        "_fp_transport_retry",
+        "_fp_remote_scope_files_once",
+        "_fp_delete_remote_files_once",
+        "_fp_stream_local_scope_to_remote_once",
+        "_fp_export_remote_database_once",
+        "_fp_stream_backup_tar_to_remote_once",
+        "while IFS= read -r f; do",
+    ]
+
+    required_backup = [
+        "ssh_exec_idempotent",
+        "hosting-to-local webroot backup stream",
+    ]
+
+    required_restore = [
+        "FORPRINT_DB_RESTORE_TRANSIENT_RETRY_V1",
+        "db_restore_attempt",
+    ]
+
+    missing = []
+
+    for token in required_transport:
+        if token not in transport:
+            missing.append("transport:" + token)
+
+    for token in required_common:
+        if token not in common:
+            missing.append("common:" + token)
+
+    for token in required_backup:
+        if token not in backup:
+            missing.append("backup:" + token)
+
+    for token in required_restore:
+        if token not in restore:
+            missing.append("restore:" + token)
+
+    if missing:
+        raise RuntimeError(
+            "Hosting transport hardening contract incomplete: "
+            + ", ".join(missing)
+        )
+
+    print(
+        "[OK] SSH multiplex/keepalive and bounded transport retry contract"
+    )
+
 
 def main() -> int:
     if not COMMON.is_file():
@@ -162,6 +271,7 @@ def main() -> int:
     assert_text_contracts(common_text)
     assert_tar_validator(common)
     assert_operator_scripts()
+    assert_transport_hardening_contract()
 
     print()
     print("HOSTING_FULL_SYNC_CONTRACT_OK")

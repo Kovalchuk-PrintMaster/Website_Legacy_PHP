@@ -18,3 +18,12 @@ Historical snapshots remain under `docs/status/snapshots/`.
 Stable areas: `programs/`, `campaigns/`, `research/`, `organic-search/`,
 `local-presence/`, `measurement/`, `data/`, `reports/`, `experiments/`,
 and `archive/`.
+
+<!-- FP_GROWTH_ROADMAP_INDEX_V0_1_START -->
+## Active marketing / search / Google Ads roadmap
+
+- [`marketing/programs/forprint_growth_roadmap_v0_1.md`](
+  programs/forprint_growth_roadmap_v0_1.md
+  ) — coordinated website-quality, SEO/Search Console, measurement and Google
+  Ads execution plan, including the current Google Support wait state.
+<!-- FP_GROWTH_ROADMAP_INDEX_V0_1_END -->

@@ -49,6 +49,7 @@ if (!empty($catalogCategories) && is_array($catalogCategories)) {
 <div
     class="fp-catalog-page fp-visual-system"
     data-fp-surface="catalog"
+    data-fp-catalog-ui="1"
     data-fp-catalog-initial-panel="<?=htmlspecialchars(
         $fpCatalogInitialPanel,
         ENT_QUOTES,

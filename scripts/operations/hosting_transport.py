@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from pathlib import Path
 import shlex
 import subprocess
+import os
+import time
 
 ROOT = Path("/srv/software_development/forprint-project/forprint_website")
 
@@ -75,6 +77,107 @@ def _parse_ssh_line(line: str):
         discovery_output="",
     )
 
+# FORPRINT_CANONICAL_SSH_TRANSPORT_HARDENING_V1
+TRANSIENT_SSH_MARKERS = (
+    "connection reset by peer",
+    "connection closed by remote host",
+    "kex_exchange_identification",
+    "connection timed out",
+    "operation timed out",
+    "broken pipe",
+    "banner exchange",
+    "client_loop: send disconnect",
+    "connection refused",
+    "remote command failed (255)",
+    "mux_client",
+    "master exited unexpectedly",
+)
+
+
+def is_transient_ssh_failure(value) -> bool:
+    if isinstance(value, BrokenPipeError):
+        return True
+
+    text = str(value).lower()
+    return any(marker in text for marker in TRANSIENT_SSH_MARKERS)
+
+
+def _harden_ssh_prefix(prefix):
+    result = list(prefix)
+
+    def has_option(name: str) -> bool:
+        marker = name.lower() + "="
+        return any(
+            marker in str(token).lower()
+            for token in result
+        )
+
+    options = [
+        ("ConnectionAttempts", "3"),
+        ("ServerAliveInterval", "15"),
+        ("ServerAliveCountMax", "3"),
+    ]
+
+    if os.environ.get("FORPRINT_DISABLE_SSH_MULTIPLEX") != "1":
+        options.extend(
+            [
+                ("ControlMaster", "auto"),
+                ("ControlPersist", "120"),
+                ("ControlPath", "/tmp/forprint-ssh-%C"),
+            ]
+        )
+
+    for name, value in options:
+        if not has_option(name):
+            result.extend(["-o", f"{name}={value}"])
+
+    return tuple(result)
+
+
+def ssh_exec_idempotent(
+    connection,
+    remote_command: str,
+    *,
+    stdin=None,
+    stdout_file=None,
+    check=True,
+    attempts: int = 3,
+    label: str = "idempotent SSH operation",
+):
+    if attempts < 1:
+        raise ValueError("attempts must be >= 1")
+
+    for attempt in range(1, attempts + 1):
+        if stdout_file is not None and attempt > 1:
+            stdout_file.flush()
+            stdout_file.seek(0)
+            stdout_file.truncate(0)
+
+        try:
+            return ssh_exec(
+                connection,
+                remote_command,
+                stdin=stdin,
+                stdout_file=stdout_file,
+                check=check,
+            )
+        except RuntimeError as exc:
+            if (
+                not is_transient_ssh_failure(exc)
+                or attempt >= attempts
+            ):
+                raise
+
+            wait_seconds = attempt * 2
+            print(
+                f"[WARN] transient SSH failure during {label} "
+                f"(attempt {attempt}/{attempts}); "
+                f"retrying in {wait_seconds}s"
+            )
+            time.sleep(wait_seconds)
+# /FORPRINT_CANONICAL_SSH_TRANSPORT_HARDENING_V1
+
+
 def discover_hosting_connection() -> HostingConnection:
     result = subprocess.run(
         ["make", "hosting-deploy-frontend-dry-run"],
@@ -112,7 +215,7 @@ def discover_hosting_connection() -> HostingConnection:
         raise RuntimeError("Hosting connection discovery is ambiguous.")
     item = next(iter(unique.values()))
     return HostingConnection(
-        ssh_prefix=item.ssh_prefix,
+        ssh_prefix=_harden_ssh_prefix(item.ssh_prefix),
         target=item.target,
         webroot=item.webroot,
         release_root=item.release_root,

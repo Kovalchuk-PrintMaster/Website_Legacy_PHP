@@ -1094,8 +1094,8 @@
  * Canonical Related Goods behavior owner.
  *
  * PHP keeps the hidden field and application/json catalog as the server-to-
- * client data boundary. Search, selection, serialization and placement belong
- * to this Goods-owned module.
+ * client data boundary. The server-rendered Goods composition owns placement;
+ * this module owns search, selection and hidden-ID serialization.
  */
 (function () {
     "use strict";
@@ -1366,66 +1366,10 @@
         renderResults();
     }
 
-    function findFiltersBlock(form) {
-        return form.querySelector(
-            "[data-fp-admin-goods-filters]"
-        );
-    }
-
-    function moveRelatedGoodsPanel() {
-        var form = document.getElementById("main-form");
-
-        if (!form) {
-            return;
-        }
-
-        var tableInput = form.querySelector(
-            'input[name="table"]'
-        );
-
-        if (!tableInput || tableInput.value !== "goods") {
-            return;
-        }
-
-        var panel = form.querySelector(ROOT_SELECTOR);
-
-        if (!panel) {
-            return;
-        }
-
-        var filtersBlock = findFiltersBlock(form);
-
-        if (!filtersBlock) {
-            return;
-        }
-
-        panel.classList.remove(
-            "fp-related-goods-after-filters"
-        );
-        panel.classList.add(
-            "fp-related-goods-inside-filters"
-        );
-
-        if (panel.parentNode !== filtersBlock) {
-            filtersBlock.appendChild(panel);
-        }
-
-        panel.setAttribute(
-            "data-related-goods-moved",
-            "inside-filters"
-        );
-    }
-
     function initRelatedGoods() {
         document
             .querySelectorAll(ROOT_SELECTOR)
             .forEach(initRelatedGoodsWidget);
-
-        moveRelatedGoodsPanel();
-
-        window.setTimeout(moveRelatedGoodsPanel, 80);
-        window.setTimeout(moveRelatedGoodsPanel, 250);
-        window.setTimeout(moveRelatedGoodsPanel, 700);
     }
 
     if (document.readyState === "loading") {
@@ -1436,5 +1380,163 @@
         );
     } else {
         initRelatedGoods();
+    }
+}());
+
+/**
+ * Goods filter-groups top collapse mirror.
+ *
+ * The existing bottom fp-goods-filter-groups-toggle remains the canonical
+ * expansion/collapse owner. This helper only mirrors its expanded state and
+ * forwards clicks to the original control.
+ *
+ * Important: no MutationObserver is used here. The previous observer-based
+ * experiment could create a browser-side feedback loop when attributes were
+ * rewritten during synchronization.
+ */
+(function () {
+    "use strict";
+
+    var ROOT_SELECTOR = ".fp-goods-filters-root";
+    var TOGGLE_SELECTOR = ".fp-goods-filter-groups-toggle";
+    var MIRROR_CLASS = "fp-goods-filter-groups-toggle--top-mirror";
+    var GROUP_SELECTOR = ".fp-goods-filter-group--secondary";
+
+    function isVisible(element) {
+        if (!element || element.hidden) {
+            return false;
+        }
+
+        var style = window.getComputedStyle(element);
+
+        return (
+            style.display !== "none"
+            && style.visibility !== "hidden"
+            && element.getClientRects().length > 0
+        );
+    }
+
+    function findOriginalToggle(root) {
+        return Array.prototype.find.call(
+            root.querySelectorAll(TOGGLE_SELECTOR),
+            function (element) {
+                return !element.classList.contains(MIRROR_CLASS);
+            }
+        );
+    }
+
+    function isExpanded(root, original) {
+        var ariaExpanded = original.getAttribute("aria-expanded");
+
+        if (ariaExpanded === "true") {
+            return true;
+        }
+
+        if (ariaExpanded === "false") {
+            return false;
+        }
+
+        return Array.prototype.some.call(
+            root.querySelectorAll(GROUP_SELECTOR),
+            isVisible
+        );
+    }
+
+    function scheduleSync(syncMirror) {
+        window.requestAnimationFrame(syncMirror);
+        window.setTimeout(syncMirror, 50);
+    }
+
+    function bindFilterGroupsMirror(root) {
+        if (
+            !root
+            || root.dataset.fpGoodsFilterMirrorBound === "1"
+        ) {
+            return;
+        }
+
+        var original = findOriginalToggle(root);
+
+        if (!original) {
+            return;
+        }
+
+        root.dataset.fpGoodsFilterMirrorBound = "1";
+
+        var mirror = document.createElement("button");
+        mirror.type = "button";
+        mirror.className = (
+            "fp-goods-filter-groups-toggle "
+            + MIRROR_CLASS
+        );
+        mirror.setAttribute(
+            "aria-label",
+            "Згорнути інші групи фільтрів"
+        );
+        mirror.innerHTML = "<span>Згорнути</span>";
+
+        function syncMirror() {
+            var expanded = isExpanded(root, original);
+
+            if (mirror.hidden === expanded) {
+                mirror.hidden = !expanded;
+            }
+
+            mirror.setAttribute(
+                "aria-expanded",
+                expanded ? "true" : "false"
+            );
+        }
+
+        mirror.addEventListener(
+            "click",
+            function () {
+                original.click();
+                scheduleSync(syncMirror);
+            }
+        );
+
+        original.addEventListener(
+            "click",
+            function () {
+                scheduleSync(syncMirror);
+            }
+        );
+
+        var firstGroup = root.querySelector(
+            ".fp-goods-filter-group"
+        );
+
+        if (firstGroup && firstGroup.parentNode) {
+            firstGroup.parentNode.insertBefore(
+                mirror,
+                firstGroup
+            );
+        } else if (original.parentNode) {
+            original.parentNode.insertBefore(
+                mirror,
+                original
+            );
+        } else {
+            return;
+        }
+
+        syncMirror();
+    }
+
+    function initFilterGroupsMirrors() {
+        document
+            .querySelectorAll(ROOT_SELECTOR)
+            .forEach(bindFilterGroupsMirror);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initFilterGroupsMirrors,
+            { once: true }
+        );
+    } else {
+        initFilterGroupsMirrors();
     }
 }());

@@ -38,6 +38,11 @@ html.fp-admin-gallery-dialog-open body {
     justify-content: start;
     width: 100%;
     min-width: 0;
+    padding: var(--fp-admin-space-3);
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-color-surface);
+    box-sizing: border-box;
 }
 
 .fp-admin-gallery__grid > .empty_container {
@@ -62,7 +67,7 @@ html.fp-admin-gallery-dialog-open body {
     padding: 6px;
     overflow: hidden;
     border: 1px solid #aeb8bf;
-    border-radius: 0;
+    border-radius: var(--fp-admin-radius-sm);
     background: #ffffff;
     box-shadow: none;
     vertical-align: top;

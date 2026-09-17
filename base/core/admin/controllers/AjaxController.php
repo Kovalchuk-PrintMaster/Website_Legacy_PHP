@@ -322,7 +322,7 @@ case 'sort_admin_menu':
         }
 
         try {
-            $this->model->edit('goods', [
+            $this->model->edit($payload['table'], [
                 'fields' => [
                     'gallery_img' => json_encode(
                         array_values($requested),
@@ -415,7 +415,7 @@ case 'sort_admin_menu':
         }
 
         try {
-            $this->model->edit('goods', [
+            $this->model->edit($payload['table'], [
                 'fields' => [
                     'gallery_img' => json_encode(
                         array_values($remaining),
@@ -462,7 +462,7 @@ case 'sort_admin_menu':
     }
 
     /**
-     * Load only the allow-listed Goods gallery field.
+     * Load one allow-listed managed gallery field.
      */
     protected function loadManagedGallery(): array
     {
@@ -477,7 +477,7 @@ case 'sort_admin_menu':
         );
 
         if (
-            $table !== 'goods'
+            !in_array($table, ['goods', 'catalog', 'filters_categories', 'filters', 'sales', 'news', 'advantages', 'footer_settings'], true)
             || $field !== 'gallery_img'
             || $id < 1
         ) {
@@ -487,7 +487,7 @@ case 'sort_admin_menu':
             ];
         }
 
-        $columns = $this->model->showColumns('goods');
+        $columns = $this->model->showColumns($table);
 
         if (
             !$columns
@@ -501,7 +501,7 @@ case 'sort_admin_menu':
         }
 
         $idRow = (string)$columns['id_row'];
-        $rows = $this->model->get('goods', [
+        $rows = $this->model->get($table, [
             'fields' => [$idRow, 'gallery_img'],
             'where' => [$idRow => $id],
             'limit' => 1,
@@ -510,7 +510,7 @@ case 'sort_admin_menu':
         if (!$rows || !is_array($rows[0] ?? null)) {
             return [
                 'success' => 0,
-                'message' => 'Goods record not found',
+                'message' => 'Gallery owner record not found',
             ];
         }
 
@@ -539,6 +539,7 @@ case 'sort_admin_menu':
 
         return [
             'success' => 1,
+            'table' => $table,
             'id' => $id,
             'id_row' => $idRow,
             'gallery' => $gallery,

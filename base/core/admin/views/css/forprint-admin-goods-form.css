@@ -6,14 +6,15 @@
  */
 
 #main-form.fp-goods-form-canonical {
-    --fp-goods-bg: #ffffff;
+    --fp-goods-bg: var(--fp-admin-color-surface);
     --fp-goods-page: #eceef2;
-    --fp-goods-border: #d6dde2;
-    --fp-goods-border-strong: #9aa9b3;
-    --fp-goods-text: #1f2d37;
-    --fp-goods-muted: #6e818d;
-    --fp-goods-soft: #f2f4f5;
+    --fp-goods-border: var(--fp-admin-color-field-border);
+    --fp-goods-border-strong: var(--fp-admin-color-control-border);
+    --fp-goods-text: var(--fp-admin-color-text);
+    --fp-goods-muted: var(--fp-admin-color-muted);
+    --fp-goods-soft: var(--fp-admin-color-control-hover);
     color: var(--fp-goods-text);
+    font-size: var(--fp-admin-font-size-body);
     text-align: left !important;
 }
 
@@ -28,7 +29,7 @@
     .fp-admin-number-field__label
 ) {
     color: var(--fp-goods-text) !important;
-    font-size: 15px !important;
+    font-size: var(--fp-admin-font-size-label) !important;
     font-weight: 700 !important;
     line-height: 1.35 !important;
     text-align: left !important;
@@ -39,7 +40,7 @@
     .fp-admin-number-field__hint
 ) {
     color: var(--fp-goods-muted) !important;
-    font-size: 12px !important;
+    font-size: var(--fp-admin-font-size-hint) !important;
     font-weight: 400 !important;
     line-height: 1.45 !important;
     text-align: left !important;
@@ -48,12 +49,12 @@
 #main-form.fp-goods-form-canonical
 .fp-goods-field-card {
     width: 100%;
-    margin: 0 0 10px !important;
-    padding: 14px !important;
+    margin: 0 0 var(--fp-admin-space-3) !important;
+    padding: var(--fp-admin-space-4) !important;
     border: 1px solid var(--fp-goods-border) !important;
-    border-radius: 8px !important;
+    border-radius: var(--fp-admin-radius-md) !important;
     background: var(--fp-goods-bg) !important;
-    box-shadow: none !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
     text-align: left !important;
 }
 
@@ -80,7 +81,7 @@
 ):not(.tox-textarea) {
     min-width: 0;
     border: 1px solid var(--fp-goods-border-strong) !important;
-    border-radius: 6px !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
     background: #ffffff;
     color: var(--fp-goods-text);
     box-shadow: none !important;
@@ -124,12 +125,12 @@ textarea:not(.tox-textarea) {
 #main-form.fp-goods-form-canonical
 .fp-goods-position-field {
     width: 100%;
-    margin: 0 0 10px !important;
-    padding: 14px !important;
+    margin: 0 0 var(--fp-admin-space-3) !important;
+    padding: var(--fp-admin-space-4) !important;
     border: 1px solid var(--fp-goods-border) !important;
-    border-radius: 8px !important;
+    border-radius: var(--fp-admin-radius-md) !important;
     background: var(--fp-goods-bg) !important;
-    box-shadow: none !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
     text-align: left !important;
 }
 
@@ -192,16 +193,16 @@ textarea:not(.tox-textarea) {
     display: grid !important;
     grid-template-columns: 1fr;
     align-content: start;
-    gap: 7px;
+    gap: var(--fp-admin-space-2);
     width: auto !important;
     min-width: 0;
     min-height: 74px;
     margin: 0 !important;
-    padding: 11px 12px !important;
+    padding: var(--fp-admin-space-3) !important;
     border: 1px solid var(--fp-goods-border) !important;
-    border-radius: 8px !important;
+    border-radius: var(--fp-admin-radius-md) !important;
     background: var(--fp-goods-bg) !important;
-    box-shadow: none !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
     text-align: left !important;
 }
 
@@ -239,12 +240,12 @@ textarea:not(.tox-textarea) {
 #main-form.fp-goods-form-canonical
 .fp-goods-filters-section {
     width: 100%;
-    margin: 0 0 10px !important;
-    padding: 14px !important;
+    margin: 0 0 var(--fp-admin-space-3) !important;
+    padding: var(--fp-admin-space-4) !important;
     border: 1px solid var(--fp-goods-border) !important;
-    border-radius: 8px !important;
+    border-radius: var(--fp-admin-radius-md) !important;
     background: var(--fp-goods-bg) !important;
-    box-shadow: none !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
     text-align: left !important;
 }
 
@@ -274,7 +275,7 @@ textarea:not(.tox-textarea) {
     min-height: 38px;
     padding: 7px 10px !important;
     border: 1px solid var(--fp-goods-border-strong) !important;
-    border-radius: 6px !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
     background: #ffffff !important;
     color: var(--fp-goods-text) !important;
     cursor: pointer;
@@ -292,7 +293,7 @@ textarea:not(.tox-textarea) {
     margin: 4px 0 7px !important;
     padding: 7px 10px !important;
     border: 1px solid var(--fp-goods-border) !important;
-    border-radius: 6px !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
     background: #fafbfb !important;
 }
 
@@ -328,11 +329,11 @@ textarea:not(.tox-textarea) {
     gap: 10px;
     width: 100%;
     min-height: 40px;
-    margin: 8px 0 0;
-    padding: 8px 11px;
-    border: 1px solid #7f8e98;
-    border-radius: 6px;
-    background: #edf0f2;
+    margin: var(--fp-admin-space-2) 0 0;
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3);
+    border: 1px solid var(--fp-admin-color-control-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-badge-bg);
     color: var(--fp-goods-text);
     cursor: pointer;
     font: inherit;
@@ -365,15 +366,16 @@ textarea:not(.tox-textarea) {
 .fp-goods-filter-groups-toggle__count {
     display: inline-grid;
     place-items: center;
-    min-width: 23px;
-    height: 23px;
+    min-width: 1.75rem;
+    height: 1.5rem;
     margin-left: auto;
-    padding: 0 5px;
-    border-radius: 5px;
-    background: #3f474d;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
+    padding: 0 var(--fp-admin-space-2);
+    border: 1px solid var(--fp-admin-color-field-border);
+    border-radius: var(--fp-admin-radius-sm);
+    background: var(--fp-admin-badge-bg);
+    color: var(--fp-admin-badge-text);
+    font-size: var(--fp-admin-font-size-hint);
+    font-weight: 600;
 }
 
 @media (max-width: 1120px) {
@@ -398,6 +400,916 @@ textarea:not(.tox-textarea) {
     #main-form.fp-goods-form-canonical
     .fp-goods-filters-section {
         padding: 11px !important;
+    }
+}
+
+/**
+ * Phase 8 Goods visual recomposition.
+ *
+ * Functional ownership remains in the existing generic form templates.
+ * This block owns the accepted Goods-specific visual grouping and polish.
+ */
+
+/* One Goods content gutter keeps the left/right page edge equal to the
+ * component-to-component gap.
+ */
+#main-form.fp-goods-form-canonical {
+    padding-inline: var(--fp-admin-space-3) !important;
+    box-sizing: border-box;
+}
+
+/* Goods top/bottom actions use the same rounded card shell as the form. */
+
+
+
+
+/* Upper thematic grid:
+ * left  = Name, alias, visibility;
+ * right = Parent section, list position.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: var(--fp-admin-space-2) var(--fp-admin-space-3);
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 var(--fp-admin-space-2);
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields > .vg-wrap,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields > .vg-wrap > .vg-full {
+    display: contents !important;
+}
+
+/* Generic field wrappers remain runtime/compatibility hooks only. The
+ * visible card is the project-owned inner surface, so the legacy square
+ * backing must not create a second card.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+> .vg-wrap
+> .vg-full
+> * {
+    grid-column: 1 / -1;
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+> .vg-wrap
+> .vg-full
+> *:has([name="name"]) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+> .vg-wrap
+> .vg-full
+> *:has([name="alias"]) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+> .vg-wrap
+> .vg-full
+> *:has(select[name="parent_id"]) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+> .vg-wrap
+> .vg-full
+> *:has(input[name="menu_position"]) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-field-card,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-field--visible {
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+    padding: var(--fp-admin-space-3) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-field-card,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field {
+    min-height: 5.25rem;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility {
+    grid-column: 1;
+    grid-row: 3;
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid {
+    grid-column: 2;
+    grid-row: 3;
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-field--visible {
+    float: none !important;
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--fp-admin-space-2);
+    min-height: 3rem;
+    height: 3rem;
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3) !important;
+    text-align: left !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-title {
+    font-size: var(--fp-admin-font-size-label) !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-head {
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--fp-admin-space-2);
+    margin: 0 !important;
+}
+
+/* Compact the legacy field label/hint/input rhythm without changing the
+ * underlying form controls or their names.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__surface {
+    display: grid !important;
+    grid-template-rows: max-content 2.25rem;
+    gap: var(--fp-admin-space-1) !important;
+    min-height: 5.25rem !important;
+    height: auto !important;
+    align-content: space-between;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__heading {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--fp-admin-space-2) !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.25;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__heading
+> .vg-left {
+    float: none !important;
+    flex: 0 0 auto;
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__heading
+.fp-admin-field__hint {
+    margin-left: 0 !important;
+    white-space: normal;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__control {
+    float: none !important;
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__control
+:where(input:not([type="radio"]):not([type="checkbox"]), select),
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-field-card
+:where(input:not([type="radio"]):not([type="checkbox"]), select) {
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-field-card
+.vg-header,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field
+.vg-header,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-number-field__label {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-field-card
+.vg_subheader,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field
+.vg_subheader,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-number-field__hint {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field {
+    display: grid !important;
+    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-rows: max-content 2.25rem;
+    grid-template-areas:
+        "position-label position-hint"
+        "position-controls position-controls";
+    column-gap: var(--fp-admin-space-2);
+    row-gap: var(--fp-admin-space-1);
+    min-height: 5.25rem;
+    align-content: space-between;
+    align-items: baseline;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field
+.fp-admin-number-field__label {
+    grid-area: position-label;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field
+.fp-admin-number-field__hint {
+    grid-area: position-hint;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field
+.fp-admin-position-composite {
+    grid-area: position-controls;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__control,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-field-card
+:where(input, select),
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field
+:where(input, select) {
+    margin-top: 0 !important;
+}
+
+/* Remove the side-gap inconsistency from the position composite while
+ * retaining the ordering runtime and its quick-position select.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-position-composite {
+    width: 100% !important;
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    margin: 0 !important;
+    gap: var(--fp-admin-space-2) !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-position-composite
+> input[name="menu_position"],
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-position-composite__select {
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    box-sizing: border-box;
+}
+
+/* Main page composition after the upper thematic grid. */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--fp-admin-space-3);
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-grid,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__middle-grid,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--fp-admin-space-3);
+    width: 100%;
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-grid,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-grid {
+    align-items: stretch;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__middle-grid {
+    align-items: start;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__related,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-panel {
+    min-width: 0;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery {
+    display: flex;
+    align-self: stretch;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main > *,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery > *,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial > *,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__related > *,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-panel > * {
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Main image keeps its existing runtime hooks but fills the same media row
+ * as the gallery card.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main
+.fp-admin-image-field {
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main
+.fp-admin-image-field__surface {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main
+.fp-admin-image-field__preview.img_show,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-main
+.fp-admin-image-field__preview.main_img_show {
+    width: 100% !important;
+    min-height: 10rem;
+    margin-top: 0;
+}
+
+/* Gallery gets the same visible card boundary and row height as Main Image. */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery
+.fp-admin-gallery-shell {
+    height: 100%;
+    padding: var(--fp-admin-space-4) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery
+.fp-admin-gallery-shell
+> .vg-wrap {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--fp-admin-space-3) !important;
+    align-content: start;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery
+.fp-admin-gallery__heading {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--fp-admin-space-1) !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery
+.fp-admin-gallery__heading
+> .vg-left {
+    float: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery
+.fp-admin-gallery__grid {
+    float: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__media-gallery
+.fp-admin-gallery-shell
+> .vg-wrap {
+    min-height: 100%;
+}
+
+/* Commercial column: each thematic group has one visible card boundary. */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--fp-admin-space-3);
+    align-content: start;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-admin-price-panel {
+    width: 100%;
+    margin: 0 !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+/* Promo flags sit opposite Visibility as one equal white card. */
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0 !important;
+    width: 100%;
+    min-height: 3rem;
+    height: 3rem;
+    margin: 0 !important;
+    padding: var(--fp-admin-space-1) var(--fp-admin-space-2) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-field--promo-flag {
+    float: none !important;
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--fp-admin-space-1);
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 var(--fp-admin-space-1) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-title {
+    min-width: 0;
+    font-size: var(--fp-admin-font-size-hint) !important;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-head,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-options,
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-field--promo-flag
+> .vg-left {
+    float: none !important;
+    flex: 0 0 auto;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-options {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--fp-admin-space-1);
+    align-items: center;
+    white-space: nowrap;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-option {
+    border-radius: var(--fp-admin-radius-sm);
+}
+
+/* Filters are restored through their existing checkboxlist template and
+ * existing Goods runtime. This rule only normalizes the outer card.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: var(--fp-admin-space-4) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+> .vg-wrap,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+> .vg-wrap
+> .vg-full {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filter-groups-toggle {
+    border-radius: var(--fp-admin-radius-sm) !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+button,
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+[role="button"] {
+    border-radius: var(--fp-admin-radius-sm) !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+.fp-admin-field--checkboxlist {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+.fp-admin-checkboxlist__header {
+    border-radius: var(--fp-admin-radius-sm) !important;
+}
+
+
+
+/* Related Goods starts on the same grid line as Price and uses the same
+ * rounded-card language.
+ */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__related {
+    align-self: start;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__related
+.vg-related-goods-panel {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: var(--fp-admin-space-4) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__related
+.vg-related-goods-panel__title {
+    margin: 0 0 var(--fp-admin-space-1) !important;
+    color: var(--fp-goods-text) !important;
+    font-size: var(--fp-admin-font-size-label) !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__related
+.vg-related-goods-panel__hint {
+    margin-bottom: var(--fp-admin-space-3);
+    color: var(--fp-goods-muted);
+    font-size: var(--fp-admin-font-size-hint);
+    line-height: 1.45;
+}
+
+/* Short information and Keywords share one card and editor-height contract. */
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-panel {
+    height: 100%;
+    padding: var(--fp-admin-space-4);
+    border: 1px solid var(--fp-goods-border);
+    border-radius: var(--fp-admin-radius-md);
+    background: var(--fp-goods-bg);
+    box-shadow: var(--fp-admin-shadow-card);
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-panel
+.fp-admin-field--textarea {
+    height: 100%;
+    margin: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-panel
+.fp-admin-field--textarea textarea {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-goods-composition__text-panel
+.tox-tinymce {
+    height: 24rem !important;
+    min-height: 24rem !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    overflow: hidden;
+}
+
+/* Service tabs keep their existing renderer/runtime, but the old square
+ * section backing is neutralized. Individual panels own the visible card.
+ */
+#main-form.fp-goods-form-canonical
+.forprint-optional-tabs-admin.fp-admin-tab-section {
+    width: auto !important;
+    margin: var(--fp-admin-space-3) 0 0 !important;
+    padding: var(--fp-admin-space-4) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+}
+
+#main-form.fp-goods-form-canonical
+.forprint-optional-tabs-admin
+.fp-admin-tab-section-inner {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#main-form.fp-goods-form-canonical
+.forprint-optional-tabs-admin
+.fp-admin-tab-section-heading {
+    display: grid !important;
+    gap: var(--fp-admin-space-1);
+    padding: 0 0 var(--fp-admin-space-3) !important;
+    background: transparent !important;
+}
+
+#main-form.fp-goods-form-canonical
+.forprint-optional-tabs-admin
+.fp-admin-tab-section-heading
+:where(.vg-header, .vg_subheader) {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-form.fp-goods-form-canonical
+.forprint-optional-tabs-admin
+.fp-admin-tab-grid {
+    gap: var(--fp-admin-space-3) !important;
+}
+
+#main-form.fp-goods-form-canonical
+.forprint-optional-tabs-admin
+.fp-admin-tab-panel {
+    min-width: 0;
+    padding: var(--fp-admin-space-3) var(--fp-admin-space-4) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-goods-bg) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-admin-tab-panel
+input.vg-input {
+    border-radius: var(--fp-admin-radius-sm) !important;
+}
+
+#main-form.fp-goods-form-canonical
+.fp-admin-tab-panel
+.tox-tinymce {
+    border-radius: var(--fp-admin-radius-sm) !important;
+    overflow: hidden;
+}
+
+@media (max-width: 70rem) {
+    #main-form.fp-goods-form-canonical
+    .fp-goods-primary-fields,
+    #main-form.fp-goods-form-canonical
+    .fp-goods-composition__media-grid,
+    #main-form.fp-goods-form-canonical
+    .fp-goods-composition__middle-grid,
+    #main-form.fp-goods-form-canonical
+    .fp-goods-composition__text-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #main-form.fp-goods-form-canonical
+    .fp-goods-primary-fields
+    > .vg-wrap
+    > .vg-full
+    > *,
+    #main-form.fp-goods-form-canonical
+    .fp-goods-primary-fields__visibility {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
+    #main-form.fp-goods-form-canonical
+    .fp-goods-primary-fields__promo-grid {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 47.5rem) {
+    #main-form.fp-goods-form-canonical {
+        padding-inline: var(--fp-admin-space-2) !important;
+    }
+
+    #main-form.fp-goods-form-canonical
+    .fp-goods-primary-fields__visibility
+    .fp-radio-template-field--visible {
+        flex-wrap: wrap;
+    }
+
+    #main-form.fp-goods-form-canonical
+    .fp-goods-primary-fields__promo-grid {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
@@ -443,14 +1355,28 @@ textarea:not(.tox-textarea) {
     flex: 1 1 auto;
 }
 
-.vg-related-goods-panel__search button,
-.vg-related-goods-panel__item button {
-    min-height: 38px;
-    padding: 7px 14px;
-    border: 1px solid #173042;
-    color: #173042;
-    background: #eef4f7;
+#main-form.fp-goods-form-canonical .vg-related-goods-panel__search button,
+#main-form.fp-goods-form-canonical .vg-related-goods-panel__item button {
+    min-height: 2.25rem !important;
+    padding: 0.45rem 0.8rem !important;
+    border: 1px solid var(--fp-admin-color-control-border) !important;
+    border-radius: var(--fp-admin-radius-sm) !important;
+    color: var(--fp-admin-color-text) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    font: inherit;
+    font-size: var(--fp-admin-font-size-hint) !important;
+    font-weight: 400 !important;
     cursor: pointer;
+}
+
+#main-form.fp-goods-form-canonical .vg-related-goods-panel__search button:hover,
+#main-form.fp-goods-form-canonical .vg-related-goods-panel__search button:focus-visible,
+#main-form.fp-goods-form-canonical .vg-related-goods-panel__item button:hover,
+#main-form.fp-goods-form-canonical .vg-related-goods-panel__item button:focus-visible {
+    background: var(--fp-admin-color-control-hover) !important;
+    box-shadow: var(--fp-admin-shadow-control-hover) !important;
+    outline: none;
 }
 
 .vg-related-goods-panel__selected,
@@ -498,3 +1424,475 @@ textarea:not(.tox-textarea) {
     color: #607481;
     font-style: italic;
 }
+
+/* Phase 8 Goods upper/promo/filters CSS correction - 2026-08-28 13:42 */
+/*
+ * Functional post-144 runtime remains the baseline.
+ * This block consolidates only the remaining Goods presentation:
+ * upper field rhythm, Visibility/Promo peer cards, and Filters card ownership.
+ */
+
+/* Upper Name/Alias/Parent/Position cards use one predictable two-row rhythm. */
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__surface.fp-goods-field-card,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field {
+  min-height: 5.25rem !important;
+  height: 5.25rem !important;
+  padding: 0.5625rem 0.75rem !important;
+  box-sizing: border-box !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__surface.fp-goods-field-card {
+  display: grid !important;
+  grid-template-rows: 1.25rem 2.25rem !important;
+  align-content: start !important;
+  row-gap: 0.5rem !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field--text
+.fp-admin-field__control > .vg-element.vg-full.vg-left {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/*
+ * Name/Alias use the same fixed card height as their right-column peers,
+ * but their text-control composition reads visually lower. Keep the total
+ * vertical padding unchanged while shifting this text pair slightly upward.
+ */
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__heading,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field__header {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+    min-height: 1.25rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__label,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__hint,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field__label,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field__hint {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__heading
+> .vg-left,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field__header
+> .vg-left {
+    float: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-admin-field__control {
+    align-self: end;
+    width: 100%;
+    margin: 0 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-field {
+  display: grid !important;
+  grid-template-rows: 1.25rem 2.25rem !important;
+  align-content: start !important;
+  row-gap: 0.5rem !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+.fp-goods-position-composite {
+    align-self: end;
+    margin: 0 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields
+select,
+form#main-form.fp-goods-form-canonical
+.fp-goods-position-composite
+input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),
+form#main-form.fp-goods-form-canonical
+.fp-goods-position-composite
+select {
+    min-height: 2.25rem !important;
+    height: 2.25rem !important;
+    padding-top: 0.375rem !important;
+    padding-bottom: 0.375rem !important;
+    box-sizing: border-box !important;
+}
+
+/* Visibility and Promo are peer white cards on the third desktop row. */
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid {
+    min-width: 0;
+    min-height: 3rem !important;
+    height: 3rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-field--visible,
+form#main-form.fp-goods-form-canonical
+.fp-promo-flags-grid.fp-goods-promotions-canonical.fp-goods-primary-fields__promo-grid {
+    min-height: 3rem !important;
+    height: 3rem !important;
+    margin: 0 !important;
+    padding: var(--fp-admin-space-2) var(--fp-admin-space-3) !important;
+    border: 1px solid var(--fp-goods-border) !important;
+    border-radius: var(--fp-admin-radius-md) !important;
+    background: var(--fp-admin-color-surface) !important;
+    box-shadow: var(--fp-admin-shadow-card) !important;
+    box-sizing: border-box !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-field--visible {
+    float: none !important;
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center !important;
+    gap: var(--fp-admin-space-2) !important;
+    text-align: left !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-title {
+    font-size: var(--fp-admin-font-size-label) !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-head,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-options {
+    float: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__visibility
+.fp-radio-template-options {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center !important;
+    gap: var(--fp-admin-space-2) !important;
+}
+
+/* One white Promo parent card; inner legacy flag wrappers are presentation-neutral. */
+form#main-form.fp-goods-form-canonical
+.fp-promo-flags-grid.fp-goods-promotions-canonical.fp-goods-primary-fields__promo-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, max-content) !important;
+  align-items: center !important;
+  align-content: center !important;
+  justify-items: center !important;
+  justify-content: space-evenly !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-field--promo-flag {
+  float: none !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--fp-admin-space-1) !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  justify-self: center !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-title {
+    min-width: 0;
+    margin: 0 !important;
+    font-size: var(--fp-admin-font-size-hint) !important;
+    line-height: 1.2 !important;
+    white-space: nowrap;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-head,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-options,
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-field--promo-flag
+> .vg-left {
+    float: none !important;
+    flex: 0 0 auto;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-primary-fields__promo-grid
+.fp-radio-template-options {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: var(--fp-admin-space-1) !important;
+    white-space: nowrap;
+}
+
+/* Filters: the live fp-goods-filters-root is the single visible card owner. */
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+> .vg-wrap,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-section
+> .vg-wrap
+> .vg-full,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+> .fp-admin-field:has(> .fp-goods-filters-root) {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: start !important;
+  align-content: start !important;
+  gap: var(--fp-admin-space-2) !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: var(--fp-admin-space-4) !important;
+  border: 1px solid var(--fp-goods-border) !important;
+  border-radius: var(--fp-admin-radius-md) !important;
+  background: var(--fp-admin-color-surface) !important;
+  box-shadow: var(--fp-admin-shadow-card) !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+> .fp-admin-checkboxlist__heading {
+    margin: 0 0 var(--fp-admin-space-2) !important;
+    padding: 0 !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+> .fp-admin-checkboxlist__heading,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+> .fp-goods-filter-group,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+> .fp-goods-filter-groups-toggle {
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+.fp-goods-filter-group
+> .fp-admin-checkboxlist__header {
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+.fp-admin-field--checkboxlist {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+.fp-goods-filter-group,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+.fp-admin-checkboxlist__header,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+.fp-goods-filter-groups-toggle,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+button,
+form#main-form.fp-goods-form-canonical
+.fp-goods-composition__commercial
+.fp-goods-filters-root
+[role="button"] {
+    border-radius: var(--fp-admin-radius-sm) !important;
+}
+
+/* Top Filters mirror is presentation-only; bottom toggle remains behavior owner. */
+form#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle--top-mirror {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-height: 38px !important;
+  margin: 0 0 var(--fp-admin-space-2) !important;
+  padding: 7px 10px !important;
+  border: 1px solid var(--fp-admin-color-control-border) !important;
+  border-radius: var(--fp-admin-radius-sm) !important;
+  color: var(--fp-admin-color-text) !important;
+  background: var(--fp-admin-color-surface) !important;
+  box-shadow: none !important;
+  font-size: var(--fp-admin-font-size-hint);
+  font-weight: 400;
+  text-align: left !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle--top-mirror > span {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 6.9rem;
+  min-width: 0;
+  text-align: left;
+  transform: translateY(-50%);
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle--top-mirror::after {
+  position: absolute !important;
+  content: "" !important;
+  top: calc(50% - 12px) !important;
+  right: 12px !important;
+  height: 8px !important;
+  margin: 0 !important;
+  border: 8px solid transparent !important;
+  border-top: 8px solid currentColor !important;
+  box-sizing: border-box;
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+  transform: rotate(180deg) !important;
+  transform-origin: center !important;
+}
+
+form#main-form.fp-goods-form-canonical
+.fp-goods-filter-groups-toggle--top-mirror[hidden] {
+    display: none !important;
+}
+
+/*
+ * Frozen here:
+ * - add.php / POST semantics;
+ * - price mode;
+ * - Main Image / Gallery runtime;
+ * - Related Goods runtime;
+ * - TinyMCE;
+ * - shared admin CSS.
+ */

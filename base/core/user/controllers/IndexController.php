@@ -26,13 +26,13 @@ class IndexController extends BaseUser
         $this->frontendProfile = $this->resolveFrontendProfile();
         $this->styles[] = PATH
             . TEMPLATE
-            . 'assets/css/forprint-home.css?v=20260806-1416';
+            . 'assets/css/forprint-home.css?v=20260831-1608';
 $this->styles[] = PATH
     . TEMPLATE
     . 'assets/css/forprint-home-responsive.css?v=20260815-1752';
         $this->scripts[] = PATH
             . TEMPLATE
-            . 'assets/js/surfaces/home.js?v=20260722-0005';
+            . 'assets/js/surfaces/home.js?v=20260831-1608';
 
 
         $sales = $this->model->get('sales', [

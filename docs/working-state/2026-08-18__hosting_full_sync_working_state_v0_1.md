@@ -108,3 +108,37 @@ make hosting-sync-full
 ```
 
 Do not return to ad-hoc partial SQL/media copy scripts for that release class.
+
+<!-- FP_CANONICAL_SSH_TRANSPORT_HARDENING_V1 -->
+## SSH transport hardening after 2026-08-18 recovery incident
+
+A production release encountered transient OpenSSH handshake resets
+(`kex_exchange_identification`) during remote inventory. Automatic rollback
+restored the owned webroot but the first rollback database stream was also
+interrupted. Production was subsequently recovered completely from the
+pre-mutation local rollback snapshot.
+
+Accepted transport policy:
+
+- canonical discovered SSH connections use keepalive plus OpenSSH connection
+  multiplexing to reduce repeated handshakes;
+- read-only operations use bounded transient retries;
+- idempotent prune/capacity cleanup may retry the complete operation;
+- deterministic tar upload/restore streams may restart from byte zero;
+- hosting-to-local backup streams may restart from byte zero;
+- normal production database import remains fail-closed;
+- rollback database restore may restart the complete deterministic snapshot
+  package on a proven transport break;
+- logical application, quota, SQL, permission and validation failures never
+  become generic retries;
+- full-sync verification remains file-list + SHA-256 + DB-count +
+  communication acceptance.
+
+Operational escape hatch:
+
+```bash
+FORPRINT_DISABLE_SSH_MULTIPLEX=1 make hosting-sync-full-dry-run
+```
+
+This disables ControlMaster reuse for diagnosis without changing source.
+<!-- /FP_CANONICAL_SSH_TRANSPORT_HARDENING_V1 -->

@@ -58,7 +58,7 @@
 <script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-ui.js?v=20260823-2055"></script>
 <script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-ordering.js?v=20260823-2125"></script>
 <script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-gallery.js?v=20260725-2605"></script>
-<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-goods-form.js?v=20260823-2055"></script>
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-goods-form.js?v=20260828-1846"></script>
 </body>
 
 </html>

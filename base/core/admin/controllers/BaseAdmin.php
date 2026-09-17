@@ -1579,7 +1579,18 @@ abstract class BaseAdmin extends BaseController
 
     protected function preserveGalleryOnFailedUpload($id, array $fileUploadErrors)
     {
-        if ($this->table !== 'goods' || !$id) {
+        if (
+            !in_array(
+                (string)$this->table,
+                ['goods', 'catalog', 'filters_categories', 'filters', 'sales', 'news', 'advantages', 'footer_settings'],
+                true
+            )
+            || !$id
+            || !array_key_exists(
+                'gallery_img',
+                (array)$this->columns
+            )
+        ) {
             return;
         }
 

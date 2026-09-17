@@ -44,7 +44,7 @@
         }
     </style>
 <meta name="robots" content="noindex,nofollow,noarchive">
-<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-login.css?v=20260725-1615">
+<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-login.css?v=20260903-1516">
 </head>
 <body>
 
@@ -62,7 +62,27 @@
         <label for="login">Username</label>
         <input type="text" name="login" id="login">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password">
+        <div class="fp-admin-login-password" data-fp-login-password>
+            <input
+                type="password"
+                name="password"
+                id="password"
+                class="fp-admin-login-password__input"
+                autocomplete="current-password"
+                data-fp-login-password-input
+            >
+            <button
+                type="button"
+                class="fp-admin-login-password__toggle"
+                data-fp-login-password-toggle
+                aria-controls="password"
+                aria-pressed="false"
+                aria-label="Показати пароль"
+                title="Показати пароль"
+            >
+                <span class="fp-admin-login-password__icon" aria-hidden="true"></span>
+            </button>
+        </div>
         <input type="submit" value="Sign in">
     </form>
 </div>
@@ -90,5 +110,6 @@
 
 </script>
 
+<script defer src="<?=PATH . ADMIN_TEMPLATE?>js/forprint-admin-login.js?v=20260903-1516"></script>
 </body>
 </html>

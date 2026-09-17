@@ -221,3 +221,33 @@ large parity loss → full hosting reset
 ```
 
 Do not use a full reset for a one-file regression.
+
+<!-- FP_RELEASE_HEALTH_COMMUNICATION_BRIDGE_V0_1_START -->
+## Release-health integration — 2026-09-06
+
+The existing non-sending communication acceptance remains the canonical
+Telegram/email readiness owner.
+
+`make hosting-health-check` reuses that acceptance and exposes two visible
+operator rows:
+
+```text
+Telegram readiness
+Email / SMTP readiness
+```
+
+A PASS means the existing non-sending acceptance verified its SMTP and Telegram
+readiness predicates. It does not mean a real message was sent.
+
+Canonical health contract:
+
+```text
+docs/workflow/website_release_health_contract_v0_1.md
+```
+
+Manual browser/provider checks:
+
+```text
+docs/runbooks/production_release_manual_checks_v0_1.md
+```
+<!-- FP_RELEASE_HEALTH_COMMUNICATION_BRIDGE_V0_1_END -->

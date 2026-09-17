@@ -1,0 +1,7306 @@
+{
+  "admin_header_source": {
+    "exists": true,
+    "line_count": 125,
+    "lines": [
+      {
+        "line": 1,
+        "text": "<!DOCTYPE html>"
+      },
+      {
+        "line": 2,
+        "text": "<html>"
+      },
+      {
+        "line": 3,
+        "text": "<head>"
+      },
+      {
+        "line": 4,
+        "text": "    <meta charset=\"utf-8\"/>"
+      },
+      {
+        "line": 5,
+        "text": "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+      },
+      {
+        "line": 6,
+        "text": "    <meta type=\"keywords\" content=\"...\">"
+      },
+      {
+        "line": 7,
+        "text": "    <meta type=\"description\" content=\"...\">"
+      },
+      {
+        "line": 8,
+        "text": "    <title>Document</title>"
+      },
+      {
+        "line": 9,
+        "text": ""
+      },
+      {
+        "line": 10,
+        "text": "    <?php $this->getStyles()?>"
+      },
+      {
+        "line": 11,
+        "text": "    <link"
+      },
+      {
+        "line": 12,
+        "text": "        rel=\"stylesheet\""
+      },
+      {
+        "line": 13,
+        "text": "        href=\"<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin.css?v=20260724-0649\""
+      },
+      {
+        "line": 14,
+        "text": "    >"
+      },
+      {
+        "line": 15,
+        "text": "<link rel=\"stylesheet\" href=\"<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-collections.css?v=20260725-1830\">"
+      },
+      {
+        "line": 16,
+        "text": "<link rel=\"stylesheet\" href=\"<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-ui.css?v=20260725-2605\">"
+      },
+      {
+        "line": 17,
+        "text": "<link rel=\"stylesheet\" href=\"<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-ordering.css?v=20260725-2710\">"
+      },
+      {
+        "line": 18,
+        "text": "<link rel=\"stylesheet\" href=\"<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-gallery.css?v=20260725-3500\">"
+      },
+      {
+        "line": 19,
+        "text": "<link rel=\"stylesheet\" href=\"<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-goods-form.css?v=20260725-3500\">"
+      },
+      {
+        "line": 20,
+        "text": "</head>"
+      },
+      {
+        "line": 21,
+        "text": "<body>"
+      },
+      {
+        "line": 22,
+        "text": "<div class=\"vg-carcass fp-admin-shell\" data-fp-admin-shell>"
+      },
+      {
+        "line": 23,
+        "text": "    <div class=\"vg-main fp-admin-topbar\">"
+      },
+      {
+        "line": 24,
+        "text": "        <div class=\"vg-one-of-twenty fp-admin-topbar__brand vg-firm-background-color2  vg-center\">"
+      },
+      {
+        "line": 25,
+        "text": "            <a href=\"<?=PATH?>\" target=\"_blank\">"
+      },
+      {
+        "line": 26,
+        "text": "                <div class=\"vg-element vg-full\">"
+      },
+      {
+        "line": 27,
+        "text": "                    <span class=\"vg-text2 vg-firm-color1\">Site</span>"
+      },
+      {
+        "line": 28,
+        "text": "                </div>"
+      },
+      {
+        "line": 29,
+        "text": "            </a>"
+      },
+      {
+        "line": 30,
+        "text": "        </div>"
+      },
+      {
+        "line": 31,
+        "text": "        <div class=\"vg-element vg-ninteen-of-twenty fp-admin-topbar__content vg-firm-background-color4 vg-space-between  vg-box-shadow\">"
+      },
+      {
+        "line": 32,
+        "text": "            <div class=\"vg-element vg-third\">"
+      },
+      {
+        "line": 33,
+        "text": "                <button"
+      },
+      {
+        "line": 34,
+        "text": "                    class=\"vg-element vg-fifth vg-center fp-admin-sidebar-toggle\""
+      },
+      {
+        "line": 35,
+        "text": "                    id=\"hideButton\""
+      },
+      {
+        "line": 36,
+        "text": "                    type=\"button\""
+      },
+      {
+        "line": 37,
+        "text": "                    aria-label=\"Розгорнути адміністративне меню\""
+      },
+      {
+        "line": 38,
+        "text": "                    aria-expanded=\"true\""
+      },
+      {
+        "line": 39,
+        "text": "                >"
+      },
+      {
+        "line": 40,
+        "text": "                    <span>"
+      },
+      {
+        "line": 41,
+        "text": "                        <img src=\"<?=PATH.ADMIN_TEMPLATE?>img/menu-button.png\" alt=\"\">"
+      },
+      {
+        "line": 42,
+        "text": "                    </span>"
+      },
+      {
+        "line": 43,
+        "text": "                </button>"
+      },
+      {
+        "line": 44,
+        "text": "                <div class=\"vg-element vg-wrap-size vg-left vg-search  vg-relative\" id=\"searchButton\">"
+      },
+      {
+        "line": 45,
+        "text": "                    <div>"
+      },
+      {
+        "line": 46,
+        "text": "                        <img src=\"<?=PATH.ADMIN_TEMPLATE?>img/search.png\" alt=\"\">"
+      },
+      {
+        "line": 47,
+        "text": "                    </div>"
+      },
+      {
+        "line": 48,
+        "text": "                    <form"
+      },
+      {
+        "line": 49,
+        "text": "                        action=\"<?=$this->adminPath?>show/<?=htmlspecialchars((string)($this->table ?? 'goods'), ENT_QUOTES, 'UTF-8')?>\""
+      },
+      {
+        "line": 50,
+        "text": "                        autocomplete=\"off\""
+      },
+      {
+        "line": 51,
+        "text": "                        data-fp-admin-search-form"
+      },
+      {
+        "line": 52,
+        "text": "                    >"
+      },
+      {
+        "line": 53,
+        "text": "                        <input type=\"text\" name=\"search\" class=\"vg-input vg-text\" placeholder=\"Пошук в адмінці\" aria-label=\"Пошук в адмінці\">"
+      },
+      {
+        "line": 54,
+        "text": "                        <input type=\"hidden\" name=\"search_table\" value=\"<?=$this->table?>\">"
+      },
+      {
+        "line": 55,
+        "text": "                        <div class=\"vg-element vg-firm-background-color4 vg-box-shadow search_links search_res\">"
+      },
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "                        </div>"
+      },
+      {
+        "line": 58,
+        "text": "                    </form>"
+      },
+      {
+        "line": 59,
+        "text": "                </div>"
+      },
+      {
+        "line": 60,
+        "text": "            </div>"
+      },
+      {
+        "line": 61,
+        "text": "            <!--кнопка-->"
+      },
+      {
+        "line": 62,
+        "text": "            <a href=\"<?=PATH . \\core\\base\\settings\\Settings::get('routes')['admin']['alias']?>/createsitemap\" class=\"vg-element vg-box-shadow sitemap-button\">"
+      },
+      {
+        "line": 63,
+        "text": "                            <span class=\"vg-text vg-firm-color1\">"
+      },
+      {
+        "line": 64,
+        "text": "                                Create sitemap"
+      },
+      {
+        "line": 65,
+        "text": "                            </span>"
+      },
+      {
+        "line": 66,
+        "text": "            </a>"
+      },
+      {
+        "line": 67,
+        "text": "            <!--/кнопка-->"
+      },
+      {
+        "line": 68,
+        "text": "            <div class=\"vg-element vg-fifth\">"
+      },
+      {
+        "line": 69,
+        "text": "                <div class=\"vg-element vg-half vg-right\">"
+      },
+      {
+        "line": 70,
+        "text": "                    <div class=\"vg-element vg-text vg-center\">"
+      },
+      {
+        "line": 71,
+        "text": "                        <span class=\"vg-firm-color5\"><?=htmlspecialchars((string)($this->userId['name'] ?? 'admin'), ENT_QUOTES, 'UTF-8')?></span>"
+      },
+      {
+        "line": 72,
+        "text": "                    </div>"
+      },
+      {
+        "line": 73,
+        "text": "                </div>"
+      },
+      {
+        "line": 74,
+        "text": "                <a href=\"<?=PATH . \\core\\base\\settings\\Settings::get('routes')['admin']['alias']?>/login/logout/1\""
+      },
+      {
+        "line": 75,
+        "text": "                   class=\"vg-element vg-half vg-center\""
+      },
+      {
+        "line": 76,
+        "text": "                   data-fp-admin-logout>"
+      },
+      {
+        "line": 77,
+        "text": "                    <div>"
+      },
+      {
+        "line": 78,
+        "text": "                        <img src=\"<?=PATH .ADMIN_TEMPLATE?>img/out.png\" alt=\"\">"
+      },
+      {
+        "line": 79,
+        "text": "                    </div>"
+      },
+      {
+        "line": 80,
+        "text": "                </a>"
+      },
+      {
+        "line": 81,
+        "text": "            </div>"
+      },
+      {
+        "line": 82,
+        "text": "        </div>"
+      },
+      {
+        "line": 83,
+        "text": "    </div>"
+      },
+      {
+        "line": 84,
+        "text": "    <div class=\"vg-main vg-right vg-relative fp-admin-workspace\">"
+      },
+      {
+        "line": 85,
+        "text": "        <nav"
+      },
+      {
+        "line": 86,
+        "text": "            class=\"vg-wrap vg-firm-background-color1 vg-center vg-block vg-menu fp-admin-sidebar\""
+      },
+      {
+        "line": 87,
+        "text": "            aria-label=\"Розділи адміністративної панелі\""
+      },
+      {
+        "line": 88,
+        "text": "            data-fp-admin-menu-sortable"
+      },
+      {
+        "line": 89,
+        "text": "        >"
+      },
+      {
+        "line": 90,
+        "text": ""
+      },
+      {
+        "line": 91,
+        "text": "          <?php if($this->menu):?>"
+      },
+      {
+        "line": 92,
+        "text": "                <?php $fpAdminTechnicalMenuTables = ['footer_settings', 'footer_links', 'footer_phones']; ?>"
+      },
+      {
+        "line": 93,
+        "text": ""
+      },
+      {
+        "line": 94,
+        "text": "                <?php foreach ($this->menu as $table=>$item):?>"
+      },
+      {
+        "line": 95,
+        "text": "                  <?php if ("
+      },
+      {
+        "line": 96,
+        "text": "                      ($item['menu'] ?? true) === false"
+      },
+      {
+        "line": 97,
+        "text": "                      || in_array($table, $fpAdminTechnicalMenuTables, true)"
+      },
+      {
+        "line": 98,
+        "text": "                  ) continue; ?>"
+      },
+      {
+        "line": 99,
+        "text": "                  <?php $fpAdminMenuLabel = $item['name'] ?? $table; ?>"
+      },
+      {
+        "line": 100,
+        "text": "                  <a"
+      },
+      {
+        "line": 101,
+        "text": "                      href=\"<?=$this->adminPath?>show/<?=$table?>\""
+      },
+      {
+        "line": 102,
+        "text": "                      class=\"vg-wrap vg-element vg-full vg-center fp-admin-sidebar__link <?php if($table === ($this->table ?? '')) echo 'active'?>\""
+      },
+      {
+        "line": 103,
+        "text": "                      title=\"<?=htmlspecialchars((string)$fpAdminMenuLabel, ENT_QUOTES, 'UTF-8')?>\""
+      },
+      {
+        "line": 104,
+        "text": "                      draggable=\"true\""
+      },
+      {
+        "line": 105,
+        "text": "                      data-fp-admin-menu-table=\"<?=htmlspecialchars((string)$table, ENT_QUOTES, 'UTF-8')?>\""
+      },
+      {
+        "line": 106,
+        "text": "                  >"
+      },
+      {
+        "line": 107,
+        "text": "                      <span"
+      },
+      {
+        "line": 108,
+        "text": "                          class=\"fp-admin-sidebar__drag-handle\""
+      },
+      {
+        "line": 109,
+        "text": "                          data-fp-admin-menu-drag-handle"
+      },
+      {
+        "line": 110,
+        "text": "                          aria-hidden=\"true\""
+      },
+      {
+        "line": 111,
+        "text": "                          title=\"Перетягнути розділ\""
+      },
+      {
+        "line": 112,
+        "text": "                      >⋮⋮</span>"
+      },
+      {
+        "line": 113,
+        "text": "                      <span class=\"vg-element vg-half vg-center fp-admin-sidebar__icon\">"
+      },
+      {
+        "line": 114,
+        "text": "                          <span>"
+      },
+      {
+        "line": 115,
+        "text": "                              <img src=\"<?=PATH . ADMIN_TEMPLATE?>img/<?=!empty($item['img']) ? $item['img'] : 'pages.png'?>\" alt=\"\">"
+      },
+      {
+        "line": 116,
+        "text": "                          </span>"
+      },
+      {
+        "line": 117,
+        "text": "                      </span>"
+      },
+      {
+        "line": 118,
+        "text": "                      <span class=\"vg-element vg-half vg-center fp-admin-sidebar__label\">"
+      },
+      {
+        "line": 119,
+        "text": "                          <span class=\"vg-text vg-firm-color5\"><?=htmlspecialchars((string)$fpAdminMenuLabel, ENT_QUOTES, 'UTF-8')?></span>"
+      },
+      {
+        "line": 120,
+        "text": "                      </span>"
+      },
+      {
+        "line": 121,
+        "text": "                  </a>"
+      },
+      {
+        "line": 122,
+        "text": "                  <?php endforeach;?>"
+      },
+      {
+        "line": 123,
+        "text": ""
+      },
+      {
+        "line": 124,
+        "text": "            <?php endif;?>"
+      },
+      {
+        "line": 125,
+        "text": "        </nav>"
+      }
+    ],
+    "sha256": "06f1cdae6b0b448cf2671c8ff4c4d827a97322a84c2783f7ec221fb263a60fc0"
+  },
+  "ajax_source": {
+    "exists": true,
+    "line_count": 1257,
+    "lines": [
+      {
+        "line": 1,
+        "text": "<?php"
+      },
+      {
+        "line": 2,
+        "text": ""
+      },
+      {
+        "line": 3,
+        "text": ""
+      },
+      {
+        "line": 4,
+        "text": "namespace core\\admin\\controllers;"
+      },
+      {
+        "line": 5,
+        "text": ""
+      },
+      {
+        "line": 6,
+        "text": ""
+      },
+      {
+        "line": 7,
+        "text": ""
+      },
+      {
+        "line": 8,
+        "text": "use core\\base\\settings\\Settings;"
+      },
+      {
+        "line": 9,
+        "text": "use libraries\\FileEdit;"
+      },
+      {
+        "line": 10,
+        "text": ""
+      },
+      {
+        "line": 11,
+        "text": "class AjaxController extends BaseAdmin"
+      },
+      {
+        "line": 12,
+        "text": "{"
+      },
+      {
+        "line": 13,
+        "text": "    public function ajax(){"
+      },
+      {
+        "line": 14,
+        "text": ""
+      },
+      {
+        "line": 15,
+        "text": "        if(isset($this->ajaxData['ajax'])){"
+      },
+      {
+        "line": 16,
+        "text": ""
+      },
+      {
+        "line": 17,
+        "text": ""
+      },
+      {
+        "line": 18,
+        "text": "            $this->execBase();"
+      },
+      {
+        "line": 19,
+        "text": ""
+      },
+      {
+        "line": 20,
+        "text": "            foreach ($this->ajaxData as $key=>$item) $this->ajaxData[$key] = $this->clearStr($item);"
+      },
+      {
+        "line": 21,
+        "text": ""
+      },
+      {
+        "line": 22,
+        "text": "            switch ($this->ajaxData['ajax']){"
+      },
+      {
+        "line": 23,
+        "text": "                case 'sitemap':"
+      },
+      {
+        "line": 24,
+        "text": "                    return(new CreatesitemapController())->inputData($this->ajaxData['links_counter'], false);"
+      },
+      {
+        "line": 25,
+        "text": ""
+      },
+      {
+        "line": 26,
+        "text": "                    break;"
+      },
+      {
+        "line": 27,
+        "text": ""
+      },
+      {
+        "line": 28,
+        "text": "                case 'editData':"
+      },
+      {
+        "line": 29,
+        "text": ""
+      },
+      {
+        "line": 30,
+        "text": "                    $_POST['return_id'] = true;"
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": ""
+      },
+      {
+        "line": 33,
+        "text": "                    $this->checkPost();"
+      },
+      {
+        "line": 34,
+        "text": ""
+      },
+      {
+        "line": 35,
+        "text": "                    return json_encode(['success' => 1]);"
+      },
+      {
+        "line": 36,
+        "text": ""
+      },
+      {
+        "line": 37,
+        "text": "                    break;"
+      },
+      {
+        "line": 38,
+        "text": ""
+      },
+      {
+        "line": 39,
+        "text": "                case 'change_parent':"
+      },
+      {
+        "line": 40,
+        "text": ""
+      },
+      {
+        "line": 41,
+        "text": "                    return $this->changeParent();"
+      },
+      {
+        "line": 42,
+        "text": ""
+      },
+      {
+        "line": 43,
+        "text": "                    break;"
+      },
+      {
+        "line": 44,
+        "text": ""
+      },
+      {
+        "line": 45,
+        "text": "                case 'goods_form_filter_context':"
+      },
+      {
+        "line": 46,
+        "text": "                    return $this->goodsFormFilterContext();"
+      },
+      {
+        "line": 47,
+        "text": "                    break;"
+      },
+      {
+        "line": 48,
+        "text": ""
+      },
+      {
+        "line": 49,
+        "text": "                case 'search':"
+      },
+      {
+        "line": 50,
+        "text": "                    return $this->search();"
+      },
+      {
+        "line": 51,
+        "text": "                    break;"
+      },
+      {
+        "line": 52,
+        "text": ""
+      },
+      {
+        "line": 53,
+        "text": "                case 'sort_filter_positions':"
+      },
+      {
+        "line": 54,
+        "text": "                    return $this->sortFilterPositions();"
+      },
+      {
+        "line": 55,
+        "text": "                    break;"
+      },
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": ""
+      },
+      {
+        "line": 58,
+        "text": "                case 'sort_entity_positions':"
+      },
+      {
+        "line": 59,
+        "text": "                    return $this->sortEntityPositions();"
+      },
+      {
+        "line": 60,
+        "text": "                    break;"
+      },
+      {
+        "line": 61,
+        "text": ""
+      },
+      {
+        "line": 62,
+        "text": ""
+      },
+      {
+        "line": 63,
+        "text": "                case 'managed_sortable_manifest':"
+      },
+      {
+        "line": 64,
+        "text": "                    return $this->managedSortableManifest();"
+      },
+      {
+        "line": 65,
+        "text": "                    break;"
+      },
+      {
+        "line": 66,
+        "text": ""
+      },
+      {
+        "line": 67,
+        "text": "                case 'sort_managed_collection_positions':"
+      },
+      {
+        "line": 68,
+        "text": "                    return $this->sortManagedCollectionPositions();"
+      },
+      {
+        "line": 69,
+        "text": "                    break;"
+      },
+      {
+        "line": 70,
+        "text": "case 'gallery_reorder':"
+      },
+      {
+        "line": 71,
+        "text": "                    return $this->reorderManagedGallery();"
+      },
+      {
+        "line": 72,
+        "text": "                    break;"
+      },
+      {
+        "line": 73,
+        "text": ""
+      },
+      {
+        "line": 74,
+        "text": "                case 'gallery_delete':"
+      },
+      {
+        "line": 75,
+        "text": "                    return $this->deleteManagedGallery();"
+      },
+      {
+        "line": 76,
+        "text": "                    break;"
+      },
+      {
+        "line": 77,
+        "text": "case 'sort_admin_menu':"
+      },
+      {
+        "line": 78,
+        "text": "                    return $this->sortAdminMenu();"
+      },
+      {
+        "line": 79,
+        "text": "                    break;"
+      },
+      {
+        "line": 80,
+        "text": ""
+      },
+      {
+        "line": 81,
+        "text": "                case 'wyswyg_file':"
+      },
+      {
+        "line": 82,
+        "text": ""
+      },
+      {
+        "line": 83,
+        "text": "                    $fileEdit = new FileEdit();"
+      },
+      {
+        "line": 84,
+        "text": "                    $fileEdit->setUniqueFile(false);"
+      },
+      {
+        "line": 85,
+        "text": "                    $file = $fileEdit->addFile($this->clearStr($this->ajaxData['table']) . '/content_file/');"
+      },
+      {
+        "line": 86,
+        "text": "                    return ['location' => PATH . UPLOAD_DIR . $file[key($file)]];"
+      },
+      {
+        "line": 87,
+        "text": "                    break;"
+      },
+      {
+        "line": 88,
+        "text": "            }"
+      },
+      {
+        "line": 89,
+        "text": "        }"
+      },
+      {
+        "line": 90,
+        "text": "        return json_encode(['success' => '0', 'message' => 'No Ajax variable']);"
+      },
+      {
+        "line": 91,
+        "text": "    }"
+      },
+      {
+        "line": 92,
+        "text": ""
+      },
+      {
+        "line": 93,
+        "text": ""
+      },
+      {
+        "line": 94,
+        "text": "    /**"
+      },
+      {
+        "line": 95,
+        "text": "     * Read-only context for the compact Goods filter selector."
+      },
+      {
+        "line": 96,
+        "text": "     */"
+      },
+      {
+        "line": 97,
+        "text": "    protected function goodsFormFilterContext(): string"
+      },
+      {
+        "line": 98,
+        "text": "    {"
+      },
+      {
+        "line": 99,
+        "text": "        $parentId = (int)$this->clearNum("
+      },
+      {
+        "line": 100,
+        "text": "            $this->ajaxData['parent_id'] ?? 0"
+      },
+      {
+        "line": 101,
+        "text": "        );"
+      },
+      {
+        "line": 102,
+        "text": ""
+      },
+      {
+        "line": 103,
+        "text": "        if ($parentId < 1) {"
+      },
+      {
+        "line": 104,
+        "text": "            return json_encode("
+      },
+      {
+        "line": 105,
+        "text": "                ["
+      },
+      {
+        "line": 106,
+        "text": "                    'success' => 1,"
+      },
+      {
+        "line": 107,
+        "text": "                    'parent_id' => 0,"
+      },
+      {
+        "line": 108,
+        "text": "                    'filter_category_ids' => [],"
+      },
+      {
+        "line": 109,
+        "text": "                ],"
+      },
+      {
+        "line": 110,
+        "text": "                JSON_UNESCAPED_UNICODE"
+      },
+      {
+        "line": 111,
+        "text": "                | JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 112,
+        "text": "            );"
+      },
+      {
+        "line": 113,
+        "text": "        }"
+      },
+      {
+        "line": 114,
+        "text": ""
+      },
+      {
+        "line": 115,
+        "text": "        $rows = $this->model->goodsFilterCategoryUsage("
+      },
+      {
+        "line": 116,
+        "text": "            $parentId"
+      },
+      {
+        "line": 117,
+        "text": "        );"
+      },
+      {
+        "line": 118,
+        "text": "        $categoryIds = [];"
+      },
+      {
+        "line": 119,
+        "text": ""
+      },
+      {
+        "line": 120,
+        "text": "        foreach ($rows as $row) {"
+      },
+      {
+        "line": 121,
+        "text": "            $categoryId = (int)("
+      },
+      {
+        "line": 122,
+        "text": "                $row['category_id'] ?? 0"
+      },
+      {
+        "line": 123,
+        "text": "            );"
+      },
+      {
+        "line": 124,
+        "text": ""
+      },
+      {
+        "line": 125,
+        "text": "            if ($categoryId > 0) {"
+      },
+      {
+        "line": 126,
+        "text": "                $categoryIds[$categoryId] = $categoryId;"
+      },
+      {
+        "line": 127,
+        "text": "            }"
+      },
+      {
+        "line": 128,
+        "text": "        }"
+      },
+      {
+        "line": 129,
+        "text": ""
+      },
+      {
+        "line": 130,
+        "text": "        $categoryIds = array_values($categoryIds);"
+      },
+      {
+        "line": 131,
+        "text": "        sort($categoryIds, SORT_NUMERIC);"
+      },
+      {
+        "line": 132,
+        "text": ""
+      },
+      {
+        "line": 133,
+        "text": "        return json_encode("
+      },
+      {
+        "line": 134,
+        "text": "            ["
+      },
+      {
+        "line": 135,
+        "text": "                'success' => 1,"
+      },
+      {
+        "line": 136,
+        "text": "                'parent_id' => $parentId,"
+      },
+      {
+        "line": 137,
+        "text": "                'filter_category_ids' => $categoryIds,"
+      },
+      {
+        "line": 138,
+        "text": "            ],"
+      },
+      {
+        "line": 139,
+        "text": "            JSON_UNESCAPED_UNICODE"
+      },
+      {
+        "line": 140,
+        "text": "            | JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 141,
+        "text": "        );"
+      },
+      {
+        "line": 142,
+        "text": "    }"
+      },
+      {
+        "line": 143,
+        "text": ""
+      },
+      {
+        "line": 144,
+        "text": "    protected function search()"
+      },
+      {
+        "line": 145,
+        "text": "    {"
+      },
+      {
+        "line": 146,
+        "text": "        /* ForPrint fault-tolerant admin search v0.6.43 */"
+      },
+      {
+        "line": 147,
+        "text": "        $data = trim($this->clearStr((string)($this->ajaxData['data'] ?? '')));"
+      },
+      {
+        "line": 148,
+        "text": "        $table = trim($this->clearStr((string)($this->ajaxData['table'] ?? '')));"
+      },
+      {
+        "line": 149,
+        "text": "        $result = [];"
+      },
+      {
+        "line": 150,
+        "text": ""
+      },
+      {
+        "line": 151,
+        "text": "        if ($data === '') {"
+      },
+      {
+        "line": 152,
+        "text": "            return json_encode("
+      },
+      {
+        "line": 153,
+        "text": "                [],"
+      },
+      {
+        "line": 154,
+        "text": "                JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 155,
+        "text": "            );"
+      },
+      {
+        "line": 156,
+        "text": "        }"
+      },
+      {
+        "line": 157,
+        "text": ""
+      },
+      {
+        "line": 158,
+        "text": "        try {"
+      },
+      {
+        "line": 159,
+        "text": "            $result = $this->model->search($data, $table, 20);"
+      },
+      {
+        "line": 160,
+        "text": "        } catch (\\Throwable $error) {"
+      },
+      {
+        "line": 161,
+        "text": "            error_log("
+      },
+      {
+        "line": 162,
+        "text": "                'ForPrint admin search fallback: '"
+      },
+      {
+        "line": 163,
+        "text": "                . $error->getMessage()"
+      },
+      {
+        "line": 164,
+        "text": "            );"
+      },
+      {
+        "line": 165,
+        "text": ""
+      },
+      {
+        "line": 166,
+        "text": "            $result = $this->fallbackSearch($data, $table, 20);"
+      },
+      {
+        "line": 167,
+        "text": "        }"
+      },
+      {
+        "line": 168,
+        "text": ""
+      },
+      {
+        "line": 169,
+        "text": "        return json_encode("
+      },
+      {
+        "line": 170,
+        "text": "            array_slice(is_array($result) ? $result : [], 0, 20),"
+      },
+      {
+        "line": 171,
+        "text": "            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 172,
+        "text": "        );"
+      },
+      {
+        "line": 173,
+        "text": "    }"
+      },
+      {
+        "line": 174,
+        "text": ""
+      },
+      {
+        "line": 175,
+        "text": "    protected function fallbackSearch("
+      },
+      {
+        "line": 176,
+        "text": "        string $data,"
+      },
+      {
+        "line": 177,
+        "text": "        string $table,"
+      },
+      {
+        "line": 178,
+        "text": "        int $limit"
+      },
+      {
+        "line": 179,
+        "text": "    ): array {"
+      },
+      {
+        "line": 180,
+        "text": "        $dbTables = $this->model->showTables();"
+      },
+      {
+        "line": 181,
+        "text": ""
+      },
+      {
+        "line": 182,
+        "text": "        if (!in_array($table, $dbTables, true)) {"
+      },
+      {
+        "line": 183,
+        "text": "            $table = 'goods';"
+      },
+      {
+        "line": 184,
+        "text": "        }"
+      },
+      {
+        "line": 185,
+        "text": ""
+      },
+      {
+        "line": 186,
+        "text": "        if (!in_array($table, $dbTables, true)) {"
+      },
+      {
+        "line": 187,
+        "text": "            return [];"
+      },
+      {
+        "line": 188,
+        "text": "        }"
+      },
+      {
+        "line": 189,
+        "text": ""
+      },
+      {
+        "line": 190,
+        "text": "        $columns = $this->model->showColumns($table);"
+      },
+      {
+        "line": 191,
+        "text": ""
+      },
+      {
+        "line": 192,
+        "text": "        if (!$columns || empty($columns['id_row'])) {"
+      },
+      {
+        "line": 193,
+        "text": "            return [];"
+      },
+      {
+        "line": 194,
+        "text": "        }"
+      },
+      {
+        "line": 195,
+        "text": ""
+      },
+      {
+        "line": 196,
+        "text": "        $idRow = (string)$columns['id_row'];"
+      },
+      {
+        "line": 197,
+        "text": "        $searchColumns = [];"
+      },
+      {
+        "line": 198,
+        "text": ""
+      },
+      {
+        "line": 199,
+        "text": "        foreach ($columns as $column => $definition) {"
+      },
+      {
+        "line": 200,
+        "text": "            if ("
+      },
+      {
+        "line": 201,
+        "text": "                !is_array($definition)"
+      },
+      {
+        "line": 202,
+        "text": "                || empty($definition['Type'])"
+      },
+      {
+        "line": 203,
+        "text": "                || ("
+      },
+      {
+        "line": 204,
+        "text": "                    stripos((string)$definition['Type'], 'char') === false"
+      },
+      {
+        "line": 205,
+        "text": "                    && stripos((string)$definition['Type'], 'text') === false"
+      },
+      {
+        "line": 206,
+        "text": "                )"
+      },
+      {
+        "line": 207,
+        "text": "            ) {"
+      },
+      {
+        "line": 208,
+        "text": "                continue;"
+      },
+      {
+        "line": 209,
+        "text": "            }"
+      },
+      {
+        "line": 210,
+        "text": ""
+      },
+      {
+        "line": 211,
+        "text": "            $searchColumns[] = (string)$column;"
+      },
+      {
+        "line": 212,
+        "text": "        }"
+      },
+      {
+        "line": 213,
+        "text": ""
+      },
+      {
+        "line": 214,
+        "text": "        usort("
+      },
+      {
+        "line": 215,
+        "text": "            $searchColumns,"
+      },
+      {
+        "line": 216,
+        "text": "            static function (string $left, string $right): int {"
+      },
+      {
+        "line": 217,
+        "text": "                $priority = ["
+      },
+      {
+        "line": 218,
+        "text": "                    'name' => 0,"
+      },
+      {
+        "line": 219,
+        "text": "                    'about_name' => 1,"
+      },
+      {
+        "line": 220,
+        "text": "                    'title' => 2,"
+      },
+      {
+        "line": 221,
+        "text": "                    'alias' => 3,"
+      },
+      {
+        "line": 222,
+        "text": "                ];"
+      },
+      {
+        "line": 223,
+        "text": ""
+      },
+      {
+        "line": 224,
+        "text": "                return ($priority[$left] ?? 100)"
+      },
+      {
+        "line": 225,
+        "text": "                    <=> ($priority[$right] ?? 100);"
+      },
+      {
+        "line": 226,
+        "text": "            }"
+      },
+      {
+        "line": 227,
+        "text": "        );"
+      },
+      {
+        "line": 228,
+        "text": ""
+      },
+      {
+        "line": 229,
+        "text": "        $rowsById = [];"
+      },
+      {
+        "line": 230,
+        "text": ""
+      },
+      {
+        "line": 231,
+        "text": "        foreach ($searchColumns as $column) {"
+      },
+      {
+        "line": 232,
+        "text": "            try {"
+      },
+      {
+        "line": 233,
+        "text": "                $rows = $this->model->get($table, ["
+      },
+      {
+        "line": 234,
+        "text": "                    'where' => [$column => $data],"
+      },
+      {
+        "line": 235,
+        "text": "                    'operand' => ['%LIKE%'],"
+      },
+      {
+        "line": 236,
+        "text": "                    'limit' => $limit,"
+      },
+      {
+        "line": 237,
+        "text": "                ]) ?: [];"
+      },
+      {
+        "line": 238,
+        "text": "            } catch (\\Throwable $error) {"
+      },
+      {
+        "line": 239,
+        "text": "                continue;"
+      },
+      {
+        "line": 240,
+        "text": "            }"
+      },
+      {
+        "line": 241,
+        "text": ""
+      },
+      {
+        "line": 242,
+        "text": "            foreach ($rows as $row) {"
+      },
+      {
+        "line": 243,
+        "text": "                $id = (int)($row[$idRow] ?? 0);"
+      },
+      {
+        "line": 244,
+        "text": ""
+      },
+      {
+        "line": 245,
+        "text": "                if ($id < 1 || isset($rowsById[$id])) {"
+      },
+      {
+        "line": 246,
+        "text": "                    continue;"
+      },
+      {
+        "line": 247,
+        "text": "                }"
+      },
+      {
+        "line": 248,
+        "text": ""
+      },
+      {
+        "line": 249,
+        "text": "                $name = trim((string)("
+      },
+      {
+        "line": 250,
+        "text": "                    $row['name']"
+      },
+      {
+        "line": 251,
+        "text": "                    ?? $row['about_name']"
+      },
+      {
+        "line": 252,
+        "text": "                    ?? $row['title']"
+      },
+      {
+        "line": 253,
+        "text": "                    ?? $row['alias']"
+      },
+      {
+        "line": 254,
+        "text": "                    ?? ('#' . $id)"
+      },
+      {
+        "line": 255,
+        "text": "                ));"
+      },
+      {
+        "line": 256,
+        "text": ""
+      },
+      {
+        "line": 257,
+        "text": "                $rowsById[$id] = ["
+      },
+      {
+        "line": 258,
+        "text": "                    'id' => $id,"
+      },
+      {
+        "line": 259,
+        "text": "                    'name' => $name . ' (' . $table . ')',"
+      },
+      {
+        "line": 260,
+        "text": "                    'table_name' => $table,"
+      },
+      {
+        "line": 261,
+        "text": "                    'alias' => PATH"
+      },
+      {
+        "line": 262,
+        "text": "                        . \\core\\base\\settings\\Settings::get('routes')['admin']['alias']"
+      },
+      {
+        "line": 263,
+        "text": "                        . '/edit/'"
+      },
+      {
+        "line": 264,
+        "text": "                        . $table"
+      },
+      {
+        "line": 265,
+        "text": "                        . '/'"
+      },
+      {
+        "line": 266,
+        "text": "                        . $id,"
+      },
+      {
+        "line": 267,
+        "text": "                ];"
+      },
+      {
+        "line": 268,
+        "text": ""
+      },
+      {
+        "line": 269,
+        "text": "                if (count($rowsById) >= $limit) {"
+      },
+      {
+        "line": 270,
+        "text": "                    break 2;"
+      },
+      {
+        "line": 271,
+        "text": "                }"
+      },
+      {
+        "line": 272,
+        "text": "            }"
+      },
+      {
+        "line": 273,
+        "text": "        }"
+      },
+      {
+        "line": 274,
+        "text": ""
+      },
+      {
+        "line": 275,
+        "text": "        return array_values($rowsById);"
+      },
+      {
+        "line": 276,
+        "text": "    }"
+      },
+      {
+        "line": 277,
+        "text": ""
+      },
+      {
+        "line": 278,
+        "text": ""
+      },
+      {
+        "line": 279,
+        "text": "    /**"
+      },
+      {
+        "line": 280,
+        "text": "     * Persist Goods order inside one catalog section."
+      },
+      {
+        "line": 281,
+        "text": "     *"
+      },
+      {
+        "line": 282,
+        "text": "     * Only the allow-listed `goods` table is accepted. Submitted identifiers"
+      },
+      {
+        "line": 283,
+        "text": "     * must exactly match the current stored group before any update."
+      },
+      {
+        "line": 284,
+        "text": "     */"
+      },
+      {
+        "line": 285,
+        "text": ""
+      },
+      {
+        "line": 286,
+        "text": "    /**"
+      },
+      {
+        "line": 287,
+        "text": "     * Persist the exact order of one Goods gallery."
+      },
+      {
+        "line": 288,
+        "text": "     */"
+      },
+      {
+        "line": 289,
+        "text": "    protected function reorderManagedGallery(): string"
+      },
+      {
+        "line": 290,
+        "text": "    {"
+      },
+      {
+        "line": 291,
+        "text": "        $payload = $this->loadManagedGallery();"
+      },
+      {
+        "line": 292,
+        "text": ""
+      },
+      {
+        "line": 293,
+        "text": "        if (empty($payload['success'])) {"
+      },
+      {
+        "line": 294,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 295,
+        "text": "                0,"
+      },
+      {
+        "line": 296,
+        "text": "                (string)($payload['message'] ?? 'Invalid gallery')"
+      },
+      {
+        "line": 297,
+        "text": "            );"
+      },
+      {
+        "line": 298,
+        "text": "        }"
+      },
+      {
+        "line": 299,
+        "text": ""
+      },
+      {
+        "line": 300,
+        "text": "        $requested = $this->decodeGalleryTokens("
+      },
+      {
+        "line": 301,
+        "text": "            (string)($this->ajaxData['tokens'] ?? '')"
+      },
+      {
+        "line": 302,
+        "text": "        );"
+      },
+      {
+        "line": 303,
+        "text": ""
+      },
+      {
+        "line": 304,
+        "text": "        if ($requested === null) {"
+      },
+      {
+        "line": 305,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 306,
+        "text": "                0,"
+      },
+      {
+        "line": 307,
+        "text": "                'Invalid gallery order payload'"
+      },
+      {
+        "line": 308,
+        "text": "            );"
+      },
+      {
+        "line": 309,
+        "text": "        }"
+      },
+      {
+        "line": 310,
+        "text": ""
+      },
+      {
+        "line": 311,
+        "text": "        $stored = $payload['gallery'];"
+      },
+      {
+        "line": 312,
+        "text": "        $requestedCheck = $requested;"
+      },
+      {
+        "line": 313,
+        "text": "        $storedCheck = $stored;"
+      },
+      {
+        "line": 314,
+        "text": "        sort($requestedCheck, SORT_STRING);"
+      },
+      {
+        "line": 315,
+        "text": "        sort($storedCheck, SORT_STRING);"
+      },
+      {
+        "line": 316,
+        "text": ""
+      },
+      {
+        "line": 317,
+        "text": "        if ($requestedCheck !== $storedCheck) {"
+      },
+      {
+        "line": 318,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 319,
+        "text": "                0,"
+      },
+      {
+        "line": 320,
+        "text": "                'Gallery changed; reload the page'"
+      },
+      {
+        "line": 321,
+        "text": "            );"
+      },
+      {
+        "line": 322,
+        "text": "        }"
+      },
+      {
+        "line": 323,
+        "text": ""
+      },
+      {
+        "line": 324,
+        "text": "        try {"
+      },
+      {
+        "line": 325,
+        "text": "            $this->model->edit('goods', ["
+      },
+      {
+        "line": 326,
+        "text": "                'fields' => ["
+      },
+      {
+        "line": 327,
+        "text": "                    'gallery_img' => json_encode("
+      },
+      {
+        "line": 328,
+        "text": "                        array_values($requested),"
+      },
+      {
+        "line": 329,
+        "text": "                        JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 330,
+        "text": "                        | JSON_UNESCAPED_UNICODE"
+      },
+      {
+        "line": 331,
+        "text": "                    ),"
+      },
+      {
+        "line": 332,
+        "text": "                ],"
+      },
+      {
+        "line": 333,
+        "text": "                'where' => ["
+      },
+      {
+        "line": 334,
+        "text": "                    $payload['id_row'] => $payload['id'],"
+      },
+      {
+        "line": 335,
+        "text": "                ],"
+      },
+      {
+        "line": 336,
+        "text": "            ]);"
+      },
+      {
+        "line": 337,
+        "text": "        } catch (\\Throwable $error) {"
+      },
+      {
+        "line": 338,
+        "text": "            error_log("
+      },
+      {
+        "line": 339,
+        "text": "                'ForPrint gallery reorder failed: '"
+      },
+      {
+        "line": 340,
+        "text": "                . $error->getMessage()"
+      },
+      {
+        "line": 341,
+        "text": "            );"
+      },
+      {
+        "line": 342,
+        "text": ""
+      },
+      {
+        "line": 343,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 344,
+        "text": "                0,"
+      },
+      {
+        "line": 345,
+        "text": "                'Unable to save gallery order'"
+      },
+      {
+        "line": 346,
+        "text": "            );"
+      },
+      {
+        "line": 347,
+        "text": "        }"
+      },
+      {
+        "line": 348,
+        "text": ""
+      },
+      {
+        "line": 349,
+        "text": "        return $this->galleryJson("
+      },
+      {
+        "line": 350,
+        "text": "            1,"
+      },
+      {
+        "line": 351,
+        "text": "            'Gallery order saved',"
+      },
+      {
+        "line": 352,
+        "text": "            ["
+      },
+      {
+        "line": 353,
+        "text": "                'tokens' => $this->encodeGalleryTokens("
+      },
+      {
+        "line": 354,
+        "text": "                    $requested"
+      },
+      {
+        "line": 355,
+        "text": "                ),"
+      },
+      {
+        "line": 356,
+        "text": "            ]"
+      },
+      {
+        "line": 357,
+        "text": "        );"
+      },
+      {
+        "line": 358,
+        "text": "    }"
+      },
+      {
+        "line": 359,
+        "text": ""
+      },
+      {
+        "line": 360,
+        "text": "    /**"
+      },
+      {
+        "line": 361,
+        "text": "     * Delete explicitly selected Goods gallery images."
+      },
+      {
+        "line": 362,
+        "text": "     *"
+      },
+      {
+        "line": 363,
+        "text": "     * The record is updated before physical files are removed. A file is not"
+      },
+      {
+        "line": 364,
+        "text": "     * unlinked when another remaining gallery entry still references it."
+      },
+      {
+        "line": 365,
+        "text": "     */"
+      },
+      {
+        "line": 366,
+        "text": "    protected function deleteManagedGallery(): string"
+      },
+      {
+        "line": 367,
+        "text": "    {"
+      },
+      {
+        "line": 368,
+        "text": "        $payload = $this->loadManagedGallery();"
+      },
+      {
+        "line": 369,
+        "text": ""
+      },
+      {
+        "line": 370,
+        "text": "        if (empty($payload['success'])) {"
+      },
+      {
+        "line": 371,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 372,
+        "text": "                0,"
+      },
+      {
+        "line": 373,
+        "text": "                (string)($payload['message'] ?? 'Invalid gallery')"
+      },
+      {
+        "line": 374,
+        "text": "            );"
+      },
+      {
+        "line": 375,
+        "text": "        }"
+      },
+      {
+        "line": 376,
+        "text": ""
+      },
+      {
+        "line": 377,
+        "text": "        $selected = $this->decodeGalleryTokens("
+      },
+      {
+        "line": 378,
+        "text": "            (string)($this->ajaxData['tokens'] ?? '')"
+      },
+      {
+        "line": 379,
+        "text": "        );"
+      },
+      {
+        "line": 380,
+        "text": ""
+      },
+      {
+        "line": 381,
+        "text": "        if ($selected === null || !$selected) {"
+      },
+      {
+        "line": 382,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 383,
+        "text": "                0,"
+      },
+      {
+        "line": 384,
+        "text": "                'No gallery images selected'"
+      },
+      {
+        "line": 385,
+        "text": "            );"
+      },
+      {
+        "line": 386,
+        "text": "        }"
+      },
+      {
+        "line": 387,
+        "text": ""
+      },
+      {
+        "line": 388,
+        "text": "        $storedCounts = array_count_values("
+      },
+      {
+        "line": 389,
+        "text": "            $payload['gallery']"
+      },
+      {
+        "line": 390,
+        "text": "        );"
+      },
+      {
+        "line": 391,
+        "text": "        $selectedCounts = array_count_values($selected);"
+      },
+      {
+        "line": 392,
+        "text": ""
+      },
+      {
+        "line": 393,
+        "text": "        foreach ($selectedCounts as $path => $count) {"
+      },
+      {
+        "line": 394,
+        "text": "            if ("
+      },
+      {
+        "line": 395,
+        "text": "                !isset($storedCounts[$path])"
+      },
+      {
+        "line": 396,
+        "text": "                || $count > $storedCounts[$path]"
+      },
+      {
+        "line": 397,
+        "text": "            ) {"
+      },
+      {
+        "line": 398,
+        "text": "                return $this->galleryJson("
+      },
+      {
+        "line": 399,
+        "text": "                    0,"
+      },
+      {
+        "line": 400,
+        "text": "                    'Gallery changed; reload the page'"
+      },
+      {
+        "line": 401,
+        "text": "                );"
+      },
+      {
+        "line": 402,
+        "text": "            }"
+      },
+      {
+        "line": 403,
+        "text": "        }"
+      },
+      {
+        "line": 404,
+        "text": ""
+      },
+      {
+        "line": 405,
+        "text": "        $remaining = [];"
+      },
+      {
+        "line": 406,
+        "text": "        $deleteCounts = $selectedCounts;"
+      },
+      {
+        "line": 407,
+        "text": ""
+      },
+      {
+        "line": 408,
+        "text": "        foreach ($payload['gallery'] as $path) {"
+      },
+      {
+        "line": 409,
+        "text": "            if (!empty($deleteCounts[$path])) {"
+      },
+      {
+        "line": 410,
+        "text": "                $deleteCounts[$path]--;"
+      },
+      {
+        "line": 411,
+        "text": "                continue;"
+      },
+      {
+        "line": 412,
+        "text": "            }"
+      },
+      {
+        "line": 413,
+        "text": ""
+      },
+      {
+        "line": 414,
+        "text": "            $remaining[] = $path;"
+      },
+      {
+        "line": 415,
+        "text": "        }"
+      },
+      {
+        "line": 416,
+        "text": ""
+      },
+      {
+        "line": 417,
+        "text": "        try {"
+      },
+      {
+        "line": 418,
+        "text": "            $this->model->edit('goods', ["
+      },
+      {
+        "line": 419,
+        "text": "                'fields' => ["
+      },
+      {
+        "line": 420,
+        "text": "                    'gallery_img' => json_encode("
+      },
+      {
+        "line": 421,
+        "text": "                        array_values($remaining),"
+      },
+      {
+        "line": 422,
+        "text": "                        JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 423,
+        "text": "                        | JSON_UNESCAPED_UNICODE"
+      },
+      {
+        "line": 424,
+        "text": "                    ),"
+      },
+      {
+        "line": 425,
+        "text": "                ],"
+      },
+      {
+        "line": 426,
+        "text": "                'where' => ["
+      },
+      {
+        "line": 427,
+        "text": "                    $payload['id_row'] => $payload['id'],"
+      },
+      {
+        "line": 428,
+        "text": "                ],"
+      },
+      {
+        "line": 429,
+        "text": "            ]);"
+      },
+      {
+        "line": 430,
+        "text": "        } catch (\\Throwable $error) {"
+      },
+      {
+        "line": 431,
+        "text": "            error_log("
+      },
+      {
+        "line": 432,
+        "text": "                'ForPrint gallery delete update failed: '"
+      },
+      {
+        "line": 433,
+        "text": "                . $error->getMessage()"
+      },
+      {
+        "line": 434,
+        "text": "            );"
+      },
+      {
+        "line": 435,
+        "text": ""
+      },
+      {
+        "line": 436,
+        "text": "            return $this->galleryJson("
+      },
+      {
+        "line": 437,
+        "text": "                0,"
+      },
+      {
+        "line": 438,
+        "text": "                'Unable to update gallery'"
+      },
+      {
+        "line": 439,
+        "text": "            );"
+      },
+      {
+        "line": 440,
+        "text": "        }"
+      },
+      {
+        "line": 441,
+        "text": ""
+      },
+      {
+        "line": 442,
+        "text": "        $remainingCounts = array_count_values($remaining);"
+      },
+      {
+        "line": 443,
+        "text": ""
+      },
+      {
+        "line": 444,
+        "text": "        foreach (array_keys($selectedCounts) as $path) {"
+      },
+      {
+        "line": 445,
+        "text": "            if (!empty($remainingCounts[$path])) {"
+      },
+      {
+        "line": 446,
+        "text": "                continue;"
+      },
+      {
+        "line": 447,
+        "text": "            }"
+      },
+      {
+        "line": 448,
+        "text": ""
+      },
+      {
+        "line": 449,
+        "text": "            $this->unlinkManagedGalleryFile($path);"
+      },
+      {
+        "line": 450,
+        "text": "        }"
+      },
+      {
+        "line": 451,
+        "text": ""
+      },
+      {
+        "line": 452,
+        "text": "        return $this->galleryJson("
+      },
+      {
+        "line": 453,
+        "text": "            1,"
+      },
+      {
+        "line": 454,
+        "text": "            'Gallery images deleted',"
+      },
+      {
+        "line": 455,
+        "text": "            ["
+      },
+      {
+        "line": 456,
+        "text": "                'remaining_tokens' => $this->encodeGalleryTokens("
+      },
+      {
+        "line": 457,
+        "text": "                    $remaining"
+      },
+      {
+        "line": 458,
+        "text": "                ),"
+      },
+      {
+        "line": 459,
+        "text": "                'deleted_count' => count($selected),"
+      },
+      {
+        "line": 460,
+        "text": "            ]"
+      },
+      {
+        "line": 461,
+        "text": "        );"
+      },
+      {
+        "line": 462,
+        "text": "    }"
+      },
+      {
+        "line": 463,
+        "text": ""
+      },
+      {
+        "line": 464,
+        "text": "    /**"
+      },
+      {
+        "line": 465,
+        "text": "     * Load only the allow-listed Goods gallery field."
+      },
+      {
+        "line": 466,
+        "text": "     */"
+      },
+      {
+        "line": 467,
+        "text": "    protected function loadManagedGallery(): array"
+      },
+      {
+        "line": 468,
+        "text": "    {"
+      },
+      {
+        "line": 469,
+        "text": "        $table = trim("
+      },
+      {
+        "line": 470,
+        "text": "            (string)($this->ajaxData['table'] ?? '')"
+      },
+      {
+        "line": 471,
+        "text": "        );"
+      },
+      {
+        "line": 472,
+        "text": "        $field = trim("
+      },
+      {
+        "line": 473,
+        "text": "            (string)($this->ajaxData['field'] ?? '')"
+      },
+      {
+        "line": 474,
+        "text": "        );"
+      },
+      {
+        "line": 475,
+        "text": "        $id = (int)$this->clearNum("
+      },
+      {
+        "line": 476,
+        "text": "            $this->ajaxData['id'] ?? 0"
+      },
+      {
+        "line": 477,
+        "text": "        );"
+      },
+      {
+        "line": 478,
+        "text": ""
+      },
+      {
+        "line": 479,
+        "text": "        if ("
+      },
+      {
+        "line": 480,
+        "text": "            $table !== 'goods'"
+      },
+      {
+        "line": 481,
+        "text": "            || $field !== 'gallery_img'"
+      },
+      {
+        "line": 482,
+        "text": "            || $id < 1"
+      },
+      {
+        "line": 483,
+        "text": "        ) {"
+      },
+      {
+        "line": 484,
+        "text": "            return ["
+      },
+      {
+        "line": 485,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 486,
+        "text": "                'message' => 'Unsupported gallery target',"
+      },
+      {
+        "line": 487,
+        "text": "            ];"
+      },
+      {
+        "line": 488,
+        "text": "        }"
+      },
+      {
+        "line": 489,
+        "text": ""
+      },
+      {
+        "line": 490,
+        "text": "        $columns = $this->model->showColumns('goods');"
+      },
+      {
+        "line": 491,
+        "text": ""
+      },
+      {
+        "line": 492,
+        "text": "        if ("
+      },
+      {
+        "line": 493,
+        "text": "            !$columns"
+      },
+      {
+        "line": 494,
+        "text": "            || empty($columns['id_row'])"
+      },
+      {
+        "line": 495,
+        "text": "            || empty($columns['gallery_img'])"
+      },
+      {
+        "line": 496,
+        "text": "        ) {"
+      },
+      {
+        "line": 497,
+        "text": "            return ["
+      },
+      {
+        "line": 498,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 499,
+        "text": "                'message' => 'Gallery columns are unavailable',"
+      },
+      {
+        "line": 500,
+        "text": "            ];"
+      },
+      {
+        "line": 501,
+        "text": "        }"
+      },
+      {
+        "line": 502,
+        "text": ""
+      },
+      {
+        "line": 503,
+        "text": "        $idRow = (string)$columns['id_row'];"
+      },
+      {
+        "line": 504,
+        "text": "        $rows = $this->model->get('goods', ["
+      },
+      {
+        "line": 505,
+        "text": "            'fields' => [$idRow, 'gallery_img'],"
+      },
+      {
+        "line": 506,
+        "text": "            'where' => [$idRow => $id],"
+      },
+      {
+        "line": 507,
+        "text": "            'limit' => 1,"
+      },
+      {
+        "line": 508,
+        "text": "        ]) ?: [];"
+      },
+      {
+        "line": 509,
+        "text": ""
+      },
+      {
+        "line": 510,
+        "text": "        if (!$rows || !is_array($rows[0] ?? null)) {"
+      },
+      {
+        "line": 511,
+        "text": "            return ["
+      },
+      {
+        "line": 512,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 513,
+        "text": "                'message' => 'Goods record not found',"
+      },
+      {
+        "line": 514,
+        "text": "            ];"
+      },
+      {
+        "line": 515,
+        "text": "        }"
+      },
+      {
+        "line": 516,
+        "text": ""
+      },
+      {
+        "line": 517,
+        "text": "        $rawGallery = $rows[0]['gallery_img'] ?? '[]';"
+      },
+      {
+        "line": 518,
+        "text": "        $gallery = is_array($rawGallery)"
+      },
+      {
+        "line": 519,
+        "text": "            ? $rawGallery"
+      },
+      {
+        "line": 520,
+        "text": "            : json_decode((string)$rawGallery, true);"
+      },
+      {
+        "line": 521,
+        "text": ""
+      },
+      {
+        "line": 522,
+        "text": "        if (!is_array($gallery)) {"
+      },
+      {
+        "line": 523,
+        "text": "            $gallery = [];"
+      },
+      {
+        "line": 524,
+        "text": "        }"
+      },
+      {
+        "line": 525,
+        "text": ""
+      },
+      {
+        "line": 526,
+        "text": "        $gallery = array_values(array_filter("
+      },
+      {
+        "line": 527,
+        "text": "            array_map("
+      },
+      {
+        "line": 528,
+        "text": "                static function ($path): string {"
+      },
+      {
+        "line": 529,
+        "text": "                    return is_string($path)"
+      },
+      {
+        "line": 530,
+        "text": "                        ? trim($path)"
+      },
+      {
+        "line": 531,
+        "text": "                        : '';"
+      },
+      {
+        "line": 532,
+        "text": "                },"
+      },
+      {
+        "line": 533,
+        "text": "                $gallery"
+      },
+      {
+        "line": 534,
+        "text": "            ),"
+      },
+      {
+        "line": 535,
+        "text": "            static function (string $path): bool {"
+      },
+      {
+        "line": 536,
+        "text": "                return $path !== '';"
+      },
+      {
+        "line": 537,
+        "text": "            }"
+      },
+      {
+        "line": 538,
+        "text": "        ));"
+      },
+      {
+        "line": 539,
+        "text": ""
+      },
+      {
+        "line": 540,
+        "text": "        return ["
+      },
+      {
+        "line": 541,
+        "text": "            'success' => 1,"
+      },
+      {
+        "line": 542,
+        "text": "            'id' => $id,"
+      },
+      {
+        "line": 543,
+        "text": "            'id_row' => $idRow,"
+      },
+      {
+        "line": 544,
+        "text": "            'gallery' => $gallery,"
+      },
+      {
+        "line": 545,
+        "text": "        ];"
+      },
+      {
+        "line": 546,
+        "text": "    }"
+      },
+      {
+        "line": 547,
+        "text": ""
+      },
+      {
+        "line": 548,
+        "text": "    /**"
+      },
+      {
+        "line": 549,
+        "text": "     * Decode comma-separated URL-safe base64 paths."
+      },
+      {
+        "line": 550,
+        "text": "     *"
+      },
+      {
+        "line": 551,
+        "text": "     * Null means malformed input. An empty string represents an empty order."
+      },
+      {
+        "line": 552,
+        "text": "     */"
+      },
+      {
+        "line": 553,
+        "text": "    protected function decodeGalleryTokens("
+      },
+      {
+        "line": 554,
+        "text": "        string $raw"
+      },
+      {
+        "line": 555,
+        "text": "    ): ?array {"
+      },
+      {
+        "line": 556,
+        "text": "        $raw = trim($raw);"
+      },
+      {
+        "line": 557,
+        "text": ""
+      },
+      {
+        "line": 558,
+        "text": "        if ($raw === '') {"
+      },
+      {
+        "line": 559,
+        "text": "            return [];"
+      },
+      {
+        "line": 560,
+        "text": "        }"
+      },
+      {
+        "line": 561,
+        "text": ""
+      },
+      {
+        "line": 562,
+        "text": "        $tokens = preg_split('/\\s*,\\s*/', $raw) ?: [];"
+      },
+      {
+        "line": 563,
+        "text": "        $paths = [];"
+      },
+      {
+        "line": 564,
+        "text": ""
+      },
+      {
+        "line": 565,
+        "text": "        foreach ($tokens as $token) {"
+      },
+      {
+        "line": 566,
+        "text": "            if ("
+      },
+      {
+        "line": 567,
+        "text": "                $token === ''"
+      },
+      {
+        "line": 568,
+        "text": "                || !preg_match('/^[A-Za-z0-9_-]+$/', $token)"
+      },
+      {
+        "line": 569,
+        "text": "            ) {"
+      },
+      {
+        "line": 570,
+        "text": "                return null;"
+      },
+      {
+        "line": 571,
+        "text": "            }"
+      },
+      {
+        "line": 572,
+        "text": ""
+      },
+      {
+        "line": 573,
+        "text": "            $base64 = strtr($token, '-_', '+/');"
+      },
+      {
+        "line": 574,
+        "text": "            $padding = strlen($base64) % 4;"
+      },
+      {
+        "line": 575,
+        "text": ""
+      },
+      {
+        "line": 576,
+        "text": "            if ($padding) {"
+      },
+      {
+        "line": 577,
+        "text": "                $base64 .= str_repeat('=', 4 - $padding);"
+      },
+      {
+        "line": 578,
+        "text": "            }"
+      },
+      {
+        "line": 579,
+        "text": ""
+      },
+      {
+        "line": 580,
+        "text": "            $path = base64_decode($base64, true);"
+      },
+      {
+        "line": 581,
+        "text": ""
+      },
+      {
+        "line": 582,
+        "text": "            if ("
+      },
+      {
+        "line": 583,
+        "text": "                !is_string($path)"
+      },
+      {
+        "line": 584,
+        "text": "                || !$this->isSafeManagedGalleryPath($path)"
+      },
+      {
+        "line": 585,
+        "text": "            ) {"
+      },
+      {
+        "line": 586,
+        "text": "                return null;"
+      },
+      {
+        "line": 587,
+        "text": "            }"
+      },
+      {
+        "line": 588,
+        "text": ""
+      },
+      {
+        "line": 589,
+        "text": "            $paths[] = $path;"
+      },
+      {
+        "line": 590,
+        "text": "        }"
+      },
+      {
+        "line": 591,
+        "text": ""
+      },
+      {
+        "line": 592,
+        "text": "        return $paths;"
+      },
+      {
+        "line": 593,
+        "text": "    }"
+      },
+      {
+        "line": 594,
+        "text": ""
+      },
+      {
+        "line": 595,
+        "text": "    protected function encodeGalleryTokens("
+      },
+      {
+        "line": 596,
+        "text": "        array $paths"
+      },
+      {
+        "line": 597,
+        "text": "    ): array {"
+      },
+      {
+        "line": 598,
+        "text": "        return array_values(array_map("
+      },
+      {
+        "line": 599,
+        "text": "            static function (string $path): string {"
+      },
+      {
+        "line": 600,
+        "text": "                return rtrim("
+      },
+      {
+        "line": 601,
+        "text": "                    strtr(base64_encode($path), '+/', '-_'),"
+      },
+      {
+        "line": 602,
+        "text": "                    '='"
+      },
+      {
+        "line": 603,
+        "text": "                );"
+      },
+      {
+        "line": 604,
+        "text": "            },"
+      },
+      {
+        "line": 605,
+        "text": "            $paths"
+      },
+      {
+        "line": 606,
+        "text": "        ));"
+      },
+      {
+        "line": 607,
+        "text": "    }"
+      },
+      {
+        "line": 608,
+        "text": ""
+      },
+      {
+        "line": 609,
+        "text": "    protected function isSafeManagedGalleryPath("
+      },
+      {
+        "line": 610,
+        "text": "        string $path"
+      },
+      {
+        "line": 611,
+        "text": "    ): bool {"
+      },
+      {
+        "line": 612,
+        "text": "        $path = trim(str_replace('\\\\', '/', $path));"
+      },
+      {
+        "line": 613,
+        "text": ""
+      },
+      {
+        "line": 614,
+        "text": "        return ("
+      },
+      {
+        "line": 615,
+        "text": "            $path !== ''"
+      },
+      {
+        "line": 616,
+        "text": "            && $path[0] !== '/'"
+      },
+      {
+        "line": 617,
+        "text": "            && strpos($path, \"\\0\") === false"
+      },
+      {
+        "line": 618,
+        "text": "            && !preg_match('~(^|/)\\.\\.(/|$)~', $path)"
+      },
+      {
+        "line": 619,
+        "text": "            && !preg_match('~^[A-Za-z]:/~', $path)"
+      },
+      {
+        "line": 620,
+        "text": "        );"
+      },
+      {
+        "line": 621,
+        "text": "    }"
+      },
+      {
+        "line": 622,
+        "text": ""
+      },
+      {
+        "line": 623,
+        "text": "    protected function unlinkManagedGalleryFile("
+      },
+      {
+        "line": 624,
+        "text": "        string $path"
+      },
+      {
+        "line": 625,
+        "text": "    ): void {"
+      },
+      {
+        "line": 626,
+        "text": "        if (!$this->isSafeManagedGalleryPath($path)) {"
+      },
+      {
+        "line": 627,
+        "text": "            return;"
+      },
+      {
+        "line": 628,
+        "text": "        }"
+      },
+      {
+        "line": 629,
+        "text": ""
+      },
+      {
+        "line": 630,
+        "text": "        $uploadRoot = rtrim("
+      },
+      {
+        "line": 631,
+        "text": "            $_SERVER['DOCUMENT_ROOT']"
+      },
+      {
+        "line": 632,
+        "text": "            . PATH"
+      },
+      {
+        "line": 633,
+        "text": "            . UPLOAD_DIR,"
+      },
+      {
+        "line": 634,
+        "text": "            '/\\\\'"
+      },
+      {
+        "line": 635,
+        "text": "        );"
+      },
+      {
+        "line": 636,
+        "text": "        $relative = ltrim("
+      },
+      {
+        "line": 637,
+        "text": "            str_replace('\\\\', '/', $path),"
+      },
+      {
+        "line": 638,
+        "text": "            '/'"
+      },
+      {
+        "line": 639,
+        "text": "        );"
+      },
+      {
+        "line": 640,
+        "text": "        $fullPath = $uploadRoot"
+      },
+      {
+        "line": 641,
+        "text": "            . DIRECTORY_SEPARATOR"
+      },
+      {
+        "line": 642,
+        "text": "            . str_replace("
+      },
+      {
+        "line": 643,
+        "text": "                '/',"
+      },
+      {
+        "line": 644,
+        "text": "                DIRECTORY_SEPARATOR,"
+      },
+      {
+        "line": 645,
+        "text": "                $relative"
+      },
+      {
+        "line": 646,
+        "text": "            );"
+      },
+      {
+        "line": 647,
+        "text": ""
+      },
+      {
+        "line": 648,
+        "text": "        if (is_file($fullPath)) {"
+      },
+      {
+        "line": 649,
+        "text": "            @unlink($fullPath);"
+      },
+      {
+        "line": 650,
+        "text": "        }"
+      },
+      {
+        "line": 651,
+        "text": "    }"
+      },
+      {
+        "line": 652,
+        "text": ""
+      },
+      {
+        "line": 653,
+        "text": "    protected function galleryJson("
+      },
+      {
+        "line": 654,
+        "text": "        int $success,"
+      },
+      {
+        "line": 655,
+        "text": "        string $message,"
+      },
+      {
+        "line": 656,
+        "text": "        array $extra = []"
+      },
+      {
+        "line": 657,
+        "text": "    ): string {"
+      },
+      {
+        "line": 658,
+        "text": "        return json_encode("
+      },
+      {
+        "line": 659,
+        "text": "            array_merge("
+      },
+      {
+        "line": 660,
+        "text": "                ["
+      },
+      {
+        "line": 661,
+        "text": "                    'success' => $success,"
+      },
+      {
+        "line": 662,
+        "text": "                    'message' => $message,"
+      },
+      {
+        "line": 663,
+        "text": "                ],"
+      },
+      {
+        "line": 664,
+        "text": "                $extra"
+      },
+      {
+        "line": 665,
+        "text": "            ),"
+      },
+      {
+        "line": 666,
+        "text": "            JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 667,
+        "text": "            | JSON_UNESCAPED_UNICODE"
+      },
+      {
+        "line": 668,
+        "text": "        );"
+      },
+      {
+        "line": 669,
+        "text": "    }"
+      },
+      {
+        "line": 670,
+        "text": ""
+      },
+      {
+        "line": 671,
+        "text": ""
+      },
+      {
+        "line": 672,
+        "text": "    /**"
+      },
+      {
+        "line": 673,
+        "text": "     * Fixed allowlist for reusable card ordering."
+      },
+      {
+        "line": 674,
+        "text": "     *"
+      },
+      {
+        "line": 675,
+        "text": "     * Goods and Filters retain their specialized handlers."
+      },
+      {
+        "line": 676,
+        "text": "     */"
+      },
+      {
+        "line": 677,
+        "text": "    protected function managedSortableTables(): array"
+      },
+      {
+        "line": 678,
+        "text": "    {"
+      },
+      {
+        "line": 679,
+        "text": "        return ["
+      },
+      {
+        "line": 680,
+        "text": "            'catalog',"
+      },
+      {
+        "line": 681,
+        "text": "            'filters_categories',"
+      },
+      {
+        "line": 682,
+        "text": "            'sales',"
+      },
+      {
+        "line": 683,
+        "text": "            'news',"
+      },
+      {
+        "line": 684,
+        "text": "            'advantages',"
+      },
+      {
+        "line": 685,
+        "text": "            'information',"
+      },
+      {
+        "line": 686,
+        "text": "            'socials',"
+      },
+      {
+        "line": 687,
+        "text": "        ];"
+      },
+      {
+        "line": 688,
+        "text": "    }"
+      },
+      {
+        "line": 689,
+        "text": ""
+      },
+      {
+        "line": 690,
+        "text": "    /**"
+      },
+      {
+        "line": 691,
+        "text": "     * Read-only manifest used by the admin card runtime."
+      },
+      {
+        "line": 692,
+        "text": "     */"
+      },
+      {
+        "line": 693,
+        "text": "    protected function managedSortableManifest(): string"
+      },
+      {
+        "line": 694,
+        "text": "    {"
+      },
+      {
+        "line": 695,
+        "text": "        $payload = $this->loadManagedSortableCollection();"
+      },
+      {
+        "line": 696,
+        "text": ""
+      },
+      {
+        "line": 697,
+        "text": "        if (empty($payload['success'])) {"
+      },
+      {
+        "line": 698,
+        "text": "            return $this->managedSortableJson("
+      },
+      {
+        "line": 699,
+        "text": "                0,"
+      },
+      {
+        "line": 700,
+        "text": "                (string)($payload['message'] ?? 'Unsupported collection')"
+      },
+      {
+        "line": 701,
+        "text": "            );"
+      },
+      {
+        "line": 702,
+        "text": "        }"
+      },
+      {
+        "line": 703,
+        "text": ""
+      },
+      {
+        "line": 704,
+        "text": "        $groups = [];"
+      },
+      {
+        "line": 705,
+        "text": ""
+      },
+      {
+        "line": 706,
+        "text": "        foreach ($payload['groups'] as $scope => $group) {"
+      },
+      {
+        "line": 707,
+        "text": "            $groups[] = ["
+      },
+      {
+        "line": 708,
+        "text": "                'scope' => (string)$scope,"
+      },
+      {
+        "line": 709,
+        "text": "                'ids' => array_values($group['ids']),"
+      },
+      {
+        "line": 710,
+        "text": "            ];"
+      },
+      {
+        "line": 711,
+        "text": "        }"
+      },
+      {
+        "line": 712,
+        "text": ""
+      },
+      {
+        "line": 713,
+        "text": "        return $this->managedSortableJson("
+      },
+      {
+        "line": 714,
+        "text": "            1,"
+      },
+      {
+        "line": 715,
+        "text": "            'Sortable collection manifest',"
+      },
+      {
+        "line": 716,
+        "text": "            ["
+      },
+      {
+        "line": 717,
+        "text": "                'table' => $payload['table'],"
+      },
+      {
+        "line": 718,
+        "text": "                'has_parent' => $payload['has_parent'],"
+      },
+      {
+        "line": 719,
+        "text": "                'groups' => $groups,"
+      },
+      {
+        "line": 720,
+        "text": "            ]"
+      },
+      {
+        "line": 721,
+        "text": "        );"
+      },
+      {
+        "line": 722,
+        "text": "    }"
+      },
+      {
+        "line": 723,
+        "text": ""
+      },
+      {
+        "line": 724,
+        "text": "    /**"
+      },
+      {
+        "line": 725,
+        "text": "     * Persist one complete server-confirmed scope."
+      },
+      {
+        "line": 726,
+        "text": "     */"
+      },
+      {
+        "line": 727,
+        "text": "    protected function sortManagedCollectionPositions(): string"
+      },
+      {
+        "line": 728,
+        "text": "    {"
+      },
+      {
+        "line": 729,
+        "text": "        $payload = $this->loadManagedSortableCollection();"
+      },
+      {
+        "line": 730,
+        "text": ""
+      },
+      {
+        "line": 731,
+        "text": "        if (empty($payload['success'])) {"
+      },
+      {
+        "line": 732,
+        "text": "            return $this->managedSortableJson("
+      },
+      {
+        "line": 733,
+        "text": "                0,"
+      },
+      {
+        "line": 734,
+        "text": "                (string)($payload['message'] ?? 'Unsupported collection')"
+      },
+      {
+        "line": 735,
+        "text": "            );"
+      },
+      {
+        "line": 736,
+        "text": "        }"
+      },
+      {
+        "line": 737,
+        "text": ""
+      },
+      {
+        "line": 738,
+        "text": "        $scope = trim("
+      },
+      {
+        "line": 739,
+        "text": "            (string)($this->ajaxData['scope'] ?? '')"
+      },
+      {
+        "line": 740,
+        "text": "        );"
+      },
+      {
+        "line": 741,
+        "text": "        $rawIds = trim("
+      },
+      {
+        "line": 742,
+        "text": "            (string)($this->ajaxData['ids'] ?? '')"
+      },
+      {
+        "line": 743,
+        "text": "        );"
+      },
+      {
+        "line": 744,
+        "text": ""
+      },
+      {
+        "line": 745,
+        "text": "        if ("
+      },
+      {
+        "line": 746,
+        "text": "            $scope === ''"
+      },
+      {
+        "line": 747,
+        "text": "            || !isset($payload['groups'][$scope])"
+      },
+      {
+        "line": 748,
+        "text": "            || $rawIds === ''"
+      },
+      {
+        "line": 749,
+        "text": "        ) {"
+      },
+      {
+        "line": 750,
+        "text": "            return $this->managedSortableJson("
+      },
+      {
+        "line": 751,
+        "text": "                0,"
+      },
+      {
+        "line": 752,
+        "text": "                'Invalid collection scope'"
+      },
+      {
+        "line": 753,
+        "text": "            );"
+      },
+      {
+        "line": 754,
+        "text": "        }"
+      },
+      {
+        "line": 755,
+        "text": ""
+      },
+      {
+        "line": 756,
+        "text": "        $parts = preg_split('/\\s*,\\s*/', $rawIds) ?: [];"
+      },
+      {
+        "line": 757,
+        "text": "        $ids = [];"
+      },
+      {
+        "line": 758,
+        "text": "        $seen = [];"
+      },
+      {
+        "line": 759,
+        "text": ""
+      },
+      {
+        "line": 760,
+        "text": "        foreach ($parts as $part) {"
+      },
+      {
+        "line": 761,
+        "text": "            if (!ctype_digit($part)) {"
+      },
+      {
+        "line": 762,
+        "text": "                return $this->managedSortableJson("
+      },
+      {
+        "line": 763,
+        "text": "                    0,"
+      },
+      {
+        "line": 764,
+        "text": "                    'Invalid collection identifiers'"
+      },
+      {
+        "line": 765,
+        "text": "                );"
+      },
+      {
+        "line": 766,
+        "text": "            }"
+      },
+      {
+        "line": 767,
+        "text": ""
+      },
+      {
+        "line": 768,
+        "text": "            $id = (int)$part;"
+      },
+      {
+        "line": 769,
+        "text": ""
+      },
+      {
+        "line": 770,
+        "text": "            if ($id < 1 || isset($seen[$id])) {"
+      },
+      {
+        "line": 771,
+        "text": "                return $this->managedSortableJson("
+      },
+      {
+        "line": 772,
+        "text": "                    0,"
+      },
+      {
+        "line": 773,
+        "text": "                    'Duplicate or invalid collection identifier'"
+      },
+      {
+        "line": 774,
+        "text": "                );"
+      },
+      {
+        "line": 775,
+        "text": "            }"
+      },
+      {
+        "line": 776,
+        "text": ""
+      },
+      {
+        "line": 777,
+        "text": "            $seen[$id] = true;"
+      },
+      {
+        "line": 778,
+        "text": "            $ids[] = $id;"
+      },
+      {
+        "line": 779,
+        "text": "        }"
+      },
+      {
+        "line": 780,
+        "text": ""
+      },
+      {
+        "line": 781,
+        "text": "        $storedIds = array_values("
+      },
+      {
+        "line": 782,
+        "text": "            $payload['groups'][$scope]['ids']"
+      },
+      {
+        "line": 783,
+        "text": "        );"
+      },
+      {
+        "line": 784,
+        "text": "        $requestedCheck = $ids;"
+      },
+      {
+        "line": 785,
+        "text": "        $storedCheck = $storedIds;"
+      },
+      {
+        "line": 786,
+        "text": "        sort($requestedCheck, SORT_NUMERIC);"
+      },
+      {
+        "line": 787,
+        "text": "        sort($storedCheck, SORT_NUMERIC);"
+      },
+      {
+        "line": 788,
+        "text": ""
+      },
+      {
+        "line": 789,
+        "text": "        if ($requestedCheck !== $storedCheck) {"
+      },
+      {
+        "line": 790,
+        "text": "            return $this->managedSortableJson("
+      },
+      {
+        "line": 791,
+        "text": "                0,"
+      },
+      {
+        "line": 792,
+        "text": "                'Collection changed; reload the page'"
+      },
+      {
+        "line": 793,
+        "text": "            );"
+      },
+      {
+        "line": 794,
+        "text": "        }"
+      },
+      {
+        "line": 795,
+        "text": ""
+      },
+      {
+        "line": 796,
+        "text": "        $table = $payload['table'];"
+      },
+      {
+        "line": 797,
+        "text": "        $idRow = $payload['id_row'];"
+      },
+      {
+        "line": 798,
+        "text": "        $oldPositions = $payload['groups'][$scope]['positions'];"
+      },
+      {
+        "line": 799,
+        "text": ""
+      },
+      {
+        "line": 800,
+        "text": "        try {"
+      },
+      {
+        "line": 801,
+        "text": "            foreach ($ids as $position => $id) {"
+      },
+      {
+        "line": 802,
+        "text": "                $this->model->edit($table, ["
+      },
+      {
+        "line": 803,
+        "text": "                    'fields' => ["
+      },
+      {
+        "line": 804,
+        "text": "                        'menu_position' => $position + 1,"
+      },
+      {
+        "line": 805,
+        "text": "                    ],"
+      },
+      {
+        "line": 806,
+        "text": "                    'where' => ["
+      },
+      {
+        "line": 807,
+        "text": "                        $idRow => $id,"
+      },
+      {
+        "line": 808,
+        "text": "                    ],"
+      },
+      {
+        "line": 809,
+        "text": "                ]);"
+      },
+      {
+        "line": 810,
+        "text": "            }"
+      },
+      {
+        "line": 811,
+        "text": "        } catch (\\Throwable $error) {"
+      },
+      {
+        "line": 812,
+        "text": "            error_log("
+      },
+      {
+        "line": 813,
+        "text": "                'ForPrint managed order save failed: '"
+      },
+      {
+        "line": 814,
+        "text": "                . $error->getMessage()"
+      },
+      {
+        "line": 815,
+        "text": "            );"
+      },
+      {
+        "line": 816,
+        "text": ""
+      },
+      {
+        "line": 817,
+        "text": "            try {"
+      },
+      {
+        "line": 818,
+        "text": "                foreach ($oldPositions as $id => $position) {"
+      },
+      {
+        "line": 819,
+        "text": "                    $this->model->edit($table, ["
+      },
+      {
+        "line": 820,
+        "text": "                        'fields' => ["
+      },
+      {
+        "line": 821,
+        "text": "                            'menu_position' => $position,"
+      },
+      {
+        "line": 822,
+        "text": "                        ],"
+      },
+      {
+        "line": 823,
+        "text": "                        'where' => ["
+      },
+      {
+        "line": 824,
+        "text": "                            $idRow => (int)$id,"
+      },
+      {
+        "line": 825,
+        "text": "                        ],"
+      },
+      {
+        "line": 826,
+        "text": "                    ]);"
+      },
+      {
+        "line": 827,
+        "text": "                }"
+      },
+      {
+        "line": 828,
+        "text": "            } catch (\\Throwable $rollbackError) {"
+      },
+      {
+        "line": 829,
+        "text": "                error_log("
+      },
+      {
+        "line": 830,
+        "text": "                    'ForPrint managed order rollback failed: '"
+      },
+      {
+        "line": 831,
+        "text": "                    . $rollbackError->getMessage()"
+      },
+      {
+        "line": 832,
+        "text": "                );"
+      },
+      {
+        "line": 833,
+        "text": "            }"
+      },
+      {
+        "line": 834,
+        "text": ""
+      },
+      {
+        "line": 835,
+        "text": "            return $this->managedSortableJson("
+      },
+      {
+        "line": 836,
+        "text": "                0,"
+      },
+      {
+        "line": 837,
+        "text": "                'Unable to save order; previous order restored'"
+      },
+      {
+        "line": 838,
+        "text": "            );"
+      },
+      {
+        "line": 839,
+        "text": "        }"
+      },
+      {
+        "line": 840,
+        "text": ""
+      },
+      {
+        "line": 841,
+        "text": "        return $this->managedSortableJson("
+      },
+      {
+        "line": 842,
+        "text": "            1,"
+      },
+      {
+        "line": 843,
+        "text": "            'Collection order saved',"
+      },
+      {
+        "line": 844,
+        "text": "            ["
+      },
+      {
+        "line": 845,
+        "text": "                'table' => $table,"
+      },
+      {
+        "line": 846,
+        "text": "                'scope' => $scope,"
+      },
+      {
+        "line": 847,
+        "text": "                'ids' => $ids,"
+      },
+      {
+        "line": 848,
+        "text": "            ]"
+      },
+      {
+        "line": 849,
+        "text": "        );"
+      },
+      {
+        "line": 850,
+        "text": "    }"
+      },
+      {
+        "line": 851,
+        "text": ""
+      },
+      {
+        "line": 852,
+        "text": "    /**"
+      },
+      {
+        "line": 853,
+        "text": "     * Load and group the complete collection from the server."
+      },
+      {
+        "line": 854,
+        "text": "     */"
+      },
+      {
+        "line": 855,
+        "text": "    protected function loadManagedSortableCollection(): array"
+      },
+      {
+        "line": 856,
+        "text": "    {"
+      },
+      {
+        "line": 857,
+        "text": "        $table = trim("
+      },
+      {
+        "line": 858,
+        "text": "            (string)($this->ajaxData['table'] ?? '')"
+      },
+      {
+        "line": 859,
+        "text": "        );"
+      },
+      {
+        "line": 860,
+        "text": ""
+      },
+      {
+        "line": 861,
+        "text": "        if ("
+      },
+      {
+        "line": 862,
+        "text": "            $table === ''"
+      },
+      {
+        "line": 863,
+        "text": "            || !in_array("
+      },
+      {
+        "line": 864,
+        "text": "                $table,"
+      },
+      {
+        "line": 865,
+        "text": "                $this->managedSortableTables(),"
+      },
+      {
+        "line": 866,
+        "text": "                true"
+      },
+      {
+        "line": 867,
+        "text": "            )"
+      },
+      {
+        "line": 868,
+        "text": "        ) {"
+      },
+      {
+        "line": 869,
+        "text": "            return ["
+      },
+      {
+        "line": 870,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 871,
+        "text": "                'message' => 'Unsupported sortable collection',"
+      },
+      {
+        "line": 872,
+        "text": "            ];"
+      },
+      {
+        "line": 873,
+        "text": "        }"
+      },
+      {
+        "line": 874,
+        "text": ""
+      },
+      {
+        "line": 875,
+        "text": "        $columns = $this->model->showColumns($table);"
+      },
+      {
+        "line": 876,
+        "text": ""
+      },
+      {
+        "line": 877,
+        "text": "        if ("
+      },
+      {
+        "line": 878,
+        "text": "            !$columns"
+      },
+      {
+        "line": 879,
+        "text": "            || empty($columns['id_row'])"
+      },
+      {
+        "line": 880,
+        "text": "            || empty($columns['menu_position'])"
+      },
+      {
+        "line": 881,
+        "text": "        ) {"
+      },
+      {
+        "line": 882,
+        "text": "            return ["
+      },
+      {
+        "line": 883,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 884,
+        "text": "                'message' => 'Collection has no ordering contract',"
+      },
+      {
+        "line": 885,
+        "text": "            ];"
+      },
+      {
+        "line": 886,
+        "text": "        }"
+      },
+      {
+        "line": 887,
+        "text": ""
+      },
+      {
+        "line": 888,
+        "text": "        $idRow = (string)$columns['id_row'];"
+      },
+      {
+        "line": 889,
+        "text": "        $hasParent = !empty($columns['parent_id']);"
+      },
+      {
+        "line": 890,
+        "text": "        $fields = [$idRow, 'menu_position'];"
+      },
+      {
+        "line": 891,
+        "text": ""
+      },
+      {
+        "line": 892,
+        "text": "        if ($hasParent) {"
+      },
+      {
+        "line": 893,
+        "text": "            $fields[] = 'parent_id';"
+      },
+      {
+        "line": 894,
+        "text": "        }"
+      },
+      {
+        "line": 895,
+        "text": ""
+      },
+      {
+        "line": 896,
+        "text": "        $rows = $this->model->get($table, ["
+      },
+      {
+        "line": 897,
+        "text": "            'fields' => $fields,"
+      },
+      {
+        "line": 898,
+        "text": "            'order' => ['menu_position', $idRow],"
+      },
+      {
+        "line": 899,
+        "text": "            'order_direction' => ['ASC', 'ASC'],"
+      },
+      {
+        "line": 900,
+        "text": "        ]) ?: [];"
+      },
+      {
+        "line": 901,
+        "text": ""
+      },
+      {
+        "line": 902,
+        "text": "        $groups = [];"
+      },
+      {
+        "line": 903,
+        "text": ""
+      },
+      {
+        "line": 904,
+        "text": "        foreach ($rows as $row) {"
+      },
+      {
+        "line": 905,
+        "text": "            if (!is_array($row)) {"
+      },
+      {
+        "line": 906,
+        "text": "                continue;"
+      },
+      {
+        "line": 907,
+        "text": "            }"
+      },
+      {
+        "line": 908,
+        "text": ""
+      },
+      {
+        "line": 909,
+        "text": "            $id = (int)($row[$idRow] ?? 0);"
+      },
+      {
+        "line": 910,
+        "text": ""
+      },
+      {
+        "line": 911,
+        "text": "            if ($id < 1) {"
+      },
+      {
+        "line": 912,
+        "text": "                continue;"
+      },
+      {
+        "line": 913,
+        "text": "            }"
+      },
+      {
+        "line": 914,
+        "text": ""
+      },
+      {
+        "line": 915,
+        "text": "            $scope = '__flat__';"
+      },
+      {
+        "line": 916,
+        "text": ""
+      },
+      {
+        "line": 917,
+        "text": "            if ($hasParent) {"
+      },
+      {
+        "line": 918,
+        "text": "                $parent = $row['parent_id'] ?? null;"
+      },
+      {
+        "line": 919,
+        "text": "                $scope = ("
+      },
+      {
+        "line": 920,
+        "text": "                    $parent === null"
+      },
+      {
+        "line": 921,
+        "text": "                    || $parent === ''"
+      },
+      {
+        "line": 922,
+        "text": "                )"
+      },
+      {
+        "line": 923,
+        "text": "                    ? '__null__'"
+      },
+      {
+        "line": 924,
+        "text": "                    : (string)(int)$parent;"
+      },
+      {
+        "line": 925,
+        "text": "            }"
+      },
+      {
+        "line": 926,
+        "text": ""
+      },
+      {
+        "line": 927,
+        "text": "            if (!isset($groups[$scope])) {"
+      },
+      {
+        "line": 928,
+        "text": "                $groups[$scope] = ["
+      },
+      {
+        "line": 929,
+        "text": "                    'ids' => [],"
+      },
+      {
+        "line": 930,
+        "text": "                    'positions' => [],"
+      },
+      {
+        "line": 931,
+        "text": "                ];"
+      },
+      {
+        "line": 932,
+        "text": "            }"
+      },
+      {
+        "line": 933,
+        "text": ""
+      },
+      {
+        "line": 934,
+        "text": "            $groups[$scope]['ids'][] = $id;"
+      },
+      {
+        "line": 935,
+        "text": "            $groups[$scope]['positions'][$id] = ("
+      },
+      {
+        "line": 936,
+        "text": "                (int)($row['menu_position'] ?? 0)"
+      },
+      {
+        "line": 937,
+        "text": "            );"
+      },
+      {
+        "line": 938,
+        "text": "        }"
+      },
+      {
+        "line": 939,
+        "text": ""
+      },
+      {
+        "line": 940,
+        "text": "        return ["
+      },
+      {
+        "line": 941,
+        "text": "            'success' => 1,"
+      },
+      {
+        "line": 942,
+        "text": "            'table' => $table,"
+      },
+      {
+        "line": 943,
+        "text": "            'id_row' => $idRow,"
+      },
+      {
+        "line": 944,
+        "text": "            'has_parent' => $hasParent,"
+      },
+      {
+        "line": 945,
+        "text": "            'groups' => $groups,"
+      },
+      {
+        "line": 946,
+        "text": "        ];"
+      },
+      {
+        "line": 947,
+        "text": "    }"
+      },
+      {
+        "line": 948,
+        "text": ""
+      },
+      {
+        "line": 949,
+        "text": "    protected function managedSortableJson("
+      },
+      {
+        "line": 950,
+        "text": "        int $success,"
+      },
+      {
+        "line": 951,
+        "text": "        string $message,"
+      },
+      {
+        "line": 952,
+        "text": "        array $extra = []"
+      },
+      {
+        "line": 953,
+        "text": "    ): string {"
+      },
+      {
+        "line": 954,
+        "text": "        return json_encode("
+      },
+      {
+        "line": 955,
+        "text": "            array_merge("
+      },
+      {
+        "line": 956,
+        "text": "                ["
+      },
+      {
+        "line": 957,
+        "text": "                    'success' => $success,"
+      },
+      {
+        "line": 958,
+        "text": "                    'message' => $message,"
+      },
+      {
+        "line": 959,
+        "text": "                ],"
+      },
+      {
+        "line": 960,
+        "text": "                $extra"
+      },
+      {
+        "line": 961,
+        "text": "            ),"
+      },
+      {
+        "line": 962,
+        "text": "            JSON_UNESCAPED_UNICODE"
+      },
+      {
+        "line": 963,
+        "text": "            | JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 964,
+        "text": "        );"
+      },
+      {
+        "line": 965,
+        "text": "    }"
+      },
+      {
+        "line": 966,
+        "text": ""
+      },
+      {
+        "line": 967,
+        "text": "    protected function sortEntityPositions(): string"
+      },
+      {
+        "line": 968,
+        "text": "    {"
+      },
+      {
+        "line": 969,
+        "text": "        /* ForPrint Goods drag-and-drop persistence v0.6.50 */"
+      },
+      {
+        "line": 970,
+        "text": "        $table = trim((string)($this->ajaxData['table'] ?? ''));"
+      },
+      {
+        "line": 971,
+        "text": ""
+      },
+      {
+        "line": 972,
+        "text": "        if ($table !== 'goods') {"
+      },
+      {
+        "line": 973,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 974,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 975,
+        "text": "                'message' => 'Unsupported sortable collection',"
+      },
+      {
+        "line": 976,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 977,
+        "text": "        }"
+      },
+      {
+        "line": 978,
+        "text": ""
+      },
+      {
+        "line": 979,
+        "text": "        $columns = $this->model->showColumns($table);"
+      },
+      {
+        "line": 980,
+        "text": ""
+      },
+      {
+        "line": 981,
+        "text": "        if ("
+      },
+      {
+        "line": 982,
+        "text": "            !$columns"
+      },
+      {
+        "line": 983,
+        "text": "            || empty($columns['id_row'])"
+      },
+      {
+        "line": 984,
+        "text": "            || empty($columns['menu_position'])"
+      },
+      {
+        "line": 985,
+        "text": "            || empty($columns['parent_id'])"
+      },
+      {
+        "line": 986,
+        "text": "        ) {"
+      },
+      {
+        "line": 987,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 988,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 989,
+        "text": "                'message' => 'Sortable columns are unavailable',"
+      },
+      {
+        "line": 990,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 991,
+        "text": "        }"
+      },
+      {
+        "line": 992,
+        "text": ""
+      },
+      {
+        "line": 993,
+        "text": "        $idRow = (string)$columns['id_row'];"
+      },
+      {
+        "line": 994,
+        "text": "        $parentId = (int)$this->clearNum("
+      },
+      {
+        "line": 995,
+        "text": "            $this->ajaxData['parent_id'] ?? 0"
+      },
+      {
+        "line": 996,
+        "text": "        );"
+      },
+      {
+        "line": 997,
+        "text": "        $rawIds = trim((string)($this->ajaxData['ids'] ?? ''));"
+      },
+      {
+        "line": 998,
+        "text": ""
+      },
+      {
+        "line": 999,
+        "text": "        if ($parentId < 1 || $rawIds === '') {"
+      },
+      {
+        "line": 1000,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1001,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1002,
+        "text": "                'message' => 'Invalid Goods group payload',"
+      },
+      {
+        "line": 1003,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1004,
+        "text": "        }"
+      },
+      {
+        "line": 1005,
+        "text": ""
+      },
+      {
+        "line": 1006,
+        "text": "        $ids = array_values(array_unique(array_filter("
+      },
+      {
+        "line": 1007,
+        "text": "            array_map("
+      },
+      {
+        "line": 1008,
+        "text": "                static function (string $value): int {"
+      },
+      {
+        "line": 1009,
+        "text": "                    return ctype_digit($value) ? (int)$value : 0;"
+      },
+      {
+        "line": 1010,
+        "text": "                },"
+      },
+      {
+        "line": 1011,
+        "text": "                preg_split('/\\s*,\\s*/', $rawIds) ?: []"
+      },
+      {
+        "line": 1012,
+        "text": "            ),"
+      },
+      {
+        "line": 1013,
+        "text": "            static function (int $value): bool {"
+      },
+      {
+        "line": 1014,
+        "text": "                return $value > 0;"
+      },
+      {
+        "line": 1015,
+        "text": "            }"
+      },
+      {
+        "line": 1016,
+        "text": "        )));"
+      },
+      {
+        "line": 1017,
+        "text": ""
+      },
+      {
+        "line": 1018,
+        "text": "        if (!$ids) {"
+      },
+      {
+        "line": 1019,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1020,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1021,
+        "text": "                'message' => 'No Goods identifiers supplied',"
+      },
+      {
+        "line": 1022,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1023,
+        "text": "        }"
+      },
+      {
+        "line": 1024,
+        "text": ""
+      },
+      {
+        "line": 1025,
+        "text": "        $rows = $this->model->get($table, ["
+      },
+      {
+        "line": 1026,
+        "text": "            'fields' => [$idRow],"
+      },
+      {
+        "line": 1027,
+        "text": "            'where' => ['parent_id' => $parentId],"
+      },
+      {
+        "line": 1028,
+        "text": "            'order' => ['menu_position', $idRow],"
+      },
+      {
+        "line": 1029,
+        "text": "            'order_direction' => ['ASC', 'ASC'],"
+      },
+      {
+        "line": 1030,
+        "text": "        ]) ?: [];"
+      },
+      {
+        "line": 1031,
+        "text": ""
+      },
+      {
+        "line": 1032,
+        "text": "        $storedIds = array_values(array_filter(array_map("
+      },
+      {
+        "line": 1033,
+        "text": "            static function (array $row) use ($idRow): int {"
+      },
+      {
+        "line": 1034,
+        "text": "                return (int)($row[$idRow] ?? 0);"
+      },
+      {
+        "line": 1035,
+        "text": "            },"
+      },
+      {
+        "line": 1036,
+        "text": "            $rows"
+      },
+      {
+        "line": 1037,
+        "text": "        )));"
+      },
+      {
+        "line": 1038,
+        "text": ""
+      },
+      {
+        "line": 1039,
+        "text": "        $requestedCheck = $ids;"
+      },
+      {
+        "line": 1040,
+        "text": "        $storedCheck = $storedIds;"
+      },
+      {
+        "line": 1041,
+        "text": "        sort($requestedCheck, SORT_NUMERIC);"
+      },
+      {
+        "line": 1042,
+        "text": "        sort($storedCheck, SORT_NUMERIC);"
+      },
+      {
+        "line": 1043,
+        "text": ""
+      },
+      {
+        "line": 1044,
+        "text": "        if ($requestedCheck !== $storedCheck) {"
+      },
+      {
+        "line": 1045,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1046,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1047,
+        "text": "                'message' => 'The Goods collection changed; reload the page',"
+      },
+      {
+        "line": 1048,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1049,
+        "text": "        }"
+      },
+      {
+        "line": 1050,
+        "text": ""
+      },
+      {
+        "line": 1051,
+        "text": "        try {"
+      },
+      {
+        "line": 1052,
+        "text": "            foreach ($ids as $position => $id) {"
+      },
+      {
+        "line": 1053,
+        "text": "                $this->model->edit($table, ["
+      },
+      {
+        "line": 1054,
+        "text": "                    'fields' => ['menu_position' => $position + 1],"
+      },
+      {
+        "line": 1055,
+        "text": "                    'where' => ["
+      },
+      {
+        "line": 1056,
+        "text": "                        $idRow => $id,"
+      },
+      {
+        "line": 1057,
+        "text": "                        'parent_id' => $parentId,"
+      },
+      {
+        "line": 1058,
+        "text": "                    ],"
+      },
+      {
+        "line": 1059,
+        "text": "                ]);"
+      },
+      {
+        "line": 1060,
+        "text": "            }"
+      },
+      {
+        "line": 1061,
+        "text": "        } catch (\\Throwable $error) {"
+      },
+      {
+        "line": 1062,
+        "text": "            error_log("
+      },
+      {
+        "line": 1063,
+        "text": "                'ForPrint Goods order save failed: '"
+      },
+      {
+        "line": 1064,
+        "text": "                . $error->getMessage()"
+      },
+      {
+        "line": 1065,
+        "text": "            );"
+      },
+      {
+        "line": 1066,
+        "text": ""
+      },
+      {
+        "line": 1067,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1068,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1069,
+        "text": "                'message' => 'Unable to save Goods order',"
+      },
+      {
+        "line": 1070,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1071,
+        "text": "        }"
+      },
+      {
+        "line": 1072,
+        "text": ""
+      },
+      {
+        "line": 1073,
+        "text": "        return json_encode(["
+      },
+      {
+        "line": 1074,
+        "text": "            'success' => 1,"
+      },
+      {
+        "line": 1075,
+        "text": "            'table' => $table,"
+      },
+      {
+        "line": 1076,
+        "text": "            'parent_id' => $parentId,"
+      },
+      {
+        "line": 1077,
+        "text": "            'ids' => $ids,"
+      },
+      {
+        "line": 1078,
+        "text": "        ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1079,
+        "text": "    }"
+      },
+      {
+        "line": 1080,
+        "text": ""
+      },
+      {
+        "line": 1081,
+        "text": "    protected function sortFilterPositions(): string"
+      },
+      {
+        "line": 1082,
+        "text": "    {"
+      },
+      {
+        "line": 1083,
+        "text": "        /* ForPrint filter drag-and-drop persistence v0.6.46 */"
+      },
+      {
+        "line": 1084,
+        "text": "        $parentId = $this->clearNum($this->ajaxData['parent_id'] ?? 0);"
+      },
+      {
+        "line": 1085,
+        "text": "        $rawIds = trim((string)($this->ajaxData['ids'] ?? ''));"
+      },
+      {
+        "line": 1086,
+        "text": ""
+      },
+      {
+        "line": 1087,
+        "text": "        if ($parentId < 1 || $rawIds === '') {"
+      },
+      {
+        "line": 1088,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1089,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1090,
+        "text": "                'message' => 'Invalid filter group payload',"
+      },
+      {
+        "line": 1091,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1092,
+        "text": "        }"
+      },
+      {
+        "line": 1093,
+        "text": ""
+      },
+      {
+        "line": 1094,
+        "text": "        $ids = array_values(array_unique(array_filter("
+      },
+      {
+        "line": 1095,
+        "text": "            array_map("
+      },
+      {
+        "line": 1096,
+        "text": "                static function (string $value): int {"
+      },
+      {
+        "line": 1097,
+        "text": "                    return ctype_digit($value) ? (int)$value : 0;"
+      },
+      {
+        "line": 1098,
+        "text": "                },"
+      },
+      {
+        "line": 1099,
+        "text": "                preg_split('/\\s*,\\s*/', $rawIds) ?: []"
+      },
+      {
+        "line": 1100,
+        "text": "            ),"
+      },
+      {
+        "line": 1101,
+        "text": "            static function (int $value): bool {"
+      },
+      {
+        "line": 1102,
+        "text": "                return $value > 0;"
+      },
+      {
+        "line": 1103,
+        "text": "            }"
+      },
+      {
+        "line": 1104,
+        "text": "        )));"
+      },
+      {
+        "line": 1105,
+        "text": ""
+      },
+      {
+        "line": 1106,
+        "text": "        if (!$ids) {"
+      },
+      {
+        "line": 1107,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1108,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1109,
+        "text": "                'message' => 'No filter identifiers supplied',"
+      },
+      {
+        "line": 1110,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1111,
+        "text": "        }"
+      },
+      {
+        "line": 1112,
+        "text": ""
+      },
+      {
+        "line": 1113,
+        "text": "        $rows = $this->model->get('filters', ["
+      },
+      {
+        "line": 1114,
+        "text": "            'fields' => ['id'],"
+      },
+      {
+        "line": 1115,
+        "text": "            'where' => ['parent_id' => $parentId],"
+      },
+      {
+        "line": 1116,
+        "text": "            'order' => ['menu_position', 'id'],"
+      },
+      {
+        "line": 1117,
+        "text": "            'order_direction' => ['ASC', 'ASC'],"
+      },
+      {
+        "line": 1118,
+        "text": "        ]) ?: [];"
+      },
+      {
+        "line": 1119,
+        "text": ""
+      },
+      {
+        "line": 1120,
+        "text": "        $storedIds = array_values(array_map("
+      },
+      {
+        "line": 1121,
+        "text": "            static function (array $row): int {"
+      },
+      {
+        "line": 1122,
+        "text": "                return (int)($row['id'] ?? 0);"
+      },
+      {
+        "line": 1123,
+        "text": "            },"
+      },
+      {
+        "line": 1124,
+        "text": "            $rows"
+      },
+      {
+        "line": 1125,
+        "text": "        ));"
+      },
+      {
+        "line": 1126,
+        "text": ""
+      },
+      {
+        "line": 1127,
+        "text": "        $requestedCheck = $ids;"
+      },
+      {
+        "line": 1128,
+        "text": "        $storedCheck = array_values(array_filter($storedIds));"
+      },
+      {
+        "line": 1129,
+        "text": "        sort($requestedCheck, SORT_NUMERIC);"
+      },
+      {
+        "line": 1130,
+        "text": "        sort($storedCheck, SORT_NUMERIC);"
+      },
+      {
+        "line": 1131,
+        "text": ""
+      },
+      {
+        "line": 1132,
+        "text": "        if ($requestedCheck !== $storedCheck) {"
+      },
+      {
+        "line": 1133,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1134,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1135,
+        "text": "                'message' => 'The filter collection changed; reload the page',"
+      },
+      {
+        "line": 1136,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1137,
+        "text": "        }"
+      },
+      {
+        "line": 1138,
+        "text": ""
+      },
+      {
+        "line": 1139,
+        "text": "        foreach ($ids as $position => $id) {"
+      },
+      {
+        "line": 1140,
+        "text": "            $this->model->edit('filters', ["
+      },
+      {
+        "line": 1141,
+        "text": "                'fields' => ['menu_position' => $position + 1],"
+      },
+      {
+        "line": 1142,
+        "text": "                'where' => ["
+      },
+      {
+        "line": 1143,
+        "text": "                    'id' => $id,"
+      },
+      {
+        "line": 1144,
+        "text": "                    'parent_id' => $parentId,"
+      },
+      {
+        "line": 1145,
+        "text": "                ],"
+      },
+      {
+        "line": 1146,
+        "text": "            ]);"
+      },
+      {
+        "line": 1147,
+        "text": "        }"
+      },
+      {
+        "line": 1148,
+        "text": ""
+      },
+      {
+        "line": 1149,
+        "text": "        return json_encode(["
+      },
+      {
+        "line": 1150,
+        "text": "            'success' => 1,"
+      },
+      {
+        "line": 1151,
+        "text": "            'parent_id' => $parentId,"
+      },
+      {
+        "line": 1152,
+        "text": "            'ids' => $ids,"
+      },
+      {
+        "line": 1153,
+        "text": "        ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1154,
+        "text": "    }"
+      },
+      {
+        "line": 1155,
+        "text": ""
+      },
+      {
+        "line": 1156,
+        "text": ""
+      },
+      {
+        "line": 1157,
+        "text": "    protected function sortAdminMenu(): string"
+      },
+      {
+        "line": 1158,
+        "text": "    {"
+      },
+      {
+        "line": 1159,
+        "text": "        $rawTables = trim((string)($this->ajaxData['tables'] ?? ''));"
+      },
+      {
+        "line": 1160,
+        "text": "        $requested = array_values(array_unique(array_filter("
+      },
+      {
+        "line": 1161,
+        "text": "            array_map("
+      },
+      {
+        "line": 1162,
+        "text": "                static function (string $value): string {"
+      },
+      {
+        "line": 1163,
+        "text": "                    return preg_match('/^[a-z0-9_]+$/i', $value)"
+      },
+      {
+        "line": 1164,
+        "text": "                        ? $value"
+      },
+      {
+        "line": 1165,
+        "text": "                        : '';"
+      },
+      {
+        "line": 1166,
+        "text": "                },"
+      },
+      {
+        "line": 1167,
+        "text": "                preg_split('/\\s*,\\s*/', $rawTables) ?: []"
+      },
+      {
+        "line": 1168,
+        "text": "            )"
+      },
+      {
+        "line": 1169,
+        "text": "        )));"
+      },
+      {
+        "line": 1170,
+        "text": ""
+      },
+      {
+        "line": 1171,
+        "text": "        $projectTables = Settings::get('projectTables');"
+      },
+      {
+        "line": 1172,
+        "text": "        $technicalTables = ['footer_settings', 'footer_links', 'footer_phones'];"
+      },
+      {
+        "line": 1173,
+        "text": "        $allowed = [];"
+      },
+      {
+        "line": 1174,
+        "text": ""
+      },
+      {
+        "line": 1175,
+        "text": "        foreach ($projectTables as $table => $config) {"
+      },
+      {
+        "line": 1176,
+        "text": "            if ("
+      },
+      {
+        "line": 1177,
+        "text": "                ($config['menu'] ?? true) === false"
+      },
+      {
+        "line": 1178,
+        "text": "                || in_array($table, $technicalTables, true)"
+      },
+      {
+        "line": 1179,
+        "text": "            ) {"
+      },
+      {
+        "line": 1180,
+        "text": "                continue;"
+      },
+      {
+        "line": 1181,
+        "text": "            }"
+      },
+      {
+        "line": 1182,
+        "text": ""
+      },
+      {
+        "line": 1183,
+        "text": "            $allowed[] = (string)$table;"
+      },
+      {
+        "line": 1184,
+        "text": "        }"
+      },
+      {
+        "line": 1185,
+        "text": ""
+      },
+      {
+        "line": 1186,
+        "text": "        $requestedCheck = $requested;"
+      },
+      {
+        "line": 1187,
+        "text": "        $allowedCheck = $allowed;"
+      },
+      {
+        "line": 1188,
+        "text": "        sort($requestedCheck, SORT_STRING);"
+      },
+      {
+        "line": 1189,
+        "text": "        sort($allowedCheck, SORT_STRING);"
+      },
+      {
+        "line": 1190,
+        "text": ""
+      },
+      {
+        "line": 1191,
+        "text": "        if (!$requested || $requestedCheck !== $allowedCheck) {"
+      },
+      {
+        "line": 1192,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1193,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1194,
+        "text": "                'message' => 'The admin menu changed; reload the page',"
+      },
+      {
+        "line": 1195,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1196,
+        "text": "        }"
+      },
+      {
+        "line": 1197,
+        "text": ""
+      },
+      {
+        "line": 1198,
+        "text": "        $tables = $this->model->showTables();"
+      },
+      {
+        "line": 1199,
+        "text": ""
+      },
+      {
+        "line": 1200,
+        "text": "        if (!in_array('settings', $tables, true)) {"
+      },
+      {
+        "line": 1201,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1202,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1203,
+        "text": "                'message' => 'Settings table is unavailable',"
+      },
+      {
+        "line": 1204,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1205,
+        "text": "        }"
+      },
+      {
+        "line": 1206,
+        "text": ""
+      },
+      {
+        "line": 1207,
+        "text": "        $columns = $this->model->showColumns('settings');"
+      },
+      {
+        "line": 1208,
+        "text": ""
+      },
+      {
+        "line": 1209,
+        "text": "        if (empty($columns['admin_menu_order']) || empty($columns['id_row'])) {"
+      },
+      {
+        "line": 1210,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1211,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1212,
+        "text": "                'message' => 'Run the v0.6.47 database migration first',"
+      },
+      {
+        "line": 1213,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1214,
+        "text": "        }"
+      },
+      {
+        "line": 1215,
+        "text": ""
+      },
+      {
+        "line": 1216,
+        "text": "        $rows = $this->model->get('settings', ["
+      },
+      {
+        "line": 1217,
+        "text": "            'fields' => [$columns['id_row']],"
+      },
+      {
+        "line": 1218,
+        "text": "            'limit' => 1,"
+      },
+      {
+        "line": 1219,
+        "text": "        ]);"
+      },
+      {
+        "line": 1220,
+        "text": ""
+      },
+      {
+        "line": 1221,
+        "text": "        $settingsId = (int)($rows[0][$columns['id_row']] ?? 0);"
+      },
+      {
+        "line": 1222,
+        "text": ""
+      },
+      {
+        "line": 1223,
+        "text": "        if ($settingsId < 1) {"
+      },
+      {
+        "line": 1224,
+        "text": "            return json_encode(["
+      },
+      {
+        "line": 1225,
+        "text": "                'success' => 0,"
+      },
+      {
+        "line": 1226,
+        "text": "                'message' => 'Settings row was not found',"
+      },
+      {
+        "line": 1227,
+        "text": "            ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1228,
+        "text": "        }"
+      },
+      {
+        "line": 1229,
+        "text": ""
+      },
+      {
+        "line": 1230,
+        "text": "        $this->model->edit('settings', ["
+      },
+      {
+        "line": 1231,
+        "text": "            'fields' => ["
+      },
+      {
+        "line": 1232,
+        "text": "                'admin_menu_order' => json_encode("
+      },
+      {
+        "line": 1233,
+        "text": "                    $requested,"
+      },
+      {
+        "line": 1234,
+        "text": "                    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+      },
+      {
+        "line": 1235,
+        "text": "                ),"
+      },
+      {
+        "line": 1236,
+        "text": "            ],"
+      },
+      {
+        "line": 1237,
+        "text": "            'where' => ["
+      },
+      {
+        "line": 1238,
+        "text": "                $columns['id_row'] => $settingsId,"
+      },
+      {
+        "line": 1239,
+        "text": "            ],"
+      },
+      {
+        "line": 1240,
+        "text": "        ]);"
+      },
+      {
+        "line": 1241,
+        "text": ""
+      },
+      {
+        "line": 1242,
+        "text": "        return json_encode(["
+      },
+      {
+        "line": 1243,
+        "text": "            'success' => 1,"
+      },
+      {
+        "line": 1244,
+        "text": "            'tables' => $requested,"
+      },
+      {
+        "line": 1245,
+        "text": "        ], JSON_UNESCAPED_UNICODE);"
+      },
+      {
+        "line": 1246,
+        "text": "    }"
+      },
+      {
+        "line": 1247,
+        "text": ""
+      },
+      {
+        "line": 1248,
+        "text": ""
+      },
+      {
+        "line": 1249,
+        "text": "    protected function changeParent(){"
+      },
+      {
+        "line": 1250,
+        "text": ""
+      },
+      {
+        "line": 1251,
+        "text": "        return $this->model->get($this->ajaxData['table'], ["
+      },
+      {
+        "line": 1252,
+        "text": "           'fields'=>['COUNT(*) as count'],"
+      },
+      {
+        "line": 1253,
+        "text": "           'where'=>['parent_id'=> $this->ajaxData['parent_id']],"
+      },
+      {
+        "line": 1254,
+        "text": "           'no_concat'=> true"
+      },
+      {
+        "line": 1255,
+        "text": "        ])[0]['count'] + $this->ajaxData['iteration'];"
+      },
+      {
+        "line": 1256,
+        "text": "    }"
+      },
+      {
+        "line": 1257,
+        "text": "}"
+      }
+    ],
+    "sha256": "a95c08eebea8ff5284081c72e08233436cd791c3b85874b56f9db1c7647bd0a0"
+  },
+  "application_source_mutation": false,
+  "category_candidate_pages": {
+    "269": [
+      {
+        "candidate_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+        "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+        "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+        "links_target": false,
+        "status": 200
+      },
+      {
+        "candidate_url": "https://forprint.net.ua/nterrne-oformlennya-ta-konstrukts/",
+        "canonical": "",
+        "final_url": "https://forprint.net.ua/nterrne-oformlennya-ta-konstrukts/",
+        "links_target": false,
+        "status": 404
+      }
+    ],
+    "270": [
+      {
+        "candidate_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+        "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+        "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+        "links_target": false,
+        "status": 200
+      },
+      {
+        "candidate_url": "https://forprint.net.ua/nterrne-oformlennya-ta-konstrukts/",
+        "canonical": "",
+        "final_url": "https://forprint.net.ua/nterrne-oformlennya-ta-konstrukts/",
+        "links_target": false,
+        "status": 404
+      }
+    ],
+    "273": [
+      {
+        "candidate_url": "https://forprint.net.ua/catalog/konverti/",
+        "canonical": "https://forprint.net.ua/catalog/konverti/",
+        "final_url": "https://forprint.net.ua/catalog/konverti/",
+        "links_target": false,
+        "status": 200
+      },
+      {
+        "candidate_url": "https://forprint.net.ua/konverti/",
+        "canonical": "",
+        "final_url": "https://forprint.net.ua/konverti/",
+        "links_target": false,
+        "status": 404
+      }
+    ]
+  },
+  "classification": "ROOT_CAUSE_LINK_DISCOVERY_GAP_IN_CRAWLER_BASED_SITEMAP",
+  "database_mutation": false,
+  "db": {
+    "catalog": [
+      {
+        "alias": "nterrne-oformlennya-ta-konstrukts",
+        "id": "21",
+        "menu_position": "18",
+        "name": "Інтер'єрне оформлення та конструкції",
+        "parent_id": null,
+        "visible": "1"
+      },
+      {
+        "alias": "konverti",
+        "id": "22",
+        "menu_position": "4",
+        "name": "Конверти",
+        "parent_id": null,
+        "visible": "1"
+      }
+    ],
+    "database": "forprint_prod",
+    "goods": [
+      {
+        "alias": "promostyki",
+        "date": "2026-08-05",
+        "datetime": "2026-08-05 13:22:59",
+        "id": "268",
+        "menu_position": "16",
+        "name": "Промостійки",
+        "parent_id": "21",
+        "visible": "1"
+      },
+      {
+        "alias": "resepshn-styki-z-brenduvannyam",
+        "date": "2026-08-05",
+        "datetime": "2026-08-05 13:22:15",
+        "id": "269",
+        "menu_position": "14",
+        "name": "Ресепшн-стійки з брендуванням",
+        "parent_id": "21",
+        "visible": "1"
+      },
+      {
+        "alias": "reklamn-konstrukts-dlya-vtrin",
+        "date": "2026-08-06",
+        "datetime": "2026-08-06 10:59:37",
+        "id": "270",
+        "menu_position": "13",
+        "name": "Рекламні конструкції для вітрин",
+        "parent_id": "21",
+        "visible": "1"
+      },
+      {
+        "alias": "fotozoni-ta-dekorativn-konstrukts",
+        "date": "2026-08-05",
+        "datetime": "2026-08-05 12:36:20",
+        "id": "271",
+        "menu_position": "12",
+        "name": "Фотозони та декоративні конструкції",
+        "parent_id": "21",
+        "visible": "1"
+      },
+      {
+        "alias": "rostov-fguri",
+        "date": "2026-08-05",
+        "datetime": "2026-08-05 12:29:21",
+        "id": "272",
+        "menu_position": "11",
+        "name": "Ростові фігури",
+        "parent_id": "21",
+        "visible": "1"
+      },
+      {
+        "alias": "standartn-poshtov-konverti-z-drukom",
+        "date": "2026-08-03",
+        "datetime": "2026-08-03 18:28:51",
+        "id": "273",
+        "menu_position": "13",
+        "name": "Стандартні поштові конверти з друком",
+        "parent_id": "22",
+        "visible": "1"
+      },
+      {
+        "alias": "konverti-dlya-podarunkovih-sertifkatv",
+        "date": "2026-08-03",
+        "datetime": "2026-08-03 18:38:04",
+        "id": "274",
+        "menu_position": "12",
+        "name": "Конверти для подарункових сертифікатів",
+        "parent_id": "22",
+        "visible": "1"
+      }
+    ],
+    "ok": true
+  },
+  "generated": "2026-08-22T15:37:14.292763+03:00",
+  "git": {
+    "ahead_behind": [
+      "0",
+      "0"
+    ],
+    "branch": "main",
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "head": "286727adb0b2f111df702943f95788dd83dcb49c",
+    "header_status": "M base/templates/default/include/header.php",
+    "owner_status": "",
+    "untracked_marketing_roadmap": "?? marketing/programs/forprint_growth_roadmap_v0_1.md",
+    "upstream": "286727adb0b2f111df702943f95788dd83dcb49c",
+    "upstream_name": "origin/main"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "included_neighbor_referrer_counts": {
+    "268": 4,
+    "271": 1,
+    "272": 1,
+    "274": 1
+  },
+  "live_sitemap": {
+    "bytes": 16973,
+    "content_type": "text/xml",
+    "count": 191,
+    "final_url": "https://forprint.net.ua/sitemap.xml",
+    "sha256": "98148e2653994dc11dc56f9be4817c713c207bdb15d6a7d9a2cbcdf5c1122de8",
+    "status": 200
+  },
+  "missing_referrer_counts": {
+    "269": 0,
+    "270": 0,
+    "273": 0
+  },
+  "next_action": "BUILD_GUARDED_LOCAL_SITEMAP_OWNER_FIX_FROM_THIS_EXACT_EVIDENCE",
+  "owner": {
+    "line_count": 453,
+    "model": {
+      "model": "LINK_CRAWLER_GENERATOR",
+      "signals": {
+        "direct_goods_query_detected": false,
+        "uses_all_links": true,
+        "uses_curl": true,
+        "uses_domdocument": true,
+        "uses_href_extraction": true,
+        "writes_sitemap_xml": true
+      }
+    },
+    "path": "base/core/admin/controllers/CreatesitemapController.php",
+    "relevant_lines": [
+      {
+        "line": 4,
+        "text": "namespace core\\admin\\controllers;"
+      },
+      {
+        "line": 5,
+        "text": ""
+      },
+      {
+        "line": 6,
+        "text": ""
+      },
+      {
+        "line": 7,
+        "text": "use core\\base\\controllers\\BaseMethods;"
+      },
+      {
+        "line": 8,
+        "text": ""
+      },
+      {
+        "line": 9,
+        "text": "class CreatesitemapController extends BaseAdmin"
+      },
+      {
+        "line": 10,
+        "text": "{"
+      },
+      {
+        "line": 11,
+        "text": "    use BaseMethods;"
+      },
+      {
+        "line": 12,
+        "text": ""
+      },
+      {
+        "line": 13,
+        "text": "    protected $all_links = [];"
+      },
+      {
+        "line": 14,
+        "text": "    protected $temp_links = [];"
+      },
+      {
+        "line": 15,
+        "text": "    protected $bad_links = [];"
+      },
+      {
+        "line": 16,
+        "text": ""
+      },
+      {
+        "line": 17,
+        "text": "    protected $maxLinks = 500;"
+      },
+      {
+        "line": 18,
+        "text": ""
+      },
+      {
+        "line": 19,
+        "text": "    protected $parsingLogFile = 'parsing_log.txt';"
+      },
+      {
+        "line": 20,
+        "text": "    protected $fileArr = ['jpg', 'png', 'jpeg', 'gif', 'xls', 'xlsx', 'pdf', 'mp4', 'avi', 'mp3'];"
+      },
+      {
+        "line": 21,
+        "text": "    protected $filterArr = ["
+      },
+      {
+        "line": 22,
+        "text": "        'url' => ['order', 'page'],"
+      },
+      {
+        "line": 23,
+        "text": "        'get' => []"
+      },
+      {
+        "line": 24,
+        "text": "    ];"
+      },
+      {
+        "line": 25,
+        "text": ""
+      },
+      {
+        "line": 26,
+        "text": "    public function inputData($links_counter = 1, $redirect=true){"
+      },
+      {
+        "line": 27,
+        "text": ""
+      },
+      {
+        "line": 28,
+        "text": "        $links_counter = $this->clearNum($links_counter);"
+      },
+      {
+        "line": 29,
+        "text": ""
+      },
+      {
+        "line": 30,
+        "text": "        if(!function_exists('curl_init')){"
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": "            $this->cancel(0, 'Library CURL as not find. Creation Sitemap imposible', '', true);"
+      },
+      {
+        "line": 33,
+        "text": ""
+      },
+      {
+        "line": 34,
+        "text": "        }"
+      },
+      {
+        "line": 35,
+        "text": ""
+      },
+      {
+        "line": 36,
+        "text": "        if(!$this->userId) $this->execBase();"
+      },
+      {
+        "line": 37,
+        "text": "        if(!$this->checkParsingTable()){"
+      },
+      {
+        "line": 38,
+        "text": "            $this->cancel(0, 'You have problem with DATA BASE TABLE - parsing_data', '', true);"
+      },
+      {
+        "line": 39,
+        "text": "        };"
+      },
+      {
+        "line": 40,
+        "text": ""
+      },
+      {
+        "line": 41,
+        "text": "        set_time_limit(0);"
+      },
+      {
+        "line": 42,
+        "text": "        $reserve = $this->model->get('parsing_data')[0];"
+      },
+      {
+        "line": 43,
+        "text": ""
+      },
+      {
+        "line": 44,
+        "text": "        $table_rows=[];"
+      },
+      {
+        "line": 45,
+        "text": ""
+      },
+      {
+        "line": 46,
+        "text": "        foreach ($reserve as $name=>$item){"
+      },
+      {
+        "line": 47,
+        "text": ""
+      },
+      {
+        "line": 48,
+        "text": "            $table_rows[$name] = '';"
+      },
+      {
+        "line": 49,
+        "text": ""
+      },
+      {
+        "line": 50,
+        "text": "            if($item) $this->$name = json_decode($item);"
+      },
+      {
+        "line": 51,
+        "text": "                elseif($name === 'all_links' || $name === 'temp_links') $this->$name = [SITE_URL];"
+      },
+      {
+        "line": 52,
+        "text": "        }"
+      },
+      {
+        "line": 53,
+        "text": "        $this->maxLinks = (int)$links_counter > 1 ? ceil($this->maxLinks / $links_counter) : $this->maxLinks;"
+      },
+      {
+        "line": 54,
+        "text": ""
+      },
+      {
+        "line": 55,
+        "text": "        while ($this->temp_links){"
+      },
+      {
+        "line": 56,
+        "text": "            $temp_links_count = count($this->temp_links);"
+      },
+      {
+        "line": 57,
+        "text": "            $links = $this->temp_links;"
+      },
+      {
+        "line": 58,
+        "text": "            $this->temp_links = [];"
+      },
+      {
+        "line": 59,
+        "text": ""
+      },
+      {
+        "line": 60,
+        "text": "            if($temp_links_count > $this->maxLinks){"
+      },
+      {
+        "line": 61,
+        "text": "                $links = array_chunk($links, ceil($temp_links_count / $this->maxLinks));"
+      },
+      {
+        "line": 67,
+        "text": "                    unset($links[$i]);"
+      },
+      {
+        "line": 68,
+        "text": ""
+      },
+      {
+        "line": 69,
+        "text": "                    if($links){"
+      },
+      {
+        "line": 70,
+        "text": ""
+      },
+      {
+        "line": 71,
+        "text": "                        foreach ($table_rows as $name => $item){"
+      },
+      {
+        "line": 72,
+        "text": "                            if($name === 'temp_links') $table_rows[$name] = json_encode(array_merge(...$links));"
+      },
+      {
+        "line": 73,
+        "text": "                                 else $table_rows[$name] = json_encode($this->$name);"
+      },
+      {
+        "line": 74,
+        "text": "                        }"
+      },
+      {
+        "line": 75,
+        "text": ""
+      },
+      {
+        "line": 76,
+        "text": "                        $this->model->edit('parsing_data',["
+      },
+      {
+        "line": 77,
+        "text": "                            'fields' => $table_rows"
+      },
+      {
+        "line": 78,
+        "text": "                        ]);"
+      },
+      {
+        "line": 79,
+        "text": "                    }"
+      },
+      {
+        "line": 80,
+        "text": "                }"
+      },
+      {
+        "line": 98,
+        "text": ""
+      },
+      {
+        "line": 99,
+        "text": "        $this->model->edit('parsing_data',["
+      },
+      {
+        "line": 100,
+        "text": "            'fields' => $table_rows"
+      },
+      {
+        "line": 101,
+        "text": "        ]);"
+      },
+      {
+        "line": 102,
+        "text": ""
+      },
+      {
+        "line": 103,
+        "text": "        if($this->all_links){"
+      },
+      {
+        "line": 104,
+        "text": "            foreach ($this->all_links as $key=>$link){"
+      },
+      {
+        "line": 105,
+        "text": "                if(!$this->filter($link) || in_array($link, $this->bad_links)) unset($this->all_links[$key]);"
+      },
+      {
+        "line": 106,
+        "text": ""
+      },
+      {
+        "line": 107,
+        "text": "            }"
+      },
+      {
+        "line": 108,
+        "text": "        }"
+      },
+      {
+        "line": 109,
+        "text": ""
+      },
+      {
+        "line": 110,
+        "text": "            $this->createSitemap();"
+      },
+      {
+        "line": 111,
+        "text": ""
+      },
+      {
+        "line": 112,
+        "text": "         if($redirect){"
+      },
+      {
+        "line": 113,
+        "text": "             !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class=\"success\">Sitemap is created</div>';"
+      },
+      {
+        "line": 114,
+        "text": ""
+      },
+      {
+        "line": 115,
+        "text": "             $this->redirect();"
+      },
+      {
+        "line": 116,
+        "text": "         }else{"
+      },
+      {
+        "line": 117,
+        "text": "             $this->cancel(1, 'Sitemap is created! ' . count($this->all_links) . 'links', '', true);"
+      },
+      {
+        "line": 118,
+        "text": "         }"
+      },
+      {
+        "line": 119,
+        "text": "    }"
+      },
+      {
+        "line": 120,
+        "text": ""
+      },
+      {
+        "line": 121,
+        "text": "    protected function parsing($urls){"
+      },
+      {
+        "line": 122,
+        "text": ""
+      },
+      {
+        "line": 123,
+        "text": "//        $urls = (array)$urls;"
+      },
+      {
+        "line": 124,
+        "text": "        if(!$urls) return;"
+      },
+      {
+        "line": 125,
+        "text": ""
+      },
+      {
+        "line": 126,
+        "text": "        $curlMulti = curl_multi_init();"
+      },
+      {
+        "line": 127,
+        "text": "        $curl = [];"
+      },
+      {
+        "line": 128,
+        "text": ""
+      },
+      {
+        "line": 129,
+        "text": "        foreach ($urls as $i=>$url) {"
+      },
+      {
+        "line": 130,
+        "text": "            $curl [$i]= curl_init();"
+      },
+      {
+        "line": 131,
+        "text": "            curl_setopt($curl[$i], CURLOPT_URL, $url);"
+      },
+      {
+        "line": 132,
+        "text": "            curl_setopt($curl[$i], CURLOPT_RETURNTRANSFER, true);"
+      },
+      {
+        "line": 133,
+        "text": "            curl_setopt($curl[$i], CURLOPT_HEADER, true);"
+      },
+      {
+        "line": 134,
+        "text": "            curl_setopt($curl[$i], CURLOPT_FOLLOWLOCATION, 1);"
+      },
+      {
+        "line": 135,
+        "text": "            curl_setopt($curl[$i], CURLOPT_TIMEOUT, 120);"
+      },
+      {
+        "line": 136,
+        "text": "            curl_setopt($curl[$i], CURLOPT_ENCODING, 'gzip,deflate');"
+      },
+      {
+        "line": 137,
+        "text": ""
+      },
+      {
+        "line": 138,
+        "text": "            curl_multi_add_handle($curlMulti, $curl[$i]);"
+      },
+      {
+        "line": 139,
+        "text": "        }"
+      },
+      {
+        "line": 140,
+        "text": ""
+      },
+      {
+        "line": 141,
+        "text": "        do{"
+      },
+      {
+        "line": 142,
+        "text": "            $status = curl_multi_exec($curlMulti, $active);"
+      },
+      {
+        "line": 143,
+        "text": "            $info = curl_multi_info_read($curlMulti);"
+      },
+      {
+        "line": 144,
+        "text": ""
+      },
+      {
+        "line": 145,
+        "text": "            if(false !== $info){"
+      },
+      {
+        "line": 146,
+        "text": ""
+      },
+      {
+        "line": 147,
+        "text": "                if($info['result'] !==0){"
+      },
+      {
+        "line": 148,
+        "text": "                    $i = array_search($info['handle'], $curl);"
+      },
+      {
+        "line": 149,
+        "text": ""
+      },
+      {
+        "line": 150,
+        "text": "                    $error = curl_errno($curl[$i]);"
+      },
+      {
+        "line": 151,
+        "text": "                    $message = curl_error($curl[$i]);"
+      },
+      {
+        "line": 152,
+        "text": "                    $header = curl_getinfo($curl[$i]);"
+      },
+      {
+        "line": 153,
+        "text": ""
+      },
+      {
+        "line": 154,
+        "text": "                    if($error !==0){"
+      },
+      {
+        "line": 155,
+        "text": "                        $this->cancel(0, 'Error loading ' . $header['url'] ."
+      },
+      {
+        "line": 156,
+        "text": "                                        'http code: ' . $header['http_code'] ."
+      },
+      {
+        "line": 157,
+        "text": "                                        'error: ' . $error . 'message' . $message"
+      },
+      {
+        "line": 158,
+        "text": "                                     );"
+      },
+      {
+        "line": 159,
+        "text": "                    }"
+      },
+      {
+        "line": 160,
+        "text": "                }"
+      },
+      {
+        "line": 161,
+        "text": "            }"
+      },
+      {
+        "line": 162,
+        "text": "            if($status>0){"
+      },
+      {
+        "line": 163,
+        "text": "                $this->cancel(0, curl_multi_strerror($status));"
+      },
+      {
+        "line": 164,
+        "text": "            }"
+      },
+      {
+        "line": 165,
+        "text": ""
+      },
+      {
+        "line": 166,
+        "text": "        }while($status === CURLM_CALL_MULTI_PERFORM || $active);"
+      },
+      {
+        "line": 167,
+        "text": ""
+      },
+      {
+        "line": 168,
+        "text": "            $result = [];"
+      },
+      {
+        "line": 169,
+        "text": "            foreach ($urls as $i=>$url){"
+      },
+      {
+        "line": 170,
+        "text": "                $result[$i] = curl_multi_getcontent($curl[$i]);"
+      },
+      {
+        "line": 171,
+        "text": "                curl_multi_remove_handle($curlMulti, $curl[$i]);"
+      },
+      {
+        "line": 172,
+        "text": "                curl_close($curl[$i]);"
+      },
+      {
+        "line": 173,
+        "text": ""
+      },
+      {
+        "line": 174,
+        "text": "                    if(!preg_match('/Content-Type:\\s+text\\/html/ui', $result[$i])) {"
+      },
+      {
+        "line": 175,
+        "text": ""
+      },
+      {
+        "line": 176,
+        "text": "                        $this->bad_links[] = $url;"
+      },
+      {
+        "line": 177,
+        "text": ""
+      },
+      {
+        "line": 178,
+        "text": "                       $this->cancel(0, 'Incorrect content type - ' . $url);"
+      },
+      {
+        "line": 179,
+        "text": "                       continue;"
+      },
+      {
+        "line": 180,
+        "text": "                    }"
+      },
+      {
+        "line": 181,
+        "text": "                    if(!preg_match('/HTTP\\/\\d\\.?\\d?\\s+20\\d/uis', $result[$i])){"
+      },
+      {
+        "line": 182,
+        "text": ""
+      },
+      {
+        "line": 183,
+        "text": "                        $this->bad_links[] = $url;"
+      },
+      {
+        "line": 184,
+        "text": ""
+      },
+      {
+        "line": 185,
+        "text": "                        $this->cancel(0, 'Incorrect server code - ' . $url);"
+      },
+      {
+        "line": 186,
+        "text": "                        continue;"
+      },
+      {
+        "line": 187,
+        "text": "                    }"
+      },
+      {
+        "line": 188,
+        "text": ""
+      },
+      {
+        "line": 189,
+        "text": "                    $this->createLinks($result[$i]);"
+      },
+      {
+        "line": 190,
+        "text": "            }"
+      },
+      {
+        "line": 191,
+        "text": "            curl_multi_close($curlMulti);"
+      },
+      {
+        "line": 192,
+        "text": "    }"
+      },
+      {
+        "line": 193,
+        "text": ""
+      },
+      {
+        "line": 194,
+        "text": "    protected function createLinks($content){"
+      },
+      {
+        "line": 195,
+        "text": "        if($content){"
+      },
+      {
+        "line": 196,
+        "text": ""
+      },
+      {
+        "line": 197,
+        "text": "//        $str = ' <a class = \"class\" id =\"1\" href =\"hfhjsdhfdhow\" data-id=\"jhljfls\" >';"
+      },
+      {
+        "line": 198,
+        "text": "//        $str = \"<a class = \\\"class\\\" id =\\\"1\\\" href = \\\"hfhjsdhfdhow\\\" data-id=\\\"jhljfls\\\" >\";"
+      },
+      {
+        "line": 199,
+        "text": "            /*        $ptr = '/<a\\s*?[^>]*?href\\s*?=(if not use link type [href = ] can be not process, work only [href =])([\"\\'])(.+?)\\1[^>]*?>/ui';*/"
+      },
+      {
+        "line": 200,
+        "text": "            $pattern = '/<a\\s*?[^>]*?href\\s*?=\\s*?([\"\\'])(.+?)\\1[^>]*?>/ui';"
+      },
+      {
+        "line": 201,
+        "text": "            preg_match_all($pattern , $content, $links);"
+      },
+      {
+        "line": 202,
+        "text": ""
+      },
+      {
+        "line": 203,
+        "text": "            if($links[2]){"
+      },
+      {
+        "line": 204,
+        "text": ""
+      },
+      {
+        "line": 205,
+        "text": "                foreach ($links[2] as $link) {"
+      },
+      {
+        "line": 206,
+        "text": "                    if ($link === '/' || $link === SITE_URL . '/') continue;"
+      },
+      {
+        "line": 207,
+        "text": ""
+      },
+      {
+        "line": 208,
+        "text": "                    foreach ($this->fileArr as $ext) {"
+      },
+      {
+        "line": 209,
+        "text": "                        if ($ext) {"
+      },
+      {
+        "line": 210,
+        "text": "                            $ext = addslashes($ext);"
+      },
+      {
+        "line": 211,
+        "text": "                            $ext = str_replace('.', '\\.', $ext);"
+      },
+      {
+        "line": 212,
+        "text": ""
+      },
+      {
+        "line": 213,
+        "text": "                            if (preg_match('/' . $ext . '(\\s*?$|\\?[^\\/]*$)/ui', $link, $matches)) {"
+      },
+      {
+        "line": 214,
+        "text": "                                continue 2;"
+      },
+      {
+        "line": 215,
+        "text": "                            }"
+      },
+      {
+        "line": 216,
+        "text": "                        }"
+      },
+      {
+        "line": 217,
+        "text": "                    }"
+      },
+      {
+        "line": 218,
+        "text": "                    if(strpos($link, '/')===0){"
+      },
+      {
+        "line": 219,
+        "text": "                        $link = SITE_URL . $link;"
+      },
+      {
+        "line": 220,
+        "text": "                    }"
+      },
+      {
+        "line": 221,
+        "text": ""
+      },
+      {
+        "line": 222,
+        "text": "                    $site_url = mb_str_replace('.', '\\.', mb_str_replace('/', '\\/', SITE_URL));"
+      },
+      {
+        "line": 223,
+        "text": ""
+      },
+      {
+        "line": 224,
+        "text": ""
+      },
+      {
+        "line": 225,
+        "text": "                    if (!in_array($link, $this->bad_links) &&"
+      },
+      {
+        "line": 226,
+        "text": "                        !preg_match('/^(' . $site_url . ')?\\/?#[^\\/]*?$/ui', $link) &&"
+      },
+      {
+        "line": 227,
+        "text": "                        strpos($link, SITE_URL)===0 &&"
+      },
+      {
+        "line": 228,
+        "text": "                        !in_array($link, $this->all_links)){"
+      },
+      {
+        "line": 229,
+        "text": ""
+      },
+      {
+        "line": 230,
+        "text": "                        $this->temp_links[] = $link;"
+      },
+      {
+        "line": 231,
+        "text": "                        $this->all_links[] = $link;"
+      },
+      {
+        "line": 232,
+        "text": "                    }"
+      },
+      {
+        "line": 233,
+        "text": "                }"
+      },
+      {
+        "line": 234,
+        "text": "            }"
+      },
+      {
+        "line": 235,
+        "text": "        }"
+      },
+      {
+        "line": 236,
+        "text": "    }"
+      },
+      {
+        "line": 237,
+        "text": ""
+      },
+      {
+        "line": 238,
+        "text": "    protected function filter($link){"
+      },
+      {
+        "line": 239,
+        "text": "        if($this->filterArr){"
+      },
+      {
+        "line": 242,
+        "text": "                if($values){"
+      },
+      {
+        "line": 243,
+        "text": "                    foreach ($values as $item){"
+      },
+      {
+        "line": 244,
+        "text": "                        $item = str_replace('/', '\\/', addslashes($item));"
+      },
+      {
+        "line": 245,
+        "text": ""
+      },
+      {
+        "line": 246,
+        "text": "                        if($type === 'url'){"
+      },
+      {
+        "line": 247,
+        "text": "                            if(preg_match('/^[^\\?]*' . $item . '/ui', $link)){"
+      },
+      {
+        "line": 248,
+        "text": "                                return false;"
+      },
+      {
+        "line": 249,
+        "text": "                            }"
+      },
+      {
+        "line": 250,
+        "text": "                        }"
+      },
+      {
+        "line": 251,
+        "text": "                        if($type ==='get'){"
+      },
+      {
+        "line": 252,
+        "text": "                                if(preg_match('/(\\?|&amp;|=|&)'. $item .'(=|&amp;|&|$)/ui', $link, $matches)){"
+      },
+      {
+        "line": 253,
+        "text": "                                    return false;"
+      },
+      {
+        "line": 254,
+        "text": "                                }"
+      },
+      {
+        "line": 255,
+        "text": "                        }"
+      },
+      {
+        "line": 256,
+        "text": "                    }"
+      },
+      {
+        "line": 257,
+        "text": "                }"
+      },
+      {
+        "line": 258,
+        "text": "            }"
+      },
+      {
+        "line": 259,
+        "text": "        }"
+      },
+      {
+        "line": 260,
+        "text": "    return true;"
+      },
+      {
+        "line": 263,
+        "text": "    protected function checkParsingTable(){"
+      },
+      {
+        "line": 264,
+        "text": ""
+      },
+      {
+        "line": 265,
+        "text": "        $tables = $this->model->showTables();"
+      },
+      {
+        "line": 266,
+        "text": ""
+      },
+      {
+        "line": 267,
+        "text": "        if(!in_array('parsing_data', $tables)){"
+      },
+      {
+        "line": 268,
+        "text": "            $query = 'CREATE TABLE parsing_data (all_links longtext, temp_links longtext, bad_links longtext)';"
+      },
+      {
+        "line": 269,
+        "text": ""
+      },
+      {
+        "line": 270,
+        "text": "            if(!$this->model->query($query, 'c') ||"
+      },
+      {
+        "line": 271,
+        "text": "                !$this->model->add('parsing_data', ['fields'=>['all_links' => '', 'temp_links' => '', 'bad_links'=>'']])){"
+      },
+      {
+        "line": 272,
+        "text": "                return false;"
+      },
+      {
+        "line": 273,
+        "text": "            }"
+      },
+      {
+        "line": 274,
+        "text": "        }"
+      },
+      {
+        "line": 275,
+        "text": "        return true;"
+      },
+      {
+        "line": 276,
+        "text": "    }"
+      },
+      {
+        "line": 277,
+        "text": ""
+      },
+      {
+        "line": 278,
+        "text": "    protected function cancel($success = 0, $message = '', $log_message = '', $exit = false){"
+      },
+      {
+        "line": 279,
+        "text": "        $exitArr = [];"
+      },
+      {
+        "line": 280,
+        "text": "        $exitArr['success'] = $success;"
+      },
+      {
+        "line": 281,
+        "text": "        $exitArr['message'] = $message ? $message : 'ERROR PARSING';"
+      },
+      {
+        "line": 282,
+        "text": "        $log_message = $log_message ? $log_message : $exitArr['message'];"
+      },
+      {
+        "line": 283,
+        "text": ""
+      },
+      {
+        "line": 284,
+        "text": "        $class = 'success';"
+      },
+      {
+        "line": 285,
+        "text": ""
+      },
+      {
+        "line": 286,
+        "text": "        if(!$exitArr['success']){"
+      },
+      {
+        "line": 298,
+        "text": "     * Public canonical origin for sitemap output."
+      },
+      {
+        "line": 299,
+        "text": "     *"
+      },
+      {
+        "line": 300,
+        "text": "     * The crawler may run against a local SITE_URL, while emitted locations"
+      },
+      {
+        "line": 301,
+        "text": "     * always use the accepted public HTTPS origin."
+      },
+      {
+        "line": 302,
+        "text": "     */"
+      },
+      {
+        "line": 303,
+        "text": "    protected function sitemapCanonicalOrigin(): string"
+      },
+      {
+        "line": 304,
+        "text": "    {"
+      },
+      {
+        "line": 305,
+        "text": "        $configuredOrigin = trim("
+      },
+      {
+        "line": 306,
+        "text": "            (string)getenv('FP_WEB_CANONICAL_ORIGIN')"
+      },
+      {
+        "line": 307,
+        "text": "        );"
+      },
+      {
+        "line": 308,
+        "text": ""
+      },
+      {
+        "line": 309,
+        "text": "        if ("
+      },
+      {
+        "line": 310,
+        "text": "            !preg_match("
+      },
+      {
+        "line": 311,
+        "text": "                '#^https://[a-z0-9.-]+(?::[0-9]{1,5})?$#D',"
+      },
+      {
+        "line": 312,
+        "text": "                $configuredOrigin"
+      },
+      {
+        "line": 313,
+        "text": "            )"
+      },
+      {
+        "line": 314,
+        "text": "        ) {"
+      },
+      {
+        "line": 315,
+        "text": "            $configuredOrigin = 'https://forprint.net.ua';"
+      },
+      {
+        "line": 316,
+        "text": "        }"
+      },
+      {
+        "line": 317,
+        "text": ""
+      },
+      {
+        "line": 318,
+        "text": "        return rtrim("
+      },
+      {
+        "line": 319,
+        "text": "            strtolower($configuredOrigin),"
+      },
+      {
+        "line": 320,
+        "text": "            '/'"
+      },
+      {
+        "line": 321,
+        "text": "        );"
+      },
+      {
+        "line": 322,
+        "text": "    }"
+      },
+      {
+        "line": 323,
+        "text": ""
+      },
+      {
+        "line": 324,
+        "text": "    protected function sitemapCanonicalUrl(string $url): ?string"
+      },
+      {
+        "line": 325,
+        "text": "    {"
+      },
+      {
+        "line": 326,
+        "text": "        $parts = parse_url($url);"
+      },
+      {
+        "line": 327,
+        "text": ""
+      },
+      {
+        "line": 328,
+        "text": "        if ($parts === false) {"
+      },
+      {
+        "line": 329,
+        "text": "            return null;"
+      },
+      {
+        "line": 330,
+        "text": "        }"
+      },
+      {
+        "line": 331,
+        "text": ""
+      },
+      {
+        "line": 332,
+        "text": "        $path = (string)($parts['path'] ?? '/');"
+      },
+      {
+        "line": 333,
+        "text": "        $path = preg_replace('#/+#', '/', $path) ?: '/';"
+      },
+      {
+        "line": 334,
+        "text": "        $path = '/' . trim($path, '/');"
+      },
+      {
+        "line": 335,
+        "text": ""
+      },
+      {
+        "line": 336,
+        "text": "        if ($path === '//') {"
+      },
+      {
+        "line": 337,
+        "text": "            $path = '/';"
+      },
+      {
+        "line": 338,
+        "text": "        }"
+      },
+      {
+        "line": 339,
+        "text": ""
+      },
+      {
+        "line": 340,
+        "text": "        $normalizedPath = rtrim($path, '/');"
+      },
+      {
+        "line": 341,
+        "text": ""
+      },
+      {
+        "line": 342,
+        "text": "        if ($normalizedPath === '') {"
+      },
+      {
+        "line": 343,
+        "text": "            $normalizedPath = '/';"
+      },
+      {
+        "line": 344,
+        "text": "        }"
+      },
+      {
+        "line": 345,
+        "text": ""
+      },
+      {
+        "line": 346,
+        "text": "        $blockedPrefixes = ["
+      },
+      {
+        "line": 347,
+        "text": "            '/admin',"
+      },
+      {
+        "line": 348,
+        "text": "            '/cart',"
+      },
+      {
+        "line": 349,
+        "text": "            '/search',"
+      },
+      {
+        "line": 350,
+        "text": "            '/lk',"
+      },
+      {
+        "line": 351,
+        "text": "            '/login',"
+      },
+      {
+        "line": 354,
+        "text": "            '/search-suggestions.php',"
+      },
+      {
+        "line": 355,
+        "text": "        ];"
+      },
+      {
+        "line": 356,
+        "text": ""
+      },
+      {
+        "line": 357,
+        "text": "        foreach ($blockedPrefixes as $blockedPrefix) {"
+      },
+      {
+        "line": 358,
+        "text": "            if ("
+      },
+      {
+        "line": 359,
+        "text": "                $normalizedPath === $blockedPrefix"
+      },
+      {
+        "line": 360,
+        "text": "                || strpos("
+      },
+      {
+        "line": 361,
+        "text": "                    $normalizedPath,"
+      },
+      {
+        "line": 362,
+        "text": "                    $blockedPrefix . '/'"
+      },
+      {
+        "line": 363,
+        "text": "                ) === 0"
+      },
+      {
+        "line": 364,
+        "text": "            ) {"
+      },
+      {
+        "line": 365,
+        "text": "                return null;"
+      },
+      {
+        "line": 366,
+        "text": "            }"
+      },
+      {
+        "line": 367,
+        "text": "        }"
+      },
+      {
+        "line": 368,
+        "text": ""
+      },
+      {
+        "line": 369,
+        "text": "        if ("
+      },
+      {
+        "line": 370,
+        "text": "            $normalizedPath !== '/'"
+      },
+      {
+        "line": 371,
+        "text": "            && !preg_match("
+      },
+      {
+        "line": 372,
+        "text": "                '/\\.[a-z0-9]{1,8}$/i',"
+      },
+      {
+        "line": 373,
+        "text": "                $normalizedPath"
+      },
+      {
+        "line": 374,
+        "text": "            )"
+      },
+      {
+        "line": 375,
+        "text": "        ) {"
+      },
+      {
+        "line": 376,
+        "text": "            $normalizedPath .= '/';"
+      },
+      {
+        "line": 377,
+        "text": "        }"
+      },
+      {
+        "line": 378,
+        "text": ""
+      },
+      {
+        "line": 379,
+        "text": "        return $this->sitemapCanonicalOrigin()"
+      },
+      {
+        "line": 380,
+        "text": "            . ("
+      },
+      {
+        "line": 381,
+        "text": "                $normalizedPath === '/'"
+      },
+      {
+        "line": 382,
+        "text": "                    ? '/'"
+      },
+      {
+        "line": 383,
+        "text": "                    : $normalizedPath"
+      },
+      {
+        "line": 384,
+        "text": "            );"
+      },
+      {
+        "line": 385,
+        "text": "    }"
+      },
+      {
+        "line": 386,
+        "text": ""
+      },
+      {
+        "line": 387,
+        "text": "    protected function createSitemap()"
+      },
+      {
+        "line": 388,
+        "text": "    {"
+      },
+      {
+        "line": 389,
+        "text": "        $dom = new \\DOMDocument("
+      },
+      {
+        "line": 390,
+        "text": "            '1.0',"
+      },
+      {
+        "line": 391,
+        "text": "            'UTF-8'"
+      },
+      {
+        "line": 392,
+        "text": "        );"
+      },
+      {
+        "line": 393,
+        "text": "        $dom->formatOutput = true;"
+      },
+      {
+        "line": 394,
+        "text": ""
+      },
+      {
+        "line": 395,
+        "text": "        $root = $dom->createElement('urlset');"
+      },
+      {
+        "line": 399,
+        "text": "        );"
+      },
+      {
+        "line": 400,
+        "text": "        $dom->appendChild($root);"
+      },
+      {
+        "line": 401,
+        "text": ""
+      },
+      {
+        "line": 402,
+        "text": "        $canonicalLinks = [];"
+      },
+      {
+        "line": 403,
+        "text": ""
+      },
+      {
+        "line": 404,
+        "text": "        foreach ((array)$this->all_links as $item) {"
+      },
+      {
+        "line": 405,
+        "text": "            $canonicalUrl = $this->sitemapCanonicalUrl("
+      },
+      {
+        "line": 406,
+        "text": "                (string)$item"
+      },
+      {
+        "line": 407,
+        "text": "            );"
+      },
+      {
+        "line": 408,
+        "text": ""
+      },
+      {
+        "line": 409,
+        "text": "            if ($canonicalUrl !== null) {"
+      },
+      {
+        "line": 410,
+        "text": "                $canonicalLinks[$canonicalUrl] = true;"
+      },
+      {
+        "line": 411,
+        "text": "            }"
+      },
+      {
+        "line": 412,
+        "text": "        }"
+      },
+      {
+        "line": 413,
+        "text": ""
+      },
+      {
+        "line": 443,
+        "text": "            $root->appendChild($urlElement);"
+      },
+      {
+        "line": 444,
+        "text": "        }"
+      },
+      {
+        "line": 445,
+        "text": ""
+      },
+      {
+        "line": 446,
+        "text": "        $dom->save("
+      },
+      {
+        "line": 447,
+        "text": "            $_SERVER['DOCUMENT_ROOT']"
+      },
+      {
+        "line": 448,
+        "text": "            . PATH"
+      },
+      {
+        "line": 449,
+        "text": "            . 'sitemap.xml'"
+      },
+      {
+        "line": 450,
+        "text": "        );"
+      },
+      {
+        "line": 451,
+        "text": "    }"
+      },
+      {
+        "line": 452,
+        "text": ""
+      },
+      {
+        "line": 453,
+        "text": "}"
+      }
+    ],
+    "sha256": "fe868ca6c43fd5707d2fa255bec3952d2cb701d3f28abbca25019ad57dcd79ca"
+  },
+  "production_hashes": {
+    "COMM": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "HEADER": "864b2e45fa6696006880c0584ff14669514f934c6bb5a722efb4116cea56eebb",
+    "OWNER": "fe868ca6c43fd5707d2fa255bec3952d2cb701d3f28abbca25019ad57dcd79ca",
+    "SITEMAP": "98148e2653994dc11dc56f9be4817c713c207bdb15d6a7d9a2cbcdf5c1122de8",
+    "SITEMAP_MTIME": "1787121184"
+  },
+  "production_source_mutation": false,
+  "recommended_fix": "REPLACE_PRODUCT_SELECTION_WITH_CANONICAL_VISIBLE_INDEXABLE_CATALOG_SOURCE_OR_ADD_A_GENERATOR_DATA_SEED",
+  "referrer_scan": {
+    "referrers": {
+      "https://forprint.net.ua/product/fotozoni-ta-dekorativn-konstrukts/": [
+        "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/"
+      ],
+      "https://forprint.net.ua/product/konverti-dlya-podarunkovih-sertifkatv/": [
+        "https://forprint.net.ua/catalog/konverti/"
+      ],
+      "https://forprint.net.ua/product/promostyki/": [
+        "https://forprint.net.ua/product/l-banner-stendi/",
+        "https://forprint.net.ua/product/presvoli-ta-brendvoli/",
+        "https://forprint.net.ua/product/roll-up-stendi/",
+        "https://forprint.net.ua/product/x-banner-stendi/"
+      ],
+      "https://forprint.net.ua/product/reklamn-konstrukts-dlya-vtrin/": [],
+      "https://forprint.net.ua/product/resepshn-styki-z-brenduvannyam/": [],
+      "https://forprint.net.ua/product/rostov-fguri/": [
+        "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/"
+      ],
+      "https://forprint.net.ua/product/standartn-poshtov-konverti-z-drukom/": []
+    },
+    "status_counts": {
+      "200": 191
+    }
+  },
+  "static_sitemap_matches_live_http": true,
+  "target_scan_urls": {
+    "included_neighbor:268": "https://forprint.net.ua/product/promostyki/",
+    "included_neighbor:271": "https://forprint.net.ua/product/fotozoni-ta-dekorativn-konstrukts/",
+    "included_neighbor:272": "https://forprint.net.ua/product/rostov-fguri/",
+    "included_neighbor:274": "https://forprint.net.ua/product/konverti-dlya-podarunkovih-sertifkatv/",
+    "missing:269": "https://forprint.net.ua/product/resepshn-styki-z-brenduvannyam/",
+    "missing:270": "https://forprint.net.ua/product/reklamn-konstrukts-dlya-vtrin/",
+    "missing:273": "https://forprint.net.ua/product/standartn-poshtov-konverti-z-drukom/"
+  }
+}

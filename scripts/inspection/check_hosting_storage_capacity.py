@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import time
 
 import argparse
 from pathlib import Path
@@ -10,7 +11,7 @@ import sys
 ROOT = Path("/srv/software_development/forprint-project/forprint_website")
 sys.path.insert(0, str(ROOT))
 
-from scripts.operations.hosting_transport import discover_hosting_connection, ssh_exec
+from scripts.operations.hosting_transport import discover_hosting_connection, ssh_exec, ssh_exec_idempotent
 
 DEFAULT_PROBE_MIB = 64
 
@@ -42,7 +43,11 @@ for d in {q(connection.release_root)} {q(connection.backup_root)}; do
     fi
 done
 """
-    _, stdout, _ = ssh_exec(connection, command)
+    _, stdout, _ = ssh_exec_idempotent(
+        connection,
+        command,
+        label="hosting storage inspection",
+    )
     print(stdout, end="" if stdout.endswith("\n") else "\n")
     sizes = {}
     for line in stdout.splitlines():
@@ -66,7 +71,11 @@ for d in {q(connection.release_root)} {q(connection.backup_root)}; do
 done
 sync
 """
-    ssh_exec(connection, command)
+    ssh_exec_idempotent(
+        connection,
+        command,
+        label="hosting transient release-storage cleanup",
+    )
     print("[OK] persistent release/backup payload removed")
 
 def probe(connection, mib: int):
@@ -84,7 +93,48 @@ rm -f "$probe"
 trap - EXIT INT TERM
 echo "WRITE_PROBE_OK={mib}MiB"
 """
-    _, stdout, _ = ssh_exec(connection, command)
+    # FORPRINT_CAPACITY_PROBE_TRANSIENT_RETRY_V1
+    # Retry only transport-level SSH failures for this idempotent probe.
+    # Logical quota/write failures still fail closed immediately.
+    transient_markers = (
+        "connection reset by peer",
+        "connection timed out",
+        "operation timed out",
+        "connection closed by remote host",
+        "connection refused",
+        "kex_exchange_identification",
+        "broken pipe",
+        "banner exchange",
+        "client_loop: send disconnect",
+    )
+
+    stdout = ""
+    last_error = None
+
+    for attempt in range(1, 4):
+        try:
+            _, stdout, _ = ssh_exec(connection, command)
+            last_error = None
+            break
+        except RuntimeError as exc:
+            last_error = exc
+            message = str(exc).lower()
+            transient = any(
+                marker in message for marker in transient_markers
+            )
+
+            if not transient or attempt >= 3:
+                raise
+
+            wait_seconds = attempt * 2
+            print(
+                "[WARN] transient SSH failure during hosting capacity probe "
+                f"(attempt {attempt}/3); retrying in {wait_seconds}s"
+            )
+            time.sleep(wait_seconds)
+
+    if last_error is not None:
+        raise last_error
     print(stdout, end="" if stdout.endswith("\n") else "\n")
 
 def main():

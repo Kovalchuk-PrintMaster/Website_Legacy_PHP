@@ -10,7 +10,19 @@
 ForPrint supports several explicit hosting deployment profiles so routine
 frontend work does not require a full application/database mirror.
 
-The deployment ownership policy is multi-owner: local is canonical for application files, database schema and non-operational database content; production is canonical for operational rows; hosting-specific environment/runtime state remains hosting-owned.
+<!-- FP_ACTIVE_DEVELOPMENT_HOSTING_MIRROR_DOC_V1 -->
+> **ACTIVE DEVELOPMENT MIRROR:** the canonical complete development publication
+> command is `make hosting-sync-full`. During the current development phase,
+> local application code, project-managed media/userfiles and the **entire
+> database** are authoritative and replace their hosting copies. Hosting-specific
+> environment/runtime/secrets/configuration remain hosting-owned and protected.
+
+The narrower `hosting-deploy-*` profiles below retain their own multi-owner and
+preservation semantics for explicitly targeted releases. Those profile rules do
+not override the active development-mirror authority of `make hosting-sync-full`.
+
+Canonical decision:
+`docs/decisions/2026-09-06__active_development_hosting_mirror_authority.md`.
 
 ## Profiles
 
@@ -203,8 +215,47 @@ Normal Makefile mutation targets use temporary authorization through `hosting_re
 See `docs/workflow/communication_release_safety_and_recovery_v0_1.md`.
 <!-- FP_COMMUNICATION_RELEASE_SAFETY_DEPLOYMENT_PROFILE_V0_1_END -->
 
+
+<!-- FP_RELEASE_HEALTH_DEPLOYMENT_PROFILE_V0_1_START -->
+## Production release health gate
+
+Standalone read-only check:
+
+```text
+make hosting-health-check
+```
+
+Canonical full sync:
+
+```text
+hosting-health-pre
+→ existing production backup/mutation owner
+→ hosting-health-post
+```
+
+The POST checker shows a colored Before/After table for Telegram readiness,
+Email/SMTP readiness, public HTTP, Google Ads measurement, and manual
+browser/consent E2E.
+
+Google measurement is advisory before mutation so a release may repair an
+already broken activation. It is blocking after mutation.
+
+The health checker itself never deploys, changes the database, changes Google
+Ads, or sends a real enquiry.
+
+See:
+
+```text
+docs/workflow/website_release_health_contract_v0_1.md
+docs/runbooks/production_release_manual_checks_v0_1.md
+```
+<!-- FP_RELEASE_HEALTH_DEPLOYMENT_PROFILE_V0_1_END -->
+
+
 <!-- FP_OPERATIONAL_DB_DOCS_V0_1_START -->
 ## Operational database boundary
 
 Normal `hosting-deploy-database` and `hosting-deploy-full` preserve production operational rows. The `*-destructive` variants explicitly replace them and are high-risk.
+
+This statement applies to the targeted `hosting-deploy-*` profiles. It **does not apply to `make hosting-sync-full`** while the active development-mirror decision is in force; that canonical development sync intentionally replaces the full hosting database from local.
 <!-- FP_OPERATIONAL_DB_DOCS_V0_1_END -->

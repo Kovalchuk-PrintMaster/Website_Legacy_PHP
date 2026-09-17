@@ -8,6 +8,27 @@
 **Depends on:** `docs/decisions/2026-08-23__canonical_admin_css_ownership_and_migration_order.md`
 **Visual contract:** `docs/reference/admin_ui_visual_refinement_contract_v0_1.md`
 
+<!-- FP_ADMIN_UI_LIVE_STATE_OVERRIDE_20260905_START -->
+
+## Live status override — 2026-09-05
+
+Canonical live checkpoint:
+`docs/project_state/current/CURRENT_PROJECT_STATE.md`.
+
+```text
+completed: Phase 1–7 structural modernization
+current:   Phase 8 visual refinement
+current slice: Footer settings + footer_links/footer_phones child-form visual closure
+working-tree capability: admin login password reveal
+planned next: representative regression → consolidation → responsive/accessibility closure
+blocked/deferred: production deployment, broad main.css retirement, unrelated backend/DB redesign
+```
+
+The older “Current exact entry point” section below is retained as Phase 8
+history and no longer overrides the living current-state file.
+
+<!-- FP_ADMIN_UI_LIVE_STATE_OVERRIDE_20260905_END -->
+
 ## Goal
 
 Continue admin modernization from a completed structural foundation into a

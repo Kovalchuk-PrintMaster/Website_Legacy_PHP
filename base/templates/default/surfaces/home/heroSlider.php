@@ -37,8 +37,79 @@
                         </div>
 
 <!--                        Slider_image                        -->
-                        <div class="slider__item-image fp-home-hero__image">
-                            <img src="<?=$this->img($item['img'])?>" alt="">
+                        <?php
+                        $fpHomeHeroImages = [];
+                        $fpHomeHeroMainImage = trim(
+                            (string)($item['img'] ?? '')
+                        );
+
+                        if ($fpHomeHeroMainImage !== '') {
+                            $fpHomeHeroImages[] = $fpHomeHeroMainImage;
+                        }
+
+                        $fpHomeHeroGalleryEnabled =
+                            !array_key_exists('show_gallery', $item)
+                            || (int)$item['show_gallery'] === 1;
+
+                        $fpHomeHeroGalleryRaw =
+                            $fpHomeHeroGalleryEnabled
+                                ? ($item['gallery_img'] ?? [])
+                                : [];
+                        if (
+                            is_string($fpHomeHeroGalleryRaw)
+                            && trim($fpHomeHeroGalleryRaw) !== ''
+                        ) {
+                            $fpHomeHeroGalleryDecoded = json_decode(
+                                $fpHomeHeroGalleryRaw,
+                                true
+                            );
+                            $fpHomeHeroGalleryRaw =
+                                is_array($fpHomeHeroGalleryDecoded)
+                                    ? $fpHomeHeroGalleryDecoded
+                                    : [];
+                        }
+
+                        if (is_array($fpHomeHeroGalleryRaw)) {
+                            foreach (
+                                $fpHomeHeroGalleryRaw
+                                as $fpHomeHeroGalleryImage
+                            ) {
+                                if (!is_string($fpHomeHeroGalleryImage)) {
+                                    continue;
+                                }
+
+                                $fpHomeHeroGalleryImage = trim(
+                                    $fpHomeHeroGalleryImage
+                                );
+
+                                if ($fpHomeHeroGalleryImage !== '') {
+                                    $fpHomeHeroImages[] =
+                                        $fpHomeHeroGalleryImage;
+                                }
+                            }
+                        }
+
+                        $fpHomeHeroImages = array_values(array_unique(
+                            $fpHomeHeroImages
+                        ));
+                        ?>
+                        <div
+                            class="slider__item-image fp-home-hero__image"
+                            data-fp-hero-image-rotator
+                        >
+                            <?php foreach (
+                                $fpHomeHeroImages
+                                as $fpHomeHeroImageIndex => $fpHomeHeroImage
+                            ):?>
+                                <img
+                                    src="<?=$this->img($fpHomeHeroImage)?>"
+                                    alt=""
+                                    data-fp-hero-image
+                                    class="<?=$fpHomeHeroImageIndex === 0
+                                        ? 'is-active'
+                                        : ''?>"
+                                >
+                            <?php endforeach;?>
                         </div>
                     </a>
 

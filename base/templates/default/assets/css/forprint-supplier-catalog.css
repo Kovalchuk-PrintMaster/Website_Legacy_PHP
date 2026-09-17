@@ -1,0 +1,326 @@
+/*
+ * ForPrint supplier catalog adapter v0.7.
+ *
+ * Generic catalog/filter/toolbar/card/detail/gallery presentation is NOT owned
+ * here. Those surfaces intentionally reuse the canonical ForPrint owners:
+ *
+ *   forprint-catalog.css
+ *   forprint-product-cards.css
+ *   forprint-product-detail.css
+ *   forprint-product-communication.css
+ *
+ * This file owns only supplier-specific quote-list presentation, supplier
+ * variant-table internals, search-result metadata, and the no-image fallback.
+ */
+
+/* FP_SUPPLIER_SHARED_CATALOG_UI_V1 */
+
+[data-fp-surface="supplier-catalog"] {
+    min-width: 0;
+    background: #ffffff;
+}
+
+[data-fp-surface="supplier-catalog"]
+.fp-supplier-catalog__media-placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 8rem;
+    background: #f5f6f7;
+    color: #b3bcc1;
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+[data-fp-surface="supplier-catalog"]
+.fp-product-card__button.fp-supplier-catalog__quote-action.is-added,
+[data-fp-surface="supplier-catalog"]
+.fp-product-communication__button.fp-supplier-catalog__quote-action.is-added {
+    background: var(--fp-card-button-hover, #30383e);
+    color: #ffffff;
+}
+
+/*
+ * Quote selection is a supplier-specific business surface. It deliberately
+ * stays outside the canonical catalog presentation scope.
+ */
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote {
+    margin-top: clamp(2rem, 4vw, 4rem);
+    padding-top: 1.4rem;
+    padding-bottom: clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid #dce2e5;
+    scroll-margin-top: 1rem;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__header,
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__items {
+    width: min(100%, 1120px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__header {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__header h2 {
+    margin: 0 0 0.45rem;
+    font-size: 1.75rem;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__header p {
+    max-width: 54rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__eyebrow {
+    margin-bottom: 0.3rem;
+    color: #657079;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__clear {
+    flex: 0 0 auto;
+    min-height: 2.7rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cdd4d8;
+    border-radius: 0.28rem;
+    background: #ffffff;
+    color: #20282d;
+    font: inherit;
+    cursor: pointer;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__empty {
+    width: min(100%, 1120px);
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1rem;
+    background: #f5f7f8;
+    color: #5c676e;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__items {
+    display: grid;
+    gap: 0.75rem;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__item {
+    display: grid;
+    grid-template-columns:
+        76px
+        minmax(18rem, 2fr)
+        7rem
+        minmax(12rem, 1fr)
+        auto;
+    gap: 0.9rem;
+    align-items: center;
+    padding: 0.85rem;
+    border: 1px solid #d9dfe3;
+    border-radius: 0.55rem;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(27, 42, 53, 0.05);
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__item-media {
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 64px;
+    overflow: hidden;
+    border-radius: 0.35rem;
+    background: #f3f5f6;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__item-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+[data-fp-surface="supplier-catalog"]
+.fp-supplier-quote__item-media-placeholder {
+    color: #aab4ba;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__item-title {
+    display: grid;
+    gap: 0.15rem;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__item-title strong {
+    font-size: 0.98rem;
+    line-height: 1.3;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__item-title small {
+    color: #788188;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__field {
+    display: grid;
+    gap: 0.3rem;
+    color: #657079;
+    font-size: 0.75rem;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__field input,
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__field select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 2.35rem;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #cfd6da;
+    background: #ffffff;
+    color: #20282d;
+    font: inherit;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__remove {
+    min-height: 2.35rem;
+    padding: 0.45rem 0.7rem;
+    border: 0;
+    background: transparent;
+    color: #8a2d2d;
+    font: inherit;
+    cursor: pointer;
+}
+
+[data-fp-surface="supplier-catalog"] .fp-supplier-quote__request {
+    width: min(100%, 760px);
+    margin: 1.6rem auto 0;
+}
+
+[data-fp-surface="supplier-catalog"]
+.fp-supplier-quote__request [data-fp-comm-form] {
+    width: 100%;
+    max-width: 760px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+[data-fp-surface="supplier-catalog"]
+.fp-supplier-quote__request .fp-layout-container {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
+}
+
+[data-fp-surface="supplier-catalog"]
+.fp-supplier-quote__request .fp-communication-section {
+    margin: 0;
+}
+
+/* Supplier variants are data-specific; the enclosing tab system is canonical. */
+.fp-supplier-variant-table {
+    display: grid;
+    width: min(100%, 60rem);
+    max-width: 60rem;
+    margin-inline: auto;
+    border-top: 1px solid #dde2e5;
+    border-left: 1px solid #dde2e5;
+}
+
+.fp-supplier-variant-table__row {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(8rem, 1fr)
+        minmax(8rem, 0.7fr);
+}
+
+.fp-supplier-variant-table__row--head {
+    background: #f3f5f6;
+    font-weight: 800;
+}
+
+.fp-supplier-variant-table__row > span {
+    padding: 0.65rem 0.75rem;
+    border-right: 1px solid #dde2e5;
+    border-bottom: 1px solid #dde2e5;
+    overflow-wrap: anywhere;
+}
+
+/* Supplier results remain a group inside the canonical search suggestion UI. */
+.fp-supplier-search-group {
+    border-top: 1px solid #dfe4e8;
+    padding-top: 0.35rem;
+}
+
+.fp-supplier-search-group__title {
+    padding: 0.45rem 0.7rem;
+    color: #52606b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.fp-supplier-search-group__meta {
+    display: block;
+    margin-top: 0.15rem;
+    color: #7a858d;
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__item {
+        grid-template-columns:
+            68px
+            minmax(0, 1fr)
+            7rem
+            minmax(11rem, 1fr);
+    }
+
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__remove {
+        grid-column: 2 / -1;
+        justify-self: end;
+    }
+}
+
+@media (max-width: 760px) {
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__header {
+        display: grid;
+    }
+
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__item {
+        grid-template-columns: 62px minmax(0, 1fr);
+    }
+
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__field,
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__remove {
+        grid-column: 1 / -1;
+    }
+
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__item-media {
+        width: 62px;
+        height: 56px;
+    }
+
+    [data-fp-surface="supplier-catalog"] .fp-supplier-quote__request {
+        width: 100%;
+    }
+
+    .fp-supplier-variant-table__row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fp-supplier-variant-table__row--head {
+        display: none;
+    }
+}

@@ -10,7 +10,7 @@
     "use strict";
 
     var SURFACE_SELECTOR =
-        '.fp-catalog-page[data-fp-surface="catalog"]';
+        '.fp-catalog-page[data-fp-catalog-ui]';
     var DESKTOP_QUERY = "(min-width: 62.01em)";
     var FLOATING_TOP = 12;
     var FLOATING_BOTTOM_GUARD = 18;
@@ -783,6 +783,26 @@
                 return;
             }
 
+            /*
+             * FP_CATALOG_COMPACT_NATIVE_CATEGORY_NAV_V1
+             *
+             * Catalog adapters may opt out of fragment category swaps on
+             * compact screens. Native navigation guarantees a fresh mobile
+             * drawer lifecycle and makes the product listing the visible
+             * destination after selecting a final category. Desktop remains
+             * progressively enhanced.
+             */
+            if (
+                link.closest(".fp-catalog-category-list")
+                && surface.getAttribute(
+                    "data-fp-mobile-category-navigation"
+                ) === "native"
+                && typeof window.matchMedia === "function"
+                && !window.matchMedia(DESKTOP_QUERY).matches
+            ) {
+                return;
+            }
+
             var mode = getNavigationMode(link);
 
             if (!mode) {
@@ -848,3 +868,360 @@
         initialiseSurface(initialSurface);
     }
 }());
+
+/* FP_CATALOG_FILTER_GROUP_THUMBNAIL_LARGE_VIEWPORT_START */
+/*
+ * Catalog filter-category thumbnail lifecycle.
+ *
+ * The server provides only URL metadata. Image elements are created on
+ * large-desktop viewports, so an initial narrow viewport does not request these
+ * decorative filter-category images. Progressive catalog-fragment replacement is
+ * handled by the MutationObserver below.
+ */
+(function () {
+    "use strict";
+
+    var SURFACE_SELECTOR =
+        '.fp-catalog-page[data-fp-surface="catalog"]';
+    var THUMBNAIL_SELECTOR = "[data-fp-catalog-filter-group-thumbnail]";
+    var THUMBNAIL_QUERY = "(min-width: 1800px)";
+    var REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+    var ROTATION_DELAY = 6000;
+    var FADE_HALF = 325;
+    var thumbnailMedia = window.matchMedia
+        ? window.matchMedia(THUMBNAIL_QUERY)
+        : null;
+
+    function prefersReducedMotion() {
+        return Boolean(
+            window.matchMedia
+            && window.matchMedia(REDUCED_MOTION_QUERY).matches
+        );
+    }
+
+    function parseSources(node) {
+        var raw = node.getAttribute(
+            "data-fp-catalog-filter-group-thumbnail-sources"
+        );
+
+        if (!raw) {
+            return [];
+        }
+
+        try {
+            var parsed = JSON.parse(raw);
+
+            if (!Array.isArray(parsed)) {
+                return [];
+            }
+
+            return parsed.filter(function (source, index) {
+                return (
+                    typeof source === "string"
+                    && source.trim() !== ""
+                    && parsed.indexOf(source) === index
+                );
+            });
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function clearTimer(timer) {
+        if (timer) {
+            window.clearTimeout(timer);
+        }
+    }
+
+    function clearStateTimers(state) {
+        if (!state) {
+            return;
+        }
+
+        clearTimer(state.rotationTimer);
+        clearTimer(state.fadeTimer);
+        clearTimer(state.fadeInTimer);
+        state.rotationTimer = null;
+        state.fadeTimer = null;
+        state.fadeInTimer = null;
+        state.transitioning = false;
+    }
+
+    function unmount(node) {
+        var state = node._fpCatalogFilterGroupThumbnailState;
+
+        clearStateTimers(state);
+        node._fpCatalogFilterGroupThumbnailState = null;
+
+        while (node.firstChild) {
+            node.removeChild(node.firstChild);
+        }
+    }
+
+    function scheduleRotation(node) {
+        var state = node._fpCatalogFilterGroupThumbnailState;
+
+        if (
+            !state
+            || state.sources.length < 2
+            || prefersReducedMotion()
+            || document.hidden
+            || !thumbnailMedia
+            || !thumbnailMedia.matches
+        ) {
+            return;
+        }
+
+        clearTimer(state.rotationTimer);
+        state.rotationTimer = window.setTimeout(function () {
+            rotate(node);
+        }, ROTATION_DELAY);
+    }
+
+    function rotate(node) {
+        var state = node._fpCatalogFilterGroupThumbnailState;
+
+        if (
+            !state
+            || state.transitioning
+            || state.sources.length < 2
+            || prefersReducedMotion()
+            || document.hidden
+            || !thumbnailMedia
+            || !thumbnailMedia.matches
+        ) {
+            scheduleRotation(node);
+            return;
+        }
+
+        var nextIndex = (state.index + 1) % state.sources.length;
+        var nextSource = state.sources[nextIndex];
+        var preloader = new Image();
+
+        state.transitioning = true;
+
+        preloader.onload = function () {
+            var currentState = node._fpCatalogFilterGroupThumbnailState;
+
+            if (
+                !currentState
+                || currentState !== state
+                || !node.isConnected
+                || !thumbnailMedia.matches
+            ) {
+                state.transitioning = false;
+                return;
+            }
+
+            state.image.classList.add("is-fading");
+
+            state.fadeTimer = window.setTimeout(function () {
+                if (!node._fpCatalogFilterGroupThumbnailState) {
+                    return;
+                }
+
+                state.index = nextIndex;
+                state.image.src = nextSource;
+
+                window.requestAnimationFrame(function () {
+                    if (node._fpCatalogFilterGroupThumbnailState) {
+                        state.image.classList.remove("is-fading");
+                    }
+                });
+
+                state.fadeInTimer = window.setTimeout(function () {
+                    state.transitioning = false;
+                    scheduleRotation(node);
+                }, FADE_HALF);
+            }, FADE_HALF);
+        };
+
+        preloader.onerror = function () {
+            state.transitioning = false;
+            scheduleRotation(node);
+        };
+
+        preloader.src = nextSource;
+    }
+
+    function mount(node) {
+        if (!thumbnailMedia || !thumbnailMedia.matches) {
+            unmount(node);
+            return;
+        }
+
+        var sources = parseSources(node);
+
+        if (!sources.length) {
+            unmount(node);
+            return;
+        }
+
+        var previousState = node._fpCatalogFilterGroupThumbnailState;
+
+        if (
+            previousState
+            && previousState.sources.join("\n") === sources.join("\n")
+            && previousState.image
+            && previousState.image.isConnected
+        ) {
+            clearStateTimers(previousState);
+            previousState.image.classList.remove("is-fading");
+            scheduleRotation(node);
+            return;
+        }
+
+        unmount(node);
+
+        var image = document.createElement("img");
+        image.className = "fp-catalog-filter-group-thumbnail__image";
+        image.alt = "";
+        image.decoding = "async";
+        image.loading = "lazy";
+        image.src = sources[0];
+
+        node.appendChild(image);
+        node._fpCatalogFilterGroupThumbnailState = {
+            sources: sources,
+            index: 0,
+            image: image,
+            rotationTimer: null,
+            fadeTimer: null,
+            fadeInTimer: null,
+            transitioning: false
+        };
+
+        scheduleRotation(node);
+    }
+
+    function reconcile(root) {
+        var scope = root || document;
+        var nodes = [];
+
+        if (
+            scope.nodeType === 1
+            && scope.matches
+            && scope.matches(THUMBNAIL_SELECTOR)
+        ) {
+            nodes.push(scope);
+        }
+
+        if (scope.querySelectorAll) {
+            nodes = nodes.concat(
+                Array.prototype.slice.call(
+                    scope.querySelectorAll(THUMBNAIL_SELECTOR)
+                )
+            );
+        }
+
+        nodes.forEach(function (node) {
+            mount(node);
+        });
+    }
+
+    function stopInSubtree(root) {
+        if (!root || root.nodeType !== 1) {
+            return;
+        }
+
+        if (root.matches && root.matches(THUMBNAIL_SELECTOR)) {
+            unmount(root);
+        }
+
+        if (root.querySelectorAll) {
+            Array.prototype.forEach.call(
+                root.querySelectorAll(THUMBNAIL_SELECTOR),
+                function (node) {
+                    unmount(node);
+                }
+            );
+        }
+    }
+
+    function onViewportChange() {
+        reconcile(document);
+    }
+
+    function onVisibilityChange() {
+        var nodes = document.querySelectorAll(THUMBNAIL_SELECTOR);
+
+        Array.prototype.forEach.call(nodes, function (node) {
+            var state = node._fpCatalogFilterGroupThumbnailState;
+
+            if (!state) {
+                return;
+            }
+
+            clearStateTimers(state);
+            state.image.classList.remove("is-fading");
+
+            if (!document.hidden) {
+                scheduleRotation(node);
+            }
+        });
+    }
+
+    function startObserver() {
+        if (!window.MutationObserver || !document.documentElement) {
+            return;
+        }
+
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                Array.prototype.forEach.call(
+                    mutation.removedNodes || [],
+                    function (removedNode) {
+                        stopInSubtree(removedNode);
+                    }
+                );
+
+                Array.prototype.forEach.call(
+                    mutation.addedNodes || [],
+                    function (addedNode) {
+                        if (!addedNode || addedNode.nodeType !== 1) {
+                            return;
+                        }
+
+                        if (
+                            addedNode.matches(THUMBNAIL_SELECTOR)
+                            || addedNode.matches(SURFACE_SELECTOR)
+                            || (
+                                addedNode.querySelector
+                                && addedNode.querySelector(THUMBNAIL_SELECTOR)
+                            )
+                        ) {
+                            reconcile(addedNode);
+                        }
+                    }
+                );
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    if (thumbnailMedia) {
+        if (thumbnailMedia.addEventListener) {
+            thumbnailMedia.addEventListener("change", onViewportChange);
+        } else if (thumbnailMedia.addListener) {
+            thumbnailMedia.addListener(onViewportChange);
+        }
+    }
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    function boot() {
+        reconcile(document);
+        startObserver();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot, { once: true });
+    } else {
+        boot();
+    }
+})();
+/* FP_CATALOG_FILTER_GROUP_THUMBNAIL_LARGE_VIEWPORT_END */

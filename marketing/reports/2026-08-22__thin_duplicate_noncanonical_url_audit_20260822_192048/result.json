@@ -1,0 +1,479 @@
+{
+  "classification": "THIN_DUPLICATE_NONCANONICAL_BASELINE_HEALTHY",
+  "generated": "2026-08-22T19:21:02.469599+03:00",
+  "git_and_production": {
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "hashes": {
+      "BASE_USER": "dc977c1dab1824254df31356f66d43321416f0ad6ba08affb1977cb11e3f5ab4",
+      "CATALOG": "da16a9d9d6b51bbc306591e82d2d0b50db58e0636120abea371b375c5e61ab28",
+      "COMM": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+      "HEADER": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa",
+      "OWNER": "34bf3f89efe78f1cf179d2315ecd00c85feed17acc1edf9f607785439c0948c7",
+      "SITEMAP": "dc7737e23974d8fb8da876ee2d3117e93c398dc28ceb0080d1e46cd18af41eff"
+    },
+    "head": "b30971cf66dc385b73ef8f3f6ab831dec4a51af0",
+    "header_status": "M base/templates/default/include/header.php",
+    "untracked_status": "?? marketing/programs/forprint_growth_roadmap_v0_1.md"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "internal_non_sitemap": {
+    "classification_counts": {
+      "QUERY_VARIANT_DEDUP_TO_CLEAN": 16,
+      "VALID_PAGINATION_NOT_IN_SITEMAP": 9
+    },
+    "indexable_not_in_sitemap": [],
+    "param_signatures": {
+      "fp_ui": 388,
+      "order": 36,
+      "order,page": 4,
+      "page": 23,
+      "page,quantity": 102
+    },
+    "query_dedup_to_clean": [
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?order=price_asc",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?order=price_asc"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?fp_ui=filters",
+        "meta_noindex": false,
+        "referrer_count": 194,
+        "referrers": [
+          "https://forprint.net.ua/",
+          "https://forprint.net.ua/about/",
+          "https://forprint.net.ua/catalog/",
+          "https://forprint.net.ua/catalog/beydzh/",
+          "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+          "https://forprint.net.ua/catalog/brenduvannya-avto/",
+          "https://forprint.net.ua/catalog/brenduvannya-posudu/",
+          "https://forprint.net.ua/catalog/druk-na-ruchkah/",
+          "https://forprint.net.ua/catalog/foto-kartini/",
+          "https://forprint.net.ua/catalog/kalendar/",
+          "https://forprint.net.ua/catalog/konverti/",
+          "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/",
+          "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/",
+          "https://forprint.net.ua/catalog/operatuvna-poligrafiya/",
+          "https://forprint.net.ua/catalog/papki-dlya-dokumentv/",
+          "https://forprint.net.ua/catalog/prapori-vnderi/",
+          "https://forprint.net.ua/catalog/print-on-garment/",
+          "https://forprint.net.ua/catalog/reklamn-konstrukts/",
+          "https://forprint.net.ua/catalog/shirokoformatniy-druk/",
+          "https://forprint.net.ua/catalog/vzitki/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?fp_ui=filters"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?order=name_asc",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?order=name_asc"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?quantity=12&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?quantity=12&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?quantity=3&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?quantity=3&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?quantity=6&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?quantity=6&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?quantity=21&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?quantity=21&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/beydzh/",
+        "final_url": "https://forprint.net.ua/catalog/beydzh/?order=name_asc",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/beydzh/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/beydzh/?order=name_asc"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/",
+        "final_url": "https://forprint.net.ua/catalog/?quantity=30&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?quantity=30&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/beydzh/",
+        "final_url": "https://forprint.net.ua/catalog/beydzh/?order=price_asc",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/beydzh/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/beydzh/?order=price_asc"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/",
+        "final_url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?order=name_asc",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/?order=name_asc"
+      },
+      {
+        "canonical": "https://forprint.net.ua/promotions/",
+        "final_url": "https://forprint.net.ua/promotions/?order=name_asc&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/promotions/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/promotions/?order=name_asc&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/promotions/",
+        "final_url": "https://forprint.net.ua/promotions/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/promotions/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/promotions/?page=2"
+      },
+      {
+        "canonical": "https://forprint.net.ua/promotions/",
+        "final_url": "https://forprint.net.ua/promotions/?order=price_asc&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/promotions/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/promotions/?order=price_asc&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/special-offers/",
+        "final_url": "https://forprint.net.ua/special-offers/?order=price_asc&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/special-offers/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/special-offers/?order=price_asc&page=1"
+      },
+      {
+        "canonical": "https://forprint.net.ua/special-offers/",
+        "final_url": "https://forprint.net.ua/special-offers/?order=name_asc&page=1",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/special-offers/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/special-offers/?order=name_asc&page=1"
+      }
+    ],
+    "representative_fetched": 25,
+    "total_targets": 153,
+    "valid_pagination_not_in_sitemap": [
+      {
+        "canonical": "https://forprint.net.ua/catalog/?page=14",
+        "final_url": "https://forprint.net.ua/catalog/?page=14",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?page=14"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/?page=3",
+        "final_url": "https://forprint.net.ua/catalog/?page=3",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?page=3"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/?page=4",
+        "final_url": "https://forprint.net.ua/catalog/?page=4",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?page=4"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/?page=2",
+        "final_url": "https://forprint.net.ua/catalog/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/?page=2"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/beydzh/?page=2",
+        "final_url": "https://forprint.net.ua/catalog/beydzh/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/beydzh/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/beydzh/?page=2"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/konverti/?page=2",
+        "final_url": "https://forprint.net.ua/catalog/konverti/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/konverti/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/konverti/?page=2"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2",
+        "final_url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/?page=2"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2",
+        "final_url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/shirokoformatniy-druk/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/?page=2"
+      },
+      {
+        "canonical": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2",
+        "final_url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2",
+        "meta_noindex": false,
+        "referrer_count": 1,
+        "referrers": [
+          "https://forprint.net.ua/catalog/zovnshnya-reklama/"
+        ],
+        "status": 200,
+        "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/?page=2"
+      }
+    ]
+  },
+  "legacy_redirect_probes": [
+    {
+      "expected_final": "https://forprint.net.ua/contacts/",
+      "observed_canonical": "https://forprint.net.ua/contacts/",
+      "observed_final": "https://forprint.net.ua/contacts/",
+      "observed_status_after_follow": 200,
+      "ok": true,
+      "source": "https://forprint.net.ua/information/contacts/"
+    },
+    {
+      "expected_final": "https://forprint.net.ua/news/",
+      "observed_canonical": "https://forprint.net.ua/news/",
+      "observed_final": "https://forprint.net.ua/news/",
+      "observed_status_after_follow": 200,
+      "ok": true,
+      "source": "https://forprint.net.ua/information/news/"
+    },
+    {
+      "expected_final": "https://forprint.net.ua/promotions/",
+      "observed_canonical": "https://forprint.net.ua/promotions/",
+      "observed_final": "https://forprint.net.ua/promotions/",
+      "observed_status_after_follow": 200,
+      "ok": true,
+      "source": "https://forprint.net.ua/information/promotions/"
+    },
+    {
+      "expected_final": "https://forprint.net.ua/special-offers/",
+      "observed_canonical": "https://forprint.net.ua/special-offers/",
+      "observed_final": "https://forprint.net.ua/special-offers/",
+      "observed_status_after_follow": 200,
+      "ok": true,
+      "source": "https://forprint.net.ua/information/special-offers/"
+    },
+    {
+      "expected_final": "https://forprint.net.ua/catalog/",
+      "observed_canonical": "https://forprint.net.ua/catalog/",
+      "observed_final": "https://forprint.net.ua/catalog/",
+      "observed_status_after_follow": 200,
+      "ok": true,
+      "source": "https://forprint.net.ua/catalog"
+    }
+  ],
+  "next_action": "REVIEW_THIN_CANDIDATES_MANUALLY_THEN_CONTINUE_PUBLIC_SEARCH_QUALITY",
+  "production_db_mutation": false,
+  "production_source_mutation": false,
+  "sitemap": {
+    "canonical_collisions": [],
+    "canonical_issues": [],
+    "count": 194,
+    "exact_visible_text_duplicates": [],
+    "http_issues": [],
+    "thin_candidates_lt_350_chars": []
+  },
+  "variant_probes": [
+    {
+      "canonical": "https://forprint.net.ua/",
+      "expected_canonical": "https://forprint.net.ua/",
+      "final_url": "https://forprint.net.ua/?utm_source=forprint_audit",
+      "label": "utm_home",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/?utm_source=forprint_audit"
+    },
+    {
+      "canonical": "https://forprint.net.ua/contacts/",
+      "expected_canonical": "https://forprint.net.ua/contacts/",
+      "final_url": "https://forprint.net.ua/contacts/?gclid=TEST-AUDIT",
+      "label": "gclid_contacts",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/contacts/?gclid=TEST-AUDIT"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/",
+      "expected_canonical": "https://forprint.net.ua/catalog/",
+      "final_url": "https://forprint.net.ua/catalog/?gbraid=TEST-AUDIT",
+      "label": "gbraid_catalog",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/?gbraid=TEST-AUDIT"
+    },
+    {
+      "canonical": "https://forprint.net.ua/news/",
+      "expected_canonical": "https://forprint.net.ua/news/",
+      "final_url": "https://forprint.net.ua/news/?wbraid=TEST-AUDIT",
+      "label": "wbraid_news",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/news/?wbraid=TEST-AUDIT"
+    },
+    {
+      "canonical": "https://forprint.net.ua/contacts/",
+      "expected_canonical": "https://forprint.net.ua/contacts/",
+      "final_url": "https://forprint.net.ua/contacts/?fp_audit_unknown=1",
+      "label": "unknown_query_contacts",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/contacts/?fp_audit_unknown=1"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/",
+      "expected_canonical": "https://forprint.net.ua/catalog/",
+      "final_url": "https://forprint.net.ua/catalog/?quantity=3&order=name_asc&page=50",
+      "label": "sort_filter_catalog",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/?quantity=3&order=name_asc&page=50"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/konverti/",
+      "expected_canonical": "https://forprint.net.ua/catalog/konverti/",
+      "final_url": "https://forprint.net.ua/catalog/konverti/?page=1",
+      "label": "page1_category",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/konverti/?page=1"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/konverti/?page=2",
+      "expected_canonical": "https://forprint.net.ua/catalog/konverti/?page=2",
+      "final_url": "https://forprint.net.ua/catalog/konverti/?page=2",
+      "label": "valid_page2",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/konverti/?page=2"
+    },
+    {
+      "canonical": "https://forprint.net.ua/catalog/konverti/",
+      "expected_canonical": "https://forprint.net.ua/catalog/konverti/",
+      "final_url": "https://forprint.net.ua/catalog/konverti/?page=50",
+      "label": "out_of_range_page",
+      "meta_noindex": false,
+      "ok": true,
+      "status": 200,
+      "url": "https://forprint.net.ua/catalog/konverti/?page=50"
+    }
+  ]
+}

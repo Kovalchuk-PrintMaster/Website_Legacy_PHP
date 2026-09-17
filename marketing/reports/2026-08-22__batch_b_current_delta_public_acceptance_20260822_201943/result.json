@@ -1,0 +1,2458 @@
+{
+  "acceptance": {
+    "communication_scope_ok": true,
+    "contacts_scope_ok": false,
+    "db_scope_ok": true,
+    "public_http_ok": true,
+    "title_scope_ok": false
+  },
+  "classification": "BATCH_B_CURRENT_RELEASE_DELTA_STILL_NEEDS_REVIEW",
+  "communication_acceptance": {
+    "local_dialogs": 3,
+    "local_dialogs_labelled": 3,
+    "local_semantics_improved": true,
+    "product_url": "https://forprint.net.ua/product/afsh-ta-reklamn-plakati/",
+    "production_dialogs": 3,
+    "production_dialogs_labelled": 1
+  },
+  "contacts_acceptance": {
+    "local": {
+      "canonical": "http://127.0.0.1/contacts/",
+      "description": "Контакти | ForPrint. Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+      "dialogs": 1,
+      "dialogs_labelled": 1,
+      "final_url": "http://127.0.0.1:8098/contacts/",
+      "h1_count": 1,
+      "keywords": "",
+      "og_description": "Контакти | ForPrint. Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+      "og_site_name": "ForPrint",
+      "og_title": "Контакти | ForPrint",
+      "og_url": "http://127.0.0.1/contacts/",
+      "status": 200,
+      "title": "Контакти | ForPrint",
+      "url": "http://127.0.0.1:8098/contacts/"
+    },
+    "local_description_matches_db": false,
+    "production": {
+      "canonical": "https://forprint.net.ua/contacts/",
+      "description": "Контакти | ForPrint. Контакти PrintMaster",
+      "dialogs": 1,
+      "dialogs_labelled": 1,
+      "final_url": "https://forprint.net.ua/contacts/",
+      "h1_count": 1,
+      "keywords": "",
+      "og_description": "Контакти | ForPrint. Контакти PrintMaster",
+      "og_site_name": "ForPrint",
+      "og_title": "Контакти | ForPrint — Прінт студія повного циклу",
+      "og_url": "https://forprint.net.ua/contacts/",
+      "status": 200,
+      "title": "Контакти | ForPrint — Прінт студія повного циклу",
+      "url": "https://forprint.net.ua/contacts/"
+    },
+    "production_description_matches_db": false
+  },
+  "db": {
+    "contacts_changed": [
+      {
+        "changed_fields": [
+          "description",
+          "keywords"
+        ],
+        "id": 8,
+        "local_description": "Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+        "local_keywords": "контакти, друк, ForPrint",
+        "production_description": "Контакти PrintMaster",
+        "production_keywords": "контакти, друк, PrintMaster"
+      }
+    ],
+    "goods_changed": [],
+    "local_goods_with_content_h1": [],
+    "local_news_with_content_h1": [],
+    "news_changed": [],
+    "production_goods_with_content_h1": [],
+    "production_news_with_content_h1": []
+  },
+  "generated": "2026-08-22T20:19:59.551670+03:00",
+  "git": {
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "communication_working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+    "head": "51774693f675b3722f4bbf7cad05e0743739dcca",
+    "header_status": "M base/templates/default/include/header.php",
+    "header_working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e",
+    "roadmap_status": "?? marketing/programs/forprint_growth_roadmap_v0_1.md"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "next_action": "REVIEW_FAILED_ACCEPTANCE_DIMENSIONS_BEFORE_ANY_BATCH_B_MUTATION",
+  "production_db_mutation": false,
+  "production_source_mutation": false,
+  "public": {
+    "count": 194,
+    "local_h1_issue_count": 0,
+    "local_h1_issues": [],
+    "local_http_issue_count": 0,
+    "local_http_issues": [],
+    "production_http_issue_count": 0,
+    "production_http_issues": [],
+    "title_delta_count": 194,
+    "title_deltas": [
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "ForPrint — прінт-студія повного циклу",
+        "production_title": "ForPrint — прінт-студія повного циклу — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Прінт студія повного циклу | ForPrint",
+        "production_title": "Прінт студія повного циклу | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/about/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Каталог | ForPrint",
+        "production_title": "Каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Бейджі і Стрічки — каталог | ForPrint",
+        "production_title": "Бейджі і Стрічки — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокноти Щоденники Зошити — каталог | ForPrint",
+        "production_title": "Блокноти Щоденники Зошити — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування авто — каталог | ForPrint",
+        "production_title": "Брендування авто — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/brenduvannya-avto/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування посуду — каталог | ForPrint",
+        "production_title": "Брендування посуду — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/brenduvannya-posudu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на ручках / Олівцях — каталог | ForPrint",
+        "production_title": "Друк на ручках / Олівцях — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/druk-na-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фото і Картини — каталог | ForPrint",
+        "production_title": "Фото і Картини — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/foto-kartini/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Календарі — каталог | ForPrint",
+        "production_title": "Календарі — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/kalendar/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти — каталог | ForPrint",
+        "production_title": "Конверти — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Меню для кафе, барів і ресторанів — каталог | ForPrint",
+        "production_title": "Меню для кафе, барів і ресторанів — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інтер'єрне оформлення та конструкції — каталог | ForPrint",
+        "production_title": "Інтер'єрне оформлення та конструкції — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оперативна поліграфія — каталог | ForPrint",
+        "production_title": "Оперативна поліграфія — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папки для документів — каталог | ForPrint",
+        "production_title": "Папки для документів — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Прапори, віндери та прапорна продукція — каталог | ForPrint",
+        "production_title": "Прапори, віндери та прапорна продукція — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/prapori-vnderi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування текстильної продукції — каталог | ForPrint",
+        "production_title": "Брендування текстильної продукції — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/print-on-garment/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні конструкції — каталог | ForPrint",
+        "production_title": "Рекламні конструкції — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/reklamn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатний друк — каталог | ForPrint",
+        "production_title": "Широкоформатний друк — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Виготовлення візиток / Пластикових карт — каталог | ForPrint",
+        "production_title": "Виготовлення візиток / Пластикових карт — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/vzitki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Зовнішня реклама — каталог | ForPrint",
+        "production_title": "Зовнішня реклама — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Контакти | ForPrint",
+        "production_title": "Контакти | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/contacts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оплата і Доставка | ForPrint",
+        "production_title": "Оплата і Доставка | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/information/oplata-i-dostavka/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Наші послуги | ForPrint",
+        "production_title": "Наші послуги | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/nashi-posluhy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Новини | ForPrint",
+        "production_title": "Новини | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Що вам треба знати про друк на ручках — новини ForPrint",
+        "production_title": "Що вам треба знати про друк на ручках — новини ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/scho-vam-treba-znati-pro-druk-na-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Що ви знаєте про візитку — новини ForPrint",
+        "production_title": "Що ви знаєте про візитку — новини ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/scho-vi-znate-pro-vzitku/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Які бувають блокноти — новини ForPrint",
+        "production_title": "Які бувають блокноти — новини ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/yak-buvayut-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Афіші та рекламні плакати — замовити у ForPrint",
+        "production_title": "Афіші та рекламні плакати — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/afsh-ta-reklamn-plakati/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Акрилові бейджі — замовити у ForPrint",
+        "production_title": "Акрилові бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/akrilov-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Автомобільні прапорці — замовити у ForPrint",
+        "production_title": "Автомобільні прапорці — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/avtomobln-praports/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багаторазові бейджі з віконцем — замовити у ForPrint",
+        "production_title": "Багаторазові бейджі з віконцем — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatorazov-beydzh-z-vkontsem/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багатосторінкове меню на кільцях — замовити у ForPrint",
+        "production_title": "Багатосторінкове меню на кільцях — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatostornkove-menyu-na-kltsyah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багатосторінкове меню на пружині — замовити у ForPrint",
+        "production_title": "Багатосторінкове меню на пружині — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatostornkove-menyu-na-pruzhin/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багатосторінкове меню на скобі — замовити у ForPrint",
+        "production_title": "Багатосторінкове меню на скобі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatostornkove-menyu-na-skob/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Банери на сітці Mesh — замовити у ForPrint",
+        "production_title": "Банери на сітці Mesh — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/baneri-na-stts-mesh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Банерні рами та каркасні конструкції — замовити у ForPrint",
+        "production_title": "Банерні рами та каркасні конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/banern-rami-ta-karkasn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Бейджі-посвідчення та ID-картки — замовити у ForPrint",
+        "production_title": "Бейджі-посвідчення та ID-картки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/beydzh-posvdchennya-ta-id-kartki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Бейджі зі змінною вкладкою — замовити у ForPrint",
+        "production_title": "Бейджі зі змінною вкладкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/beydzh-z-zmnnoyu-vkladkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокнот на пружині — замовити у ForPrint",
+        "production_title": "Блокнот на пружині — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bloknot-na-pruzhin/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокнот на скобах — замовити у ForPrint",
+        "production_title": "Блокнот на скобах — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bloknot-na-skobah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендовані блокноти з твердою обкладинкою — замовити у ForPrint",
+        "production_title": "Брендовані блокноти з твердою обкладинкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brendovan-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендовані стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Брендовані стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brendovan-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування авто — замовити у ForPrint",
+        "production_title": "Брендування авто — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-avto/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування парасольок — замовити у ForPrint",
+        "production_title": "Брендування парасольок — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-parasolyok/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування спец-одягу — замовити у ForPrint",
+        "production_title": "Брендування спец-одягу — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-spets-odyagu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування стаканів — замовити у ForPrint",
+        "production_title": "Брендування стаканів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-stakanv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування термокружок — замовити у ForPrint",
+        "production_title": "Брендування термокружок — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-termokruzhok/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування термосів — замовити у ForPrint",
+        "production_title": "Брендування термосів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-termosv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування вікон частковою поклейкою — замовити у ForPrint",
+        "production_title": "Брендування вікон частковою поклейкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-vkon-chastkovoyu-pokleykoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування вікон перфорованою плівкою — замовити у ForPrint",
+        "production_title": "Брендування вікон перфорованою плівкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-vkon-perforovanoyu-plvkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Декорації та оформлення заходів — замовити у ForPrint",
+        "production_title": "Декорації та оформлення заходів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/dekorats-ta-oformlennya-zahodv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Дерев’яні та екобейджі — замовити у ForPrint",
+        "production_title": "Дерев’яні та екобейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/derevyan-ta-ekobeydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для білбордів і рекламних щитів — замовити у ForPrint",
+        "production_title": "Друк для білбордів і рекламних щитів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-blbordv-reklamnih-schitv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для лайтбоксів і сітілайтів — замовити у ForPrint",
+        "production_title": "Друк для лайтбоксів і сітілайтів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-laytboksv-stlaytv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для Roll-Up стендів — замовити у ForPrint",
+        "production_title": "Друк для Roll-Up стендів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-roll-up-stendv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для X-banner стендів — замовити у ForPrint",
+        "production_title": "Друк для X-banner стендів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-x-banner-stendv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на футболках — замовити у ForPrint",
+        "production_title": "Друк на футболках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-bly-futbolts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на чашках — замовити у ForPrint",
+        "production_title": "Друк на чашках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-chashkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на еко-ручках — замовити у ForPrint",
+        "production_title": "Друк на еко-ручках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-eko-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на Еко шоперах — замовити у ForPrint",
+        "production_title": "Друк на Еко шоперах — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-eko-shoperah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на кепках — замовити у ForPrint",
+        "production_title": "Друк на кепках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-kepkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на металевих ручках — замовити у ForPrint",
+        "production_title": "Друк на металевих ручках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-metalevih-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на олівцях — замовити у ForPrint",
+        "production_title": "Друк на олівцях — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-olvtsyah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на перфорованій плівці — замовити у ForPrint",
+        "production_title": "Друк на перфорованій плівці — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-perforovany-plvts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на пластикових ручках — замовити у ForPrint",
+        "production_title": "Друк на пластикових ручках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-plastikovih-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на шкарпетках — замовити у ForPrint",
+        "production_title": "Друк на шкарпетках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-shkarpetkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Двосторонні банери — замовити у ForPrint",
+        "production_title": "Двосторонні банери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/dvostoronn-baneri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Двосторонні світлові консолі / лайтбокси — замовити у ForPrint",
+        "production_title": "Двосторонні світлові консолі / лайтбокси — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/dvostoronn-svtlov-konsol-laytboksi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Еко-блокноти — замовити у ForPrint",
+        "production_title": "Еко-блокноти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/eko-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Еко-візитки — замовити у ForPrint",
+        "production_title": "Еко-візитки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/eko-vzitki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Екострічки для бейджів — замовити у ForPrint",
+        "production_title": "Екострічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/ekostrchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадні прапори — замовити у ForPrint",
+        "production_title": "Фасадні прапори — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadn-prapori/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадні таблички — замовити у ForPrint",
+        "production_title": "Фасадні таблички — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadn-tablichki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадні вивіски з об’ємними елементами — замовити у ForPrint",
+        "production_title": "Фасадні вивіски з об’ємними елементами — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadn-vivski-z-obmnimi-elementami/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадна світлова вивіска — замовити у ForPrint",
+        "production_title": "Фасадна світлова вивіска — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурні дизайнерські бейджі — замовити у ForPrint",
+        "production_title": "Фігурні дизайнерські бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurn-dizaynersk-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурні конверти — замовити у ForPrint",
+        "production_title": "Фігурні конверти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurn-konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурні рекламні вивіски — замовити у ForPrint",
+        "production_title": "Фігурні рекламні вивіски — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurn-reklamn-vivski/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурна візитка — замовити у ForPrint",
+        "production_title": "Фігурна візитка — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurna-vzitka/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Флагштоки, підставки та фурнітура — замовити у ForPrint",
+        "production_title": "Флагштоки, підставки та фурнітура — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/flagshtoki-pdstavki-ta-furntura/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Флаєри / Євро-флаєри — замовити у ForPrint",
+        "production_title": "Флаєри / Євро-флаєри — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/flari-vro-flari/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фото для фотоальбомів — замовити у ForPrint",
+        "production_title": "Фото для фотоальбомів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/foto-dlya-fotoalbomv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фотошпалери з індивідуальним друком — замовити у ForPrint",
+        "production_title": "Фотошпалери з індивідуальним друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fotoshpaleri-z-ndivdualnim-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фотозони та декоративні конструкції — замовити у ForPrint",
+        "production_title": "Фотозони та декоративні конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fotozoni-ta-dekorativn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Глянцеві ламіновані конверти — замовити у ForPrint",
+        "production_title": "Глянцеві ламіновані конверти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/glyantsev-lamnovan-konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка з дизайнерського картону — замовити у ForPrint",
+        "production_title": "Візитка з дизайнерського картону — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/goods-2/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Гірлянди з прапорців — замовити у ForPrint",
+        "production_title": "Гірлянди з прапорців — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/grlyandi-z-praportsv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Кабінетні прапори — замовити у ForPrint",
+        "production_title": "Кабінетні прапори — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kabnetn-prapori/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Календар квартальний — замовити у ForPrint",
+        "production_title": "Календар квартальний — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kalendar-kvartalniy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Календар настільний — замовити у ForPrint",
+        "production_title": "Календар настільний — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kalendar-nastlniy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Карти, схеми та навігаційні плани — замовити у ForPrint",
+        "production_title": "Карти, схеми та навігаційні плани — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/karti-shemi-ta-navgatsyn-plani/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Картина на прихованому підрамнику — замовити у ForPrint",
+        "production_title": "Картина на прихованому підрамнику — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kartina-na-prihovanomu-pdramniku/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Класичні прапори з індивідуальним друком — замовити у ForPrint",
+        "production_title": "Класичні прапори з індивідуальним друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/klasichn-prapori-z-ndivdualnim-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Клеєний блокнот — замовити у ForPrint",
+        "production_title": "Клеєний блокнот — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kleniy-bloknot/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Кільцевий блокнот — замовити у ForPrint",
+        "production_title": "Кільцевий блокнот — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kltseviy-bloknot/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти для подарункових сертифікатів — замовити у ForPrint",
+        "production_title": "Конверти для подарункових сертифікатів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-dlya-podarunkovih-sertifkatv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з дизайнерського паперу та картону — замовити у ForPrint",
+        "production_title": "Конверти з дизайнерського паперу та картону — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-dizaynerskogo-paperu-ta-kartonu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з фольгуванням — замовити у ForPrint",
+        "production_title": "Конверти з фольгуванням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-folguvannyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з крафтового паперу — замовити у ForPrint",
+        "production_title": "Конверти з крафтового паперу — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-kraftovogo-paperu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з об'ємним тисненням конгрев + тиснення фольгою — замовити у ForPrint",
+        "production_title": "Конверти з об'ємним тисненням конгрев + тиснення фольгою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-obmnim-tisnennyam-kongrev-tisnennya-folgoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з об'ємним тисненням конгрев — замовити у ForPrint",
+        "production_title": "Конверти з об'ємним тисненням конгрев — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-obmnim-tisnennyam-kongrev/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з покриттям Soft Touch — замовити у ForPrint",
+        "production_title": "Конверти з покриттям Soft Touch — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-pokrittyam-soft-touch/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти зі сліпим тисненням — замовити у ForPrint",
+        "production_title": "Конверти зі сліпим тисненням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-slpim-tisnennyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з вибірковим лаком — замовити у ForPrint",
+        "production_title": "Конверти з вибірковим лаком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-vibrkovim-lakom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Короткі ремінці та петлі — замовити у ForPrint",
+        "production_title": "Короткі ремінці та петлі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/korotk-remnts-ta-petl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокноти з тисненням — замовити у ForPrint",
+        "production_title": "Блокноти з тисненням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kreativn-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Крейдові штендери — замовити у ForPrint",
+        "production_title": "Крейдові штендери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kreydov-shtenderi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Круглі шнурки для бейджів — замовити у ForPrint",
+        "production_title": "Круглі шнурки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/krugl-shnurki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Кулінарні блокноти — замовити у ForPrint",
+        "production_title": "Кулінарні блокноти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kulnarn-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "L-banner стенди — замовити у ForPrint",
+        "production_title": "L-banner стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/l-banner-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ланьярди з ретрактором — замовити у ForPrint",
+        "production_title": "Ланьярди з ретрактором — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/lanyardi-z-retraktorom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Матові ламіновані конверти — замовити у ForPrint",
+        "production_title": "Матові ламіновані конверти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/matov-lamnovan-konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Металеві бейджі — замовити у ForPrint",
+        "production_title": "Металеві бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/metalev-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Мобільні рекламні прапори — віндери — замовити у ForPrint",
+        "production_title": "Мобільні рекламні прапори — віндери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/mobln-reklamn-prapori-vnderi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Наліпки великого формату — замовити у ForPrint",
+        "production_title": "Наліпки великого формату — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nalpki-velikogo-formatu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Настільні інформаційні конструкції — замовити у ForPrint",
+        "production_title": "Настільні інформаційні конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nastln-nformatsyn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Настільні прапорці — замовити у ForPrint",
+        "production_title": "Настільні прапорці — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nastln-praports/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Навігаційні покажчики, таблички на фасад — замовити у ForPrint",
+        "production_title": "Навігаційні покажчики, таблички на фасад — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/navgatsyn-pokazhchiki-tablichki-na-fasad/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Неонова табличка — замовити у ForPrint",
+        "production_title": "Неонова табличка — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/neonova-tablichka/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Неонова вивіска на фасад — замовити у ForPrint",
+        "production_title": "Неонова вивіска на фасад — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/neonova-vivska/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційні листівки — замовити у ForPrint",
+        "production_title": "Інформаційні листівки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyn-listvki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційні стенди з друком — замовити у ForPrint",
+        "production_title": "Інформаційні стенди з друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyn-stendi-z-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційні стенди — замовити у ForPrint",
+        "production_title": "Інформаційні стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyn-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційна табличка на стіл — замовити у ForPrint",
+        "production_title": "Інформаційна табличка на стіл — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyna-tablichka-na-stl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інтер’єрні наліпки на стіни — замовити у ForPrint",
+        "production_title": "Інтер’єрні наліпки на стіни — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nterrn-nalpki-na-stni/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Об’ємні та світлові літери — замовити у ForPrint",
+        "production_title": "Об’ємні та світлові літери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/obmn-ta-svtlov-lteri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Одноколірні стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Одноколірні стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/odnokolrn-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Односторінкове меню — замовити у ForPrint",
+        "production_title": "Односторінкове меню — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/odnostornkove-menyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оформлення графіка роботи на склі — замовити у ForPrint",
+        "production_title": "Оформлення графіка роботи на склі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/oformlennya-grafka-roboti-na-skl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Офісні й кабінетні таблички — замовити у ForPrint",
+        "production_title": "Офісні й кабінетні таблички — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/ofsn-y-kabnetn-tablichki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка брендована повноколірна — замовити у ForPrint",
+        "production_title": "Папка брендована повноколірна — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-brendovana-povnokolrna/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка з фольгуванням — замовити у ForPrint",
+        "production_title": "Папка з фольгуванням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-z-folguvannyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка зі сліпим тисненям — замовити у ForPrint",
+        "production_title": "Папка зі сліпим тисненям — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-z-slpim-tisnenyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка з вібірковим лаком — замовити у ForPrint",
+        "production_title": "Папка з вібірковим лаком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-z-vbrkovim-lakom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Підлогова реклама та підлогові наліпки — замовити у ForPrint",
+        "production_title": "Підлогова реклама та підлогові наліпки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/pdlogova-reklama-ta-pdlogov-nalpki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Персоналізовані бейджі для персоналу — замовити у ForPrint",
+        "production_title": "Персоналізовані бейджі для персоналу — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/personalzovan-beydzh-dlya-personalu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Плакати і постери — замовити у ForPrint",
+        "production_title": "Плакати і постери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/plakati-posteri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Пластикові бейджі — замовити у ForPrint",
+        "production_title": "Пластикові бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/plastikov-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Пластикові карти — замовити у ForPrint",
+        "production_title": "Пластикові карти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/plastikov-karti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Поп-ап стенди — замовити у ForPrint",
+        "production_title": "Поп-ап стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/pop-ap-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Повноколірні стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Повноколірні стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/povnokolrn-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Прапори на вуличний флагшток — замовити у ForPrint",
+        "production_title": "Прапори на вуличний флагшток — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/prapori-na-vulichniy-flagshtok/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Пресволи та брендволи — замовити у ForPrint",
+        "production_title": "Пресволи та брендволи — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/presvoli-ta-brendvoli/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оновлення оформлення готових пресволів та фотозон — замовити у ForPrint",
+        "production_title": "Оновлення оформлення готових пресволів та фотозон — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/presvoli-ta-fotozoni/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Промостійки — замовити у ForPrint",
+        "production_title": "Промостійки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/promostyki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні конструкції для вітрин — замовити у ForPrint",
+        "production_title": "Рекламні конструкції для вітрин — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamn-konstrukts-dlya-vtrin/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні магніти на автомобіль — замовити у ForPrint",
+        "production_title": "Рекламні магніти на автомобіль — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamn-magnti-na-avtomobl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні стели, пілони й тотеми — замовити у ForPrint",
+        "production_title": "Рекламні стели, пілони й тотеми — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamn-steli-ploni-y-totemi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні банери для фасадів і конструкцій — замовити у ForPrint",
+        "production_title": "Рекламні банери для фасадів і конструкцій — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamni-baneri-dlya-fasadiv-ta-konstruktsiy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ресепшн-стійки з брендуванням — замовити у ForPrint",
+        "production_title": "Ресепшн-стійки з брендуванням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/resepshn-styki-z-brenduvannyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Roll-Up стенди — замовити у ForPrint",
+        "production_title": "Roll-Up стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/roll-up-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ростові фігури — замовити у ForPrint",
+        "production_title": "Ростові фігури — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/rostov-fguri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ручні прапорці з друком — замовити у ForPrint",
+        "production_title": "Ручні прапорці з друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/ruchn-praports-z-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Сатинові брендовані ланьярди — замовити у ForPrint",
+        "production_title": "Сатинові брендовані ланьярди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/satinov-brendovan-lanyardi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Щоденники / планери — замовити у ForPrint",
+        "production_title": "Щоденники / планери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/schodenniki-planeri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатні банери — замовити у ForPrint",
+        "production_title": "Широкоформатні банери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/shirokoformatn-baneri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатні постери — замовити у ForPrint",
+        "production_title": "Широкоформатні постери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/shirokoformatn-posteri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатний фотодрук — замовити у ForPrint",
+        "production_title": "Широкоформатний фотодрук — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/shirokoformatniy-fotodruk/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стандартні поштові конверти з друком — замовити у ForPrint",
+        "production_title": "Стандартні поштові конверти з друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/standartn-poshtov-konverti-z-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стрічки з двома кріпленнями — замовити у ForPrint",
+        "production_title": "Стрічки з двома кріпленнями — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/strchki-z-dvoma-krplennyami/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стрічки із захисною застібкою — замовити у ForPrint",
+        "production_title": "Стрічки із захисною застібкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/strchki-z-zahisnoyu-zastbkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стрічки зі знімною нижньою частиною — замовити у ForPrint",
+        "production_title": "Стрічки зі знімною нижньою частиною — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/strchki-z-znmnoyu-nizhnyoyu-chastinoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стійки для плакатів і постерів — замовити у ForPrint",
+        "production_title": "Стійки для плакатів і постерів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/styki-dlya-plakatv-posterv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Суцільне брендування вікон непрозорою плівкою — замовити у ForPrint",
+        "production_title": "Суцільне брендування вікон непрозорою плівкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/sutslne-brenduvannya-vkon-neprozoroyu-plvkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Світлопропускні банери Backlit — замовити у ForPrint",
+        "production_title": "Світлопропускні банери Backlit — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/svtlopropuskn-baneri-backlit/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Світлові короби — лайтбокси — замовити у ForPrint",
+        "production_title": "Світлові короби — лайтбокси — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/svtlov-korobi-laytboksi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Світлові панелі й меню-бокси — замовити у ForPrint",
+        "production_title": "Світлові панелі й меню-бокси — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/svtlov-panel-y-menyu-boksi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Тревел-нотатники — замовити у ForPrint",
+        "production_title": "Тревел-нотатники — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/trevel-notatniki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Трубчасті стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Трубчасті стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/trubchast-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вимпели — замовити у ForPrint",
+        "production_title": "Вимпели — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vimpeli/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вишивка на рушниках — замовити у ForPrint",
+        "production_title": "Вишивка на рушниках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishiva-na-rushnikah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вишивка на еко шоперах — замовити у ForPrint",
+        "production_title": "Вишивка на еко шоперах — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishivka-na-eko-shoperah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вишивка на футболках — замовити у ForPrint",
+        "production_title": "Вишивка на футболках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishivka-na-futbolkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Об'ємна вишивка на кепках — замовити у ForPrint",
+        "production_title": "Об'ємна вишивка на кепках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishivka-na-kepkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Виставкові конструкції — замовити у ForPrint",
+        "production_title": "Виставкові конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vistavkov-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Виставкові стенди та панелі — замовити у ForPrint",
+        "production_title": "Виставкові стенди та панелі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vistavkov-stendi-ta-panel/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Євробуклет / Ліфлет — замовити у ForPrint",
+        "production_title": "Євробуклет / Ліфлет — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vrobuklet-lflet/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вуличний штендер — замовити у ForPrint",
+        "production_title": "Вуличний штендер — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vulichniy-shtender/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка каширована — замовити у ForPrint",
+        "production_title": "Візитка каширована — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-kashirovana/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка класична — замовити у ForPrint",
+        "production_title": "Візитка класична — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-klasichna/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка з глянцевим покриттям — замовити у ForPrint",
+        "production_title": "Візитка з глянцевим покриттям — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-z-glyantsevim-pokrittyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка з матовим покриттям — замовити у ForPrint",
+        "production_title": "Візитка з матовим покриттям — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-z-matovim-pokrittyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитки для людей з обмеженими можливостями — замовити у ForPrint",
+        "production_title": "Візитки для людей з обмеженими можливостями — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitki-dlya-lyudey-z-obmezhenimi-mozhlivostyami/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитки на пластиковій основі — замовити у ForPrint",
+        "production_title": "Візитки на пластиковій основі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitki-na-plastikovy-osnov/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитки з конгревним тисненням — замовити у ForPrint",
+        "production_title": "Візитки з конгревним тисненням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitki-z-kongrevnim-tisnennyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "X-banner стенди — замовити у ForPrint",
+        "production_title": "X-banner стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/x-banner-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Збірка на канал, проектні, курсові та дипломні роботи — замовити у ForPrint",
+        "production_title": "Збірка на канал, проектні, курсові та дипломні роботи — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zbrka-na-kanal-proektn-kursov-ta-diplomn-roboti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Жакардові стрічки з тканим логотипом — замовити у ForPrint",
+        "production_title": "Жакардові стрічки з тканим логотипом — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zhakardov-strchki-z-tkanim-logotipom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Знамена / Хоругви / Штандарти — замовити у ForPrint",
+        "production_title": "Знамена / Хоругви / Штандарти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/znamena-horugvi-shtandarti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Зошити для записів — замовити у ForPrint",
+        "production_title": "Зошити для записів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zoshiti-dlya-zapisv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Звичайний разовий бейдж на подію — замовити у ForPrint",
+        "production_title": "Звичайний разовий бейдж на подію — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zvichayniy-razoviy-buydzh-na-podyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Акції і пропозиції | ForPrint",
+        "production_title": "Акції і пропозиції | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/promotions/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Спеціальні пропозиції | ForPrint",
+        "production_title": "Спеціальні пропозиції | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/special-offers/"
+      }
+    ],
+    "unexpected_title_delta_count": 194,
+    "unexpected_title_deltas": [
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "ForPrint — прінт-студія повного циклу",
+        "production_title": "ForPrint — прінт-студія повного циклу — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Прінт студія повного циклу | ForPrint",
+        "production_title": "Прінт студія повного циклу | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/about/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Каталог | ForPrint",
+        "production_title": "Каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Бейджі і Стрічки — каталог | ForPrint",
+        "production_title": "Бейджі і Стрічки — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокноти Щоденники Зошити — каталог | ForPrint",
+        "production_title": "Блокноти Щоденники Зошити — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/bloknoti-schodenniki-zoshiti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування авто — каталог | ForPrint",
+        "production_title": "Брендування авто — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/brenduvannya-avto/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування посуду — каталог | ForPrint",
+        "production_title": "Брендування посуду — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/brenduvannya-posudu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на ручках / Олівцях — каталог | ForPrint",
+        "production_title": "Друк на ручках / Олівцях — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/druk-na-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фото і Картини — каталог | ForPrint",
+        "production_title": "Фото і Картини — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/foto-kartini/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Календарі — каталог | ForPrint",
+        "production_title": "Календарі — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/kalendar/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти — каталог | ForPrint",
+        "production_title": "Конверти — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Меню для кафе, барів і ресторанів — каталог | ForPrint",
+        "production_title": "Меню для кафе, барів і ресторанів — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/menyu-dlya-kafe-barv-restoranv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інтер'єрне оформлення та конструкції — каталог | ForPrint",
+        "production_title": "Інтер'єрне оформлення та конструкції — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/nterrne-oformlennya-ta-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оперативна поліграфія — каталог | ForPrint",
+        "production_title": "Оперативна поліграфія — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/operatuvna-poligrafiya/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папки для документів — каталог | ForPrint",
+        "production_title": "Папки для документів — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/papki-dlya-dokumentv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Прапори, віндери та прапорна продукція — каталог | ForPrint",
+        "production_title": "Прапори, віндери та прапорна продукція — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/prapori-vnderi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування текстильної продукції — каталог | ForPrint",
+        "production_title": "Брендування текстильної продукції — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/print-on-garment/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні конструкції — каталог | ForPrint",
+        "production_title": "Рекламні конструкції — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/reklamn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатний друк — каталог | ForPrint",
+        "production_title": "Широкоформатний друк — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/shirokoformatniy-druk/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Виготовлення візиток / Пластикових карт — каталог | ForPrint",
+        "production_title": "Виготовлення візиток / Пластикових карт — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/vzitki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Зовнішня реклама — каталог | ForPrint",
+        "production_title": "Зовнішня реклама — каталог | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/catalog/zovnshnya-reklama/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Контакти | ForPrint",
+        "production_title": "Контакти | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/contacts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оплата і Доставка | ForPrint",
+        "production_title": "Оплата і Доставка | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/information/oplata-i-dostavka/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Наші послуги | ForPrint",
+        "production_title": "Наші послуги | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/nashi-posluhy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Новини | ForPrint",
+        "production_title": "Новини | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Що вам треба знати про друк на ручках — новини ForPrint",
+        "production_title": "Що вам треба знати про друк на ручках — новини ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/scho-vam-treba-znati-pro-druk-na-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Що ви знаєте про візитку — новини ForPrint",
+        "production_title": "Що ви знаєте про візитку — новини ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/scho-vi-znate-pro-vzitku/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Які бувають блокноти — новини ForPrint",
+        "production_title": "Які бувають блокноти — новини ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/news/yak-buvayut-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Афіші та рекламні плакати — замовити у ForPrint",
+        "production_title": "Афіші та рекламні плакати — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/afsh-ta-reklamn-plakati/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Акрилові бейджі — замовити у ForPrint",
+        "production_title": "Акрилові бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/akrilov-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Автомобільні прапорці — замовити у ForPrint",
+        "production_title": "Автомобільні прапорці — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/avtomobln-praports/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багаторазові бейджі з віконцем — замовити у ForPrint",
+        "production_title": "Багаторазові бейджі з віконцем — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatorazov-beydzh-z-vkontsem/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багатосторінкове меню на кільцях — замовити у ForPrint",
+        "production_title": "Багатосторінкове меню на кільцях — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatostornkove-menyu-na-kltsyah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багатосторінкове меню на пружині — замовити у ForPrint",
+        "production_title": "Багатосторінкове меню на пружині — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatostornkove-menyu-na-pruzhin/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Багатосторінкове меню на скобі — замовити у ForPrint",
+        "production_title": "Багатосторінкове меню на скобі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bagatostornkove-menyu-na-skob/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Банери на сітці Mesh — замовити у ForPrint",
+        "production_title": "Банери на сітці Mesh — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/baneri-na-stts-mesh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Банерні рами та каркасні конструкції — замовити у ForPrint",
+        "production_title": "Банерні рами та каркасні конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/banern-rami-ta-karkasn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Бейджі-посвідчення та ID-картки — замовити у ForPrint",
+        "production_title": "Бейджі-посвідчення та ID-картки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/beydzh-posvdchennya-ta-id-kartki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Бейджі зі змінною вкладкою — замовити у ForPrint",
+        "production_title": "Бейджі зі змінною вкладкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/beydzh-z-zmnnoyu-vkladkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокнот на пружині — замовити у ForPrint",
+        "production_title": "Блокнот на пружині — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bloknot-na-pruzhin/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокнот на скобах — замовити у ForPrint",
+        "production_title": "Блокнот на скобах — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/bloknot-na-skobah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендовані блокноти з твердою обкладинкою — замовити у ForPrint",
+        "production_title": "Брендовані блокноти з твердою обкладинкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brendovan-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендовані стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Брендовані стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brendovan-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування авто — замовити у ForPrint",
+        "production_title": "Брендування авто — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-avto/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування парасольок — замовити у ForPrint",
+        "production_title": "Брендування парасольок — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-parasolyok/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування спец-одягу — замовити у ForPrint",
+        "production_title": "Брендування спец-одягу — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-spets-odyagu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування стаканів — замовити у ForPrint",
+        "production_title": "Брендування стаканів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-stakanv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування термокружок — замовити у ForPrint",
+        "production_title": "Брендування термокружок — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-termokruzhok/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування термосів — замовити у ForPrint",
+        "production_title": "Брендування термосів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-termosv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування вікон частковою поклейкою — замовити у ForPrint",
+        "production_title": "Брендування вікон частковою поклейкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-vkon-chastkovoyu-pokleykoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Брендування вікон перфорованою плівкою — замовити у ForPrint",
+        "production_title": "Брендування вікон перфорованою плівкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/brenduvannya-vkon-perforovanoyu-plvkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Декорації та оформлення заходів — замовити у ForPrint",
+        "production_title": "Декорації та оформлення заходів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/dekorats-ta-oformlennya-zahodv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Дерев’яні та екобейджі — замовити у ForPrint",
+        "production_title": "Дерев’яні та екобейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/derevyan-ta-ekobeydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для білбордів і рекламних щитів — замовити у ForPrint",
+        "production_title": "Друк для білбордів і рекламних щитів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-blbordv-reklamnih-schitv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для лайтбоксів і сітілайтів — замовити у ForPrint",
+        "production_title": "Друк для лайтбоксів і сітілайтів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-laytboksv-stlaytv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для Roll-Up стендів — замовити у ForPrint",
+        "production_title": "Друк для Roll-Up стендів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-roll-up-stendv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк для X-banner стендів — замовити у ForPrint",
+        "production_title": "Друк для X-banner стендів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-dlya-x-banner-stendv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на футболках — замовити у ForPrint",
+        "production_title": "Друк на футболках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-bly-futbolts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на чашках — замовити у ForPrint",
+        "production_title": "Друк на чашках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-chashkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на еко-ручках — замовити у ForPrint",
+        "production_title": "Друк на еко-ручках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-eko-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на Еко шоперах — замовити у ForPrint",
+        "production_title": "Друк на Еко шоперах — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-eko-shoperah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на кепках — замовити у ForPrint",
+        "production_title": "Друк на кепках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-kepkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на металевих ручках — замовити у ForPrint",
+        "production_title": "Друк на металевих ручках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-metalevih-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на олівцях — замовити у ForPrint",
+        "production_title": "Друк на олівцях — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-olvtsyah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на перфорованій плівці — замовити у ForPrint",
+        "production_title": "Друк на перфорованій плівці — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-perforovany-plvts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на пластикових ручках — замовити у ForPrint",
+        "production_title": "Друк на пластикових ручках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-plastikovih-ruchkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Друк на шкарпетках — замовити у ForPrint",
+        "production_title": "Друк на шкарпетках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/druk-na-shkarpetkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Двосторонні банери — замовити у ForPrint",
+        "production_title": "Двосторонні банери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/dvostoronn-baneri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Двосторонні світлові консолі / лайтбокси — замовити у ForPrint",
+        "production_title": "Двосторонні світлові консолі / лайтбокси — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/dvostoronn-svtlov-konsol-laytboksi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Еко-блокноти — замовити у ForPrint",
+        "production_title": "Еко-блокноти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/eko-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Еко-візитки — замовити у ForPrint",
+        "production_title": "Еко-візитки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/eko-vzitki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Екострічки для бейджів — замовити у ForPrint",
+        "production_title": "Екострічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/ekostrchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадні прапори — замовити у ForPrint",
+        "production_title": "Фасадні прапори — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadn-prapori/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадні таблички — замовити у ForPrint",
+        "production_title": "Фасадні таблички — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadn-tablichki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадні вивіски з об’ємними елементами — замовити у ForPrint",
+        "production_title": "Фасадні вивіски з об’ємними елементами — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadn-vivski-z-obmnimi-elementami/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фасадна світлова вивіска — замовити у ForPrint",
+        "production_title": "Фасадна світлова вивіска — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fasadna-svtlova-vivska/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурні дизайнерські бейджі — замовити у ForPrint",
+        "production_title": "Фігурні дизайнерські бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurn-dizaynersk-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурні конверти — замовити у ForPrint",
+        "production_title": "Фігурні конверти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurn-konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурні рекламні вивіски — замовити у ForPrint",
+        "production_title": "Фігурні рекламні вивіски — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurn-reklamn-vivski/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фігурна візитка — замовити у ForPrint",
+        "production_title": "Фігурна візитка — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fgurna-vzitka/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Флагштоки, підставки та фурнітура — замовити у ForPrint",
+        "production_title": "Флагштоки, підставки та фурнітура — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/flagshtoki-pdstavki-ta-furntura/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Флаєри / Євро-флаєри — замовити у ForPrint",
+        "production_title": "Флаєри / Євро-флаєри — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/flari-vro-flari/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фото для фотоальбомів — замовити у ForPrint",
+        "production_title": "Фото для фотоальбомів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/foto-dlya-fotoalbomv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фотошпалери з індивідуальним друком — замовити у ForPrint",
+        "production_title": "Фотошпалери з індивідуальним друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fotoshpaleri-z-ndivdualnim-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Фотозони та декоративні конструкції — замовити у ForPrint",
+        "production_title": "Фотозони та декоративні конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/fotozoni-ta-dekorativn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Глянцеві ламіновані конверти — замовити у ForPrint",
+        "production_title": "Глянцеві ламіновані конверти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/glyantsev-lamnovan-konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка з дизайнерського картону — замовити у ForPrint",
+        "production_title": "Візитка з дизайнерського картону — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/goods-2/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Гірлянди з прапорців — замовити у ForPrint",
+        "production_title": "Гірлянди з прапорців — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/grlyandi-z-praportsv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Кабінетні прапори — замовити у ForPrint",
+        "production_title": "Кабінетні прапори — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kabnetn-prapori/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Календар квартальний — замовити у ForPrint",
+        "production_title": "Календар квартальний — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kalendar-kvartalniy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Календар настільний — замовити у ForPrint",
+        "production_title": "Календар настільний — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kalendar-nastlniy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Карти, схеми та навігаційні плани — замовити у ForPrint",
+        "production_title": "Карти, схеми та навігаційні плани — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/karti-shemi-ta-navgatsyn-plani/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Картина на прихованому підрамнику — замовити у ForPrint",
+        "production_title": "Картина на прихованому підрамнику — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kartina-na-prihovanomu-pdramniku/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Класичні прапори з індивідуальним друком — замовити у ForPrint",
+        "production_title": "Класичні прапори з індивідуальним друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/klasichn-prapori-z-ndivdualnim-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Клеєний блокнот — замовити у ForPrint",
+        "production_title": "Клеєний блокнот — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kleniy-bloknot/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Кільцевий блокнот — замовити у ForPrint",
+        "production_title": "Кільцевий блокнот — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kltseviy-bloknot/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти для подарункових сертифікатів — замовити у ForPrint",
+        "production_title": "Конверти для подарункових сертифікатів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-dlya-podarunkovih-sertifkatv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з дизайнерського паперу та картону — замовити у ForPrint",
+        "production_title": "Конверти з дизайнерського паперу та картону — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-dizaynerskogo-paperu-ta-kartonu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з фольгуванням — замовити у ForPrint",
+        "production_title": "Конверти з фольгуванням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-folguvannyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з крафтового паперу — замовити у ForPrint",
+        "production_title": "Конверти з крафтового паперу — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-kraftovogo-paperu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з об'ємним тисненням конгрев + тиснення фольгою — замовити у ForPrint",
+        "production_title": "Конверти з об'ємним тисненням конгрев + тиснення фольгою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-obmnim-tisnennyam-kongrev-tisnennya-folgoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з об'ємним тисненням конгрев — замовити у ForPrint",
+        "production_title": "Конверти з об'ємним тисненням конгрев — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-obmnim-tisnennyam-kongrev/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з покриттям Soft Touch — замовити у ForPrint",
+        "production_title": "Конверти з покриттям Soft Touch — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-pokrittyam-soft-touch/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти зі сліпим тисненням — замовити у ForPrint",
+        "production_title": "Конверти зі сліпим тисненням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-slpim-tisnennyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Конверти з вибірковим лаком — замовити у ForPrint",
+        "production_title": "Конверти з вибірковим лаком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/konverti-z-vibrkovim-lakom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Короткі ремінці та петлі — замовити у ForPrint",
+        "production_title": "Короткі ремінці та петлі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/korotk-remnts-ta-petl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Блокноти з тисненням — замовити у ForPrint",
+        "production_title": "Блокноти з тисненням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kreativn-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Крейдові штендери — замовити у ForPrint",
+        "production_title": "Крейдові штендери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kreydov-shtenderi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Круглі шнурки для бейджів — замовити у ForPrint",
+        "production_title": "Круглі шнурки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/krugl-shnurki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Кулінарні блокноти — замовити у ForPrint",
+        "production_title": "Кулінарні блокноти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/kulnarn-bloknoti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "L-banner стенди — замовити у ForPrint",
+        "production_title": "L-banner стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/l-banner-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ланьярди з ретрактором — замовити у ForPrint",
+        "production_title": "Ланьярди з ретрактором — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/lanyardi-z-retraktorom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Матові ламіновані конверти — замовити у ForPrint",
+        "production_title": "Матові ламіновані конверти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/matov-lamnovan-konverti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Металеві бейджі — замовити у ForPrint",
+        "production_title": "Металеві бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/metalev-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Мобільні рекламні прапори — віндери — замовити у ForPrint",
+        "production_title": "Мобільні рекламні прапори — віндери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/mobln-reklamn-prapori-vnderi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Наліпки великого формату — замовити у ForPrint",
+        "production_title": "Наліпки великого формату — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nalpki-velikogo-formatu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Настільні інформаційні конструкції — замовити у ForPrint",
+        "production_title": "Настільні інформаційні конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nastln-nformatsyn-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Настільні прапорці — замовити у ForPrint",
+        "production_title": "Настільні прапорці — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nastln-praports/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Навігаційні покажчики, таблички на фасад — замовити у ForPrint",
+        "production_title": "Навігаційні покажчики, таблички на фасад — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/navgatsyn-pokazhchiki-tablichki-na-fasad/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Неонова табличка — замовити у ForPrint",
+        "production_title": "Неонова табличка — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/neonova-tablichka/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Неонова вивіска на фасад — замовити у ForPrint",
+        "production_title": "Неонова вивіска на фасад — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/neonova-vivska/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційні листівки — замовити у ForPrint",
+        "production_title": "Інформаційні листівки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyn-listvki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційні стенди з друком — замовити у ForPrint",
+        "production_title": "Інформаційні стенди з друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyn-stendi-z-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційні стенди — замовити у ForPrint",
+        "production_title": "Інформаційні стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyn-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інформаційна табличка на стіл — замовити у ForPrint",
+        "production_title": "Інформаційна табличка на стіл — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nformatsyna-tablichka-na-stl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Інтер’єрні наліпки на стіни — замовити у ForPrint",
+        "production_title": "Інтер’єрні наліпки на стіни — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/nterrn-nalpki-na-stni/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Об’ємні та світлові літери — замовити у ForPrint",
+        "production_title": "Об’ємні та світлові літери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/obmn-ta-svtlov-lteri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Одноколірні стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Одноколірні стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/odnokolrn-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Односторінкове меню — замовити у ForPrint",
+        "production_title": "Односторінкове меню — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/odnostornkove-menyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оформлення графіка роботи на склі — замовити у ForPrint",
+        "production_title": "Оформлення графіка роботи на склі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/oformlennya-grafka-roboti-na-skl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Офісні й кабінетні таблички — замовити у ForPrint",
+        "production_title": "Офісні й кабінетні таблички — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/ofsn-y-kabnetn-tablichki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка брендована повноколірна — замовити у ForPrint",
+        "production_title": "Папка брендована повноколірна — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-brendovana-povnokolrna/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка з фольгуванням — замовити у ForPrint",
+        "production_title": "Папка з фольгуванням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-z-folguvannyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка зі сліпим тисненям — замовити у ForPrint",
+        "production_title": "Папка зі сліпим тисненям — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-z-slpim-tisnenyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Папка з вібірковим лаком — замовити у ForPrint",
+        "production_title": "Папка з вібірковим лаком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/papka-z-vbrkovim-lakom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Підлогова реклама та підлогові наліпки — замовити у ForPrint",
+        "production_title": "Підлогова реклама та підлогові наліпки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/pdlogova-reklama-ta-pdlogov-nalpki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Персоналізовані бейджі для персоналу — замовити у ForPrint",
+        "production_title": "Персоналізовані бейджі для персоналу — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/personalzovan-beydzh-dlya-personalu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Плакати і постери — замовити у ForPrint",
+        "production_title": "Плакати і постери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/plakati-posteri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Пластикові бейджі — замовити у ForPrint",
+        "production_title": "Пластикові бейджі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/plastikov-beydzh/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Пластикові карти — замовити у ForPrint",
+        "production_title": "Пластикові карти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/plastikov-karti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Поп-ап стенди — замовити у ForPrint",
+        "production_title": "Поп-ап стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/pop-ap-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Повноколірні стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Повноколірні стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/povnokolrn-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Прапори на вуличний флагшток — замовити у ForPrint",
+        "production_title": "Прапори на вуличний флагшток — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/prapori-na-vulichniy-flagshtok/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Пресволи та брендволи — замовити у ForPrint",
+        "production_title": "Пресволи та брендволи — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/presvoli-ta-brendvoli/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Оновлення оформлення готових пресволів та фотозон — замовити у ForPrint",
+        "production_title": "Оновлення оформлення готових пресволів та фотозон — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/presvoli-ta-fotozoni/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Промостійки — замовити у ForPrint",
+        "production_title": "Промостійки — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/promostyki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні конструкції для вітрин — замовити у ForPrint",
+        "production_title": "Рекламні конструкції для вітрин — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamn-konstrukts-dlya-vtrin/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні магніти на автомобіль — замовити у ForPrint",
+        "production_title": "Рекламні магніти на автомобіль — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamn-magnti-na-avtomobl/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні стели, пілони й тотеми — замовити у ForPrint",
+        "production_title": "Рекламні стели, пілони й тотеми — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamn-steli-ploni-y-totemi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Рекламні банери для фасадів і конструкцій — замовити у ForPrint",
+        "production_title": "Рекламні банери для фасадів і конструкцій — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/reklamni-baneri-dlya-fasadiv-ta-konstruktsiy/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ресепшн-стійки з брендуванням — замовити у ForPrint",
+        "production_title": "Ресепшн-стійки з брендуванням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/resepshn-styki-z-brenduvannyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Roll-Up стенди — замовити у ForPrint",
+        "production_title": "Roll-Up стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/roll-up-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ростові фігури — замовити у ForPrint",
+        "production_title": "Ростові фігури — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/rostov-fguri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Ручні прапорці з друком — замовити у ForPrint",
+        "production_title": "Ручні прапорці з друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/ruchn-praports-z-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Сатинові брендовані ланьярди — замовити у ForPrint",
+        "production_title": "Сатинові брендовані ланьярди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/satinov-brendovan-lanyardi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Щоденники / планери — замовити у ForPrint",
+        "production_title": "Щоденники / планери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/schodenniki-planeri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатні банери — замовити у ForPrint",
+        "production_title": "Широкоформатні банери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/shirokoformatn-baneri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатні постери — замовити у ForPrint",
+        "production_title": "Широкоформатні постери — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/shirokoformatn-posteri/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Широкоформатний фотодрук — замовити у ForPrint",
+        "production_title": "Широкоформатний фотодрук — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/shirokoformatniy-fotodruk/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стандартні поштові конверти з друком — замовити у ForPrint",
+        "production_title": "Стандартні поштові конверти з друком — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/standartn-poshtov-konverti-z-drukom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стрічки з двома кріпленнями — замовити у ForPrint",
+        "production_title": "Стрічки з двома кріпленнями — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/strchki-z-dvoma-krplennyami/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стрічки із захисною застібкою — замовити у ForPrint",
+        "production_title": "Стрічки із захисною застібкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/strchki-z-zahisnoyu-zastbkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стрічки зі знімною нижньою частиною — замовити у ForPrint",
+        "production_title": "Стрічки зі знімною нижньою частиною — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/strchki-z-znmnoyu-nizhnyoyu-chastinoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Стійки для плакатів і постерів — замовити у ForPrint",
+        "production_title": "Стійки для плакатів і постерів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/styki-dlya-plakatv-posterv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Суцільне брендування вікон непрозорою плівкою — замовити у ForPrint",
+        "production_title": "Суцільне брендування вікон непрозорою плівкою — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/sutslne-brenduvannya-vkon-neprozoroyu-plvkoyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Світлопропускні банери Backlit — замовити у ForPrint",
+        "production_title": "Світлопропускні банери Backlit — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/svtlopropuskn-baneri-backlit/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Світлові короби — лайтбокси — замовити у ForPrint",
+        "production_title": "Світлові короби — лайтбокси — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/svtlov-korobi-laytboksi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Світлові панелі й меню-бокси — замовити у ForPrint",
+        "production_title": "Світлові панелі й меню-бокси — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/svtlov-panel-y-menyu-boksi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Тревел-нотатники — замовити у ForPrint",
+        "production_title": "Тревел-нотатники — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/trevel-notatniki/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Трубчасті стрічки для бейджів — замовити у ForPrint",
+        "production_title": "Трубчасті стрічки для бейджів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/trubchast-strchki-dlya-beydzhv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вимпели — замовити у ForPrint",
+        "production_title": "Вимпели — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vimpeli/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вишивка на рушниках — замовити у ForPrint",
+        "production_title": "Вишивка на рушниках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishiva-na-rushnikah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вишивка на еко шоперах — замовити у ForPrint",
+        "production_title": "Вишивка на еко шоперах — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishivka-na-eko-shoperah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вишивка на футболках — замовити у ForPrint",
+        "production_title": "Вишивка на футболках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishivka-na-futbolkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Об'ємна вишивка на кепках — замовити у ForPrint",
+        "production_title": "Об'ємна вишивка на кепках — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vishivka-na-kepkah/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Виставкові конструкції — замовити у ForPrint",
+        "production_title": "Виставкові конструкції — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vistavkov-konstrukts/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Виставкові стенди та панелі — замовити у ForPrint",
+        "production_title": "Виставкові стенди та панелі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vistavkov-stendi-ta-panel/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Євробуклет / Ліфлет — замовити у ForPrint",
+        "production_title": "Євробуклет / Ліфлет — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vrobuklet-lflet/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Вуличний штендер — замовити у ForPrint",
+        "production_title": "Вуличний штендер — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vulichniy-shtender/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка каширована — замовити у ForPrint",
+        "production_title": "Візитка каширована — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-kashirovana/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка класична — замовити у ForPrint",
+        "production_title": "Візитка класична — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-klasichna/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка з глянцевим покриттям — замовити у ForPrint",
+        "production_title": "Візитка з глянцевим покриттям — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-z-glyantsevim-pokrittyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитка з матовим покриттям — замовити у ForPrint",
+        "production_title": "Візитка з матовим покриттям — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitka-z-matovim-pokrittyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитки для людей з обмеженими можливостями — замовити у ForPrint",
+        "production_title": "Візитки для людей з обмеженими можливостями — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitki-dlya-lyudey-z-obmezhenimi-mozhlivostyami/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитки на пластиковій основі — замовити у ForPrint",
+        "production_title": "Візитки на пластиковій основі — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitki-na-plastikovy-osnov/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Візитки з конгревним тисненням — замовити у ForPrint",
+        "production_title": "Візитки з конгревним тисненням — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/vzitki-z-kongrevnim-tisnennyam/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "X-banner стенди — замовити у ForPrint",
+        "production_title": "X-banner стенди — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/x-banner-stendi/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Збірка на канал, проектні, курсові та дипломні роботи — замовити у ForPrint",
+        "production_title": "Збірка на канал, проектні, курсові та дипломні роботи — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zbrka-na-kanal-proektn-kursov-ta-diplomn-roboti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Жакардові стрічки з тканим логотипом — замовити у ForPrint",
+        "production_title": "Жакардові стрічки з тканим логотипом — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zhakardov-strchki-z-tkanim-logotipom/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Знамена / Хоругви / Штандарти — замовити у ForPrint",
+        "production_title": "Знамена / Хоругви / Штандарти — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/znamena-horugvi-shtandarti/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Зошити для записів — замовити у ForPrint",
+        "production_title": "Зошити для записів — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zoshiti-dlya-zapisv/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Звичайний разовий бейдж на подію — замовити у ForPrint",
+        "production_title": "Звичайний разовий бейдж на подію — замовити у ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/product/zvichayniy-razoviy-buydzh-na-podyu/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Акції і пропозиції | ForPrint",
+        "production_title": "Акції і пропозиції | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/promotions/"
+      },
+      {
+        "expected_site_suffix_removal": false,
+        "local_title": "Спеціальні пропозиції | ForPrint",
+        "production_title": "Спеціальні пропозиції | ForPrint — Прінт студія повного циклу",
+        "url": "https://forprint.net.ua/special-offers/"
+      }
+    ]
+  },
+  "source_reconciliation": {
+    "communication_head_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "communication_production_matches_head": true,
+    "communication_production_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "communication_semantics_only_releasable_delta": true,
+    "communication_working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+    "header_head_sha": "ade3f77ac9ff481b5ecd38d26f6d4fd88ab7ee3acb73b7992ed0ca43bc1ffb5f",
+    "header_head_to_production": {
+      "added_count": 61,
+      "production_has_canonical_query_marker": true,
+      "production_has_dynamic_favicon_marker": false,
+      "production_has_social_head": true,
+      "removed_count": 8
+    },
+    "header_production_sha": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa",
+    "header_production_to_working": {
+      "added_count": 2,
+      "removed_count": 7,
+      "title_only_releasable_delta": true,
+      "working_has_canonical_query_marker": true,
+      "working_has_dynamic_favicon_marker": false,
+      "working_has_social_head": true,
+      "working_has_title_marker": true
+    },
+    "header_working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e"
+  }
+}

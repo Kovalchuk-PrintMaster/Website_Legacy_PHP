@@ -4,6 +4,24 @@
 **Оновлено:** 2026-08-12
 **Статус:** active current-state index
 
+<!-- FP_AI_ASSISTANT_ENTRYPOINT_DOC_INDEX_V0_1_START -->
+
+## AI / operator primary entrypoint
+
+**Primary assistant entrypoint: root `AGENTS.md`.**
+
+Live operator state and the one-command execution contract:
+
+1. `../AGENTS.md`
+2. `project_state/current/CURRENT_PROJECT_STATE.md`
+3. `assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md`
+4. `workflow/operator_assistant_workflow_v0_1.md`
+
+These live documents override stale current-state wording in historical
+snapshots and completed evidence.
+
+<!-- FP_AI_ASSISTANT_ENTRYPOINT_DOC_INDEX_V0_1_END -->
+
 ## Призначення
 
 Цей каталог є головною навігаційною точкою поточної технічної документації ForPrint Website. Індекс охоплює current-state документи та посилається на історичні evidence/snapshots там, де вони потрібні для traceability.
@@ -34,14 +52,17 @@
 
 ## Порядок читання
 
-1. `architecture/system_architecture_overview_v0_2.md`
-2. `architecture/legacy_and_modern_boundaries_v0_2.md`
-3. `architecture/frontend_css_ownership_and_layout_strategy_v0_3.md`
-4. `workflow/hosting_deployment_profiles_v0_1.md`
-5. `workflow/communication_release_safety_and_recovery_v0_1.md`
-6. `workflow/production_operational_data_and_database_sync_v0_1.md`
-7. `marketing/README.md`
-8. `decisions/architecture_decision_register_v0_1.md`
+1. `../AGENTS.md`
+2. `project_state/current/CURRENT_PROJECT_STATE.md`
+3. `assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md`
+4. `architecture/system_architecture_overview_v0_2.md`
+5. `architecture/legacy_and_modern_boundaries_v0_2.md`
+6. `architecture/frontend_css_ownership_and_layout_strategy_v0_3.md`
+7. `workflow/hosting_deployment_profiles_v0_1.md`
+8. `workflow/communication_release_safety_and_recovery_v0_1.md`
+9. `workflow/production_operational_data_and_database_sync_v0_1.md`
+10. `marketing/README.md`
+11. `decisions/architecture_decision_register_v0_1.md`
 
 Historical snapshots, completed plans and coordination reports remain
 available for traceability but are not the primary current-state reading path.
@@ -264,7 +285,10 @@ The active Google Ads payments-profile correction and direct-advertiser verifica
 <!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_INDEX_START -->
 ## Operator / assistant handoff
 
-- [`workflow/operator_assistant_workflow_v0_1.md`](workflow/operator_assistant_workflow_v0_1.md) — canonical operator/assistant workflow and current context-window bootstrap.
+- [`../AGENTS.md`](../AGENTS.md) — primary assistant entrypoint.
+- [`project_state/current/CURRENT_PROJECT_STATE.md`](project_state/current/CURRENT_PROJECT_STATE.md) — living checkpoint.
+- [`assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md`](assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md) — canonical one-command `tmp.py` execution contract.
+- [`workflow/operator_assistant_workflow_v0_1.md`](workflow/operator_assistant_workflow_v0_1.md) — collaboration/validation workflow and compatibility history.
 <!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_INDEX_END -->
 
 <!-- FP-BACKUP-DR-GOVERNANCE-V0-1-START -->
@@ -279,5 +303,35 @@ The active Google Ads payments-profile correction and direct-advertiser verifica
 ## Admin UI modernization
 
 - [`decisions/2026-08-23__canonical_admin_css_ownership_and_migration_order.md`](decisions/2026-08-23__canonical_admin_css_ownership_and_migration_order.md) — accepted admin CSS ownership, legacy boundary and migration order.
-- [`plans/admin_ui_modernization_plan_v0_1.md`](plans/admin_ui_modernization_plan_v0_1.md) — bounded implementation sequence from ownership consolidation through responsive/accessibility and legacy-CSS reduction.
+- [`plans/admin_ui_modernization_plan_v0_2.md`](plans/admin_ui_modernization_plan_v0_2.md) — active Phase 8 visual-refinement execution plan; live checkpoint details are in `project_state/current/CURRENT_PROJECT_STATE.md`.
 <!-- FP-ADMIN-UI-MODERNIZATION-V0-1-END -->
+
+<!-- FP_FRONTEND_RELEASE_HANDOFF_INDEX_V0_1_START -->
+## Active frontend release handoff — 2026-09-13
+
+- [Current frontend release handoff](project_state/current/FRONTEND_RELEASE_HANDOFF.md)
+- [Frontend release completion roadmap v0.1](plans/frontend_release_completion_roadmap_v0_1.md)
+- [2026-09-13 working-state snapshot](status/snapshots/2026-09-13_frontend_technical_requirements_admin_working_state_v0_1.md)
+
+The immediate release blockers are the public header/quote control and the exact
+Technical Requirements catalog-tree parity. Broad Admin visual normalization is
+tracked but deferred until after the first public frontend release.
+<!-- FP_FRONTEND_RELEASE_HANDOFF_INDEX_V0_1_END -->
+
+<!-- FP_BROWSER_VISUAL_INSPECTION_INDEX_V0_1_START -->
+## Browser visual inspection tooling — 2026-09-17
+
+- [`development/browser_visual_inspection_playwright_v0_1.md`](development/browser_visual_inspection_playwright_v0_1.md) — Playwright/Chromium environment, Debian 12 dependencies, local/remote inspection boundaries and new-server bootstrap.
+- `scripts/inspection/browser_visual_inspection.py` — persistent real-browser responsive screenshot and DOM-geometry inspection.
+<!-- FP_BROWSER_VISUAL_INSPECTION_INDEX_V0_1_END -->
+
+<!-- FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_START -->
+## Public asset release safety — 2026-09-17
+
+- `decisions/2026-09-17__public_asset_permissions_and_release_guard.md`
+- `workflow/public_asset_permissions_and_hosting_mirror_release_v0_1.md`
+- `reference/public_web_asset_release_contract_v0_1.md`
+- `status/snapshots/2026-09-17_public_asset_permission_incident_and_recovery_v0_1.md`
+
+Guard: `make public-assets-permission-check`.
+<!-- FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_END -->

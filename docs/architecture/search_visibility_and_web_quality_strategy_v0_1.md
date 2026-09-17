@@ -726,3 +726,15 @@ A public page is search-ready when:
   - https://web.dev/articles/css-web-vitals
 - Schema.org
   - https://schema.org/
+
+<!-- FP_GROWTH_ROADMAP_STRATEGY_LINK_V0_1 -->
+## Execution roadmap coordination — 2026-08-18
+
+The active execution sequence for website-quality work, Google Ads follow-up,
+Search Console, measurement and recurring audit is coordinated in:
+
+`../../marketing/programs/forprint_growth_roadmap_v0_1.md`
+
+This strategy remains the architectural/search-quality policy. The marketing
+roadmap records current execution order and Google-support dependencies.
+<!-- /FP_GROWTH_ROADMAP_STRATEGY_LINK_V0_1 -->

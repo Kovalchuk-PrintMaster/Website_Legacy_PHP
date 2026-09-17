@@ -213,3 +213,49 @@ Canonical Makefile wrapper for release profiles. Deploy actions temporarily enab
 
 Parity ignores operational content drift for readiness but fails on operational schema drift. Normal reset/database sync preserve operational tables. `cleanup_hosting_diagnostic_artifacts.py` removes only allowlisted stale diagnostic PHP files.
 <!-- FP_OPERATIONAL_DB_DOCS_V0_1_END -->
+
+<!-- FP_SEO_BASELINE_CRAWLER_TOOL_V0_1_START -->
+### `scripts/inspection/audit_search_visibility.py`
+
+Read-only technical search/crawl inspection for production or local preview.
+
+It owns no SEO metadata and performs no repair. It records evidence for
+canonical/indexability, sitemap, metadata, headings, Open Graph, hreflang,
+JSON-LD, internal links and image semantics. Reports are written under
+`marketing/reports/`.
+
+Mutation boundary: HTTP GET plus local report files only.
+<!-- FP_SEO_BASELINE_CRAWLER_TOOL_V0_1_END -->
+
+<!-- FP_BROWSER_VISUAL_INSPECTION_TOOL_V0_1_START -->
+## Playwright browser visual inspection — 2026-09-17
+
+Persistent inspection tool:
+
+```text
+scripts/inspection/browser_visual_inspection.py
+```
+
+Contract:
+
+- real Chromium rendering with JavaScript/CSS execution;
+- local preview is the default target;
+- responsive screenshots and DOM/overflow metrics;
+- remote/public targets require `--allow-remote`;
+- remote mode blocks methods other than `GET`, `HEAD`, `OPTIONS`;
+- no clicks, forms, authentication or production mutation;
+- evidence is written under ignored `tmp/`.
+
+Environment/bootstrap reference:
+
+```text
+docs/development/browser_visual_inspection_playwright_v0_1.md
+```
+<!-- FP_BROWSER_VISUAL_INSPECTION_TOOL_V0_1_END -->
+
+<!-- FP_PUBLIC_ASSET_PERMISSION_TOOLING_V0_1_START -->
+## Public asset permission guard
+
+`make public-assets-permission-check` is a read-only blocking prerequisite of
+normal checks and canonical dry/live full sync.
+<!-- FP_PUBLIC_ASSET_PERMISSION_TOOLING_V0_1_END -->

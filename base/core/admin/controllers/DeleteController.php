@@ -167,7 +167,13 @@ class DeleteController extends BaseAdmin
                         $_SESSION['res']['answer'] = $_SESSION['res']['answer'] = '<div class="success">' .
                             $this->messages['deleteSuccess'] . '</div>';
 
-                        $this->redirect($this->adminPath .'show/' . $this->table);
+                        $forprintDeleteRedirect = $this->adminPath . 'show/' . $this->table;
+
+                        if (in_array($this->table, ['footer_links', 'footer_phones'], true)) {
+                            $forprintDeleteRedirect = $this->adminPath . 'edit/footer_settings/1';
+                        }
+
+                        $this->redirect($forprintDeleteRedirect);
                     }
                 }
             }

@@ -57,13 +57,13 @@ main.main
 
 body.fp-public-page
 main.main
-[data-fp-surface="catalog"].fp-catalog-page {
+[data-fp-catalog-ui].fp-catalog-page {
     padding-block-start: var(--fp-page-top-gap);
 }
 
 body.fp-public-page
 main.main
-[data-fp-surface="catalog"]
+[data-fp-catalog-ui]
 .fp-catalog-page__breadcrumbs {
     margin-block-end:
         var(--fp-breadcrumb-title-gap);
@@ -71,7 +71,7 @@ main.main
 
 body.fp-public-page
 main.main
-[data-fp-surface="catalog"]
+[data-fp-catalog-ui]
 .fp-catalog-page__header {
     margin-block-end:
         var(--fp-title-content-gap);
@@ -168,7 +168,7 @@ main.main
 /* One compact, left-aligned title language for internal public pages. */
 body.fp-public-page
 main.main
-[data-fp-surface="catalog"]
+[data-fp-catalog-ui]
 .fp-page-title,
 body.fp-public-page
 main.main
@@ -203,7 +203,7 @@ main.main
 
 body.fp-public-page
 main.main
-[data-fp-surface="catalog"]
+[data-fp-catalog-ui]
 .fp-catalog-page__header {
     justify-items: start;
     text-align: start;
@@ -211,7 +211,7 @@ main.main
 
 body.fp-public-page
 main.main
-[data-fp-surface="catalog"]
+[data-fp-catalog-ui]
 .fp-catalog-page__header
 .fp-page-title {
     justify-self: start;
@@ -235,7 +235,7 @@ main.main
  * Maximum size matches the existing "ФІЛЬТРИ" heading.
  */
 html body.fp-public-page main.main
-[data-fp-surface="catalog"] .fp-page-title,
+[data-fp-catalog-ui] .fp-page-title,
 html body.fp-public-page main.main
 [data-fp-surface="information"] .fp-page-title,
 html body.fp-public-page main.main
@@ -263,12 +263,12 @@ html body.fp-public-page main.main
  * Stable catalog entry geometry.
  */
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"] {
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui] {
     padding-block-start: 0;
 }
 
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui]
 > .fp-catalog-page__breadcrumbs.fp-layout-container {
     position: static;
     inset: auto;
@@ -286,7 +286,7 @@ html body.fp-public-page main.main
 }
 
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui]
 > .fp-catalog-page__breadcrumbs.fp-layout-container
 > .breadcrumbs {
     margin: 0;
@@ -294,7 +294,7 @@ html body.fp-public-page main.main
 }
 
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui]
 > header.fp-catalog-page__header.fp-page-header.fp-layout-container {
     position: static;
     display: block;
@@ -311,7 +311,7 @@ html body.fp-public-page main.main
 }
 
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui]
 > header.fp-catalog-page__header.fp-page-header.fp-layout-container
 > h1.fp-page-title {
     position: static;
@@ -332,10 +332,10 @@ html body.fp-public-page main.main
 }
 
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui]
 > .fp-catalog-page__content,
 html body.fp-public-page main.main
-> .fp-catalog-page.fp-visual-system[data-fp-surface="catalog"]
+> .fp-catalog-page.fp-visual-system[data-fp-catalog-ui]
 > .fp-catalog-page__content
 > .fp-catalog-internal {
     margin-block-start: 0;
@@ -445,7 +445,7 @@ html body.fp-public-page a.fp-news-list-card__more {
  */
 html body.fp-public-page
 main.main
-[data-fp-surface="catalog"]
+[data-fp-catalog-ui]
 .fp-page-title,
 html body.fp-public-page
 main.main

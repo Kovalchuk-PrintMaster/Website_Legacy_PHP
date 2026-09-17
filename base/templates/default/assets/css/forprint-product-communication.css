@@ -561,12 +561,41 @@ button.fp-product-communication-form__mode-button:disabled {
 }
 
 @media (max-width: 64em) {
+    /* FP_COMMUNICATION_MOBILE_FIELD_ORDER_V1 */
     .fp-communication-section .fp-home-feedback__form {
         grid-template-columns: minmax(0, 1fr);
     }
 
+    /*
+     * In the single-column compact layout, flatten only the contact wrapper
+     * so fields can participate in the form grid in natural completion order.
+     * Desktop keeps its existing two-column composition.
+     */
+    .fp-communication-section .fp-home-feedback__contacts {
+        display: contents;
+    }
+
+    .fp-communication-section
+    .fp-home-feedback__contacts
+    .fp-home-feedback__field {
+        order: 1;
+    }
+
+    .fp-communication-section .fp-home-feedback__message {
+        order: 2;
+    }
+
     .fp-communication-section .fp-home-feedback__message textarea {
         min-height: 10rem;
+    }
+
+    .fp-communication-section .fp-home-feedback__actions {
+        order: 3;
+        margin-top: 0.25rem;
+    }
+
+    .fp-communication-section .fp-home-feedback__status {
+        order: 4;
     }
 }
 
@@ -813,6 +842,25 @@ button.fp-product-communication-form__mode-button:disabled {
     min-width: 0;
     text-align: center;
     white-space: nowrap;
+}
+
+/*
+ * Text-only product actions use the canonical communication button geometry
+ * without reserving a decorative icon column.
+ */
+.fp-product-communication__button--text-only {
+    grid-template-columns: minmax(0, 1fr) !important;
+    overflow: visible;
+}
+
+.fp-product-communication__button--text-only
+> span:not(.fp-product-communication__icon-placeholder) {
+    grid-column: 1 !important;
+    justify-self: stretch;
+    width: 100% !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
 }
 
 /* FP_MOBILE_INLINE_COMMUNICATION_COMPACT_START */

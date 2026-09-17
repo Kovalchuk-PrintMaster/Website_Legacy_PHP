@@ -10,13 +10,16 @@
     <?php $this->getStyles()?>
     <link
         rel="stylesheet"
-        href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin.css?v=20260724-0649"
+        href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin.css?v=20260829-2131"
     >
-<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-collections.css?v=20260725-1830">
+<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-collections.css?v=20260829-2149">
 <link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-ui.css?v=20260725-2605">
 <link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-ordering.css?v=20260725-2710">
-<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-gallery.css?v=20260725-3500">
-<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-goods-form.css?v=20260725-3500">
+<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-gallery.css?v=20260829-1914">
+<link rel="stylesheet" href="<?=PATH . ADMIN_TEMPLATE?>css/forprint-admin-goods-form.css?v=20260829-2114">
+<?php if (($this->table ?? '') === 'knoweleges'): ?>
+<link rel="stylesheet" href="<?=PATH?>core/admin/views/css/forprint-admin-technical-requirements.css?v=20260913-2315">
+<?php endif; ?>
 </head>
 <body>
 <div class="vg-carcass fp-admin-shell" data-fp-admin-shell>

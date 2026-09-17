@@ -6,8 +6,8 @@
 
 ## Ролі
 
-- Власник запускає команди на Debian, перевіряє браузер, приймає UX-рішення, робить commit/push.
-- Помічниця аналізує зрізи, готує `tmp/work/tmp.php`/`tmp/work/tmp.py`, формує checks і наступний контрольований крок.
+- Власник запускає `python tmp.py` для substantial operator artifacts, перевіряє браузер, приймає UX-рішення та окремо авторизує commit/push/deploy.
+- Помічниця аналізує зрізи, готує унікальний downloadable Python artifact для повної заміни repository-root `tmp.py`, формує checks і наступний контрольований крок.
 
 ## Цикл
 
@@ -41,19 +41,24 @@ Read-only script не повинен тихо виправляти код.
 
 Phone validation не змішується з unrelated redesign або великим routing refactor. Дрібні супутні зміни допустимі, якщо без них блок неможливо завершити.
 
-## Повна заміна tmp-файлу
+## Repository-root tmp.py / one-command contract
 
-Новий `tmp/work/tmp.php` або `tmp/work/tmp.py` повністю замінює старий. Перед запуском:
+Primary execution contract:
 
-```bash
-php -l tmp/work/tmp.php
+```text
+download unique Python artifact
+→ replace repository-root tmp.py completely
+→ python tmp.py
 ```
 
-або:
+The assistant syntax-checks the downloadable artifact before handoff. The
+operator does not need a routine manual `py_compile` command.
 
-```bash
-python -m py_compile tmp/work/tmp.py
-```
+Canonical details:
+`docs/assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md`.
+
+The older `tmp/work/tmp.php` / `tmp/work/tmp.py` paths are historical and are
+not the current operator entrypoint.
 
 ## Після patch
 
@@ -96,170 +101,63 @@ Feature block зазвичай має:
 
 <!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_CURRENT_START -->
 
-# Current assistant bootstrap / project handoff
+# Current assistant bootstrap / compatibility handoff
 
-**Document role:** active operator-assistant bootstrap inside the canonical workflow.
-**Last refreshed:** `2026-08-24T18:10:00+03:00`
-**Project:** ForPrint Website
-**Repository:** `/srv/software_development/forprint-project/forprint_website`
-**Branch:** `main`
-**Accepted admin structural checkpoint:** `eb5f0a314f633ab0a7f33af529e7b9f0072ae26c`
-**Current admin stage:** `Phase 8 — visual refinement`
+**Last refreshed:** `2026-09-05`
 
-## Start here after a context reset
+The primary assistant entrypoint is now repository-root `AGENTS.md`.
 
-Read, in this order:
+Read:
 
 ```text
-docs/status/snapshots/2026-08-24_admin_ui_visual_refinement_entry_state_v0_1.md
-docs/plans/admin_ui_modernization_plan_v0_2.md
-docs/reference/admin_ui_visual_refinement_contract_v0_1.md
-docs/decisions/2026-08-23__canonical_admin_css_ownership_and_migration_order.md
+AGENTS.md
+docs/project_state/current/CURRENT_PROJECT_STATE.md
+docs/assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md
+docs/workflow/operator_assistant_workflow_v0_1.md
 ```
 
-Then inspect the current code and the latest relevant report.
+This embedded bootstrap is retained only so old references to
+`FP_OPERATOR_ASSISTANT_BOOTSTRAP_CURRENT` lead to the new canonical entrypoint.
+It is no longer the live copy of Phase 8 state.
 
-Immediate working evidence:
-
-```text
-tmp/admin_refactor/121_phase8_goods_visual_system_baseline_audit_20260824_1756.md
-tmp/admin_refactor/122_phase8_goods_visual_contract_exact_owner_resolver_20260824_1802.md
-```
-
-## Project model
-
-The website is inherited PHP. The wider engineering/tooling workflow uses
-Python for inspections, orchestration and guarded assistant-generated scripts.
-
-Do not invent a parallel architecture. Resolve the canonical owner first and
-prefer internationally established web/runtime/accessibility practices.
-
-## Current state
+Current high-level status:
 
 ```text
-Phase 1–7 structural admin modernization: COMPLETE
-Phase 7 commit: eb5f0a314f633ab0a7f33af529e7b9f0072ae26c
-origin/main verification: PASS
+branch: main
+HEAD at integration preparation: 9dc6d12cb12c12007c42d83c760b2479819a6506
+Phase 1–7 admin structural modernization: COMPLETE
+Phase 8 admin visual refinement: ACTIVE
+working tree: broad / intentionally dirty
 production deployment: NOT PART OF THIS CHECKPOINT
-Phase 8 visual refinement: ACTIVE
 ```
 
-The first Phase 8 patch has not yet been applied.
-
-## Exact next action
-
-Build the first bounded Goods visual patch from resolver 122:
+For substantial assistant work, root `tmp.py` uses the one-command contract:
 
 ```text
-shared tokens
-shared action buttons
-shared field/card surfaces
-shared label/hint typography
-shared spacing rhythm
-neutral Goods count badge
-compact shared image actions
+python tmp.py
 ```
 
-Then validate locally and request a fresh Goods screenshot before moving
-downward.
+Reports use `tmp/operator_reports/<workstream>/`; raw evidence uses
+`tmp/operator_runtime/<workstream>/`. Report handoff semantics are defined in
+the canonical single-command protocol.
 
-## Visual direction
-
-Use one coherent admin language:
-
-- light rounded blocks;
-- subtle borders/shadows;
-- consistent spacing;
-- readable typography;
-- visually related Save/Delete controls;
-- neutral informational counts;
-- efficient image actions;
-- two-column default composition;
-- shared tokens for values that should change across the whole admin.
-
-Media Processing is a loose block-layout reference, not a separate canonical
-style system.
-
-## Communication style
-
-Communicate with the project owner in simple, friendly Ukrainian without
-bureaucratic formality.
-
-The assistant refers to her own actions in the feminine grammatical form:
-
-```text
-я перевірила
-я підготувала
-я бачу
-я пропоную
-```
-
-When the owner pastes a report or screenshot, analyze it directly. Ask a
-clarifying question only when the evidence is insufficient for a safe decision.
-
-## Working protocol
-
-For nontrivial work:
-
-```text
-read-only evidence
-→ decision
-→ unique timestamped Python script
-→ user runs it from repo root
-→ report in tmp/admin_refactor/
-→ assistant reviews report
-→ local smoke/screenshot
-→ acceptance
-→ exact staging
-→ commit
-→ push if explicitly intended
-```
-
-Never reuse generated filenames.
-
-Never broad-stage unrelated dirty work.
-
-## Canonical admin owners
-
-```text
-main.css                        legacy fallback only
-forprint-admin.css              shared admin tokens/primitives
-forprint-admin-goods-form.css   Goods-specific presentation
-forprint-admin-gallery.css      gallery presentation
-forprint-admin-ordering.css     ordering/save-status
-forprint-admin-ui.css           bounded specialized owner
-```
-
-No new generic admin presentation goes into `main.css`.
-
-## Preserve
-
-Do not casually change:
-
-- routing/auth/backend contracts;
-- generic CRUD field names;
-- AJAX payloads;
-- TinyMCE contract;
-- gallery upload/FileList compatibility;
-- database;
-- production.
-
-Visual refinement is presentation-first.
-
-## New-assistant first response
-
-After reading the handoff, report compactly:
-
-```text
-HEAD
-current Phase 8 item
-latest evidence read
-canonical owner(s)
-exact next visual slice
-whether relevant files are clean vs HEAD
-```
-
-If those match the handoff, continue directly. Do not restart completed
-structural audits.
+Do not restart completed structural audits. Read the live state, inspect current
+Git/runtime/source evidence and continue the smallest safe active slice.
 
 <!-- FP_OPERATOR_ASSISTANT_BOOTSTRAP_CURRENT_END -->
+
+<!-- FP_OPERATOR_COMMUNICATION_CONVENTION_V0_1_START -->
+## Communication convention
+
+For assistant/operator communication in this project:
+
+- communicate in friendly Ukrainian using `ти`;
+- the operator is addressed as a man;
+- the assistant uses feminine self-reference in Ukrainian;
+- keep explanations practical and compact;
+- prefer a complete bounded script for a understood work slice instead of many
+  tiny sequential scripts.
+
+This convention is presentation/workflow metadata, not a security or approval
+override.
+<!-- FP_OPERATOR_COMMUNICATION_CONVENTION_V0_1_END -->

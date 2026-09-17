@@ -2136,3 +2136,370 @@ a.fp-site-footer__logo-link::before {
  */
 
 /* FP_PHASE_1_10_FOOTER_LOGO_GEOMETRY_END */
+/* FP_SUPPLIER_QUOTE_RAIL_TOP_V2 */
+
+/* FP_HEADER_CANONICAL_GEOMETRY_V3
+ *
+ * Move the whole brand/slogan cell so its decorative rule moves together with
+ * the text. Primary navigation remains on its own lower row.
+ */
+@media (min-width: 64.01em) {
+    .fp-site-header .fp-site-header__wrapper {
+        grid-template-columns:
+            clamp(3rem, 3.35vw, 3.75rem)
+            minmax(22rem, 28rem)
+            minmax(0, 1fr);
+        column-gap: clamp(0.8rem, 1vw, 1.15rem);
+        align-items: start;
+    }.fp-site-header .fp-site-header__tagline {
+        position: relative;
+        top: -1.05rem;
+        min-width: 0;
+
+        width: fit-content;
+        max-width: 100%;
+}.fp-site-header .fp-site-header__wrapper .fp-site-header__slogan {
+        position: static;
+        top: auto;
+        transform: none;
+        width: fit-content;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+        padding: 0 clamp(0.35rem, 0.75vw, 0.75rem);
+        align-self: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        font-size: clamp(0.76rem, 1.02vw, 1.18rem);
+        line-height: 1.08;
+        letter-spacing: clamp(0.035em, 0.052vw, 0.07em);
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .fp-site-header .fp-site-header__topbar {
+        grid-column: 3;
+        min-width: 0;
+        width: 100%;
+        align-self: center;
+    }
+
+    .fp-site-header .fp-site-header__contacts {
+        grid-template-columns:
+            minmax(14rem, 1fr)
+            max-content
+            max-content
+            max-content;
+        column-gap: clamp(0.65rem, 0.8vw, 0.9rem);
+    }
+
+    .fp-site-header .fp-site-header__nav {
+        margin-top: clamp(0.78rem, 0.92vw, 0.96rem);
+    }
+
+    .fp-site-header .fp-site-header__nav-list {
+        gap: clamp(0.42rem, 0.62vw, 0.72rem);
+    }
+
+    .fp-site-header .fp-site-header__nav-list a {
+        font-size: clamp(0.6rem, 0.64vw, 0.7rem);
+    }
+
+    /* Quote-list text copies do not belong in the desktop primary nav. */
+    .fp-site-header__nav .fp-quote-list-nav__link {
+        display: none;
+    }
+}
+
+@media (max-width: 64em) {
+    .fp-site-header__nav .fp-techreq-nav-link--desktop {
+        display: none;
+    }
+}
+
+/* FP_HEADER_QUOTE_UTILITY_RECOVERY_V1 */
+/* FP_HEADER_QUOTE_RAIL_CANONICAL_V2
+ *
+ * Canonical shell ownership:
+ * - the quote-list control is a right utility-rail control, never a primary-nav item;
+ * - its readable label remains in the DOM for accessibility, while visual text is hidden;
+ * - the project-owned clipboard/list glyph replaces inherited cart/bag artwork;
+ * - existing quote-list JavaScript remains the state/count owner.
+ */
+.fp-quote-rail {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--fp-layout-rail-width, 5rem);
+    min-width: var(--fp-layout-rail-width, 5rem);
+    height: 6.4rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: #252f35;
+    color: #fff;
+    box-sizing: border-box;
+    overflow: visible;
+    text-decoration: none;
+    font-size: 0;
+    line-height: 1;
+}
+
+/* Ignore inherited visual children: the shell draws one stable utility glyph. */
+.fp-quote-rail > svg,
+.fp-quote-rail > img,
+.fp-quote-rail > i,
+.fp-quote-rail > [class*="icon"] {
+    display: none;
+}
+
+.fp-quote-rail::before {
+    content: "";
+    display: block;
+    width: 1.72rem;
+    height: 1.92rem;
+    border: 0.13rem solid currentColor;
+    border-radius: 0.12rem;
+    box-sizing: border-box;
+    background:
+        linear-gradient(currentColor, currentColor) 50% 35% / 0.88rem 0.12rem no-repeat,
+        linear-gradient(currentColor, currentColor) 50% 54% / 0.88rem 0.12rem no-repeat,
+        linear-gradient(currentColor, currentColor) 50% 73% / 0.88rem 0.12rem no-repeat;
+}
+
+.fp-quote-rail::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1.18rem);
+    left: 50%;
+    width: 0.72rem;
+    height: 0.38rem;
+    border: 0.13rem solid currentColor;
+    border-bottom: 0;
+    border-radius: 0.18rem 0.18rem 0 0;
+    background: #252f35;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+}
+
+.fp-quote-rail .fp-quote-rail__count,
+.fp-quote-rail [data-fp-quote-count] {
+    position: absolute;
+    top: 0.68rem;
+    right: 0.48rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.28rem;
+    height: 1.28rem;
+    padding: 0 0.25rem;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    color: #172536;
+    box-sizing: border-box;
+    font-size: 0.68rem;
+    line-height: 1;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* Preserve hidden state if the existing quote-list controller marks it explicitly. */
+.fp-quote-rail[hidden] {
+    display: none;
+}
+
+@media (max-width: 64em) {
+    .fp-quote-rail {
+        height: 5.6rem;
+    }
+}
+
+/* FP_SHELL_MODERN_OWNERSHIP — project-owned shared shell; legacy style.css remains bounded fallback */
+
+/* FP_HEADER_SLOGAN_UNDERLINE_CANONICAL_START
+ * FR-01 canonical animated slogan underline.
+ *
+ * The tagline owns layout/interaction only and draws no line.
+ * The slogan owns one background underline:
+ * - collapsed at rest;
+ * - starts at the visible text's left edge;
+ * - expands left-to-right to the visible text width on hover/focus;
+ * - reuses the shared shell animation timing variables.
+ */
+body.fp-public-page .fp-site-header .fp-site-header__tagline {
+    width: fit-content;
+    max-width: 100%;
+    background-image: none;
+    background-size: 0 0;
+}
+
+body.fp-public-page .fp-site-header .fp-site-header__tagline::after,
+body.fp-public-page .fp-site-header .fp-site-header__tagline:after {
+    content: none;
+    display: none;
+    inline-size: 0;
+    width: 0;
+}
+
+.fp-site-header .fp-site-header__wrapper .fp-site-header__slogan {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    overflow: visible;
+    padding-block-end: var(--fp-shell-underline-offset);
+    margin-block-end: calc(-1 * var(--fp-shell-underline-offset));
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: clamp(0.35rem, 0.75vw, 0.75rem) bottom;
+    background-size: 0 1px;
+    transition:
+        background-size
+        var(--fp-shell-underline-duration)
+        var(--fp-shell-underline-easing),
+        color 240ms ease;
+}
+
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline:hover
+.fp-site-header__slogan,
+body.fp-public-page
+.fp-site-header
+.fp-site-header__tagline:focus-visible
+.fp-site-header__slogan {
+    background-size: calc(100% - clamp(0.35rem, 0.75vw, 0.75rem) - clamp(0.35rem, 0.75vw, 0.75rem)) 1px;
+}
+
+.fp-site-header .fp-site-header__wrapper .fp-site-header__slogan::after,
+.fp-site-header .fp-site-header__wrapper .fp-site-header__slogan:after {
+    content: none;
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fp-site-header .fp-site-header__wrapper .fp-site-header__slogan {
+        transition-duration: 0.01ms;
+    }
+}
+/* FP_HEADER_SLOGAN_UNDERLINE_CANONICAL_END */
+
+/* FP_QUOTE_RAIL_UTILITY_CANONICAL_START */
+/* Shared right-rail quote utility. State/count owner: quote-list JS. */
+.fp-site-header .fp-quote-list-nav,
+.fp-site-header .fp-quote-rail-item,
+.fp-site-header .fp-quote-rail,
+[data-fp-quote-search-owner] .fp-quote-search-utility {
+    display: none !important;
+}
+
+.fp-mobile-primary-nav__link .fp-quote-list-nav__count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    margin-left: 0.25rem;
+    padding-inline: 0.28rem;
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--fp-color-graphite-surface, #252b2f);
+    font-size: 0.68rem;
+    line-height: 1;
+}
+
+.header__sidebar > .fp-quote-rail-utility {
+    position: relative;
+    z-index: 1;
+    display: none;
+    flex: 0 0 auto;
+    order: -1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 86px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header__sidebar > .fp-quote-rail-utility.is-visible {
+    display: flex;
+}
+
+.header__sidebar > .fp-quote-rail-utility:hover,
+.header__sidebar > .fp-quote-rail-utility:focus-visible {
+    background:
+        var(--fp-color-graphite-surface-active, #30363b);
+    color: #ffffff;
+}
+
+.fp-quote-rail-utility__icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+}
+
+.fp-quote-rail-utility__icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.fp-quote-rail-utility__count {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-grid;
+    place-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding-inline: 5px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #203448;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+@media (max-width: 980px) {
+    .header__sidebar > .fp-quote-rail-utility {
+        min-height: 74px;
+    }
+
+    .fp-quote-rail-utility__icon {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 760px) {
+    .header__sidebar > .fp-quote-rail-utility {
+        min-height: 64px;
+    }
+
+    .fp-quote-rail-utility__icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .fp-quote-rail-utility__count {
+        top: 7px;
+        right: 7px;
+        min-width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+}
+/* FP_QUOTE_RAIL_UTILITY_CANONICAL_END */

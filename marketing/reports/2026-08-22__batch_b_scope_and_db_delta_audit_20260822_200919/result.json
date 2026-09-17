@@ -1,0 +1,103 @@
+{
+  "classification": "BATCH_B_DB_DELTA_NEEDS_RECONCILIATION",
+  "communication_scope": {
+    "head_blocks": {
+      "canonical_query_marker": false,
+      "dialog_semantics_marker": false,
+      "dynamic_favicon_marker": false,
+      "social_head_marker": false,
+      "title_composition_marker": false
+    },
+    "head_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "production_blocks": {
+      "canonical_query_marker": false,
+      "dialog_semantics_marker": false,
+      "dynamic_favicon_marker": false,
+      "social_head_marker": false,
+      "title_composition_marker": false
+    },
+    "production_matches_head": true,
+    "production_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "working_adds_dialog_semantics": true,
+    "working_blocks": {
+      "canonical_query_marker": false,
+      "dialog_semantics_marker": true,
+      "dynamic_favicon_marker": false,
+      "social_head_marker": false,
+      "title_composition_marker": false
+    },
+    "working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9"
+  },
+  "db_delta": {
+    "contacts_changed": [
+      {
+        "alias": null,
+        "changed_fields": [
+          "description",
+          "keywords"
+        ],
+        "id": 8,
+        "local_description": "Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+        "local_keywords": "контакти, друк, ForPrint",
+        "name": "Контакти",
+        "production_description": "Контакти PrintMaster",
+        "production_keywords": "контакти, друк, PrintMaster"
+      }
+    ],
+    "goods_changed": [],
+    "goods_heading_only_candidates": [],
+    "news_changed": [],
+    "news_heading_only_candidates": []
+  },
+  "generated": "2026-08-22T20:09:27.228833+03:00",
+  "git": {
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "communication_working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+    "head": "51774693f675b3722f4bbf7cad05e0743739dcca",
+    "header_status": "M base/templates/default/include/header.php",
+    "header_working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e",
+    "roadmap_status": "?? marketing/programs/forprint_growth_roadmap_v0_1.md"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "header_scope": {
+    "canonical_logic_change": false,
+    "canonical_reference_only": true,
+    "dynamic_favicon_removed": true,
+    "head_blocks": {
+      "canonical_query_marker": true,
+      "dialog_semantics_marker": false,
+      "dynamic_favicon_marker": true,
+      "social_head_marker": false,
+      "title_composition_marker": false
+    },
+    "head_sha": "ade3f77ac9ff481b5ecd38d26f6d4fd88ab7ee3acb73b7992ed0ca43bc1ffb5f",
+    "head_to_work_added_lines": 63,
+    "head_to_work_removed_lines": 15,
+    "production_blocks": {
+      "canonical_query_marker": true,
+      "dialog_semantics_marker": false,
+      "dynamic_favicon_marker": false,
+      "social_head_marker": true,
+      "title_composition_marker": false
+    },
+    "production_sha": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa",
+    "social_head_change": true,
+    "title_composition_change": true,
+    "working_blocks": {
+      "canonical_query_marker": true,
+      "dialog_semantics_marker": false,
+      "dynamic_favicon_marker": false,
+      "social_head_marker": true,
+      "title_composition_marker": true
+    },
+    "working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e"
+  },
+  "local_database": "forprint_website_legacy_local",
+  "next_action": "RECONCILE_EXACT_LOCAL_PRODUCTION_DB_DIFFERENCES_BEFORE_RELEASE",
+  "php_lint_pass": true,
+  "preview_smoke_pass": true,
+  "production_database": "forprint_prod",
+  "production_db_mutation": false,
+  "production_source_mutation": false
+}

@@ -1,0 +1,454 @@
+/*
+ * FP_TECHREQ_CSS_SURFACE_V3
+ *
+ * Technical Requirements owns landing/detail composition only.
+ * The left tree deliberately reuses the canonical catalog component classes;
+ * its typography, counts, arrows and toggle visuals are not reimplemented here.
+ */
+
+[data-fp-surface="technical-requirements"] {
+    --fp-techreq-ink: #172536;
+    --fp-techreq-muted: #657384;
+    --fp-techreq-line: #d7e0e5;
+    --fp-techreq-soft: #edf2f4;
+    --fp-techreq-action: #d5e0e5;
+    --fp-techreq-active: #252f35;
+
+    padding:
+        clamp(1.35rem, 2.25vw, 2.2rem)
+        0
+        clamp(3rem, 6vw, 6rem);
+
+    color: var(--fp-techreq-ink);
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq__container {
+    min-width: 0;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq__breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 1.05rem;
+    color: var(--fp-techreq-muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq__breadcrumbs a {
+    color: var(--fp-techreq-ink);
+    text-decoration: none;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq__intro {
+    max-width: 58rem;
+    margin: 0 0 clamp(1.45rem, 2.5vw, 2rem);
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq__eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--fp-techreq-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+[data-fp-surface="technical-requirements"] h1 {
+    margin: 0 0 0.7rem;
+    color: var(--fp-techreq-ink);
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    line-height: 1.03;
+    font-weight: 700;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq__intro > p:last-child {
+    max-width: 52rem;
+    margin: 0;
+    color: var(--fp-techreq-muted);
+    font-size: 0.98rem;
+    line-height: 1.62;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.8rem, 1.1vw, 1rem);
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card {
+    min-width: 0;
+    border: 1px solid var(--fp-techreq-line);
+    background: #fff;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__link {
+    display: grid;
+    grid-template-rows: 7.6rem 1fr auto;
+    min-height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__visual {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 0;
+    padding: 1rem;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0)
+        ),
+        #cfdbe0;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__visual.has-image {
+    padding: 0;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__visual span {
+    color: #fff;
+    font-size: clamp(2.8rem, 4vw, 4.6rem);
+    line-height: 0.82;
+    font-weight: 800;
+    letter-spacing: -0.07em;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__body {
+    padding: 0.85rem 0.9rem 1rem;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__body h2 {
+    margin: 0 0 0.5rem;
+    color: var(--fp-techreq-ink);
+    font-size: 0.98rem;
+    line-height: 1.28;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__body p {
+    margin: 0;
+    color: var(--fp-techreq-muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    padding: 0.55rem 0.8rem;
+    background: var(--fp-techreq-action);
+    color: var(--fp-techreq-ink);
+    font-size: 0.73rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__link:hover .fp-techreq-card__action,
+[data-fp-surface="technical-requirements"] .fp-techreq-card__link:focus-visible .fp-techreq-card__action {
+    background: var(--fp-techreq-active);
+    color: #fff;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-card__link:focus-visible,
+[data-fp-surface="technical-requirements"] .fp-techreq__breadcrumbs a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-detail {
+    display: grid;
+    grid-template-columns:
+        minmax(16rem, 19.5rem)
+        minmax(0, 1fr);
+    gap: clamp(2rem, 3.2vw, 3.5rem);
+    align-items: start;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-nav {
+    min-width: 0;
+}
+
+/* Only composition adapts the reused catalog tree to the documentation grid. */
+[data-fp-surface="technical-requirements"] .fp-techreq-nav .catalog-aside-block {
+    width: 100%;
+    min-width: 0;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-nav .catalog-aside-block__content {
+    width: 100%;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-catalog-tree {
+    margin: 0;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article {
+    min-width: 0;
+    max-width: 64rem;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__lead {
+    max-width: 54rem;
+    margin: 0 0 1.7rem;
+    color: var(--fp-techreq-muted);
+    font-size: 1rem;
+    line-height: 1.58;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__content {
+    color: #263442;
+    font-size: 0.97rem;
+    line-height: 1.68;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__content h2 {
+    margin: 1.9rem 0 0.6rem;
+    padding-top: 0.15rem;
+    color: var(--fp-techreq-ink);
+    font-size: 1.2rem;
+    line-height: 1.25;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__content h2:first-child {
+    margin-top: 0;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__content p {
+    max-width: 60rem;
+    margin: 0 0 0.95rem;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__content ul {
+    max-width: 58rem;
+    margin: 0.5rem 0 1.15rem;
+    padding-left: 1.3rem;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__content li + li {
+    margin-top: 0.35rem;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-article__notice {
+    max-width: 60rem;
+    margin-top: 2rem;
+    padding: 1rem 1.15rem;
+    border-left: 0.22rem solid var(--fp-techreq-active);
+    background: var(--fp-techreq-soft);
+    color: #33414f;
+    line-height: 1.55;
+}
+
+@media (max-width: 90em) {
+    [data-fp-surface="technical-requirements"] .fp-techreq-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 64em) {
+    [data-fp-surface="technical-requirements"] .fp-techreq-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    [data-fp-surface="technical-requirements"] .fp-techreq-detail {
+        grid-template-columns:
+            minmax(14rem, 16rem)
+            minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 48em) {
+    [data-fp-surface="technical-requirements"] {
+        padding-top: 1rem;
+    }
+
+    [data-fp-surface="technical-requirements"] .fp-techreq-detail {
+        grid-template-columns: 1fr;
+    }
+
+    [data-fp-surface="technical-requirements"] .fp-techreq-nav {
+        order: 0;
+    }
+
+    [data-fp-surface="technical-requirements"] .fp-techreq-article {
+        order: 1;
+    }
+}
+
+@media (max-width: 34em) {
+    [data-fp-surface="technical-requirements"] .fp-techreq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    [data-fp-surface="technical-requirements"] .fp-techreq-card__link {
+        grid-template-rows: 7rem 1fr auto;
+    }
+
+    [data-fp-surface="technical-requirements"] h1 {
+        font-size: clamp(1.8rem, 10vw, 2.45rem);
+    }
+}
+
+/* FP_TECHREQ_DETAIL_COMPOSITION_V2_START */
+/*
+ * Technical Requirements owns page composition only.
+ * Shared catalog-filter row/toggle/link presentation stays in forprint-catalog.css.
+ *
+ * These rules explicitly neutralize inherited catalog-aside width constraints that
+ * collapsed the documentation rail to one-character lines on desktop.
+ */
+[data-fp-surface="technical-requirements"] .fp-techreq-detail {
+    display: grid;
+    grid-template-columns: minmax(16rem, 19.5rem) minmax(0, 1fr);
+    gap: clamp(2rem, 3.2vw, 3.5rem);
+    align-items: start;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-nav,
+[data-fp-surface="technical-requirements"] .fp-techreq-nav.catalog-aside {
+    display: block;
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+[data-fp-surface="technical-requirements"] .fp-techreq-nav .catalog-aside-block,
+[data-fp-surface="technical-requirements"] .fp-techreq-nav .catalog-aside-block__content,
+[data-fp-surface="technical-requirements"] .fp-techreq-nav [data-fp-techreq-tree] {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    box-sizing: border-box;
+}@media (max-width: 64em) {
+    [data-fp-surface="technical-requirements"] .fp-techreq-detail {
+        grid-template-columns: minmax(14rem, 16rem) minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 48em) {
+    [data-fp-surface="technical-requirements"] .fp-techreq-detail {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+
+    [data-fp-surface="technical-requirements"] .fp-techreq-nav,
+    [data-fp-surface="technical-requirements"] .fp-techreq-nav.catalog-aside {
+        width: 100%;
+        max-width: none;
+    }
+}
+/* FP_TECHREQ_DETAIL_COMPOSITION_V2_END */
+
+/* FP_TECHREQ_CATALOG_CATEGORY_ADAPTER_CANONICAL_START
+ * FR-02 audit-grounded hierarchy adapter with open-branch spacing.
+ *
+ * Visible row typography, spacing, count, active state and arrow drawing
+ * belong to the canonical fp-catalog-category-* contract in
+ * forprint-catalog.css. This surface owns only bounded legacy isolation,
+ * hierarchy hit-area/indentation and open/closed state presentation.
+ */
+[data-fp-surface="technical-requirements"] .fp-techreq-nav .catalog-aside-block,
+[data-fp-surface="technical-requirements"] .fp-techreq-nav .catalog-aside-block__content,
+[data-fp-surface="technical-requirements"] .fp-techreq-nav [data-fp-techreq-tree] {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
+
+[data-fp-techreq-tree] .fp-techreq-catalog-tree,
+[data-fp-techreq-tree] .fp-techreq-category-children {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none !important;
+}
+
+[data-fp-techreq-tree] .fp-catalog-category-item {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none !important;
+}
+
+[data-fp-techreq-tree] .fp-catalog-category-item::marker {
+    content: "";
+}
+
+[data-fp-techreq-tree] .fp-catalog-category-item::before {
+    content: none !important;
+    display: none !important;
+}
+
+[data-fp-techreq-tree] .fp-techreq-category-row {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+}
+
+[data-fp-techreq-tree] .fp-techreq-category-row > .fp-catalog-category-link {
+    width: 100%;
+    min-width: 0;
+}
+
+[data-fp-techreq-tree] .fp-techreq-category-toggle {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    z-index: 4;
+    width: 2.75rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+}
+
+[data-fp-techreq-tree] .fp-techreq-category-toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+}
+
+[data-fp-techreq-tree]
+.fp-catalog-category-item.is-open
+> .fp-techreq-category-row
+.fp-catalog-category-link__arrow {
+    transform: rotate(45deg);
+}
+
+[data-fp-techreq-tree] .fp-techreq-category-children {
+    padding-inline-start: 0.9rem;
+}
+
+[data-fp-techreq-tree]
+.fp-catalog-category-item.is-open
+> .fp-techreq-category-children:not([hidden]) {
+    margin-block-start: 0.25rem;
+    margin-block-end: 0.25rem;
+}
+
+[data-fp-techreq-tree] .fp-techreq-category-children[hidden] {
+    display: none !important;
+}
+/* FP_TECHREQ_CATALOG_CATEGORY_ADAPTER_CANONICAL_END */

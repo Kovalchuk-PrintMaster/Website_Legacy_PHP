@@ -36,3 +36,10 @@ YYYY-MM-DD_development_state_v0_1.md
   records the accepted local frontend/runtime checkpoint before the next
   responsive and component-refinement stage.
 <!-- FP_STATUS_2026_08_06_FRONTEND_CHECKPOINT_END -->
+
+<!-- FP_PUBLIC_ASSET_INCIDENT_RECOVERY_V0_1_START -->
+## 2026-09-17 public asset permission incident
+
+Historical snapshot:
+`status/snapshots/2026-09-17_public_asset_permission_incident_and_recovery_v0_1.md`.
+<!-- FP_PUBLIC_ASSET_INCIDENT_RECOVERY_V0_1_END -->

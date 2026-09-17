@@ -19,6 +19,7 @@ from scripts.maintenance.hosting_mirror_common import (
     validate_backup_dir,
 )
 from scripts.operations.hosting_transport import discover_hosting_connection, ssh_exec
+import time
 
 
 def run_make(target: str) -> None:
@@ -78,7 +79,48 @@ def main() -> int:
     restore_file_tree_from_backup(connection, ssh_exec, backup_info)
 
     print("== restore database ==")
-    import_database_package(connection, ssh_exec, backup_info["database"])
+    # FORPRINT_DB_RESTORE_TRANSIENT_RETRY_V1
+    # Restart the COMPLETE deterministic snapshot DB import on transport failure.
+    transient_markers = (
+        "connection reset by peer",
+        "connection closed by remote host",
+        "kex_exchange_identification",
+        "connection timed out",
+        "operation timed out",
+        "broken pipe",
+        "banner exchange",
+        "client_loop: send disconnect",
+        "connection refused",
+        "remote command failed (255)",
+        "mux_client",
+        "master exited unexpectedly",
+    )
+
+    for db_restore_attempt in range(1, 4):
+        try:
+            import_database_package(
+                connection,
+                ssh_exec,
+                backup_info["database"],
+            )
+            break
+        except (BrokenPipeError, RuntimeError) as exc:
+            message = str(exc).lower()
+            transient = (
+                isinstance(exc, BrokenPipeError)
+                or any(marker in message for marker in transient_markers)
+            )
+
+            if not transient or db_restore_attempt >= 3:
+                raise
+
+            wait_seconds = db_restore_attempt * 4
+            print(
+                "[WARN] transient transport failure during database restore "
+                f"(attempt {db_restore_attempt}/3); restarting the complete "
+                f"database import in {wait_seconds}s"
+            )
+            time.sleep(wait_seconds)
 
     print("== restore acceptance ==")
     run_make("hosting-communication-check")

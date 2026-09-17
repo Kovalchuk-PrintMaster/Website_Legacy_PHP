@@ -36,17 +36,44 @@ if (($this->table ?? '') === 'settings') {
 } elseif (($this->table ?? '') === 'visual_assets') {
     $forprintAdminSurfaceClass = ' fp-admin-visual-assets-surface';
     $forprintAdminSurfaceName = 'visual-assets';
+} elseif (($this->table ?? '') === 'knoweleges') {
+    $forprintAdminSurfaceClass = ' fp-admin-technical-requirements-surface';
+    $forprintAdminSurfaceName = 'technical-requirements';
 } elseif (($this->table ?? '') === 'footer_settings') {
     $forprintAdminSurfaceClass = ' fp-admin-footer-settings-surface';
     $forprintAdminSurfaceName = 'footer-settings';
+} elseif (($this->table ?? '') === 'catalog') {
+    $forprintAdminSurfaceClass = ' fp-admin-catalog-edit-surface';
+    $forprintAdminSurfaceName = 'catalog-edit';
+} elseif (($this->table ?? '') === 'filters_categories') {
+    $forprintAdminSurfaceClass =
+        ' fp-admin-catalog-edit-surface fp-admin-filter-category-edit-surface';
+    $forprintAdminSurfaceName = 'filter-category-edit';
+} elseif (($this->table ?? '') === 'filters') {
+    $forprintAdminSurfaceClass =
+        ' fp-admin-catalog-edit-surface fp-admin-filter-edit-surface';
+    $forprintAdminSurfaceName = 'filter-edit';
+} elseif (($this->table ?? '') === 'sales') {
+    $forprintAdminSurfaceClass =
+        ' fp-admin-catalog-edit-surface fp-admin-sales-edit-surface';
+    $forprintAdminSurfaceName = 'sales-edit';
+} elseif (($this->table ?? '') === 'news') {
+    $forprintAdminSurfaceClass =
+        ' fp-admin-catalog-edit-surface fp-admin-news-edit-surface';
+    $forprintAdminSurfaceName = 'news-edit';
 } elseif (($this->table ?? '') === 'information') {
-    $forprintAdminSurfaceClass = ' fp-admin-information-surface';
-    $forprintAdminSurfaceName = 'information';
+    $forprintAdminSurfaceClass =
+        ' fp-admin-catalog-edit-surface fp-admin-information-edit-surface';
+    $forprintAdminSurfaceName = 'information-edit';
+} elseif (($this->table ?? '') === 'advantages') {
+    $forprintAdminSurfaceClass =
+        ' fp-admin-catalog-edit-surface fp-admin-advantages-edit-surface';
+    $forprintAdminSurfaceName = 'advantages-edit';
 }
 ?>
 <form
     id="main-form"
-    class="vg-wrap vg-element vg-ninteen-of-twenty<?=$forprintAdminSurfaceClass?>"
+    class="vg-wrap vg-element vg-ninteen-of-twenty<?=$forprintAdminSurfaceClass?><?= in_array(($this->table ?? ''), ['footer_links', 'footer_phones'], true) ? ' fp-admin-footer-child-form fp-admin-footer-child-form--' . htmlspecialchars((string)$this->table, ENT_QUOTES, 'UTF-8') : '' ?>"
     method="post"
     action="<?=htmlspecialchars($forprintFormAction, ENT_QUOTES, 'UTF-8')?>"
     enctype="multipart/form-data"
@@ -224,8 +251,10 @@ if (($this->table ?? '') === 'settings') {
         $forprintFooterSettingsRows = $this->table === 'footer_settings' ? [
             'name',
             'visible',
+            'show_gallery',
             'menu_position',
             'logo_img',
+            'gallery_img',
             'email',
             'email_label',
             'callback_label',
@@ -238,12 +267,94 @@ if (($this->table ?? '') === 'settings') {
             'date',
             'menu_position',
             'visible',
+            'show_gallery',
             'alias',
             'short_content',
             'content',
             'img',
             'gallery_img',
         ] : [];
+
+        $forprintInformationEditRows =
+            ($this->table ?? '') === 'information'
+                ? [
+                    'name',
+                    'alias',
+                    'keywords',
+                    'description',
+                    'visible',
+                    'menu_position',
+                    'show_top_menu',
+                    'content',
+                    'img',
+                ]
+                : [];
+
+        $forprintCatalogEditRows = ($this->table ?? '') === 'catalog' ? [
+            'name',
+            'description',
+            'alias',
+            'visible',
+            'show_gallery',
+            'parent_id',
+            'menu_position',
+            'keywords',
+            'img',
+            'gallery_img',
+        ] : [];
+
+        $forprintFilterCategoryEditRows =
+            ($this->table ?? '') === 'filters_categories'
+                ? [
+                    'name',
+                    'visible',
+                    'show_thumbnail',
+                    'menu_position',
+                    'img',
+                    'gallery_img',
+                ]
+                : [];
+
+        $forprintFilterEditRows =
+            ($this->table ?? '') === 'filters'
+                ? [
+                    'name',
+                    'parent_id',
+                    'menu_position',
+                    'visible',
+                    'show_gallery',
+                    'content',
+                    'img',
+                    'gallery_img',
+                ]
+                : [];
+
+        $forprintSalesEditRows =
+            ($this->table ?? '') === 'sales'
+                ? [
+                    'name',
+                    'sub_title',
+                    'external_alias',
+                    'menu_position',
+                    'visible',
+                    'show_gallery',
+                    'short_content',
+                    'img',
+                    'gallery_img',
+                ]
+                : [];
+
+        $forprintAdvantagesEditRows =
+            ($this->table ?? '') === 'advantages'
+                ? [
+                    'name',
+                    'menu_position',
+                    'visible',
+                    'show_gallery',
+                    'img',
+                    'gallery_img',
+                ]
+                : [];
 
         $forprintAdminTabGroups = $this->table === 'goods' ? [
             [
@@ -273,11 +384,70 @@ if (($this->table ?? '') === 'settings') {
             $forprintSettingsContactsRows,
             $forprintSettingsHeaderControlRows,
             $forprintFooterSettingsRows,
-            $forprintNewsRows
+            $forprintNewsRows,
+            $forprintInformationEditRows,
+            $forprintCatalogEditRows,
+            $forprintFilterCategoryEditRows,
+            $forprintFilterEditRows,
+            $forprintSalesEditRows,
+            $forprintAdvantagesEditRows
         )));
+
+        $forprintGoodsDeferredRows = $this->table === 'goods' ? [
+            'visible',
+            'price_mode',
+            'hit',
+            'sale',
+            'hot',
+            'new',
+            'filters',
+            'related_goods_ids',
+            'img',
+            'gallery_img',
+            'short_content',
+            'keywords',
+        ] : [];
+
+        $forprintRenderGoodsDeferredField = function (
+            string $forprintGoodsRow
+        ): void {
+            if ($this->table !== 'goods') {
+                return;
+            }
+
+            $row = $forprintGoodsRow;
+
+            foreach ($this->templateArr as $template => $items) {
+                if (!in_array($row, $items, true)) {
+                    continue;
+                }
+
+                if (
+                    !@include $_SERVER['DOCUMENT_ROOT']
+                    . $this->formTemplates
+                    . $template
+                    . '.php'
+                ) {
+                    throw new \core\base\exceptions\RouteException(
+                        'Не знайдений шаблон '
+                        . $_SERVER['DOCUMENT_ROOT']
+                        . $this->formTemplates
+                        . $template
+                        . '.php'
+                    );
+                }
+
+                return;
+            }
+
+            throw new \core\base\exceptions\RouteException(
+                'Не знайдений шаблон для поля ' . $forprintGoodsRow
+            );
+        };
 
         $forprintRenderDefaultBlocks = (
             $this->table !== 'footer_settings'
+            && $this->table !== 'knoweleges'
             && (
                 $this->table !== 'settings'
                 || $forprintSettingsSection === 'header'
@@ -348,10 +518,295 @@ if (($this->table ?? '') === 'settings') {
             echo '</section>';
         }
 
+        $forprintRenderCatalogEditField = function (
+            string $forprintCatalogEditRow
+        ): void {
+            if (
+                !in_array(
+                    ($this->table ?? ''),
+                    ['catalog', 'filters_categories', 'filters', 'sales', 'advantages'],
+                    true
+                )
+            ) {
+                return;
+            }
+
+            $row = $forprintCatalogEditRow;
+
+            if (!array_key_exists($row, $this->columns)) {
+                return;
+            }
+
+            if ($row === 'menu_position') {
+                $forprintNumericValue = $_SESSION['res'][$row]
+                    ?? ($this->data[$row] ?? 1);
+                $forprintNumericLabel = $this->translate[$row][0]
+                    ?? $row;
+                $forprintNumericHint = $this->translate[$row][1]
+                    ?? '';
+
+                echo '<div class="fp-admin-number-field fp-admin-catalog-edit__position-field">';
+                echo '<label class="fp-admin-number-field__label" for="fp-admin-menu_position">'
+                    . htmlspecialchars(
+                        (string)$forprintNumericLabel,
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )
+                    . '</label>';
+
+                if ((string)$forprintNumericHint !== '') {
+                    echo '<span class="fp-admin-number-field__hint">'
+                        . htmlspecialchars(
+                            (string)$forprintNumericHint,
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                        . '</span>';
+                }
+
+                echo '<input id="fp-admin-menu_position" class="vg-input" '
+                    . 'type="number" min="1" max="999" step="1" '
+                    . 'name="menu_position" value="'
+                    . htmlspecialchars(
+                        (string)$forprintNumericValue,
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )
+                    . '">';
+                echo '</div>';
+                return;
+            }
+
+            foreach ($this->templateArr as $template => $items) {
+                if (!in_array($row, $items, true)) {
+                    continue;
+                }
+
+                if (
+                    !@include $_SERVER['DOCUMENT_ROOT']
+                    . $this->formTemplates
+                    . $template
+                    . '.php'
+                ) {
+                    throw new \core\base\exceptions\RouteException(
+                        'Не знайдений шаблон '
+                        . $_SERVER['DOCUMENT_ROOT']
+                        . $this->formTemplates
+                        . $template
+                        . '.php'
+                    );
+                }
+
+                return;
+            }
+        };
+
         if ($forprintRenderDefaultBlocks) {
+        if ($this->table === 'goods') {
+            echo '<div class="fp-goods-primary-fields">';
+        }
+
         foreach($this->blocks as $class => $block){
 
             if(is_int($class))$class = 'vg-rows';
+
+            if ($this->table === 'goods') {
+                $forprintGoodsBlockHasRenderableRow = false;
+
+                foreach ((array)$block as $forprintGoodsCandidateRow) {
+                    if (
+                        in_array(
+                            $forprintGoodsCandidateRow,
+                            $forprintGoodsDeferredRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintPriceRows)
+                        && in_array(
+                            $forprintGoodsCandidateRow,
+                            $forprintPriceRows,
+                            true
+                        )
+                        && $forprintGoodsCandidateRow !== 'price_mode'
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintAdminHiddenTabRows)
+                        && in_array(
+                            $forprintGoodsCandidateRow,
+                            $forprintAdminHiddenTabRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
+                    $forprintGoodsBlockHasRenderableRow = true;
+                    break;
+                }
+
+                if (!$forprintGoodsBlockHasRenderableRow) {
+                    continue;
+                }
+            }
+
+            if (($this->table ?? '') === 'catalog') {
+                $forprintCatalogBlockHasRenderableRow = false;
+
+                foreach ((array)$block as $forprintCatalogCandidateRow) {
+                    if (
+                        array_key_exists(
+                            $forprintCatalogCandidateRow,
+                            $this->columns
+                        )
+                        && !in_array(
+                            $forprintCatalogCandidateRow,
+                            $forprintCatalogEditRows,
+                            true
+                        )
+                    ) {
+                        $forprintCatalogBlockHasRenderableRow = true;
+                        break;
+                    }
+                }
+
+                if (!$forprintCatalogBlockHasRenderableRow) {
+                    continue;
+                }
+            }
+
+            if (($this->table ?? '') === 'filters_categories') {
+                $forprintFilterCategoryBlockHasRenderableRow = false;
+
+                foreach (
+                    (array)$block as $forprintFilterCategoryCandidateRow
+                ) {
+                    if (
+                        array_key_exists(
+                            $forprintFilterCategoryCandidateRow,
+                            $this->columns
+                        )
+                        && !in_array(
+                            $forprintFilterCategoryCandidateRow,
+                            $forprintFilterCategoryEditRows,
+                            true
+                        )
+                    ) {
+                        $forprintFilterCategoryBlockHasRenderableRow = true;
+                        break;
+                    }
+                }
+
+                if (!$forprintFilterCategoryBlockHasRenderableRow) {
+                    continue;
+                }
+            }
+
+            if (($this->table ?? '') === 'filters') {
+                $forprintFilterBlockHasRenderableRow = false;
+
+                foreach ((array)$block as $forprintFilterCandidateRow) {
+                    if (
+                        array_key_exists(
+                            $forprintFilterCandidateRow,
+                            $this->columns
+                        )
+                        && !in_array(
+                            $forprintFilterCandidateRow,
+                            $forprintFilterEditRows,
+                            true
+                        )
+                    ) {
+                        $forprintFilterBlockHasRenderableRow = true;
+                        break;
+                    }
+                }
+
+                if (!$forprintFilterBlockHasRenderableRow) {
+                    continue;
+                }
+            }
+
+            if (($this->table ?? '') === 'sales') {
+                $forprintSalesBlockHasRenderableRow = false;
+
+                foreach ((array)$block as $forprintSalesCandidateRow) {
+                    if (
+                        array_key_exists(
+                            $forprintSalesCandidateRow,
+                            $this->columns
+                        )
+                        && !in_array(
+                            $forprintSalesCandidateRow,
+                            $forprintSalesEditRows,
+                            true
+                        )
+                    ) {
+                        $forprintSalesBlockHasRenderableRow = true;
+                        break;
+                    }
+                }
+
+                if (!$forprintSalesBlockHasRenderableRow) {
+                    continue;
+                }
+            }
+
+            if (($this->table ?? '') === 'information') {
+                $forprintInformationBlockHasRenderableRow = false;
+
+                foreach ((array)$block as $forprintInformationCandidateRow) {
+                    if (
+                        array_key_exists(
+                            $forprintInformationCandidateRow,
+                            $this->columns
+                        )
+                        && !in_array(
+                            $forprintInformationCandidateRow,
+                            $forprintInformationEditRows,
+                            true
+                        )
+                    ) {
+                        $forprintInformationBlockHasRenderableRow = true;
+                        break;
+                    }
+                }
+
+                if (!$forprintInformationBlockHasRenderableRow) {
+                    continue;
+                }
+            }
+
+            if (($this->table ?? '') === 'advantages') {
+                $forprintAdvantagesBlockHasRenderableRow = false;
+
+                foreach ((array)$block as $forprintAdvantagesCandidateRow) {
+                    if (
+                        array_key_exists(
+                            $forprintAdvantagesCandidateRow,
+                            $this->columns
+                        )
+                        && !in_array(
+                            $forprintAdvantagesCandidateRow,
+                            $forprintAdvantagesEditRows,
+                            true
+                        )
+                    ) {
+                        $forprintAdvantagesBlockHasRenderableRow = true;
+                        break;
+                    }
+                }
+
+                if (!$forprintAdvantagesBlockHasRenderableRow) {
+                    continue;
+                }
+            }
 
             echo '<div class="vg-wrap vg-element ' . $class . '">';
 
@@ -359,6 +814,75 @@ if (($this->table ?? '') === 'settings') {
 
             if($block){
                 foreach ($block as $row) {
+                    if (
+                        !empty($forprintGoodsDeferredRows)
+                        && in_array($row, $forprintGoodsDeferredRows, true)
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintCatalogEditRows)
+                        && in_array($row, $forprintCatalogEditRows, true)
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintFilterCategoryEditRows)
+                        && in_array(
+                            $row,
+                            $forprintFilterCategoryEditRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintFilterEditRows)
+                        && in_array(
+                            $row,
+                            $forprintFilterEditRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintSalesEditRows)
+                        && in_array(
+                            $row,
+                            $forprintSalesEditRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintInformationEditRows)
+                        && in_array(
+                            $row,
+                            $forprintInformationEditRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        !empty($forprintAdvantagesEditRows)
+                        && in_array(
+                            $row,
+                            $forprintAdvantagesEditRows,
+                            true
+                        )
+                    ) {
+                        continue;
+                    }
+
                     $forprintNumericPositionField = (
                         $row === 'menu_position'
                         || substr((string)$row, -14) === '_menu_position'
@@ -439,6 +963,371 @@ if (($this->table ?? '') === 'settings') {
             }
             if($class !== 'vg-content') echo '</div>';
             echo '</div>';
+        }
+
+        if (!empty($forprintCatalogEditRows)) {
+            $forprintCatalogParentTranslateBackup =
+                $this->translate['parent_id'] ?? null;
+
+            $this->translate['parent_id'] = [
+                'Батьківський розділ',
+                '',
+            ];
+
+            echo '<section class="fp-admin-catalog-edit" aria-label="Редагування розділу товарів">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell fp-admin-catalog-edit__primary-cell--name">';
+            $forprintRenderCatalogEditField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell fp-admin-catalog-edit__primary-cell--parent">';
+            $forprintRenderCatalogEditField('parent_id');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell fp-admin-catalog-edit__primary-cell--alias">';
+            $forprintRenderCatalogEditField('alias');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell fp-admin-catalog-edit__primary-cell--position">';
+            $forprintRenderCatalogEditField('menu_position');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderCatalogEditField('visible');
+            echo '</div>';
+
+            if (array_key_exists('show_gallery', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__primary-cell '
+                    . 'fp-admin-catalog-edit__primary-cell--visibility">';
+                $forprintRenderCatalogEditField('show_gallery');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__media-main">';
+            $forprintRenderCatalogEditField('img');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-gallery">';
+            $forprintRenderCatalogEditField('gallery_img');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__editor-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel fp-admin-catalog-edit__editor-panel--description">';
+            $forprintRenderCatalogEditField('description');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel fp-admin-catalog-edit__editor-panel--keywords">';
+            $forprintRenderCatalogEditField('keywords');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '</section>';
+
+            if ($forprintCatalogParentTranslateBackup === null) {
+                unset($this->translate['parent_id']);
+            } else {
+                $this->translate['parent_id'] =
+                    $forprintCatalogParentTranslateBackup;
+            }
+        }
+
+        if (!empty($forprintFilterCategoryEditRows)) {
+            echo '<section class="fp-admin-catalog-edit fp-admin-filter-category-edit" '
+                . 'aria-label="Редагування групи фільтрів">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--name">';
+            $forprintRenderCatalogEditField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--position">';
+            $forprintRenderCatalogEditField('menu_position');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderCatalogEditField('visible');
+            echo '</div>';
+
+            if (array_key_exists('show_thumbnail', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__primary-cell '
+                    . 'fp-admin-catalog-edit__primary-cell--thumbnail-visibility">';
+                $forprintRenderCatalogEditField('show_thumbnail');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__media-main">';
+            $forprintRenderCatalogEditField('img');
+            echo '</div>';
+
+            if (array_key_exists('gallery_img', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__media-gallery">';
+                $forprintRenderCatalogEditField('gallery_img');
+                echo '</div>';
+            }
+
+            echo '</div>';
+            echo '</section>';
+        }
+
+        if (!empty($forprintFilterEditRows)) {
+            $forprintFilterParentTranslateBackup =
+                $this->translate['parent_id'] ?? null;
+
+            $this->translate['parent_id'] = [
+                'Категорія фільтрів',
+                '',
+            ];
+
+            echo '<section class="fp-admin-catalog-edit fp-admin-filter-edit" '
+                . 'aria-label="Редагування фільтра">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--name">';
+            $forprintRenderCatalogEditField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--parent">';
+            $forprintRenderCatalogEditField('parent_id');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderCatalogEditField('visible');
+            echo '</div>';
+
+            if (array_key_exists('show_gallery', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__primary-cell '
+                    . 'fp-admin-catalog-edit__primary-cell--visibility">';
+                $forprintRenderCatalogEditField('show_gallery');
+                echo '</div>';
+            }
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--position">';
+            $forprintRenderCatalogEditField('menu_position');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__media-main">';
+            $forprintRenderCatalogEditField('img');
+            echo '</div>';
+
+            if (array_key_exists('gallery_img', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__media-gallery">';
+                $forprintRenderCatalogEditField('gallery_img');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            if (array_key_exists('content', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__editor-panel '
+                    . 'fp-admin-catalog-edit__editor-panel--description">';
+                $forprintRenderCatalogEditField('content');
+                echo '</div>';
+            }
+
+            echo '</section>';
+
+            if ($forprintFilterParentTranslateBackup === null) {
+                unset($this->translate['parent_id']);
+            } else {
+                $this->translate['parent_id'] =
+                    $forprintFilterParentTranslateBackup;
+            }
+        }
+
+        if (!empty($forprintSalesEditRows)) {
+            echo '<section class="fp-admin-catalog-edit fp-admin-sales-edit" '
+                . 'aria-label="Редагування головного слайда">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--name">';
+            $forprintRenderCatalogEditField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--subtitle">';
+            $forprintRenderCatalogEditField('sub_title');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--alias">';
+            $forprintRenderCatalogEditField('external_alias');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--position">';
+            $forprintRenderCatalogEditField('menu_position');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderCatalogEditField('visible');
+            echo '</div>';
+
+            if (array_key_exists('show_gallery', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__primary-cell '
+                    . 'fp-admin-catalog-edit__primary-cell--visibility">';
+                $forprintRenderCatalogEditField('show_gallery');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__media-main">';
+            $forprintRenderCatalogEditField('img');
+            echo '</div>';
+
+            if (array_key_exists('gallery_img', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__media-gallery">';
+                $forprintRenderCatalogEditField('gallery_img');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__editor-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel '
+                . 'fp-admin-catalog-edit__editor-panel--description">';
+            $forprintRenderCatalogEditField('short_content');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '</section>';
+        }
+
+        if (!empty($forprintAdvantagesEditRows)) {
+            echo '<section class="fp-admin-catalog-edit fp-admin-advantages-edit" '
+                . 'aria-label="Редагування переваги">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--name">';
+            $forprintRenderCatalogEditField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--position">';
+            $forprintRenderCatalogEditField('menu_position');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderCatalogEditField('visible');
+            echo '</div>';
+
+            if (array_key_exists('show_gallery', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__primary-cell '
+                    . 'fp-admin-catalog-edit__primary-cell--visibility">';
+                $forprintRenderCatalogEditField('show_gallery');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__media-main">';
+            $forprintRenderCatalogEditField('img');
+            echo '</div>';
+
+            if (array_key_exists('gallery_img', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__media-gallery">';
+                $forprintRenderCatalogEditField('gallery_img');
+                echo '</div>';
+            }
+
+            echo '</div>';
+            echo '</section>';
+        }
+
+        if ($this->table === 'goods') {
+            echo '<div class="fp-goods-primary-fields__visibility">';
+            $forprintRenderGoodsDeferredField('visible');
+            echo '</div>';
+
+            echo '<div class="fp-promo-flags-grid fp-goods-promotions-canonical fp-goods-primary-fields__promo-grid">';
+            $forprintRenderGoodsDeferredField('hit');
+            $forprintRenderGoodsDeferredField('sale');
+            $forprintRenderGoodsDeferredField('new');
+            $forprintRenderGoodsDeferredField('hot');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<section class="fp-goods-composition" aria-label="Редагування товару">';
+
+            echo '<div class="fp-goods-composition__media-grid">';
+
+            echo '<div class="fp-goods-composition__media-main">';
+            $forprintRenderGoodsDeferredField('img');
+            echo '</div>';
+
+            echo '<div class="fp-goods-composition__media-gallery">';
+            $forprintRenderGoodsDeferredField('gallery_img');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<div class="fp-goods-composition__middle-grid">';
+
+            echo '<div class="fp-goods-composition__commercial">';
+            $forprintRenderGoodsDeferredField('price_mode');
+
+            $forprintRenderGoodsDeferredField('filters');
+            echo '</div>';
+
+            echo '<div class="fp-goods-composition__related">';
+            $forprintRenderGoodsDeferredField('related_goods_ids');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<div class="fp-goods-composition__text-grid">';
+
+            echo '<div class="fp-goods-composition__text-panel fp-goods-composition__text-panel--short">';
+            $forprintRenderGoodsDeferredField('short_content');
+            echo '</div>';
+
+            echo '<div class="fp-goods-composition__text-panel fp-goods-composition__text-panel--keywords">';
+            $forprintRenderGoodsDeferredField('keywords');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '</section>';
         }
         }
         if (!empty($forprintAdminTabGroups)) {
@@ -1367,11 +2256,18 @@ if (($this->table ?? '') === 'settings') {
         }
 
 
+        /* FP_ADMIN_TECHREQ_CANONICAL_CONTENT_BRANCH_V1 */
+        if ($this->table === 'knoweleges') {
+            include __DIR__ . '/include/technical_requirements_form.php';
+        }
+
         if ($this->table === 'footer_settings') {
             $forprintFooterLabels = [
                 'name' => ['Назва картки футера', 'Використовується лише в адміністративній панелі.'],
-                'visible' => ['Показувати футер на сайті', 'Дані залишаються збереженими, навіть коли футер вимкнено.'],
-                'logo_img' => ['Логотип футера', 'Світла версія логотипу для темного фону.'],
+                'visible' => ['Показувати футер на сайті', ''],
+                'show_gallery' => ['Дозволити публічну галерею', ''],
+                'logo_img' => ['Логотип футера', ''],
+                'gallery_img' => ['Додаткові зображення', ''],
                 'email' => ['Email', 'Фактична адреса для посилання mailto:.'],
                 'email_label' => ['Підпис email', 'Текст, який бачить відвідувач.'],
                 'callback_label' => ['Назва контактної дії', 'Наприклад: «Зв’язатися з нами».'],
@@ -1433,82 +2329,244 @@ if (($this->table ?? '') === 'settings') {
                 $forprintFooterPhones = [];
             }
 
+            $forprintFooterHasGallery = is_array($this->columns)
+                && array_key_exists('gallery_img', $this->columns);
+
             echo '<section id="fp-admin-footer-card" class="vg-wrap vg-element vg-full fp-admin-content-card fp-admin-footer-card">';
-            echo '<div class="vg-wrap vg-element vg-full vg-firm-background-color4 vg-box-shadow fp-admin-content-card__inner">';
-            echo '<header class="fp-admin-content-card__heading">';
-            echo '<span class="vg-header">Футер</span>';
-            echo '<span class="vg_subheader">Логотип, контакти, навігація та підпис керуються з однієї картки.</span>';
-            echo '</header>';
+            echo '<div class="vg-wrap vg-element vg-full vg-firm-background-color4 vg-box-shadow fp-admin-content-card__inner fp-admin-footer-card__inner">';
 
-            echo '<div class="fp-admin-content-card__top-grid fp-admin-footer-card__top-grid">';
-            echo '<div class="fp-admin-content-card__meta fp-admin-footer-card__meta">';
-            echo '<div class="fp-admin-content-card__panel-title">Основні налаштування</div>';
+            echo '<div class="fp-admin-footer-card__settings-grid">';
 
+            echo '<div class="fp-admin-footer-card__settings-cell fp-admin-footer-card__settings-cell--name">';
             $forprintRenderFooterField('name');
-            $forprintRenderFooterField('visible');
+            echo '</div>';
 
+            echo '<div class="fp-admin-footer-card__settings-cell fp-admin-footer-card__settings-cell--position">';
             if (array_key_exists('menu_position', $this->columns)) {
                 $forprintFooterPosition = $_SESSION['res']['menu_position']
                     ?? ($this->data['menu_position'] ?? 40);
 
                 echo '<div class="fp-admin-number-field">';
-                echo '<label class="fp-admin-number-field__label" for="fp-admin-footer-menu-position">Позиція картки у системних налаштуваннях</label>';
+                echo '<div class="fp-admin-number-field__heading">';
+                echo '<label class="fp-admin-number-field__label" for="fp-admin-footer-menu-position"><span class="fp-admin-number-field__label-text">Позиція картки у системних налаштуваннях</span></label>';
                 echo '<span class="fp-admin-number-field__hint">Менше число показується раніше.</span>';
+                echo '</div>';
                 echo '<input id="fp-admin-footer-menu-position" class="vg-input" type="number" min="1" max="999" step="1" name="menu_position" value="'
                     . htmlspecialchars((string)$forprintFooterPosition, ENT_QUOTES, 'UTF-8')
                     . '">';
                 echo '</div>';
             }
+            echo '</div>';
 
-            $forprintRenderFooterField('email');
-            $forprintRenderFooterField('email_label');
-            $forprintRenderFooterField('callback_label');
-            $forprintRenderFooterField('callback_url');
-            $forprintRenderFooterField('copyright_text');
+            echo '<div class="fp-admin-footer-card__settings-cell fp-admin-footer-card__settings-cell--visibility">';
+            $forprintRenderFooterField('visible');
+            echo '</div>';
+
+            echo '<div class="fp-admin-footer-card__settings-cell fp-admin-footer-card__settings-cell--visibility">';
+            $forprintRenderFooterField('show_gallery');
+            echo '</div>';
 
             echo '</div>';
 
-            echo '<div class="fp-admin-content-card__media fp-admin-footer-card__media">';
-            echo '<div class="fp-admin-content-card__panel-title">Логотип</div>';
+            echo '<div class="fp-admin-footer-card__media-grid">';
+            echo '<div class="fp-admin-footer-card__media-cell fp-admin-footer-card__media-cell--main">';
             $forprintRenderFooterField('logo_img');
             echo '</div>';
+
+            if ($forprintFooterHasGallery) {
+                echo '<div class="fp-admin-footer-card__media-cell fp-admin-footer-card__media-cell--gallery">';
+                $forprintRenderFooterField('gallery_img');
+                echo '</div>';
+            } else {
+                echo '<div class="fp-admin-footer-card__media-cell fp-admin-footer-card__media-cell--empty" aria-hidden="true"></div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-footer-card__contact-grid">';
+
+            foreach (
+                [
+                    'email',
+                    'email_label',
+                    'callback_label',
+                    'callback_url',
+                    'copyright_text',
+                ] as $forprintFooterContactField
+            ) {
+                echo '<div class="fp-admin-footer-card__contact-cell">';
+                $forprintRenderFooterField($forprintFooterContactField);
+                echo '</div>';
+            }
+
+            echo '<div class="fp-admin-footer-card__contact-cell fp-admin-footer-card__contact-cell--empty" aria-hidden="true"></div>';
             echo '</div>';
 
             echo '<div class="fp-admin-footer-card__collections">';
 
-            echo '<section class="fp-admin-footer-collection">';
+            // FP-ADMIN-FOOTER-COLLECTIONS-INLINE-EDIT-V05
+            echo '<section class="fp-admin-footer-collection fp-admin-footer-collection--links" data-fp-footer-inline-root>';
             echo '<header class="fp-admin-footer-collection__heading">';
-            echo '<div><strong>Посилання футера</strong><span>Назва, адреса, видимість і порядок.</span></div>';
+            echo '<div class="fp-admin-footer-collection__heading-text"><strong>Посилання футера</strong><span>Усі налаштування посилань на цій сторінці.</span></div>';
             echo '<a class="fp-admin-footer-collection__add" href="'
                 . htmlspecialchars($this->adminPath . 'add/footer_links', ENT_QUOTES, 'UTF-8')
                 . '">Додати посилання</a>';
             echo '</header>';
-            echo '<div class="fp-admin-footer-collection__items">';
+            echo '<div class="fp-admin-footer-collection__items fp-admin-footer-inline-editors">';
 
-            if ($forprintFooterLinks) {
+            if (!empty($forprintFooterLinks)) {
                 foreach ($forprintFooterLinks as $forprintFooterLink) {
-                    $forprintFooterLinkName = trim((string)($forprintFooterLink['name'] ?? 'Посилання'));
+                    if (!is_array($forprintFooterLink)) {
+                        continue;
+                    }
+
+                    $forprintFooterLinkId = (int)($forprintFooterLink['id'] ?? 0);
+
+                    if ($forprintFooterLinkId < 1) {
+                        continue;
+                    }
+
+                    $forprintFooterLinkName = trim((string)($forprintFooterLink['name'] ?? ''));
                     $forprintFooterLinkUrl = trim((string)($forprintFooterLink['url'] ?? ''));
                     $forprintFooterLinkVisible = (int)($forprintFooterLink['visible'] ?? 0) === 1;
+                    $forprintFooterLinkTargetBlank = (int)($forprintFooterLink['target_blank'] ?? 0) === 1;
+                    $forprintFooterLinkPosition = max(1, (int)($forprintFooterLink['menu_position'] ?? 1));
+                    $forprintFooterLinkTitle = $forprintFooterLinkName !== ''
+                        ? $forprintFooterLinkName
+                        : 'Посилання #' . $forprintFooterLinkId;
 
-                    echo '<a class="fp-admin-footer-collection__item" href="'
+                    echo '<article class="fp-admin-footer-inline-editor"'
+                        . ' data-fp-footer-row'
+                        . ' data-entity="footer_links"'
+                        . ' data-id="' . $forprintFooterLinkId . '"'
+                        . ' data-fp-footer-delete-url="'
                         . htmlspecialchars(
-                            $this->adminPath . 'edit/footer_links/' . (int)($forprintFooterLink['id'] ?? 0),
+                            $this->adminPath . 'delete/footer_links/' . $forprintFooterLinkId,
                             ENT_QUOTES,
                             'UTF-8'
                         )
                         . '">';
-                    echo '<span class="fp-admin-footer-collection__item-main"><strong>'
-                        . htmlspecialchars($forprintFooterLinkName, ENT_QUOTES, 'UTF-8')
-                        . '</strong><small>'
-                        . htmlspecialchars($forprintFooterLinkUrl, ENT_QUOTES, 'UTF-8')
-                        . '</small></span>';
-                    echo '<span class="fp-admin-footer-collection__status'
-                        . ($forprintFooterLinkVisible ? ' is-visible' : '')
-                        . '">'
-                        . ($forprintFooterLinkVisible ? 'Показується' : 'Приховано')
+
+                    echo '<header class="fp-admin-footer-inline-editor__heading">';
+                    echo '<span class="fp-admin-visually-hidden" data-fp-footer-row-title>'
+                        . htmlspecialchars($forprintFooterLinkTitle, ENT_QUOTES, 'UTF-8')
                         . '</span>';
-                    echo '</a>';
+                    echo '<span class="fp-admin-footer-inline-editor__status"'
+                        . ' data-fp-footer-row-status role="status" aria-live="polite"></span>';
+                    echo '<div class="fp-admin-footer-inline-editor__actions">';
+                    echo '<button type="button"'
+                        . ' class="fp-admin-action-button fp-admin-footer-inline-editor__action fp-admin-footer-inline-editor__save"'
+                        . ' data-fp-footer-save>Зберегти</button>';
+                    echo '<button type="button"'
+                        . ' class="fp-admin-action-button fp-admin-footer-inline-editor__action fp-admin-footer-inline-editor__delete"'
+                        . ' data-fp-footer-delete>Видалити</button>';
+                    echo '</div>';
+                    echo '</header>';
+
+                    echo '<div class="fp-admin-footer-inline-editor__row fp-admin-footer-inline-editor__row--primary">';
+
+                    echo '<label class="fp-admin-footer-inline-editor__field">';
+                    echo '<span>Назва</span>';
+                    echo '<input type="text" maxlength="255" autocomplete="off"'
+                        . ' aria-label="Назва посилання"'
+                        . ' data-fp-footer-field="name" value="'
+                        . htmlspecialchars($forprintFooterLinkName, ENT_QUOTES, 'UTF-8')
+                        . '">';
+                    echo '</label>';
+
+                    echo '<label class="fp-admin-footer-inline-editor__field">';
+                    echo '<span>Адреса</span>';
+                    echo '<input type="text" maxlength="1024" autocomplete="off" spellcheck="false"'
+                        . ' data-fp-footer-field="url" value="'
+                        . htmlspecialchars($forprintFooterLinkUrl, ENT_QUOTES, 'UTF-8')
+                        . '">';
+                    echo '</label>';
+
+                    echo '</div>';
+
+                    echo '<div class="fp-admin-footer-inline-editor__row fp-admin-footer-inline-editor__row--secondary">';
+                    echo '<div class="fp-admin-footer-inline-editor__toggles">';
+
+                    echo '<div class="fp-admin-footer-inline-editor__choice"'
+                        . ' role="radiogroup" aria-label="Показувати на сайті"'
+                        . ' data-fp-footer-bool="visible" data-value="'
+                        . ($forprintFooterLinkVisible ? '1' : '0')
+                        . '">';
+                    echo '<span>Показувати на сайті</span>';
+                    echo '<span tabindex="0" role="radio" data-value="0" aria-checked="'
+                        . ($forprintFooterLinkVisible ? 'false' : 'true')
+                        . '">Ні</span>';
+                    echo '<span tabindex="0" role="radio" data-value="1" aria-checked="'
+                        . ($forprintFooterLinkVisible ? 'true' : 'false')
+                        . '">Так</span>';
+                    echo '</div>';
+
+                    echo '<div class="fp-admin-footer-inline-editor__choice"'
+                        . ' role="radiogroup" aria-label="Відкривати у новій вкладці"'
+                        . ' data-fp-footer-bool="target_blank" data-value="'
+                        . ($forprintFooterLinkTargetBlank ? '1' : '0')
+                        . '">';
+                    echo '<span>Нова вкладка</span>';
+                    echo '<span tabindex="0" role="radio" data-value="0" aria-checked="'
+                        . ($forprintFooterLinkTargetBlank ? 'false' : 'true')
+                        . '">Ні</span>';
+                    echo '<span tabindex="0" role="radio" data-value="1" aria-checked="'
+                        . ($forprintFooterLinkTargetBlank ? 'true' : 'false')
+                        . '">Так</span>';
+                    echo '</div>';
+
+                    echo '</div>';
+
+                    $forprintFooterLinkPositionOptions = [];
+
+                    foreach ($forprintFooterLinks as $forprintFooterLinkOption) {
+                        if (!is_array($forprintFooterLinkOption)) {
+                            continue;
+                        }
+
+                        $forprintFooterLinkOptionPosition = max(
+                            1,
+                            (int)($forprintFooterLinkOption['menu_position'] ?? 1)
+                        );
+
+                        $forprintFooterLinkPositionOptions[$forprintFooterLinkOptionPosition]
+                            = $forprintFooterLinkOptionPosition;
+                    }
+
+                    $forprintFooterLinkPositionOptions[$forprintFooterLinkPosition]
+                        = $forprintFooterLinkPosition;
+
+                    ksort($forprintFooterLinkPositionOptions, SORT_NUMERIC);
+
+                    echo '<label class="fp-admin-footer-inline-editor__field fp-admin-footer-inline-editor__field--position">';
+                    echo '<span>Позиція в списку</span>';
+                    echo '<div class="fp-admin-position-composite fp-admin-footer-inline-editor__position-composite">';
+                    echo '<select class="fp-admin-position-composite__select"'
+                        . ' data-fp-footer-position-select'
+                        . ' aria-label="Швидкий вибір позиції">';
+
+                    foreach ($forprintFooterLinkPositionOptions as $forprintFooterLinkPositionOption) {
+                        echo '<option value="' . $forprintFooterLinkPositionOption . '"'
+                            . (
+                                $forprintFooterLinkPositionOption === $forprintFooterLinkPosition
+                                    ? ' selected'
+                                    : ''
+                            )
+                            . '>'
+                            . $forprintFooterLinkPositionOption
+                            . '</option>';
+                    }
+
+                    echo '</select>';
+                    echo '<input type="number" min="1" step="1" inputmode="numeric"'
+                        . ' data-fp-footer-field="menu_position" value="'
+                        . $forprintFooterLinkPosition
+                        . '">';
+                    echo '</div>';
+                    echo '</label>';
+
+                    echo '</div>';
+                    echo '</article>';
                 }
             } else {
                 echo '<p class="fp-admin-content-card__empty">Посилання ще не додані.</p>';
@@ -1517,43 +2575,152 @@ if (($this->table ?? '') === 'settings') {
             echo '</div>';
             echo '</section>';
 
-            echo '<section class="fp-admin-footer-collection">';
+            echo '<section class="fp-admin-footer-collection fp-admin-footer-collection--phones" data-fp-footer-inline-root>';
             echo '<header class="fp-admin-footer-collection__heading">';
-            echo '<div><strong>Телефони футера</strong><span>Підпис, номер, видимість і порядок.</span></div>';
+            echo '<div class="fp-admin-footer-collection__heading-text"><strong>Телефони футера</strong><span>Підпис, номер, видимість і порядок — без переходу на окрему сторінку.</span></div>';
             echo '<a class="fp-admin-footer-collection__add" href="'
                 . htmlspecialchars($this->adminPath . 'add/footer_phones', ENT_QUOTES, 'UTF-8')
                 . '">Додати телефон</a>';
             echo '</header>';
-            echo '<div class="fp-admin-footer-collection__items">';
+            echo '<div class="fp-admin-footer-collection__items fp-admin-footer-inline-editors">';
 
-            if ($forprintFooterPhones) {
+            if (!empty($forprintFooterPhones)) {
                 foreach ($forprintFooterPhones as $forprintFooterPhone) {
+                    if (!is_array($forprintFooterPhone)) {
+                        continue;
+                    }
+
+                    $forprintFooterPhoneId = (int)($forprintFooterPhone['id'] ?? 0);
+
+                    if ($forprintFooterPhoneId < 1) {
+                        continue;
+                    }
+
                     $forprintFooterPhoneName = trim((string)($forprintFooterPhone['name'] ?? ''));
                     $forprintFooterPhoneValue = trim((string)($forprintFooterPhone['phone'] ?? ''));
                     $forprintFooterPhoneVisible = (int)($forprintFooterPhone['visible'] ?? 0) === 1;
+                    $forprintFooterPhonePosition = max(1, (int)($forprintFooterPhone['menu_position'] ?? 1));
+                    $forprintFooterPhoneTitle = (
+                        $forprintFooterPhoneName !== ''
+                        && $forprintFooterPhoneName !== $forprintFooterPhoneValue
+                    )
+                        ? $forprintFooterPhoneName
+                        : 'Телефон';
 
-                    if ($forprintFooterPhoneName === '') {
-                        $forprintFooterPhoneName = $forprintFooterPhoneValue;
-                    }
-
-                    echo '<a class="fp-admin-footer-collection__item" href="'
+                    echo '<article class="fp-admin-footer-inline-editor"'
+                        . ' data-fp-footer-row'
+                        . ' data-entity="footer_phones"'
+                        . ' data-id="' . $forprintFooterPhoneId . '"'
+                        . ' data-fp-footer-delete-url="'
                         . htmlspecialchars(
-                            $this->adminPath . 'edit/footer_phones/' . (int)($forprintFooterPhone['id'] ?? 0),
+                            $this->adminPath . 'delete/footer_phones/' . $forprintFooterPhoneId,
                             ENT_QUOTES,
                             'UTF-8'
                         )
                         . '">';
-                    echo '<span class="fp-admin-footer-collection__item-main"><strong>'
-                        . htmlspecialchars($forprintFooterPhoneName, ENT_QUOTES, 'UTF-8')
-                        . '</strong><small>'
-                        . htmlspecialchars($forprintFooterPhoneValue, ENT_QUOTES, 'UTF-8')
-                        . '</small></span>';
-                    echo '<span class="fp-admin-footer-collection__status'
-                        . ($forprintFooterPhoneVisible ? ' is-visible' : '')
-                        . '">'
-                        . ($forprintFooterPhoneVisible ? 'Показується' : 'Приховано')
+
+                    echo '<header class="fp-admin-footer-inline-editor__heading">';
+                    echo '<span class="fp-admin-visually-hidden" data-fp-footer-row-title>'
+                        . htmlspecialchars($forprintFooterPhoneTitle, ENT_QUOTES, 'UTF-8')
                         . '</span>';
-                    echo '</a>';
+                    echo '<span class="fp-admin-footer-inline-editor__status"'
+                        . ' data-fp-footer-row-status role="status" aria-live="polite"></span>';
+                    echo '<div class="fp-admin-footer-inline-editor__actions">';
+                    echo '<button type="button"'
+                        . ' class="fp-admin-action-button fp-admin-footer-inline-editor__action fp-admin-footer-inline-editor__save"'
+                        . ' data-fp-footer-save>Зберегти</button>';
+                    echo '<button type="button"'
+                        . ' class="fp-admin-action-button fp-admin-footer-inline-editor__action fp-admin-footer-inline-editor__delete"'
+                        . ' data-fp-footer-delete>Видалити</button>';
+                    echo '</div>';
+                    echo '</header>';
+
+                    echo '<div class="fp-admin-footer-inline-editor__row fp-admin-footer-inline-editor__row--primary">';
+
+                    echo '<label class="fp-admin-footer-inline-editor__field">';
+                    echo '<span>Телефон</span>';
+                    echo '<input type="text" maxlength="255" autocomplete="off"'
+                        . ' data-fp-footer-field="name" value="'
+                        . htmlspecialchars($forprintFooterPhoneName, ENT_QUOTES, 'UTF-8')
+                        . '">';
+                    echo '</label>';
+
+                    echo '<label class="fp-admin-footer-inline-editor__field">';
+                    echo '<span>Номер телефону</span>';
+                    echo '<input type="tel" maxlength="80" autocomplete="tel"'
+                        . ' data-fp-footer-field="phone" value="'
+                        . htmlspecialchars($forprintFooterPhoneValue, ENT_QUOTES, 'UTF-8')
+                        . '">';
+                    echo '</label>';
+
+                    echo '</div>';
+
+                    echo '<div class="fp-admin-footer-inline-editor__row fp-admin-footer-inline-editor__row--secondary">';
+
+                    echo '<div class="fp-admin-footer-inline-editor__choice"'
+                        . ' role="radiogroup" aria-label="Показувати на сайті"'
+                        . ' data-fp-footer-bool="visible" data-value="'
+                        . ($forprintFooterPhoneVisible ? '1' : '0')
+                        . '">';
+                    echo '<span>Показувати на сайті</span>';
+                    echo '<span tabindex="0" role="radio" data-value="0" aria-checked="'
+                        . ($forprintFooterPhoneVisible ? 'false' : 'true')
+                        . '">Ні</span>';
+                    echo '<span tabindex="0" role="radio" data-value="1" aria-checked="'
+                        . ($forprintFooterPhoneVisible ? 'true' : 'false')
+                        . '">Так</span>';
+                    echo '</div>';
+
+                    $forprintFooterPhonePositionOptions = [];
+
+                    foreach ($forprintFooterPhones as $forprintFooterPhoneOption) {
+                        if (!is_array($forprintFooterPhoneOption)) {
+                            continue;
+                        }
+
+                        $forprintFooterPhoneOptionPosition = max(
+                            1,
+                            (int)($forprintFooterPhoneOption['menu_position'] ?? 1)
+                        );
+
+                        $forprintFooterPhonePositionOptions[$forprintFooterPhoneOptionPosition]
+                            = $forprintFooterPhoneOptionPosition;
+                    }
+
+                    $forprintFooterPhonePositionOptions[$forprintFooterPhonePosition]
+                        = $forprintFooterPhonePosition;
+
+                    ksort($forprintFooterPhonePositionOptions, SORT_NUMERIC);
+
+                    echo '<label class="fp-admin-footer-inline-editor__field fp-admin-footer-inline-editor__field--position">';
+                    echo '<span>Позиція в списку</span>';
+                    echo '<div class="fp-admin-position-composite fp-admin-footer-inline-editor__position-composite">';
+                    echo '<select class="fp-admin-position-composite__select"'
+                        . ' data-fp-footer-position-select'
+                        . ' aria-label="Швидкий вибір позиції">';
+
+                    foreach ($forprintFooterPhonePositionOptions as $forprintFooterPhonePositionOption) {
+                        echo '<option value="' . $forprintFooterPhonePositionOption . '"'
+                            . (
+                                $forprintFooterPhonePositionOption === $forprintFooterPhonePosition
+                                    ? ' selected'
+                                    : ''
+                            )
+                            . '>'
+                            . $forprintFooterPhonePositionOption
+                            . '</option>';
+                    }
+
+                    echo '</select>';
+                    echo '<input type="number" min="1" step="1" inputmode="numeric"'
+                        . ' data-fp-footer-field="menu_position" value="'
+                        . $forprintFooterPhonePosition
+                        . '">';
+                    echo '</div>';
+                    echo '</label>';
+
+                    echo '</div>';
+                    echo '</article>';
                 }
             } else {
                 echo '<p class="fp-admin-content-card__empty">Телефони ще не додані.</p>';
@@ -1561,6 +2728,42 @@ if (($this->table ?? '') === 'settings') {
 
             echo '</div>';
             echo '</section>';
+
+            // FP-ADMIN-FOOTER-INLINE-DELETE-DIALOG-V01
+            echo '<div class="fp-admin-gallery-dialog"'
+                . ' data-fp-footer-delete-dialog'
+                . ' role="dialog"'
+                . ' aria-modal="true"'
+                . ' aria-labelledby="fp-admin-footer-delete-dialog-title"'
+                . ' aria-describedby="fp-admin-footer-delete-dialog-message"'
+                . ' hidden>';
+            echo '<div class="fp-admin-gallery-dialog__backdrop"'
+                . ' data-fp-footer-delete-cancel></div>';
+            echo '<div class="fp-admin-gallery-dialog__panel">';
+            echo '<h2 class="fp-admin-gallery-dialog__title"'
+                . ' id="fp-admin-footer-delete-dialog-title">'
+                . 'Підтвердження видалення</h2>';
+            echo '<p class="fp-admin-gallery-dialog__message"'
+                . ' id="fp-admin-footer-delete-dialog-message">'
+                . 'Видалити <strong data-fp-footer-delete-name>запис</strong>?'
+                . '</p>';
+            echo '<div class="fp-admin-gallery-dialog__actions">';
+            echo '<button type="button"'
+                . ' class="fp-admin-gallery-dialog__button"'
+                . ' data-fp-footer-delete-cancel>Скасувати</button>';
+            echo '<button type="button"'
+                . ' class="fp-admin-gallery-dialog__button fp-admin-gallery-dialog__button--danger"'
+                . ' data-fp-footer-delete-confirm>Видалити</button>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+
+            $forprintFooterCollectionsScriptUrl = rtrim((string)PATH, '/')
+                . '/core/admin/views/js/forprint-admin-footer-collections.js?v=20260902-1618';
+
+            echo '<script defer src="'
+                . htmlspecialchars($forprintFooterCollectionsScriptUrl, ENT_QUOTES, 'UTF-8')
+                . '"></script>';
 
             echo '</div>';
             echo '</div>';
@@ -1651,52 +2854,179 @@ if (($this->table ?? '') === 'settings') {
                 }
             }
 
-            echo '<section id="fp-admin-news-card" class="vg-wrap vg-element vg-full fp-admin-content-card fp-admin-news-card">';
-            echo '<div class="vg-wrap vg-element vg-full vg-firm-background-color4 vg-box-shadow fp-admin-content-card__inner fp-admin-news-card__inner">';
+            echo '<section class="fp-admin-catalog-edit fp-admin-news-edit" '
+                . 'aria-label="Редагування новини">';
 
-            echo '<header class="fp-admin-content-card__heading fp-admin-news-card__heading">';
-            echo '<span class="vg-header">Новина</span>';
-            echo '<span class="vg_subheader">Керування публікацією, текстами та медіа детальної сторінки.</span>';
-            echo '</header>';
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
 
-            echo '<div class="fp-admin-content-card__top-grid fp-admin-news-card__top-grid">';
-
-            echo '<div class="fp-admin-content-card__meta fp-admin-news-card__meta">';
-            echo '<div class="fp-admin-content-card__panel-title">Основні налаштування</div>';
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--name">';
             $forprintRenderNewsField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--position">';
             $forprintRenderNewsField('menu_position');
-            $forprintRenderNewsField('visible');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--alias">';
             $forprintRenderNewsField('alias');
+            echo '</div>';
 
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-news-edit__date-cell">';
             echo '<div class="fp-admin-news-card__date-field">';
-            echo '<label for="fp-admin-news-date" class="fp-admin-news-card__date-label">Дата публікації</label>';
-            echo '<span class="fp-admin-news-card__date-hint">Ця дата показується у блоці новини та може бути задана наперед.</span>';
-            echo '<input id="fp-admin-news-date" type="datetime-local" name="date" value="' .
-                htmlspecialchars($forprintNewsDateValue, ENT_QUOTES, 'UTF-8') .
-                '" required>';
+            echo '<div class="fp-admin-news-card__date-heading">';
+            echo '<label for="fp-admin-news-date" '
+                . 'class="fp-admin-news-card__date-label">Дата публікації</label>';
+            echo '<span class="fp-admin-news-card__date-hint">'
+                . 'Може бути задана наперед.'
+                . '</span>';
+            echo '</div>';
+            echo '<input id="fp-admin-news-date" '
+                . 'type="datetime-local" name="date" value="'
+                . htmlspecialchars(
+                    $forprintNewsDateValue,
+                    ENT_QUOTES,
+                    'UTF-8'
+                )
+                . '" required>';
+            echo '</div>';
             echo '</div>';
 
-            echo '<div class="fp-admin-news-card__summary">';
-            $forprintRenderNewsField('short_content');
-            echo '</div>';
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderNewsField('visible');
             echo '</div>';
 
-            echo '<div class="fp-admin-content-card__media fp-admin-news-card__media">';
-            echo '<div class="fp-admin-content-card__panel-title">Зображення</div>';
+            if (array_key_exists('show_gallery', $this->columns)) {
+                echo '<div class="fp-admin-catalog-edit__primary-cell '
+                    . 'fp-admin-catalog-edit__primary-cell--visibility">';
+                $forprintRenderNewsField('show_gallery');
+                echo '</div>';
+            }
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__media-main">';
             $forprintRenderNewsField('img');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__media-gallery">';
             $forprintRenderNewsField('gallery_img');
             echo '</div>';
 
             echo '</div>';
 
-            echo '<div class="fp-admin-content-card__editor-panel fp-admin-news-card__full-editor">';
+            echo '<div class="fp-admin-catalog-edit__editor-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel '
+                . 'fp-admin-news-edit__editor-panel '
+                . 'fp-admin-news-edit__editor-panel--full">';
             $forprintRenderNewsField('content');
             echo '</div>';
 
+            echo '<div class="fp-admin-catalog-edit__editor-panel '
+                . 'fp-admin-news-edit__editor-panel '
+                . 'fp-admin-news-edit__editor-panel--short">';
+            $forprintRenderNewsField('short_content');
             echo '</div>';
+
+            echo '</div>';
+
             echo '</section>';
 
             $this->translate = $forprintNewsTranslateBackup;
+        }
+
+
+        if (!empty($forprintInformationEditRows)) {
+            $forprintRenderInformationField = function (string $row): void {
+                if (!array_key_exists($row, $this->columns)) {
+                    return;
+                }
+
+                foreach ($this->templateArr as $template => $items) {
+                    if (!in_array($row, $items, true)) {
+                        continue;
+                    }
+
+                    if (!@include $_SERVER['DOCUMENT_ROOT']
+                        . $this->formTemplates
+                        . $template
+                        . '.php') {
+                        throw new \core\base\exceptions\RouteException(
+                            'Не знайдений шаблон '
+                            . $_SERVER['DOCUMENT_ROOT']
+                            . $this->formTemplates
+                            . $template
+                            . '.php'
+                        );
+                    }
+
+                    return;
+                }
+            };
+
+            echo '<section class="fp-admin-catalog-edit '
+                . 'fp-admin-information-edit" '
+                . 'aria-label="Редагування інформаційної сторінки">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--name">';
+            $forprintRenderInformationField('name');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--position">';
+            $forprintRenderInformationField('menu_position');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-information-edit__primary-cell--alias">';
+            $forprintRenderInformationField('alias');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderInformationField('visible');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__primary-cell '
+                . 'fp-admin-catalog-edit__primary-cell--visibility">';
+            $forprintRenderInformationField('show_top_menu');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__editor-grid">';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel '
+                . 'fp-admin-information-edit__editor-panel '
+                . 'fp-admin-information-edit__editor-panel--description">';
+            $forprintRenderInformationField('description');
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel '
+                . 'fp-admin-information-edit__editor-panel '
+                . 'fp-admin-information-edit__editor-panel--keywords">';
+            $forprintRenderInformationField('keywords');
+            echo '</div>';
+
+            echo '</div>';
+
+            echo '<div class="fp-admin-catalog-edit__editor-panel '
+                . 'fp-admin-information-edit__editor-panel '
+                . 'fp-admin-information-edit__editor-panel--content">';
+            $forprintRenderInformationField('content');
+            echo '</div>';
+
+            echo '</section>';
         }
 
     ?>
@@ -1732,4 +3062,11 @@ if (($this->table ?? '') === 'settings') {
                 . 'media_processing_settings_card.php';
         }
         ?>
+<?php if (in_array($this->table, ['footer_links', 'footer_phones'], true)): ?>
+<script defer src="<?=htmlspecialchars(
+    rtrim((string)PATH, '/') . '/core/admin/views/js/forprint-admin-footer-child-form.js?v=20260905-1908',
+    ENT_QUOTES,
+    'UTF-8'
+)?>"></script>
+<?php endif; ?>
 </form>

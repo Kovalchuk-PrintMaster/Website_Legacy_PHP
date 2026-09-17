@@ -1,0 +1,215 @@
+{
+  "acceptance": {
+    "communication_scope_ok": true,
+    "contacts_description_scope_ok": true,
+    "db_scope_ok": true,
+    "keywords_publicly_rendered": true,
+    "source_scope_ok": true,
+    "title_scope_ok": true
+  },
+  "classification": "BATCH_B_RELEASE_SCOPE_CONFIRMED",
+  "communication": {
+    "local_dialogs": 3,
+    "local_dialogs_labelled": 3,
+    "local_semantics_improved": true,
+    "product_url": "https://forprint.net.ua/product/afsh-ta-reklamn-plakati/",
+    "production_dialogs": 3,
+    "production_dialogs_labelled": 1
+  },
+  "contacts": {
+    "common_description_prefix": "Контакти | ForPrint. ",
+    "description_prefixes_match": true,
+    "local": {
+      "canonical": "http://127.0.0.1/contacts/",
+      "description": "Контакти | ForPrint. Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+      "dialogs": 1,
+      "dialogs_labelled": 1,
+      "final_url": "http://127.0.0.1:8098/contacts/",
+      "h1_count": 1,
+      "keywords": "",
+      "og_description": "Контакти | ForPrint. Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+      "og_site_name": "ForPrint",
+      "og_title": "Контакти | ForPrint",
+      "og_url": "http://127.0.0.1/contacts/",
+      "status": 200,
+      "title": "Контакти | ForPrint",
+      "url": "http://127.0.0.1:8098/contacts/"
+    },
+    "local_db_description": "Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+    "local_db_keywords": "контакти, друк, ForPrint",
+    "local_description_endswith_db": true,
+    "local_meta_keywords_present": false,
+    "local_meta_keywords_value": "",
+    "local_og_description_matches_meta": true,
+    "production": {
+      "canonical": "https://forprint.net.ua/contacts/",
+      "description": "Контакти | ForPrint. Контакти PrintMaster",
+      "dialogs": 1,
+      "dialogs_labelled": 1,
+      "final_url": "https://forprint.net.ua/contacts/",
+      "h1_count": 1,
+      "keywords": "",
+      "og_description": "Контакти | ForPrint. Контакти PrintMaster",
+      "og_site_name": "ForPrint",
+      "og_title": "Контакти | ForPrint — Прінт студія повного циклу",
+      "og_url": "https://forprint.net.ua/contacts/",
+      "status": 200,
+      "title": "Контакти | ForPrint — Прінт студія повного циклу",
+      "url": "https://forprint.net.ua/contacts/"
+    },
+    "production_db_description": "Контакти PrintMaster",
+    "production_db_keywords": "контакти, друк, PrintMaster",
+    "production_description_endswith_db": true,
+    "production_meta_keywords_present": false,
+    "production_meta_keywords_value": "",
+    "production_og_description_matches_meta": true
+  },
+  "db": {
+    "contacts_changed": [
+      {
+        "changed_fields": [
+          "description",
+          "keywords"
+        ],
+        "id": 8,
+        "local_description": "Телефон, email, адреса та графік роботи ForPrint. Зв’яжіться з нами щодо друку, брендування та рекламної продукції.",
+        "local_keywords": "контакти, друк, ForPrint",
+        "production_description": "Контакти PrintMaster",
+        "production_keywords": "контакти, друк, PrintMaster"
+      }
+    ],
+    "goods_changed": [],
+    "news_changed": [],
+    "production_goods_with_content_h1": [],
+    "production_news_with_content_h1": []
+  },
+  "generated": "2026-08-22T20:25:19.187732+03:00",
+  "git": {
+    "communication_status": "M base/templates/default/include/productCommunicationButtons.php",
+    "communication_working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+    "head": "51774693f675b3722f4bbf7cad05e0743739dcca",
+    "header_status": "M base/templates/default/include/header.php",
+    "header_working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e",
+    "roadmap_status": "?? marketing/programs/forprint_growth_roadmap_v0_1.md"
+  },
+  "git_mutation": false,
+  "google_mutation": false,
+  "keywords_owner": {
+    "meta_keyword_reference_count": 1,
+    "meta_keyword_refs": [
+      {
+        "line": 6,
+        "path": "base/core/admin/views/include/header.php",
+        "text": "<meta type=\"keywords\" content=\"...\">"
+      }
+    ],
+    "reference_count": 13,
+    "sample_refs": [
+      {
+        "line": 6,
+        "path": "base/core/admin/views/include/header.php",
+        "text": "<meta type=\"keywords\" content=\"...\">"
+      },
+      {
+        "line": 27,
+        "path": "base/core/user/controllers/SearchController.php",
+        "text": "'keywords' => '',"
+      },
+      {
+        "line": 12,
+        "path": "base/core/user/controllers/SpecialoffersController.php",
+        "text": "\"SELECT name, alias, keywords, description, content"
+      },
+      {
+        "line": 21,
+        "path": "base/core/user/controllers/SpecialoffersController.php",
+        "text": "'keywords' => '',"
+      },
+      {
+        "line": 12,
+        "path": "base/core/user/controllers/PromotionsController.php",
+        "text": "\"SELECT name, alias, keywords, description, content"
+      },
+      {
+        "line": 21,
+        "path": "base/core/user/controllers/PromotionsController.php",
+        "text": "'keywords' => '',"
+      },
+      {
+        "line": 49,
+        "path": "base/core/user/controllers/NewsController.php",
+        "text": "\"SELECT name, alias, keywords, description, content"
+      },
+      {
+        "line": 58,
+        "path": "base/core/user/controllers/NewsController.php",
+        "text": "'keywords' => '',"
+      },
+      {
+        "line": 23,
+        "path": "base/core/user/controllers/ContactsController.php",
+        "text": "'keywords' => '',"
+      },
+      {
+        "line": 137,
+        "path": "base/core/base/settings/Settings.php",
+        "text": "'keywords',"
+      },
+      {
+        "line": 196,
+        "path": "base/core/base/settings/Settings.php",
+        "text": "'keywords' => ['Ключові слова','Не більше 70 символів'],"
+      },
+      {
+        "line": 453,
+        "path": "base/core/base/settings/Settings.php",
+        "text": "'vg-img' => ['img', 'main_img', 'img_years', 'promo_img', 'about_promo_gallery_img', 'logo_img', 'favicon_img', 'mobile_header_img', 'mobile_logo_img', 'gallery_img', 'keywords', 'price_description', 'short_content', 'about_name', 'about_gallery_title', 'about_visible', 'contacts_menu_position', 'contacts_title', 'contacts_phone', 'contacts_email', 'contacts_callback_label', 'contacts_intro', 'con"
+      },
+      {
+        "line": 467,
+        "path": "base/core/base/settings/Settings.php",
+        "text": "'keywords' => ['count'=>70, 'trim'=>true],"
+      }
+    ]
+  },
+  "next_action": "PREPARE_EXACT_BATCH_B_SOURCE_COMMIT_AND_CONTACTS_DESCRIPTION_KEYWORDS_MIGRATION",
+  "production_db_mutation": false,
+  "production_source_mutation": false,
+  "source": {
+    "communication_production_matches_head": true,
+    "communication_production_sha": "66152ee4515f214a0f270054e7cad906b9dad51ea32fca1456dbb9f21bfe10b6",
+    "communication_semantics_only": true,
+    "communication_working_sha": "977f2818eeb7f48924e37a9f03b793afaf75d81819ec8400d84f15e84ffd64f9",
+    "header_head_sha": "ade3f77ac9ff481b5ecd38d26f6d4fd88ab7ee3acb73b7992ed0ca43bc1ffb5f",
+    "header_production_sha": "65cb0df2f6a7175c5f78884997fcc31d5cc6da1d61bb7ae0ecb1c34730d1b7fa",
+    "header_title_delta_only": true,
+    "header_working_sha": "ffd32afe254704b2af9105097e6978ef29b2ac0d4b7393b92b594d13fbfd0a7e",
+    "production_has_canonical_query_marker": true,
+    "production_has_dynamic_favicon_marker": false,
+    "production_has_social_head": true,
+    "working_has_canonical_query_marker": true,
+    "working_has_dynamic_favicon_marker": false,
+    "working_has_social_head": true,
+    "working_has_title_marker": true
+  },
+  "titles": {
+    "common_suffix": " — Прінт студія повного циклу",
+    "exact_one_common_nonempty_suffix": true,
+    "local_empty_title_count": 0,
+    "local_empty_titles": [],
+    "local_h1_issue_count": 0,
+    "local_h1_issues": [],
+    "local_http_issue_count": 0,
+    "local_http_issues": [],
+    "local_og_title_mismatch_count": 0,
+    "local_og_title_mismatches": [],
+    "non_prefix_delta_count": 0,
+    "non_prefix_deltas": [],
+    "pages": 194,
+    "production_http_issue_count": 0,
+    "production_http_issues": [],
+    "suffix_counts": {
+      " — Прінт студія повного циклу": 194
+    }
+  }
+}

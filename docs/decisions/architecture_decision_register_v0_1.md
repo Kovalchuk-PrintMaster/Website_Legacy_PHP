@@ -238,3 +238,36 @@ local regression contract
 
 `GoodsImageUploadOptimizer.php` owns product-media processing and deterministic main-image search families. Search renditions remain filesystem derivatives of canonical `goods.img`; lifecycle cleanup and runtime-root portability are part of the same owner contract.
 <!-- FP-PRODUCT-MEDIA-ADR-2026-08-21-END -->
+
+<!-- FP_CANONICAL_SSH_TRANSPORT_HARDENING_ADR_V1 -->
+## FP-WEB-ADR-2026-08-18-002
+
+**Decision:** bounded SSH retry boundaries and connection reuse for canonical
+hosting operations.
+
+**Status:** accepted after production recovery incident.
+
+Read-only and deterministic restartable transport operations may retry only
+recognized transient SSH failures. Normal production DB mutation stays
+fail-closed; rollback DB restoration may restart the complete pre-mutation
+snapshot package. OpenSSH ControlMaster/ControlPersist is used to reduce
+hosting handshake churn.
+<!-- /FP_CANONICAL_SSH_TRANSPORT_HARDENING_ADR_V1 -->
+
+<!-- FP_ADR_SEARCH_METADATA_20260819_START -->
+## FP-WEB-ADR-2026-08-19-SEO-001
+
+**Decision:** canonical public metadata and breadcrumb structured-data ownership
+**Status:** accepted
+**Record:** `2026-08-19__canonical_public_metadata_and_breadcrumb_structured_data_ownership.md`
+
+Breadcrumb data has one application authority; visible breadcrumbs are navigation-only; structured breadcrumb semantics are centralized JSON-LD.
+<!-- FP_ADR_SEARCH_METADATA_20260819_END -->
+
+<!-- FP_PUBLIC_ASSET_PERMISSION_DECISION_REGISTER_V0_1_START -->
+## FP-WEB-ADR-2026-09-17-001
+
+**Decision:** public asset permissions are part of the release artifact and are guarded before canonical hosting synchronization.
+**Status:** accepted
+**Record:** `docs/decisions/2026-09-17__public_asset_permissions_and_release_guard.md`
+<!-- FP_PUBLIC_ASSET_PERMISSION_DECISION_REGISTER_V0_1_END -->

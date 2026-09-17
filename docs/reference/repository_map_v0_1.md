@@ -313,3 +313,43 @@ canonical media root:     sibling userfiles/ resolved from libraries/
 
 Search renditions are deterministic derived files and therefore have no separate database columns.
 <!-- FP-PRODUCT-MEDIA-REPOSITORY-MAP-V01-END -->
+
+<!-- FP_SEO_BASELINE_CRAWLER_TOOL_V0_1_START -->
+## Search visibility inspection tooling — 2026-08-18
+
+```text
+scripts/inspection/audit_search_visibility.py   read-only SEO/crawl baseline
+marketing/reports/                              dated crawl evidence
+```
+
+The public website runtime remains PHP; crawl/validation/reporting tooling is
+project-owned Python.
+<!-- FP_SEO_BASELINE_CRAWLER_TOOL_V0_1_END -->
+
+<!-- FP_BROWSER_VISUAL_INSPECTION_REPO_MAP_V0_1_START -->
+## Browser inspection tooling — 2026-09-17
+
+```text
+config/python/requirements-browser-inspection.txt
+    pinned Python Playwright dependency
+
+config/system/debian12-playwright-chromium-runtime-packages.txt
+    Debian 12 Chromium runtime package contract
+
+scripts/inspection/browser_visual_inspection.py
+    persistent local/remote read-only real-browser inspection
+
+docs/development/browser_visual_inspection_playwright_v0_1.md
+    environment, bootstrap, purpose and safety boundaries
+
+.runtime/playwright-browsers/
+    ignored Playwright-managed browser binaries
+```
+<!-- FP_BROWSER_VISUAL_INSPECTION_REPO_MAP_V0_1_END -->
+
+<!-- FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_START -->
+## Public asset release contract
+
+Owner: `scripts/inspection/check_public_web_asset_permissions.py`.
+Public files are `0644`; public asset directories are `0755`.
+<!-- FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_END -->

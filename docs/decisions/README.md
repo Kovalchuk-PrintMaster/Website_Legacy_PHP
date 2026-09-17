@@ -35,3 +35,9 @@
   analytical data sources, external references and website measurement
   contracts.
 <!-- FP_MARKETING_CONTROL_PLANE_SCHEMA_V02_ADR_END -->
+
+<!-- FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_START -->
+## 2026-09-17 — public asset permissions and release guard
+
+Accepted: `2026-09-17__public_asset_permissions_and_release_guard.md`.
+<!-- FP_PUBLIC_ASSET_PERMISSION_RELEASE_GUARD_V0_1_END -->

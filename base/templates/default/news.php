@@ -44,7 +44,13 @@ $parseGallery = static function ($source): array {
             <?php
             $newsContent = trim((string)($data['content'] ?? ''));
             $newsImage = trim((string)($data['img'] ?? ''));
-            $newsGallery = $parseGallery($data['gallery_img'] ?? '');
+            $newsGalleryAllowed = (
+                !array_key_exists('show_gallery', $data)
+                || (int)($data['show_gallery'] ?? 1) === 1
+            );
+            $newsGallery = $newsGalleryAllowed
+                ? $parseGallery($data['gallery_img'] ?? '')
+                : [];
             $newsGallery = array_values(array_filter(
                 $newsGallery,
                 static fn(string $item): bool => $item !== $newsImage

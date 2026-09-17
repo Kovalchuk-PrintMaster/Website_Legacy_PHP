@@ -76,6 +76,19 @@ final class ManagedImageUploadOptimizer
                 'directory' => 'advantages',
                 'label' => 'зображення переваги',
             ],
+            'advantages.gallery_img' => [
+                'directory' => 'advantages',
+                'label' => 'додаткові зображення новини',
+                'max_width' => $newsEdge,
+                'max_height' => $newsEdge,
+                'max_bytes' => (int)$config['news_max_kb'] * 1024,
+                'format' => 'auto',
+                'jpeg_quality' => $jpegQuality,
+                'jpeg_min_quality' => $jpegMinQuality,
+                'png_colors' => $pngColors,
+                'name_suffix' => 'gallery',
+                'multiple' => true,
+            ],
             'catalog.img' => $entity + [
                 'directory' => 'catalog',
                 'label' => 'зображення розділу каталогу',
@@ -84,10 +97,30 @@ final class ManagedImageUploadOptimizer
                 'directory' => 'filters',
                 'label' => 'зображення фільтра',
             ],
+
+            'filters.gallery_img' => array_merge(
+                $entity,
+                [
+                    'directory' => 'filters',
+                    'label' => 'зображення галереї фільтра',
+                    'name_suffix' => 'gallery',
+                    'multiple' => true,
+                ]
+            ),
             'filters_categories.img' => $entity + [
                 'directory' => 'filters_categories',
                 'label' => 'зображення групи фільтрів',
             ],
+
+            'filters_categories.gallery_img' => array_merge(
+                $entity,
+                [
+                    'directory' => 'filters_categories',
+                    'label' => 'зображення галереї групи фільтрів',
+                    'name_suffix' => 'gallery',
+                    'multiple' => true,
+                ]
+            ),
             'news.img' => [
                 'directory' => 'news',
                 'label' => 'зображення новини',
@@ -98,6 +131,19 @@ final class ManagedImageUploadOptimizer
                 'jpeg_quality' => $jpegQuality,
                 'jpeg_min_quality' => $jpegMinQuality,
                 'png_colors' => $pngColors,
+            ],
+            'news.gallery_img' => [
+                'directory' => 'news',
+                'label' => 'додаткові зображення новини',
+                'max_width' => $newsEdge,
+                'max_height' => $newsEdge,
+                'max_bytes' => (int)$config['news_max_kb'] * 1024,
+                'format' => 'auto',
+                'jpeg_quality' => $jpegQuality,
+                'jpeg_min_quality' => $jpegMinQuality,
+                'png_colors' => $pngColors,
+                'name_suffix' => 'gallery',
+                'multiple' => true,
             ],
             'sales.img' => [
                 'directory' => 'frontend/home/slider',
@@ -110,6 +156,20 @@ final class ManagedImageUploadOptimizer
                 'jpeg_min_quality' => $jpegMinQuality,
                 'png_colors' => $pngColors,
                 'name_prefix' => 'slide',
+            ],
+            'sales.gallery_img' => [
+                'directory' => 'frontend/home/slider',
+                'label' => 'додаткові зображення слайда',
+                'max_width' => $sliderEdge,
+                'max_height' => $sliderEdge,
+                'max_bytes' => (int)$config['slider_max_kb'] * 1024,
+                'format' => 'jpeg',
+                'jpeg_quality' => $jpegQuality,
+                'jpeg_min_quality' => $jpegMinQuality,
+                'png_colors' => $pngColors,
+                'name_prefix' => 'slide',
+                'field_prefix' => true,
+                'multiple' => true,
             ],
             'settings.img' => [
                 'directory' => 'settings',

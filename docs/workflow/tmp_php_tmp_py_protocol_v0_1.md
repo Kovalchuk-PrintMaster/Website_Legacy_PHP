@@ -2,6 +2,14 @@
 
 **ID:** `FP-WEB-WF-002`
 
+**Статус:** superseded
+**Superseded by:** `docs/assistant_workflow/SINGLE_COMMAND_OPERATOR_PROTOCOL.md`
+
+> Compatibility/history only. Repository-root `tmp.py` + `python tmp.py` is the
+> current operator contract. The older `tmp/work/` paths below are retained as
+> historical context and must not override `AGENTS.md`.
+
+
 ## Призначення
 
 `tmp/work/tmp.php` і `tmp/work/tmp.py` — одноразові operator entrypoints. Вони не є канонічними modules і не повинні містити єдину копію важливої логіки.

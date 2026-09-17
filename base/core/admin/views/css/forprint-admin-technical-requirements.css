@@ -1,0 +1,196 @@
+/*
+ * FP_ADMIN_TECHREQ_SERVER_SURFACE_CSS_V1
+ *
+ * Dedicated Technical Requirements Admin composition.
+ * Shared fp-admin-* primitives remain the visual language; this file owns only
+ * the knoweleges surface geometry and bounded legacy neutralisation.
+ */
+
+form#main-form.fp-admin-technical-requirements-surface {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    padding: 5px;
+    background: rgb(236, 238, 242);
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-action-bar,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-content-card {
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-technical-requirements-card {
+    margin: 8px 0;
+    border: 1px solid rgb(216, 224, 229);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(31, 48, 66, 0.06);
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-technical-requirements-card__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 0;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-settings-grid,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-media-grid,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-content-grid {
+    box-sizing: border-box;
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    gap: 8px 12px;
+    padding: 8px;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-settings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-field--visible,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-field--menu-position {
+    align-self: stretch;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-media-cell {
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 15rem;
+    padding: 12px;
+    border: 1px solid rgb(216, 224, 229);
+    border-radius: 8px;
+    background: #fff;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-field {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    margin: 0;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface {
+    box-sizing: border-box;
+    display: grid;
+    min-width: 0;
+    width: 100%;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgb(216, 224, 229);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(31, 48, 66, 0.04);
+}
+
+/*
+ * The existing form templates still emit bounded legacy vg-* wrappers.
+ * Neutralise only their outer geometry inside this dedicated surface.
+ */
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface > .vg-wrap.vg-element,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface > .vg-element,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface .vg-full,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface .vg-half {
+    box-sizing: border-box;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface > .vg-wrap.vg-element,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface > .vg-element {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-field__surface .vg-box-shadow {
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-media-cell
+.fp-admin-field__surface {
+    height: 100%;
+    min-height: 13rem;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-content-grid
+.fp-admin-field__surface {
+    padding: 12px;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-content-grid .tox-tinymce,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-techreq-content-grid .mce-tinymce {
+    width: 100% !important;
+    max-width: 100%;
+}
+
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-gallery-shell,
+form#main-form.fp-admin-technical-requirements-surface
+.fp-admin-image-field {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 72rem) {
+    form#main-form.fp-admin-technical-requirements-surface
+    .fp-admin-techreq-settings-grid,
+    form#main-form.fp-admin-technical-requirements-surface
+    .fp-admin-techreq-media-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    form#main-form.fp-admin-technical-requirements-surface
+    .fp-admin-techreq-media-cell {
+        min-height: 13rem;
+    }
+}

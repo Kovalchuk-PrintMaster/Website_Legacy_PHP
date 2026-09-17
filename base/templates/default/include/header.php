@@ -380,6 +380,7 @@ $fpMeasurementConfig = [
     <script defer src="<?=PATH . TEMPLATE?>assets/js/forprint-product-detail.js?v=20260817-170525"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-measurement.js?v=20260803-1622"></script>
     <script defer src="<?=PATH?>templates/default/assets/js/forprint-product-communication.js?v=20260803-1622"></script>
+    <script defer src="<?=PATH?>templates/default/assets/js/forprint-supplier-quote-list.js?v=20260908-1330"></script>
 </head>
 
 <body
@@ -446,6 +447,55 @@ $fpResolveInformationUrl = function (array $item): string {
     return $this->alias(['information' => $infoAlias]);
 };
 ?>
+<?php
+/* FP_SUPPLIER_QUOTE_HEADER_V1 */
+/* FP_SUPPLIER_CATALOG_NAV_V6 */
+$fpSupplierCatalogHost = strtolower(
+    trim(
+        (string)(
+            $_SERVER['HTTP_HOST']
+            ?? ''
+        )
+    )
+);
+$fpSupplierCatalogHost = preg_replace(
+    '/:\d+$/',
+    '',
+    $fpSupplierCatalogHost
+) ?: $fpSupplierCatalogHost;
+$fpSupplierCatalogPublicFlag = strtolower(
+    trim(
+        (string)(
+            getenv(
+                'FP_SUPPLIER_CATALOG_PUBLIC_ENABLED'
+            )
+            ?: ''
+        )
+    )
+);
+$fpSupplierCatalogPreviewEnabled = (
+    in_array(
+        $fpSupplierCatalogHost,
+        [
+            '127.0.0.1',
+            'localhost',
+            '::1',
+            '[::1]',
+        ],
+        true
+    )
+    || in_array(
+        $fpSupplierCatalogPublicFlag,
+        [
+            '1',
+            'true',
+            'yes',
+            'on',
+        ],
+        true
+    )
+);
+?>
 <header class="header fp-site-header">
     <div class="container fp-site-header__container fp-layout-container">
         <div class="header__wrapper fp-site-header__wrapper">
@@ -454,20 +504,8 @@ $fpResolveInformationUrl = function (array $item): string {
                 <a class="fp-site-header__logo-link" href="<?= $this->alias() ?>">
                     <picture
                         class="fp-site-header__logo-picture"
-                        data-fp-mobile-logo="<?=!empty($this->set['mobile_header_img'])
-                            ? 'configured'
-                            : 'fallback'?>"
+                        data-fp-mobile-logo="fallback"
                     >
-                        <?php if (!empty($this->set['mobile_header_img'])): ?>
-                            <source
-                                media="(max-width: 48em), (orientation: landscape) and (max-width: 64em) and (max-height: 36rem)"
-                                srcset="<?=htmlspecialchars(
-                                    $this->img((string)$this->set['mobile_header_img']),
-                                    ENT_QUOTES,
-                                    'UTF-8'
-                                )?>"
-                            >
-                        <?php endif; ?>
                         <img
                             class="fp-site-header__logo-image"
                             src="<?=$this->img($this->set['img'])?>"
@@ -475,7 +513,7 @@ $fpResolveInformationUrl = function (array $item): string {
                         >
                     </picture>
                 </a>
-                <a class="fp-site-header__tagline" href="<?= $this->alias() ?>"><span><?=$this->set['name']?></span></a>
+                <a class="fp-site-header__tagline" href="<?= $this->alias() ?>"><span class="fp-site-header__slogan"><?=$this->set['name']?></span></a>
             </div>
             <div class="header__topbar fp-site-header__topbar">
                 <div class="header__contacts fp-site-header__contacts">
@@ -510,14 +548,26 @@ $fpResolveInformationUrl = function (array $item): string {
                     <div><a href="tel:<?=preg_replace('/[^+\d]/', '', $this->set['phone'])
                         ?>"><?=$this->set['phone']?></a></div>
                     <div><a class="js-callback">Зв'язатися з нами</a></div>
-                </div>
+</div>
 
                 <nav class="header__nav fp-site-header__nav">
                     <ul class="header__nav-list fp-site-header__nav-list">
 
                         <?php if (!empty($this->menu['catalog'])):?>
                             <li class="header__nav-parent">
-                                <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a>
+                                <a href="<?=$this->alias('catalog')?>"><span>Каталог</span></a><?php if ($fpSupplierCatalogPreviewEnabled): ?>
+                            <li class="header__nav-item fp-supplier-catalog-nav">
+                                <a href="<?=$this->alias('supplier-catalog')?>">
+                                    <span>Товари для брендування</span>
+                                </a>
+                            </li>
+                        <?php if ($fpSupplierCatalogPreviewEnabled): ?>
+
+                        <?php endif; ?>
+
+                        <?php endif; ?>
+
+
 
                                 <ul
                                     class="header__nav-sublist fp-site-header__nav-sublist fp-catalog-popover fp-suggestion-surface"
@@ -565,27 +615,19 @@ $fpResolveInformationUrl = function (array $item): string {
                         <?php if (!empty($this->menu['information'])):?>
                             <?php foreach ($this->menu['information'] as $item):?>
                                 <?php $infoUrl = $fpResolveInformationUrl($item); ?>
+                                <?php if ($infoAlias === 'contacts' || preg_match('/контакт/ui', (string)($item['name'] ?? ''))):?>
+                                    <?php /* FP_TECHREQ_NAV_V2:desktop */ ?>
+                                    <li class="fp-techreq-nav-link fp-techreq-nav-link--desktop">
+                                        <a href="<?=rtrim((string)PATH, '/')?>/technical-requirements/"><span>ТЕХНІЧНІ ВИМОГИ</span></a>
+                                    </li>
+                                <?php endif;?>
+
                                 <li>
                                     <a href="<?=$infoUrl?>"><span><?=htmlspecialchars((string)($item['name'] ?? ''), ENT_QUOTES, 'UTF-8')?></span></a>
                                 </li>
                             <?php endforeach;?>
                         <?php endif;?>
 
-                        <?php if (!empty($this->menu['knoweleges'])):?>
-                            <li class="header__nav-parent">
-                                <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>
-
-                                <ul class="header__nav-sublist fp-site-header__nav-sublist">
-                                    <?php foreach ($this->menu['knoweleges'] as $item):?>
-                                        <li>
-                                            <a href="<?=$this->alias(['knoweleges' => $item['alias']])?>">
-                                                <span><?=$item['name']?></span>
-                                            </a>
-                                        </li>
-                                    <?php endforeach;?>
-                                </ul>
-                            </li>
-                        <?php endif;?>
 
 
 
@@ -602,6 +644,12 @@ $fpResolveInformationUrl = function (array $item): string {
                 class="fp-mobile-primary-nav__link"
                 href="<?=$this->alias('catalog', ['fp_ui' => 'filters'])?>"
                 >Каталог</a>
+                <?php if ($fpSupplierCatalogPreviewEnabled): ?>
+                <a
+                class="fp-mobile-primary-nav__link"
+                href="<?=$this->alias('supplier-catalog')?>"
+                >Товари</a>
+                <?php endif; ?>
                 <a
                 class="fp-mobile-primary-nav__link"
                 href="<?=$this->alias('contacts')?>"
@@ -726,27 +774,19 @@ $fpResolveInformationUrl = function (array $item): string {
                     <?php if (!empty($this->menu['information'])):?>
                         <?php foreach ($this->menu['information'] as $item):?>
                             <?php $infoUrl = $fpResolveInformationUrl($item); ?>
+                            <?php if ($infoAlias === 'contacts' || preg_match('/контакт/ui', (string)($item['name'] ?? ''))):?>
+                                <?php /* FP_TECHREQ_NAV_V2:burger */ ?>
+                                <li class="fp-techreq-nav-link fp-techreq-nav-link--burger">
+                                    <a href="<?=rtrim((string)PATH, '/')?>/technical-requirements/"><span>Технічні вимоги</span></a>
+                                </li>
+                            <?php endif;?>
+
                             <li>
                                 <a href="<?=$infoUrl?>"><span><?=$item['name']?></span></a>
                             </li>
                         <?php endforeach;?>
                     <?php endif;?>
 
-                    <?php if (!empty($this->menu['knoweleges'])):?>
-                        <li>
-                            <a href="<?=$this->alias('knoweleges')?>"><span>Корисна інформація</span></a>
-
-                            <ul class="header__menu_sublist">
-                                <?php foreach ($this->menu['knoweleges'] as $item):?>
-                                    <li>
-                                        <a href="<?=$this->alias(['knoweleges' => $item['alias']])?>">
-                                            <span><?=$item['name']?></span>
-                                        </a>
-                                    </li>
-                                <?php endforeach;?>
-                            </ul>
-                        </li>
-                    <?php endif;?>
 
                     <li>
                         <a href="<?=$this->alias('news')?>"><span>Новини</span></a>

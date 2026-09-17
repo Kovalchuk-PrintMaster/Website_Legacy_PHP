@@ -1796,3 +1796,110 @@ body.fp-public-page
 }
 
 /* FP_PHASE_1_8_SAFE_HOME_GRAPHITE_BAND_END */
+
+/* Home Catalog cards: main + gallery image crossfade. */
+[data-fp-surface="home"]
+[data-fp-catalog-image-rotator] {
+    position: relative;
+    overflow: hidden;
+}
+
+[data-fp-surface="home"]
+[data-fp-catalog-image-rotator]
+[data-fp-catalog-image] {
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 650ms ease,
+        transform 320ms ease;
+}
+
+[data-fp-surface="home"]
+[data-fp-catalog-image-rotator]
+[data-fp-catalog-image]:first-child {
+    position: relative;
+    z-index: 1;
+}
+
+[data-fp-surface="home"]
+[data-fp-catalog-image-rotator]
+[data-fp-catalog-image]:not(:first-child) {
+    position: absolute !important;
+    inset: 0;
+    z-index: 1;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+[data-fp-surface="home"]
+[data-fp-catalog-image-rotator]
+[data-fp-catalog-image].is-active {
+    z-index: 2;
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-fp-surface="home"]
+    [data-fp-catalog-image-rotator]
+    [data-fp-catalog-image] {
+        transition: none !important;
+    }
+}
+
+/* FP_HOME_HERO_GALLERY_ROTATOR_V01
+ * Image layers inside one existing hero slide. Swiper remains the only
+ * slide-to-slide geometry/runtime owner.
+ */
+[data-fp-surface="home"]
+.fp-home-hero__image[data-fp-hero-image-rotator] {
+    position: relative;
+    overflow: hidden;
+}
+
+[data-fp-surface="home"]
+.fp-home-hero__image[data-fp-hero-image-rotator]
+[data-fp-hero-image] {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 650ms ease;
+}
+
+[data-fp-surface="home"]
+.fp-home-hero__image[data-fp-hero-image-rotator]
+[data-fp-hero-image]:first-child {
+    position: relative;
+    z-index: 1;
+}
+
+[data-fp-surface="home"]
+.fp-home-hero__image[data-fp-hero-image-rotator]
+[data-fp-hero-image]:not(:first-child) {
+    position: absolute !important;
+    inset: 0;
+    z-index: 1;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+[data-fp-surface="home"]
+.fp-home-hero__image[data-fp-hero-image-rotator]
+[data-fp-hero-image].is-active {
+    z-index: 2;
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-fp-surface="home"]
+    .fp-home-hero__image[data-fp-hero-image-rotator]
+    [data-fp-hero-image] {
+        transition: none !important;
+    }
+}

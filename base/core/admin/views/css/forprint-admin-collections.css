@@ -14,27 +14,12 @@
  *         > caption cell
  *         > media cell
  *
- * Filters intentionally use the same compact horizontal rhythm as Goods:
- * fixed practical card width, left alignment, text left and image right.
+ * Common list/grid/card geometry is owned by forprint-admin.css.
+ * This file owns only Filters drag/sort/caption/media specialization.
  */
 
 [data-fp-admin-collection-group] > summary {
     cursor: pointer;
-}
-
-[data-fp-admin-collection="filters"]
-.fp-admin-filter-group__items {
-    display: flex !important;
-    flex-flow: row wrap !important;
-    align-items: stretch !important;
-    align-content: flex-start !important;
-    justify-content: flex-start !important;
-    gap: 0.4rem !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    padding: 0.4rem !important;
-    box-sizing: border-box !important;
 }
 
 /*
@@ -46,17 +31,13 @@
 > .fp-admin-filter-card {
     position: relative !important;
     display: block !important;
-    flex: 0 0 18rem !important;
-    width: 18rem !important;
-    min-width: 18rem !important;
-    max-width: 18rem !important;
-    min-height: 6.75rem !important;
     margin: 0 !important;
     padding: 0 !important;
     float: none !important;
     overflow: hidden !important;
     box-sizing: border-box !important;
     cursor: grab !important;
+    border-radius: var(--fp-admin-list-card-radius) !important;
 }
 
 [data-fp-admin-collection="filters"]
@@ -79,12 +60,10 @@
 > .fp-admin-filter-card
 > a.fp-admin-filter-card-cell {
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 6.3rem !important;
     align-items: stretch !important;
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
-    min-height: 6.75rem !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
@@ -156,7 +135,7 @@
     width: 100% !important;
     height: 100% !important;
     min-width: 0 !important;
-    min-height: 6.75rem !important;
+    min-height: var(--fp-admin-list-card-height) !important;
     max-width: none !important;
     max-height: none !important;
     object-fit: cover !important;
@@ -176,47 +155,7 @@
 [data-fp-admin-collection="filters"]
 .ui-sortable-placeholder {
     display: block !important;
-    flex: 0 0 18rem !important;
-    width: 18rem !important;
-    min-width: 18rem !important;
-    min-height: 6.75rem !important;
+    min-height: var(--fp-admin-list-card-height) !important;
     visibility: visible !important;
     box-sizing: border-box !important;
-}
-
-@media (max-width: 78rem) {
-    [data-fp-admin-collection="filters"]
-    .fp-admin-filter-group__items
-    > .fp-admin-filter-card,
-    [data-fp-admin-collection="filters"]
-    .fp-admin-filter-card.fp-admin-sortable--placeholder,
-    [data-fp-admin-collection="filters"]
-    .ui-sortable-placeholder {
-        flex-basis: 16rem !important;
-        width: 16rem !important;
-        min-width: 16rem !important;
-        max-width: 16rem !important;
-    }
-
-    [data-fp-admin-collection="filters"]
-    .fp-admin-filter-group__items
-    > .fp-admin-filter-card
-    > a.fp-admin-filter-card-cell {
-        grid-template-columns: minmax(0, 1fr) 5.5rem !important;
-    }
-}
-
-@media (max-width: 42rem) {
-    [data-fp-admin-collection="filters"]
-    .fp-admin-filter-group__items
-    > .fp-admin-filter-card,
-    [data-fp-admin-collection="filters"]
-    .fp-admin-filter-card.fp-admin-sortable--placeholder,
-    [data-fp-admin-collection="filters"]
-    .ui-sortable-placeholder {
-        flex: 1 1 100% !important;
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: none !important;
-    }
 }

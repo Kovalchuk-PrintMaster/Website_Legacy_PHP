@@ -11,6 +11,7 @@ import shlex
 import shutil
 import subprocess
 import tarfile
+import time
 
 ROOT = Path("/srv/software_development/forprint-project/forprint_website")
 BASE = ROOT / "base"
@@ -95,6 +96,60 @@ def local_scope_files(scope: str) -> list[str]:
     return files
 
 
+# FORPRINT_CANONICAL_SSH_TRANSPORT_HARDENING_V1
+_FP_TRANSIENT_TRANSPORT_MARKERS = (
+    "connection reset by peer",
+    "connection closed by remote host",
+    "kex_exchange_identification",
+    "connection timed out",
+    "operation timed out",
+    "broken pipe",
+    "banner exchange",
+    "client_loop: send disconnect",
+    "connection refused",
+    "remote command failed (255)",
+    "mux_client",
+    "master exited unexpectedly",
+)
+
+
+def _fp_is_transient_transport_failure(value) -> bool:
+    if isinstance(value, BrokenPipeError):
+        return True
+
+    text = str(value).lower()
+    return any(
+        marker in text
+        for marker in _FP_TRANSIENT_TRANSPORT_MARKERS
+    )
+
+
+def _fp_transport_retry(
+    label: str,
+    operation,
+    *,
+    attempts: int = 3,
+):
+    for attempt in range(1, attempts + 1):
+        try:
+            return operation()
+        except (BrokenPipeError, RuntimeError) as exc:
+            if (
+                not _fp_is_transient_transport_failure(exc)
+                or attempt >= attempts
+            ):
+                raise
+
+            wait_seconds = attempt * 3
+            print(
+                f"[WARN] transient SSH transport failure during {label} "
+                f"(attempt {attempt}/{attempts}); "
+                f"restarting the complete operation in {wait_seconds}s"
+            )
+            time.sleep(wait_seconds)
+# /FORPRINT_CANONICAL_SSH_TRANSPORT_HARDENING_V1
+
+
 def _remote_find_command(connection, scope: str) -> str:
     if scope == "userfiles":
         return f'''\nset -eu\ncd {q(connection.webroot)}\nif [ -d userfiles ]; then\n    find userfiles -type f -printf '%p\\n' | LC_ALL=C sort\nfi\n'''
@@ -115,7 +170,7 @@ def _remote_find_command(connection, scope: str) -> str:
     )
 
 
-def remote_scope_files(connection, ssh_exec, scope: str) -> list[str]:
+def _fp_remote_scope_files_once(connection, ssh_exec, scope: str) -> list[str]:
     _code, stdout, _stderr = ssh_exec(
         connection,
         _remote_find_command(connection, scope),
@@ -133,7 +188,19 @@ def remote_scope_files(connection, ssh_exec, scope: str) -> list[str]:
     return result
 
 
-def delete_remote_files(connection, ssh_exec, paths: list[str]) -> None:
+def remote_scope_files(connection, ssh_exec, scope: str) -> list[str]:
+    return _fp_transport_retry(
+        f"remote {scope} inventory",
+        lambda: _fp_remote_scope_files_once(
+            connection,
+            ssh_exec,
+            scope,
+        ),
+    )
+
+
+
+def _fp_delete_remote_files_once(connection, ssh_exec, paths: list[str]) -> None:
     if not paths:
         print("[PRUNE] no remote-only files")
         return
@@ -143,12 +210,30 @@ def delete_remote_files(connection, ssh_exec, paths: list[str]) -> None:
         if Path(path).parts[0] in PROTECTED_TOP:
             raise RuntimeError(f"Refusing to delete protected hosting path: {path}")
 
-    payload = b"".join(path.encode("utf-8") + b"\0" for path in paths)
+    for path in paths:
+        if "\n" in path or "\r" in path:
+            raise RuntimeError(
+                f"Remote delete path contains a newline: {path!r}"
+            )
 
-    command = f'''\nset -eu\ncd {q(connection.webroot)}\nwhile IFS= read -r -d '' f; do\n    case "$f" in\n        /*|../*|*/../*|..)\n            echo "UNSAFE_DELETE_PATH=$f" >&2\n            exit 91\n            ;;\n        config.php|vendor/*|log/*|temp/*|cache/*|sessions/*|.well-known/*|cgi-bin/*|.user.ini|php.ini|error_log|.htaccess)\n            echo "PROTECTED_DELETE_PATH=$f" >&2\n            exit 92\n            ;;\n    esac\n    rm -f -- "$f"\ndone\n'''
+    payload = ("\n".join(paths) + "\n").encode("utf-8")
+
+    command = f'''\nset -eu\ncd {q(connection.webroot)}\nwhile IFS= read -r f; do\n    case "$f" in\n        /*|../*|*/../*|..)\n            echo "UNSAFE_DELETE_PATH=$f" >&2\n            exit 91\n            ;;\n        config.php|vendor/*|log/*|temp/*|cache/*|sessions/*|.well-known/*|cgi-bin/*|.user.ini|php.ini|error_log|.htaccess)\n            echo "PROTECTED_DELETE_PATH=$f" >&2\n            exit 92\n            ;;\n    esac\n    rm -f -- "$f"\ndone\n'''
 
     ssh_exec(connection, command, stdin=payload)
     print(f"[PRUNE] removed remote-only files: {len(paths)}")
+
+
+def delete_remote_files(connection, ssh_exec, paths: list[str]) -> None:
+    return _fp_transport_retry(
+        "idempotent remote prune",
+        lambda: _fp_delete_remote_files_once(
+            connection,
+            ssh_exec,
+            paths,
+        ),
+    )
+
 
 
 def _local_tar_command(scope: str) -> list[str]:
@@ -162,7 +247,7 @@ def _local_tar_command(scope: str) -> list[str]:
     return command
 
 
-def stream_local_scope_to_remote(connection, scope: str) -> None:
+def _fp_stream_local_scope_to_remote_once(connection, scope: str) -> None:
     local_command = _local_tar_command(scope)
     remote_command = f"tar -xzf - -C {q(connection.webroot)}"
 
@@ -210,6 +295,19 @@ def stream_local_scope_to_remote(connection, scope: str) -> None:
     print(f"[STREAM OK] {scope}")
 
 
+def stream_local_scope_to_remote(connection, scope: str) -> None:
+    # Re-extracting the same complete local archive is convergent. If a
+    # transport break leaves partial extraction, restart the stream from byte 0.
+    return _fp_transport_retry(
+        f"{scope} local-to-hosting tar stream",
+        lambda: _fp_stream_local_scope_to_remote_once(
+            connection,
+            scope,
+        ),
+    )
+
+
+
 REMOTE_HASH_VERIFIER_PHP = r'''
 $root = getcwd();
 $count = 0;
@@ -247,7 +345,7 @@ echo json_encode(['ok' => true, 'count' => $count]);
 '''
 
 
-def verify_remote_files(connection, ssh_exec, paths: list[str]) -> None:
+def _fp_verify_remote_files_once(connection, ssh_exec, paths: list[str]) -> None:
     lines = []
     for rel in paths:
         _reject_unsafe_relative(rel)
@@ -274,6 +372,18 @@ def verify_remote_files(connection, ssh_exec, paths: list[str]) -> None:
     if not result.get("ok") or int(result.get("count", -1)) != len(paths):
         raise RuntimeError("Remote hash verification returned unexpected result.")
     print(f"[HASH OK] files={len(paths)}")
+
+
+def verify_remote_files(connection, ssh_exec, paths: list[str]) -> None:
+    return _fp_transport_retry(
+        "remote SHA-256 verification",
+        lambda: _fp_verify_remote_files_once(
+            connection,
+            ssh_exec,
+            paths,
+        ),
+    )
+
 
 
 def exact_sync_scope(connection, ssh_exec, scope: str) -> None:
@@ -694,7 +804,7 @@ def export_local_database(destination: Path) -> None:
         raise RuntimeError("Local DB package is unexpectedly small.")
 
 
-def export_remote_database(connection, destination: Path) -> None:
+def _fp_export_remote_database_once(connection, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     command = f"cd {q(connection.webroot)} && {q(connection.remote_php)}"
     process = subprocess.Popen(
@@ -712,6 +822,25 @@ def export_remote_database(connection, destination: Path) -> None:
         raise RuntimeError("Production DB export failed:\n" + stderr[-4000:])
     if not destination.is_file() or destination.stat().st_size < 256:
         raise RuntimeError("Production DB package is unexpectedly small.")
+
+
+def export_remote_database(connection, destination: Path):
+    # Production DB export is read-only. Remove a partial local package and
+    # restart the complete export on a transient SSH failure.
+    def operation():
+        if destination.exists():
+            destination.unlink()
+
+        return _fp_export_remote_database_once(
+            connection,
+            destination,
+        )
+
+    return _fp_transport_retry(
+        "production database export",
+        operation,
+    )
+
 
 
 def validate_db_package(path: Path) -> dict:
@@ -914,7 +1043,7 @@ def validate_backup_dir(path: Path) -> dict:
     }
 
 
-def stream_backup_tar_to_remote(connection, archive: Path) -> None:
+def _fp_stream_backup_tar_to_remote_once(connection, archive: Path) -> None:
     remote_command = f"tar -xzf - -C {q(connection.webroot)}"
     with archive.open("rb") as source:
         result = subprocess.run(
@@ -930,6 +1059,19 @@ def stream_backup_tar_to_remote(connection, archive: Path) -> None:
             + result.stderr.decode("utf-8", errors="replace")[-4000:]
         )
     print("[RESTORE TAR OK]")
+
+
+def stream_backup_tar_to_remote(connection, archive: Path) -> None:
+    # Rollback tar extraction is deterministic. If interrupted, restart the
+    # same archive from byte zero.
+    return _fp_transport_retry(
+        "rollback webroot tar restore",
+        lambda: _fp_stream_backup_tar_to_remote_once(
+            connection,
+            archive,
+        ),
+    )
+
 
 
 def restore_file_tree_from_backup(connection, ssh_exec, backup_info: dict) -> None:

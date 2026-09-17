@@ -2,6 +2,19 @@
 ForPrint Website — Current Status
 Status
 
+<!-- FP_LIVE_PROJECT_STATE_OVERRIDE_V0_1_START -->
+
+Live status override:
+`docs/project_state/current/CURRENT_PROJECT_STATE.md`
+
+Primary assistant entrypoint: root `AGENTS.md`.
+
+The historical status chronology below is retained for compatibility/evidence;
+it must not override the living current-state document.
+
+<!-- FP_LIVE_PROJECT_STATE_OVERRIDE_V0_1_END -->
+
+
 local_website_runtime_smoke_v0_5_6_completed
 
 Repository

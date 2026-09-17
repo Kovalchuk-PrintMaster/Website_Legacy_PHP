@@ -21,7 +21,7 @@ from scripts.maintenance.hosting_mirror_common import (
     validate_db_package,
     validate_webroot_tar,
 )
-from scripts.operations.hosting_transport import discover_hosting_connection, ssh_exec
+from scripts.operations.hosting_transport import discover_hosting_connection, ssh_exec, ssh_exec_idempotent
 
 
 def q(value: str) -> str:
@@ -36,7 +36,11 @@ def remote_webroot_kib(connection) -> int:
 set -eu
 du -sk {excludes} {q(connection.webroot)} | awk '{{print $1}}'
 """
-    _code, stdout, _stderr = ssh_exec(connection, command)
+    _code, stdout, _stderr = ssh_exec_idempotent(
+        connection,
+        command,
+        label="production webroot size inspection",
+    )
     value = stdout.strip().splitlines()[-1].strip()
     if not value.isdigit():
         raise RuntimeError("Could not determine production backup source size.")
@@ -53,7 +57,12 @@ cd {q(connection.webroot)}
 tar -czf - {excludes} --exclude='./.forprint-*' .
 """
     with destination.open("wb") as output:
-        ssh_exec(connection, command, stdout_file=output)
+        ssh_exec_idempotent(
+            connection,
+            command,
+            stdout_file=output,
+            label="hosting-to-local webroot backup stream",
+        )
     if destination.stat().st_size < 1024:
         raise RuntimeError("Production webroot archive is unexpectedly small.")
 
